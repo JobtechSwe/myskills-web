@@ -1,0 +1,47 @@
+{
+  "extends": [
+    "@iteam/eslint-config-iteam-react",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "overrides": [
+    {
+      "files": ["**/*.tsx", "**/*.ts"],
+      "rules": {
+        "no-undef": "off",
+        "no-unused-vars": "off",
+        "react/prop-types": "off",
+        "space-before-function-paren": "off"
+      }
+    }
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true
+    },
+    "ecmaVersion": 8,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "emotion",
+    "jsx-a11y",
+    "react",
+    "react-hooks"
+  ],
+  "rules": {
+    "emotion/jsx-import": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react/jsx-sort-props": "warn",
+    "react/sort-prop-types": "error"
+  },
+  "settings": {
+    "react": {
+      "createClass": "createReactClass",
+      "flowVersion": "0.79",
+      "pragma": "React",
+      "version": "16"
+    }
+  }
+}

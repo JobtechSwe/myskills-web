@@ -9,7 +9,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 
 import { HttpLink } from 'apollo-link-http'
 import { WebSocketLink } from 'apollo-link-ws'
-import { split } from 'apollo-link'
+import { ApolloLink, split } from 'apollo-link'
 import { getMainDefinition } from 'apollo-utilities'
 
 const httpLink = new HttpLink({
@@ -17,13 +17,13 @@ const httpLink = new HttpLink({
 })
 
 const wsLink = new WebSocketLink({
-  uri: `ws://localhost:3000/`,
+  uri: `ws://localhost:3000/graphql`,
   options: {
     reconnect: true,
   },
 })
 
-const link = split(
+const terminatingLink = split(
   // split based on operation type
   ({ query }) => {
     console.log('query: ', query)
@@ -35,7 +35,7 @@ const link = split(
 )
 
 const client = new ApolloClient({
-  link,
+  link: ApolloLink.from([terminatingLink]),
   cache: new InMemoryCache(),
 })
 

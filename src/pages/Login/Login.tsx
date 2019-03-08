@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import * as React from 'react'
 import gql from 'graphql-tag'
 import { Query, Subscription } from 'react-apollo'
 import QR from '../../components/QR/QR'
@@ -23,12 +23,12 @@ const CONSENT_SUBSCRIPTION = gql`
 const AccessToken = ({ consentId }: any) => (
   <Subscription subscription={CONSENT_SUBSCRIPTION} variables={{ consentId }}>
     {({ data: { accessToken }, loading }) => (
-      <h4>New : {!loading && accessToken}</h4>
+      <h4>New access token: {!loading && accessToken}</h4>
     )}
   </Subscription>
 )
 
-export const Login: React.FC<RouteComponentProps> = () => {
+const Login: React.FC<RouteComponentProps> = () => {
   return (
     <Query query={GET_CONSENT_ID}>
       {({ loading, error, data }) => {

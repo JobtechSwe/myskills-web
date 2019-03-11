@@ -34,7 +34,7 @@ const ConsentApprovedSubscription: React.FC<
   >
     {({ data, loading }) => {
       if (loading || !data) {
-        return (<p>Waiting for consent...</p>)
+        return <p>Waiting for consent...</p>
       }
 
       setCookie('token', data.consentApproved.accessToken)

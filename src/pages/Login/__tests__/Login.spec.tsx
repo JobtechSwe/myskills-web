@@ -1,8 +1,17 @@
 import * as React from 'react'
 import { MockedProvider } from 'react-apollo/test-utils'
 import { render } from 'react-testing-library'
-import Login, { GET_CONSENT_ID } from '../Login'
+import Login from '../Login'
+import gql from 'graphql-tag'
 
+const GET_CONSENT_ID = gql`
+  mutation login {
+    login {
+      id
+      expires
+    }
+  }
+`
 const mocks = [
   {
     request: {

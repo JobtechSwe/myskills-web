@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import gql from 'graphql-tag'
-import { Query, Subscription, Mutation } from 'react-apollo'
+import { Subscription, Mutation } from 'react-apollo'
 import QR from '../../components/QR/QR'
 import { RouteComponentProps } from '@reach/router'
+import { setCookie } from '../../utils/helpers'
 
 const GET_CONSENT_ID = gql`
   mutation login {
@@ -31,13 +32,13 @@ const ConsentApprovedSubscription: React.FC<
     subscription={CONSENT_SUBSCRIPTION}
     variables={{ consentRequestId }}
   >
-    {({ data, loading }) =>
-      !loading && data ? (
-        <h4>New access token: {data.consentApproved.accessToken}</h4>
-      ) : (
-        <p>Waiting for consent...</p>
-      )
-    }
+    {({ data, loading }) => {
+      if (loading || !data) {
+        return (<p>Waiting for consent...</p>)
+      }
+
+      setCookie('token', data.consentApproved.accessToken)
+    }}
   </Subscription>
 )
 

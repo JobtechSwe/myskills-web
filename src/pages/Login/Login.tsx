@@ -1,50 +1,61 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import gql from 'graphql-tag'
-import { Query, Subscription } from 'react-apollo'
+import { Query, Subscription, Mutation } from 'react-apollo'
 import QR from '../../components/QR/QR'
 import { RouteComponentProps } from '@reach/router'
 
-export const GET_CONSENT_ID = gql`
-  query GetConsentId {
-    consent {
+const GET_CONSENT_ID = gql`
+  mutation login {
+    login {
       id
       expires
     }
   }
 `
 const CONSENT_SUBSCRIPTION = gql`
-  subscription onCommentAdded($consent: String!) {
-    consentResponse(consent: $consent) {
+  subscription consentApproved($consentRequestId: String!) {
+    consentApproved(consentRequestId: $consentRequestId) {
       accessToken
     }
   }
 `
 
-const AccessToken = ({ consentId }: any) => (
-  <Subscription subscription={CONSENT_SUBSCRIPTION} variables={{ consentId }}>
-    {({ data: { accessToken }, loading }) => (
-      <h4>New access token: {!loading && accessToken}</h4>
-    )}
+interface ConsentApprovedSubscriptionProps {
+  consentRequestId: string
+}
+
+const ConsentApprovedSubscription: React.FC<
+  ConsentApprovedSubscriptionProps
+> = ({ consentRequestId }) => (
+  <Subscription
+    subscription={CONSENT_SUBSCRIPTION}
+    variables={{ consentRequestId }}
+  >
+    {({ data, loading }) =>
+      !loading && data ? (
+        <h4>New access token: {data.consentApproved.accessToken}</h4>
+      ) : (
+        <p>Waiting for consent...</p>
+      )
+    }
   </Subscription>
 )
 
-const Login: React.FC<RouteComponentProps> = () => {
-  return (
-    <Query query={GET_CONSENT_ID}>
-      {({ loading, error, data }) => {
-        if (loading) return 'Loading...'
-        if (error) return `Error! ${error.message}`
-
-        return (
+const Login: React.FC<RouteComponentProps> = () => (
+  <Mutation mutation={GET_CONSENT_ID}>
+    {(login, { loading, data }) => (
+      <>
+        <button onClick={() => login()}>Login</button>
+        {!loading && data && (
           <>
-            {/* <AccessToken consentId={data.consent.id} /> */}
-            <QR consentId={data.consent.id} />
-            <p>{data.consent.id}</p>
+            <ConsentApprovedSubscription consentRequestId={data.login.id} />
+            <QR consentId={data.login.id} />
+            <p>{data.login.id}</p>
           </>
-        )
-      }}
-    </Query>
-  )
-}
+        )}
+      </>
+    )}
+  </Mutation>
+)
 
 export default Login

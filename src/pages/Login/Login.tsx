@@ -38,6 +38,7 @@ const ConsentApprovedSubscription: React.FC<
       }
 
       setCookie('token', data.consentApproved.accessToken)
+      return null
     }}
   </Subscription>
 )

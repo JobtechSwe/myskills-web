@@ -10,9 +10,7 @@ function App() {
     <React.Suspense fallback={<div>Loading...</div>}>
       <Router>
         <Login path="/" />
-
         <RestrictedRoute component={Profile} path="/profile" />
-        <Profile path="/profile" />
       </Router>
     </React.Suspense>
   )

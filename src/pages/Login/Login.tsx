@@ -21,12 +21,12 @@ const CONSENT_SUBSCRIPTION = gql`
   }
 `
 
-interface ConsentApprovedSubscriptionProps {
+interface IConsentApprovedSubscriptionProps {
   consentRequestId: string
 }
 
 const ConsentApprovedSubscription: React.FC<
-  ConsentApprovedSubscriptionProps
+  IConsentApprovedSubscriptionProps
 > = ({ consentRequestId }) => (
   <Subscription
     subscription={CONSENT_SUBSCRIPTION}
@@ -48,6 +48,7 @@ const Login: React.FC<RouteComponentProps> = () => (
     {(login, { loading, data }) => (
       <>
         <button onClick={() => login()}>Login</button>
+
         {!loading && data && (
           <>
             <ConsentApprovedSubscription consentRequestId={data.login.id} />

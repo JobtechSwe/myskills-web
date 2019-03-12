@@ -1,19 +1,33 @@
-import React, { useState, useEffect } from 'react'
+import React, { FunctionComponent, useState, useEffect } from 'react'
+import { RouteComponentProps, navigate } from '@reach/router'
 import { getCookie } from '../utils/helpers'
 
-const Restricted = ({ component: BaseComponent, navigate, ...rest }: any) => {
+interface RestrictedRouteProps extends RouteComponentProps {
+  component: FunctionComponent
+}
+
+const Restricted: React.FC<RestrictedRouteProps> = ({
+  component: RestrictedComponent,
+  ...props
+}) => {
   const [isAuthenticated, setAuthenticated] = useState(false)
-  const checkAuthentication = (name: string) => {
-    if (!getCookie('token')) {
-      navigate('/')
-      return
-    }
-    return !getCookie('token') ? navigate('/') : setAuthenticated(true)
-  }
 
-  useEffect(() => checkAuthentication('token'))
+  const checkAuthentication = () =>
+    !getCookie('token') ? navigate('/') : setAuthenticated(true)
 
-  return isAuthenticated ? <BaseComponent {...rest} /> : <p>not logged in...</p>
+  useEffect(() => {
+    checkAuthentication()
+  })
+
+  return isAuthenticated ? <RestrictedComponent {...props} /> : null
 }
 
 export default Restricted
+
+// Login flow
+//
+// 1. user clicks login
+// 2. consentrequest made to operator, returns a consentrequestid
+// 3. user enters consentrequestid into mydata and accepts, returns accesstoken to subscribing client
+// 4. client saves accesstoken as cookie
+// 5. client uses wrapper component that checks for cookie on all protected routes and allows access accordingly

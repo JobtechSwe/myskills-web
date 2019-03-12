@@ -11,3 +11,5 @@ export const setCookie = (
 export const removeCookie = (name: string) => {
   Cookies.remove(name)
 }
+
+export const redirect = (route: string) => (location.href = route)

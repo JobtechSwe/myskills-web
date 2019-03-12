@@ -2,8 +2,25 @@ import React from 'react'
 import gql from 'graphql-tag'
 import { Subscription, Mutation } from 'react-apollo'
 import QR from '../../components/QR/QR'
-import { RouteComponentProps } from '@reach/router'
+import { RouteComponentProps, navigate } from '@reach/router'
 import { setCookie } from '../../utils/helpers'
+import styled from '@emotion/styled'
+
+const Test = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  background: ${({ theme }) => theme.colors.lassekongo};
+`
+
+const LoginButton = styled.button`
+  width: 100px;
+  height: 50px;
+  font-size: 24px;
+`
 
 const GET_CONSENT_ID = gql`
   mutation login {
@@ -38,27 +55,36 @@ const ConsentApprovedSubscription: React.FC<
       }
 
       setCookie('token', data.consentApproved.accessToken)
+      navigate('/profile')
       return null
     }}
   </Subscription>
 )
 
-const Login: React.FC<RouteComponentProps> = () => (
-  <Mutation mutation={GET_CONSENT_ID}>
-    {(login, { loading, data }) => (
-      <>
-        <button onClick={() => login()}>Login</button>
+const Login: React.FC<RouteComponentProps> = props => {
+  return (
+    <Test>
+      <Mutation mutation={GET_CONSENT_ID}>
+        {(login, { loading, data }) => {
+          return (
+            <>
+              <LoginButton onClick={() => login()}>LOGIN</LoginButton>
 
-        {!loading && data && (
-          <>
-            <ConsentApprovedSubscription consentRequestId={data.login.id} />
-            <QR consentId={data.login.id} />
-            <p>{data.login.id}</p>
-          </>
-        )}
-      </>
-    )}
-  </Mutation>
-)
+              {!loading && data && (
+                <>
+                  <ConsentApprovedSubscription
+                    consentRequestId={data.login.id}
+                  />
+                  <QR consentId={data.login.id} />
+                  <p>{data.login.id}</p>
+                </>
+              )}
+            </>
+          )
+        }}
+      </Mutation>
+    </Test>
+  )
+}
 
 export default Login

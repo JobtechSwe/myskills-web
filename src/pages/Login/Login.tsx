@@ -5,6 +5,7 @@ import QR from '../../components/QR/QR'
 import { RouteComponentProps, navigate } from '@reach/router'
 import { setCookie } from '../../utils/helpers'
 import styled from '@emotion/styled'
+import { color, space, width } from 'styled-system'
 
 const Test = styled.div`
   width: 100vw;
@@ -17,10 +18,29 @@ const Test = styled.div`
 `
 
 const LoginButton = styled.button`
-  width: 100px;
+  ${color}
+  ${space}
+  ${width}
   height: 50px;
   font-size: 24px;
 `
+
+const Button = styled.button`
+  ${color}
+  ${space}
+  ${width}
+`
+const BaseButtons = styled(Button)``
+
+BaseButtons.defaultProps = {
+  width: [1, 1 / 2, 1 / 4],
+}
+
+const BaseButton = (props: any) => (
+  <Button {...props} width={[1, 1 / 2, 1 / 4]} />
+)
+
+const BlueButton = (props: any) => <BaseButton {...props} />
 
 const GET_CONSENT_ID = gql`
   mutation login {
@@ -68,7 +88,16 @@ const Login: React.FC<RouteComponentProps> = props => {
         {(login, { loading, data }) => {
           return (
             <>
-              <LoginButton onClick={() => login()}>LOGIN</LoginButton>
+              <LoginButton
+                color=""
+                onClick={() => login()}
+                width={[100, 200, 300]}
+              >
+                LOGIN
+              </LoginButton>
+              <BaseButton>BaseButton</BaseButton>
+              <BaseButtons>BaseButtons</BaseButtons>
+              <BlueButton color="lassekongo">BlueBotton</BlueButton>
 
               {!loading && data && (
                 <>

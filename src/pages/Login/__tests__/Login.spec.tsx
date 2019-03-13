@@ -3,6 +3,8 @@ import { MockedProvider } from 'react-apollo/test-utils'
 import { render } from 'react-testing-library'
 import Login from '../Login'
 import gql from 'graphql-tag'
+import theme from '../../../utils/stylesheet'
+import { ThemeProvider } from 'emotion-theming'
 
 const GET_CONSENT_ID = gql`
   mutation login {
@@ -12,7 +14,7 @@ const GET_CONSENT_ID = gql`
     }
   }
 `
-const mocks = [
+const getConsentMock = [
   {
     request: {
       query: GET_CONSENT_ID,
@@ -27,8 +29,10 @@ const mocks = [
 
 it('renders without errors', async () => {
   const { container } = render(
-    <MockedProvider addTypename={false} mocks={mocks}>
-      <Login path="/" />
+    <MockedProvider addTypename={false} mocks={getConsentMock}>
+      <ThemeProvider theme={theme}>
+        <Login path="/" />
+      </ThemeProvider>
     </MockedProvider>
   )
 

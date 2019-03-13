@@ -6,6 +6,7 @@ import { setContext } from 'apollo-link-context'
 import ApolloClient from 'apollo-client'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { getCookie, removeCookie, redirect } from './utils/helpers'
+import { onError } from 'apollo-link-error'
 
 const httpLink = new HttpLink({
   uri: process.env.REACT_APP_GRAPHQL_URI,
@@ -18,7 +19,25 @@ const wsLink = new WebSocketLink({
   },
 })
 
-function deconstructJWT(token: string) {
+export const handleErrors = ({ graphQLErrors, networkError }: any) => {
+  const hasGraphQLError = graphQLErrors && graphQLErrors.length > 0
+
+  if (
+    hasGraphQLError &&
+    graphQLErrors[0].message ===
+      "Cannot read property 'permissions' of undefined" &&
+    !getCookie('token')
+  ) {
+    redirect('/')
+    return
+  }
+
+  if (networkError && networkError.statusCode === 503) {
+    redirect('/unavailable')
+  }
+}
+
+export function deconstructJWT(token: string) {
   const segments = token.split('.')
 
   if ((!segments as any) instanceof Array || segments.length !== 3) {
@@ -39,6 +58,7 @@ const authLink = setContext((root, { headers }) => {
   // Check if token has expired
   const tokenIssuedAt = deconstructJWT(token).iat
 
+  // 30 days
   if ((Date.now() - tokenIssuedAt * 1000) / 1000 / 60 / 60 / 24 > 30) {
     removeCookie('token')
     redirect('/')
@@ -65,7 +85,7 @@ const terminatingLink = split(
 )
 
 const client = new ApolloClient({
-  link: ApolloLink.from([terminatingLink]),
+  link: ApolloLink.from([onError(handleErrors), terminatingLink]),
   cache: new InMemoryCache(),
 })
 

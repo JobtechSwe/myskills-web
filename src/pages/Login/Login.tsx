@@ -1,11 +1,9 @@
 import React from 'react'
 import gql from 'graphql-tag'
-import { Subscription, Mutation } from 'react-apollo'
-import QR from '../../components/QR/QR'
-import { RouteComponentProps, navigate } from '@reach/router'
-import { setCookie } from '../../utils/helpers'
+import { Mutation } from 'react-apollo'
+import { RouteComponentProps } from '@reach/router'
 import styled from '@emotion/styled'
-import { color, space, width } from 'styled-system'
+import Consent from './Consent'
 
 const Test = styled.div`
   width: 100vw;
@@ -17,32 +15,7 @@ const Test = styled.div`
   background: ${({ theme }) => theme.colors.lassekongo};
 `
 
-const LoginButton = styled.button`
-  ${color}
-  ${space}
-  ${width}
-  height: 50px;
-  font-size: 24px;
-`
-
-const Button = styled.button`
-  ${color}
-  ${space}
-  ${width}
-`
-const BaseButtons = styled(Button)``
-
-BaseButtons.defaultProps = {
-  width: [1, 1 / 2, 1 / 4],
-}
-
-const BaseButton = (props: any) => (
-  <Button {...props} width={[1, 1 / 2, 1 / 4]} />
-)
-
-const BlueButton = (props: any) => <BaseButton {...props} />
-
-const GET_CONSENT_ID = gql`
+export const GET_CONSENT_ID = gql`
   mutation login {
     login {
       id
@@ -50,66 +23,25 @@ const GET_CONSENT_ID = gql`
     }
   }
 `
-const CONSENT_SUBSCRIPTION = gql`
-  subscription consentApproved($consentRequestId: String!) {
-    consentApproved(consentRequestId: $consentRequestId) {
-      accessToken
-    }
-  }
-`
-
-interface IConsentApprovedSubscriptionProps {
-  consentRequestId: string
-}
-
-const ConsentApprovedSubscription: React.FC<
-  IConsentApprovedSubscriptionProps
-> = ({ consentRequestId }) => (
-  <Subscription
-    subscription={CONSENT_SUBSCRIPTION}
-    variables={{ consentRequestId }}
-  >
-    {({ data, loading }) => {
-      if (loading || !data) {
-        return <p>Waiting for consent...</p>
-      }
-
-      setCookie('token', data.consentApproved.accessToken)
-      navigate('/profile')
-      return null
-    }}
-  </Subscription>
-)
 
 const Login: React.FC<RouteComponentProps> = props => {
   return (
     <Test>
       <Mutation mutation={GET_CONSENT_ID}>
-        {(login, { loading, data }) => {
-          return (
-            <>
-              <LoginButton
-                color=""
-                onClick={() => login()}
-                width={[100, 200, 300]}
-              >
-                LOGIN
-              </LoginButton>
-              <BaseButton>BaseButton</BaseButton>
-              <BaseButtons>BaseButtons</BaseButtons>
-              <BlueButton color="lassekongo">BlueBotton</BlueButton>
+        {(login, { data, error, loading }) => {
+          if (loading) {
+            return <p>Loading...</p>
+          }
 
-              {!loading && data && (
-                <>
-                  <ConsentApprovedSubscription
-                    consentRequestId={data.login.id}
-                  />
-                  <QR consentId={data.login.id} />
-                  <p>{data.login.id}</p>
-                </>
-              )}
-            </>
-          )
+          if (error) {
+            return <p>That’s an error.</p>
+          }
+
+          if (data) {
+            return <Consent consentId={data.login.id} />
+          }
+
+          return <button onClick={_e => login()}>LOGIN</button>
         }}
       </Mutation>
     </Test>

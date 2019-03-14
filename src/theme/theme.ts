@@ -1,9 +1,8 @@
 const colors = {
   lassekongo: 'dodgerblue',
-  primary: 'pink',
 }
 
-const sizes = ['0', '1rem', '2rem', '4rem']
+const sizes = [0, 16, 24, 32]
 
 const typography = {
   default: 'Arial',
@@ -16,4 +15,10 @@ const space = {
   big: sizes[3],
 }
 
-export default { colors, space, typography }
+const theme = {
+  colors,
+  space,
+  typography,
+}
+
+export default theme

@@ -20,7 +20,7 @@ interface IConsentProps {
 const Consent: React.FC<IConsentProps> = ({ consentId }) => {
   const { data, error, loading } = useSubscription(CONSENT_SUBSCRIPTION, {
     variables: {
-      consentId,
+      consentRequestId: consentId,
     },
   })
 

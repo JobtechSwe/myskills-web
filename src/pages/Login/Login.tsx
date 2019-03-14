@@ -27,6 +27,10 @@ export const GET_CONSENT_ID = gql`
 const Login: React.FC<RouteComponentProps> = props => {
   return (
     <Test>
+      {/* TODO(@all):
+       *  Replace this with useMutation when support has been added:
+       *  https://github.com/trojanowski/react-apollo-hooks/pull/93
+       */}
       <Mutation mutation={GET_CONSENT_ID}>
         {(login, { data, error, loading }) => {
           if (loading) {

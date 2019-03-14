@@ -6,7 +6,6 @@
 
 - [ ] `npm test`
 - [ ] `npm run lint`
-- [ ] `npm run flow`
 - [ ] `npm run cypress`
 
 ### Browser testing

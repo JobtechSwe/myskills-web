@@ -26,9 +26,11 @@
     "js-cookie": "^2.2.0",
     "react": "16.8.4",
     "react-apollo": "2.5.2",
+    "react-apollo-hooks": "^0.4.3",
     "react-dom": "16.8.4",
     "react-qr-svg": "^2.2.1",
     "react-scripts": "2.1.8",
+    "styled-system": "^4.0.4",
     "subscriptions-transport-ws": "^0.9.15",
     "ts-jest": "^24.0.0",
     "typescript": "3.3.3333"
@@ -36,6 +38,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "test:once": "CI=true react-scripts test --env=jsdom",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint 'src/**/*.ts' 'src/**/*.tsx'",
@@ -51,6 +54,7 @@
   "devDependencies": {
     "@iteam/eslint-config-iteam-react": "0.1.0",
     "@types/js-cookie": "^2.2.1",
+    "@types/styled-system": "^3.2.2",
     "@typescript-eslint/eslint-plugin": "1.4.2",
     "acorn": "6.1.1",
     "eslint": "5.12.0",
@@ -59,7 +63,9 @@
     "graphql-code-generator": "0.18.0",
     "graphql-codegen-typescript-client": "0.18.0",
     "graphql-codegen-typescript-common": "0.18.0",
+    "husky": "^1.3.1",
     "jest": "23.6.0",
+    "lint-staged": "^8.1.5",
     "react-testing-library": "6.0.0"
   }
 }

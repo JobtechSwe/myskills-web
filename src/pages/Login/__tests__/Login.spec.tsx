@@ -1,19 +1,14 @@
 import * as React from 'react'
-import { MockedProvider } from 'react-apollo/test-utils'
-import { render } from 'react-testing-library'
-import Login from '../Login'
+import Login, { GET_CONSENT_ID } from '../Login'
 import gql from 'graphql-tag'
-import theme from '../../../utils/stylesheet'
-import { ThemeProvider } from 'emotion-theming'
+import { render } from '../../../utils/test-utils'
+import { fireEvent, wait } from 'react-testing-library'
 
-const GET_CONSENT_ID = gql`
-  mutation login {
-    login {
-      id
-      expires
-    }
-  }
-`
+const login = {
+  id: 'db993c65-0673-454e-b951-bcb8d274f184',
+  expires: '1552561115',
+  __typename: 'Login',
+}
 const getConsentMock = [
   {
     request: {
@@ -21,23 +16,56 @@ const getConsentMock = [
     },
     result: {
       data: {
-        consent: { id: '123456789', expires: '123' },
+        login,
       },
     },
   },
 ]
 
-it('renders without errors', async () => {
-  const { container } = render(
-    <MockedProvider addTypename={false} mocks={getConsentMock}>
-      <ThemeProvider theme={theme}>
-        <Login path="/" />
-      </ThemeProvider>
-    </MockedProvider>
-  )
+jest.mock('../Consent', () => () => <p>db993c65-0673-454e-b951-bcb8d274f184</p>)
 
-  // to pass loading state lib or other solution for this?
-  await new Promise(res => setTimeout(res, 0))
+describe('pages/Login', () => {
+  it('renders without errors', async () => {
+    const { container } = render(<Login />, [])
 
-  expect(container).toMatchSnapshot()
+    await wait()
+
+    expect(container).toMatchSnapshot()
+  })
+
+  it('should render loading state initially', async () => {
+    const { getByText } = render(<Login />, getConsentMock)
+
+    fireEvent.click(getByText(/login/i))
+
+    expect(getByText(/loading.../i)).toBeInTheDocument()
+  })
+
+  it.skip('should render errors', async () => {
+    const errorMock = [
+      {
+        request: {
+          query: GET_CONSENT_ID,
+        },
+        result: {
+          errors: [{ message: 'Error while trying to request consentId' }],
+        },
+      },
+    ]
+    const { getByText } = render(<Login />, errorMock)
+
+    fireEvent.click(getByText(/login/i))
+
+    expect(getByText(/that’s an error./i)).toBeInTheDocument()
+  })
+
+  it('should render consentId after Login is clicked', async () => {
+    const { getByText } = render(<Login />, getConsentMock)
+
+    fireEvent.click(getByText(/login/i))
+
+    await wait()
+
+    expect(getByText(login.id)).toBeInTheDocument()
+  })
 })

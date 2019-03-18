@@ -1,19 +1,19 @@
 jobs:
   include:
-  - stage: test
-    language: node_js
-    cache: npm
-    install:
-    - npm ci
-    script:
-    - npm run lint
-    - npm run unit
-  - stage: build
-    install: skip
-    services:
-    - docker
-    script:
-    - bash infrastructure/travis/build.sh
+  # - stage: test
+  #   language: node_js
+  #   cache: npm
+  #   install:
+  #   - npm ci
+  #   script:
+  #   - npm run lint
+  #   - npm run unit
+  # - stage: build
+  #   install: skip
+  #   services:
+  #   - docker
+  #   script:
+  #   - bash infrastructure/travis/build.sh
   - stage: deploy
     install:
     - bash ./infrastructure/travis/install-openshift.sh

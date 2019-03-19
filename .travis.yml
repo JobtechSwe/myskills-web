@@ -1,13 +1,13 @@
 jobs:
   include:
-    # - stage: test
-    #   language: node_js
-    #   cache: npm
-    #   install:
-    #   - npm ci
-    #   script:
-    #   - npm run lint
-    #   - npm run unit
+    - stage: test
+      language: node_js
+      cache: npm
+      install:
+        - npm ci
+      script:
+        # - npm run lint # disabled since there are lint errors
+        - npm run test:once
     - stage: build
       install: skip
       services:
@@ -20,9 +20,9 @@ jobs:
         - export PATH=$PATH:/tmp/openshift
       script: bash ./infrastructure/travis/deploy.sh
 stages:
-  #- test
+  - test
   - name: build
-  #  if: "(branch = master AND type != pull_request) OR tag IS present"
+    if: "(branch = master AND type != pull_request) OR tag IS present"
   - name: deploy
     if: "(branch = master AND type != pull_request) OR tag IS present"
 env:

@@ -1,0 +1,50 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    app: ci
+  name: web-ci
+spec:
+  replicas: 1
+  selector:
+    app: ci
+    deploymentconfig: web-ci
+  strategy:
+    activeDeadlineSeconds: 21600
+    rollingParams:
+      intervalSeconds: 1
+      maxSurge: 25%
+      maxUnavailable: 25%
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Rolling
+  template:
+    metadata:
+      labels:
+        app: ci
+        deploymentconfig: web-ci
+    spec:
+      containers:
+        - env:
+            - name: REACT_APP_GRAPHQL_URI
+              value: http://api.myskills-ci.dev.services.jtech.se/graphql
+            - name: REACT_APP_GRAPHQL_WS_URI
+              value: ws://api.myskills-ci.dev.services.jtech.se/graphql
+          image: docker.io/jobtechswe/myskills-web:latest
+          imagePullPolicy: Always
+          name: api-ci
+          ports:
+            - containerPort: 4000
+              name: http
+              protocol: TCP
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          resources:
+            limits:
+              memory: 400Mi
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 30
+  triggers:
+    - type: ConfigChange

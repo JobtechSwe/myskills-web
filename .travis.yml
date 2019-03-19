@@ -13,6 +13,9 @@ jobs:
       services:
         - docker
       script:
+        # Temporary solution because running npm run build on runtime is super slow
+        - export REACT_APP_GRAPHQL_URI=http://api.myskills-ci.dev.services.jtech.se/graphql
+        - export REACT_APP_GRAPHQL_WS_URI=ws://api.myskills-ci.dev.services.jtech.se/graphql
         - bash ./infrastructure/travis/build.sh
     - stage: deploy
       install:
@@ -22,7 +25,7 @@ jobs:
 stages:
   - test
   - name: build
-    if: "(branch = master AND type != pull_request) OR tag IS present"
+    # if: "(branch = master AND type != pull_request) OR tag IS present"
   - name: deploy
     if: "(branch = master AND type != pull_request) OR tag IS present"
 env:

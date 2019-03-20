@@ -13,3 +13,9 @@ spec:
     name: web-ci
     weight: 100
   wildcardPolicy: None
+  tls:
+    valueFrom:
+      secretKeyRef:
+        key: jtech.se.crt
+        name: tls
+    termination: edge

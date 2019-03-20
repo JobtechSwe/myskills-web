@@ -1,5 +1,8 @@
 FROM node:10.15
 
+ARG REACT_APP_GRAPHQL_URI
+ARG REACT_APP_GRAPHQL_WS_URI
+
 COPY package*json /app/
 
 WORKDIR /app
@@ -10,7 +13,6 @@ COPY tsconfig.json ./
 COPY public ./public
 COPY src ./src
 
-RUN echo $REACT_APP_GRAPHQL_URI
 RUN npm run build
 
 ENV USER=web-user

@@ -10,6 +10,7 @@ COPY tsconfig.json ./
 COPY public ./public
 COPY src ./src
 
+RUN echo $REACT_APP_GRAPHQL_URI
 RUN npm run build
 
 ENV USER=web-user

@@ -1,5 +1,8 @@
 FROM node:10.15
 
+ARG REACT_APP_GRAPHQL_URI
+ARG REACT_APP_GRAPHQL_WS_URI
+
 COPY package*json /app/
 
 WORKDIR /app

@@ -2,7 +2,7 @@
 docker login -u $DOCKER_USER -p $DOCKER_PASS
 REPO=jobtechswe/myskills-web
 
-docker build -f Dockerfile -t $REPO .
+docker build --build-arg REACT_APP_GRAPHQL_URI=$REACT_APP_GRAPHQL_URI --build-arg REACT_APP_GRAPHQL_WS_URI=$REACT_APP_GRAPHQL_WS_URI -f Dockerfile -t $REPO .
 
 if [[ "$TRAVIS_BRANCH" == "master" ]]; then
   TAG="latest"

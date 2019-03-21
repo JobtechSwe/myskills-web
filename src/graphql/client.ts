@@ -1,5 +1,4 @@
 import ApolloClient from 'apollo-client'
-import { withClientState } from 'apollo-link-state'
 import { WebSocketLink } from 'apollo-link-ws'
 import { split, ApolloLink } from 'apollo-link'
 import { setContext } from 'apollo-link-context'
@@ -7,7 +6,10 @@ import { onError } from 'apollo-link-error'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { HttpLink } from 'apollo-link-http'
 import { getMainDefinition } from 'apollo-utilities'
-import { getCookie, removeCookie, redirect } from './utils/helpers'
+import { getCookie, removeCookie, redirect } from '../utils/helpers'
+
+import initialState from './localState'
+import { resolvers } from './resolvers'
 
 const httpLink = new HttpLink({
   uri: process.env.REACT_APP_GRAPHQL_URI,
@@ -77,43 +79,28 @@ const authLink = setContext((root, { headers }) => {
 
 const cache = new InMemoryCache()
 
-const stateLink = withClientState({
-  cache,
-  resolvers: {
-    Mutation: {
-      updateNetworkStatus: (_: any, { isConnected }: any, { cache }: any) => {
-        const data = {
-          networkStatus: {
-            __typename: 'NetworkStatus',
-            isConnected: false,
-          },
-        }
-        cache.writeData({ data })
-        return null
-      },
-    },
-  },
-  defaults: {
-    networkStatus: {
-      __typename: 'NetworkStatus',
-      isConnected: true,
-    },
-  },
-})
-
 const terminatingLink = split(
   // split based on operation type
   ({ query }) => {
-    const { kind, operation } = getMainDefinition(query)
+    const { kind, operation }: any = getMainDefinition(query)
     return kind === 'OperationDefinition' && operation === 'subscription'
   },
   wsLink,
-  authLink.concat(stateLink).concat(httpLink)
+  authLink.concat(httpLink)
 )
 
-const client = new ApolloClient({
-  link: ApolloLink.from([onError(handleErrors), terminatingLink]),
-  cache,
-})
+const client = (initialState: any) => {
+  const apolloClient = new ApolloClient({
+    link: ApolloLink.from([onError(handleErrors), terminatingLink]),
+    resolvers,
+    cache,
+  })
 
-export default client
+  cache.writeData({
+    data: initialState,
+  })
+
+  return apolloClient
+}
+
+export default client(initialState)

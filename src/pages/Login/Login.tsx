@@ -25,8 +25,6 @@ export const GET_CONSENT_ID = gql`
 `
 
 const Login: React.FC<RouteComponentProps> = props => {
-  //@ts-ignore
-
   return (
     <Test>
       {/* TODO(@all):

@@ -1,11 +1,12 @@
 {
   "extends": [
     "@iteam/eslint-config-iteam-react",
-    "plugin:jsx-a11y/recommended"
+    "plugin:jsx-a11y/recommended",
+    "plugin:cypress/recommended"
   ],
   "overrides": [
     {
-      "files": ["**/*.tsx", "**/*.ts"],
+      "files": ["**/*.tsx", "**/*.ts", "**/*.js"],
       "rules": {
         "no-undef": "off",
         "no-unused-vars": "off",
@@ -28,7 +29,8 @@
     "emotion",
     "jsx-a11y",
     "react",
-    "react-hooks"
+    "react-hooks",
+    "cypress"
   ],
   "rules": {
     "emotion/jsx-import": "error",
@@ -43,5 +45,8 @@
       "pragma": "React",
       "version": "16"
     }
+  },
+  "env": {
+    "cypress/globals": true
   }
 }

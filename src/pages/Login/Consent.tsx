@@ -44,7 +44,7 @@ const Consent: React.FC<IConsentProps> = ({ consentId }) => {
     <>
       {renderConsentStatus()}
       <QR consentId={consentId} />
-      <p>{consentId}</p>
+      <p id="consentId">{consentId}</p>
     </>
   )
 }

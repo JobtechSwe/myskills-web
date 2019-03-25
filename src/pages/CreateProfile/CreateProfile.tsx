@@ -5,6 +5,7 @@ import { useQuery } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
 import { ExperienceInput } from '../../generated/myskills'
 import { Mutation } from 'react-apollo'
+import { useLocalStorage } from '@iteam/hooks'
 
 const Wrapper = styled.section`
   padding-top: 4rem;
@@ -46,10 +47,14 @@ interface InitialCv {
 const initialState = {
   experiences: [],
 }
+
 const CreateProfile: React.FC<RouteComponentProps> = () => {
   const [query, setQuery] = useState('')
   const [currentCv, setCurrentCv] = useState<InitialCv>(initialState)
-  const [navigationState, setNavigationState] = useState(0)
+  const [experiences, setExperiences] = useLocalStorage(
+    'experiences',
+    JSON.stringify([])
+  )
 
   const { data, error, loading } = useQuery(GET_EXPERIENCES, {
     variables: {
@@ -62,12 +67,17 @@ const CreateProfile: React.FC<RouteComponentProps> = () => {
   const handleUpdateCv = (data: any, type: string) => {
     switch (type) {
       case types.SET_EXPERIENCES:
-        setCurrentCv({
-          ...currentCv,
-          experiences: [...currentCv.experiences, data],
-        })
+        setExperiences(
+          JSON.stringify([
+            ...JSON.parse(experiences),
+            {
+              taxonomyId: data.taxonomyId,
+              name: data.term,
+              year: '2',
+            },
+          ])
+        )
         break
-
       default:
         break
     }
@@ -88,9 +98,7 @@ const CreateProfile: React.FC<RouteComponentProps> = () => {
             .map((c: any, i: number) => (
               <li
                 key={i}
-                onClick={() =>
-                  handleUpdateCv(c.taxonomyId, types.SET_EXPERIENCES)
-                }
+                onClick={() => handleUpdateCv(c, types.SET_EXPERIENCES)}
               >
                 {c.term}
               </li>

@@ -38,7 +38,7 @@ function App() {
       <Router>
         <Start path="/" />
         <Login path="/login" />
-        <RestrictedRoute component={CreateProfile} path="skapa-cv" />
+        <CreateProfile path="skapa-cv" />
         <RestrictedRoute component={Profile} path="/profile" />
       </Router>
     </React.Suspense>

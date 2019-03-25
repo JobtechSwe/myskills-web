@@ -1,5 +1,5 @@
-Given('I open the startpage', page => {
-    cy.visit(page ? page : '/')
+Given('I open the startpage', () => {
+    cy.visit('/')
 })
 
 Then('I click login button', () => {

@@ -14,7 +14,6 @@
 const cucumber = require('cypress-cucumber-preprocessor').default
 
 module.exports = on => {
-// export default function setup (on) {
     on('file:preprocessor', cucumber())
 }
 

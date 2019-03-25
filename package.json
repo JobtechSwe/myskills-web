@@ -45,8 +45,10 @@
     "generate": "gql-gen --config codegen.yml",
     "temptest": "jest",
     "cypress": "start-server-and-test buildAndServeAgainstCI http://localhost:3001 cypress:gui",
-    "buildAndServeAgainstCI": "npm run build && REACT_APP_GRAPHQL_URI=https://api-myskills-ci.dev.services.jtech.se/graphql npm run start",
-    "cypress:gui": "cypress open"
+    "buildAndServeAgainstCI": "npm run build && BROWSER=none REACT_APP_GRAPHQL_URI=https://api-myskills-ci.dev.services.jtech.se/graphql npm run start",
+    "cypress-ci": "start-server-and-test buildAndServeAgainstCI http://localhost:3001 cypress:run",
+    "cypress:gui": "cypress open",
+    "cypress:run": "cypress run"
   },
   "browserslist": [
     ">0.2%",

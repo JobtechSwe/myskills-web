@@ -93,9 +93,6 @@ const AddExperience: React.FunctionComponent = () => {
               return <p>That’s an error.</p>
             }
 
-            if (data) {
-            }
-
             return (
               <AddButton onClick={_e => addExperience()}>
                 add experience

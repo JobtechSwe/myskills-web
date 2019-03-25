@@ -89,7 +89,7 @@ const terminatingLink = split(
   authLink.concat(httpLink)
 )
 
-const client = (initialState: any) => {
+const client = (initialState: object) => {
   const apolloClient = new ApolloClient({
     link: ApolloLink.from([onError(handleErrors), terminatingLink]),
     resolvers,

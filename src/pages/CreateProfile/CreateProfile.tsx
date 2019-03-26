@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useContext } from 'react'
+import { Context } from '../../Context'
 import { RouteComponentProps } from '@reach/router'
 import styled from '@emotion/styled'
-import AddExperience from '../../components/addExperience/AddExperience'
+import AddExperience from '../../components/AddExperience/AddExperience'
 
 const Wrapper = styled.section`
   padding-top: 4rem;
-  height: 100vh;
   display: flex;
 
   align-items: center;
@@ -13,6 +13,11 @@ const Wrapper = styled.section`
 `
 
 const CreateProfile: React.FC<RouteComponentProps> = () => {
+  const { state, dispatch } = useContext(Context)
+
+  useEffect(() => {
+    dispatch({ type: 'logo_active' })
+  }, [state.logoActive])
   return (
     <Wrapper>
       <AddExperience />

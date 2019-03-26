@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { useLocalStorage } from '@iteam/hooks'
 import { useQuery } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
-import { Mutation } from 'react-apollo'
+import { Mutation, compose } from 'react-apollo'
 import styled from '@emotion/styled'
-import ExperienceList from './experienceList'
+import ExperienceList from './ExperienceList'
 import { TaxonomyType } from '../../types'
 
 const Input = styled.input`
@@ -15,6 +15,7 @@ const Input = styled.input`
 
 const AddButton = styled.button`
   background: white;
+  padding: 15px 25px;
 `
 
 const GET_EXPERIENCES = gql`
@@ -33,8 +34,14 @@ const GET_EXPERIENCES = gql`
 `
 
 const ADD_EXPERIENCE = gql`
-  mutation addExperience($experience: ExperienceInput!) {
-    addExperience(experience: $experience) {
+  mutation addExperience(
+    $experience: ExperienceInput!
+    $otherexperience: ExperienceInput!
+  ) {
+    first: addExperience(experience: $experience) {
+      name
+    }
+    second: addExperience(experience: $otherexperience) {
       name
     }
   }
@@ -82,7 +89,10 @@ const AddExperience: React.FunctionComponent = () => {
 
         <Mutation
           mutation={ADD_EXPERIENCE}
-          variables={{ experience: JSON.parse(experiences)[0] }}
+          variables={{
+            experience: JSON.parse(experiences)[0],
+            otherexperience: JSON.parse(experiences)[1],
+          }}
         >
           {(addExperience, { data, error, loading }) => {
             if (loading) {

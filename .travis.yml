@@ -38,6 +38,7 @@ notifications:
   slack:
     secure: puVjPj8b03e25Iw5lX0OCwZe+4jCWymGNcpRgSUpb5VkD2Uz7DDXf3VvLLp0THHlahDzpLsp7hd18nz9RX3J0PPXIlmC5lB9loR8DUo5aIdq7iqxLViEkpsPcdzQDFxKR1jItWPiVV26iPx38hcAlKcvu4Vu44LLTV75tEfVtFQVN+QkYtvQCADx3Vl+e4YyXT/28qgFdh6MZ77onUl/6LiveEiO1G6BBbijD0cxZ3ZX4GsVTuwJbzLuzmZID3WlD7u2PEBucAfeurK+Y3XtJtmCSIJH4MoTGwQWN0nUf6iNHo8K48BSB9hSScqgFtDNuBMye9WczRUGOzuGxLEXNkvCmo8XGe/FveBgBzUaE1zIN5g1eCB8EJHGg+EvAqiN9NH8RAeATxTF1ay+2NClmHkPj9JxC9vc1+uOsGyl5LNuihHjvN3T1P+nryo5EKeELsdBQosPz6P8kH5bwdsp87wmgdDEGK8nxxDRbt6NeXmwS0PhJneW8Fw0zU16JpqPAbDls7q7roSrgQfxYaY/Q0BVf+jspaNl5OTNlSZ9mqz7ETMENLJtf8AKqjyPYnPOXAyyDsxXjpTAeKwGSuNpewkJwkMJ1Le5hbhZbzSZzo6CF1ruEOzLuyI+n3ARS/2AV4MqRZLcrpmjjh/56QhCclOh3LCsImjz3efeHR3NaJI=
     on_pull_requests: false
+    on_failure: always
     template:
       - "Repo `%{repository_slug}` *%{result}* build (<%{build_url}|#%{build_number}>) for commit (<%{compare_url}|%{commit}>) on branch `%{branch}`."
       - "Execution time: *%{duration}*"

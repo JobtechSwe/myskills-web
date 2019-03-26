@@ -14,6 +14,10 @@ jobs:
       script:
         - bash ./infrastructure/travis/build.sh
     - stage: deploy
+      before_install:
+        - openssl aes-256-cbc -K $encrypted_bea024308360_key -iv $encrypted_bea024308360_iv
+          -in ./infrastructure/travis/openshift-token.enc -out ./infrastructure/travis/openshift-token
+          -d
       install:
         - bash ./infrastructure/travis/install-openshift.sh
         - export PATH=$PATH:/tmp/openshift
@@ -30,10 +34,6 @@ env:
     - secure: PxHWbMp5q2RuvReAbAiBjKLUge6fscRUow2IChiJwO1xGdO3zihyfuO3mrIO2sgvufe/qxt8fiezAUWQhXSQLfTwI2phSoUKBH+81ir6NrJQ5LoyPsZ+5UFe0T8tCLBT7CPNxSEtTNw0STUbDPGwZqkZaejnV4oW59oRUpm0okT9vfMG+y7/9jqonCmSzm/PXtYkAL4dFryrn4QddzdIYu8xWgaRJL4ylt+ncuGhQRWmuZJ+8CGHSh5yiZ6/AnQNmba+WqC6jMK02be1qhtjuUX7FQHTCP8myfawlaCeTjXDw3DqrRBgeoBNlWf39E9tA9J5eYpaxDvcQg1dKS+PKJtNzVocec2npOetoXZg0alsI+PYejc5KJrpPjNWQ6WGAas5LZyeLzKVgeAJhtFsVkQmKorTdomKNtarHtPCt/SS2/ljFeAN86mlZXZvt9BMbPDwiCNGkTf3hT4/1abNScvnHnS0L9706tktNkGyvkU/uQPOUPEBH4kMeHs9XISR1QUQTs/kFCuIFBymgtdUB+WVDC92TGle+jslxY4sVgXvFBvsX/QS7Ct1qFGhlPYIccHXcS/acQI3Q94pDS+9U2uhMkzjeUqzZ6Rrbsx+1Ck4DwC1VKs4VV+qr+q3rfoqU4Oo6+ydh/RJCAdhbKH6pPj5ADFuSwmHyH0KqI+77V8=
     - secure: dppoTusL/x1TrWk/j8VwBwFo1PbsJ2BXT5U9OuWlsVR0unCf0+LC5au1ecmsA6MRz4IrCEI2J73WMvc9t8kwalr/PcP8U2baun5p2u21rTjG8CVNNs+11CWsq+5WAZf5e6MWoEdbw8Qjk1tf4hzpw49nrT2JZVZ11RBzmVrcOlNV5usjVvmO6GpTtZjlvE9jD2wbbVvmFuM69aUDAL+ISP6faNX1xUp6McM+0f9EUjaOl4FHSgkgYWtNeZuhCiuwKVzuY/McDQR6r9+FcKyRv8fd+oNPqbYUdZfGt1pxpTsIsMj08OjTMj1mHsCBoi8D0iUqv0V7rjn3eSNvDKPkaHnprGVseUuFpUVcC6k+IX9RKaXc4UqdkjxEjwQslZbf+m34dhbaAHLfnGPrncMDVJkqdhFCiQ2nTnU96HN/j97Mc2DADuuYn9/YaD42LiDaHrXab6YAxq+BTEY12PVuQdunw3G75mEHO6W8wPq2kq23tTKo8eRNpo5AfTLjM5UCQdycPLEhfTT9GJI0a0slstNFwhCGzGIN863178otLSSsD6gocObqt6/C7P4nvgM+Wsx6CBVrqmYm1Mf2RLXVjWZxstrqRDIVJnJXnsbIeBJ1wPVMaQHC6T7Fy/8OZtr0pkJpOnS71e2vqtGvZrKo9SGUvcSCJeRNqjK7EeLbjpo=
     - secure: NYWxCe3yufqH8biFPum6pnEM2jSV8KKYKrpA9TJyN5OGIkClkmIobQI4LcRGQJNVmJzqYoqVpFHmwHmsMq4/bYrQjrEnG1JPv10lPliIQXkG+Rci4Op0RdcdOC6aHBY86yTy1MUdmlkLGFcIOzd2uVOGiTz+o5UbP7ubGmKEiUf0OBITGQLabDdv1ZqkMlcyMKQAcFGwkA871ceCYwR8yyopkyTtXc6P5WlqrQ2pzWVgXY5RHmcc/jlZWFSpexQS+ygV8B9N+qtmUllxrDVeD91D8xtE6tsMszGy1EOIq3s9OdkVZRUeKzcRqiV04IuBdFCuJvBFIL9taW3HyeY+q3/hki3bbUmDgwELwF25BrZlctJIAKmPPn7PWPOtGK6WRZCH75eeBTZlrijB0/v0UTi5y1KKUZ/3nCAy/Z7YOzAwoXwht+A29WyHGVnh5JYTLkijBmdVLyecGbdtmLmvtBg6qN80XKatDLRGxGKPLLcDXAmIhEKyg46IPVYzvSJh2EZ1fvuGnsDnsHuOJFc1QeajpjxzsVRB6oRVCZ+zuVvxkrQih99q0RMWX7VNMLv4zAMVCJNmvIrK987xnCwkjfLkqpXU94h81Empuf1QsJJrqxjw9diK9ZJxIloypOzoNtwzirw6VMN4X9F7A6MmFCWe/J3XrRhdXAK1KtvrLRU=
-before_install:
-  - openssl aes-256-cbc -K $encrypted_bea024308360_key -iv $encrypted_bea024308360_iv
-    -in ./infrastructure/travis/openshift-token.enc -out ./infrastructure/travis/openshift-token
-    -d
 notifications:
   slack:
     rooms:

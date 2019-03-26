@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Context } from '../../Context'
+import { Context } from '../../components/ContextProvider/ContextProvider'
 import { RouteComponentProps, Link } from '@reach/router'
 import styled from '@emotion/styled'
 

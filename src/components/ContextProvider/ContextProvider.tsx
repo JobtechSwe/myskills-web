@@ -1,11 +1,4 @@
-import React, {
-  useReducer,
-  createContext,
-  ReducerState,
-  Reducer,
-  ContextType,
-  ProviderProps,
-} from 'react'
+import React, { useReducer, createContext } from 'react'
 
 interface StateProps {
   logoActive: Boolean
@@ -27,13 +20,9 @@ export const Context = createContext({ state: initialState } as ContextProps)
 const reducer = (state: StateProps, action: Action): StateProps => {
   switch (action.type) {
     case 'logo_active':
-      console.log('type')
-
       return { ...state, logoActive: false }
-      break
     default:
       return state
-      break
   }
 }
 

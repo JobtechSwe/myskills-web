@@ -1,8 +1,26 @@
 import React from 'react'
-type ExperienceListProps = {}
+import styled from '@emotion/styled'
+
+const List = styled.ul`
+  color: white;
+  font-family: 'Arial';
+  padding: 0;
+  font-weight: bold;
+  text-align: center;
+  li {
+    margin-bottom: 5px;
+    list-style: none;
+    transition: all 100ms ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+`
+
 const experienceList = ({ experiences, handleSetExperiences }: any) => {
   return (
-    <ul>
+    <List>
       {experiences
         .filter(({ taxonomyId }: { taxonomyId: string }) =>
           experiences.some(
@@ -14,7 +32,7 @@ const experienceList = ({ experiences, handleSetExperiences }: any) => {
             {c.term}
           </li>
         ))}
-    </ul>
+    </List>
   )
 }
 

@@ -34,7 +34,9 @@ const Consent: React.FC<IConsentProps> = ({ consentId }) => {
     }
 
     if (data) {
-      setCookie('token', data.accessToken)
+      console.log('data', data)
+
+      setCookie('token', data.consentApproved.accessToken)
       navigate('/profile')
       return null
     }

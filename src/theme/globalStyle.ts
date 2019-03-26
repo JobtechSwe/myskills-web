@@ -7,7 +7,10 @@ export const globalStyle = css`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-
+  a,
+  li {
+    cursor: pointer;
+  }
   *,
   *:before,
   *:after {

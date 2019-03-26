@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Context } from '../../Context'
+import { Context } from '../ContextProvider/ContextProvider'
 
 import styled from '@emotion/styled'
 
@@ -14,7 +14,7 @@ const Logo = styled.h1`
   font-size: 48px;
   font-family: 'Arial';
   font-weight: bold;
-  color: dodgerblue;
+  color: white;
   transform: ${({ isActive }: any) => (isActive ? 'scale(1)' : 'scale(0.5)')};
   transition: transform 300ms ease;
 `

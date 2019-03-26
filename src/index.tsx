@@ -8,7 +8,7 @@ import { ApolloProvider } from 'react-apollo'
 import { Global } from '@emotion/core'
 import { ThemeProvider } from 'emotion-theming'
 import { theme, globalStyle } from './theme'
-import ContextProvider from './Context'
+import ContextProvider from './components/ContextProvider/ContextProvider'
 
 ReactDOM.render(
   <ApolloProvider client={client}>

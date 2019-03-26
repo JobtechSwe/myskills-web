@@ -1,21 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useLocalStorage } from '@iteam/hooks'
 import { useQuery } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
+import { graphql } from 'react-apollo'
 import { Mutation, compose } from 'react-apollo'
 import styled from '@emotion/styled'
 import ExperienceList from './ExperienceList'
 import { TaxonomyType } from '../../types'
 
-const Input = styled.input`
-  width: 30%;
-  height: 50px;
-  font-size: 28px;
+const InputLabel = styled.label`
+  color: white;
+  font-family: 'Arial';
+  font-weight: bold;
+  margin-bottom: 5px;
 `
 
-const AddButton = styled.button`
-  background: white;
-  padding: 15px 25px;
+const Input = styled.input`
+  width: 80%;
+  height: 30px;
+  font-size: 28px;
+  border-radius: 5px;
 `
 
 const GET_EXPERIENCES = gql`
@@ -32,16 +36,26 @@ const GET_EXPERIENCES = gql`
     }
   }
 `
+const generateGraphQlMutations = (experience: any, alias: string) => {
+  return gql`
+    mutation addExperience($experience: ExperienceInput!) {
+      ${alias}: addExperience(experience: $experience){
+        term
+      }
+    }
+  `
+}
+
+const CombineAddExperiences = (experiences: any) => {
+  const graphQlMutations = experiences.map((experience: any, i: any) =>
+    generateGraphQlMutations(experience, 'thing')
+  )
+  return graphQlMutations
+}
 
 const ADD_EXPERIENCE = gql`
-  mutation addExperience(
-    $experience: ExperienceInput!
-    $otherexperience: ExperienceInput!
-  ) {
-    first: addExperience(experience: $experience) {
-      name
-    }
-    second: addExperience(experience: $otherexperience) {
+  mutation addExperience($experience: ExperienceInput!) {
+    addExperience(experience: $experience) {
       name
     }
   }
@@ -50,7 +64,7 @@ const ADD_EXPERIENCE = gql`
 const arrayToJson = (old: any, data: any) =>
   JSON.stringify([...JSON.parse(old), data])
 
-const AddExperience: React.FunctionComponent = () => {
+const AddExperience: React.FunctionComponent = ({ mutate }: any) => {
   const [query, setQuery] = useState('')
 
   const [experiences, setExperiences] = useLocalStorage(
@@ -74,45 +88,38 @@ const AddExperience: React.FunctionComponent = () => {
       })
     )
 
+  useEffect(() => {
+    // console.log('combined: ', CombineAddExperiences(JSON.parse(experiences)))
+    const first = mutate({
+      variables: { experience: JSON.parse(experiences)[0] },
+    })
+    const second = mutate({
+      variables: { experience: JSON.parse(experiences)[1] },
+    })
+    Promise.all([first, second]).then(
+      (res): any => {
+        console.log('res: ', res)
+      }
+    )
+  }, ['hej'])
+
   return (
     <>
-      <Input onChange={({ target }) => setQuery(target.value)} />
-      <ul>
-        {data.taxonomy && !loading && (
-          <ExperienceList
-            experiences={data.taxonomy.result}
-            handleSetExperiences={handleSetExperiences}
-          />
-        )}
+      <InputLabel>Sök yrken:</InputLabel>
+      <Input name="search" onChange={({ target }) => setQuery(target.value)} />
 
-        {loading && <div>Loading...</div>}
+      {data.taxonomy && !loading && (
+        <ExperienceList
+          experiences={data.taxonomy.result}
+          handleSetExperiences={handleSetExperiences}
+        />
+      )}
 
-        <Mutation
-          mutation={ADD_EXPERIENCE}
-          variables={{
-            experience: JSON.parse(experiences)[0],
-            otherexperience: JSON.parse(experiences)[1],
-          }}
-        >
-          {(addExperience, { data, error, loading }) => {
-            if (loading) {
-              return <p>Loading...</p>
-            }
-
-            if (error) {
-              return <p>That’s an error.</p>
-            }
-
-            return (
-              <AddButton onClick={_e => addExperience()}>
-                add experience
-              </AddButton>
-            )
-          }}
-        </Mutation>
-      </ul>
+      {loading && <div>Loading...</div>}
     </>
   )
 }
 
-export default AddExperience
+const AddExperienceWithMutation = graphql(ADD_EXPERIENCE)(AddExperience)
+
+export default AddExperienceWithMutation

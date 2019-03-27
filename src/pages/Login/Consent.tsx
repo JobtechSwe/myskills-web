@@ -34,8 +34,6 @@ const Consent: React.FC<IConsentProps> = ({ consentId }) => {
     }
 
     if (data) {
-      console.log('data', data)
-
       setCookie('token', data.consentApproved.accessToken)
       navigate('/profile')
       return null
@@ -46,7 +44,7 @@ const Consent: React.FC<IConsentProps> = ({ consentId }) => {
     <>
       {renderConsentStatus()}
       <QR consentId={consentId} />
-      <p>{consentId}</p>
+      <p id="consentId">{consentId}</p>
     </>
   )
 }

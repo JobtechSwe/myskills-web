@@ -46,7 +46,7 @@ export enum Language {
 }
 
 export enum TaxonomyType {
-  County = 'COUNTY',
+  Region = 'REGION',
   EducationField_1 = 'EDUCATION_FIELD_1',
   EducationField_2 = 'EDUCATION_FIELD_2',
   EducationField_3 = 'EDUCATION_FIELD_3',
@@ -88,52 +88,6 @@ export type Uuid = any
 // ====================================================
 // Documents
 // ====================================================
-
-export namespace Taxonomy {
-  export type Variables = {
-    q: string
-  }
-
-  export type Query = {
-    __typename?: 'Query'
-
-    taxonomy: Taxonomy
-  }
-
-  export type Taxonomy = {
-    __typename?: 'TaxonomyResponse'
-
-    result: (Maybe<Result>)[]
-  }
-
-  export type Result = {
-    __typename?: 'TaxonomyResult'
-
-    term: string
-
-    taxonomyId: string
-
-    type: string
-  }
-}
-
-export namespace AddExperience {
-  export type Variables = {
-    experience: ExperienceInput
-  }
-
-  export type Mutation = {
-    __typename?: 'Mutation'
-
-    addExperience: AddExperience
-  }
-
-  export type AddExperience = {
-    __typename?: 'Experience'
-
-    name: Maybe<string>
-  }
-}
 
 export namespace ConsentApproved {
   export type Variables = {

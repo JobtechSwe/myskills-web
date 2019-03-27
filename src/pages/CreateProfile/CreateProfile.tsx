@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react'
 import { Context } from '../../components/ContextProvider/ContextProvider'
 import { RouteComponentProps } from '@reach/router'
 import styled from '@emotion/styled'
-import AddExperience from '../../components/addExperience/addExperience'
+import AddExperience from '../../components/Experience/AddExperience'
 
 const AddButton = styled.button`
   background: white;

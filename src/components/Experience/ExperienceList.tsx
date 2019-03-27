@@ -18,7 +18,7 @@ const List = styled.ul`
   }
 `
 
-const experienceList = ({ experiences, handleSetExperiences }: any) => {
+const ExperienceList = ({ experiences, handleSetExperiences }: any) => {
   return (
     <List>
       {experiences
@@ -28,12 +28,12 @@ const experienceList = ({ experiences, handleSetExperiences }: any) => {
           )
         )
         .map((c: { term: string }, i: number) => (
-          <li key={i} onClick={() => handleSetExperiences(c)}>
-            {c.term}
+          <li key={i}>
+            <button onClick={() => handleSetExperiences(c)}>{c.term}</button>
           </li>
         ))}
     </List>
   )
 }
 
-export default experienceList
+export default ExperienceList

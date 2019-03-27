@@ -3,7 +3,6 @@ import { useLocalStorage } from '@iteam/hooks'
 import { useQuery } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
-import { Mutation, compose } from 'react-apollo'
 import styled from '@emotion/styled'
 import ExperienceList from './ExperienceList'
 import { TaxonomyType } from '../../types'
@@ -80,7 +79,7 @@ const AddExperience: React.FunctionComponent = ({ mutate }: any) => {
     localStorage.getItem('experiences') || JSON.stringify([])
   )
 
-  const { data, error, loading } = useQuery(GET_EXPERIENCES, {
+  const { data, loading } = useQuery(GET_EXPERIENCES, {
     variables: {
       q: query,
       type: TaxonomyType[TaxonomyType.OCCUPATION_NAME],
@@ -105,7 +104,7 @@ const AddExperience: React.FunctionComponent = ({ mutate }: any) => {
       variables: { experience: JSON.parse(experiences)[1] },
     })
     Promise.all([first, second]).then(
-      (res): any => {
+      (): any => {
         // console.log('res: ', res)
       }
     )

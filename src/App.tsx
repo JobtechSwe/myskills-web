@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from 'react'
+import React from 'react'
 import { Router } from '@reach/router'
 import RestrictedRoute from './pages/restricted'
 import Header from './components/Header/Header'

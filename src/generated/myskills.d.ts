@@ -89,6 +89,59 @@ export type Uuid = any
 // Documents
 // ====================================================
 
+export namespace Taxonomy {
+  export type Variables = {
+    q: string
+    type?: Maybe<TaxonomyType>
+  }
+
+  export type Query = {
+    __typename?: 'Query'
+
+    taxonomy: Taxonomy
+  }
+
+  export type Taxonomy = {
+    __typename?: 'TaxonomyResponse'
+
+    result: (Maybe<Result>)[]
+  }
+
+  export type Result = {
+    __typename?: TaxonomyDefaultResultInlineFragment['__typename']
+
+    term: string
+
+    taxonomyId: string
+
+    type: string
+  } & TaxonomyDefaultResultInlineFragment
+
+  export type TaxonomyDefaultResultInlineFragment = {
+    __typename?: 'TaxonomyDefaultResult'
+
+    parentId: Maybe<string>
+  }
+}
+
+export namespace AddExperience {
+  export type Variables = {
+    experience: ExperienceInput
+  }
+
+  export type Mutation = {
+    __typename?: 'Mutation'
+
+    addExperience: AddExperience
+  }
+
+  export type AddExperience = {
+    __typename?: 'Experience'
+
+    name: Maybe<string>
+  }
+}
+
 export namespace ConsentApproved {
   export type Variables = {
     consentRequestId: string

@@ -1,5 +1,5 @@
 export enum TaxonomyType {
-  COUNTY,
+  REGION,
   EDUCATION_FIELD_1,
   EDUCATION_FIELD_2,
   EDUCATION_FIELD_3,

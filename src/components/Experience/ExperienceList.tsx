@@ -51,20 +51,21 @@ const ExperienceList = ({ experiences, mutate }: any) => {
               (y: { taxonomyId: string }) => y.taxonomyId === taxonomyId
             )
           )
-          .map((c: { term: string }, i: number) => (
+          .map((c: { term: string, name: string}, i: number) => (
             <li key={i}>
-              <Mutation mutation={ADD_EXPERIENCE} variables={c}>
+              {c.name}
+              <Mutation mutation={ADD_EXPERIENCE} variables={{experience: c}}>
                 {(addExperience, { data, error, loading }) => {
-                  return <button onClick={() => addExperience()}>add</button>
+                  return <button key={i}onClick={() => addExperience()}>add</button>
                 }}
               </Mutation>
             </li>
           ))}
       </List>
       <Query query={GET_EXPERIENCES}>
-        {({ data, error }) => {
-          return data.experiences.map((e: any) => {
-            return <p key={e}>{e.experience}</p>
+        {({ data }) => {
+          return data.experiences.map((e: any, i: number) => {
+            return <p key={e.experience.taxonomyId}>{e.experience.term}</p>
           })
         }}
       </Query>

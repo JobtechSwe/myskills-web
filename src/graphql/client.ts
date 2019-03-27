@@ -109,15 +109,15 @@ const apolloClient = new ApolloClient({
     Mutation: {
       addExperience: (
         experience: any,
-        actualObj: any,
+        variables: any,
         { cache }: { cache: any }
       ): any => {
         const { experiences } = cache.readQuery({ query: GET_EXPERIENCES })
         console.log('experiences:', experiences)
-        const added = experiences.push(actualObj)
-        console.log('adding', added)
+        experiences.push(variables)
+        console.log('adding', variables)
 
-        return cache.writeQuery({ query: GET_EXPERIENCES, data: added })
+        return cache.writeQuery({ query: GET_EXPERIENCES, data: experiences })
       },
     },
   },
@@ -125,10 +125,6 @@ const apolloClient = new ApolloClient({
 const initialState = {
   name: 'test',
   experiences: [
-    {
-      __typename: 'experience',
-      experience: 'snickare',
-    },
   ],
 }
 

@@ -3,7 +3,7 @@ import * as React from 'react'
 import Login, { GET_CONSENT_ID } from '../Login'
 import gql from 'graphql-tag'
 import { render } from '../../../utils/test-utils'
-import { fireEvent, wait } from 'react-testing-library'
+import { fireEvent, wait, waitForElement } from 'react-testing-library'
 
 const login = {
   id: 'db993c65-0673-454e-b951-bcb8d274f184',
@@ -62,13 +62,12 @@ describe('pages/Login', () => {
     expect(getByText(/that’s an error./i)).toBeInTheDocument()
   })
 
-  // TODO(@all): Use waitForElement
   it('should render consentId after Login is clicked', async () => {
     const { getByText } = render(<Login />, getConsentMock)
 
     fireEvent.click(getByText(/login/i))
 
-    await wait()
+    await waitForElement(() => getByText(login.id))
 
     expect(getByText(login.id)).toBeInTheDocument()
   })

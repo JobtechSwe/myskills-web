@@ -26,9 +26,11 @@ const reducer = (state: StateProps, action: Action): StateProps => {
   }
 }
 
-export default ({ children }: any) => {
+const ContextProvider = ({ children }: any) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   return (
     <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
   )
 }
+
+export default ContextProvider

@@ -7,6 +7,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { HttpLink } from 'apollo-link-http'
 import { getMainDefinition } from 'apollo-utilities'
 import { getCookie, removeCookie, redirect } from '../utils/helpers'
+import gql from 'graphql-tag'
 
 const httpLink = new HttpLink({
   uri: process.env.REACT_APP_GRAPHQL_URI,
@@ -86,9 +87,55 @@ const terminatingLink = split(
   authLink.concat(httpLink)
 )
 
+const ADD_EXPERIENCE = gql`
+  mutation addExperience($experience: ExperienceInput!) {
+    addExperience(experience: $experience) @client {
+      name
+    }
+  }
+`
+
+const GET_EXPERIENCES = gql`
+  {
+    experiences @client {
+      experience
+    }
+  }
+`
 const apolloClient = new ApolloClient({
   link: ApolloLink.from([onError(handleErrors), terminatingLink]),
   cache,
+  resolvers: {
+    Mutation: {
+      addExperience: (
+        experience: any,
+        actualObj: any,
+        { cache }: { cache: any }
+      ): any => {
+        const { experiences } = cache.readQuery({ query: GET_EXPERIENCES })
+        console.log('experiences:', experiences)
+        const added = experiences.push(actualObj)
+        console.log('adding', added)
+
+        return cache.writeQuery({ query: GET_EXPERIENCES, data: added })
+      },
+    },
+  },
+})
+const initialState = {
+  name: 'test',
+  experiences: [
+    {
+      __typename: 'experience',
+      experience: 'snickare',
+    },
+  ],
+}
+
+cache.writeData({
+  data: {
+    ...initialState,
+  },
 })
 
 export default apolloClient

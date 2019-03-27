@@ -78,10 +78,7 @@ const AddExperience: React.FunctionComponent = ({ mutate }: any) => {
       <Input name="search" onChange={({ target }) => setQuery(target.value)} />
 
       {data.taxonomy && !loading && (
-        <ExperienceList
-          experiences={data.taxonomy.result}
-          handleSetExperiences={handleSetExperiences}
-        />
+        <ExperienceList experiences={data.taxonomy.result} />
       )}
 
       {loading && <div>Loading...</div>}

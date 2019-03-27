@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { Mutation, Query, graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 
 const List = styled.ul`
   color: white;
@@ -17,22 +19,56 @@ const List = styled.ul`
     }
   }
 `
+const ADD_EXPERIENCE = gql`
+  mutation addExperience($experience: ExperienceInput!) {
+    addExperience(experience: $experience) @client {
+      name
+    }
+  }
+`
 
-const ExperienceList = ({ experiences, handleSetExperiences }: any) => {
+const GET_EXPERIENCES = gql`
+  {
+    experiences @client {
+      experience
+    }
+  }
+`
+const ExperienceList = ({ experiences, mutate }: any) => {
+  // const addExperience = (experienceInput: any) => {
+  //   mutate({
+  //     variables: {
+  //       experienceInput
+  //     }
+  //   })
+  // }
   return (
-    <List>
-      {experiences
-        .filter(({ taxonomyId }: { taxonomyId: string }) =>
-          experiences.some(
-            (y: { taxonomyId: string }) => y.taxonomyId === taxonomyId
+    <>
+      <List>
+        {experiences
+          .filter(({ taxonomyId }: { taxonomyId: string }) =>
+            experiences.some(
+              (y: { taxonomyId: string }) => y.taxonomyId === taxonomyId
+            )
           )
-        )
-        .map((c: { term: string }, i: number) => (
-          <li key={i}>
-            <button onClick={() => handleSetExperiences(c)}>{c.term}</button>
-          </li>
-        ))}
-    </List>
+          .map((c: { term: string }, i: number) => (
+            <li key={i}>
+              <Mutation mutation={ADD_EXPERIENCE} variables={c}>
+                {(addExperience, { data, error, loading }) => {
+                  return <button onClick={() => addExperience()}>add</button>
+                }}
+              </Mutation>
+            </li>
+          ))}
+      </List>
+      <Query query={GET_EXPERIENCES}>
+        {({ data, error }) => {
+          return data.experiences.map((e: any) => {
+            return <p key={e}>{e.experience}</p>
+          })
+        }}
+      </Query>
+    </>
   )
 }
 

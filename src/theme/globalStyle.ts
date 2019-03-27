@@ -7,6 +7,20 @@ export const globalStyle = css`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+  a,
+  li {
+    cursor: pointer;
+  }
+  *,
+  *:before,
+  *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  #root {
+    min-height: 100vh;
+  }
 `
 
 export default globalStyle

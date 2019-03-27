@@ -2,7 +2,7 @@ import React from 'react'
 import gql from 'graphql-tag'
 import { useSubscription } from 'react-apollo-hooks'
 import QR from '../../components/QR/QR'
-import { RouteComponentProps, navigate } from '@reach/router'
+import { navigate } from '@reach/router'
 import { setCookie } from '../../utils/helpers'
 
 export const CONSENT_SUBSCRIPTION = gql`
@@ -34,7 +34,7 @@ const Consent: React.FC<IConsentProps> = ({ consentId }) => {
     }
 
     if (data) {
-      setCookie('token', data.accessToken)
+      setCookie('token', data.consentApproved.accessToken)
       navigate('/profile')
       return null
     }

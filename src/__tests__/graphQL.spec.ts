@@ -1,4 +1,4 @@
-import { deconstructJWT, handleErrors } from '../graphQL'
+import { deconstructJWT, handleErrors } from '../graphql/client'
 import { getCookie, redirect } from '../utils/helpers'
 
 jest.mock('../utils/helpers')

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import * as React from 'react'
 import Login, { GET_CONSENT_ID } from '../Login'
 import gql from 'graphql-tag'
@@ -48,7 +49,7 @@ describe('pages/Login', () => {
           query: GET_CONSENT_ID,
         },
         result: {
-          errors: [{ message: 'Error while trying to request consentId' }],
+          error: new Error('Error while trying to request consentId'),
         },
       },
     ]
@@ -56,9 +57,12 @@ describe('pages/Login', () => {
 
     fireEvent.click(getByText(/login/i))
 
+    await wait()
+
     expect(getByText(/that’s an error./i)).toBeInTheDocument()
   })
 
+  // TODO(@all): Use waitForElement
   it('should render consentId after Login is clicked', async () => {
     const { getByText } = render(<Login />, getConsentMock)
 

@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { Context } from '../ContextProvider/ContextProvider'
+import { H1 } from '../Typography/Typography'
 
 import styled from '@emotion/styled'
 
@@ -10,11 +11,7 @@ const Container = styled.header`
   align-items: center;
   justify-content: center;
 `
-const Logo = styled.h1`
-  font-size: 48px;
-  font-family: 'Arial';
-  font-weight: bold;
-  color: white;
+const Logo = styled(H1)`
   transform: ${({ isActive }: any) => (isActive ? 'scale(1)' : 'scale(0.5)')};
   transition: transform 300ms ease;
 `

@@ -35,30 +35,6 @@ const GET_EXPERIENCES = gql`
     }
   }
 `
-// const generateGraphQlMutations = (experience: any, alias: string) => {
-
-//   // TODO: Alias does not currently work with schema generation
-
-//   // mutation addExperience($experience: ExperienceInput!) {
-//   //   ${alias}: addExperience(experience: $experience){
-//   //     term
-//   //   }
-//   // }
-//   return gql`
-//     mutation addExperience($experience: ExperienceInput!) {
-//       addExperience(experience: $experience){
-//         term
-//       }
-//     }
-//   `
-// }
-
-// const CombineAddExperiences = (experiences: any) => {
-//   const graphQlMutations = experiences.map((experience: any, i: any) =>
-//     generateGraphQlMutations(experience, 'thing')
-//   )
-//   return graphQlMutations
-// }
 
 const ADD_EXPERIENCE = gql`
   mutation addExperience($experience: ExperienceInput!) {
@@ -86,6 +62,7 @@ const AddExperience: React.FunctionComponent = ({ mutate }: any) => {
     },
   })
 
+  // TODO(@all): Break this out to a separate function or handle it in a global-way
   const handleSetExperiences = (data: any) =>
     setExperiences(
       arrayToJson(experiences, {
@@ -94,21 +71,6 @@ const AddExperience: React.FunctionComponent = ({ mutate }: any) => {
         years: '2',
       })
     )
-
-  useEffect(() => {
-    // console.log('combined: ', CombineAddExperiences(JSON.parse(experiences)))
-    const first = mutate({
-      variables: { experience: JSON.parse(experiences)[0] },
-    })
-    const second = mutate({
-      variables: { experience: JSON.parse(experiences)[1] },
-    })
-    Promise.all([first, second]).then(
-      (): any => {
-        // console.log('res: ', res)
-      }
-    )
-  }, ['hej'])
 
   return (
     <>

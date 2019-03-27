@@ -8,9 +8,6 @@ import { HttpLink } from 'apollo-link-http'
 import { getMainDefinition } from 'apollo-utilities'
 import { getCookie, removeCookie, redirect } from '../utils/helpers'
 
-import initialState from './localState'
-import { resolvers } from './resolvers'
-
 const httpLink = new HttpLink({
   uri: process.env.REACT_APP_GRAPHQL_URI,
 })
@@ -89,18 +86,9 @@ const terminatingLink = split(
   authLink.concat(httpLink)
 )
 
-const client = (initialState: object) => {
-  const apolloClient = new ApolloClient({
-    link: ApolloLink.from([onError(handleErrors), terminatingLink]),
-    resolvers,
-    cache,
-  })
+const apolloClient = new ApolloClient({
+  link: ApolloLink.from([onError(handleErrors), terminatingLink]),
+  cache,
+})
 
-  cache.writeData({
-    data: initialState,
-  })
-
-  return apolloClient
-}
-
-export default client(initialState)
+export default apolloClient

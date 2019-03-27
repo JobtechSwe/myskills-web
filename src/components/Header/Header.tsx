@@ -20,7 +20,7 @@ const Logo = styled.h1`
 `
 
 const Header: React.FC = () => {
-  const { state, dispatch } = useContext(Context)
+  const { state } = useContext(Context)
 
   return (
     <Container>

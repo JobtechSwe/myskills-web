@@ -46,7 +46,6 @@ export enum Language {
 }
 
 export enum TaxonomyType {
-  County = 'COUNTY',
   Region = 'REGION',
   EducationField_1 = 'EDUCATION_FIELD_1',
   EducationField_2 = 'EDUCATION_FIELD_2',
@@ -93,6 +92,7 @@ export type Uuid = any
 export namespace Taxonomy {
   export type Variables = {
     q: string
+    type?: Maybe<TaxonomyType>
   }
 
   export type Query = {
@@ -108,13 +108,19 @@ export namespace Taxonomy {
   }
 
   export type Result = {
-    __typename?: 'TaxonomyResult'
+    __typename?: TaxonomyDefaultResultInlineFragment['__typename']
 
     term: string
 
     taxonomyId: string
 
     type: string
+  } & TaxonomyDefaultResultInlineFragment
+
+  export type TaxonomyDefaultResultInlineFragment = {
+    __typename?: 'TaxonomyDefaultResult'
+
+    parentId: Maybe<string>
   }
 }
 

@@ -36,22 +36,30 @@ const GET_EXPERIENCES = gql`
     }
   }
 `
-const generateGraphQlMutations = (experience: any, alias: string) => {
-  return gql`
-    mutation addExperience($experience: ExperienceInput!) {
-      ${alias}: addExperience(experience: $experience){
-        term
-      }
-    }
-  `
-}
+// const generateGraphQlMutations = (experience: any, alias: string) => {
 
-const CombineAddExperiences = (experiences: any) => {
-  const graphQlMutations = experiences.map((experience: any, i: any) =>
-    generateGraphQlMutations(experience, 'thing')
-  )
-  return graphQlMutations
-}
+//   // TODO: Alias does not currently work with schema generation
+
+//   // mutation addExperience($experience: ExperienceInput!) {
+//   //   ${alias}: addExperience(experience: $experience){
+//   //     term
+//   //   }
+//   // }
+//   return gql`
+//     mutation addExperience($experience: ExperienceInput!) {
+//       addExperience(experience: $experience){
+//         term
+//       }
+//     }
+//   `
+// }
+
+// const CombineAddExperiences = (experiences: any) => {
+//   const graphQlMutations = experiences.map((experience: any, i: any) =>
+//     generateGraphQlMutations(experience, 'thing')
+//   )
+//   return graphQlMutations
+// }
 
 const ADD_EXPERIENCE = gql`
   mutation addExperience($experience: ExperienceInput!) {
@@ -98,7 +106,7 @@ const AddExperience: React.FunctionComponent = ({ mutate }: any) => {
     })
     Promise.all([first, second]).then(
       (res): any => {
-        console.log('res: ', res)
+        // console.log('res: ', res)
       }
     )
   }, ['hej'])

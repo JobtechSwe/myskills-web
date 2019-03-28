@@ -7,6 +7,17 @@ interface Typography {
   default: 'sans-serif'
 }
 
+const buttons = {
+  primary: {
+    color: 'white',
+    backgroundColor: '#28a745',
+  },
+  secondary: {
+    color: 'white',
+    backgroundColor: '#6c757d',
+  },
+}
+
 const colors: Color = {
   lassekongo: 'dodgerblue',
   white: 'white',
@@ -33,6 +44,7 @@ const space = {
 
 const theme = {
   colors,
+  buttons,
   fontFamily: typography,
   fontSizes,
   space,

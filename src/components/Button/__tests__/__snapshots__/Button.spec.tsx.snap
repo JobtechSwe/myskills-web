@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Button renders an Button 1`] = `
+<div>
+  <button
+    class="css-ds01wn"
+  >
+    Click me!
+  </button>
+</div>
+`;
+
+exports[`components/Button renders an Button with variant prop 1`] = `
+<div>
+  <button
+    class="css-1lx7cpe"
+  >
+    Click me!
+  </button>
+</div>
+`;

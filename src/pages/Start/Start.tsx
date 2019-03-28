@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { Context } from '../../components/ContextProvider/ContextProvider'
 import { RouteComponentProps, Link } from '@reach/router'
 import styled from '@emotion/styled'
+import Button from '../../components/Button/Button'
 
 const Wrapper = styled.section`
   height: 100%;
@@ -20,10 +21,14 @@ const Start: React.FC<RouteComponentProps> = () => {
   return (
     <Wrapper>
       <div>
-        <Link to="/login">Login</Link>
+        <Link to="/skapa-cv">
+          <Button variant="primary" text="Skapa Cv" />
+        </Link>
       </div>
       <div>
-        <Link to="/skapa-cv">Skapa Cv</Link>
+        <Link to="/login">
+          <Button variant="secondary" text="Login" />
+        </Link>
       </div>
     </Wrapper>
   )

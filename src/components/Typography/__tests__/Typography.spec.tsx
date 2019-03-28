@@ -21,8 +21,28 @@ describe('components/Typography', () => {
     expect(container).toMatchSnapshot()
   })
 
+  it('renders a Heading with props', async () => {
+    const { container } = render(
+      <H3 color="red" fontSize="small" mt="15">
+        Heading Three
+      </H3>
+    )
+
+    expect(container).toMatchSnapshot()
+  })
+
   it('renders a Paragraph', async () => {
-    const { container } = render(<Paragraph>Heading One</Paragraph>)
+    const { container } = render(<Paragraph>A paragraph.</Paragraph>)
+
+    expect(container).toMatchSnapshot()
+  })
+
+  it('renders a Paragraph with props', async () => {
+    const { container } = render(
+      <Paragraph color="red" fontSize="small" m="15">
+        Heading Three
+      </Paragraph>
+    )
 
     expect(container).toMatchSnapshot()
   })

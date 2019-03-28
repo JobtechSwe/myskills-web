@@ -1,12 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`components/Typography renders a Heading with props 1`] = `
+<div>
+  <h3
+    class="css-q4e2n5"
+    color="red"
+    font-size="small"
+  >
+    Heading Three
+  </h3>
+</div>
+`;
+
 exports[`components/Typography renders a Paragraph 1`] = `
 <div>
   <p
     class="css-3v9ikz"
     font-size="small"
   >
-    Heading One
+    A paragraph.
+  </p>
+</div>
+`;
+
+exports[`components/Typography renders a Paragraph with props 1`] = `
+<div>
+  <p
+    class="css-1jpqnab"
+    color="red"
+    font-size="small"
+  >
+    Heading Three
   </p>
 </div>
 `;

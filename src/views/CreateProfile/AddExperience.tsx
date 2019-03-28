@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from 'react'
-import { useLocalStorage } from '@iteam/hooks'
+import React, { useState } from 'react'
 import { useQuery } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
-import { graphql, Mutation, Query } from 'react-apollo'
+import { Mutation, Query } from 'react-apollo'
 import styled from '@emotion/styled'
-
 import { TaxonomyType } from '../../types'
 import { RouteComponentProps } from '@reach/router'
+
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  flex-flow: column nowrap;
+`
 
 const List = styled.ul`
   color: white;
@@ -24,6 +28,7 @@ const List = styled.ul`
     }
   }
 `
+
 const InputLabel = styled.label`
   color: white;
   font-family: 'Arial';
@@ -62,23 +67,17 @@ export const GET_EXPERIENCES = gql`
 `
 export const GET_EXPERIENCES_CLIENT = gql`
   query getExperiences {
-    experiences @client {
-      term
-      taxonomyId
-    }
+    experiences @client
+  }
+`
+export const ADD_EXPERIENCE_CLIENT = gql`
+  mutation addExperience($experience: ExperienceInput!) {
+    addExperience(experience: $experience) @client
   }
 `
 
-const arrayToJson = (old: any, data: any) =>
-  JSON.stringify([...JSON.parse(old), data])
-
 const AddExperience: React.FC<RouteComponentProps> = () => {
   const [query, setQuery] = useState('')
-
-  const [experiences, setExperiences] = useLocalStorage(
-    'experiences',
-    localStorage.getItem('experiences') || JSON.stringify([])
-  )
 
   const { data, loading } = useQuery(GET_EXPERIENCES, {
     variables: {
@@ -87,21 +86,10 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
     },
   })
 
-  // TODO(@all): Break this out to a separate function or handle it in a global-way
-  const handleSetExperiences = (data: any) =>
-    setExperiences(
-      arrayToJson(experiences, {
-        taxonomyId: data.taxonomyId,
-        name: data.term,
-        years: '2',
-      })
-    )
-
   return (
-    <>
+    <Wrapper>
       <InputLabel>Sök yrken:</InputLabel>
       <Input name="search" onChange={({ target }) => setQuery(target.value)} />
-      {/* <List>{data.taxonomy.result.map(items)}</List> */}
       {data.taxonomy && !loading && (
         <>
           <List>
@@ -114,7 +102,7 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
                   {experience.name}
 
                   <Mutation
-                    mutation={ADD_EXPERIENCE}
+                    mutation={ADD_EXPERIENCE_CLIENT}
                     variables={{
                       experience: {
                         years: '2',
@@ -126,7 +114,7 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
                     {(addExperience, { data, error, loading }) => {
                       return (
                         <button key={i} onClick={() => addExperience()}>
-                          add
+                          {experience.term}
                         </button>
                       )
                     }}
@@ -136,17 +124,17 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
             )}
           </List>
           <Query query={GET_EXPERIENCES_CLIENT}>
-            {({ data }) =>
-              data.experiences.map((e: any, i: number) => (
-                <p key={e.taxonomyId}>{e.term}</p>
+            {({ data }) => {
+              return data.experiences.map((e: any, i: number) => (
+                <p key={e.taxonomyId}>{e.name}</p>
               ))
-            }
+            }}
           </Query>
         </>
       )}
 
       {loading && <div>Loading...</div>}
-    </>
+    </Wrapper>
   )
 }
 

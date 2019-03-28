@@ -26,10 +26,9 @@ function App() {
         <Router>
           <Start path="/" />
           <Login path="/login" />
-          {/* <CreateProfile path="/skapa-cv"> */}
-          {/* TODO: fix AddExperience not rendering */}
-          <AddExperience path="/skapa-cv" />
-          {/* </CreateProfile> */}
+          <CreateProfile path="/skapa-cv">
+            <AddExperience path="/" />
+          </CreateProfile>
           <RestrictedRoute component={Profile} path="/profile" />
         </Router>
       </React.Suspense>

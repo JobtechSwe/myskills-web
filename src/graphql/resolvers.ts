@@ -10,11 +10,12 @@ const resolvers = {
       const { experiences } = cache.readQuery({
         query: GET_EXPERIENCES_CLIENT,
       })
-      const expericensWithoutDuplicates = experiences.filter(
+
+      const experiencesWithoutDuplicates = experiences.filter(
         (e: any) => e.taxonomyId !== experience.taxonomyId
       )
 
-      const updatedExperiences = [...expericensWithoutDuplicates, experience]
+      const updatedExperiences = [...experiencesWithoutDuplicates, experience]
 
       cache.writeQuery({
         query: GET_EXPERIENCES_CLIENT,

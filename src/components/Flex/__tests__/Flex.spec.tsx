@@ -11,7 +11,7 @@ describe('components/Flex', () => {
 
   it('renders a Flex with props', async () => {
     const { container } = render(
-      <Flex alignContent="center" justifyContent="center" padding="small">
+      <Flex alignContent="center" justifyContent="center" p="small">
         FlexWithProps
       </Flex>
     )

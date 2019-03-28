@@ -35,7 +35,7 @@ export const Paragraph = styled.p`
 type HeadingProps = ColorProps & FontSizeProps & SpaceProps
 
 const common: HeadingProps = {
-  color: theme.color.white,
+  color: theme.colors.white,
   mt: theme.space.none,
 }
 

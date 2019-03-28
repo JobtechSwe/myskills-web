@@ -3,15 +3,19 @@ interface Color {
   white: 'white'
 }
 
-const color: Color = {
+interface Typography {
+  default: 'sans-serif'
+}
+
+const colors: Color = {
   lassekongo: 'dodgerblue',
   white: 'white',
 }
 
 const sizes = [0, 16, 24, 32]
 
-const typography = {
-  default: 'Arial',
+const typography: Typography = {
+  default: 'sans-serif',
 }
 
 const fontSizes = {
@@ -28,10 +32,10 @@ const space = {
 }
 
 const theme = {
-  color,
+  colors,
+  fontFamily: typography,
   fontSizes,
   space,
-  typography,
 }
 
 export default theme

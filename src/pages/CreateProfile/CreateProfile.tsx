@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from 'react'
 import { Context } from '../../components/ContextProvider/ContextProvider'
+import { Flex } from '../../components/Flex/Flex'
 import { RouteComponentProps } from '@reach/router'
 import styled from '@emotion/styled'
 import AddExperience from '../../components/Experience/AddExperience'
@@ -8,13 +9,6 @@ const AddButton = styled.button`
   background: white;
   padding: 15px 25px;
 `
-const Wrapper = styled.section`
-  padding-top: 4rem;
-  display: flex;
-
-  align-items: center;
-  flex-flow: column nowrap;
-`
 
 const CreateProfile: React.FC<RouteComponentProps> = () => {
   const { state, dispatch } = useContext(Context)
@@ -22,11 +16,12 @@ const CreateProfile: React.FC<RouteComponentProps> = () => {
   useEffect(() => {
     dispatch({ type: 'logo_active' })
   }, [state.logoActive])
+
   return (
-    <Wrapper>
+    <Flex alignItems="center" flexDirection="column" justifyContent="center">
       <AddExperience />
       <AddButton>Spara i MyData</AddButton>
-    </Wrapper>
+    </Flex>
   )
 }
 

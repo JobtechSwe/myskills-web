@@ -1,15 +1,7 @@
 import React, { useContext } from 'react'
 import { Context } from '../../components/ContextProvider/ContextProvider'
+import { Flex } from '../../components/Flex/Flex'
 import { RouteComponentProps, Link } from '@reach/router'
-import styled from '@emotion/styled'
-
-const Wrapper = styled.section`
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: column nowrap;
-`
 
 const Start: React.FC<RouteComponentProps> = () => {
   const {
@@ -18,14 +10,14 @@ const Start: React.FC<RouteComponentProps> = () => {
   } = useContext(Context)
 
   return (
-    <Wrapper>
+    <Flex alignItems="center" flexDirection="column" justifyContent="center">
       <div>
         <Link to="/login">Login</Link>
       </div>
       <div>
         <Link to="/skapa-cv">Skapa Cv</Link>
       </div>
-    </Wrapper>
+    </Flex>
   )
 }
 

@@ -15,11 +15,13 @@ export const H1 = styled.h1`
   ${fontSize}
   ${space}
 `
+
 export const H2 = styled.h2`
   ${color}
   ${fontSize}
   ${space}
 `
+
 export const H3 = styled.h3`
   ${color}
   ${fontSize}

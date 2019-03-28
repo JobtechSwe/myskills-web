@@ -2,7 +2,6 @@ import React, { useEffect, useContext } from 'react'
 import { Context } from '../../components/ContextProvider/ContextProvider'
 import { RouteComponentProps } from '@reach/router'
 import styled from '@emotion/styled'
-import AddExperience from '../../components/Experience/AddExperience'
 
 const AddButton = styled.button`
   background: white;
@@ -24,7 +23,6 @@ const CreateProfile: React.FC<RouteComponentProps> = () => {
   }, [state.logoActive])
   return (
     <Wrapper>
-      <AddExperience />
       <AddButton>Spara i MyData</AddButton>
     </Wrapper>
   )

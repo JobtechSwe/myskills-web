@@ -1,21 +1,26 @@
-import React, { useContext } from 'react'
-import { Context } from '../../components/ContextProvider/ContextProvider'
+import React from 'react'
 import { Flex } from '../../components/Flex/Flex'
 import { RouteComponentProps, Link } from '@reach/router'
 import Button from '../../components/Button/Button'
+import ButtonLink from '../../components/Button/ButtonLink'
 
 const Start: React.FC<RouteComponentProps> = () => {
   return (
     <Flex alignItems="center" flexDirection="column" justifyContent="center">
       <div>
         <Link to="/skapa-cv">
-          <Button text="Skapa Cv" variant="primary" />
+          <Button variant="primary">Skapa Cv</Button>
         </Link>
       </div>
       <div>
         <Link to="/login">
-          <Button text="Login" variant="secondary" />
+          <Button variant="secondary">Login</Button>
         </Link>
+      </div>
+      <div>
+        <ButtonLink fontSize="small" href="/test">
+          This is a button link
+        </ButtonLink>
       </div>
     </Flex>
   )

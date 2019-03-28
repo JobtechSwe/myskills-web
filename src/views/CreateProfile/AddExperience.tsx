@@ -39,8 +39,10 @@ const Input = styled.input`
 `
 
 export const ADD_EXPERIENCE = gql`
-  mutation addExperience($experience: any) {
-    addExperience(experience: $experience) @client
+  mutation addExperience($experience: ExperienceInput!) {
+    addExperience(experience: $experience) {
+      name
+    }
   }
 `
 
@@ -104,12 +106,22 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
         <>
           <List>
             {data.taxonomy.result.map(
-              (experience: { term: string; name: string }, i: number) => (
+              (
+                experience: { term: string; name: string; taxonomyId: string },
+                i: number
+              ) => (
                 <li key={i}>
                   {experience.name}
+
                   <Mutation
                     mutation={ADD_EXPERIENCE}
-                    variables={{ experience }}
+                    variables={{
+                      experience: {
+                        years: '2',
+                        name: experience.term,
+                        taxonomyId: experience.taxonomyId,
+                      },
+                    }}
                   >
                     {(addExperience, { data, error, loading }) => {
                       return (
@@ -124,11 +136,11 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
             )}
           </List>
           <Query query={GET_EXPERIENCES_CLIENT}>
-            {({ data, error }) => {
-              return data.experiences.map((e: any, i: number) => {
-                return <p key={e.taxonomyId}>{e.term}</p>
-              })
-            }}
+            {({ data }) =>
+              data.experiences.map((e: any, i: number) => (
+                <p key={e.taxonomyId}>{e.term}</p>
+              ))
+            }
           </Query>
         </>
       )}

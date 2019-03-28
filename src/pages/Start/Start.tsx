@@ -2,20 +2,20 @@ import React, { useContext } from 'react'
 import { Context } from '../../components/ContextProvider/ContextProvider'
 import { Flex } from '../../components/Flex/Flex'
 import { RouteComponentProps, Link } from '@reach/router'
+import Button from '../../components/Button/Button'
 
 const Start: React.FC<RouteComponentProps> = () => {
-  const {
-    state: { logoActive },
-    dispatch,
-  } = useContext(Context)
-
   return (
     <Flex alignItems="center" flexDirection="column" justifyContent="center">
       <div>
-        <Link to="/login">Login</Link>
+        <Link to="/skapa-cv">
+          <Button text="Skapa Cv" variant="primary" />
+        </Link>
       </div>
       <div>
-        <Link to="/skapa-cv">Skapa Cv</Link>
+        <Link to="/login">
+          <Button text="Login" variant="secondary" />
+        </Link>
       </div>
     </Flex>
   )

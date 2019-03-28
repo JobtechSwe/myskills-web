@@ -5,7 +5,9 @@ exports[`components/Button renders an Button 1`] = `
   <button
     class="css-1knfpf1"
     font-size="small,medium"
-  />
+  >
+    Click me!
+  </button>
 </div>
 `;
 
@@ -14,6 +16,8 @@ exports[`components/Button renders an Button with variant prop 1`] = `
   <button
     class="css-m3rn6y"
     font-size="small,medium"
-  />
+  >
+    Click me!
+  </button>
 </div>
 `;

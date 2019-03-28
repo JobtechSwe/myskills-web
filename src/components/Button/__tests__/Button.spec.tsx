@@ -5,20 +5,15 @@ import { wait } from 'react-testing-library'
 
 describe('components/Button', () => {
   it('renders an Button', async () => {
-    const { container } = render(<Button text="Click me!" />, [])
-
-    await wait()
+    const { container } = render(<Button text="Click me!" />)
 
     expect(container).toMatchSnapshot()
   })
 
   it('renders an Button with variant prop', async () => {
     const { container } = render(
-      <Button text="Click me!" variant="primary" />,
-      []
+      <Button text="Click me!" variant="secondary" />
     )
-
-    await wait()
 
     expect(container).toMatchSnapshot()
   })

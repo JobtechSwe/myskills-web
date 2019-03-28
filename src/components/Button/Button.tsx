@@ -1,25 +1,45 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { buttonStyle } from 'styled-system'
+import {
+  border,
+  BorderProps,
+  buttonStyle,
+  ButtonStyleProps,
+  color,
+  ColorProps,
+  fontSize,
+  FontSizeProps,
+  space,
+  SpaceProps,
+} from 'styled-system'
 
-const Btn = styled.button`
-  border: 0;
-  color: white;
-  font-size: 20px;
-  white-space: nowrap;
-  text-decoration: none;
-  padding: 10px 20px;
+const Button = styled.button`
   cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+
+  ${border}
   ${buttonStyle}
+  ${color}
+  ${fontSize}
+  ${space}
 `
 
-interface Props {
-  text: string
-  variant?: string
+type ButtonProps = ButtonStyleProps &
+  BorderProps &
+  ColorProps &
+  FontSizeProps &
+  SpaceProps
+
+const common: ButtonProps = {
+  border: 0,
+  fontSize: ['small', 'medium'],
+  p: '10px 20px',
 }
 
-const Button: React.FC<Props> = ({ text, variant }) => (
-  <Btn variant={variant}>{text}</Btn>
-)
+Button.defaultProps = {
+  ...common,
+  variant: 'primary',
+}
 
 export default Button

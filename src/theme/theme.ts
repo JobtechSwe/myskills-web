@@ -1,26 +1,29 @@
 interface Color {
   lassekongo: 'dodgerblue'
   white: 'white'
+
+  green: 'green'
 }
 
 interface Typography {
   default: 'sans-serif'
 }
 
-const buttons = {
-  primary: {
-    color: 'white',
-    backgroundColor: '#28a745',
-  },
-  secondary: {
-    color: 'white',
-    backgroundColor: '#6c757d',
-  },
-}
-
 const colors: Color = {
   lassekongo: 'dodgerblue',
   white: 'white',
+  green: 'green',
+}
+
+const buttons = {
+  primary: {
+    color: colors.white,
+    backgroundColor: colors.lassekongo,
+  },
+  secondary: {
+    color: colors.white,
+    backgroundColor: colors.green,
+  },
 }
 
 const sizes = [0, 16, 24, 32]

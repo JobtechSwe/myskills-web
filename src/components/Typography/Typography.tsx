@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { theme } from '../../theme'
 import {
   color,
   ColorProps,
@@ -37,8 +36,8 @@ export const Paragraph = styled.p`
 type HeadingProps = ColorProps & FontSizeProps & SpaceProps
 
 const common: HeadingProps = {
-  color: theme.colors.white,
-  mt: theme.space.none,
+  color: 'white',
+  mt: 'none',
 }
 
 H1.defaultProps = {

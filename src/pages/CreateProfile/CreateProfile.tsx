@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from 'react'
 import { Context } from '../../components/ContextProvider/ContextProvider'
 import { Flex } from '../../components/Flex/Flex'
+import Button from '../../components/Button/Button'
 import { RouteComponentProps } from '@reach/router'
 import styled from '@emotion/styled'
 import AddExperience from '../../components/Experience/AddExperience'
@@ -20,7 +21,7 @@ const CreateProfile: React.FC<RouteComponentProps> = () => {
   return (
     <Flex alignItems="center" flexDirection="column" justifyContent="center">
       <AddExperience />
-      <AddButton>Spara i MyData</AddButton>
+      <Button variant="secondary">Spara i MyData</Button>
     </Flex>
   )
 }

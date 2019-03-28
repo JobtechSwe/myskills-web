@@ -1,7 +1,6 @@
 import * as React from 'react'
 import Button from '../Button'
 import { render } from '../../../utils/test-utils'
-import { wait } from 'react-testing-library'
 
 describe('components/Button', () => {
   it('renders an Button', async () => {

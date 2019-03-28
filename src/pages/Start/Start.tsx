@@ -22,12 +22,12 @@ const Start: React.FC<RouteComponentProps> = () => {
     <Wrapper>
       <div>
         <Link to="/skapa-cv">
-          <Button variant="primary" text="Skapa Cv" />
+          <Button text="Skapa Cv" variant="primary" />
         </Link>
       </div>
       <div>
         <Link to="/login">
-          <Button variant="secondary" text="Login" />
+          <Button text="Login" variant="secondary" />
         </Link>
       </div>
     </Wrapper>

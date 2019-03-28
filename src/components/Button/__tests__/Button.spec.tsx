@@ -14,7 +14,7 @@ describe('components/Button', () => {
 
   it('renders an Button with variant prop', async () => {
     const { container } = render(
-      <Button variant="primary" text="Click me!" />,
+      <Button text="Click me!" variant="primary" />,
       []
     )
 

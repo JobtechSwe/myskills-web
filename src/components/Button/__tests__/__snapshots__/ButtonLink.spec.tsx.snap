@@ -1,18 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components/ButtonLink renders an Button 1`] = `
-<div>
-  <a
-    class="css-13q84w8"
-    font-size="small,medium"
-    href="/test"
-  >
-    Link text
-  </a>
-</div>
-`;
-
-exports[`components/ButtonLink renders an Button with variant prop 1`] = `
+exports[`components/ButtonLink renders an anchor tag 1`] = `
 <div>
   <a
     class="css-1wchlh6"

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components/ButtonLink renders an Button 1`] = `
+exports[`components/ButtonLink renders a ButtonLink 1`] = `
 <div>
   <a
     class="css-13q84w8"
@@ -12,7 +12,7 @@ exports[`components/ButtonLink renders an Button 1`] = `
 </div>
 `;
 
-exports[`components/ButtonLink renders an Button with variant prop 1`] = `
+exports[`components/ButtonLink renders a ButtonLink with props 1`] = `
 <div>
   <a
     class="css-1wchlh6"

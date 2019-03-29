@@ -6,19 +6,13 @@ import { graphql } from 'react-apollo'
 import styled from '@emotion/styled'
 import ExperienceList from './ExperienceList'
 import { TaxonomyType } from '../../types'
+import Input from '../../components/Input/Input'
 
 const InputLabel = styled.label`
   color: white;
   font-family: 'Arial';
   font-weight: bold;
   margin-bottom: 5px;
-`
-
-const Input = styled.input`
-  width: 80%;
-  height: 30px;
-  font-size: 28px;
-  border-radius: 5px;
 `
 
 const GET_EXPERIENCES = gql`

@@ -95,7 +95,7 @@ const apolloClient = new ApolloClient({
 })
 
 type InitialStateProps = {
-  experiences: Experience[]
+  experiences?: Experience[]
 }
 
 const initialState: InitialStateProps = {

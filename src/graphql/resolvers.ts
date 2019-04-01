@@ -14,7 +14,7 @@ export default {
       })
 
       const withoutDuplicates = (exp: any): Experience[] =>
-        exp.filter((e: any) => e.taxonomyId !== experience.taxonomyId)
+        exp.filter((e: Experience) => e.taxonomyId !== experience.taxonomyId)
 
       const updatedExperiences = [...withoutDuplicates(experiences), experience]
 

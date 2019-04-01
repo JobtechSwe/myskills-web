@@ -114,10 +114,7 @@ const AddExperience: React.FC<RouteComponentProps> = ({ mutate }: any) => {
             {data.taxonomy.result.map(
               (experience: Taxonomy.Result, i: number) => (
                 <li key={i}>
-                  <button
-                    key={i}
-                    onClick={() => handleSetExperience(experience)}
-                  >
+                  <button onClick={() => handleSetExperience(experience)}>
                     {experience.term}
                   </button>
                 </li>

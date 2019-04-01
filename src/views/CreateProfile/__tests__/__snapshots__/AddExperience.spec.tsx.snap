@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`views/AddExperience renders empty result 1`] = `
+<div>
+  <div
+    class="css-zbfoeb"
+  >
+    <label
+      class="css-185rjq0"
+    >
+      Sök yrken:
+    </label>
+    <input
+      class="css-ull5e5"
+      name="search"
+    />
+  </div>
+</div>
+`;

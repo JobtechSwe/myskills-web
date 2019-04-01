@@ -1,5 +1,4 @@
 import { GET_EXPERIENCES_CLIENT } from '../views/CreateProfile/AddExperience'
-import { ExperienceInput } from '../generated/myskills'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { Experience } from '../types'
 

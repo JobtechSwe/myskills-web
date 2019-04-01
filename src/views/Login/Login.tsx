@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import gql from 'graphql-tag'
 import { Mutation } from 'react-apollo'
 import { RouteComponentProps } from '@reach/router'

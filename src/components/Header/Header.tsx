@@ -1,6 +1,4 @@
-import React, { useContext } from 'react'
-import { Context } from '../ContextProvider/ContextProvider'
-
+import React from 'react'
 import styled from '@emotion/styled'
 
 const Container = styled.header`
@@ -15,16 +13,12 @@ const Logo = styled.h1`
   font-family: 'Arial';
   font-weight: bold;
   color: white;
-  transform: ${({ isActive }: any) => (isActive ? 'scale(1)' : 'scale(0.5)')};
-  transition: transform 300ms ease;
 `
 
 const Header: React.FC = () => {
-  const { state } = useContext(Context)
-
   return (
     <Container>
-      <Logo isActive={state.logoActive}>MySkills</Logo>
+      <Logo>MySkills</Logo>
     </Container>
   )
 }

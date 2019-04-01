@@ -1,5 +1,4 @@
-import React, { useContext } from 'react'
-import { Context } from '../../components/ContextProvider/ContextProvider'
+import React from 'react'
 import { RouteComponentProps, Link } from '@reach/router'
 import styled from '@emotion/styled'
 
@@ -12,11 +11,6 @@ const Wrapper = styled.section`
 `
 
 const Start: React.FC<RouteComponentProps> = () => {
-  const {
-    state: { logoActive },
-    dispatch,
-  } = useContext(Context)
-
   return (
     <Wrapper>
       <div>

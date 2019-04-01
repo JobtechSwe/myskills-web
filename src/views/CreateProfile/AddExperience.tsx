@@ -2,9 +2,8 @@ import React, { useState } from 'react'
 import { useQuery } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
-import { Experience } from '../../types'
+import { Experience, TaxonomyType } from '../../types'
 import styled from '@emotion/styled'
-import { TaxonomyType } from '../../types'
 import { RouteComponentProps } from '@reach/router'
 import { Taxonomy } from '../../generated/myskills'
 
@@ -88,6 +87,7 @@ const AddExperience: React.FC<RouteComponentProps> = ({ mutate }: any) => {
       q: query,
       type: TaxonomyType[TaxonomyType.OCCUPATION_NAME],
     },
+    skip: !query,
   })
 
   const { data: clientExperiences } = useQuery(GET_EXPERIENCES_CLIENT)
@@ -106,9 +106,12 @@ const AddExperience: React.FC<RouteComponentProps> = ({ mutate }: any) => {
 
   return (
     <Wrapper>
-      <InputLabel>Sök yrken:</InputLabel>
-      <Input name="search" onChange={({ target }) => setQuery(target.value)} />
-      {data.taxonomy && !loading && (
+      <Input
+        name="search"
+        onChange={({ target }) => setQuery(target.value)}
+        placeholder="Sök yrken"
+      />
+      {data && data.taxonomy && !loading && (
         <>
           <List>
             {data.taxonomy.result.map(
@@ -129,7 +132,7 @@ const AddExperience: React.FC<RouteComponentProps> = ({ mutate }: any) => {
         </>
       )}
 
-      {loading && <div>Loading...</div>}
+      {query && !loading && <div>Loading...</div>}
       {error && <div>Some error...</div>}
     </Wrapper>
   )

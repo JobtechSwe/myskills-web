@@ -4,20 +4,58 @@ import AddExperience, {
   GET_EXPERIENCES_CLIENT,
 } from '../AddExperience'
 import { render } from '../../../utils/test-utils'
-import { wait, cleanup } from 'react-testing-library'
+import { wait, cleanup, fireEvent, getByText } from 'react-testing-library'
 
 afterEach(cleanup)
 
 jest.useFakeTimers()
 
 describe('views/AddExperience', () => {
+  const mocks = [
+    {
+      request: {
+        query: GET_EXPERIENCES,
+        variables: {
+          q: '',
+          type: 'OCCUPATION_NAME',
+        },
+      },
+      result: {
+        data: {
+          __typename: 'Taxonomy',
+          taxonomy: {
+            result: [],
+          },
+        },
+      },
+    },
+    {
+      request: {
+        query: GET_EXPERIENCES_CLIENT,
+      },
+      result: {
+        data: {
+          __typename: 'Experiences',
+          experiences: [],
+        },
+      },
+    },
+  ]
   it('renders empty result', async () => {
-    const mocks = [
+    const { container } = render(<AddExperience />, mocks)
+
+    await wait()
+
+    expect(container).toMatchSnapshot()
+  })
+
+  it.only('should render with taxonomy query result', async () => {
+    const withResultsMock = [
       {
         request: {
           query: GET_EXPERIENCES,
           variables: {
-            q: '',
+            q: 'Systemutvecklare',
             type: 'OCCUPATION_NAME',
           },
         },
@@ -25,7 +63,7 @@ describe('views/AddExperience', () => {
           data: {
             __typename: 'Taxonomy',
             taxonomy: {
-              result: [],
+              result: [{ term: 'Systemutvecklare' }],
             },
           },
         },
@@ -43,10 +81,14 @@ describe('views/AddExperience', () => {
       },
     ]
 
-    const { container } = render(<AddExperience />, mocks)
+    const { container, getByPlaceholderText, getByText } = render(
+      <AddExperience />,
+      withResultsMock
+    )
 
-    await wait()
-
+    fireEvent.change(getByPlaceholderText('Sök yrken'), {
+      target: { value: 'Systemutvecklare' },
+    })
     expect(container).toMatchSnapshot()
   })
 })

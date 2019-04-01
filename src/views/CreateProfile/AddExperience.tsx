@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { useQuery } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
-import { Mutation, Query } from 'react-apollo'
+import { Mutation } from 'react-apollo'
+
 import styled from '@emotion/styled'
 import { TaxonomyType } from '../../types'
 import { RouteComponentProps } from '@reach/router'
@@ -65,11 +66,13 @@ export const GET_EXPERIENCES = gql`
     }
   }
 `
+
 export const GET_EXPERIENCES_CLIENT = gql`
   query getExperiences {
     experiences @client
   }
 `
+
 export const ADD_EXPERIENCE_CLIENT = gql`
   mutation addExperience($experience: ExperienceInput!) {
     addExperience(experience: $experience) @client
@@ -78,13 +81,13 @@ export const ADD_EXPERIENCE_CLIENT = gql`
 
 const AddExperience: React.FC<RouteComponentProps> = () => {
   const [query, setQuery] = useState('')
-
-  const { data, loading } = useQuery(GET_EXPERIENCES, {
+  const { data, error, loading } = useQuery(GET_EXPERIENCES, {
     variables: {
       q: query,
       type: TaxonomyType[TaxonomyType.OCCUPATION_NAME],
     },
   })
+  const { data: clientExperiences } = useQuery(GET_EXPERIENCES_CLIENT)
 
   return (
     <Wrapper>
@@ -105,7 +108,6 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
                     mutation={ADD_EXPERIENCE_CLIENT}
                     variables={{
                       experience: {
-                        years: '2',
                         name: experience.term,
                         taxonomyId: experience.taxonomyId,
                       },
@@ -123,17 +125,14 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
               )
             )}
           </List>
-          <Query query={GET_EXPERIENCES_CLIENT}>
-            {({ data }) => {
-              return data.experiences.map((e: any, i: number) => (
-                <p key={e.taxonomyId}>{e.name}</p>
-              ))
-            }}
-          </Query>
+          {clientExperiences.experiences.map((e: any, i: number) => (
+            <p key={e.taxonomyId}>{e.name}</p>
+          ))}
         </>
       )}
 
       {loading && <div>Loading...</div>}
+      {error && <div>Some error...</div>}
     </Wrapper>
   )
 }

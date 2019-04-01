@@ -1,6 +1,6 @@
 import { GET_EXPERIENCES_CLIENT } from '../views/CreateProfile/AddExperience'
 
-const resolvers = {
+export default {
   Mutation: {
     addExperience: (
       _: any,
@@ -11,11 +11,10 @@ const resolvers = {
         query: GET_EXPERIENCES_CLIENT,
       })
 
-      const experiencesWithoutDuplicates = experiences.filter(
-        (e: any) => e.taxonomyId !== experience.taxonomyId
-      )
+      const withoutDuplicates = (exp: any) =>
+        exp.filter((e: any) => e.taxonomyId !== experience.taxonomyId)
 
-      const updatedExperiences = [...experiencesWithoutDuplicates, experience]
+      const updatedExperiences = [...withoutDuplicates(experiences), experience]
 
       cache.writeQuery({
         query: GET_EXPERIENCES_CLIENT,
@@ -26,5 +25,3 @@ const resolvers = {
     },
   },
 }
-
-export default resolvers

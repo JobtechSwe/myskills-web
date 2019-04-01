@@ -14,3 +14,9 @@ export enum TaxonomyType {
   SKILL,
   WORKTIME_EXTENT,
 }
+
+export type Experience = {
+  name: string
+  years?: string
+  taxonomyId: string
+}

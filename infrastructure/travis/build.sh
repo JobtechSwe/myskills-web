@@ -1,5 +1,5 @@
 #!/bin/bash
-docker login -u $DOCKER_USER -p $DOCKER_PASS
+docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 REPO=jobtechswe/myskills-web
 
 docker build --build-arg REACT_APP_GRAPHQL_URI=$REACT_APP_GRAPHQL_URI --build-arg REACT_APP_GRAPHQL_WS_URI=$REACT_APP_GRAPHQL_WS_URI -f Dockerfile -t $REPO .

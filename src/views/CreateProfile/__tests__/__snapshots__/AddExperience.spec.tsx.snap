@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`views/AddExperience renders empty result 1`] = `
+<div>
+  <div
+    class="css-zbfoeb"
+  >
+    <input
+      class="css-ull5e5"
+      name="search"
+      placeholder="Sök yrken"
+    />
+  </div>
+</div>
+`;

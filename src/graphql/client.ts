@@ -7,6 +7,8 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { HttpLink } from 'apollo-link-http'
 import { getMainDefinition } from 'apollo-utilities'
 import { getCookie, removeCookie, redirect } from '../utils/helpers'
+import { Experience } from '../types'
+import resolvers from './resolvers'
 
 const httpLink = new HttpLink({
   uri: process.env.REACT_APP_GRAPHQL_URI,
@@ -37,7 +39,7 @@ export const handleErrors = ({ graphQLErrors, networkError }: any) => {
   }
 }
 
-export function deconstructJWT(token: string) {
+export const deconstructJWT = (token: string) => {
   const segments = token.split('.')
 
   if ((!segments as any) instanceof Array || segments.length !== 3) {
@@ -74,7 +76,21 @@ const authLink = setContext((root, { headers }) => {
   }
 })
 
-const cache = new InMemoryCache()
+export const dataIdFromObject = (r: any) => {
+  if (r.path && r.__typename) {
+    return `${r.__typename}:${r.path}`
+  }
+
+  if (r.id && r.__typename) {
+    return `${r.__typename}:${r.id}`
+  }
+
+  return null
+}
+
+const cache = new InMemoryCache({
+  dataIdFromObject,
+})
 
 const terminatingLink = split(
   // split based on operation type
@@ -89,6 +105,21 @@ const terminatingLink = split(
 const apolloClient = new ApolloClient({
   link: ApolloLink.from([onError(handleErrors), terminatingLink]),
   cache,
+  resolvers,
+})
+
+type InitialStateProps = {
+  experiences?: Experience[]
+}
+
+const initialState: InitialStateProps = {
+  experiences: [],
+}
+
+cache.writeData({
+  data: {
+    ...initialState,
+  },
 })
 
 export default apolloClient

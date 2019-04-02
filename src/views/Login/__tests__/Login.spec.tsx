@@ -1,7 +1,7 @@
 /* eslint-disable */
 import * as React from 'react'
 import Login, { GET_CONSENT_ID } from '../Login'
-import gql from 'graphql-tag'
+
 import { render } from '../../../utils/test-utils'
 import { fireEvent, wait, waitForElement } from 'react-testing-library'
 

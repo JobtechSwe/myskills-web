@@ -20,3 +20,9 @@ export type Experience = {
   years?: string
   taxonomyId: string
 }
+
+export type Skill = {
+  taxonomyId: string
+  term: string
+  type: string
+}

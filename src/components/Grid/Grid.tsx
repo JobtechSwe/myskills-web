@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from '@emotion/styled'
 import {
   alignContent,
@@ -9,6 +8,10 @@ import {
   GridColumnGapProps,
   gridColumn,
   GridColumnProps,
+  gridTemplateColumns,
+  GridTemplatesColumnsProps,
+  gridTemplateRows,
+  GridTemplatesRowsProps,
   gridGap,
   GridGapProps,
   gridRowGap,
@@ -28,6 +31,8 @@ export const Grid = styled.div`
   ${alignItems}
   ${gridColumnGap}
   ${gridColumn}
+  ${gridTemplateColumns}
+  ${gridTemplateRows}
   ${gridGap}
   ${gridRowGap}
   ${gridRow}
@@ -39,6 +44,8 @@ type GridProps = AlignContentProps &
   AlignItemsProps &
   GridColumnGapProps &
   GridColumnProps &
+  GridTemplatesColumnsProps &
+  GridTemplatesRowsProps &
   GridGapProps &
   GridRowGapProps &
   GridRowProps &

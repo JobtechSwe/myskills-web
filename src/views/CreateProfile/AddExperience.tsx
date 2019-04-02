@@ -6,7 +6,6 @@ import { TaxonomyType } from '../../types'
 import styled from '@emotion/styled'
 import { RouteComponentProps } from '@reach/router'
 import { Taxonomy } from '../../generated/myskills'
-import { log } from 'util'
 
 const Wrapper = styled.div`
   display: flex;
@@ -133,5 +132,4 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
   )
 }
 
-// export default graphql<any>(ADD_EXPERIENCE)(AddExperience)
 export default AddExperience

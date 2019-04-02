@@ -5,8 +5,17 @@ jobs:
       cache: npm
       install:
         - npm ci
+      before_script:
+        - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+          > ./cc-test-reporter
+        - chmod +x ./cc-test-reporter
+        - './cc-test-reporter before-build'
       script:
-        - npm run test:once
+        - npm run lint
+        - npm run test:once -- --coverage
+      after_script:
+        - './cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT'
+
     - stage: build
       install: skip
       services:
@@ -25,9 +34,9 @@ jobs:
 stages:
   - test
   - name: build
-    if: "(branch = master AND type != pull_request) OR tag IS present"
+    if: '(branch = master AND type != pull_request) OR tag IS present'
   - name: deploy
-    if: "(branch = master AND type != pull_request) OR tag IS present"
+    if: '(branch = master AND type != pull_request) OR tag IS present'
 env:
   global:
     - secure: T8unUZvP4NM5PqZy0n+SWX6lrLEcVAEkiawHwrFuEKOIf0/AG+hrvExdu7sRdbU/uqfVJqAD9DP0vEUraiZqM942L8PJw4GHRmz7wpj8J0bGT7f4be3G0yXq5DCFosJtJ30m7Gr+6mK2boPAF9dpqzSi5EeM5ny2vR6laBuMNfv/6umnZmT3w3eBRgzBCkxd7bLo0mWk6dhxmz7cWjjuyPFlEY75Ve12SqXxDotb633exHTmpW9GWpKNxHu71NFcxD86LYDRNOzCEi142EB4wPCAOZG3OQH3kG9iQeU65wj8JTknXjHxvL1nb+LJLdZimvqJBaIT7MtKKpfmXGavFsdEPC7A0bHoMAqbfdcbKtaeDrny+YNeQrqL8FQ9qhbsrwk/bw2ed6TjRC0mR5LLvW8qZVtDFvxbndg4h0VggcHYpOhOPG3cN9UOBoA6iuMuvxBX0G5iDf9xJ28i3B/0RC0FOFqUwzk+PLV1zb6SyPUFStZ6RXz8pQOoxM9Wsjm/tsBkNBfDQd2amTfAuJ2hNkdEqMmUNkKlkzcCdjSDv8lfXA6hGBClb2UvxLeK0r/JKoE2no7lgckrD4a0K7uoSlmfrHb0D97KAHiZobQPxOjoirN0ZJW+lKiETzmWPMGfTEMiy+ZCY1ysEfXGemRPaQr63o6Ornnaw77bFx4OY2I=
@@ -42,6 +51,6 @@ notifications:
     rooms:
       - secure: SvmmxolNZkI1pee+sg/fpQlLdFt5j5/tXV/NFN4ls0Nkjp4Y1UYVtFCJF8n6OOJj0qxg+mebsZB3QZ6OGkhbrQxwGP7zt7f5d4SExW7+hur5c+8K+s/5n9zCAe27RCtReOcYiDqDI4/36ke9BU+wjz0gqG8pND8n8G/ThezwWjrHH6k6/d7Zc4HcZftDwN+HVrMHanboR2L3RO8HZICSSFTrC79pXq3pojmsKP+SQMwDjTFcYh8WSHSUeFrjtugh7DgKRkyqOInbASmp92cxlu/lA2obnP8zzuW1YecNDd556QDq2IiJKytfQakDMrzLpSFRoXr60mqX3zYAnRAPra15gKfv5Ojcc/pFsCTUzzDC8Xx4Tov3DQsOg6Hxf4D72uVf9f+KvQcRAv6tkELk3jsOIOYHvEz23HYoMmI+VrlE1FLaXPixisfigOOQuYmt2QnyJA8I9P/SEshBDNW2sVKHrWUGdVtfwd8myl8fKiSe4JyKFlV8myhOCoku6SL8ZVLpAB/yjSUDpSm1zw9FCzOHZjUAB6OgcI2FSkE1V8+awI1J3GRjh5PPl4tLfzh19exGdgn2ENatnRtY/gb6vWP6Fvn42DND4n4ujXNxBKTmz+gsPzvd1eC8xkAfpTcOvSiyCNyzK+/lNNCZxWW6z5C9NjTNYK7NDBWSN6kckKI=
     template:
-      - "Repo `%{repository_slug}` *%{result}* build (<%{build_url}|#%{build_number}>) for commit (<%{compare_url}|%{commit}>) on branch `%{branch}`."
-      - "Message: %{commit_message}"
-      - "Execution time: *%{duration}*"
+      - 'Repo `%{repository_slug}` *%{result}* build (<%{build_url}|#%{build_number}>) for commit (<%{compare_url}|%{commit}>) on branch `%{branch}`.'
+      - 'Message: %{commit_message}'
+      - 'Execution time: *%{duration}*'

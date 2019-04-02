@@ -2,7 +2,6 @@ import React, { FunctionComponent, useState, useEffect } from 'react'
 import { RouteComponentProps, navigate } from '@reach/router'
 import { getCookie } from '../utils/helpers'
 
-import gql from 'graphql-tag'
 interface RestrictedRouteProps extends RouteComponentProps {
   component: FunctionComponent
 }

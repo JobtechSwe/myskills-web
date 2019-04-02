@@ -55,13 +55,6 @@ describe('resolvers/addExperience', () => {
     })
   })
 
-  it('returns experience', () => {
-    expect(addExperience({}, experience, cache)).toEqual({
-      name: 'Systemutvecklare',
-      taxonomyId: 'abc',
-    })
-  })
-
   it('filters duplicates', () => {
     const duplicate = {
       experience: {
@@ -81,6 +74,13 @@ describe('resolvers/addExperience', () => {
           },
         ],
       },
+    })
+  })
+
+  it('returns experience', () => {
+    expect(addExperience({}, experience, cache)).toEqual({
+      name: 'Systemutvecklare',
+      taxonomyId: 'abc',
     })
   })
 })

@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { useQuery } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
-import { graphql } from 'react-apollo'
-import { Experience, TaxonomyType } from '../../types'
+import { Mutation } from 'react-apollo'
+import { TaxonomyType } from '../../types'
 import styled from '@emotion/styled'
 import { RouteComponentProps } from '@reach/router'
 import { Taxonomy } from '../../generated/myskills'
+import { log } from 'util'
 
 const Wrapper = styled.div`
   display: flex;
@@ -28,13 +29,6 @@ const List = styled.ul`
       transform: scale(1.1);
     }
   }
-`
-
-const InputLabel = styled.label`
-  color: white;
-  font-family: 'Arial';
-  font-weight: bold;
-  margin-bottom: 5px;
 `
 
 const Input = styled.input`
@@ -79,7 +73,7 @@ export const ADD_EXPERIENCE_CLIENT = gql`
   }
 `
 
-const AddExperience: React.FC<RouteComponentProps> = ({ mutate }: any) => {
+const AddExperience: React.FC<RouteComponentProps> = () => {
   const [query, setQuery] = useState('')
 
   const { data, error, loading } = useQuery(GET_EXPERIENCES, {
@@ -90,20 +84,6 @@ const AddExperience: React.FC<RouteComponentProps> = ({ mutate }: any) => {
     skip: !query,
   })
 
-  const { data: clientExperiences } = useQuery(GET_EXPERIENCES_CLIENT)
-
-  const handleSetExperience = (exp: Taxonomy.Result): MutationCallback =>
-    mutate({
-      mutation: ADD_EXPERIENCE_CLIENT,
-      variables: {
-        experience: {
-          name: exp.term,
-          years: '',
-          taxonomyId: exp.taxonomyId,
-        },
-      },
-    })
-
   return (
     <Wrapper>
       <Input
@@ -111,31 +91,47 @@ const AddExperience: React.FC<RouteComponentProps> = ({ mutate }: any) => {
         onChange={({ target }) => setQuery(target.value)}
         placeholder="Sök yrken"
       />
-      {data && data.taxonomy && !loading && (
-        <>
-          <List>
-            {data.taxonomy.result.map(
-              (experience: Taxonomy.Result, i: number) => (
-                <li key={i}>
-                  <button onClick={() => handleSetExperience(experience)}>
-                    {experience.term}
-                  </button>
-                </li>
-              )
-            )}
-          </List>
-          {clientExperiences.experiences.length
-            ? clientExperiences.experiences.map((e: Experience) => (
-                <p key={e.taxonomyId}>{e.name}</p>
-              ))
-            : null}
-        </>
-      )}
-
-      {query && !loading && <div>Loading...</div>}
+      {loading && <div>Loading...</div>}
       {error && <div>Some error...</div>}
+      {data && data.taxonomy && (
+        <List>
+          {data.taxonomy.result.map(
+            (experience: Taxonomy.Result, i: number) => (
+              <li key={i}>
+                <Mutation
+                  mutation={ADD_EXPERIENCE_CLIENT}
+                  variables={{
+                    experience: {
+                      name: experience.term,
+                      years: '',
+                      taxonomyId: experience.taxonomyId,
+                    },
+                  }}
+                >
+                  {(addExperience, { error, loading }) => {
+                    if (loading) {
+                      return <p>Loading...</p>
+                    }
+
+                    if (error) {
+                      return <p>That’s an error.</p>
+                    }
+
+                    return (
+                      <button onClick={() => addExperience()}>
+                        {experience.term}
+                      </button>
+                    )
+                  }}
+                </Mutation>
+              </li>
+            )
+          )}
+        </List>
+      )}
     </Wrapper>
   )
 }
 
-export default graphql<any>(ADD_EXPERIENCE)(AddExperience)
+// export default graphql<any>(ADD_EXPERIENCE)(AddExperience)
+export default AddExperience

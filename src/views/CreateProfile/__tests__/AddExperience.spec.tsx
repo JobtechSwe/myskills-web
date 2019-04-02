@@ -4,52 +4,18 @@ import AddExperience, {
   GET_EXPERIENCES_CLIENT,
 } from '../AddExperience'
 import { render } from '../../../utils/test-utils'
-import { wait, cleanup, fireEvent, getByText } from 'react-testing-library'
-
-afterEach(cleanup)
-
-jest.useFakeTimers()
+import { wait, fireEvent } from 'react-testing-library'
 
 describe('views/AddExperience', () => {
-  const mocks = [
-    {
-      request: {
-        query: GET_EXPERIENCES,
-        variables: {
-          q: '',
-          type: 'OCCUPATION_NAME',
-        },
-      },
-      result: {
-        data: {
-          __typename: 'Taxonomy',
-          taxonomy: {
-            result: [],
-          },
-        },
-      },
-    },
-    {
-      request: {
-        query: GET_EXPERIENCES_CLIENT,
-      },
-      result: {
-        data: {
-          __typename: 'Experiences',
-          experiences: [],
-        },
-      },
-    },
-  ]
   it('renders empty result', async () => {
-    const { container } = render(<AddExperience />, mocks)
+    const { container } = render(<AddExperience />)
 
     await wait()
 
     expect(container).toMatchSnapshot()
   })
 
-  it.only('should render with taxonomy query result', async () => {
+  it('renders loading message', async () => {
     const withResultsMock = [
       {
         request: {
@@ -61,27 +27,24 @@ describe('views/AddExperience', () => {
         },
         result: {
           data: {
-            __typename: 'Taxonomy',
             taxonomy: {
-              result: [{ term: 'Systemutvecklare' }],
+              __typename: 'TaxonomyDefaultResult',
+              result: [
+                {
+                  term: 'Systemutvecklare',
+                  taxonomyId: 'abc',
+                  type: 'occupation-name',
+                  parentId: 'abc',
+                  __typename: 'TaxonomyDefaultResult',
+                },
+              ],
             },
-          },
-        },
-      },
-      {
-        request: {
-          query: GET_EXPERIENCES_CLIENT,
-        },
-        result: {
-          data: {
-            __typename: 'Experiences',
-            experiences: [],
           },
         },
       },
     ]
 
-    const { container, getByPlaceholderText, getByText } = render(
+    const { getByPlaceholderText, getByText } = render(
       <AddExperience />,
       withResultsMock
     )
@@ -89,6 +52,50 @@ describe('views/AddExperience', () => {
     fireEvent.change(getByPlaceholderText('Sök yrken'), {
       target: { value: 'Systemutvecklare' },
     })
-    expect(container).toMatchSnapshot()
+
+    expect(getByText(/Loading.../i)).toBeInTheDocument()
+  })
+
+  it('should render with taxonomy query result', async () => {
+    const withResultsMock = [
+      {
+        request: {
+          query: GET_EXPERIENCES,
+          variables: {
+            q: 'Systemutvecklare',
+            type: 'OCCUPATION_NAME',
+          },
+        },
+        result: {
+          data: {
+            taxonomy: {
+              __typename: 'TaxonomyDefaultResult',
+              result: [
+                {
+                  term: 'Systemutvecklare',
+                  taxonomyId: 'abc',
+                  type: 'occupation-name',
+                  parentId: 'abc',
+                  __typename: 'TaxonomyDefaultResult',
+                },
+              ],
+            },
+          },
+        },
+      },
+    ]
+
+    const { getByPlaceholderText, getByText } = render(
+      <AddExperience />,
+      withResultsMock
+    )
+
+    fireEvent.change(getByPlaceholderText('Sök yrken'), {
+      target: { value: 'Systemutvecklare' },
+    })
+
+    await wait()
+
+    expect(getByText('Systemutvecklare')).toBeInTheDocument()
   })
 })

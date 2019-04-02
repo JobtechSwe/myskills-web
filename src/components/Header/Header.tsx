@@ -1,4 +1,6 @@
 import React from 'react'
+import { H1 } from '../Typography/Typography'
+
 import styled from '@emotion/styled'
 
 const Container = styled.header`
@@ -8,12 +10,7 @@ const Container = styled.header`
   align-items: center;
   justify-content: center;
 `
-const Logo = styled.h1`
-  font-size: 48px;
-  font-family: 'Arial';
-  font-weight: bold;
-  color: white;
-`
+const Logo = styled(H1)``
 
 const Header: React.FC = () => {
   return (

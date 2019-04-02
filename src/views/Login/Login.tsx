@@ -12,7 +12,6 @@ const Test = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  background: ${({ theme }) => theme.colors.lassekongo};
 `
 
 export const GET_CONSENT_ID = gql`

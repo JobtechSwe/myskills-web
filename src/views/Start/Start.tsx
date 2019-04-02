@@ -1,25 +1,28 @@
 import React from 'react'
+import { Flex } from '../../components/Flex/Flex'
 import { RouteComponentProps, Link } from '@reach/router'
-import styled from '@emotion/styled'
-
-const Wrapper = styled.section`
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: column nowrap;
-`
+import Button from '../../components/Button/Button'
+import ButtonLink from '../../components/Button/ButtonLink'
 
 const Start: React.FC<RouteComponentProps> = () => {
   return (
-    <Wrapper>
+    <Flex alignItems="center" flexDirection="column" justifyContent="center">
       <div>
-        <Link to="/login">Login</Link>
+        <Link to="/skapa-cv">
+          <Button variant="primary">Skapa Cv</Button>
+        </Link>
       </div>
       <div>
-        <Link to="/skapa-cv">Skapa Cv</Link>
+        <Link to="/login">
+          <Button variant="secondary">Login</Button>
+        </Link>
       </div>
-    </Wrapper>
+      <div>
+        <ButtonLink fontSize="small" href="/test">
+          This is a button link
+        </ButtonLink>
+      </div>
+    </Flex>
   )
 }
 

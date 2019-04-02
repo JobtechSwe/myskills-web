@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Flex renders a Flex 1`] = `
+<div>
+  <div
+    class="css-1rykv5w"
+  >
+    Flex
+  </div>
+</div>
+`;
+
+exports[`components/Flex renders a Flex with props 1`] = `
+<div>
+  <div
+    class="css-714txy"
+  >
+    FlexWithProps
+  </div>
+</div>
+`;

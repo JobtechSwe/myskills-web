@@ -2,6 +2,7 @@ import React from 'react'
 import { Router } from '@reach/router'
 import RestrictedRoute from './pages/restricted'
 import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
 import styled from '@emotion/styled'
 const Login = React.lazy(() => import(`./pages/Login/Login`))
 const Start = React.lazy(() => import(`./pages/Start/Start`))
@@ -27,6 +28,7 @@ function App() {
           <RestrictedRoute component={Profile} path="/profile" />
         </Router>
       </React.Suspense>
+      <Footer />
     </Layout>
   )
 }

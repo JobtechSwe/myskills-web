@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Grid renders a Grid 1`] = `
+<div>
+  <div
+    class="css-1a6e79b"
+  >
+    Grid
+  </div>
+</div>
+`;
+
+exports[`components/Grid renders a Grid with props 1`] = `
+<div>
+  <div
+    class="css-i35s95"
+  >
+    GridWithProps
+  </div>
+</div>
+`;

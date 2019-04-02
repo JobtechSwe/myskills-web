@@ -132,5 +132,4 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
   )
 }
 
-// export default graphql<any>(ADD_EXPERIENCE)(AddExperience)
 export default AddExperience

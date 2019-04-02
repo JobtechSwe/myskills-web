@@ -1,8 +1,5 @@
 import * as React from 'react'
-import AddExperience, {
-  GET_EXPERIENCES,
-  GET_EXPERIENCES_CLIENT,
-} from '../AddExperience'
+import AddExperience, { GET_EXPERIENCES } from '../AddExperience'
 import { render } from '../../../utils/test-utils'
 import { wait, fireEvent } from 'react-testing-library'
 

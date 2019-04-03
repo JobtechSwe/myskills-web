@@ -7,7 +7,8 @@ export const GET_SKILLS_CLIENT = gql`
     skills @client
   }
 `
-export const addSkills = (
+
+export const addSkill = (
   _: any,
   { skill }: { skill: Skill },
   { cache }: { cache: InMemoryCache }
@@ -19,11 +20,11 @@ export const addSkills = (
   const withoutDuplicates = (skills: Skill[]): Skill[] =>
     skills.filter((s: Skill) => s.taxonomyId !== skill.taxonomyId)
 
-  const updatedExperiences = [...withoutDuplicates(skills), skill]
+  const updatedSkills = [...withoutDuplicates(skills), skill]
 
   cache.writeQuery({
     query: GET_SKILLS_CLIENT,
-    data: { experiences: updatedExperiences },
+    data: { skills: updatedSkills },
   })
 
   return skill

@@ -1,5 +1,5 @@
 import React from 'react'
-import { H1 } from '../Typography/Typography'
+import { H1 } from './Typography'
 
 import styled from '@emotion/styled'
 

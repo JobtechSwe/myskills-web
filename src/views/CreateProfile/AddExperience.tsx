@@ -6,36 +6,9 @@ import { TaxonomyType } from '../../types'
 import styled from '@emotion/styled'
 import { RouteComponentProps } from '@reach/router'
 import { Taxonomy } from '../../generated/myskills'
-
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  flex-flow: column nowrap;
-`
-
-const List = styled.ul`
-  color: white;
-  font-family: 'Arial';
-  padding: 0;
-  font-weight: bold;
-  text-align: center;
-  li {
-    margin-bottom: 5px;
-    list-style: none;
-    transition: all 100ms ease;
-
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
-`
-
-const Input = styled.input`
-  width: 80%;
-  height: 30px;
-  font-size: 28px;
-  border-radius: 5px;
-`
+import { Grid } from '../../components/Grid'
+import Input from '../../components/Input'
+import List from '../../components/List'
 
 export const ADD_EXPERIENCE = gql`
   mutation addExperience($experience: ExperienceInput!) {
@@ -84,7 +57,7 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
   })
 
   return (
-    <Wrapper>
+    <Grid>
       <Input
         name="search"
         onChange={({ target }) => setQuery(target.value)}
@@ -128,7 +101,7 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
           )}
         </List>
       )}
-    </Wrapper>
+    </Grid>
   )
 }
 

@@ -1,8 +1,8 @@
 import React from 'react'
-import { Flex } from '../../components/Flex/Flex'
+import { Flex } from '../../components/Flex'
 import { RouteComponentProps, Link } from '@reach/router'
-import Button from '../../components/Button/Button'
-import ButtonLink from '../../components/Button/ButtonLink'
+import Button from '../../components/Button'
+import ButtonLink from '../../components/ButtonLink'
 
 const Start: React.FC<RouteComponentProps> = () => {
   return (

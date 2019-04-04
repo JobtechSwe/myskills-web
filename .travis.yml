@@ -26,7 +26,7 @@ jobs:
           @semantic-release/github @semantic-release/exec semantic-release-docker
       script:
         - docker build -f Dockerfile -t jobtechswe/myskills-api .
-        - npx semantic-release
+        - npx semantic-release --dry-run --no-ci
 stages:
   - test
   - name: release

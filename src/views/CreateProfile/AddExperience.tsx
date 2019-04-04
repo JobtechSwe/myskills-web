@@ -1,22 +1,11 @@
 import React, { useState } from 'react'
-import { useQuery } from 'react-apollo-hooks'
+import { useQuery, useMutation } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
-import { Mutation } from 'react-apollo'
 import { TaxonomyType } from '../../types'
-import styled from '@emotion/styled'
 import { RouteComponentProps } from '@reach/router'
-import { Taxonomy } from '../../generated/myskills'
+import ExperienceList from '../../components/ExperienceList/ExperienceList'
 import { Grid } from '../../components/Grid'
 import Input from '../../components/Input'
-import List from '../../components/List'
-
-export const ADD_EXPERIENCE = gql`
-  mutation addExperience($experience: ExperienceInput!) {
-    addExperience(experience: $experience) {
-      name
-    }
-  }
-`
 
 export const GET_EXPERIENCES = gql`
   query taxonomy($q: String!, $type: TaxonomyType) {
@@ -33,12 +22,6 @@ export const GET_EXPERIENCES = gql`
   }
 `
 
-export const GET_EXPERIENCES_CLIENT = gql`
-  query getExperiences {
-    experiences @client
-  }
-`
-
 export const ADD_EXPERIENCE_CLIENT = gql`
   mutation addExperience($experience: ExperienceInput!) {
     addExperience(experience: $experience) @client
@@ -47,7 +30,6 @@ export const ADD_EXPERIENCE_CLIENT = gql`
 
 const AddExperience: React.FC<RouteComponentProps> = () => {
   const [query, setQuery] = useState('')
-
   const { data, error, loading } = useQuery(GET_EXPERIENCES, {
     variables: {
       q: query,
@@ -55,6 +37,7 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
     },
     skip: !query,
   })
+  const addExperienceMutaion = useMutation(ADD_EXPERIENCE_CLIENT)
 
   return (
     <Grid>
@@ -66,40 +49,10 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
       {loading && <div>Loading...</div>}
       {error && <div>Some error...</div>}
       {data && data.taxonomy && (
-        <List>
-          {data.taxonomy.result.map(
-            (experience: Taxonomy.Result, i: number) => (
-              <li key={i}>
-                <Mutation
-                  mutation={ADD_EXPERIENCE_CLIENT}
-                  variables={{
-                    experience: {
-                      name: experience.term,
-                      years: '',
-                      taxonomyId: experience.taxonomyId,
-                    },
-                  }}
-                >
-                  {(addExperience, { error, loading }) => {
-                    if (loading) {
-                      return <p>Loading...</p>
-                    }
-
-                    if (error) {
-                      return <p>That’s an error.</p>
-                    }
-
-                    return (
-                      <button onClick={() => addExperience()}>
-                        {experience.term}
-                      </button>
-                    )
-                  }}
-                </Mutation>
-              </li>
-            )
-          )}
-        </List>
+        <ExperienceList
+          addExperience={addExperienceMutaion}
+          list={data.taxonomy.result}
+        />
       )}
     </Grid>
   )

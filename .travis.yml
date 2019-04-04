@@ -7,13 +7,10 @@ jobs:
         - npm ci
       script:
         - npm run test:once
-    - stage: build
-      install: skip
+    - stage: release
+      language: node_js
       services:
         - docker
-      script:
-        - bash ./infrastructure/travis/build.sh
-    - stage: deploy
       before_install:
         - openssl aes-256-cbc -K $encrypted_bea024308360_key -iv $encrypted_bea024308360_iv
           -in ./infrastructure/travis/openshift-token.enc -out ./infrastructure/travis/openshift-token
@@ -21,13 +18,16 @@ jobs:
       install:
         - bash ./infrastructure/travis/install-openshift.sh
         - export PATH=$PATH:/tmp/openshift
-      script: bash ./infrastructure/travis/deploy.sh
+        - npm i -D @semantic-release/commit-analyzer @semantic-release/release-notes-generator
+          @semantic-release/github @semantic-release/exec semantic-release-docker
+      script:
+        - docker build -f Dockerfile -t jobtechswe/myskills-api .
+        - npx semantic-release
 stages:
   - test
-  - name: build
-    if: "(branch = master AND type != pull_request) OR tag IS present"
-  - name: deploy
-    if: "(branch = master AND type != pull_request) OR tag IS present"
+  - name: release
+    if: branch = master
+
 env:
   global:
     - secure: T8unUZvP4NM5PqZy0n+SWX6lrLEcVAEkiawHwrFuEKOIf0/AG+hrvExdu7sRdbU/uqfVJqAD9DP0vEUraiZqM942L8PJw4GHRmz7wpj8J0bGT7f4be3G0yXq5DCFosJtJ30m7Gr+6mK2boPAF9dpqzSi5EeM5ny2vR6laBuMNfv/6umnZmT3w3eBRgzBCkxd7bLo0mWk6dhxmz7cWjjuyPFlEY75Ve12SqXxDotb633exHTmpW9GWpKNxHu71NFcxD86LYDRNOzCEi142EB4wPCAOZG3OQH3kG9iQeU65wj8JTknXjHxvL1nb+LJLdZimvqJBaIT7MtKKpfmXGavFsdEPC7A0bHoMAqbfdcbKtaeDrny+YNeQrqL8FQ9qhbsrwk/bw2ed6TjRC0mR5LLvW8qZVtDFvxbndg4h0VggcHYpOhOPG3cN9UOBoA6iuMuvxBX0G5iDf9xJ28i3B/0RC0FOFqUwzk+PLV1zb6SyPUFStZ6RXz8pQOoxM9Wsjm/tsBkNBfDQd2amTfAuJ2hNkdEqMmUNkKlkzcCdjSDv8lfXA6hGBClb2UvxLeK0r/JKoE2no7lgckrD4a0K7uoSlmfrHb0D97KAHiZobQPxOjoirN0ZJW+lKiETzmWPMGfTEMiy+ZCY1ysEfXGemRPaQr63o6Ornnaw77bFx4OY2I=

@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { useQuery } from 'react-apollo-hooks'
+import { useQuery, useMutation } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
 import { TaxonomyType } from '../../types'
 import styled from '@emotion/styled'
 import { RouteComponentProps } from '@reach/router'
-import AddExperienceList from './AddExperienceList'
+import ExperienceList from '../../components/ExperienceList/ExperienceList'
 
 const Wrapper = styled.div`
   display: flex;
@@ -34,9 +34,14 @@ export const GET_EXPERIENCES = gql`
   }
 `
 
+export const ADD_EXPERIENCE_CLIENT = gql`
+  mutation addExperience($experience: ExperienceInput!) {
+    addExperience(experience: $experience) @client
+  }
+`
+
 const AddExperience: React.FC<RouteComponentProps> = () => {
   const [query, setQuery] = useState('')
-
   const { data, error, loading } = useQuery(GET_EXPERIENCES, {
     variables: {
       q: query,
@@ -44,6 +49,7 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
     },
     skip: !query,
   })
+  const addExperienceMutaion = useMutation(ADD_EXPERIENCE_CLIENT)
 
   return (
     <Wrapper>
@@ -55,7 +61,10 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
       {loading && <div>Loading...</div>}
       {error && <div>Some error...</div>}
       {data && data.taxonomy && (
-        <AddExperienceList experiences={data.taxonomy.result} />
+        <ExperienceList
+          list={data.taxonomy.result}
+          addExperience={addExperienceMutaion}
+        />
       )}
     </Wrapper>
   )

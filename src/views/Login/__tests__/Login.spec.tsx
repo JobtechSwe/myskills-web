@@ -1,19 +1,21 @@
 /* eslint-disable */
 import * as React from 'react'
-import Login, { GET_CONSENT_ID } from '../Login'
+import Login, { GET_LOGIN_ID } from '../Login'
 
 import { render } from '../../../utils/test-utils'
 import { fireEvent, wait, waitForElement } from 'react-testing-library'
 
 const login = {
-  id: 'db993c65-0673-454e-b951-bcb8d274f184',
-  expires: '1552561115',
+  url:
+    'mydata://login/eyJzZXNzaW9uSWQiOiJlYjEzZjlmOC01YTI3LTQ1ZDItOTFiZC04OGUyZmI1OWU4MGEiLCJjbGllbnRJZCI6Imh0dHA6Ly9teXNraWxscy1hcGk6MzAwMCJ9',
+  sessionId: 'dbf51774-bace-4723-8da4-a62913d163b7',
   __typename: 'Login',
 }
-const getConsentMock = [
+
+const getLoginMock = [
   {
     request: {
-      query: GET_CONSENT_ID,
+      query: GET_LOGIN_ID,
     },
     result: {
       data: {
@@ -23,11 +25,13 @@ const getConsentMock = [
   },
 ]
 
-jest.mock('../Consent', () => () => (
-  <p>mydata://register/db993c65-0673-454e-b951-bcb8d274f184</p>
+jest.mock('../LoginQR', () => () => (
+  <p>
+    mydata://login/eyJzZXNzaW9uSWQiOiJlYjEzZjlmOC01YTI3LTQ1ZDItOTFiZC04OGUyZmI1OWU4MGEiLCJjbGllbnRJZCI6Imh0dHA6Ly9teXNraWxscy1hcGk6MzAwMCJ9
+  </p>
 ))
 
-describe('pages/Login', () => {
+describe('views/Login', () => {
   it('renders without errors', async () => {
     const { container } = render(<Login />, [])
 
@@ -37,7 +41,7 @@ describe('pages/Login', () => {
   })
 
   it('should render loading state initially', async () => {
-    const { getByText } = render(<Login />, getConsentMock)
+    const { getByText } = render(<Login />, getLoginMock)
 
     fireEvent.click(getByText(/login/i))
 
@@ -64,13 +68,13 @@ describe('pages/Login', () => {
     expect(getByText(/that’s an error./i)).toBeInTheDocument()
   })
 
-  it('should render consentId after Login is clicked', async () => {
-    const { getByText } = render(<Login />, getConsentMock)
+  it('should render login-url after Login is clicked', async () => {
+    const { getByText } = render(<Login />, getLoginMock)
 
     fireEvent.click(getByText(/login/i))
 
-    await waitForElement(() => getByText(`mydata://register/${login.id}`))
+    await waitForElement(() => getByText(login.url))
 
-    expect(getByText(`mydata://register/${login.id}`)).toBeInTheDocument()
+    expect(getByText(login.url)).toBeInTheDocument()
   })
 })

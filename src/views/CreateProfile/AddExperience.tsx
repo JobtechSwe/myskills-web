@@ -35,13 +35,17 @@ export const GET_EXPERIENCES = gql`
 
 export const GET_EXPERIENCES_CLIENT = gql`
   query getExperiences {
-    experiences @client
+    experiences @client {
+      id
+    }
   }
 `
 
 export const ADD_EXPERIENCE_CLIENT = gql`
-  mutation addExperience($experience: ExperienceInput!) {
-    addExperience(experience: $experience) @client
+  mutation addExperienceClient($experience: ExperienceInput!) {
+    addExperience(experience: $experience) @client {
+      name
+    }
   }
 `
 
@@ -65,42 +69,38 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
       />
       {loading && <div>Loading...</div>}
       {error && <div>Some error...</div>}
-      {data && data.taxonomy && (
-        <List>
-          {data.taxonomy.result.map(
-            (experience: Taxonomy.Result, i: number) => (
-              <li key={i}>
-                <Mutation
-                  mutation={ADD_EXPERIENCE_CLIENT}
-                  variables={{
-                    experience: {
-                      name: experience.term,
-                      years: '',
-                      taxonomyId: experience.taxonomyId,
-                    },
-                  }}
-                >
-                  {(addExperience, { error, loading }) => {
-                    if (loading) {
-                      return <p>Loading...</p>
-                    }
+      <List>
+        {data.taxonomy.result.map((experience: Taxonomy.Result, i: number) => (
+          <li key={i}>
+            <Mutation
+              mutation={ADD_EXPERIENCE_CLIENT}
+              variables={{
+                experience: {
+                  name: experience.term,
+                  years: '',
+                  taxonomyId: experience.taxonomyId,
+                },
+              }}
+            >
+              {(addExperience, { error, loading }) => {
+                if (loading) {
+                  return <p>Loading...</p>
+                }
 
-                    if (error) {
-                      return <p>That’s an error.</p>
-                    }
+                if (error) {
+                  return <p>That’s an error.</p>
+                }
 
-                    return (
-                      <button onClick={() => addExperience()}>
-                        {experience.term}
-                      </button>
-                    )
-                  }}
-                </Mutation>
-              </li>
-            )
-          )}
-        </List>
-      )}
+                return (
+                  <button onClick={() => addExperience()}>
+                    {experience.term}
+                  </button>
+                )
+              }}
+            </Mutation>
+          </li>
+        ))}
+      </List>
     </Grid>
   )
 }

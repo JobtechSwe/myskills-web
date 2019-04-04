@@ -89,6 +89,96 @@ export type Uuid = any
 // Documents
 // ====================================================
 
+export namespace Consent {
+  export type Variables = {}
+
+  export type Mutation = {
+    __typename?: 'Mutation'
+
+    consent: Consent
+  }
+
+  export type Consent = {
+    __typename?: 'Consent'
+
+    id: string
+
+    expires: string
+  }
+}
+
+export namespace Login {
+  export type Variables = {}
+
+  export type Mutation = {
+    __typename?: 'Mutation'
+
+    login: Login
+  }
+
+  export type Login = {
+    __typename?: 'Login'
+
+    url: string
+
+    sessionId: string
+  }
+}
+
+export namespace ConsentApproved {
+  export type Variables = {
+    consentRequestId: string
+  }
+
+  export type Subscription = {
+    __typename?: 'Subscription'
+
+    consentApproved: ConsentApproved
+  }
+
+  export type ConsentApproved = {
+    __typename?: 'ConsentResponse'
+
+    accessToken: string
+  }
+}
+
+export namespace LoginApproved {
+  export type Variables = {
+    loginRequestId: string
+  }
+
+  export type Subscription = {
+    __typename?: 'Subscription'
+
+    loginApproved: LoginApproved
+  }
+
+  export type LoginApproved = {
+    __typename?: 'ConsentResponse'
+
+    accessToken: string
+  }
+}
+
+export namespace AddExperience {
+  export type Variables = {
+    experience: ExperienceInput
+  }
+
+  export type Mutation = {
+    __typename?: 'Mutation'
+
+    addExperience: AddExperience
+  }
+
+  export type AddExperience = {
+    __typename?: 'Experience'
+
+    name: Maybe<string>
+  }
+}
+
 export namespace Taxonomy {
   export type Variables = {
     q: string
@@ -124,7 +214,23 @@ export namespace Taxonomy {
   }
 }
 
-export namespace AddExperience {
+export namespace GetExperiences {
+  export type Variables = {}
+
+  export type Query = {
+    __typename?: 'Query'
+
+    experiences: (Maybe<Experiences>)[]
+  }
+
+  export type Experiences = {
+    __typename?: 'Experience'
+
+    id: string
+  }
+}
+
+export namespace AddExperienceClient {
   export type Variables = {
     experience: ExperienceInput
   }
@@ -139,41 +245,5 @@ export namespace AddExperience {
     __typename?: 'Experience'
 
     name: Maybe<string>
-  }
-}
-
-export namespace ConsentApproved {
-  export type Variables = {
-    consentRequestId: string
-  }
-
-  export type Subscription = {
-    __typename?: 'Subscription'
-
-    consentApproved: ConsentApproved
-  }
-
-  export type ConsentApproved = {
-    __typename?: 'ConsentResponse'
-
-    accessToken: string
-  }
-}
-
-export namespace Login {
-  export type Variables = {}
-
-  export type Mutation = {
-    __typename?: 'Mutation'
-
-    login: Login
-  }
-
-  export type Login = {
-    __typename?: 'Login'
-
-    id: string
-
-    expires: string
   }
 }

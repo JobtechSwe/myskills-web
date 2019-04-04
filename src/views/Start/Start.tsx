@@ -12,11 +12,10 @@ const Start: React.FC<RouteComponentProps> = () => {
           <Button variant="primary">Skapa Cv</Button>
         </Link>
       </div>
-      <div>
-        <Link to="/login">
-          <Button variant="secondary">Login</Button>
-        </Link>
-      </div>
+      <Flex alignItems="center" flexDirection="column">
+        <Link to="/login">Login</Link>
+        <Link to="/register">Register</Link>
+      </Flex>
       <div>
         <ButtonLink fontSize="small" href="/test">
           This is a button link

@@ -11,8 +11,6 @@ jobs:
         - chmod +x ./cc-test-reporter
         - './cc-test-reporter before-build'
       script:
-        - npm run test:once
-      language: node_js
         - npm run lint
         - npm run test:once -- --coverage
       after_script:

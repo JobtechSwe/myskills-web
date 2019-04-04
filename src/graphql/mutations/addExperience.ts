@@ -1,6 +1,12 @@
-import { GET_EXPERIENCES_CLIENT } from '../../views/CreateProfile/AddExperience'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { Experience } from '../../types'
+import gql from 'graphql-tag'
+
+export const GET_EXPERIENCES_CLIENT = gql`
+  query getExperiences {
+    experiences @client
+  }
+`
 
 export const addExperience = (
   _: any,

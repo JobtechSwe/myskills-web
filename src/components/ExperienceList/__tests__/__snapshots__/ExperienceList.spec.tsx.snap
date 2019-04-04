@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`views/ExperienceList renders empty list 1`] = `
+<div>
+  <ul
+    class="css-ut905x"
+  />
+</div>
+`;
+
+exports[`views/ExperienceList renders experineces list 1`] = `
+<div>
+  <ul
+    class="css-ut905x"
+  >
+    <li>
+      <p>
+        Javascript
+      </p>
+    </li>
+    <li>
+      <p>
+        Java
+      </p>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`views/ExperienceList renders experineces list with button 1`] = `
+<div>
+  <ul
+    class="css-ut905x"
+  >
+    <li>
+      <button>
+        Javascript
+      </button>
+    </li>
+    <li>
+      <button>
+        Java
+      </button>
+    </li>
+  </ul>
+</div>
+`;

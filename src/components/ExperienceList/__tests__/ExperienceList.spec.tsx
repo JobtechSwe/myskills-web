@@ -39,7 +39,7 @@ describe('views/ExperienceList', () => {
 
   it('renders experineces list with button', async () => {
     const { container } = render(
-      <ExperienceList list={experiences} addExperience={addExperience} />
+      <ExperienceList addExperience={addExperience} list={experiences} />
     )
 
     await wait()
@@ -49,7 +49,7 @@ describe('views/ExperienceList', () => {
 
   it('should render with taxonomy query result', async () => {
     const { getByText } = render(
-      <ExperienceList list={experiences} addExperience={addExperience} />
+      <ExperienceList addExperience={addExperience} list={experiences} />
     )
 
     fireEvent.click(getByText(/java/i))

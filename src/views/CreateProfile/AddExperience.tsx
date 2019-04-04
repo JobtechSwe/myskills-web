@@ -62,8 +62,8 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
       {error && <div>Some error...</div>}
       {data && data.taxonomy && (
         <ExperienceList
-          list={data.taxonomy.result}
           addExperience={addExperienceMutaion}
+          list={data.taxonomy.result}
         />
       )}
     </Wrapper>

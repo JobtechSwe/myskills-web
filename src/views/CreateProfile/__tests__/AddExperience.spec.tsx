@@ -3,7 +3,7 @@ import AddExperience, { GET_EXPERIENCES } from '../AddExperience'
 import { render } from '../../../utils/test-utils'
 import { wait, fireEvent } from 'react-testing-library'
 
-describe.skip('views/AddExperience', () => {
+describe('views/AddExperience', () => {
   it('renders empty result', async () => {
     const { container } = render(<AddExperience />)
 

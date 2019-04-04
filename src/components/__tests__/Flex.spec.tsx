@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Flex } from '../Flex'
-import { render } from '../../../utils/test-utils'
+import { render } from '../../utils/test-utils'
 
 describe('components/Flex', () => {
   it('renders a Flex', async () => {

@@ -23,9 +23,8 @@ jobs:
         - bash ./infrastructure/travis/build.sh
     - stage: deploy
       before_install:
-        - openssl aes-256-cbc -K $encrypted_bea024308360_key -iv $encrypted_bea024308360_iv
-          -in ./infrastructure/travis/openshift-token.enc -out ./infrastructure/travis/openshift-token
-          -d
+        - openssl aes-256-cbc -K $encrypted_6b48726482ce_key -iv $encrypted_6b48726482ce_iv
+          -in ./infrastructure/travis/openshift-token.enc -out ./infrastructure/travis/openshift-token -d
       install:
         - bash ./infrastructure/travis/install-openshift.sh
         - export PATH=$PATH:/tmp/openshift
@@ -48,6 +47,3 @@ notifications:
         for commit (<%{compare_url}|%{commit}>) on branch `%{branch}`.
       - 'Message: %{commit_message}'
       - 'Execution time: *%{duration}*'
-before_install:
-  - openssl aes-256-cbc -K $encrypted_6b48726482ce_key -iv $encrypted_6b48726482ce_iv
-    -in ./infrastructure/travis/openshift-token.enc -out ./infrastructure/travis/openshift-token -d

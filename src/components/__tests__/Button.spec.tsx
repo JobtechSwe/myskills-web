@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Button from '../Button'
-import { render } from '../../../utils/test-utils'
+import { render } from '../../utils/test-utils'
 
 describe('components/Button', () => {
   it('renders an Button', async () => {

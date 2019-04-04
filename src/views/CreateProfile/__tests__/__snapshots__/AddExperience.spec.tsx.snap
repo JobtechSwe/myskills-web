@@ -3,10 +3,10 @@
 exports[`views/AddExperience renders empty result 1`] = `
 <div>
   <div
-    class="css-zbfoeb"
+    class="css-fhv5oa"
   >
     <input
-      class="css-ull5e5"
+      class="css-t7p25u"
       name="search"
       placeholder="Sök yrken"
     />

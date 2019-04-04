@@ -2,22 +2,10 @@ import React, { useState } from 'react'
 import { useQuery, useMutation } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
 import { TaxonomyType } from '../../types'
-import styled from '@emotion/styled'
 import { RouteComponentProps } from '@reach/router'
 import ExperienceList from '../../components/ExperienceList/ExperienceList'
-
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  flex-flow: column nowrap;
-`
-
-const Input = styled.input`
-  width: 80%;
-  height: 30px;
-  font-size: 28px;
-  border-radius: 5px;
-`
+import { Grid } from '../../components/Grid'
+import Input from '../../components/Input'
 
 export const GET_EXPERIENCES = gql`
   query taxonomy($q: String!, $type: TaxonomyType) {
@@ -52,7 +40,7 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
   const addExperienceMutaion = useMutation(ADD_EXPERIENCE_CLIENT)
 
   return (
-    <Wrapper>
+    <Grid>
       <Input
         name="search"
         onChange={({ target }) => setQuery(target.value)}
@@ -66,7 +54,7 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
           list={data.taxonomy.result}
         />
       )}
-    </Wrapper>
+    </Grid>
   )
 }
 

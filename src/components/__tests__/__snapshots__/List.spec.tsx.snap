@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/List renders a List 1`] = `
+<div>
+  <ul
+    class="css-1r9cx9d"
+    color="lassekongo"
+  />
+</div>
+`;

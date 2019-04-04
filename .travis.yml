@@ -5,16 +5,22 @@ jobs:
       cache: npm
       install:
         - npm ci
+      before_script:
+        - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+          > ./cc-test-reporter
+        - chmod +x ./cc-test-reporter
+        - './cc-test-reporter before-build'
       script:
         - npm run test:once
+      language: node_js
+        - npm run lint
+        - npm run test:once -- --coverage
+      after_script:
+        - './cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT'
     - stage: release
       language: node_js
       services:
         - docker
-      before_install:
-        - openssl aes-256-cbc -K $encrypted_bea024308360_key -iv $encrypted_bea024308360_iv
-          -in ./infrastructure/travis/openshift-token.enc -out ./infrastructure/travis/openshift-token
-          -d
       install:
         - bash ./infrastructure/travis/install-openshift.sh
         - export PATH=$PATH:/tmp/openshift
@@ -27,21 +33,18 @@ stages:
   - test
   - name: release
     if: branch = master
-
-env:
-  global:
-    - secure: T8unUZvP4NM5PqZy0n+SWX6lrLEcVAEkiawHwrFuEKOIf0/AG+hrvExdu7sRdbU/uqfVJqAD9DP0vEUraiZqM942L8PJw4GHRmz7wpj8J0bGT7f4be3G0yXq5DCFosJtJ30m7Gr+6mK2boPAF9dpqzSi5EeM5ny2vR6laBuMNfv/6umnZmT3w3eBRgzBCkxd7bLo0mWk6dhxmz7cWjjuyPFlEY75Ve12SqXxDotb633exHTmpW9GWpKNxHu71NFcxD86LYDRNOzCEi142EB4wPCAOZG3OQH3kG9iQeU65wj8JTknXjHxvL1nb+LJLdZimvqJBaIT7MtKKpfmXGavFsdEPC7A0bHoMAqbfdcbKtaeDrny+YNeQrqL8FQ9qhbsrwk/bw2ed6TjRC0mR5LLvW8qZVtDFvxbndg4h0VggcHYpOhOPG3cN9UOBoA6iuMuvxBX0G5iDf9xJ28i3B/0RC0FOFqUwzk+PLV1zb6SyPUFStZ6RXz8pQOoxM9Wsjm/tsBkNBfDQd2amTfAuJ2hNkdEqMmUNkKlkzcCdjSDv8lfXA6hGBClb2UvxLeK0r/JKoE2no7lgckrD4a0K7uoSlmfrHb0D97KAHiZobQPxOjoirN0ZJW+lKiETzmWPMGfTEMiy+ZCY1ysEfXGemRPaQr63o6Ornnaw77bFx4OY2I=
-    - secure: PxHWbMp5q2RuvReAbAiBjKLUge6fscRUow2IChiJwO1xGdO3zihyfuO3mrIO2sgvufe/qxt8fiezAUWQhXSQLfTwI2phSoUKBH+81ir6NrJQ5LoyPsZ+5UFe0T8tCLBT7CPNxSEtTNw0STUbDPGwZqkZaejnV4oW59oRUpm0okT9vfMG+y7/9jqonCmSzm/PXtYkAL4dFryrn4QddzdIYu8xWgaRJL4ylt+ncuGhQRWmuZJ+8CGHSh5yiZ6/AnQNmba+WqC6jMK02be1qhtjuUX7FQHTCP8myfawlaCeTjXDw3DqrRBgeoBNlWf39E9tA9J5eYpaxDvcQg1dKS+PKJtNzVocec2npOetoXZg0alsI+PYejc5KJrpPjNWQ6WGAas5LZyeLzKVgeAJhtFsVkQmKorTdomKNtarHtPCt/SS2/ljFeAN86mlZXZvt9BMbPDwiCNGkTf3hT4/1abNScvnHnS0L9706tktNkGyvkU/uQPOUPEBH4kMeHs9XISR1QUQTs/kFCuIFBymgtdUB+WVDC92TGle+jslxY4sVgXvFBvsX/QS7Ct1qFGhlPYIccHXcS/acQI3Q94pDS+9U2uhMkzjeUqzZ6Rrbsx+1Ck4DwC1VKs4VV+qr+q3rfoqU4Oo6+ydh/RJCAdhbKH6pPj5ADFuSwmHyH0KqI+77V8=
-    - secure: dppoTusL/x1TrWk/j8VwBwFo1PbsJ2BXT5U9OuWlsVR0unCf0+LC5au1ecmsA6MRz4IrCEI2J73WMvc9t8kwalr/PcP8U2baun5p2u21rTjG8CVNNs+11CWsq+5WAZf5e6MWoEdbw8Qjk1tf4hzpw49nrT2JZVZ11RBzmVrcOlNV5usjVvmO6GpTtZjlvE9jD2wbbVvmFuM69aUDAL+ISP6faNX1xUp6McM+0f9EUjaOl4FHSgkgYWtNeZuhCiuwKVzuY/McDQR6r9+FcKyRv8fd+oNPqbYUdZfGt1pxpTsIsMj08OjTMj1mHsCBoi8D0iUqv0V7rjn3eSNvDKPkaHnprGVseUuFpUVcC6k+IX9RKaXc4UqdkjxEjwQslZbf+m34dhbaAHLfnGPrncMDVJkqdhFCiQ2nTnU96HN/j97Mc2DADuuYn9/YaD42LiDaHrXab6YAxq+BTEY12PVuQdunw3G75mEHO6W8wPq2kq23tTKo8eRNpo5AfTLjM5UCQdycPLEhfTT9GJI0a0slstNFwhCGzGIN863178otLSSsD6gocObqt6/C7P4nvgM+Wsx6CBVrqmYm1Mf2RLXVjWZxstrqRDIVJnJXnsbIeBJ1wPVMaQHC6T7Fy/8OZtr0pkJpOnS71e2vqtGvZrKo9SGUvcSCJeRNqjK7EeLbjpo=
-    - secure: NYWxCe3yufqH8biFPum6pnEM2jSV8KKYKrpA9TJyN5OGIkClkmIobQI4LcRGQJNVmJzqYoqVpFHmwHmsMq4/bYrQjrEnG1JPv10lPliIQXkG+Rci4Op0RdcdOC6aHBY86yTy1MUdmlkLGFcIOzd2uVOGiTz+o5UbP7ubGmKEiUf0OBITGQLabDdv1ZqkMlcyMKQAcFGwkA871ceCYwR8yyopkyTtXc6P5WlqrQ2pzWVgXY5RHmcc/jlZWFSpexQS+ygV8B9N+qtmUllxrDVeD91D8xtE6tsMszGy1EOIq3s9OdkVZRUeKzcRqiV04IuBdFCuJvBFIL9taW3HyeY+q3/hki3bbUmDgwELwF25BrZlctJIAKmPPn7PWPOtGK6WRZCH75eeBTZlrijB0/v0UTi5y1KKUZ/3nCAy/Z7YOzAwoXwht+A29WyHGVnh5JYTLkijBmdVLyecGbdtmLmvtBg6qN80XKatDLRGxGKPLLcDXAmIhEKyg46IPVYzvSJh2EZ1fvuGnsDnsHuOJFc1QeajpjxzsVRB6oRVCZ+zuVvxkrQih99q0RMWX7VNMLv4zAMVCJNmvIrK987xnCwkjfLkqpXU94h81Empuf1QsJJrqxjw9diK9ZJxIloypOzoNtwzirw6VMN4X9F7A6MmFCWe/J3XrRhdXAK1KtvrLRU=
+before_install:
+  - openssl aes-256-cbc -K $encrypted_6b48726482ce_key -iv $encrypted_6b48726482ce_iv
+    -in ./infrastructure/travis/openshift-token.enc -out ./infrastructure/travis/openshift-token -d
 notifications:
   slack:
     on_pull_requests: false
     on_success: never
     on_failure: always
     rooms:
-      - secure: SvmmxolNZkI1pee+sg/fpQlLdFt5j5/tXV/NFN4ls0Nkjp4Y1UYVtFCJF8n6OOJj0qxg+mebsZB3QZ6OGkhbrQxwGP7zt7f5d4SExW7+hur5c+8K+s/5n9zCAe27RCtReOcYiDqDI4/36ke9BU+wjz0gqG8pND8n8G/ThezwWjrHH6k6/d7Zc4HcZftDwN+HVrMHanboR2L3RO8HZICSSFTrC79pXq3pojmsKP+SQMwDjTFcYh8WSHSUeFrjtugh7DgKRkyqOInbASmp92cxlu/lA2obnP8zzuW1YecNDd556QDq2IiJKytfQakDMrzLpSFRoXr60mqX3zYAnRAPra15gKfv5Ojcc/pFsCTUzzDC8Xx4Tov3DQsOg6Hxf4D72uVf9f+KvQcRAv6tkELk3jsOIOYHvEz23HYoMmI+VrlE1FLaXPixisfigOOQuYmt2QnyJA8I9P/SEshBDNW2sVKHrWUGdVtfwd8myl8fKiSe4JyKFlV8myhOCoku6SL8ZVLpAB/yjSUDpSm1zw9FCzOHZjUAB6OgcI2FSkE1V8+awI1J3GRjh5PPl4tLfzh19exGdgn2ENatnRtY/gb6vWP6Fvn42DND4n4ujXNxBKTmz+gsPzvd1eC8xkAfpTcOvSiyCNyzK+/lNNCZxWW6z5C9NjTNYK7NDBWSN6kckKI=
+      - secure: EIhVhqeEpqRDzR68DT3wWLtnBCaX913KG7po89dXZi77yWNX9/aFdtXT3RpwY1RXdOUhoeTd5wkEvf6eZSbVz541jGCg+uZrJCKWjy3yS1bCZauQOnQ4qBTPwlue2CMZrvF9lKjrYsgisK6dAp/6cRAsdqM1N7M1OPI1BrRuG6aH/td8MAU8gm1VFSqZhvFcgQxwbs8TQxhBc7gJsi2qvlYHp4mEfVynrKOkvJ/lhEhv+0MnRhpspC3CmpStoDlPm5WdrlYfIleLHbWbmQtxwQ++GF5ic34jBaHh4zNrBB6e3VzgOzvBzrI/E8Ub8UEkA0VOE/5Q90zrQuOd5RDtOXG13J/8ZyLWqdAvs3puOlqjAuEMU+xhPMHdyLYHrBSEWbXMkPpT9qN8WBWdFoGTqRAIOIhV+FhEpp0kV2X3UukLwn0RHpi96weSVFVTi9DmF7JShvoGKECwrEI96JbsMt0KdOluOnbUiExPk7zO8v6ADLy2469ewrRI+OcDZyyxy3mgeH/lSYPgRyo0QAvwOJJBJSfvhvv/Abej3AFy9G9Fr1csITg1QJV9mpU2wIKxDYLSS8WkaEkA0sHruU3LR1SnWaIeQMFHCEVUzteIY3pz29QuUlNGqGnl3k9oZLRY1++cDaJcW6imzVm5nrccaIZq9zw1t8XFrEGQy86YHtk=
     template:
-      - "Repo `%{repository_slug}` *%{result}* build (<%{build_url}|#%{build_number}>) for commit (<%{compare_url}|%{commit}>) on branch `%{branch}`."
-      - "Message: %{commit_message}"
-      - "Execution time: *%{duration}*"
+      - Repo `%{repository_slug}` *%{result}* build (<%{build_url}|#%{build_number}>)
+        for commit (<%{compare_url}|%{commit}>) on branch `%{branch}`.
+      - 'Message: %{commit_message}'
+      - 'Execution time: *%{duration}*'

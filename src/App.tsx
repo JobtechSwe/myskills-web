@@ -1,13 +1,17 @@
 import React from 'react'
 import { Router } from '@reach/router'
-import RestrictedRoute from './pages/restricted'
-import Header from './components/Header/Header'
+import RestrictedRoute from './views/restricted'
+import Header from './components/Header'
+import Footer from './components/Footer'
 import styled from '@emotion/styled'
-const Login = React.lazy(() => import(`./pages/Login/Login`))
-const Start = React.lazy(() => import(`./pages/Start/Start`))
-const Profile = React.lazy(() => import('./pages/Profile/Profile'))
+const Login = React.lazy(() => import(`./views/Login/Login`))
+const Start = React.lazy(() => import(`./views/Start/Start`))
+const Profile = React.lazy(() => import('./views/Profile/Profile'))
 const CreateProfile = React.lazy(() =>
-  import('./pages/CreateProfile/CreateProfile')
+  import('./views/CreateProfile/CreateProfile')
+)
+const AddExperience = React.lazy(() =>
+  import(`./views/CreateProfile/AddExperience`)
 )
 
 const Layout = styled.main`
@@ -23,10 +27,13 @@ function App() {
         <Router>
           <Start path="/" />
           <Login path="/login" />
-          <CreateProfile path="skapa-cv" />
+          <CreateProfile path="/skapa-cv">
+            <AddExperience path="/" />
+          </CreateProfile>
           <RestrictedRoute component={Profile} path="/profile" />
         </Router>
       </React.Suspense>
+      <Footer />
     </Layout>
   )
 }

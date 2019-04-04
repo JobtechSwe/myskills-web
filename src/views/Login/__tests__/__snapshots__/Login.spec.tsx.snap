@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pages/Login renders without errors 1`] = `
+<div>
+  <div
+    class="css-9duapb"
+  >
+    <button>
+      LOGIN
+    </button>
+  </div>
+</div>
+`;

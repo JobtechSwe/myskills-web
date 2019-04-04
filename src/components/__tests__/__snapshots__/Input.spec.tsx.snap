@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Input renders an Input 1`] = `
+<div>
+  <input
+    class="css-t7p25u"
+    name="search"
+  />
+</div>
+`;

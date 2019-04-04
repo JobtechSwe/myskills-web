@@ -7,8 +7,9 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { HttpLink } from 'apollo-link-http'
 import { getMainDefinition } from 'apollo-utilities'
 import { getCookie, removeCookie, redirect } from '../utils/helpers'
-import { Experience } from '../types'
+import { Experience, Skill, Education } from '../types'
 import resolvers from './resolvers'
+import { persistClientStorageHelperGet } from '../utils/helpers'
 
 const httpLink = new HttpLink({
   uri: process.env.REACT_APP_GRAPHQL_URI,
@@ -108,17 +109,21 @@ const apolloClient = new ApolloClient({
   resolvers,
 })
 
-type InitialStateProps = {
-  experiences?: Experience[]
+export type InitialStateProps = {
+  experiences: Experience[]
+  skills: Skill[]
+  educations: Education[]
 }
 
 const initialState: InitialStateProps = {
   experiences: [],
+  skills: [],
+  educations: [],
 }
 
 cache.writeData({
   data: {
-    ...initialState,
+    ...persistClientStorageHelperGet(initialState),
   },
 })
 

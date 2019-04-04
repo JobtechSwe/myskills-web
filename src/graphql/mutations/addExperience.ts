@@ -1,6 +1,7 @@
 import { GET_EXPERIENCES_CLIENT } from '../../views/CreateProfile/AddExperience'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { Experience } from '../../types'
+import { persistClientStorageHelperSet } from '../../utils/helpers'
 
 export const addExperience = (
   _: any,
@@ -20,6 +21,8 @@ export const addExperience = (
     query: GET_EXPERIENCES_CLIENT,
     data: { experiences: updatedExperiences },
   })
+
+  persistClientStorageHelperSet('experiences', updatedExperiences)
 
   return experience
 }

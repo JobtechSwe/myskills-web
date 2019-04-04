@@ -34,8 +34,12 @@ export const GET_EXPERIENCES = gql`
 `
 
 export const GET_EXPERIENCES_CLIENT = gql`
-  query getExperiences {
-    experiences @client
+  query {
+    experiences @client {
+      name
+      years
+      taxonomyId
+    }
   }
 `
 
@@ -68,36 +72,39 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
       {data && data.taxonomy && (
         <List>
           {data.taxonomy.result.map(
-            (experience: Taxonomy.Result, i: number) => (
-              <li key={i}>
-                <Mutation
-                  mutation={ADD_EXPERIENCE_CLIENT}
-                  variables={{
-                    experience: {
-                      name: experience.term,
-                      years: '',
-                      taxonomyId: experience.taxonomyId,
-                    },
-                  }}
-                >
-                  {(addExperience, { error, loading }) => {
-                    if (loading) {
-                      return <p>Loading...</p>
-                    }
+            (experience: Taxonomy.Result, i: number) => {
+              return (
+                <li key={i}>
+                  <Mutation
+                    mutation={ADD_EXPERIENCE_CLIENT}
+                    variables={{
+                      experience: {
+                        name: experience.term,
+                        years: '',
+                        taxonomyId: experience.taxonomyId,
+                        __typename: experience.__typename,
+                      },
+                    }}
+                  >
+                    {(addExperience, { error, loading }) => {
+                      if (loading) {
+                        return <p>Loading...</p>
+                      }
 
-                    if (error) {
-                      return <p>That’s an error.</p>
-                    }
+                      if (error) {
+                        return <p>That’s an error.</p>
+                      }
 
-                    return (
-                      <button onClick={() => addExperience()}>
-                        {experience.term}
-                      </button>
-                    )
-                  }}
-                </Mutation>
-              </li>
-            )
+                      return (
+                        <button onClick={() => addExperience()}>
+                          {experience.term}
+                        </button>
+                      )
+                    }}
+                  </Mutation>
+                </li>
+              )
+            }
           )}
         </List>
       )}

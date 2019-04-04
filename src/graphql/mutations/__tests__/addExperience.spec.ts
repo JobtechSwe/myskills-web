@@ -1,5 +1,4 @@
-import { GET_EXPERIENCES_CLIENT } from '../../../views/CreateProfile/AddExperience'
-import { addExperience } from '../addExperience'
+import { addExperience, GET_EXPERIENCES_CLIENT } from '../addExperience'
 
 let experience: any
 let cache: any

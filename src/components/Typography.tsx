@@ -3,6 +3,8 @@ import styled from '@emotion/styled'
 import {
   color,
   ColorProps,
+  fontFamily,
+  FontFamilyProps,
   fontSize,
   FontSizeProps,
   space,
@@ -11,32 +13,37 @@ import {
 
 export const H1 = styled.h1`
   ${color}
+  ${fontFamily}
   ${fontSize}
   ${space}
 `
 
 export const H2 = styled.h2`
   ${color}
+  ${fontFamily}
   ${fontSize}
   ${space}
 `
 
 export const H3 = styled.h3`
   ${color}
+  ${fontFamily}
   ${fontSize}
   ${space}
 `
 
 export const Paragraph = styled.p`
   ${color}
+  ${fontFamily}
   ${fontSize}
   ${space}
 `
 
-type HeadingProps = ColorProps & FontSizeProps & SpaceProps
+type HeadingProps = ColorProps & FontFamilyProps & FontSizeProps & SpaceProps
 
 const common: HeadingProps = {
   color: 'white',
+  fontFamily: 'default',
   mt: 'none',
 }
 
@@ -56,5 +63,6 @@ H3.defaultProps = {
 }
 
 Paragraph.defaultProps = {
+  fontFamily: 'default',
   fontSize: 'small',
 }

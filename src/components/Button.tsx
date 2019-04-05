@@ -6,6 +6,8 @@ import {
   ButtonStyleProps,
   color,
   ColorProps,
+  fontFamily,
+  FontFamilyProps,
   fontSize,
   FontSizeProps,
   space,
@@ -17,6 +19,7 @@ const Button = styled.button`
   text-decoration: none;
   white-space: nowrap;
 
+  ${fontFamily}
   ${border}
   ${buttonStyle}
   ${color}
@@ -27,11 +30,13 @@ const Button = styled.button`
 type ButtonProps = ButtonStyleProps &
   BorderProps &
   ColorProps &
+  FontFamilyProps &
   FontSizeProps &
   SpaceProps
 
 const common: ButtonProps = {
   border: 0,
+  fontFamily: 'default',
   fontSize: ['small', 'medium'],
   p: '10px 20px',
 }

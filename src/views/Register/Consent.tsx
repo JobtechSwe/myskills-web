@@ -1,6 +1,7 @@
 import React from 'react'
 import gql from 'graphql-tag'
 import { useSubscription } from 'react-apollo-hooks'
+import { Paragraph } from '../../components/Typography'
 import QR from '../../components/QR'
 import { navigate } from '@reach/router'
 import { setCookie } from '../../utils/helpers'
@@ -26,11 +27,11 @@ const Consent: React.FC<IConsentProps> = ({ consentId }) => {
 
   const renderConsentStatus = () => {
     if (loading) {
-      return <p>Waiting for consent...</p>
+      return <Paragraph>Waiting for consent...</Paragraph>
     }
 
     if (error) {
-      return <p>That is an error...</p>
+      return <Paragraph>That is an error...</Paragraph>
     }
 
     if (data) {
@@ -44,7 +45,7 @@ const Consent: React.FC<IConsentProps> = ({ consentId }) => {
     <>
       {renderConsentStatus()}
       <QR consentId={consentId} />
-      <p id="consentId">mydata://register/{consentId}</p>
+      <Paragraph>mydata://register/{consentId}</Paragraph>
     </>
   )
 }

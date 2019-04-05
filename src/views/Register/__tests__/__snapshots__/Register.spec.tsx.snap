@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`views/Login renders without errors 1`] = `
+exports[`views/Register renders without errors 1`] = `
 <div>
   <div
     class="css-1ggae92"
   >
     <button>
-      Login
+      Register
     </button>
   </div>
 </div>

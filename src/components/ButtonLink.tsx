@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { fontSize, FontSizeProps } from 'styled-system'
+import { fontSize, FontSizeProps, space, SpaceProps } from 'styled-system'
 
 const ButtonLink = styled.a`
   text-decoration: none;
@@ -11,9 +11,10 @@ const ButtonLink = styled.a`
   }
 
   ${fontSize}
+  ${space}
 `
 
-type ButtonLinkProps = FontSizeProps
+type ButtonLinkProps = FontSizeProps & SpaceProps
 
 const common: ButtonLinkProps = {
   fontSize: ['small', 'medium'],

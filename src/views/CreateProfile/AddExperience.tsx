@@ -23,8 +23,10 @@ export const GET_EXPERIENCES = gql`
 `
 
 export const ADD_EXPERIENCE_CLIENT = gql`
-  mutation addExperience($experience: ExperienceInput!) {
-    addExperience(experience: $experience) @client
+  mutation addExperienceClient($experience: ExperienceInput!) {
+    addExperience(experience: $experience) @client {
+      name
+    }
   }
 `
 

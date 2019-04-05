@@ -3,19 +3,19 @@ import gql from 'graphql-tag'
 import { Mutation } from 'react-apollo'
 import { RouteComponentProps } from '@reach/router'
 import styled from '@emotion/styled'
-import LoginQR from './LoginQR'
+import Consent from './Consent'
 import { Flex } from '../../components/Flex'
 
-export const GET_LOGIN_ID = gql`
-  mutation login {
-    login {
-      url
-      sessionId
+export const GET_CONSENT_ID = gql`
+  mutation consent {
+    consent {
+      id
+      expires
     }
   }
 `
 
-const Login: React.FC<RouteComponentProps> = props => {
+const Register: React.FC<RouteComponentProps> = props => {
   return (
     <Flex
       alignItems="center"
@@ -27,8 +27,8 @@ const Login: React.FC<RouteComponentProps> = props => {
        *  Replace this with useMutation when support has been added:
        *  https://github.com/trojanowski/react-apollo-hooks/pull/93
        */}
-      <Mutation mutation={GET_LOGIN_ID}>
-        {(login, { data, error, loading }) => {
+      <Mutation mutation={GET_CONSENT_ID}>
+        {(consent, { data, error, loading }) => {
           if (loading) {
             return <p>Loading...</p>
           }
@@ -38,19 +38,14 @@ const Login: React.FC<RouteComponentProps> = props => {
           }
 
           if (data) {
-            return (
-              <LoginQR
-                loginRequestId={data.login.sessionId}
-                loginUrl={data.login.url}
-              />
-            )
+            return <Consent consentId={data.consent.id} />
           }
 
-          return <button onClick={_e => login()}>Login</button>
+          return <button onClick={_e => consent()}>Register</button>
         }}
       </Mutation>
     </Flex>
   )
 }
 
-export default Login
+export default Register

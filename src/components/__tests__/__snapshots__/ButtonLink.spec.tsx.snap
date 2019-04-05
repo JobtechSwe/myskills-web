@@ -3,7 +3,7 @@
 exports[`components/ButtonLink renders a ButtonLink 1`] = `
 <div>
   <a
-    class="css-13q84w8"
+    class="css-fbff6z"
     font-size="small,medium"
     href="/test"
   >
@@ -15,7 +15,7 @@ exports[`components/ButtonLink renders a ButtonLink 1`] = `
 exports[`components/ButtonLink renders a ButtonLink with props 1`] = `
 <div>
   <a
-    class="css-1wchlh6"
+    class="css-yuia4f"
     font-size="medium"
     href="/test"
   >

@@ -1,5 +1,14 @@
-import { dataIdFromObject, deconstructJWT, handleErrors } from '../client'
-import { getCookie, removeCookie, redirect } from '../../utils/helpers'
+import client, {
+  dataIdFromObject,
+  deconstructJWT,
+  handleErrors,
+  cache,
+} from '../client'
+import {
+  getCookie,
+  redirect,
+  persistClientStorageHelperGet,
+} from '../../utils/helpers'
 
 jest.mock('../../utils/helpers')
 

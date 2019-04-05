@@ -1,6 +1,6 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { Experience } from '../../types'
-import { persistClientStorageHelperSet } from '../../utils/helpers'
+import { storageHelper } from '../../utils/helpers'
 import gql from 'graphql-tag'
 
 export const GET_EXPERIENCES_CLIENT = gql`
@@ -32,7 +32,10 @@ export const addExperience = (
     data: { experiences: updatedExperiences },
   })
 
-  persistClientStorageHelperSet('experiences', updatedExperiences)
+  storageHelper.set({
+    type: 'experiences',
+    data: updatedExperiences,
+  })
 
   return experience
 }

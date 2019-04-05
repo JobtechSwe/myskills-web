@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie'
-import { InitialStateProps } from '../graphql/client'
+import { LocalStateProps } from '../graphql/client'
 import { Experience, Skill, Education } from '../types'
 
 export const getCookie = (name: string) => Cookies.get(name)
@@ -16,20 +16,35 @@ export const removeCookie = (name: string) => {
 
 export const redirect = (route: string) => (location.href = route)
 
-export const persistClientStorageHelperGet = (
-  initialState: InitialStateProps
-) =>
-  Object.entries(initialState).reduce(
-    (acc, [prop, val]) => ({
-      ...acc,
-      [prop]: JSON.parse(localStorage.getItem(prop) as string) || val,
-    }),
-    {} as InitialStateProps
-  )
+interface StorageEntryProps {
+  type: string
+}
 
-type PersistClientStorageHelperSetProps = Experience[] | Skill[] | Education[]
+interface Educations extends StorageEntryProps {
+  type: 'educations'
+  data: Education[]
+}
 
-export const persistClientStorageHelperSet = (
-  key: string,
-  data: PersistClientStorageHelperSetProps
-): void => localStorage.setItem(key, JSON.stringify(data))
+interface Experiences extends StorageEntryProps {
+  type: 'experiences'
+  data: Experience[]
+}
+interface Skills extends StorageEntryProps {
+  type: 'skills'
+  data: Skill[]
+}
+
+export type StorageEntry = Educations | Experiences | Skills
+
+export const storageHelper = {
+  load: (initialState: LocalStateProps) =>
+    Object.entries(initialState).reduce(
+      (acc, [prop, val]) => ({
+        ...acc,
+        [prop]: JSON.parse(localStorage.getItem(prop) as string) || val,
+      }),
+      {} as LocalStateProps
+    ),
+  set: (payload: StorageEntry) =>
+    localStorage.setItem(payload.type, JSON.stringify(payload.data)),
+}

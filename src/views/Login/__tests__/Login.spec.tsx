@@ -23,7 +23,9 @@ const getConsentMock = [
   },
 ]
 
-jest.mock('../Consent', () => () => <p>db993c65-0673-454e-b951-bcb8d274f184</p>)
+jest.mock('../Consent', () => () => (
+  <p>mydata://register/db993c65-0673-454e-b951-bcb8d274f184</p>
+))
 
 describe('pages/Login', () => {
   it('renders without errors', async () => {
@@ -67,8 +69,8 @@ describe('pages/Login', () => {
 
     fireEvent.click(getByText(/login/i))
 
-    await waitForElement(() => getByText(login.id))
+    await waitForElement(() => getByText(`mydata://register/${login.id}`))
 
-    expect(getByText(login.id)).toBeInTheDocument()
+    expect(getByText(`mydata://register/${login.id}`)).toBeInTheDocument()
   })
 })

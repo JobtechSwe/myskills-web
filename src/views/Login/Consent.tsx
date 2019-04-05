@@ -1,7 +1,7 @@
 import React from 'react'
 import gql from 'graphql-tag'
 import { useSubscription } from 'react-apollo-hooks'
-import QR from '../../components/QR/QR'
+import QR from '../../components/QR'
 import { navigate } from '@reach/router'
 import { setCookie } from '../../utils/helpers'
 
@@ -44,7 +44,7 @@ const Consent: React.FC<IConsentProps> = ({ consentId }) => {
     <>
       {renderConsentStatus()}
       <QR consentId={consentId} />
-      <p id="consentId">{consentId}</p>
+      <p id="consentId">mydata://register/{consentId}</p>
     </>
   )
 }

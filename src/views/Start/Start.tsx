@@ -7,20 +7,15 @@ import ButtonLink from '../../components/ButtonLink'
 const Start: React.FC<RouteComponentProps> = () => {
   return (
     <Flex alignItems="center" flexDirection="column" justifyContent="center">
-      <div>
+      <Flex p={32}>
         <Link to="/skapa-cv">
-          <Button variant="primary">Skapa Cv</Button>
+          <Button variant="secondary">Skapa Cv</Button>
         </Link>
-      </div>
+      </Flex>
       <Flex alignItems="center" flexDirection="column">
         <Link to="/login">Login</Link>
         <Link to="/register">Register</Link>
       </Flex>
-      <div>
-        <ButtonLink fontSize="small" href="/test">
-          This is a button link
-        </ButtonLink>
-      </div>
     </Flex>
   )
 }

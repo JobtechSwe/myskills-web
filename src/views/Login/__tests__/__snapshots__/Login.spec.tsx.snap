@@ -5,7 +5,11 @@ exports[`views/Login renders without errors 1`] = `
   <div
     class="css-1ggae92"
   >
-    <button>
+    <button
+      class="css-hf0duu"
+      font-family="default"
+      font-size="small,medium"
+    >
       Login
     </button>
   </div>

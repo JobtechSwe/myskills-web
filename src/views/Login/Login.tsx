@@ -4,7 +4,9 @@ import { Mutation } from 'react-apollo'
 import { RouteComponentProps } from '@reach/router'
 import styled from '@emotion/styled'
 import LoginQR from './LoginQR'
+import Button from '../../components/Button'
 import { Flex } from '../../components/Flex'
+import { Paragraph } from '../../components/Typography'
 
 export const GET_LOGIN_ID = gql`
   mutation login {
@@ -30,11 +32,11 @@ const Login: React.FC<RouteComponentProps> = props => {
       <Mutation mutation={GET_LOGIN_ID}>
         {(login, { data, error, loading }) => {
           if (loading) {
-            return <p>Loading...</p>
+            return <Paragraph>Loading...</Paragraph>
           }
 
           if (error) {
-            return <p>That’s an error.</p>
+            return <Paragraph>That’s an error.</Paragraph>
           }
 
           if (data) {
@@ -46,7 +48,11 @@ const Login: React.FC<RouteComponentProps> = props => {
             )
           }
 
-          return <button onClick={_e => login()}>Login</button>
+          return (
+            <Button onClick={(_e: any) => login()} variant="secondary">
+              Login
+            </Button>
+          )
         }}
       </Mutation>
     </Flex>

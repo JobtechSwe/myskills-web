@@ -4,7 +4,9 @@ import { Mutation } from 'react-apollo'
 import { RouteComponentProps } from '@reach/router'
 import styled from '@emotion/styled'
 import Consent from './Consent'
+import Button from '../../components/Button'
 import { Flex } from '../../components/Flex'
+import { Paragraph } from '../../components/Typography'
 
 export const GET_CONSENT_ID = gql`
   mutation consent {
@@ -30,18 +32,22 @@ const Register: React.FC<RouteComponentProps> = props => {
       <Mutation mutation={GET_CONSENT_ID}>
         {(consent, { data, error, loading }) => {
           if (loading) {
-            return <p>Loading...</p>
+            return <Paragraph>Loading...</Paragraph>
           }
 
           if (error) {
-            return <p>That’s an error.</p>
+            return <Paragraph>That’s an error.</Paragraph>
           }
 
           if (data) {
             return <Consent consentId={data.consent.id} />
           }
 
-          return <button onClick={_e => consent()}>Register</button>
+          return (
+            <Button onClick={(_e: any) => consent()} variant="secondary">
+              Register
+            </Button>
+          )
         }}
       </Mutation>
     </Flex>

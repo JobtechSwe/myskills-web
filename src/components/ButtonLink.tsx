@@ -1,5 +1,12 @@
 import styled from '@emotion/styled'
-import { fontSize, FontSizeProps, space, SpaceProps } from 'styled-system'
+import {
+  fontFamily,
+  FontFamilyProps,
+  fontSize,
+  FontSizeProps,
+  space,
+  SpaceProps,
+} from 'styled-system'
 
 const ButtonLink = styled.a`
   text-decoration: none;
@@ -10,13 +17,15 @@ const ButtonLink = styled.a`
     color: #444;
   }
 
+  ${fontFamily}
   ${fontSize}
   ${space}
 `
 
-type ButtonLinkProps = FontSizeProps & SpaceProps
+type ButtonLinkProps = FontFamilyProps & FontSizeProps & SpaceProps
 
 const common: ButtonLinkProps = {
+  fontFamily: 'default',
   fontSize: ['small', 'medium'],
 }
 

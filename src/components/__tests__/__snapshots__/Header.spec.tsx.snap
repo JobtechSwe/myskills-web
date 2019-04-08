@@ -2,16 +2,17 @@
 
 exports[`components/Header renders Header component 1`] = `
 <div>
-  <header
-    class="css-yntd52"
+  <div
+    class="css-ca74jw"
   >
     <h1
-      class="css-1h5f8tm"
+      class="css-1d2g964"
       color="white"
+      font-family="default"
       font-size="small,medium,large"
     >
       MySkills
     </h1>
-  </header>
+  </div>
 </div>
 `;

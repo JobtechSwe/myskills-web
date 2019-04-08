@@ -1,7 +1,6 @@
 interface Color {
   lassekongo: 'dodgerblue'
   white: 'white'
-
   green: 'green'
 }
 
@@ -48,7 +47,7 @@ const space = {
 const theme = {
   colors,
   buttons,
-  fontFamily: typography,
+  fonts: typography,
   fontSizes,
   space,
 }

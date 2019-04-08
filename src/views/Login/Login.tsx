@@ -4,7 +4,7 @@ import { Mutation } from 'react-apollo'
 import { RouteComponentProps } from '@reach/router'
 import LoginQR from './LoginQR'
 import Button from '../../components/Button'
-import { Flex } from '../../components/Flex'
+import Flex from '../../components/Flex'
 import { Paragraph } from '../../components/Typography'
 
 export const GET_LOGIN_ID = gql`

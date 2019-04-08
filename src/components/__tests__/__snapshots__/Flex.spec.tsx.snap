@@ -13,7 +13,7 @@ exports[`components/Flex renders a Flex 1`] = `
 exports[`components/Flex renders a Flex with props 1`] = `
 <div>
   <div
-    class="css-714txy"
+    class="css-52ud0e"
   >
     FlexWithProps
   </div>

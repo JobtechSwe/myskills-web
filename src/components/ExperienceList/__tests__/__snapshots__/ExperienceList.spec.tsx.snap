@@ -3,7 +3,8 @@
 exports[`views/ExperienceList renders empty list 1`] = `
 <div>
   <ul
-    class="css-ut905x"
+    class="css-10ayz5q"
+    color="lassekongo"
   />
 </div>
 `;
@@ -11,7 +12,8 @@ exports[`views/ExperienceList renders empty list 1`] = `
 exports[`views/ExperienceList renders experineces list 1`] = `
 <div>
   <ul
-    class="css-ut905x"
+    class="css-10ayz5q"
+    color="lassekongo"
   >
     <li>
       <p>
@@ -30,7 +32,8 @@ exports[`views/ExperienceList renders experineces list 1`] = `
 exports[`views/ExperienceList renders experineces list with button 1`] = `
 <div>
   <ul
-    class="css-ut905x"
+    class="css-10ayz5q"
+    color="lassekongo"
   >
     <li>
       <button>

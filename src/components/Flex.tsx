@@ -24,7 +24,7 @@ type FlexContainerProps = AlignItemsProps &
   JustifyContentProps &
   SpaceProps
 
-export const Flex = styled.div<FlexContainerProps>`
+const Flex = styled.div<FlexContainerProps>`
   display: flex;
 
   ${alignItems}
@@ -35,3 +35,5 @@ export const Flex = styled.div<FlexContainerProps>`
   ${justifyContent}
   ${space}
 `
+
+export default Flex

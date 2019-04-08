@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex } from '../../components/Flex'
+import Flex from '../../components/Flex'
 import { RouteComponentProps, Link } from '@reach/router'
 import Button from '../../components/Button'
 import ButtonLink from '../../components/ButtonLink'

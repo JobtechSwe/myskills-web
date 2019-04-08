@@ -1,6 +1,6 @@
 import React from 'react'
 import { H1 } from './Typography'
-import { Grid } from './Grid'
+import Grid from './Grid'
 
 const Header: React.FC = () => {
   return (

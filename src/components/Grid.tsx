@@ -36,7 +36,7 @@ type GridProps = AlignContentProps &
   JustifyContentProps &
   SpaceProps
 
-export const Grid = styled.div<GridProps>`
+const Grid = styled.div<GridProps>`
   display: grid;
 
   ${alignContent}
@@ -52,10 +52,8 @@ export const Grid = styled.div<GridProps>`
   ${space}
 `
 
-const common: GridProps = {
+Grid.defaultProps = {
   gridGap: ['small', 'medium', 'large'],
 }
 
-Grid.defaultProps = {
-  ...common,
-}
+export default Grid

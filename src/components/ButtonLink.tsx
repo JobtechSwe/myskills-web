@@ -8,7 +8,9 @@ import {
   SpaceProps,
 } from 'styled-system'
 
-const ButtonLink = styled.a`
+type ButtonLinkProps = FontFamilyProps & FontSizeProps & SpaceProps
+
+const ButtonLink = styled.a<ButtonLinkProps>`
   text-decoration: none;
   color: #000;
   transition: color 0.1s ease-in-out;
@@ -22,15 +24,9 @@ const ButtonLink = styled.a`
   ${space}
 `
 
-type ButtonLinkProps = FontFamilyProps & FontSizeProps & SpaceProps
-
-const common: ButtonLinkProps = {
+ButtonLink.defaultProps = {
   fontFamily: 'default',
   fontSize: ['small', 'medium'],
-}
-
-ButtonLink.defaultProps = {
-  ...common,
 }
 
 export default ButtonLink

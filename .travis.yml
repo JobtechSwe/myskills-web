@@ -26,8 +26,8 @@ jobs:
           @semantic-release/github @semantic-release/exec semantic-release-docker
       script:
         - docker build . -t jobtechswe/myskills-web
-        --build-arg REACT_APP_GRAPHQL_URI=$REACT_APP_GRAPHQL_URI
-        --build-arg REACT_APP_GRAPHQL_WS_URI=$REACT_APP_GRAPHQL_WS_URI
+          --build-arg REACT_APP_GRAPHQL_URI=$REACT_APP_GRAPHQL_URI
+          --build-arg REACT_APP_GRAPHQL_WS_URI=$REACT_APP_GRAPHQL_WS_URI
         - npx semantic-release
 stages:
   - test

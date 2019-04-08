@@ -32,7 +32,7 @@ jobs:
 stages:
   - test
   - name: release
-    if: branch = master
+    if: branch = master AND type != pull_request
 before_install:
   - openssl aes-256-cbc -K $encrypted_6b48726482ce_key -iv $encrypted_6b48726482ce_iv
     -in ./infrastructure/travis/openshift-token.enc -out ./infrastructure/travis/openshift-token -d

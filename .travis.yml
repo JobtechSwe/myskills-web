@@ -25,7 +25,10 @@ jobs:
         - npm i -D @semantic-release/commit-analyzer @semantic-release/release-notes-generator
           @semantic-release/github @semantic-release/exec semantic-release-docker
       script:
-        - docker build -f Dockerfile -t jobtechswe/myskills-api .
+        - docker build -t jobtechswe/myskills-web \
+          --build-arg REACT_APP_GRAPHQL_URI=$REACT_APP_GRAPHQL_URI \
+          --build-arg REACT_APP_GRAPHQL_WS_URI=$REACT_APP_GRAPHQL_WS_URI \
+          .
         - npx semantic-release
 stages:
   - test

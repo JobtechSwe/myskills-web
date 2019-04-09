@@ -33,7 +33,7 @@ export type Education = {
 }
 
 export type Skill = {
+  name: string
+  years?: string
   taxonomyId: string
-  term: string
-  type: string
 }

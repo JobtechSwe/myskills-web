@@ -1,4 +1,7 @@
 import { addExperience, GET_EXPERIENCES_CLIENT } from '../addExperience'
+import { storageHelper } from '../../../utils/helpers'
+
+jest.mock('../../../utils/helpers')
 
 let experience: any
 let cache: any
@@ -14,6 +17,7 @@ beforeEach(() => {
       },
     ],
   }
+
   readQueryMock = jest.fn(() => mockedExperienceCache)
   writeQueryMock = jest.fn()
 
@@ -74,6 +78,15 @@ describe('resolvers/addExperience', () => {
         ],
       },
     })
+  })
+
+  it('saves experiences to localstorage', () => {
+    addExperience({}, experience, cache)
+    const mockPayload = {
+      type: 'experiences',
+      data: [...mockedExperienceCache.experiences, experience.experience],
+    }
+    expect(storageHelper.set).toHaveBeenCalledWith(mockPayload)
   })
 
   it('returns experience', () => {

@@ -1,23 +1,16 @@
 import React from 'react'
 import { RouteComponentProps } from '@reach/router'
+import { Grid } from '../../components/Grid'
+import Button from '../../components/Button'
 import styled from '@emotion/styled'
 
-const AddButton = styled.button`
-  background: white;
-  padding: 15px 25px;
-`
-const Wrapper = styled.section`
-  padding-top: 4rem;
-  display: flex;
-  align-items: center;
-  flex-flow: column nowrap;
-`
-
 const CreateProfile: React.FC<RouteComponentProps> = ({ children }) => (
-  <Wrapper>
+  <Grid justifyContent="center">
     {children}
-    <AddButton>Spara i MyData</AddButton>
-  </Wrapper>
+    <Button mt={32} variant="secondary">
+      Spara i MyData
+    </Button>
+  </Grid>
 )
 
 export default CreateProfile

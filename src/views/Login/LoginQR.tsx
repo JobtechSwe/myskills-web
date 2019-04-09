@@ -2,6 +2,7 @@ import React from 'react'
 import gql from 'graphql-tag'
 import { useSubscription } from 'react-apollo-hooks'
 import QR from '../../components/QR'
+import { Paragraph } from '../../components/Typography'
 import { navigate } from '@reach/router'
 import { setCookie } from '../../utils/helpers'
 
@@ -27,11 +28,11 @@ const LoginQR: React.FC<ILoginQRProps> = ({ loginRequestId, loginUrl }) => {
 
   const renderLoginStatus = () => {
     if (loading) {
-      return <p>Waiting for login approval...</p>
+      return <Paragraph>Waiting for login approval...</Paragraph>
     }
 
     if (error) {
-      return <p>That is an error...</p>
+      return <Paragraph>That is an error...</Paragraph>
     }
 
     if (data) {
@@ -45,7 +46,7 @@ const LoginQR: React.FC<ILoginQRProps> = ({ loginRequestId, loginUrl }) => {
     <>
       {renderLoginStatus()}
       <QR consentId={loginUrl} />
-      <p id="consentId">{loginUrl}</p>
+      <Paragraph id="consentId">{loginUrl}</Paragraph>
     </>
   )
 }

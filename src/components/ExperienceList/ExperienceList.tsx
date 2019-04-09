@@ -8,7 +8,7 @@ type MutaionVariables = {
       name: string
       years: string
       taxonomyId: string
-      __typename: string | undefined
+      // __typename: string | undefined
     }
   }
 }
@@ -53,7 +53,7 @@ const ExperienceList: React.FC<ExperienceListProps> = ({
                         name: experience.term,
                         years: '',
                         taxonomyId: experience.taxonomyId,
-                        __typename: experience.__typename,
+                        // __typename: experience.__typename,
                       },
                     },
                   })

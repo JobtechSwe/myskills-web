@@ -1,11 +1,11 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { Experience } from '../../types'
-import { storageHelper } from '../../utils/helpers'
+import { Experience } from '../../../types'
+import { storageHelper } from '../../../utils/helpers'
 import gql from 'graphql-tag'
 
 export const GET_EXPERIENCES_CLIENT = gql`
   query getExperiences {
-    onboardingData {
+    onboardingData @client {
       experiences {
         name
         taxonomyId
@@ -37,7 +37,10 @@ export const addExperience = (
     data: {
       onboardingData: {
         __typename: 'OnboardingData',
-        experiences: updatedExperiences,
+        experiences: updatedExperiences.map(e => {
+          e.__typename = 'experience'
+          return e
+        }),
       },
     },
   })

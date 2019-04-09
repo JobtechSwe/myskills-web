@@ -72,7 +72,7 @@ const authLink = setContext((root, { headers }) => {
   return {
     headers: {
       ...headers,
-      token: token ? `${token}` : '',
+      Authorization: token ? `Bearer ${token}` : '',
     },
   }
 })
@@ -100,13 +100,14 @@ const terminatingLink = split(
     return kind === 'OperationDefinition' && operation === 'subscription'
   },
   wsLink,
+
   authLink.concat(httpLink)
 )
 
 export type LocalStateProps = {
-  experiences: Experience[]
-  skills: Skill[]
-  educations: Education[]
+  experiences: Experience[] | null
+  skills: Skill[] | null
+  educations: Education[] | null
 }
 
 const initialState: LocalStateProps = {
@@ -122,7 +123,10 @@ const apolloClient = new ApolloClient({
 })
 cache.writeData({
   data: {
-    ...storageHelper.load(initialState),
+    onboardingData: {
+      ...storageHelper.load(initialState),
+      __typename: 'OnboardingData',
+    },
   },
 })
 

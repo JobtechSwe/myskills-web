@@ -30,8 +30,28 @@ export const ADD_EXPERIENCE_CLIENT = gql`
   }
 `
 
+export const ADD_EXPERIENCE_API = gql`
+  mutation addExperienceClient($experience: ExperienceInput!) {
+    addExperience(experience: $experience) {
+      name
+    }
+  }
+`
+
+export const IS_LOGGED_IN = gql`
+  query isLoggedIn {
+    isLoggedIn @client
+  }
+`
+
 const AddExperience: React.FC<RouteComponentProps> = () => {
   const [query, setQuery] = useState('')
+  const { data: isLoggedIn } = useQuery(IS_LOGGED_IN)
+
+  const addExperience = useMutation(
+    isLoggedIn.isLoggedIn ? ADD_EXPERIENCE_API : ADD_EXPERIENCE_CLIENT
+  )
+
   const { data, error, loading } = useQuery(GET_EXPERIENCES, {
     variables: {
       q: query,
@@ -39,7 +59,6 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
     },
     skip: !query,
   })
-  const addExperienceMutaion = useMutation(ADD_EXPERIENCE_CLIENT)
 
   return (
     <Grid>
@@ -52,7 +71,7 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
       {error && <div>Some error...</div>}
       {data && data.taxonomy && (
         <ExperienceList
-          addExperience={addExperienceMutaion}
+          addExperience={addExperience}
           list={data.taxonomy.result}
         />
       )}

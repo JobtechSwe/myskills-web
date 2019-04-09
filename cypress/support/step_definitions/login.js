@@ -1,4 +1,4 @@
-Given('I open the startpage', () => {
+Given('I open the login page', () => {
   cy.visit('/login')
 })
 

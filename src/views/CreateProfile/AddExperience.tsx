@@ -6,6 +6,7 @@ import { RouteComponentProps } from '@reach/router'
 import ExperienceList from '../../components/ExperienceList/ExperienceList'
 import Grid from '../../components/Grid'
 import Input from '../../components/Input'
+import { Query } from 'react-apollo'
 
 export const GET_EXPERIENCES = gql`
   query taxonomy($q: String!, $type: TaxonomyType) {

@@ -7,7 +7,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { HttpLink } from 'apollo-link-http'
 import { getMainDefinition } from 'apollo-utilities'
 import { getCookie, removeCookie, redirect } from '../utils/helpers'
-import { Experience, Skill, Education } from '../types'
+import { Experience, Skill, Education, Language } from '../types'
 import resolvers from './resolvers'
 import { storageHelper } from '../utils/helpers'
 
@@ -105,12 +105,14 @@ const terminatingLink = split(
 
 export type LocalStateProps = {
   experiences: Experience[]
+  language: Language[]
   skills: Skill[]
   educations: Education[]
 }
 
 const initialState: LocalStateProps = {
   experiences: [],
+  language: [],
   skills: [],
   educations: [],
 }
@@ -120,6 +122,7 @@ const apolloClient = new ApolloClient({
   cache,
   resolvers,
 })
+
 cache.writeData({
   data: {
     ...storageHelper.load(initialState),

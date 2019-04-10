@@ -6,9 +6,5 @@ export const isLoggedIn = (
   _variables: {},
   _cache: InMemoryCache
 ): Boolean => {
-  console.log('lalala isloggedin')
-
-  console.log(getCookie('token'))
-
   return Boolean(getCookie('token'))
 }

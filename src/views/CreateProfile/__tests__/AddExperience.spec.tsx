@@ -1,5 +1,5 @@
 import * as React from 'react'
-import AddExperience, { GET_EXPERIENCES } from '../AddExperience'
+import AddExperience, { GET_TAXONOMY_EXPERIENCES } from '../AddExperience'
 import { render } from '../../../utils/test-utils'
 import { wait, fireEvent } from 'react-testing-library'
 
@@ -16,7 +16,7 @@ describe('views/AddExperience', () => {
     const withResultsMock = [
       {
         request: {
-          query: GET_EXPERIENCES,
+          query: GET_TAXONOMY_EXPERIENCES,
           variables: {
             q: 'Systemutvecklare',
             type: 'OCCUPATION_NAME',
@@ -57,7 +57,7 @@ describe('views/AddExperience', () => {
     const withResultsMock = [
       {
         request: {
-          query: GET_EXPERIENCES,
+          query: GET_TAXONOMY_EXPERIENCES,
           variables: {
             q: 'Systemutvecklare',
             type: 'OCCUPATION_NAME',

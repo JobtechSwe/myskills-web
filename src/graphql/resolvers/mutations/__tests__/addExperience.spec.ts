@@ -1,7 +1,7 @@
 import { addExperience, GET_EXPERIENCES_CLIENT } from '../addExperience'
-import { storageHelper } from '../../../utils/helpers'
+import { storageHelper } from '../../../../utils/helpers'
 
-jest.mock('../../../utils/helpers')
+jest.mock('../../../../utils/helpers')
 
 let experience: any
 let cache: any
@@ -50,10 +50,13 @@ describe('resolvers/addExperience', () => {
     expect(writeQueryMock).toHaveBeenCalledWith({
       query: GET_EXPERIENCES_CLIENT,
       data: {
-        experiences: [
-          ...mockedExperienceCache.experiences,
-          experience.experience,
-        ],
+        onboardingData: {
+          experiences: [
+            ...mockedExperienceCache.experiences,
+            experience.experience,
+          ],
+          __typename: 'OnboardingData',
+        },
       },
     })
   })
@@ -63,6 +66,7 @@ describe('resolvers/addExperience', () => {
       experience: {
         name: 'Systemutvecklare',
         taxonomyId: 'cba',
+        __typename: 'Experience',
       },
     }
 
@@ -70,12 +74,16 @@ describe('resolvers/addExperience', () => {
     expect(writeQueryMock).toHaveBeenCalledWith({
       query: GET_EXPERIENCES_CLIENT,
       data: {
-        experiences: [
-          {
-            name: 'Systemutvecklare',
-            taxonomyId: 'cba',
-          },
-        ],
+        onboardingData: {
+          experiences: [
+            {
+              name: 'Systemutvecklare',
+              taxonomyId: 'cba',
+              __typename: 'Experience',
+            },
+          ],
+          __typename: 'OnboardingData',
+        },
       },
     })
   })
@@ -93,6 +101,7 @@ describe('resolvers/addExperience', () => {
     expect(addExperience({}, experience, cache)).toEqual({
       name: 'Systemutvecklare',
       taxonomyId: 'abc',
+      __typename: 'Experience',
     })
   })
 })

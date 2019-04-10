@@ -20,17 +20,13 @@ export const addExperience = (
   { experience }: { experience: Experience },
   { cache }: { cache: InMemoryCache }
 ): Experience => {
-  const { onboardingData }: any = cache.readQuery({
+  const { experiences }: any = cache.readQuery({
     query: GET_EXPERIENCES_CLIENT,
   })
-  console.log('hej', onboardingData)
   const withoutDuplicates = (exp: Experience[]): Experience[] =>
     exp.filter((e: Experience) => e.taxonomyId !== experience.taxonomyId)
 
-  const updatedExperiences = [
-    ...withoutDuplicates(onboardingData.experiences),
-    experience,
-  ]
+  const updatedExperiences = [...withoutDuplicates(experiences), experience]
 
   cache.writeQuery({
     query: GET_EXPERIENCES_CLIENT,
@@ -38,7 +34,7 @@ export const addExperience = (
       onboardingData: {
         __typename: 'OnboardingData',
         experiences: updatedExperiences.map(e => {
-          e.__typename = 'experience'
+          e.__typename = 'Experience'
           return e
         }),
       },

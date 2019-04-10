@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from '@emotion/styled'
 import {
   alignItems,
@@ -17,7 +16,15 @@ import {
   SpaceProps,
 } from 'styled-system'
 
-export const Flex = styled.div`
+type FlexContainerProps = AlignItemsProps &
+  FlexProps &
+  FlexBasisProps &
+  FlexDirectionProps &
+  FlexWrapProps &
+  JustifyContentProps &
+  SpaceProps
+
+const Flex = styled.div<FlexContainerProps>`
   display: flex;
 
   ${alignItems}
@@ -29,10 +36,4 @@ export const Flex = styled.div`
   ${space}
 `
 
-type FlexContainerProps = AlignItemsProps &
-  FlexProps &
-  FlexBasisProps &
-  FlexDirectionProps &
-  FlexWrapProps &
-  JustifyContentProps &
-  SpaceProps
+export default Flex

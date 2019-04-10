@@ -4,7 +4,7 @@ import gql from 'graphql-tag'
 import { TaxonomyType } from '../../types'
 import { RouteComponentProps } from '@reach/router'
 import ExperienceList from '../../components/ExperienceList/ExperienceList'
-import { Grid } from '../../components/Grid'
+import Grid from '../../components/Grid'
 import Input from '../../components/Input'
 
 export const GET_EXPERIENCES = gql`

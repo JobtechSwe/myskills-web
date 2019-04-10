@@ -1,8 +1,8 @@
 import React from 'react'
-import styled from '@emotion/styled'
 import { Taxonomy } from '../../generated/myskills'
+import List from '../List'
 
-type MutaionVariables = {
+type MutationVariables = {
   variables: {
     experience: {
       name: string
@@ -13,26 +13,9 @@ type MutaionVariables = {
   }
 }
 
-const List = styled.ul`
-  color: white;
-  font-family: 'Arial';
-  padding: 0;
-  font-weight: bold;
-  text-align: center;
-  li {
-    margin-bottom: 5px;
-    list-style: none;
-    transition: all 100ms ease;
-
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
-`
-
 interface ExperienceListProps {
   list: Taxonomy.Result[]
-  addExperience?: (variables: MutaionVariables) => void
+  addExperience?: (variables: MutationVariables) => void
 }
 
 const ExperienceList: React.FC<ExperienceListProps> = ({

@@ -2,10 +2,9 @@ import React from 'react'
 import gql from 'graphql-tag'
 import { Mutation } from 'react-apollo'
 import { RouteComponentProps } from '@reach/router'
-import styled from '@emotion/styled'
 import Consent from './Consent'
 import Button from '../../components/Button'
-import { Flex } from '../../components/Flex'
+import Flex from '../../components/Flex'
 import { Paragraph } from '../../components/Typography'
 
 export const GET_CONSENT_ID = gql`

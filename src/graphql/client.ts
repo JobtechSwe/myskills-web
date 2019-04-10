@@ -122,10 +122,7 @@ const apolloClient = new ApolloClient({
 })
 cache.writeData({
   data: {
-    onboardingData: {
-      ...storageHelper.load(initialState),
-      __typename: 'OnboardingData',
-    },
+    ...storageHelper.load(initialState),
   },
 })
 

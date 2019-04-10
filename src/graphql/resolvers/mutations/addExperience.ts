@@ -2,15 +2,14 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { Experience } from '../../../types'
 import { storageHelper } from '../../../utils/helpers'
 import gql from 'graphql-tag'
+import { AddExperienceClientMutation } from '../../../generated/myskills'
 
 export const GET_EXPERIENCES_CLIENT = gql`
   query getExperiences {
-    onboardingData @client {
-      experiences {
-        name
-        taxonomyId
-        years
-      }
+    experiences @client {
+      name
+      taxonomyId
+      years
     }
   }
 `
@@ -26,18 +25,18 @@ export const addExperience = (
   const withoutDuplicates = (exp: Experience[]): Experience[] =>
     exp.filter((e: Experience) => e.taxonomyId !== experience.taxonomyId)
 
-  const updatedExperiences = [...withoutDuplicates(experiences), experience]
+  const updatedExperiences = [
+    ...withoutDuplicates(experiences),
+    experience,
+  ].map((exp: Experience) => ({
+    ...exp,
+    __typename: 'Experience',
+  }))
 
   cache.writeQuery({
     query: GET_EXPERIENCES_CLIENT,
     data: {
-      onboardingData: {
-        __typename: 'OnboardingData',
-        experiences: updatedExperiences.map(e => {
-          e.__typename = 'Experience'
-          return e
-        }),
-      },
+      experiences: updatedExperiences,
     },
   })
 

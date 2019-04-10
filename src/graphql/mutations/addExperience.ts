@@ -1,12 +1,12 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { Experience } from '../../types'
+import { Experience } from '../../generated/myskills'
 import { storageHelper } from '../../utils/helpers'
 import gql from 'graphql-tag'
 
 export const GET_EXPERIENCES_CLIENT = gql`
   query getExperiences {
     experiences @client {
-      name
+      term
       taxonomyId
       years
     }

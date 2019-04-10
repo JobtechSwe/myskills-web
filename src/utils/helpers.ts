@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
 import { LocalStateProps } from '../graphql/client'
-import { Experience, Skill, Education } from '../types'
+import { Experience, Skill, Education } from '../generated/myskills'
 
 export const getCookie = (name: string) => Cookies.get(name)
 export const setCookie = (

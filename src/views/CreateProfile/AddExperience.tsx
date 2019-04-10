@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useQuery, useMutation } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
-import { TaxonomyType } from '../../types'
+import { TaxonomyType } from '../../generated/myskills.d'
 import { RouteComponentProps } from '@reach/router'
 import ExperienceList from '../../components/ExperienceList/ExperienceList'
 import Grid from '../../components/Grid'
@@ -25,7 +25,7 @@ export const GET_EXPERIENCES = gql`
 export const ADD_EXPERIENCE_CLIENT = gql`
   mutation addExperienceClient($experience: ExperienceInput!) {
     addExperience(experience: $experience) @client {
-      name
+      term
     }
   }
 `
@@ -35,7 +35,7 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
   const { data, error, loading } = useQuery(GET_EXPERIENCES, {
     variables: {
       q: query,
-      type: TaxonomyType[TaxonomyType.OCCUPATION_NAME],
+      type: TaxonomyType.OccupationName,
     },
     skip: !query,
   })

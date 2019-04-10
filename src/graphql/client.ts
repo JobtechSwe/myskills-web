@@ -50,7 +50,7 @@ export const deconstructJWT = (token: string) => {
   return JSON.parse(decodeURIComponent(escape(window.atob(segments[1]))))
 }
 
-const authLink = setContext((root, { headers }) => {
+const authLink = setContext((root, { headers, cache }) => {
   const token = getCookie('token')
 
   // Redirect to login if no token
@@ -65,7 +65,6 @@ const authLink = setContext((root, { headers }) => {
   if ((Date.now() - tokenIssuedAt * 1000) / 1000 / 60 / 60 / 24 > 30) {
     removeCookie('token')
     redirect('/')
-
     return { headers }
   }
 

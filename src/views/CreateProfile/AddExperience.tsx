@@ -6,9 +6,8 @@ import { RouteComponentProps } from '@reach/router'
 import ExperienceList from '../../components/ExperienceList/ExperienceList'
 import Grid from '../../components/Grid'
 import Input from '../../components/Input'
-import { Query } from 'react-apollo'
 
-export const GET_EXPERIENCES = gql`
+export const GET_TAXONOMY_EXPERIENCES = gql`
   query taxonomy($q: String!, $type: TaxonomyType) {
     taxonomy(params: { q: $q, type: $type }) {
       result {
@@ -25,9 +24,7 @@ export const GET_EXPERIENCES = gql`
 
 export const ADD_EXPERIENCE_CLIENT = gql`
   mutation addExperienceClient($experience: ExperienceInput!) {
-    addExperience(experience: $experience) @client {
-      name
-    }
+    addExperience(experience: $experience) @client
   }
 `
 
@@ -53,7 +50,7 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
     isLoggedIn.isLoggedIn ? ADD_EXPERIENCE_API : ADD_EXPERIENCE_CLIENT
   )
 
-  const { data, error, loading } = useQuery(GET_EXPERIENCES, {
+  const { data, error, loading } = useQuery(GET_TAXONOMY_EXPERIENCES, {
     variables: {
       q: query,
       type: TaxonomyType[TaxonomyType.OCCUPATION_NAME],
@@ -68,6 +65,7 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
         onChange={({ target }) => setQuery(target.value)}
         placeholder="Sök yrken"
       />
+
       {loading && <div>Loading...</div>}
       {error && <div>Some error...</div>}
       {data && data.taxonomy && (

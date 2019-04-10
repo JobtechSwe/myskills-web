@@ -23,7 +23,7 @@ export const addExperience = (
   const { onboardingData }: any = cache.readQuery({
     query: GET_EXPERIENCES_CLIENT,
   })
-  console.log('hej', onboardingData)
+
   const withoutDuplicates = (exp: Experience[]): Experience[] =>
     exp.filter((e: Experience) => e.taxonomyId !== experience.taxonomyId)
 

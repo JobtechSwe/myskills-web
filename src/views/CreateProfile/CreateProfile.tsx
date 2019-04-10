@@ -25,15 +25,12 @@ export const ADD_EXPERIENCE = gql`
 `
 
 const CreateProfile: React.FC<RouteComponentProps> = ({ children }) => {
-  // const { data, error, loading } = useQuery(GET_EXPERIENCES, {
-  //   fetchPolicy: 'network-only',
-  // })
-  const { data, error, loading } = useQuery(GET_EXPERIENCES_FROM_CLIENT)
+  const { data } = useQuery(GET_EXPERIENCES_FROM_CLIENT)
   const addExperienceMutation = useMutation(ADD_EXPERIENCE, {
     fetchPolicy: 'no-cache',
   })
 
-  const tempSave = () => {
+  const handleSave = () => {
     addExperienceMutation({
       variables: {
         experience: {
@@ -48,7 +45,7 @@ const CreateProfile: React.FC<RouteComponentProps> = ({ children }) => {
   return (
     <Grid justifyContent="center">
       {children}
-      <Button mt={32} onClick={() => tempSave()} variant="secondary">
+      <Button mt={32} onClick={() => handleSave()} variant="secondary">
         Spara i MyData
       </Button>
     </Grid>

@@ -1,5 +1,5 @@
 import { addLanguage, GET_LANGUAGES_CLIENT } from '../addLanguage'
-import { Language } from '../../../types'
+import { Language } from '../../../generated/myskills.d'
 
 let language: any
 let cache: any
@@ -9,14 +9,14 @@ let mockedLanguageCache: any
 
 beforeEach(() => {
   mockedLanguageCache = {
-    languages: [Language.swedish],
+    languages: [Language.Swedish],
   }
 
   readQueryMock = jest.fn(() => mockedLanguageCache)
   writeQueryMock = jest.fn()
 
   language = {
-    language: Language.spanish,
+    language: Language.Spanish,
   }
 
   cache = {
@@ -42,21 +42,21 @@ describe('resolvers/addLanguage', () => {
     expect(writeQueryMock).toHaveBeenCalledWith({
       query: GET_LANGUAGES_CLIENT,
       data: {
-        languages: [Language.swedish, Language.spanish],
+        languages: [Language.Swedish, Language.Spanish],
       },
     })
   })
 
   it('filters duplicates', () => {
     const duplicate = {
-      language: Language.swedish,
+      language: Language.Swedish,
     }
 
     addLanguage({}, duplicate, cache)
     expect(writeQueryMock).toHaveBeenCalledWith({
       query: GET_LANGUAGES_CLIENT,
       data: {
-        languages: [Language.swedish],
+        languages: [Language.Swedish],
       },
     })
   })
@@ -64,6 +64,6 @@ describe('resolvers/addLanguage', () => {
   it('returns experience', () => {
     const result = addLanguage({}, language, cache)
 
-    expect(result).toEqual(0)
+    expect(result).toEqual('spanish')
   })
 })

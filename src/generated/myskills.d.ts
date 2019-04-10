@@ -41,24 +41,24 @@ export type ConsentResponse = {
 export type Education = {
   id: Scalars['String']
   taxonomyId: Scalars['String']
-  name?: Maybe<Scalars['String']>
+  term?: Maybe<Scalars['String']>
 }
 
 export type EducationInput = {
   taxonomyId: Scalars['String']
-  name?: Maybe<Scalars['String']>
+  term?: Maybe<Scalars['String']>
 }
 
 export type Experience = {
   id: Scalars['String']
   taxonomyId: Scalars['String']
-  name?: Maybe<Scalars['String']>
+  term?: Maybe<Scalars['String']>
   years: Scalars['String']
 }
 
 export type ExperienceInput = {
   taxonomyId: Scalars['String']
-  name?: Maybe<Scalars['String']>
+  term?: Maybe<Scalars['String']>
   years: Scalars['String']
 }
 
@@ -243,6 +243,14 @@ export enum TaxonomyType {
   WorktimeExtent = 'WORKTIME_EXTENT',
 }
 
+export type GetEducationsQueryVariables = {}
+
+export type GetEducationsQuery = { __typename?: 'Query' } & {
+  educations: Array<
+    Maybe<{ __typename?: 'Education' } & Pick<Education, 'term' | 'taxonomyId'>>
+  >
+}
+
 export type GetExperiencesQueryVariables = {}
 
 export type GetExperiencesQuery = { __typename?: 'Query' } & {
@@ -250,8 +258,25 @@ export type GetExperiencesQuery = { __typename?: 'Query' } & {
     Maybe<
       { __typename?: 'Experience' } & Pick<
         Experience,
-        'name' | 'taxonomyId' | 'years'
+        'term' | 'taxonomyId' | 'years'
       >
+    >
+  >
+}
+
+export type GetLanguagesQueryVariables = {}
+
+export type GetLanguagesQuery = { __typename?: 'Query' } & Pick<
+  Query,
+  'languages'
+>
+
+export type GetSkillsQueryVariables = {}
+
+export type GetSkillsQuery = { __typename?: 'Query' } & {
+  skills: Array<
+    Maybe<
+      { __typename?: 'Skill' } & Pick<Skill, 'term' | 'taxonomyId' | 'type'>
     >
   >
 }
@@ -280,7 +305,7 @@ export type AddExperienceClientMutationVariables = {
 }
 
 export type AddExperienceClientMutation = { __typename?: 'Mutation' } & {
-  addExperience: { __typename?: 'Experience' } & Pick<Experience, 'name'>
+  addExperience: { __typename?: 'Experience' } & Pick<Experience, 'term'>
 }
 
 export type LoginMutationVariables = {}

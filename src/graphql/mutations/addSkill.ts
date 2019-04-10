@@ -1,10 +1,14 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { Skill } from '../../types'
+import { Skill } from '../../generated/myskills'
 import gql from 'graphql-tag'
 
 export const GET_SKILLS_CLIENT = gql`
   query getSkills {
-    skills @client
+    skills @client {
+      term
+      taxonomyId
+      type
+    }
   }
 `
 

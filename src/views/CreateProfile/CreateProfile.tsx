@@ -1,6 +1,6 @@
 import React from 'react'
 import { RouteComponentProps } from '@reach/router'
-import { Grid } from '../../components/Grid'
+import Grid from '../../components/Grid'
 import Button from '../../components/Button'
 import { useQuery, useMutation } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
@@ -32,8 +32,6 @@ const CreateProfile: React.FC<RouteComponentProps> = ({ children }) => {
   const addExperienceMutation = useMutation(ADD_EXPERIENCE, {
     fetchPolicy: 'no-cache',
   })
-
-  console.log('from client', data)
 
   const tempSave = () => {
     addExperienceMutation({

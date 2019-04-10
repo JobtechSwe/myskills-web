@@ -1,8 +1,8 @@
 overwrite: true
-schema: "http://localhost:3000/graphql"
-documents: "src/**/*.{ts,tsx}"
+schema: 'http://localhost:3000/graphql'
+documents: 'src/**/*.{ts,tsx}'
 generates:
   src/generated/myskills.d.ts:
     plugins:
-      - "typescript-common"
-      - "typescript-client"
+      - 'typescript'
+      - 'typescript-operations'

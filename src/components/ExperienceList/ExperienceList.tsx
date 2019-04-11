@@ -1,5 +1,5 @@
 import React from 'react'
-import { TaxonomyResult } from '../../generated/myskills'
+import { TaxonomyDefaultResult } from '../../generated/myskills'
 import List from '../List'
 
 type MutationVariables = {
@@ -13,7 +13,7 @@ type MutationVariables = {
 }
 
 interface ExperienceListProps {
-  list: TaxonomyResult[]
+  list: TaxonomyDefaultResult[]
   addExperience?: (variables: MutationVariables) => void
 }
 
@@ -23,7 +23,7 @@ const ExperienceList: React.FC<ExperienceListProps> = ({
 }) => {
   return (
     <List>
-      {list.map((experience: TaxonomyResult, i: number) => {
+      {list.map((experience: TaxonomyDefaultResult, i: number) => {
         return (
           <li key={i}>
             {addExperience ? (

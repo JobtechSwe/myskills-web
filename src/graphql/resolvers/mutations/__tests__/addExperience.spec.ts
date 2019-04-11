@@ -14,6 +14,7 @@ beforeEach(() => {
     experiences: [
       {
         taxonomyId: 'cba',
+        __typename: 'Experience',
       },
     ],
   }
@@ -25,6 +26,7 @@ beforeEach(() => {
     experience: {
       name: 'Systemutvecklare',
       taxonomyId: 'abc',
+      __typename: 'Experience',
     },
   }
   cache = {
@@ -50,13 +52,10 @@ describe('resolvers/addExperience', () => {
     expect(writeQueryMock).toHaveBeenCalledWith({
       query: GET_EXPERIENCES_CLIENT,
       data: {
-        onboardingData: {
-          experiences: [
-            ...mockedExperienceCache.experiences,
-            experience.experience,
-          ],
-          __typename: 'OnboardingData',
-        },
+        experiences: [
+          ...mockedExperienceCache.experiences,
+          experience.experience,
+        ],
       },
     })
   })
@@ -64,8 +63,9 @@ describe('resolvers/addExperience', () => {
   it('filters duplicates', () => {
     const duplicate = {
       experience: {
-        name: 'Systemutvecklare',
+        term: 'Systemutvecklare',
         taxonomyId: 'cba',
+        years: '2',
         __typename: 'Experience',
       },
     }
@@ -74,16 +74,14 @@ describe('resolvers/addExperience', () => {
     expect(writeQueryMock).toHaveBeenCalledWith({
       query: GET_EXPERIENCES_CLIENT,
       data: {
-        onboardingData: {
-          experiences: [
-            {
-              name: 'Systemutvecklare',
-              taxonomyId: 'cba',
-              __typename: 'Experience',
-            },
-          ],
-          __typename: 'OnboardingData',
-        },
+        experiences: [
+          {
+            term: 'Systemutvecklare',
+            taxonomyId: 'cba',
+            years: '2',
+            __typename: 'Experience',
+          },
+        ],
       },
     })
   })

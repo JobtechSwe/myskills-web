@@ -44,7 +44,7 @@
     "generate": "graphql-codegen --config codegen.yml",
     "temptest": "jest",
     "cypress": "start-server-and-test buildAndServeAgainstCI http://localhost:3001 cypress:gui",
-    "buildAndServeAgainstCI": "npm run build && BROWSER=none REACT_APP_GRAPHQL_URI=https://api-myskills-ci.dev.services.jtech.se/graphql npm run start",
+    "buildAndServeAgainstCI": "npm run build && BROWSER=none REACT_APP_GRAPHQL_URI=http://localhost:3000/graphql npm run start",
     "cypress-ci": "start-server-and-test buildAndServeAgainstCI http://localhost:3001 cypress:run",
     "cypress:gui": "cypress open",
     "cypress:run": "cypress run"

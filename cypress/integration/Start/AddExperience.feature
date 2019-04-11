@@ -19,5 +19,6 @@ Feature: AddExperience
     When I search for "Banarbetare"
     Then I should see a list with a list item that contains "Banarbetare"
     When I click the item containing the text "Banarbetare"
-      And I reload the page
+      And I use a new browser
+      And I login
     Then The added experience should still be present

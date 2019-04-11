@@ -1,17 +1,39 @@
 import { createUnionTypeNode } from 'typescript'
 const appUrl = 'http://localhost:1337'
-const host = 'https://api-myskills-ci.dev.services.jtech.se'
+const host = 'http://localhost:3000'
 Cypress.Commands.add('getLocalStorage', key => {
   return localStorage.getItem(key)
 })
 
 Cypress.Commands.add('login', () => {
+  getLoginUrl()
+  .then(url => )
+})
+
+function getLoginUrl() {
+  const query = {
+    query: `mutation login { login { url } }`
+  }
+  return cy.request({
+    url: `${host}/graphql`,
+    method: 'POST',
+    body: JSON.stringify(query),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then(res => res.body.data.login.url)
+}
+
+Cypress.Commands.add('register', () => {
   createAccount()
     .then(data => {
       cy.log(data.body)
     })
     .then(createConsentRequest)
-    .then(consent => getConsentRequest(consent.id))
+    .then(consent => getConsentRequest(consent.url))
+    .then(data => approveConsentRequest(data))
+    .then(consentRequestId => getAccessToken(consentRequestId))
+    .then(accessToken => cy.setCookie('token', accessToken))
 })
 
 function createAccount() {
@@ -34,7 +56,7 @@ function createAccount() {
 
 function createConsentRequest() {
   const query = {
-    query: 'mutation consent { consent { id } }',
+    query: 'mutation consent { consent { url } }',
   }
   return cy
     .request({
@@ -48,12 +70,40 @@ function createConsentRequest() {
     .then(res => res.body.data.consent)
 }
 
-function getConsentRequest(consentId) {
-  cy.request({
+function getConsentRequest(consentUrl) {
+  return cy.request({
     url: `${appUrl}/getConsentRequest`,
     method: 'POST',
     body: JSON.stringify({
-      args: `mydata://login/${consentId}`,
+      args: consentUrl,
     }),
-  }).then(cy.log)
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then(res => res.body.data)
+}
+
+function approveConsentRequest(data) {
+  return cy.request({
+    url: `${appUrl}/approveConsentRequest`,
+    method: 'POST',
+    body: JSON.stringify({
+      args: {
+        data
+      }
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then(() => data.consentRequestId)
+}
+
+function getAccessToken(consentRequestId) {
+  return cy.request({
+    url: `${host}/approved/${consentRequestId}`,
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then(res => res.body.accessToken)
 }

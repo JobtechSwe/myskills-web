@@ -7,7 +7,7 @@ Given('I am not logged in', () => {
 })
 
 Given('I am logged in', () => {
-  cy.login()
+  cy.register()
 })
 
 When('I search for {string}', string => {
@@ -38,4 +38,13 @@ Then('The added experience should still be present', () => {
       'Banarbetare, utan behörighetsbevis'
     )
   })
+})
+
+When('I use a new browser', () => {
+  cy.clearCookies()
+  cy.clearLocalStorage()
+})
+
+When('I login', () => {
+  cy.login()
 })

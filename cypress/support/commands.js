@@ -38,9 +38,6 @@ function getLoginUrl() {
 
 Cypress.Commands.add('register', () => {
   createAccount()
-    .then(data => {
-      cy.log(data.body)
-    })
     .then(createConsentRequest)
     .then(consent => getConsentRequest(consent.url))
     .then(data => approveConsentRequest(data))

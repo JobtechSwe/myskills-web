@@ -50,7 +50,7 @@ export const deconstructJWT = (token: string) => {
   return JSON.parse(decodeURIComponent(escape(window.atob(segments[1]))))
 }
 
-const authLink = setContext((root, { headers, cache }) => {
+const authLink = setContext((root, { headers }) => {
   const token = getCookie('token')
 
   // Redirect to login if no token

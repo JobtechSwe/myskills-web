@@ -1,5 +1,8 @@
 import { addLanguage, GET_LANGUAGES_CLIENT } from '../addLanguage'
 import { Language } from '../../../generated/myskills.d'
+import { storageHelper } from '../../../utils/helpers'
+
+jest.mock('../../../utils/helpers')
 
 let language: any
 let cache: any
@@ -58,6 +61,15 @@ describe('resolvers/addLanguage', () => {
       data: {
         languages: [Language.Swedish],
       },
+    })
+  })
+
+  it('updates local storage', () => {
+    addLanguage({}, language, cache)
+
+    expect(storageHelper.set).toHaveBeenCalledWith({
+      type: 'languages',
+      data: ['swedish', 'spanish'],
     })
   })
 

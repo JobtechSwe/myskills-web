@@ -1,5 +1,8 @@
 import { GET_SKILLS_CLIENT } from '../addSkill'
 import { addSkill } from '../addSkill'
+import { storageHelper } from '../../../utils/helpers'
+
+jest.mock('../../../utils/helpers')
 
 let skill: any
 let cache: any
@@ -49,6 +52,23 @@ describe('resolvers/addSkill', () => {
       data: {
         skills: [...mockedSkillCache.skills, skill.skill],
       },
+    })
+  })
+
+  it('updates local storage', () => {
+    addSkill({}, skill, cache)
+
+    expect(storageHelper.set).toHaveBeenCalledWith({
+      type: 'skills',
+      data: [
+        {
+          taxonomyId: 'cba',
+        },
+        {
+          name: 'Javascript',
+          taxonomyId: 'abc',
+        },
+      ],
     })
   })
 

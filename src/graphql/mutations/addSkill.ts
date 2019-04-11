@@ -1,6 +1,7 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { SkillInput } from '../../generated/myskills'
 import gql from 'graphql-tag'
+import { storageHelper } from '../../utils/helpers'
 
 export const GET_SKILLS_CLIENT = gql`
   query getSkills {
@@ -29,6 +30,11 @@ export const addSkill = (
   cache.writeQuery({
     query: GET_SKILLS_CLIENT,
     data: { skills: updatedSkills },
+  })
+
+  storageHelper.set({
+    type: 'skills',
+    data: updatedSkills,
   })
 
   return skill

@@ -1,6 +1,7 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { Language } from '../../generated/myskills'
 import gql from 'graphql-tag'
+import { storageHelper } from '../../utils/helpers'
 
 export const GET_LANGUAGES_CLIENT = gql`
   query getLanguages {
@@ -25,6 +26,11 @@ export const addLanguage = (
   cache.writeQuery({
     query: GET_LANGUAGES_CLIENT,
     data: { languages: updatedLanguages },
+  })
+
+  storageHelper.set({
+    type: 'languages',
+    data: updatedLanguages,
   })
 
   return language

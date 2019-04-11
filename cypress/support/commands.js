@@ -1,14 +1,26 @@
-import { createUnionTypeNode } from 'typescript'
 const appUrl = 'http://localhost:1337'
 const host = 'http://localhost:3000'
 Cypress.Commands.add('getLocalStorage', key => {
   return localStorage.getItem(key)
 })
 
+/* This does not work with the current implementation of the mydata-rest-app,
 Cypress.Commands.add('login', () => {
   getLoginUrl()
-  .then(url => )
+  .then(url => getLoginRequest(url))
+  .then(data => approveLoginRequest(data))
+  .then(consentRequestId => getAccessToken(consentRequestId))
+  .then(accessToken => cy.setCookie('token', accessToken))
 })
+
+function getLoginRequest() {
+
+}
+
+function approveLoginRequest() {
+
+}
+*/
 
 function getLoginUrl() {
   const query = {

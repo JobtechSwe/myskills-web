@@ -1,5 +1,5 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { Skill } from '../../generated/myskills'
+import { SkillInput } from '../../generated/myskills'
 import gql from 'graphql-tag'
 
 export const GET_SKILLS_CLIENT = gql`
@@ -14,15 +14,15 @@ export const GET_SKILLS_CLIENT = gql`
 
 export const addSkill = (
   _: any,
-  { skill }: { skill: Skill },
+  { skill }: { skill: SkillInput },
   { cache }: { cache: InMemoryCache }
-): Skill => {
+): SkillInput => {
   const { skills }: any = cache.readQuery({
     query: GET_SKILLS_CLIENT,
   })
 
-  const withoutDuplicates = (skills: Skill[]): Skill[] =>
-    skills.filter((s: Skill) => s.taxonomyId !== skill.taxonomyId)
+  const withoutDuplicates = (skills: SkillInput[]): SkillInput[] =>
+    skills.filter((s: SkillInput) => s.taxonomyId !== skill.taxonomyId)
 
   const updatedSkills = [...withoutDuplicates(skills), skill]
 

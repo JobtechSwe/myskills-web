@@ -1,18 +1,18 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { Education } from '../../generated/myskills'
+import { EducationInput } from '../../generated/myskills'
 import { GET_EDUCATIONS_CLIENT } from './addEducation'
 
 export const removeEducation = (
   _: any,
   id: string,
   { cache }: { cache: InMemoryCache }
-): Education => {
+): EducationInput => {
   const { educations }: any = cache.readQuery({
     query: GET_EDUCATIONS_CLIENT,
   })
 
   const updatedEducationList = educations.filter(
-    (education: Education) => education.taxonomyId !== id
+    (education: EducationInput) => education.taxonomyId !== id
   )
 
   cache.writeQuery({

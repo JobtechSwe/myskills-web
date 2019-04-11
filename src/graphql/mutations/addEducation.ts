@@ -1,5 +1,5 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { Education } from '../../generated/myskills'
+import { EducationInput } from '../../generated/myskills'
 import gql from 'graphql-tag'
 
 export const GET_EDUCATIONS_CLIENT = gql`
@@ -13,15 +13,17 @@ export const GET_EDUCATIONS_CLIENT = gql`
 
 export const addEducation = (
   _: any,
-  { education }: { education: Education },
+  { education }: { education: EducationInput },
   { cache }: { cache: InMemoryCache }
-): Education => {
+): EducationInput => {
   const { educations }: any = cache.readQuery({
     query: GET_EDUCATIONS_CLIENT,
   })
 
-  const withoutDuplicates = (educations: Education[]): Education[] =>
-    educations.filter((e: Education) => e.taxonomyId !== education.taxonomyId)
+  const withoutDuplicates = (educations: EducationInput[]): EducationInput[] =>
+    educations.filter(
+      (e: EducationInput) => e.taxonomyId !== education.taxonomyId
+    )
 
   const updatedEducations = [...withoutDuplicates(educations), education]
 

@@ -5,13 +5,11 @@ import Button from '../../components/Button'
 import { useQuery, useMutation } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
 
-const GET_EXPERIENCES_FROM_CLIENT = gql`
+const GET_EXPERIENCES_CLIENT = gql`
   query experiences {
-    onboardingData @client {
-      experiences {
-        name
-        taxonomyId
-      }
+    experiences @client {
+      term
+      taxonomyId
     }
   }
 `
@@ -19,13 +17,13 @@ const GET_EXPERIENCES_FROM_CLIENT = gql`
 export const ADD_EXPERIENCE = gql`
   mutation addExperienceClient($experience: ExperienceInput!) {
     addExperience(experience: $experience) {
-      name
+      term
     }
   }
 `
 
 const CreateProfile: React.FC<RouteComponentProps> = ({ children }) => {
-  const { data } = useQuery(GET_EXPERIENCES_FROM_CLIENT)
+  const { data } = useQuery(GET_EXPERIENCES_CLIENT)
   const addExperienceMutation = useMutation(ADD_EXPERIENCE, {
     fetchPolicy: 'no-cache',
   })
@@ -34,8 +32,8 @@ const CreateProfile: React.FC<RouteComponentProps> = ({ children }) => {
     addExperienceMutation({
       variables: {
         experience: {
-          name: data.onboardingData.experiences[0].name,
-          taxonomyId: data.onboardingData.experiences[0].taxonomyId,
+          term: data.experiences[0].name,
+          taxonomyId: data.experiences[0].taxonomyId,
           years: '0.1',
         },
       },

@@ -5,6 +5,7 @@ Cypress.Commands.add('getLocalStorage', key => {
 })
 
 /* This does not work with the current implementation of the mydata-rest-app,
+see issue at: https://github.com/JobtechSwe/mydata/issues/85
 Cypress.Commands.add('login', () => {
   getLoginUrl()
   .then(url => getLoginRequest(url))
@@ -24,16 +25,18 @@ function approveLoginRequest() {
 
 function getLoginUrl() {
   const query = {
-    query: `mutation login { login { url } }`
+    query: `mutation login { login { url } }`,
   }
-  return cy.request({
-    url: `${host}/graphql`,
-    method: 'POST',
-    body: JSON.stringify(query),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }).then(res => res.body.data.login.url)
+  return cy
+    .request({
+      url: `${host}/graphql`,
+      method: 'POST',
+      body: JSON.stringify(query),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then(res => res.body.data.login.url)
 }
 
 Cypress.Commands.add('register', () => {
@@ -80,39 +83,45 @@ function createConsentRequest() {
 }
 
 function getConsentRequest(consentUrl) {
-  return cy.request({
-    url: `${appUrl}/getConsentRequest`,
-    method: 'POST',
-    body: JSON.stringify({
-      args: consentUrl,
-    }),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }).then(res => res.body.data)
+  return cy
+    .request({
+      url: `${appUrl}/getConsentRequest`,
+      method: 'POST',
+      body: JSON.stringify({
+        args: consentUrl,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then(res => res.body.data)
 }
 
 function approveConsentRequest(data) {
-  return cy.request({
-    url: `${appUrl}/approveConsentRequest`,
-    method: 'POST',
-    body: JSON.stringify({
-      args: {
-        data
-      }
-    }),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }).then(() => data.consentRequestId)
+  return cy
+    .request({
+      url: `${appUrl}/approveConsentRequest`,
+      method: 'POST',
+      body: JSON.stringify({
+        args: {
+          data,
+        },
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then(() => data.consentRequestId)
 }
 
 function getAccessToken(consentRequestId) {
-  return cy.request({
-    url: `${host}/approved/${consentRequestId}`,
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }).then(res => res.body.accessToken)
+  return cy
+    .request({
+      url: `${host}/approved/${consentRequestId}`,
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then(res => res.body.accessToken)
 }

@@ -25,7 +25,7 @@ const CreateProfile: React.FC<RouteComponentProps> = ({ children }) => {
     addExperienceMutation({
       variables: {
         experience: {
-          term: data.experiences[0].name,
+          term: data.experiences[0].term,
           taxonomyId: data.experiences[0].taxonomyId,
           years: '0.1',
         },

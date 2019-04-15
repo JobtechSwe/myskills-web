@@ -425,7 +425,10 @@ export type AddExperienceClientMutationVariables = {
 
 export type AddExperienceClientMutation = { __typename?: 'Mutation' } & {
   addExperienceClient: Maybe<
-    { __typename?: 'Experience' } & Pick<Experience, 'term'>
+    { __typename: 'Experience' } & Pick<
+      Experience,
+      'term' | 'years' | 'taxonomyId'
+    >
   >
 }
 
@@ -434,7 +437,10 @@ export type AddExperienceApiMutationVariables = {
 }
 
 export type AddExperienceApiMutation = { __typename?: 'Mutation' } & {
-  addExperience: { __typename?: 'Experience' } & Pick<Experience, 'term'>
+  addExperience: { __typename: 'Experience' } & Pick<
+    Experience,
+    'term' | 'years' | 'taxonomyId'
+  >
 }
 
 export type IsLoggedInQueryVariables = {}

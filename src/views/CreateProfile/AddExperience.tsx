@@ -23,9 +23,7 @@ export const GET_TAXONOMY_EXPERIENCES = gql`
 
 export const ADD_EXPERIENCE_CLIENT = gql`
   mutation addExperienceClient($experience: ExperienceInput!) {
-    addExperienceClient(experience: $experience) @client {
-      term
-    }
+    addExperienceClient(experience: $experience) @client
   }
 `
 
@@ -33,6 +31,9 @@ export const ADD_EXPERIENCE_API = gql`
   mutation addExperienceApi($experience: ExperienceInput!) {
     addExperience(experience: $experience) {
       term
+      __typename
+      years
+      taxonomyId
     }
   }
 `

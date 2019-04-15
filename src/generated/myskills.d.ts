@@ -38,6 +38,18 @@ export type ConsentResponse = {
   accessToken: Scalars['String']
 }
 
+export type Cv = {
+  skills?: Maybe<Array<Maybe<Skill>>>
+  education?: Maybe<Array<Maybe<Education>>>
+  experience?: Maybe<Array<Maybe<Experience>>>
+}
+
+export type CvInput = {
+  skills?: Maybe<Array<SkillInput>>
+  education?: Maybe<Array<EducationInput>>
+  experience?: Maybe<Array<ExperienceInput>>
+}
+
 export type Education = {
   id: Scalars['String']
   taxonomyId: Scalars['String']
@@ -95,6 +107,9 @@ export type Mutation = {
   removeExperience: Scalars['Boolean']
   /** Remove language from user */
   removeLanguage: Scalars['Boolean']
+  /** Save the complete cv to user */
+  saveCV: Cv
+  addExperienceClient?: Maybe<Experience>
 }
 
 export type MutationAddLanguageArgs = {
@@ -133,6 +148,87 @@ export type MutationRemoveLanguageArgs = {
   language: Language
 }
 
+export type MutationSaveCvArgs = {
+  cv: CvInput
+}
+
+export type MutationAddExperienceClientArgs = {
+  experience: ExperienceInput
+}
+
+export type OntologyConceptInput = {
+  limit?: Maybe<Scalars['Int']>
+  offset?: Maybe<Scalars['Int']>
+}
+
+export type OntologyConceptResponse = {
+  id: Scalars['String']
+  name: Scalars['String']
+  type: OntologyType
+}
+
+export type OntologyConceptsInput = {
+  type?: Maybe<OntologyType>
+  limit?: Maybe<Scalars['Int']>
+  offset?: Maybe<Scalars['Int']>
+  filter?: Maybe<Scalars['String']>
+}
+
+export type OntologyConceptTermInput = {
+  limit?: Maybe<Scalars['Int']>
+  offset?: Maybe<Scalars['Int']>
+}
+
+export type OntologyConceptTermResponse = {
+  id: Scalars['String']
+  name: Scalars['String']
+  type: OntologyType
+  terms?: Maybe<Array<Maybe<OntologyTerm>>>
+}
+
+export type OntologyRelatedInput = {
+  concepts?: Maybe<Array<Scalars['String']>>
+  id?: Maybe<Array<Scalars['String']>>
+  limit?: Maybe<Scalars['Int']>
+  type: OntologyType
+}
+
+export type OntologyRelatedResponse = {
+  count: Scalars['Int']
+  concepts: Array<Maybe<OntologyConceptResponse>>
+  relations: Array<Maybe<OntologyRelationResponse>>
+}
+
+export type OntologyRelationDetails = {
+  word2Vec?: Maybe<Scalars['Float']>
+}
+
+export type OntologyRelationResponse = {
+  id: Scalars['String']
+  name: Scalars['String']
+  type: OntologyType
+  score: Scalars['Float']
+  details: OntologyRelationDetails
+}
+
+export type OntologyTerm = {
+  name?: Maybe<Scalars['String']>
+  type?: Maybe<Scalars['String']>
+}
+
+export type OntologyTextParseResponse = {
+  id: Scalars['String']
+  name: Scalars['String']
+  type: OntologyType
+  terms: Array<Maybe<Scalars['String']>>
+}
+
+export enum OntologyType {
+  Skill = 'SKILL',
+  Occupation = 'OCCUPATION',
+  Trait = 'TRAIT',
+}
+
 export type Profile = {
   firstName?: Maybe<Scalars['String']>
   lastName?: Maybe<Scalars['String']>
@@ -156,10 +252,33 @@ export type Query = {
   skills: Array<Maybe<Skill>>
   /** Get from taxonomy */
   taxonomy: TaxonomyResponse
+  /** Get from ontology */
+  ontologyConcepts: Array<Maybe<OntologyConceptResponse>>
+  ontologyConcept: OntologyConceptTermResponse
+  ontologyRelated: OntologyRelatedResponse
+  ontologyTextParse: Array<Maybe<OntologyTextParseResponse>>
+  isLoggedIn?: Maybe<Scalars['Boolean']>
 }
 
 export type QueryTaxonomyArgs = {
   params?: Maybe<TaxonomyQueryInput>
+}
+
+export type QueryOntologyConceptsArgs = {
+  params?: Maybe<OntologyConceptsInput>
+}
+
+export type QueryOntologyConceptArgs = {
+  id: Scalars['String']
+  params?: Maybe<OntologyConceptInput>
+}
+
+export type QueryOntologyRelatedArgs = {
+  params?: Maybe<OntologyRelatedInput>
+}
+
+export type QueryOntologyTextParseArgs = {
+  text: Scalars['String']
 }
 
 export type Skill = {
@@ -290,7 +409,7 @@ export type TaxonomyQuery = { __typename?: 'Query' } & {
   taxonomy: { __typename?: 'TaxonomyResponse' } & {
     result: Array<
       Maybe<
-        Pick<TaxonomyResult, 'term' | 'taxonomyId' | 'type'> &
+        Pick<TaxonomyResult, 'term' | 'taxonomyId'> &
           ({ __typename?: 'TaxonomyDefaultResult' } & Pick<
             TaxonomyDefaultResult,
             'parentId'
@@ -305,7 +424,34 @@ export type AddExperienceClientMutationVariables = {
 }
 
 export type AddExperienceClientMutation = { __typename?: 'Mutation' } & {
+  addExperienceClient: Maybe<
+    { __typename?: 'Experience' } & Pick<Experience, 'term'>
+  >
+}
+
+export type AddExperienceApiMutationVariables = {
+  experience: ExperienceInput
+}
+
+export type AddExperienceApiMutation = { __typename?: 'Mutation' } & {
   addExperience: { __typename?: 'Experience' } & Pick<Experience, 'term'>
+}
+
+export type IsLoggedInQueryVariables = {}
+
+export type IsLoggedInQuery = { __typename?: 'Query' } & Pick<
+  Query,
+  'isLoggedIn'
+>
+
+export type ExperiencesQueryVariables = {}
+
+export type ExperiencesQuery = { __typename?: 'Query' } & {
+  experiences: Array<
+    Maybe<
+      { __typename?: 'Experience' } & Pick<Experience, 'term' | 'taxonomyId'>
+    >
+  >
 }
 
 export type LoginMutationVariables = {}

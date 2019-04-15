@@ -1,5 +1,7 @@
 overwrite: true
-schema: 'http://localhost:3000/graphql'
+schema:
+  - 'http://localhost:3000/graphql'
+  - 'src/graphql/client-schema.graphql'
 documents: 'src/**/*.{ts,tsx}'
 generates:
   src/generated/myskills.d.ts:

@@ -13,7 +13,7 @@ export const GET_EXPERIENCES_CLIENT = gql`
   }
 `
 
-export const addExperience = (
+export const addExperienceClient = (
   _: any,
   { experience }: { experience: ExperienceInput },
   { cache }: { cache: InMemoryCache }

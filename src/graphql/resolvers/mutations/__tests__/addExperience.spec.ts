@@ -1,4 +1,4 @@
-import { addExperience, GET_EXPERIENCES_CLIENT } from '../addExperience'
+import { addExperienceClient, GET_EXPERIENCES_CLIENT } from '../addExperience'
 import { storageHelper } from '../../../../utils/helpers'
 
 jest.mock('../../../../utils/helpers')
@@ -39,7 +39,7 @@ beforeEach(() => {
 
 describe('resolvers/addExperience', () => {
   it('reads cache', () => {
-    addExperience({}, experience, cache)
+    addExperienceClient({}, experience, cache)
 
     expect(readQueryMock).toHaveBeenCalledWith({
       query: GET_EXPERIENCES_CLIENT,
@@ -47,7 +47,7 @@ describe('resolvers/addExperience', () => {
   })
 
   it('saves experience to cache', () => {
-    addExperience({}, experience, cache)
+    addExperienceClient({}, experience, cache)
 
     expect(writeQueryMock).toHaveBeenCalledWith({
       query: GET_EXPERIENCES_CLIENT,
@@ -70,7 +70,7 @@ describe('resolvers/addExperience', () => {
       },
     }
 
-    addExperience({}, duplicate, cache)
+    addExperienceClient({}, duplicate, cache)
     expect(writeQueryMock).toHaveBeenCalledWith({
       query: GET_EXPERIENCES_CLIENT,
       data: {
@@ -87,7 +87,7 @@ describe('resolvers/addExperience', () => {
   })
 
   it('saves experiences to localstorage', () => {
-    addExperience({}, experience, cache)
+    addExperienceClient({}, experience, cache)
     const mockPayload = {
       type: 'experiences',
       data: [...mockedExperienceCache.experiences, experience.experience],
@@ -96,7 +96,7 @@ describe('resolvers/addExperience', () => {
   })
 
   it('returns experience', () => {
-    expect(addExperience({}, experience, cache)).toEqual({
+    expect(addExperienceClient({}, experience, cache)).toEqual({
       name: 'Systemutvecklare',
       taxonomyId: 'abc',
       __typename: 'Experience',

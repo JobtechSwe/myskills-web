@@ -1,4 +1,4 @@
-export * from './addExperience'
+export * from './addOccupation'
 export * from './addLanguage'
 export * from './addSkill'
 export * from './addEducation'

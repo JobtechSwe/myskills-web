@@ -1,4 +1,4 @@
-import { addExperienceClient, GET_EXPERIENCES_CLIENT } from '../addExperience'
+import { addExperienceClient, GET_EXPERIENCES_CLIENT } from '../addOccupation'
 import { storageHelper } from '../../../../utils/helpers'
 
 jest.mock('../../../../utils/helpers')

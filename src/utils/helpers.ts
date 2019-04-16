@@ -5,6 +5,7 @@ import {
   ExperienceInput,
   SkillInput,
 } from '../generated/myskills'
+import { ClientOntologyConceptProps } from '../graphql/types'
 
 export const getCookie = (name: string) => Cookies.get(name)
 export const setCookie = (
@@ -29,16 +30,16 @@ interface Educations extends StorageEntryProps {
   data: EducationInput[]
 }
 
-interface Experiences extends StorageEntryProps {
-  type: 'experiences'
-  data: ExperienceInput[]
+interface Occupations extends StorageEntryProps {
+  type: 'occupations'
+  data: ClientOntologyConceptProps[]
 }
 interface Skills extends StorageEntryProps {
   type: 'skills'
   data: SkillInput[]
 }
 
-export type StorageEntry = Educations | Experiences | Skills
+export type StorageEntry = Educations | Occupations | Skills
 
 export const storageHelper = {
   load: (initialState: LocalStateProps) =>

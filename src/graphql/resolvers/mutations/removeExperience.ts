@@ -1,6 +1,6 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { Experience } from '../../../generated/myskills'
-import { GET_EXPERIENCES_CLIENT } from './addExperience'
+import { GET_OCCUPATIONS_CLIENT } from './addOccupation'
 
 export const removeExperience = (
   _: any,
@@ -8,7 +8,7 @@ export const removeExperience = (
   { cache }: { cache: InMemoryCache }
 ): Experience => {
   const { experiences }: any = cache.readQuery({
-    query: GET_EXPERIENCES_CLIENT,
+    query: GET_OCCUPATIONS_CLIENT,
   })
 
   const updatedExperienceList = experiences.filter(
@@ -16,7 +16,7 @@ export const removeExperience = (
   )
 
   cache.writeQuery({
-    query: GET_EXPERIENCES_CLIENT,
+    query: GET_OCCUPATIONS_CLIENT,
     data: { experiences: updatedExperienceList },
   })
 

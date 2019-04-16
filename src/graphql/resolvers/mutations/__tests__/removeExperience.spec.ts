@@ -1,5 +1,5 @@
 import { removeExperience } from '../removeExperience'
-import { GET_EXPERIENCES_CLIENT } from '../addExperience'
+import { GET_EXPERIENCES_CLIENT } from '../addOccupation'
 
 let experienceId: any
 let cache: any

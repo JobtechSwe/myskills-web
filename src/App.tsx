@@ -3,6 +3,8 @@ import { Router } from '@reach/router'
 import RestrictedRoute from './views/restricted'
 import Header from './components/Header'
 import styled from '@emotion/styled'
+import Loader from './components/Loader'
+
 const Register = React.lazy(() => import(`./views/Register/Register`))
 const Login = React.lazy(() => import(`./views/Login/Login`))
 const Start = React.lazy(() => import(`./views/Start/Start`))
@@ -10,8 +12,8 @@ const Profile = React.lazy(() => import('./views/Profile/Profile'))
 const CreateProfile = React.lazy(() =>
   import('./views/CreateProfile/CreateProfile')
 )
-const AddExperience = React.lazy(() =>
-  import(`./views/CreateProfile/AddExperience`)
+const AddOccupations = React.lazy(() =>
+  import(`./views/CreateProfile/AddOccupation`)
 )
 const MatchCompetences = React.lazy(() =>
   import('./views/CreateProfile/MatchCompetences')
@@ -26,13 +28,13 @@ function App() {
   return (
     <Layout>
       <Header />
-      <React.Suspense fallback={<div>Loading...</div>}>
+      <React.Suspense fallback={<Loader />}>
         <Router>
           <Start path="/" />
           <Register path="/register" />
           <Login path="/login" />
           <CreateProfile path="/skapa-cv">
-            <AddExperience path="/" />
+            <AddOccupations path="/" />
             <MatchCompetences path="/kompetenser" />
           </CreateProfile>
           <RestrictedRoute component={Profile} path="/profile" />

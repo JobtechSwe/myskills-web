@@ -10,6 +10,7 @@ import { getCookie, removeCookie, redirect } from '../utils/helpers'
 import { Experience, Skill, Education, Language } from '../generated/myskills'
 import resolvers from './resolvers'
 import { storageHelper } from '../utils/helpers'
+import { ClientOntologyConceptProps } from './types'
 
 const httpLink = new HttpLink({
   uri: process.env.REACT_APP_GRAPHQL_URI,
@@ -104,14 +105,14 @@ const terminatingLink = split(
 )
 
 export type LocalStateProps = {
-  experiences: Experience[]
+  occupations: ClientOntologyConceptProps[]
   language: Language[]
   skills: Skill[]
   educations: Education[]
 }
 
 const initialState: LocalStateProps = {
-  experiences: [],
+  occupations: [],
   language: [],
   skills: [],
   educations: [],

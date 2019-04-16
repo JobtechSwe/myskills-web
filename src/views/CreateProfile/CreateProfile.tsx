@@ -4,7 +4,7 @@ import Grid from '../../components/Grid'
 import Button from '../../components/Button'
 import { useQuery, useMutation } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
-import { ADD_EXPERIENCE_API } from './AddExperience'
+import { ADD_OCCUPATION_API } from './AddOccupation'
 
 const GET_EXPERIENCES_FROM_CLIENT = gql`
   query experiences {
@@ -17,7 +17,7 @@ const GET_EXPERIENCES_FROM_CLIENT = gql`
 
 const CreateProfile: React.FC<RouteComponentProps> = ({ children }) => {
   const { data } = useQuery(GET_EXPERIENCES_FROM_CLIENT)
-  const addExperienceMutation = useMutation(ADD_EXPERIENCE_API, {
+  const addExperienceMutation = useMutation(ADD_OCCUPATION_API, {
     fetchPolicy: 'no-cache',
   })
 

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import AddExperience, { GET_TAXONOMY_EXPERIENCES } from '../AddExperience'
+import AddExperience, { GET_TAXONOMY_EXPERIENCES } from '../AddOccupation'
 import { render } from '../../../utils/test-utils'
 import { wait, fireEvent } from 'react-testing-library'
 

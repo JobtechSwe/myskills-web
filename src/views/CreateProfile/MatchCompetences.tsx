@@ -2,7 +2,12 @@ import React from 'react'
 import gql from 'graphql-tag'
 import { RouteComponentProps } from '@reach/router'
 import { useQuery } from 'react-apollo-hooks'
-import { ClientExperienceProps } from '../../graphql/types'
+import {
+  ClientExperienceProps,
+  ClientOntologyConceptProps,
+} from '../../graphql/types'
+import { GET_OCCUPATIONS_CLIENT } from '../../graphql/resolvers/mutations/addOccupation'
+import Loader from '../../components/Loader'
 import {
   OntologyRelatedInput,
   OntologyRelatedResponse,
@@ -10,29 +15,26 @@ import {
 } from '../../generated/myskills.d'
 
 const GET_RELATED_SKILLS = gql`
-  query ontology($concepts: [String!]) {
-    ontologyRelated(params: { concepts: $concepts, type: SKILL }) {
+  query ontology($concepts: [String!], $limit: Int) {
+    ontologyRelated(
+      params: { concepts: $concepts, type: SKILL, limit: $limit }
+    ) {
       relations {
         name
+        id
         score
+        type
       }
-    }
-  }
-`
-const GET_EXPERIENCES_CLIENT = gql`
-  query experiences {
-    experiences @client {
-      term
     }
   }
 `
 
 const MatchCompetences: React.FC<RouteComponentProps> = () => {
   const {
-    data: { experiences },
-  }: any = useQuery(GET_EXPERIENCES_CLIENT)
+    data: { occupations = [] },
+  }: any = useQuery(GET_OCCUPATIONS_CLIENT)
 
-  const terms = experiences.map((t: ClientExperienceProps) => t.term)
+  const terms = occupations.map((t: ClientOntologyConceptProps) => t.name)
 
   const { data, loading, error } = useQuery<
     { ontologyRelated: OntologyRelatedResponse },
@@ -41,17 +43,17 @@ const MatchCompetences: React.FC<RouteComponentProps> = () => {
     variables: {
       concepts: terms,
       type: OntologyType.Skill,
+      limit: 10,
     },
-    skip: !experiences,
+    skip: !occupations,
   })
 
   return (
     <div>
-      {loading && <div>Loading...</div>}
+      {loading && <Loader />}
       {error && <div>error...</div>}
-      {!loading &&
-        !error &&
-        data &&
+      {data &&
+        data.ontologyRelated &&
         data.ontologyRelated.relations.map((skill: any, i: number) => (
           <div key={i}>{skill.name}</div>
         ))}

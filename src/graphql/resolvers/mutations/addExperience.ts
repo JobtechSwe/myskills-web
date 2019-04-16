@@ -17,7 +17,7 @@ export const addExperienceClient = (
   _: any,
   { experience }: { experience: ExperienceInput },
   { cache }: { cache: InMemoryCache }
-): ExperienceInput => {
+): any => {
   const { experiences }: any = cache.readQuery({
     query: GET_EXPERIENCES_CLIENT,
   })
@@ -26,11 +26,8 @@ export const addExperienceClient = (
 
   const updatedExperiences = [
     ...withoutDuplicates(experiences),
-    experience,
-  ].map((exp: ExperienceInput) => ({
-    ...exp,
-    __typename: 'Experience',
-  }))
+    { ...experience, __typename: 'Experience' },
+  ]
 
   cache.writeQuery({
     query: GET_EXPERIENCES_CLIENT,
@@ -44,5 +41,5 @@ export const addExperienceClient = (
     data: updatedExperiences,
   })
 
-  return experience
+  return { ...experience, __typename: 'Experience' }
 }

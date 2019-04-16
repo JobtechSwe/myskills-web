@@ -4,8 +4,21 @@ import gql from 'graphql-tag'
 import { TaxonomyType } from '../../generated/myskills.d'
 import { RouteComponentProps } from '@reach/router'
 import ExperienceList from '../../components/ExperienceList/ExperienceList'
-import Grid from '../../components/Grid'
+import Flex from '../../components/Flex'
 import Input from '../../components/Input'
+import { H1, H3 } from '../../components/Typography'
+import Button from '../../components/Button'
+import styled from '@emotion/styled'
+
+const SearchInput = styled(Input)`
+  width: 100%;
+`
+
+const NextButton = styled(Button)`
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+`
 
 export const GET_TAXONOMY_EXPERIENCES = gql`
   query taxonomy($q: String!, $type: TaxonomyType) {
@@ -48,7 +61,7 @@ export const IS_LOGGED_IN = gql`
   }
 `
 
-const AddExperience: React.FC<RouteComponentProps> = () => {
+const ChooseProfession: React.FC<RouteComponentProps> = () => {
   const [query, setQuery] = useState('')
   const { data: isLoggedIn } = useQuery(IS_LOGGED_IN, {
     fetchPolicy: 'network-only',
@@ -67,13 +80,14 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
   })
 
   return (
-    <Grid>
-      <Input
+    <Flex alignItems="center" flexDirection="column" justifyContent="center">
+      <H3 mb={20}>YRKE</H3>
+      <H1 mb={20}>Vad vill du jobba med?</H1>
+      <SearchInput
         name="search"
         onChange={({ target }) => setQuery(target.value)}
-        placeholder="Sök yrken"
+        placeholder="Yrkesroll eller yrkesområde"
       />
-
       {loading && <div>Loading...</div>}
       {error && <div>Some error...</div>}
       {data && data.taxonomy && (
@@ -82,8 +96,9 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
           list={data.taxonomy.result}
         />
       )}
-    </Grid>
+      <NextButton>Nästa</NextButton>
+    </Flex>
   )
 }
 
-export default AddExperience
+export default ChooseProfession

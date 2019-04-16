@@ -3,7 +3,7 @@
 exports[`components/List renders a List 1`] = `
 <div>
   <ul
-    class="css-10ayz5q"
+    class="css-908tws"
     color="lassekongo"
   />
 </div>

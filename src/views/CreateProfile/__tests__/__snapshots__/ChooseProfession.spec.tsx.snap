@@ -22,7 +22,7 @@ exports[`views/ChooseProfession renders empty result 1`] = `
       Vad vill du jobba med?
     </h1>
     <input
-      class="css-1btdk7a"
+      class="css-1k0e6iw"
       name="search"
       placeholder="Yrkesroll eller yrkesområde"
     />

@@ -34,12 +34,6 @@ export const GET_TAXONOMY_EXPERIENCES = gql`
   }
 `
 
-export const ADD_EXPERIENCE_CLIENT = gql`
-  mutation addExperienceClient($experience: ExperienceInput!) {
-    addExperienceClient(experience: $experience) @client
-  }
-`
-
 export const ADD_EXPERIENCE_API = gql`
   mutation addExperienceApi($experience: ExperienceInput!) {
     addExperience(experience: $experience) {
@@ -51,26 +45,9 @@ export const ADD_EXPERIENCE_API = gql`
   }
 `
 
-/*
-  (always: true) is currently unreliable but Apollo reports bug is fixed in 2.6.0
-  https://github.com/apollographql/apollo-client/issues/4636#issuecomment-480307041
-*/
-export const IS_LOGGED_IN = gql`
-  query isLoggedIn {
-    isLoggedIn @client(always: true)
-  }
-`
-
 const ChooseProfession: React.FC<RouteComponentProps> = () => {
   const [query, setQuery] = useState('')
-  const { data: isLoggedIn } = useQuery(IS_LOGGED_IN, {
-    fetchPolicy: 'network-only',
-  })
-
-  const addExperience = useMutation(
-    isLoggedIn.isLoggedIn ? ADD_EXPERIENCE_API : ADD_EXPERIENCE_CLIENT
-  )
-
+  const addExperience = useMutation(ADD_EXPERIENCE_API)
   const { data, error, loading } = useQuery(GET_TAXONOMY_EXPERIENCES, {
     variables: {
       q: query,

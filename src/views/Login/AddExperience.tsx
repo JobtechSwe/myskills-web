@@ -3,7 +3,7 @@ import { useQuery, useMutation } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
 import { TaxonomyType } from '../../generated/myskills.d'
 import { RouteComponentProps } from '@reach/router'
-import ExperienceList from '../../components/ExperienceList/ExperienceList'
+import ExperienceList from '../../components/ExperienceList'
 import Grid from '../../components/Grid'
 import Input from '../../components/Input'
 

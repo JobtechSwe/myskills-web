@@ -1,6 +1,6 @@
 import React from 'react'
-import { TaxonomyDefaultResult } from '../../generated/myskills'
-import List from '../List'
+import { TaxonomyDefaultResult } from '../generated/myskills'
+import List from './List'
 
 type MutationVariables = {
   variables: {

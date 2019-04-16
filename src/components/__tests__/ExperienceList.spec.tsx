@@ -1,6 +1,6 @@
 import * as React from 'react'
 import ExperienceList from '../ExperienceList'
-import { render } from '../../../utils/test-utils'
+import { render } from '../../utils/test-utils'
 import { wait, fireEvent } from 'react-testing-library'
 
 describe('views/ExperienceList', () => {

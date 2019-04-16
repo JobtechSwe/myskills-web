@@ -13,6 +13,9 @@ const CreateProfile = React.lazy(() =>
 const AddExperience = React.lazy(() =>
   import(`./views/CreateProfile/AddExperience`)
 )
+const MatchCompetences = React.lazy(() =>
+  import('./views/CreateProfile/MatchCompetences')
+)
 
 const Layout = styled.main`
   background: dodgerblue;
@@ -30,6 +33,7 @@ function App() {
           <Login path="/login" />
           <CreateProfile path="/skapa-cv">
             <AddExperience path="/" />
+            <MatchCompetences path="/kompetenser" />
           </CreateProfile>
           <RestrictedRoute component={Profile} path="/profile" />
         </Router>

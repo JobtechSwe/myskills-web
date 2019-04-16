@@ -372,7 +372,7 @@ export type GetEducationsQuery = { __typename?: 'Query' } & {
 
 export type GetExperiencesQueryVariables = {}
 
-export type GetExperiencesQuery = { __typename?: 'Query' } & {
+export type GetExperiencesQuery = { __typename: 'Query' } & {
   experiences: Array<
     Maybe<
       { __typename?: 'Experience' } & Pick<

@@ -1,5 +1,5 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { Skill } from '../../generated/myskills'
+import { Skill, SkillInput } from '../../../generated/myskills'
 import gql from 'graphql-tag'
 
 export const GET_SKILLS_CLIENT = gql`

@@ -1,5 +1,5 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { Education } from '../../generated/myskills'
+import { Education } from '../../../generated/myskills'
 import gql from 'graphql-tag'
 
 export const GET_EDUCATIONS_CLIENT = gql`

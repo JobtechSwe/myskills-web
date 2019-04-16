@@ -1,5 +1,5 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { Language } from '../../generated/myskills'
+import { Language } from '../../../generated/myskills'
 import gql from 'graphql-tag'
 
 export const GET_LANGUAGES_CLIENT = gql`

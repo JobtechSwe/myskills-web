@@ -58,7 +58,7 @@ describe('views/ExperienceList', () => {
 
     expect(addExperience).toHaveBeenCalledWith({
       variables: {
-        experience: { name: 'Javascript', taxonomyId: 'abc', years: '' },
+        experience: { term: 'Javascript', taxonomyId: 'abc', years: '' },
       },
     })
   })

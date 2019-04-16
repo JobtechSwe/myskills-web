@@ -65,14 +65,13 @@ const authLink = setContext((root, { headers }) => {
   if ((Date.now() - tokenIssuedAt * 1000) / 1000 / 60 / 60 / 24 > 30) {
     removeCookie('token')
     redirect('/')
-
     return { headers }
   }
 
   return {
     headers: {
       ...headers,
-      token: token ? `${token}` : '',
+      Authorization: token ? `Bearer ${token}` : '',
     },
   }
 })
@@ -100,6 +99,7 @@ const terminatingLink = split(
     return kind === 'OperationDefinition' && operation === 'subscription'
   },
   wsLink,
+
   authLink.concat(httpLink)
 )
 

@@ -5,7 +5,7 @@ import List from '../List'
 type MutationVariables = {
   variables: {
     experience: {
-      name: string
+      term: string
       years: string
       taxonomyId: string
     }
@@ -32,7 +32,7 @@ const ExperienceList: React.FC<ExperienceListProps> = ({
                   addExperience({
                     variables: {
                       experience: {
-                        name: experience.term,
+                        term: experience.term,
                         years: '',
                         taxonomyId: experience.taxonomyId,
                       },

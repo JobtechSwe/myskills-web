@@ -1,5 +1,9 @@
 import { addLanguage, GET_LANGUAGES_CLIENT } from '../addLanguage'
-import { Language } from '../../../generated/myskills.d'
+
+enum Language {
+  Spanish = 'spanish',
+  Swedish = 'swedish',
+}
 
 let language: any
 let cache: any

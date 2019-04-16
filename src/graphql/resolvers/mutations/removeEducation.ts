@@ -1,5 +1,5 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { EducationInput } from '../../generated/myskills'
+import { EducationInput } from '../../../generated/myskills'
 import { GET_EDUCATIONS_CLIENT } from './addEducation'
 
 export const removeEducation = (

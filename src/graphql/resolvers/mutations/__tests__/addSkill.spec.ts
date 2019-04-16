@@ -1,8 +1,8 @@
 import { GET_SKILLS_CLIENT } from '../addSkill'
 import { addSkill } from '../addSkill'
-import { storageHelper } from '../../../utils/helpers'
+import { storageHelper } from '../../../../utils/helpers'
 
-jest.mock('../../../utils/helpers')
+jest.mock('../../../../utils/helpers')
 
 let skill: any
 let cache: any

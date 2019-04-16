@@ -1,5 +1,5 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { ExperienceInput } from '../../generated/myskills'
+import { ExperienceInput } from '../../../generated/myskills'
 import { GET_EXPERIENCES_CLIENT } from './addExperience'
 
 export const removeExperience = (

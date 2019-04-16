@@ -1,8 +1,8 @@
 import { addLanguage, GET_LANGUAGES_CLIENT } from '../addLanguage'
-import { Language } from '../../../generated/myskills.d'
-import { storageHelper } from '../../../utils/helpers'
+import { Language } from '../../../../generated/myskills.d'
+import { storageHelper } from '../../../../utils/helpers'
 
-jest.mock('../../../utils/helpers')
+jest.mock('../../../../utils/helpers')
 
 let language: any
 let cache: any

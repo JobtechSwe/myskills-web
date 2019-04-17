@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`views/AddEducation renders empty result 1`] = `
+<div>
+  <div
+    class="css-fhv5oa"
+  >
+    <select
+      data-testid="educationLevelSelect"
+    >
+      <option
+        value="EDUCATION_LEVEL_1"
+      >
+        EDUCATION_LEVEL_1
+      </option>
+      <option
+        value="EDUCATION_LEVEL_2"
+      >
+        EDUCATION_LEVEL_2
+      </option>
+      <option
+        value="EDUCATION_LEVEL_3"
+      >
+        EDUCATION_LEVEL_3
+      </option>
+    </select>
+    <input
+      class="css-176jltm"
+      font-family="default"
+      font-size="medium"
+      name="search"
+      placeholder="Utbildningar"
+    />
+  </div>
+</div>
+`;

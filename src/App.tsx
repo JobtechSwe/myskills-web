@@ -13,6 +13,9 @@ const CreateProfile = React.lazy(() =>
 const AddExperience = React.lazy(() =>
   import(`./views/CreateProfile/AddExperience`)
 )
+const AddEducation = React.lazy(() =>
+  import(`./views/CreateProfile/AddEducation`)
+)
 
 function App() {
   return (
@@ -25,6 +28,7 @@ function App() {
           <Login path="/login" />
           <CreateProfile path="/skapa-cv">
             <AddExperience path="/" />
+            <AddEducation path="/utbildning" />
           </CreateProfile>
           <RestrictedRoute component={Profile} path="/profile" />
         </Router>

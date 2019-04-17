@@ -1,7 +1,0 @@
-type Mutation {
-  addExperienceClient(experience: ExperienceInput!): Experience
-}
-
-type Query {
-  isLoggedIn: Boolean
-}

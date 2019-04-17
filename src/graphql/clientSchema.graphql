@@ -1,0 +1,16 @@
+input ClientOccupationInput {
+  id: String
+  name: String
+  type: OntologyType
+}
+
+extend type Query {
+  isLoggedIn: Boolean!
+  occupations: [OntologyConceptResponse!]!
+}
+
+extend type Mutation {
+  addOccupationClient(
+    occupation: ClientOccupationInput!
+  ): OntologyConceptResponse
+}

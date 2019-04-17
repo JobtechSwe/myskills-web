@@ -10,8 +10,8 @@ import Input from '../../components/Input'
 import { useDebounce } from '@iteam/hooks'
 import { Link } from '@reach/router'
 
-export const GET_ONTOLOGY_EXPERIENCES = gql`
-  query ontology($filter: String!, $type: OntologyType) {
+export const GET_ONTOLOGY_CONCEPTS = gql`
+  query ontologyConcepts($filter: String!, $type: OntologyType) {
     ontologyConcepts(params: { filter: $filter, type: $type }) {
       id
       name
@@ -21,8 +21,12 @@ export const GET_ONTOLOGY_EXPERIENCES = gql`
 `
 
 export const ADD_OCCUPATION_CLIENT = gql`
-  mutation addOccupationClient($occupation: ExperienceInput!) {
-    addOccupationClient(occupation: $occupation) @client
+  mutation addOccupationClient($occupation: ClientOccupationInput!) {
+    addOccupationClient(occupation: $occupation) @client {
+      name
+      type
+      id
+    }
   }
 `
 
@@ -30,7 +34,6 @@ export const ADD_OCCUPATION_API = gql`
   mutation addExperienceApi($experience: ExperienceInput!) {
     addExperience(experience: $experience) {
       term
-      __typename
       years
       taxonomyId
     }
@@ -58,7 +61,7 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
     isLoggedIn.isLoggedIn ? ADD_OCCUPATION_API : ADD_OCCUPATION_CLIENT
   )
 
-  const { data, error, loading } = useQuery(GET_ONTOLOGY_EXPERIENCES, {
+  const { data, error, loading } = useQuery(GET_ONTOLOGY_CONCEPTS, {
     variables: {
       filter: debouncedQuery,
       type: OntologyType.Occupation,

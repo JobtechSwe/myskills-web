@@ -4,7 +4,7 @@ import gql from 'graphql-tag'
 import { ClientOntologyConceptProps } from '../../types'
 
 export const GET_OCCUPATIONS_CLIENT = gql`
-  query getOccupations {
+  query occupations {
     occupations @client {
       name
       id
@@ -18,8 +18,6 @@ export const addOccupationClient = (
   { occupation }: { occupation: ClientOntologyConceptProps },
   { cache }: { cache: InMemoryCache }
 ): any => {
-  console.log(occupation)
-
   const { occupations }: any = cache.readQuery({
     query: GET_OCCUPATIONS_CLIENT,
   })
@@ -29,10 +27,7 @@ export const addOccupationClient = (
   ): ClientOntologyConceptProps[] =>
     occ.filter((o: ClientOntologyConceptProps) => o.id !== occupation.id)
 
-  const updatedOccupations = [
-    ...withoutDuplicates(occupations),
-    { ...occupation, __typename: 'Occupation' },
-  ]
+  const updatedOccupations = [...withoutDuplicates(occupations), occupation]
 
   cache.writeQuery({
     query: GET_OCCUPATIONS_CLIENT,
@@ -46,5 +41,5 @@ export const addOccupationClient = (
     data: updatedOccupations,
   })
 
-  return { ...occupation, __typename: 'Occupation' }
+  return occupation
 }

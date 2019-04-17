@@ -23,7 +23,7 @@ const ExperienceList: React.FC<ExperienceListProps> = ({
 }) => {
   return (
     <List>
-      {occupations.map((occupation: any, i: number) => {
+      {occupations.map((occupation: OntologyConceptResponse, i: number) => {
         return (
           <li key={i}>
             {addOccupation && (

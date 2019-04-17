@@ -1,13 +1,11 @@
 import React from 'react'
-import gql from 'graphql-tag'
-import { RouteComponentProps } from '@reach/router'
-import { useQuery } from 'react-apollo-hooks'
-import {
-  ClientExperienceProps,
-  ClientOntologyConceptProps,
-} from '../../graphql/types'
-import { GET_OCCUPATIONS_CLIENT } from '../../graphql/resolvers/mutations/addOccupation'
 import Loader from '../../components/Loader'
+import gql from 'graphql-tag'
+
+import { useQuery } from 'react-apollo-hooks'
+import { RouteComponentProps } from '@reach/router'
+import { GET_OCCUPATIONS_CLIENT } from '../../graphql/resolvers/mutations/addOccupation'
+import { ClientOntologyConceptProps } from '../../graphql/types'
 import {
   OntologyRelatedInput,
   OntologyRelatedResponse,
@@ -15,7 +13,7 @@ import {
 } from '../../generated/myskills.d'
 
 const GET_RELATED_SKILLS = gql`
-  query ontology($concepts: [String!], $limit: Int) {
+  query ontologyRelated($concepts: [String!], $limit: Int) {
     ontologyRelated(
       params: { concepts: $concepts, type: SKILL, limit: $limit }
     ) {
@@ -45,7 +43,7 @@ const MatchCompetences: React.FC<RouteComponentProps> = () => {
       type: OntologyType.Skill,
       limit: 10,
     },
-    skip: !occupations,
+    skip: !occupations.length,
   })
 
   return (

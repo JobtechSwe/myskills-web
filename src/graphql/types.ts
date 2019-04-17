@@ -5,7 +5,6 @@ import {
   Language,
   OntologyConceptResponse,
 } from '../generated/myskills'
-
 export interface ClientExperienceProps extends Experience {
   __typename: string
 }

@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/ListItem renders a ListItem 1`] = `
+<div>
+  <li
+    class="css-6e1t7r"
+    color="black"
+  />
+</div>
+`;

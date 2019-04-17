@@ -1,5 +1,6 @@
 interface Color {
-  lassekongo: 'dodgerblue'
+  black: 'black'
+  blue: 'dodgerblue'
   white: 'white'
   green: 'green'
 }
@@ -9,7 +10,8 @@ interface Typography {
 }
 
 const colors: Color = {
-  lassekongo: 'dodgerblue',
+  black: 'black',
+  blue: 'dodgerblue',
   white: 'white',
   green: 'green',
 }
@@ -17,7 +19,7 @@ const colors: Color = {
 const buttons = {
   primary: {
     color: colors.white,
-    backgroundColor: colors.lassekongo,
+    backgroundColor: colors.black,
   },
   secondary: {
     color: colors.white,

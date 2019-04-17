@@ -3,7 +3,7 @@
 exports[`components/Button renders an Button 1`] = `
 <div>
   <button
-    class="css-cfe6s2"
+    class="css-1azy7mx"
     font-family="default"
     font-size="small,medium"
   >

@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`views/ChooseProfession renders empty result 1`] = `
+<div>
+  <div
+    class="css-owzlzk"
+  >
+    <h3
+      class="css-1h019s7"
+      color="black"
+      font-family="default"
+      font-size="small"
+    >
+      YRKE
+    </h3>
+    <h1
+      class="css-tkwwg6"
+      color="black"
+      font-family="default"
+      font-size="small,medium,large"
+    >
+      Vad vill du jobba med?
+    </h1>
+    <input
+      class="css-1k0e6iw"
+      name="search"
+      placeholder="Yrkesroll eller yrkesområde"
+    />
+    <button
+      class="css-r327x7"
+      font-family="default"
+      font-size="small,medium"
+    >
+      Nästa
+    </button>
+  </div>
+</div>
+`;

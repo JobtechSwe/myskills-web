@@ -1,11 +1,11 @@
 import * as React from 'react'
-import AddExperience, { GET_TAXONOMY_EXPERIENCES } from '../AddOccupation'
+import ChooseProfession, { GET_TAXONOMY_EXPERIENCES } from '../ChooseProfession'
 import { render } from '../../../utils/test-utils'
 import { wait, fireEvent } from 'react-testing-library'
 
-describe('views/AddExperience', () => {
+describe('views/ChooseProfession', () => {
   it('renders empty result', async () => {
-    const { container } = render(<AddExperience />)
+    const { container } = render(<ChooseProfession />)
 
     await wait()
 
@@ -42,11 +42,11 @@ describe('views/AddExperience', () => {
     ]
 
     const { getByPlaceholderText, getByText } = render(
-      <AddExperience />,
+      <ChooseProfession />,
       withResultsMock
     )
 
-    fireEvent.change(getByPlaceholderText('Sök yrken'), {
+    fireEvent.change(getByPlaceholderText('Yrkesroll eller yrkesområde'), {
       target: { value: 'Systemutvecklare' },
     })
 
@@ -83,11 +83,11 @@ describe('views/AddExperience', () => {
     ]
 
     const { getByPlaceholderText, getByText } = render(
-      <AddExperience />,
+      <ChooseProfession />,
       withResultsMock
     )
 
-    fireEvent.change(getByPlaceholderText('Sök yrken'), {
+    fireEvent.change(getByPlaceholderText('Yrkesroll eller yrkesområde'), {
       target: { value: 'Systemutvecklare' },
     })
 

@@ -48,7 +48,7 @@ const Consent: React.FC<IConsentProps> = ({ consentId, url }) => {
       {renderConsentStatus()}
       <QR consentId={url} />
       <Paragraph>{url}</Paragraph>
-      <OpenInApp url={url} />{' '}
+      <OpenInApp url={url} />
     </>
   )
 }

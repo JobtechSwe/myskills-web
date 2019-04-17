@@ -2,6 +2,7 @@ import React from 'react'
 import { Router } from '@reach/router'
 import RestrictedRoute from './views/restricted'
 import Header from './components/Header'
+import { Paragraph } from './components/Typography'
 import styled from '@emotion/styled'
 const Register = React.lazy(() => import(`./views/Register/Register`))
 const Login = React.lazy(() => import(`./views/Login/Login`))
@@ -21,7 +22,7 @@ function App() {
   return (
     <>
       <Header />
-      <React.Suspense fallback={<div>Loading...</div>}>
+      <React.Suspense fallback={<Paragraph>Loading...</Paragraph>}>
         <Router>
           <Start path="/" />
           <Register path="/register" />

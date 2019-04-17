@@ -4,6 +4,7 @@ import gql from 'graphql-tag'
 import { TaxonomyType } from '../../generated/myskills.d'
 import { RouteComponentProps } from '@reach/router'
 import ExperienceList from '../../components/ExperienceList/ExperienceList'
+import { Paragraph } from '../../components/Typography'
 import Grid from '../../components/Grid'
 import Input from '../../components/Input'
 
@@ -76,8 +77,8 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
         placeholder="Sök yrken"
       />
 
-      {loading && <div>Loading...</div>}
-      {error && <div>Some error...</div>}
+      {loading && <Paragraph>Loading...</Paragraph>}
+      {error && <Paragraph>Some error...</Paragraph>}
       {data && data.taxonomy && (
         <ExperienceList
           addExperience={addExperience}

@@ -3,8 +3,8 @@
 exports[`views/ExperienceList renders empty list 1`] = `
 <div>
   <ul
-    class="css-908tws"
-    color="lassekongo"
+    class="css-1qkqrd8"
+    color="blue"
   />
 </div>
 `;
@@ -12,18 +12,20 @@ exports[`views/ExperienceList renders empty list 1`] = `
 exports[`views/ExperienceList renders experineces list 1`] = `
 <div>
   <ul
-    class="css-908tws"
-    color="lassekongo"
+    class="css-1qkqrd8"
+    color="blue"
   >
-    <li>
-      <p>
-        Javascript
-      </p>
+    <li
+      class="css-6e1t7r"
+      color="black"
+    >
+      Javascript
     </li>
-    <li>
-      <p>
-        Java
-      </p>
+    <li
+      class="css-6e1t7r"
+      color="black"
+    >
+      Java
     </li>
   </ul>
 </div>
@@ -32,18 +34,20 @@ exports[`views/ExperienceList renders experineces list 1`] = `
 exports[`views/ExperienceList renders experineces list with button 1`] = `
 <div>
   <ul
-    class="css-908tws"
-    color="lassekongo"
+    class="css-1qkqrd8"
+    color="blue"
   >
-    <li>
-      <button>
-        Javascript
-      </button>
+    <li
+      class="css-6e1t7r"
+      color="black"
+    >
+      Javascript
     </li>
-    <li>
-      <button>
-        Java
-      </button>
+    <li
+      class="css-6e1t7r"
+      color="black"
+    >
+      Java
     </li>
   </ul>
 </div>

@@ -34,20 +34,17 @@ export const GET_TAXONOMY_EXPERIENCES = gql`
   }
 `
 
-export const ADD_EXPERIENCE_API = gql`
-  mutation addExperienceApi($experience: ExperienceInput!) {
-    addExperience(experience: $experience) {
+export const ADD_EXPERIENCE_CLIENT = gql`
+  mutation addExperienceClient($experience: ExperienceInput!) {
+    addExperienceClient(experience: $experience) @client {
       term
-      __typename
-      years
-      taxonomyId
     }
   }
 `
 
 const ChooseProfession: React.FC<RouteComponentProps> = () => {
   const [query, setQuery] = useState('')
-  const addExperience = useMutation(ADD_EXPERIENCE_API)
+  const addExperience = useMutation(ADD_EXPERIENCE_CLIENT)
   const { data, error, loading } = useQuery(GET_TAXONOMY_EXPERIENCES, {
     variables: {
       q: query,

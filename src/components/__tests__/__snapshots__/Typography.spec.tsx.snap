@@ -16,7 +16,7 @@ exports[`components/Typography renders a Heading with props 1`] = `
 exports[`components/Typography renders a Paragraph 1`] = `
 <div>
   <p
-    class="css-1y6m6ir"
+    class="css-sxvx2"
     font-family="default"
     font-size="small"
   >
@@ -28,7 +28,7 @@ exports[`components/Typography renders a Paragraph 1`] = `
 exports[`components/Typography renders a Paragraph with props 1`] = `
 <div>
   <p
-    class="css-1k2ko3a"
+    class="css-1f7gn4q"
     color="red"
     font-family="default"
     font-size="small"

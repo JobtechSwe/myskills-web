@@ -14,14 +14,9 @@ const AddExperience = React.lazy(() =>
   import(`./views/CreateProfile/AddExperience`)
 )
 
-const Layout = styled.main`
-  background: dodgerblue;
-  min-height: 100vh;
-`
-
 function App() {
   return (
-    <Layout>
+    <>
       <Header />
       <React.Suspense fallback={<div>Loading...</div>}>
         <Router>
@@ -34,7 +29,7 @@ function App() {
           <RestrictedRoute component={Profile} path="/profile" />
         </Router>
       </React.Suspense>
-    </Layout>
+    </>
   )
 }
 

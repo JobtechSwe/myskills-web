@@ -5,6 +5,7 @@ type ListProps = React.HTMLProps<HTMLUListElement> & ColorProps & SpaceProps
 
 const List = styled.ul<ListProps>`
   list-style: none;
+
   ${color}
   ${space}
 `

@@ -2,6 +2,8 @@ import styled from '@emotion/styled'
 import {
   border,
   BorderProps,
+  borderRadius,
+  BorderRadiusProps,
   buttonStyle,
   ButtonStyleProps,
   color,
@@ -20,6 +22,7 @@ type VariantProps = {
 
 type ButtonProps = React.HTMLProps<HTMLButtonElement> &
   ButtonStyleProps &
+  BorderRadiusProps &
   BorderProps &
   FontFamilyProps &
   FontSizeProps &
@@ -34,6 +37,7 @@ const Button = styled.button<ButtonProps>`
 
   ${fontFamily}
   ${border}
+  ${borderRadius}
   ${buttonStyle}
   ${color}
   ${fontSize}
@@ -42,9 +46,10 @@ const Button = styled.button<ButtonProps>`
 
 Button.defaultProps = {
   border: 'none',
+  borderRadius: '5px',
   fontFamily: 'default',
-  fontSize: ['small', 'medium'],
-  p: '10px 20px',
+  fontSize: ['medium'],
+  p: '12px 36px',
   variant: 'primary',
 }
 

@@ -70,7 +70,9 @@ const AddExperience: React.FC<RouteComponentProps> = () => {
     <Grid>
       <Input
         name="search"
-        onChange={({ target }) => setQuery(target.value)}
+        onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
+          setQuery(target.value)
+        }
         placeholder="Sök yrken"
       />
 

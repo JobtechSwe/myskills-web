@@ -36,7 +36,7 @@ const CreateProfile: React.FC<RouteComponentProps> = ({ children }) => {
   return (
     <Grid justifyContent="center">
       {children}
-      <Button mt={32} onClick={() => handleSave()} variant="secondary">
+      <Button mt={32} onClick={() => handleSave()} variant="primary">
         Spara i MyData
       </Button>
     </Grid>

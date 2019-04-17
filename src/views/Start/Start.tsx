@@ -1,20 +1,23 @@
 import React from 'react'
 import Flex from '../../components/Flex'
-import { RouteComponentProps, Link } from '@reach/router'
+import { RouteComponentProps } from '@reach/router'
 import Button from '../../components/Button'
 import ButtonLink from '../../components/ButtonLink'
+import { InternalLink } from '../../components/Link'
 
 const Start: React.FC<RouteComponentProps> = () => {
   return (
     <Flex alignItems="center" flexDirection="column" justifyContent="center">
       <Flex p={32}>
-        <Link to="/skapa-cv">
-          <Button variant="secondary">Skapa Cv</Button>
-        </Link>
+        <InternalLink to="/skapa-cv">
+          <Button variant="primary">Skapa Cv</Button>
+        </InternalLink>
       </Flex>
       <Flex alignItems="center" flexDirection="column">
-        <Link to="/login">Login</Link>
-        <Link to="/register">Register</Link>
+        <InternalLink mb={12} to="/login">
+          Login
+        </InternalLink>
+        <InternalLink to="/register">Register</InternalLink>
       </Flex>
     </Flex>
   )

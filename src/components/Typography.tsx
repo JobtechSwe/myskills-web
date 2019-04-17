@@ -7,6 +7,8 @@ import {
   FontFamilyProps,
   fontSize,
   FontSizeProps,
+  fontWeight,
+  FontWeightProps,
   space,
   SpaceProps,
 } from 'styled-system'
@@ -20,10 +22,11 @@ type TypographyProps = ColorProps &
 type HeadingProps = React.HTMLProps<HTMLHeadingElement> & TypographyProps
 type ParagraphProps = React.HTMLProps<HTMLParagraphElement> & TypographyProps
 
-export const H1 = styled.h1<HeadingProps>`
+export const H1 = styled.h1<HeadingProps & FontWeightProps>`
   ${color}
   ${fontFamily}
   ${fontSize}
+  ${fontWeight}
   ${space}
 `
 
@@ -49,7 +52,7 @@ export const Paragraph = styled.p<ParagraphProps>`
 `
 
 const common: HeadingProps = {
-  color: 'white',
+  color: 'lassekongo',
   fontFamily: 'default',
   mt: 'none',
 }
@@ -57,6 +60,7 @@ const common: HeadingProps = {
 H1.defaultProps = {
   ...common,
   fontSize: ['small', 'medium', 'large'],
+  fontWeight: 600,
 }
 
 H2.defaultProps = {

@@ -3,9 +3,9 @@
 exports[`components/Button renders an Button 1`] = `
 <div>
   <button
-    class="css-cfe6s2"
+    class="css-wrr1m5"
     font-family="default"
-    font-size="small,medium"
+    font-size="medium"
   >
     Click me!
   </button>
@@ -15,9 +15,9 @@ exports[`components/Button renders an Button 1`] = `
 exports[`components/Button renders an Button with variant prop 1`] = `
 <div>
   <button
-    class="css-szraxo"
+    class="css-1pgtgfn"
     font-family="default"
-    font-size="small,medium"
+    font-size="medium"
   >
     Click me!
   </button>

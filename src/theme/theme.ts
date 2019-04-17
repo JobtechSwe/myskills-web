@@ -20,28 +20,26 @@ const buttons = {
     backgroundColor: colors.lassekongo,
   },
   secondary: {
-    color: colors.white,
-    backgroundColor: colors.green,
+    color: colors.lassekongo,
+    backgroundColor: colors.white,
   },
 }
-
-const sizes = [0, 16, 24, 32]
 
 const typography: Typography = {
   default: 'sans-serif',
 }
 
 const fontSizes = {
-  small: sizes[1],
-  medium: sizes[2],
-  large: sizes[3],
+  small: 14,
+  medium: 16,
+  large: 26,
 }
 
 const space = {
-  none: sizes[0],
-  small: sizes[1],
-  medium: sizes[2],
-  large: sizes[3],
+  none: 0,
+  small: 16,
+  medium: 24,
+  large: 32,
 }
 
 const theme = {

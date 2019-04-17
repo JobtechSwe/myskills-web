@@ -6,10 +6,11 @@ exports[`components/Header renders Header component 1`] = `
     class="css-ca74jw"
   >
     <h1
-      class="css-1d2g964"
-      color="white"
+      class="css-r5sfmc"
+      color="lassekongo"
       font-family="default"
       font-size="small,medium,large"
+      font-weight="600"
     >
       MySkills
     </h1>

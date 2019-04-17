@@ -104,17 +104,21 @@ const terminatingLink = split(
 )
 
 export type LocalStateProps = {
+  educations: Education[]
   experiences: Experience[]
   language: Language[]
   skills: Skill[]
-  educations: Education[]
+  traits: string[]
+  whoAmI: string
 }
 
 const initialState: LocalStateProps = {
+  educations: [],
   experiences: [],
   language: [],
   skills: [],
-  educations: [],
+  traits: [],
+  whoAmI: '',
 }
 
 const apolloClient = new ApolloClient({

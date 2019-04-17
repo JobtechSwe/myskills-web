@@ -1,7 +1,6 @@
 import React from 'react'
 import { Router } from '@reach/router'
 import RestrictedRoute from './views/restricted'
-import Header from './components/Header'
 import styled from '@emotion/styled'
 const Register = React.lazy(() => import(`./views/Register/Register`))
 const Login = React.lazy(() => import(`./views/Login/Login`))
@@ -14,6 +13,10 @@ const AddExperience = React.lazy(() =>
   import(`./views/CreateProfile/AddExperience`)
 )
 
+const WhoAmI = React.lazy(() => import(`./views/CreateProfile/WhoAmI`))
+
+const AddTraits = React.lazy(() => import(`./views/CreateProfile/AddTraits`))
+
 const Layout = styled.main`
   background: dodgerblue;
   min-height: 100vh;
@@ -22,7 +25,6 @@ const Layout = styled.main`
 function App() {
   return (
     <Layout>
-      <Header />
       <React.Suspense fallback={<div>Loading...</div>}>
         <Router>
           <Start path="/" />
@@ -30,6 +32,8 @@ function App() {
           <Login path="/login" />
           <CreateProfile path="/skapa-cv">
             <AddExperience path="/" />
+            <WhoAmI path="/beskriv-dig" />
+            <AddTraits path="/egenskaper" />
           </CreateProfile>
           <RestrictedRoute component={Profile} path="/profile" />
         </Router>

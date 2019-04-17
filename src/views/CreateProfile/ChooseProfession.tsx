@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import { useQuery, useMutation } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
-import { TaxonomyType } from '../../generated/myskills.d'
+import { OntologyType } from '../../generated/myskills.d'
 import { RouteComponentProps } from '@reach/router'
-import ExperienceList from '../../components/ExperienceList'
+import OccupationsList from '../../components/OccupationsList/OccupationsList'
 import Flex from '../../components/Flex'
 import Input from '../../components/Input'
 import { H1, H3 } from '../../components/Typography'
 import Button from '../../components/Button'
 import styled from '@emotion/styled'
+import { useDebounce } from '@iteam/hooks'
+import { Link } from '@reach/router'
 
 const SearchInput = styled(Input)`
   width: 100%;
@@ -20,37 +22,63 @@ const NextButton = styled(Button)`
   right: 20px;
 `
 
-export const GET_TAXONOMY_EXPERIENCES = gql`
-  query taxonomy($q: String!, $type: TaxonomyType) {
-    taxonomy(params: { q: $q, type: $type }) {
-      result {
-        term
-        taxonomyId
-        ... on TaxonomyDefaultResult {
-          parentId
-        }
-      }
+export const GET_ONTOLOGY_CONCEPTS = gql`
+  query ontologyConcepts($filter: String!, $type: OntologyType) {
+    ontologyConcepts(params: { filter: $filter, type: $type }) {
+      id
+      name
+      type
     }
   }
 `
 
-export const ADD_EXPERIENCE_CLIENT = gql`
-  mutation addExperienceClient($experience: ExperienceInput!) {
-    addExperienceClient(experience: $experience) @client {
-      term
+export const ADD_OCCUPATION_CLIENT = gql`
+  mutation addOccupationClient($occupation: ClientOccupationInput!) {
+    addOccupationClient(occupation: $occupation) @client {
+      name
+      type
+      id
     }
+  }
+`
+
+export const ADD_OCCUPATION_API = gql`
+  mutation addExperienceApi($experience: ExperienceInput!) {
+    addExperience(experience: $experience) {
+      term
+      years
+      taxonomyId
+    }
+  }
+`
+
+/*
+  (always: true) is currently unreliable but Apollo reports bug is fixed in 2.6.0
+  https://github.com/apollographql/apollo-client/issues/4636#issuecomment-480307041
+*/
+export const IS_LOGGED_IN = gql`
+  query isLoggedIn {
+    isLoggedIn @client(always: true)
   }
 `
 
 const ChooseProfession: React.FC<RouteComponentProps> = () => {
   const [query, setQuery] = useState('')
-  const addExperience = useMutation(ADD_EXPERIENCE_CLIENT)
-  const { data, error, loading } = useQuery(GET_TAXONOMY_EXPERIENCES, {
+  const debouncedQuery = useDebounce(query, 200)
+  const { data: isLoggedIn } = useQuery(IS_LOGGED_IN, {
+    fetchPolicy: 'network-only',
+  })
+
+  const addOccupation = useMutation(
+    isLoggedIn.isLoggedIn ? ADD_OCCUPATION_API : ADD_OCCUPATION_CLIENT
+  )
+
+  const { data, error, loading } = useQuery(GET_ONTOLOGY_CONCEPTS, {
     variables: {
-      q: query,
-      type: TaxonomyType.OccupationName,
+      filter: debouncedQuery,
+      type: OntologyType.Occupation,
     },
-    skip: !query,
+    skip: !debouncedQuery,
   })
 
   return (
@@ -64,13 +92,15 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
       />
       {loading && <div>Loading...</div>}
       {error && <div>Some error...</div>}
-      {data && data.taxonomy && (
-        <ExperienceList
-          addExperience={addExperience}
-          list={data.taxonomy.result}
+      {data && data.ontologyConcepts && (
+        <OccupationsList
+          addOccupation={addOccupation}
+          occupations={data.ontologyConcepts}
         />
       )}
-      <NextButton>Nästa</NextButton>
+      <Link to="/skapa-cv/kompetenser">
+        <NextButton>Nästa</NextButton>
+      </Link>
     </Flex>
   )
 }

@@ -1,6 +1,7 @@
 import React from 'react'
-import List from '../List'
 import { OntologyType, OntologyConceptResponse } from '../../generated/myskills'
+import List from '../List'
+import ListItem from '../ListItem'
 
 type MutationVariables = {
   variables: {
@@ -24,23 +25,24 @@ const ExperienceList: React.FC<ExperienceListProps> = ({
   return (
     <List>
       {occupations.map((occupation: OntologyConceptResponse, i: number) => {
-        return (
-          <li key={i}>
-            {addOccupation && (
-              <button
-                onClick={() =>
-                  addOccupation({
-                    variables: {
-                      occupation,
-                    },
-                  })
-                }
-              >
-                {occupation.name}
-              </button>
-            )}
-          </li>
-        )
+        if (addOccupation) {
+          return (
+            <ListItem
+              key={i}
+              onClick={() =>
+                addOccupation({
+                  variables: {
+                    occupation,
+                  },
+                })
+              }
+            >
+              {occupation.name}
+            </ListItem>
+          )
+        }
+
+        return <ListItem key={i}>{occupation.name}</ListItem>
       })}
     </List>
   )

@@ -2,8 +2,8 @@ import Cookies from 'js-cookie'
 import { LocalStateProps } from '../graphql/client'
 import {
   EducationInput,
-  ExperienceInput,
   SkillInput,
+  OntologyConceptResponse,
 } from '../generated/myskills'
 import { ClientOntologyConceptProps } from '../graphql/types'
 
@@ -32,7 +32,7 @@ interface Educations extends StorageEntryProps {
 
 interface Occupations extends StorageEntryProps {
   type: 'occupations'
-  data: ClientOntologyConceptProps[]
+  data: OntologyConceptResponse[]
 }
 interface Skills extends StorageEntryProps {
   type: 'skills'

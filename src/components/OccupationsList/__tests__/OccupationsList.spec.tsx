@@ -1,28 +1,28 @@
 import * as React from 'react'
-import ExperienceList from '../OccupationsList'
+import OccupationsList from '../OccupationsList'
 import { render } from '../../../utils/test-utils'
 import { wait, fireEvent } from 'react-testing-library'
 
-describe('views/ExperienceList', () => {
-  let experiences: any
-  let addExperience: any
+describe('views/OccupationsList', () => {
+  let occupations: any
+  let addOccupation: any
 
   beforeEach(() => {
-    addExperience = jest.fn()
-    experiences = [
+    addOccupation = jest.fn()
+    occupations = [
       {
-        term: 'Javascript',
-        taxonomyId: 'abc',
+        name: 'Javascript',
+        id: 'abc',
       },
       {
-        term: 'Java',
-        taxonomyId: 'cda',
+        name: 'Java',
+        id: 'cda',
       },
     ]
   })
 
   it('renders empty list', async () => {
-    const { container } = render(<ExperienceList list={[]} />)
+    const { container } = render(<OccupationsList occupations={[]} />)
 
     await wait()
 
@@ -30,7 +30,7 @@ describe('views/ExperienceList', () => {
   })
 
   it('renders experineces list', async () => {
-    const { container } = render(<ExperienceList list={experiences} />)
+    const { container } = render(<OccupationsList occupations={occupations} />)
 
     await wait()
 
@@ -39,7 +39,10 @@ describe('views/ExperienceList', () => {
 
   it('renders experineces list with button', async () => {
     const { container } = render(
-      <ExperienceList addExperience={addExperience} list={experiences} />
+      <OccupationsList
+        addExperience={addOccupation}
+        occupations={occupations}
+      />
     )
 
     await wait()
@@ -49,16 +52,19 @@ describe('views/ExperienceList', () => {
 
   it('should render with taxonomy query result', async () => {
     const { getByText } = render(
-      <ExperienceList addExperience={addExperience} list={experiences} />
+      <OccupationsList
+        addOccupation={addOccupation}
+        occupations={occupations}
+      />
     )
 
     fireEvent.click(getByText(/java/i))
 
     await wait()
 
-    expect(addExperience).toHaveBeenCalledWith({
+    expect(addOccupation).toHaveBeenCalledWith({
       variables: {
-        experience: { term: 'Javascript', taxonomyId: 'abc', years: '' },
+        occupation: { name: 'Javascript', id: 'abc' },
       },
     })
   })

@@ -13,12 +13,12 @@ type MutationVariables = {
   }
 }
 
-interface ExperienceListProps {
+interface OccupationsListProps {
   occupations: OntologyConceptResponse[]
   addOccupation?: (variables: MutationVariables) => void
 }
 
-const ExperienceList: React.FC<ExperienceListProps> = ({
+const ExperienceList: React.FC<OccupationsList> = ({
   occupations,
   addOccupation,
 }) => {

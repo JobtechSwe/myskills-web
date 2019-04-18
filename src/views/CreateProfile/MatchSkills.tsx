@@ -9,7 +9,7 @@ import SkillsList from '../../components/SkillsList'
 import Grid from '../../components/Grid'
 import { OntologyType } from '../../generated/myskills.d'
 
-const GET_RELATED_SKILLS = gql`
+export const GET_RELATED_SKILLS = gql`
   query ontologyRelated(
     $concepts: [String!]
     $limit: Int
@@ -47,10 +47,12 @@ const MatchCompetences: React.FC<WithApolloClient<RouteComponentProps>> = ({
     data: { occupations = [] },
   }: any = useQuery(GET_OCCUPATIONS_CLIENT)
 
-  const [stateskills, setSkills]: any = useState(getName(occupations))
+  const [relatedSkills, setRelatedSkills]: any = useState([])
+  const [loading, setLoading]: any = useState(false)
 
   const getRelatedSkills = async (skills: string[]) => {
-    const { data, loading, error } = await client.query({
+    setLoading(true)
+    const { data, _, error } = await client.query({
       query: GET_RELATED_SKILLS,
       variables: {
         concepts: skills,
@@ -58,25 +60,29 @@ const MatchCompetences: React.FC<WithApolloClient<RouteComponentProps>> = ({
         type: OntologyType.Skill,
       },
     })
-    setSkills([
-      ...new Set([...stateskills, ...getName(data.ontologyRelated.relations)]),
+
+    setRelatedSkills([
+      ...new Set([
+        ...relatedSkills,
+        ...getName(data.ontologyRelated.relations),
+      ]),
     ])
+    setLoading(false)
   }
 
   useEffect(() => {
-    getRelatedSkills(stateskills)
-  }, [])
+    getRelatedSkills(getName(occupations))
+  }, [occupations])
 
   return (
     <Grid
       gridTemplateColumns="repeat(auto-fit, minmax(200px, 1fr))"
       style={{ width: '100vw' }}
     >
-      {stateskills.length > 0 ? (
-        <SkillsList getSkills={getRelatedSkills} skills={stateskills} />
-      ) : (
-        'Inga kompetenser hittades...'
+      {relatedSkills.length > 0 && (
+        <SkillsList getSkills={getRelatedSkills} skills={relatedSkills} />
       )}
+      {loading && <Loader />}
     </Grid>
   )
 }

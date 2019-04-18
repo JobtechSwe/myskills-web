@@ -26,13 +26,17 @@ exports[`views/ChooseProfession renders empty result 1`] = `
       name="search"
       placeholder="Yrkesroll eller yrkesområde"
     />
-    <button
-      class="css-r327x7"
-      font-family="default"
-      font-size="small,medium"
+    <a
+      href="/skapa-cv/kompetenser"
     >
-      Nästa
-    </button>
+      <button
+        class="css-r327x7"
+        font-family="default"
+        font-size="small,medium"
+      >
+        Nästa
+      </button>
+    </a>
   </div>
 </div>
 `;

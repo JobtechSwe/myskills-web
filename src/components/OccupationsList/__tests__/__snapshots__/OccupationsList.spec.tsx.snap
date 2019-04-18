@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`views/OccupationsList renders empty list 1`] = `
+<div>
+  <ul
+    class="css-1qkqrd8"
+    color="blue"
+  />
+</div>
+`;
+
+exports[`views/OccupationsList renders experineces list 1`] = `
+<div>
+  <ul
+    class="css-1qkqrd8"
+    color="blue"
+  >
+    <li
+      class="css-6e1t7r"
+      color="black"
+    >
+      Javascript
+    </li>
+    <li
+      class="css-6e1t7r"
+      color="black"
+    >
+      Java
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`views/OccupationsList renders experineces list with button 1`] = `
+<div>
+  <ul
+    class="css-1qkqrd8"
+    color="blue"
+  >
+    <li
+      class="css-6e1t7r"
+      color="black"
+    >
+      Javascript
+    </li>
+    <li
+      class="css-6e1t7r"
+      color="black"
+    >
+      Java
+    </li>
+  </ul>
+</div>
+`;

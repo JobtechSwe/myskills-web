@@ -2,6 +2,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { storageHelper } from '../../../utils/helpers'
 import gql from 'graphql-tag'
 import { ClientOntologyConceptProps } from '../../types'
+import { OntologyConceptResponse } from '../../../generated/myskills'
 
 export const GET_OCCUPATIONS_CLIENT = gql`
   query occupations {
@@ -15,7 +16,7 @@ export const GET_OCCUPATIONS_CLIENT = gql`
 
 export const addOccupationClient = (
   _: any,
-  { occupation }: { occupation: ClientOntologyConceptProps },
+  { occupation }: { occupation: OntologyConceptResponse },
   { cache }: { cache: InMemoryCache }
 ): any => {
   const { occupations }: any = cache.readQuery({
@@ -23,9 +24,9 @@ export const addOccupationClient = (
   })
 
   const withoutDuplicates = (
-    occ: ClientOntologyConceptProps[]
-  ): ClientOntologyConceptProps[] =>
-    occ.filter((o: ClientOntologyConceptProps) => o.id !== occupation.id)
+    occ: OntologyConceptResponse[]
+  ): OntologyConceptResponse[] =>
+    occ.filter((o: OntologyConceptResponse) => o.id !== occupation.id)
 
   const updatedOccupations = [...withoutDuplicates(occupations), occupation]
 

@@ -7,8 +7,9 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { HttpLink } from 'apollo-link-http'
 import { getMainDefinition } from 'apollo-utilities'
 import { getCookie, removeCookie, redirect } from '../utils/helpers'
-import { Experience } from '../types'
+import { Experience, Skill, Education, Language } from '../generated/myskills'
 import resolvers from './resolvers'
+import { storageHelper } from '../utils/helpers'
 
 const httpLink = new HttpLink({
   uri: process.env.REACT_APP_GRAPHQL_URI,
@@ -64,14 +65,13 @@ const authLink = setContext((root, { headers }) => {
   if ((Date.now() - tokenIssuedAt * 1000) / 1000 / 60 / 60 / 24 > 30) {
     removeCookie('token')
     redirect('/')
-
     return { headers }
   }
 
   return {
     headers: {
       ...headers,
-      token: token ? `${token}` : '',
+      Authorization: token ? `Bearer ${token}` : '',
     },
   }
 })
@@ -88,7 +88,7 @@ export const dataIdFromObject = (r: any) => {
   return null
 }
 
-const cache = new InMemoryCache({
+export const cache = new InMemoryCache({
   dataIdFromObject,
 })
 
@@ -99,8 +99,23 @@ const terminatingLink = split(
     return kind === 'OperationDefinition' && operation === 'subscription'
   },
   wsLink,
+
   authLink.concat(httpLink)
 )
+
+export type LocalStateProps = {
+  experiences: Experience[]
+  language: Language[]
+  skills: Skill[]
+  educations: Education[]
+}
+
+const initialState: LocalStateProps = {
+  experiences: [],
+  language: [],
+  skills: [],
+  educations: [],
+}
 
 const apolloClient = new ApolloClient({
   link: ApolloLink.from([onError(handleErrors), terminatingLink]),
@@ -108,17 +123,9 @@ const apolloClient = new ApolloClient({
   resolvers,
 })
 
-type InitialStateProps = {
-  experiences?: Experience[]
-}
-
-const initialState: InitialStateProps = {
-  experiences: [],
-}
-
 cache.writeData({
   data: {
-    ...initialState,
+    ...storageHelper.load(initialState),
   },
 })
 

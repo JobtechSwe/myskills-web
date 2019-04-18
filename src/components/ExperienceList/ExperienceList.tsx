@@ -1,37 +1,20 @@
 import React from 'react'
-import styled from '@emotion/styled'
-import { Taxonomy } from '../../generated/myskills'
+import { TaxonomyDefaultResult } from '../../generated/myskills'
+import List from '../List'
 
-type MutaionVariables = {
+type MutationVariables = {
   variables: {
     experience: {
-      name: string
+      term: string
       years: string
       taxonomyId: string
     }
   }
 }
 
-const List = styled.ul`
-  color: white;
-  font-family: 'Arial';
-  padding: 0;
-  font-weight: bold;
-  text-align: center;
-  li {
-    margin-bottom: 5px;
-    list-style: none;
-    transition: all 100ms ease;
-
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
-`
-
 interface ExperienceListProps {
-  list: Taxonomy.Result[]
-  addExperience?: (variables: MutaionVariables) => void
+  list: TaxonomyDefaultResult[]
+  addExperience?: (variables: MutationVariables) => void
 }
 
 const ExperienceList: React.FC<ExperienceListProps> = ({
@@ -40,7 +23,7 @@ const ExperienceList: React.FC<ExperienceListProps> = ({
 }) => {
   return (
     <List>
-      {list.map((experience: Taxonomy.Result, i: number) => {
+      {list.map((experience: TaxonomyDefaultResult, i: number) => {
         return (
           <li key={i}>
             {addExperience ? (
@@ -49,7 +32,7 @@ const ExperienceList: React.FC<ExperienceListProps> = ({
                   addExperience({
                     variables: {
                       experience: {
-                        name: experience.term,
+                        term: experience.term,
                         years: '',
                         taxonomyId: experience.taxonomyId,
                       },

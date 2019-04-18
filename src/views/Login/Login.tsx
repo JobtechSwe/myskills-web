@@ -2,52 +2,59 @@ import React from 'react'
 import gql from 'graphql-tag'
 import { Mutation } from 'react-apollo'
 import { RouteComponentProps } from '@reach/router'
-import styled from '@emotion/styled'
-import Consent from './Consent'
+import LoginQR from './LoginQR'
+import Button from '../../components/Button'
+import Flex from '../../components/Flex'
+import { Paragraph } from '../../components/Typography'
 
-const Test = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-`
-
-export const GET_CONSENT_ID = gql`
+export const GET_LOGIN_ID = gql`
   mutation login {
     login {
-      id
-      expires
+      url
+      sessionId
     }
   }
 `
 
 const Login: React.FC<RouteComponentProps> = props => {
   return (
-    <Test>
+    <Flex
+      alignItems="center"
+      flexDirection="column"
+      justifyContent="center"
+      m={32}
+    >
       {/* TODO(@all):
        *  Replace this with useMutation when support has been added:
        *  https://github.com/trojanowski/react-apollo-hooks/pull/93
        */}
-      <Mutation mutation={GET_CONSENT_ID}>
+      <Mutation mutation={GET_LOGIN_ID}>
         {(login, { data, error, loading }) => {
           if (loading) {
-            return <p>Loading...</p>
+            return <Paragraph>Loading...</Paragraph>
           }
 
           if (error) {
-            return <p>That’s an error.</p>
+            return <Paragraph>That’s an error.</Paragraph>
           }
 
           if (data) {
-            return <Consent consentId={data.login.id} />
+            return (
+              <LoginQR
+                loginRequestId={data.login.sessionId}
+                loginUrl={data.login.url}
+              />
+            )
           }
 
-          return <button onClick={_e => login()}>LOGIN</button>
+          return (
+            <Button onClick={(_e: any) => login()} variant="secondary">
+              Login
+            </Button>
+          )
         }}
       </Mutation>
-    </Test>
+    </Flex>
   )
 }
 

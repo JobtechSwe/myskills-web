@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`views/Register renders without errors 1`] = `
+<div>
+  <div
+    class="css-1ggae92"
+  >
+    <button
+      class="css-szraxo"
+      font-family="default"
+      font-size="small,medium"
+    >
+      Register
+    </button>
+  </div>
+</div>
+`;

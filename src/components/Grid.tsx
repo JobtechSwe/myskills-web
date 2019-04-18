@@ -24,7 +24,19 @@ import {
   SpaceProps,
 } from 'styled-system'
 
-export const Grid = styled.div`
+type GridProps = AlignContentProps &
+  AlignItemsProps &
+  GridColumnGapProps &
+  GridColumnProps &
+  GridTemplatesColumnsProps &
+  GridTemplatesRowsProps &
+  GridGapProps &
+  GridRowGapProps &
+  GridRowProps &
+  JustifyContentProps &
+  SpaceProps
+
+const Grid = styled.div<GridProps>`
   display: grid;
 
   ${alignContent}
@@ -40,22 +52,8 @@ export const Grid = styled.div`
   ${space}
 `
 
-type GridProps = AlignContentProps &
-  AlignItemsProps &
-  GridColumnGapProps &
-  GridColumnProps &
-  GridTemplatesColumnsProps &
-  GridTemplatesRowsProps &
-  GridGapProps &
-  GridRowGapProps &
-  GridRowProps &
-  JustifyContentProps &
-  SpaceProps
-
-const common: GridProps = {
+Grid.defaultProps = {
   gridGap: ['small', 'medium', 'large'],
 }
 
-Grid.defaultProps = {
-  ...common,
-}
+export default Grid

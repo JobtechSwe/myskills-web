@@ -1,4 +1,7 @@
-import { addExperience, GET_EXPERIENCES_CLIENT } from '../addExperience'
+import { addExperienceClient, GET_EXPERIENCES_CLIENT } from '../addExperience'
+import { storageHelper } from '../../../../utils/helpers'
+
+jest.mock('../../../../utils/helpers')
 
 let experience: any
 let cache: any
@@ -11,9 +14,11 @@ beforeEach(() => {
     experiences: [
       {
         taxonomyId: 'cba',
+        __typename: 'Experience',
       },
     ],
   }
+
   readQueryMock = jest.fn(() => mockedExperienceCache)
   writeQueryMock = jest.fn()
 
@@ -21,6 +26,7 @@ beforeEach(() => {
     experience: {
       name: 'Systemutvecklare',
       taxonomyId: 'abc',
+      __typename: 'Experience',
     },
   }
   cache = {
@@ -33,7 +39,7 @@ beforeEach(() => {
 
 describe('resolvers/addExperience', () => {
   it('reads cache', () => {
-    addExperience({}, experience, cache)
+    addExperienceClient({}, experience, cache)
 
     expect(readQueryMock).toHaveBeenCalledWith({
       query: GET_EXPERIENCES_CLIENT,
@@ -41,7 +47,7 @@ describe('resolvers/addExperience', () => {
   })
 
   it('saves experience to cache', () => {
-    addExperience({}, experience, cache)
+    addExperienceClient({}, experience, cache)
 
     expect(writeQueryMock).toHaveBeenCalledWith({
       query: GET_EXPERIENCES_CLIENT,
@@ -57,29 +63,43 @@ describe('resolvers/addExperience', () => {
   it('filters duplicates', () => {
     const duplicate = {
       experience: {
-        name: 'Systemutvecklare',
+        term: 'Systemutvecklare',
         taxonomyId: 'cba',
+        years: '2',
+        __typename: 'Experience',
       },
     }
 
-    addExperience({}, duplicate, cache)
+    addExperienceClient({}, duplicate, cache)
     expect(writeQueryMock).toHaveBeenCalledWith({
       query: GET_EXPERIENCES_CLIENT,
       data: {
         experiences: [
           {
-            name: 'Systemutvecklare',
+            term: 'Systemutvecklare',
             taxonomyId: 'cba',
+            years: '2',
+            __typename: 'Experience',
           },
         ],
       },
     })
   })
 
+  it('saves experiences to localstorage', () => {
+    addExperienceClient({}, experience, cache)
+    const mockPayload = {
+      type: 'experiences',
+      data: [...mockedExperienceCache.experiences, experience.experience],
+    }
+    expect(storageHelper.set).toHaveBeenCalledWith(mockPayload)
+  })
+
   it('returns experience', () => {
-    expect(addExperience({}, experience, cache)).toEqual({
+    expect(addExperienceClient({}, experience, cache)).toEqual({
       name: 'Systemutvecklare',
       taxonomyId: 'abc',
+      __typename: 'Experience',
     })
   })
 })

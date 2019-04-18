@@ -6,17 +6,33 @@ import {
   ButtonStyleProps,
   color,
   ColorProps,
+  fontFamily,
+  FontFamilyProps,
   fontSize,
   FontSizeProps,
   space,
   SpaceProps,
 } from 'styled-system'
 
-const Button = styled.button`
+type VariantProps = {
+  variant?: 'primary' | 'secondary'
+}
+
+type ButtonProps = React.HTMLProps<HTMLButtonElement> &
+  ButtonStyleProps &
+  BorderProps &
+  FontFamilyProps &
+  FontSizeProps &
+  SpaceProps &
+  ColorProps &
+  VariantProps
+
+const Button = styled.button<ButtonProps>`
   cursor: pointer;
   text-decoration: none;
   white-space: nowrap;
 
+  ${fontFamily}
   ${border}
   ${buttonStyle}
   ${color}
@@ -24,20 +40,11 @@ const Button = styled.button`
   ${space}
 `
 
-type ButtonProps = ButtonStyleProps &
-  BorderProps &
-  ColorProps &
-  FontSizeProps &
-  SpaceProps
-
-const common: ButtonProps = {
-  border: 0,
+Button.defaultProps = {
+  border: 'none',
+  fontFamily: 'default',
   fontSize: ['small', 'medium'],
   p: '10px 20px',
-}
-
-Button.defaultProps = {
-  ...common,
   variant: 'primary',
 }
 

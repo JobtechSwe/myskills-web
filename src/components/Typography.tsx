@@ -3,40 +3,54 @@ import styled from '@emotion/styled'
 import {
   color,
   ColorProps,
+  fontFamily,
+  FontFamilyProps,
   fontSize,
   FontSizeProps,
   space,
   SpaceProps,
 } from 'styled-system'
 
-export const H1 = styled.h1`
+type TypographyProps = ColorProps &
+  FontFamilyProps &
+  FontSizeProps &
+  ColorProps &
+  SpaceProps
+
+type HeadingProps = React.HTMLProps<HTMLHeadingElement> & TypographyProps
+type ParagraphProps = React.HTMLProps<HTMLParagraphElement> & TypographyProps
+
+export const H1 = styled.h1<HeadingProps>`
   ${color}
+  ${fontFamily}
   ${fontSize}
   ${space}
 `
 
-export const H2 = styled.h2`
+export const H2 = styled.h2<HeadingProps>`
   ${color}
+  ${fontFamily}
   ${fontSize}
   ${space}
 `
 
-export const H3 = styled.h3`
+export const H3 = styled.h3<HeadingProps>`
   ${color}
+  ${fontFamily}
   ${fontSize}
   ${space}
 `
 
-export const Paragraph = styled.p`
+export const Paragraph = styled.p<ParagraphProps>`
   ${color}
+  ${fontFamily}
   ${fontSize}
   ${space}
 `
-
-type HeadingProps = ColorProps & FontSizeProps & SpaceProps
 
 const common: HeadingProps = {
   color: 'white',
+  fontFamily: 'default',
   mt: 'none',
 }
 
@@ -56,5 +70,6 @@ H3.defaultProps = {
 }
 
 Paragraph.defaultProps = {
+  fontFamily: 'default',
   fontSize: 'small',
 }

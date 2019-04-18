@@ -107,7 +107,7 @@ const terminatingLink = split(
 export type LocalStateProps = {
   occupations: ClientOntologyConceptProps[]
   language: Language[]
-  skills: Skill[]
+  skills: string[]
   educations: Education[]
 }
 

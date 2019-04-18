@@ -13,4 +13,6 @@ extend type Mutation {
   addOccupationClient(
     occupation: ClientOccupationInput!
   ): OntologyConceptResponse
+
+  addSkillClient(skill: String!): [String!]
 }

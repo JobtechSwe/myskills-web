@@ -21,7 +21,7 @@ const Loader = styled.div`
     margin: 0 auto;
     width: 15%;
     height: 15%;
-    background-color: #fff;
+    background-color: #000;
     border-radius: 100%;
     -webkit-animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
     animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;

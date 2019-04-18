@@ -16,7 +16,7 @@ const ChooseProfession = React.lazy(() =>
   import(`./views/CreateProfile/ChooseProfession`)
 )
 const MatchCompetences = React.lazy(() =>
-  import('./views/CreateProfile/MatchCompetences')
+  import('./views/CreateProfile/MatchSkills')
 )
 
 const Layout = styled.main`

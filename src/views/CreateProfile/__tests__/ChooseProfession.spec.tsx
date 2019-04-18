@@ -5,7 +5,36 @@ import { wait, fireEvent } from 'react-testing-library'
 import { OntologyType } from '../../../generated/myskills.d'
 
 describe('views/ChooseProfession', () => {
-  xit('renders empty result', async () => {
+  let withResultsMock: any
+
+  beforeEach(() => {
+    withResultsMock = [
+      {
+        request: {
+          query: GET_ONTOLOGY_CONCEPTS,
+          variables: {
+            filter: 'Systemutvecklare',
+            type: OntologyType.Occupation,
+          },
+        },
+        result: {
+          data: {
+            __typename: 'OntologyConceptsResult',
+            ontologyConcepts: [
+              {
+                name: 'Systemutvecklare',
+                id: 'abc',
+                type: 'occupation-name',
+                __typename: 'OntologyConceptResult',
+              },
+            ],
+          },
+        },
+      },
+    ]
+  })
+
+  it('renders empty result', async () => {
     const { container } = render(<ChooseProfession />)
 
     await wait()
@@ -13,33 +42,7 @@ describe('views/ChooseProfession', () => {
     expect(container).toMatchSnapshot()
   })
 
-  xit('renders loading message', async () => {
-    const withResultsMock = [
-      {
-        request: {
-          query: GET_ONTOLOGY_CONCEPTS,
-          variables: {
-            concepts: ['Förman'],
-            limit: 5,
-            type: OntologyType.Skill,
-          },
-        },
-        result: {
-          data: {
-            ontologyRelated: {
-              relations: [
-                {
-                  name: 'Test',
-                  id: 'abc',
-                  type: OntologyType,
-                },
-              ],
-            },
-          },
-        },
-      },
-    ]
-
+  it('renders loading message', async () => {
     const { getByPlaceholderText, getByText } = render(
       <ChooseProfession />,
       withResultsMock
@@ -52,8 +55,8 @@ describe('views/ChooseProfession', () => {
     expect(getByText(/Loading.../i)).toBeInTheDocument()
   })
 
-  it('should render with taxonomy query result', async () => {
-    const withResultsMock = [
+  it('renders error message', async () => {
+    const withErrorMock = [
       {
         request: {
           query: GET_ONTOLOGY_CONCEPTS,
@@ -63,20 +66,26 @@ describe('views/ChooseProfession', () => {
           },
         },
         result: {
-          data: {
-            ontologyConcepts: [
-              {
-                name: 'Systemutvecklare',
-                taxonomyId: 'abc',
-                type: 'occupation-name',
-                parentId: 'abc',
-              },
-            ],
-          },
+          error: new Error('Error while trying to get concepts'),
         },
       },
     ]
 
+    const { getByPlaceholderText, getByText } = render(
+      <ChooseProfession />,
+      withErrorMock
+    )
+
+    fireEvent.change(getByPlaceholderText('Yrkesroll eller yrkesområde'), {
+      target: { value: 'Systemutvecklare' },
+    })
+
+    await wait()
+
+    expect(getByText(/Some error.../i)).toBeInTheDocument()
+  })
+
+  it('should render with taxonomy query result', async () => {
     const { getByPlaceholderText, getByText } = render(
       <ChooseProfession />,
       withResultsMock
@@ -86,8 +95,14 @@ describe('views/ChooseProfession', () => {
       target: { value: 'Systemutvecklare' },
     })
 
-    await wait(() => {
-      expect(getByText('Systemutvecklare')).toBeInTheDocument()
-    })
+    await wait()
+
+    expect(getByText('Systemutvecklare')).toBeInTheDocument()
+  })
+
+  it('renders next button', async () => {
+    const { getByText } = render(<ChooseProfession />)
+
+    expect(getByText('Nästa')).toBeInTheDocument()
   })
 })

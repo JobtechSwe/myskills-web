@@ -18,7 +18,7 @@ interface OccupationsListProps {
   addOccupation?: (variables: MutationVariables) => void
 }
 
-const ExperienceList: React.FC<OccupationsList> = ({
+const ExperienceList: React.FC<OccupationsListProps> = ({
   occupations,
   addOccupation,
 }) => {

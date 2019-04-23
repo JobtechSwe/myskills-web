@@ -1,14 +1,22 @@
 import styled from '@emotion/styled'
-import { color, ColorProps, space, SpaceProps } from 'styled-system'
+import {
+  color,
+  ColorProps,
+  space,
+  SpaceProps,
+  background,
+  BackgroundProps,
+} from 'styled-system'
 
-type ListItemProps = React.HTMLProps<HTMLElement> & ColorProps & SpaceProps
+type ListItemProps = React.HTMLProps<HTMLElement> &
+  ColorProps &
+  SpaceProps &
+  BackgroundProps
 
 const ListItem = styled.li<ListItemProps>`
-  border-bottom: 1px solid black;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
   ${color}
   ${space}
+  ${background}
 `
 
 ListItem.defaultProps = {

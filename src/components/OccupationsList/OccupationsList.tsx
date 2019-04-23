@@ -18,7 +18,7 @@ interface OccupationsListProps {
   addOccupation?: (variables: MutationVariables) => void
 }
 
-const ExperienceList: React.FC<OccupationsList> = ({
+const OccupationsList: React.FC<OccupationsListProps> = ({
   occupations,
   addOccupation,
 }) => {
@@ -28,6 +28,7 @@ const ExperienceList: React.FC<OccupationsList> = ({
         if (addOccupation) {
           return (
             <ListItem
+              background={'dodgerblue'}
               key={i}
               onClick={() =>
                 addOccupation({
@@ -48,4 +49,4 @@ const ExperienceList: React.FC<OccupationsList> = ({
   )
 }
 
-export default ExperienceList
+export default OccupationsList

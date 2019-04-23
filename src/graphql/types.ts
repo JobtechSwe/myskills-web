@@ -11,9 +11,6 @@ export interface ClientExperienceProps extends Experience {
 export interface ClientEducationProps extends Education {
   __typename: string
 }
-export interface ClientSkillProps extends Skill {
-  __typename: string
-}
 export interface ClientLanguageProps {
   language: Language
   __typename: string

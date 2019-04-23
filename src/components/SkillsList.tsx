@@ -1,11 +1,39 @@
 import React from 'react'
+import Grid from './Grid'
+import { ClientSkillProps } from '../views/CreateProfile/MatchSkills'
+import styled from '@emotion/styled'
 
-const SkillsList = ({ skills, getSkills }: any) => {
-  return skills.map((skill: any, i: number) => (
-    <div key={i} onClick={() => getSkills(skill)}>
-      {skill}
-    </div>
-  ))
+interface SkillsListProps {
+  skills: ClientSkillProps[]
+  handleAddSkill: (skill: ClientSkillProps) => void
 }
+
+type ItemProps = {
+  isActive: boolean
+}
+
+const Item = styled.div<ItemProps>`
+  background: ${props => (props.isActive ? 'green' : 'none')};
+`
+
+const SkillsList: React.FC<SkillsListProps> = ({ skills, handleAddSkill }) => (
+  <>
+    föreslagna kompetenser:
+    <Grid
+      gridTemplateColumns="repeat(auto-fit, minmax(150px, 1fr))"
+      style={{ width: '100vw' }}
+    >
+      {skills.map((skill, i: number) => (
+        <Item
+          isActive={skill.isActive}
+          key={i}
+          onClick={() => handleAddSkill(skill)}
+        >
+          {skill.name}
+        </Item>
+      ))}
+    </Grid>
+  </>
+)
 
 export default SkillsList

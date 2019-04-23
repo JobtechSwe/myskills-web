@@ -1,12 +1,16 @@
 import * as React from 'react'
 import MatchSkills, { GET_RELATED_SKILLS } from '../MatchSkills'
 import { render } from '../../../utils/test-utils'
-import { wait, fireEvent, act, waitForElement } from 'react-testing-library'
+import { act, waitForElement, cleanup } from 'react-testing-library'
 import { OntologyType } from '../../../generated/myskills.d'
 import { GET_OCCUPATIONS_CLIENT } from '../../../graphql/resolvers/mutations/addOccupation'
 
+const waitForNextTick = (delay: number) =>
+  new Promise(resolve => setTimeout(resolve, delay))
+
 describe('views/MatchSkills', () => {
-  it('renders empty result', async done => {
+  afterEach(cleanup)
+  it('renders loading state', async done => {
     const withResultsMock = [
       {
         request: {
@@ -27,9 +31,9 @@ describe('views/MatchSkills', () => {
         },
       },
     ]
+    const { container } = render(<MatchSkills />, withResultsMock)
     act(() => {
-      const { container } = render(<MatchSkills />, withResultsMock)
-      wait().then(() => {
+      waitForNextTick(0).then(() => {
         expect(container).toMatchSnapshot()
         done()
       })

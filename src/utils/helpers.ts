@@ -4,6 +4,7 @@ import {
   EducationInput,
   SkillInput,
   OntologyConceptResponse,
+  OntologyRelationResponse,
 } from '../generated/myskills'
 import { ClientOntologyConceptProps } from '../graphql/types'
 
@@ -36,7 +37,7 @@ interface Occupations extends StorageEntryProps {
 }
 interface Skills extends StorageEntryProps {
   type: 'skills'
-  data: SkillInput[]
+  data: OntologyRelationResponse[]
 }
 
 export type StorageEntry = Educations | Occupations | Skills

@@ -7,7 +7,12 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { HttpLink } from 'apollo-link-http'
 import { getMainDefinition } from 'apollo-utilities'
 import { getCookie, removeCookie, redirect } from '../utils/helpers'
-import { Skill, Education, Language } from '../generated/myskills'
+import {
+  Skill,
+  Education,
+  Language,
+  OntologyRelationResponse,
+} from '../generated/myskills'
 import resolvers from './resolvers'
 import { storageHelper } from '../utils/helpers'
 import { ClientOntologyConceptProps } from './types'
@@ -107,7 +112,7 @@ const terminatingLink = split(
 export type LocalStateProps = {
   occupations: ClientOntologyConceptProps[]
   language: Language[]
-  skills: string[]
+  skills: OntologyRelationResponse[]
   educations: Education[]
 }
 

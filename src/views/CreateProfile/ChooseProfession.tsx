@@ -64,7 +64,7 @@ export const IS_LOGGED_IN = gql`
 
 const ChooseProfession: React.FC<RouteComponentProps> = () => {
   const [query, setQuery] = useState('')
-  const debouncedQuery = useDebounce(query, 200)
+  // const debouncedQuery = useDebounce(query, 200)
   const { data: isLoggedIn } = useQuery(IS_LOGGED_IN, {
     fetchPolicy: 'network-only',
   })
@@ -75,10 +75,10 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
 
   const { data, error, loading } = useQuery(GET_ONTOLOGY_CONCEPTS, {
     variables: {
-      filter: debouncedQuery,
+      filter: query,
       type: OntologyType.Occupation,
     },
-    skip: !debouncedQuery,
+    skip: !query,
   })
 
   return (

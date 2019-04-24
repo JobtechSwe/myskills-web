@@ -163,13 +163,10 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
       []
     )
 
-    updateSkills(withoutDuplicates)
-  }
-
-  const updateSkills = (skills: any) => {
-    dispatch({ type: 'DATA', payload: skills })
+    dispatch({ type: 'DATA', payload: withoutDuplicates })
     dispatch({ type: 'LOADING', payload: false })
   }
+
 
   useEffect(() => {
     getRelatedSkills(occupations, state.skills)

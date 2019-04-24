@@ -1,15 +1,11 @@
 import * as React from 'react'
 import MatchSkills, { GET_RELATED_SKILLS } from '../MatchSkills'
 import { render } from '../../../utils/test-utils'
-import { act, waitForElement, cleanup } from 'react-testing-library'
+import { act, waitForElement, cleanup, wait } from 'react-testing-library'
 import { OntologyType } from '../../../generated/myskills.d'
 import { GET_OCCUPATIONS_CLIENT } from '../../../graphql/resolvers/mutations/addOccupation'
 
-const waitForNextTick = (delay: number) =>
-  new Promise(resolve => setTimeout(resolve, delay))
-
 describe('views/MatchSkills', () => {
-  afterEach(cleanup)
   it('renders loading state', async done => {
     const withResultsMock = [
       {
@@ -33,14 +29,12 @@ describe('views/MatchSkills', () => {
     ]
     const { container } = render(<MatchSkills />, withResultsMock)
     act(() => {
-      waitForNextTick(0).then(() => {
-        expect(container).toMatchSnapshot()
-        done()
-      })
+      expect(container).toMatchSnapshot()
+      done()
     })
   })
 
-  it('should render with ontology related query result', async done => {
+  it('should render with ontology related query result', () => {
     const withResultsMock = [
       {
         request: {
@@ -104,13 +98,10 @@ describe('views/MatchSkills', () => {
         },
       },
     ]
-    act(() => {
-      const { container, getByText } = render(<MatchSkills />, withResultsMock)
 
-      waitForElement(() => getByText(/händig/i)).then(() => {
-        expect(container).toMatchSnapshot()
-        done()
-      })
+    const { getByText } = render(<MatchSkills />, withResultsMock)
+    wait().then(() => {
+      expect(getByText(/händig/i)).toBeInTheDocument()
     })
   })
 })

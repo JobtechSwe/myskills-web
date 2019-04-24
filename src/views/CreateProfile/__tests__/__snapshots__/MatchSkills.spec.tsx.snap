@@ -50,25 +50,3 @@ exports[`views/MatchSkills renders loading state 1`] = `
   </div>
 </div>
 `;
-
-exports[`views/MatchSkills should render with ontology related query result 1`] = `
-<div>
-  <div
-    style="margin-bottom: 2rem;"
-  >
-    Valda kompetenser:
-  </div>
-  
-  föreslagna kompetenser:
-  <div
-    class="css-adsry2"
-    style="width: 100vw;"
-  >
-    <div
-      class="css-km4u3v"
-    >
-      Händig
-    </div>
-  </div>
-</div>
-`;

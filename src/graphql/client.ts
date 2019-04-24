@@ -8,7 +8,6 @@ import { HttpLink } from 'apollo-link-http'
 import { getMainDefinition } from 'apollo-utilities'
 import { getCookie, removeCookie, redirect } from '../utils/helpers'
 import {
-  Skill,
   Education,
   Language,
   OntologyRelationResponse,

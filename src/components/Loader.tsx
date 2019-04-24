@@ -149,7 +149,7 @@ const Loader = styled.div`
   }
 `
 
-export default () => (
+const Loading = () => (
   <Loader className="sk-fading-circle">
     <div className="sk-circle1 sk-circle" />
     <div className="sk-circle2 sk-circle" />
@@ -165,3 +165,5 @@ export default () => (
     <div className="sk-circle12 sk-circle" />
   </Loader>
 )
+
+export default Loading

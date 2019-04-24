@@ -23,10 +23,10 @@ const SkillsList: React.FC<SkillsListProps> = ({ skills, handleAddSkill }) => (
       gridTemplateColumns="repeat(auto-fit, minmax(150px, 1fr))"
       style={{ width: '100vw' }}
     >
-      {skills.map((skill, i: number) => (
+      {skills.map(skill => (
         <Item
           isActive={skill.isActive}
-          key={i}
+          key={skill.id}
           onClick={() => handleAddSkill(skill)}
         >
           {skill.name}

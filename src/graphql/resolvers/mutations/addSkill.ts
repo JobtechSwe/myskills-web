@@ -16,10 +16,12 @@ export const addSkillClient = (
   _: any,
   { skill }: { skill: OntologyRelationResponse },
   { cache }: { cache: InMemoryCache }
-): any => {
-  const { skills }: any = cache.readQuery({
+): OntologyRelationResponse => {
+  const { skills = [] } = cache.readQuery<{
+    skills: OntologyRelationResponse[]
+  }>({
     query: GET_SKILLS_CLIENT,
-  })
+  })!
 
   const withoutDuplicates = (skills: OntologyRelationResponse[]) =>
     skills.filter(s => s.name !== skill.name)

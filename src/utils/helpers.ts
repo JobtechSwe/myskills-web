@@ -2,11 +2,9 @@ import Cookies from 'js-cookie'
 import { LocalStateProps } from '../graphql/client'
 import {
   EducationInput,
-  SkillInput,
   OntologyConceptResponse,
   OntologyRelationResponse,
 } from '../generated/myskills'
-import { ClientOntologyConceptProps } from '../graphql/types'
 
 export const getCookie = (name: string) => Cookies.get(name)
 export const setCookie = (

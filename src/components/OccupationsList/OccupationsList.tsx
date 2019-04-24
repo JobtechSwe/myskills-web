@@ -24,12 +24,12 @@ const OccupationsList: React.FC<OccupationsListProps> = ({
 }) => {
   return (
     <List>
-      {occupations.map((occupation: OntologyConceptResponse, i: number) => {
+      {occupations.map((occupation: OntologyConceptResponse) => {
         if (addOccupation) {
           return (
             <ListItem
               background={'dodgerblue'}
-              key={i}
+              key={occupation.id}
               onClick={() =>
                 addOccupation({
                   variables: {
@@ -43,7 +43,7 @@ const OccupationsList: React.FC<OccupationsListProps> = ({
           )
         }
 
-        return <ListItem key={i}>{occupation.name}</ListItem>
+        return <ListItem key={occupation.id}>{occupation.name}</ListItem>
       })}
     </List>
   )

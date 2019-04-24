@@ -6,10 +6,12 @@ export const removeOccupation = (
   _: any,
   id: string,
   { cache }: { cache: InMemoryCache }
-): OntologyConceptResponse => {
-  const { occupations }: any = cache.readQuery({
+): OntologyConceptResponse[] => {
+  const { occupations = [] } = cache.readQuery<{
+    occupations: OntologyConceptResponse[]
+  }>({
     query: GET_OCCUPATIONS_CLIENT,
-  })
+  })!
 
   const updatedOccupationList = occupations.filter(
     (occupation: OntologyConceptResponse) => occupation.id !== id

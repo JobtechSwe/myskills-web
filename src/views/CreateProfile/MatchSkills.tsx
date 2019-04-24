@@ -2,7 +2,7 @@ import React, { useState, useEffect, useReducer } from 'react'
 import Loader from '../../components/Loader'
 import gql from 'graphql-tag'
 import { withApollo, WithApolloClient } from 'react-apollo'
-import { useQuery, useMutation } from 'react-apollo-hooks'
+import { useQuery, useMutation, QueryHookResult } from 'react-apollo-hooks'
 import { RouteComponentProps } from '@reach/router'
 import SkillsList from '../../components/SkillsList'
 import {
@@ -61,16 +61,22 @@ const getName = (data: SkillsPropsUnion[]) => data.map(({ name }) => name)
 
 interface MatchState {
   error: string
-  skills?: ClientSkillProps[]
+  skills: ClientSkillProps[]
   loading: boolean
 }
 
-type MatchAction = {
-  type: 'ERROR' | 'DATA' | 'LOADING'
-  payload: string | boolean | ClientSkillProps[]
+type MatchAction =
+  | { type: 'ERROR'; payload: string }
+  | { type: 'LOADING'; payload: boolean }
+  | { type: 'DATA'; payload: ClientSkillProps[] }
+
+const initialState = {
+  skills: [],
+  error: '',
+  loading: false,
 }
 
-const reducer = (state: any, action: MatchAction) => {
+const reducer = (state: MatchState, action: MatchAction) => {
   switch (action.type) {
     case 'ERROR':
       return {
@@ -93,12 +99,6 @@ const reducer = (state: any, action: MatchAction) => {
     default:
       return state
   }
-}
-
-const initialState = {
-  skills: [],
-  error: '',
-  loading: false,
 }
 
 const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
@@ -150,12 +150,17 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
       return dispatch({ type: 'ERROR', payload: data.error.message })
     }
 
-    const withIsActive = data.ontologyRelated.relations.map((x: any) => ({
-      ...x,
-      isActive: false,
-    }))
+    const withIsActive = data.ontologyRelated.relations.map(
+      (x: OntologyRelationResponse) => ({
+        ...x,
+        isActive: false,
+      })
+    )
 
-    const withoutDuplicates = [...relSkills, ...withIsActive].reduce(
+    const withoutDuplicates: ClientSkillProps[] = [
+      ...relSkills,
+      ...withIsActive,
+    ].reduce(
       (prev, skill) =>
         prev.some(({ id }: OntologyRelationResponse) => id === skill.id)
           ? prev
@@ -175,16 +180,18 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
     <>
       <div style={{ marginBottom: '2rem' }}>
         Valda kompetenser:
-        {savedSkills.map((skill: ClientSkillProps, i: number) => (
-          <div key={i}>{skill.name}</div>
+        {savedSkills.map((skill: ClientSkillProps) => (
+          <div key={skill.id}>{skill.name}</div>
         ))}
       </div>
 
       {state.error && <div>Error... {state.error}</div>}
+
+      {state.loading && <Loader />}
+
       {state.skills.length > 0 && (
         <SkillsList handleAddSkill={handleAddSkill} skills={state.skills} />
       )}
-      {state.loading && <Loader />}
     </>
   )
 }

@@ -11,10 +11,10 @@ import {
   Education,
   Language,
   OntologyRelationResponse,
+  OntologyConceptResponse,
 } from '../generated/myskills'
 import resolvers from './resolvers'
 import { storageHelper } from '../utils/helpers'
-import { ClientOntologyConceptProps } from './types'
 
 const httpLink = new HttpLink({
   uri: process.env.REACT_APP_GRAPHQL_URI,
@@ -109,7 +109,7 @@ const terminatingLink = split(
 )
 
 export type LocalStateProps = {
-  occupations: ClientOntologyConceptProps[]
+  occupations: OntologyConceptResponse[]
   language: Language[]
   skills: OntologyRelationResponse[]
   educations: Education[]

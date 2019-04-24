@@ -27,7 +27,7 @@ exports[`views/ChooseProfession renders empty result 1`] = `
       placeholder="Yrkesroll eller yrkesområde"
     />
     <div>
-      Dina valda kompetenser:
+      Dina valda yrken:
     </div>
     <a
       href="/skapa-cv/kompetenser"

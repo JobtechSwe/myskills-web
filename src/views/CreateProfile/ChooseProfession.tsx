@@ -11,7 +11,7 @@ import Button from '../../components/Button'
 import styled from '@emotion/styled'
 import { useDebounce } from '@iteam/hooks'
 import { Link } from '@reach/router'
-import ChoosenOccupations from '../../components/ChoosenOccupation'
+import ChosenOccupations from '../../components/ChosenOccupations'
 
 const SearchInput = styled(Input)`
   width: 100%;
@@ -65,6 +65,7 @@ export const IS_LOGGED_IN = gql`
 
 const ChooseProfession: React.FC<RouteComponentProps> = () => {
   const [query, setQuery] = useState('')
+  // TODO: Use debounce, skipping for now because of complications in tests
   // const debouncedQuery = useDebounce(query, 200)
   const { data: isLoggedIn } = useQuery(IS_LOGGED_IN, {
     fetchPolicy: 'network-only',
@@ -99,7 +100,7 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
           occupations={data.ontologyConcepts}
         />
       )}
-      <ChoosenOccupations />
+      <ChosenOccupations />
       <Link to="/skapa-cv/kompetenser">
         <NextButton>Nästa</NextButton>
       </Link>

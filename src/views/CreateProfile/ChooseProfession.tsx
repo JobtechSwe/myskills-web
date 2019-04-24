@@ -11,6 +11,7 @@ import Button from '../../components/Button'
 import styled from '@emotion/styled'
 import { useDebounce } from '@iteam/hooks'
 import { Link } from '@reach/router'
+import ChoosenOccupations from '../../components/ChoosenOccupation'
 
 const SearchInput = styled(Input)`
   width: 100%;
@@ -98,6 +99,7 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
           occupations={data.ontologyConcepts}
         />
       )}
+      <ChoosenOccupations />
       <Link to="/skapa-cv/kompetenser">
         <NextButton>Nästa</NextButton>
       </Link>

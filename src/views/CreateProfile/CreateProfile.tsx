@@ -2,6 +2,7 @@ import React from 'react'
 import { RouteComponentProps } from '@reach/router'
 import Grid from '../../components/Grid'
 import Button from '../../components/Button'
+import { InternalLink } from '../../components/Link'
 import { useQuery, useMutation } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
 import { ADD_EXPERIENCE_API } from './AddExperience'
@@ -35,9 +36,11 @@ const CreateProfile: React.FC<RouteComponentProps> = ({ children }) => {
 
   return (
     <Grid justifyContent="center">
+      <InternalLink to="/skapa-cv/erfarenhet">Erfarenhet</InternalLink>
+      <InternalLink to="/skapa-cv/utbildning">Utbildning</InternalLink>
       {children}
       <Button mt={32} onClick={() => handleSave()} variant="primary">
-        Spara i MyData
+        Spara i Egetutrymme
       </Button>
     </Grid>
   )

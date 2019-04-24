@@ -2,29 +2,19 @@ import React, { useState } from 'react'
 import { useQuery, useMutation } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
 import { TaxonomyType, TaxonomyDefaultResult } from '../../generated/myskills.d'
+import { GET_TAXONOMY } from '../../graphql/shared/Queries'
 import { RouteComponentProps } from '@reach/router'
 import { Paragraph } from '../../components/Typography'
 import List from '../../components/List'
 import Grid from '../../components/Grid'
 import Input from '../../components/Input'
 
-export const GET_TAXONOMY_EDUCATIONS = gql`
-  query taxonomy($q: String!, $type: TaxonomyType) {
-    taxonomy(params: { q: $q, type: $type }) {
-      result {
-        term
-        taxonomyId
-        ... on TaxonomyDefaultResult {
-          parentId
-        }
-      }
-    }
-  }
-`
-
 export const ADD_EDUCATION_CLIENT = gql`
   mutation addEducationClient($education: EducationInput!) {
-    addEducationClient(education: $education) @client
+    addEducationClient(education: $education) @client {
+      term
+      taxonomyId
+    }
   }
 `
 
@@ -38,18 +28,72 @@ export const ADD_EDUCATION_API = gql`
   }
 `
 
+type EducationSelectAction = {
+  type: 'FIELD' | 'LEVEL' | 'NAME'
+  payload: string
+}
+
+type EducationSelectState = {
+  field?: string
+  level?: string
+  name?: string
+}
+
+const educationSelectReducer = (
+  state: EducationSelectState,
+  action: EducationSelectAction
+) => {
+  switch (action.type) {
+    case 'FIELD':
+      return { ...state, field: action.payload }
+    case 'LEVEL':
+      return { ...state, level: action.payload }
+    case 'NAME':
+      return { ...state, name: action.payload }
+    default:
+      return state
+  }
+}
+
+const EducationSelect = ({
+  fields,
+  levels,
+}: {
+  fields: TaxonomyDefaultResult[]
+  levels: TaxonomyDefaultResult[]
+}) => {
+  const [state, dispatch] = React.useReducer(educationSelectReducer, {
+    field: undefined,
+    level: undefined,
+    name: undefined,
+  })
+
+  const { field, level, name } = state
+
+  return (
+    <>
+      {!field && !level && !name && <Paragraph>Fyll i inriktning</Paragraph>}
+
+      {field && <Paragraph>Fyll i nivå</Paragraph>}
+
+      {field && level && <Paragraph>Fyll i namn</Paragraph>}
+
+      {field && level && name && <Paragraph>Alla fält ifyllda</Paragraph>}
+    </>
+  )
+}
+
 const AddEducation: React.FC<RouteComponentProps> = () => {
   const [query, setQuery] = useState('')
-  const [educationType, setEducationType] = useState(
-    TaxonomyType.EducationLevel_1
+  const [educationFieldOrType, setEducationFieldOrType] = useState(
+    TaxonomyType.EducationLevel_3
   )
-
   const addEducationClient = useMutation(ADD_EDUCATION_CLIENT)
 
-  const { data, error, loading } = useQuery(GET_TAXONOMY_EDUCATIONS, {
+  const { data, error, loading } = useQuery(GET_TAXONOMY, {
     variables: {
       q: query,
-      type: educationType,
+      type: educationFieldOrType,
     },
     skip: !query,
   })
@@ -59,7 +103,7 @@ const AddEducation: React.FC<RouteComponentProps> = () => {
       <select
         data-testid="educationLevelSelect"
         onBlur={(event: React.ChangeEvent<HTMLSelectElement>) =>
-          setEducationType(event.target.value as TaxonomyType)
+          setEducationFieldOrType(event.target.value as TaxonomyType)
         }
       >
         <option value={TaxonomyType.EducationLevel_1}>
@@ -73,12 +117,29 @@ const AddEducation: React.FC<RouteComponentProps> = () => {
         </option>
       </select>
 
+      <select
+        data-testid="educationFieldSelect"
+        onBlur={(event: React.ChangeEvent<HTMLSelectElement>) =>
+          setEducationFieldOrType(event.target.value as TaxonomyType)
+        }
+      >
+        <option value={TaxonomyType.EducationField_1}>
+          {TaxonomyType.EducationField_1}
+        </option>
+        <option value={TaxonomyType.EducationField_2}>
+          {TaxonomyType.EducationField_2}
+        </option>
+        <option value={TaxonomyType.EducationField_3}>
+          {TaxonomyType.EducationField_3}
+        </option>
+      </select>
+
       <Input
         name="search"
         onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
           setQuery(target.value)
         }
-        placeholder="Utbildningar"
+        placeholder="Utbildningsnivå"
       />
 
       {loading && <Paragraph>Loading...</Paragraph>}
@@ -91,32 +152,30 @@ const AddEducation: React.FC<RouteComponentProps> = () => {
 
       {data && data.taxonomy && (
         <List>
-          {data.taxonomy.result.map(
-            (education: TaxonomyDefaultResult, i: number) => {
-              return (
-                <li key={i}>
-                  {addEducationClient ? (
-                    <button
-                      onClick={() =>
-                        addEducationClient({
-                          variables: {
-                            education: {
-                              term: education.term,
-                              taxonomyId: education.taxonomyId,
-                            },
+          {data.taxonomy.result.map((education: TaxonomyDefaultResult) => {
+            return (
+              <li key={education.taxonomyId}>
+                {addEducationClient ? (
+                  <button
+                    onClick={() =>
+                      addEducationClient({
+                        variables: {
+                          education: {
+                            term: education.term,
+                            taxonomyId: education.taxonomyId,
                           },
-                        })
-                      }
-                    >
-                      {education.term}
-                    </button>
-                  ) : (
-                    <p>{education.term}</p>
-                  )}
-                </li>
-              )
-            }
-          )}
+                        },
+                      })
+                    }
+                  >
+                    {education.term}
+                  </button>
+                ) : (
+                  <p>{education.term}</p>
+                )}
+              </li>
+            )
+          })}
         </List>
       )}
     </Grid>

@@ -11,7 +11,7 @@ const List = styled.ul<ListProps>`
 `
 
 List.defaultProps = {
-  color: 'lassekongo',
+  color: 'persianBlue',
   p: 0,
 }
 

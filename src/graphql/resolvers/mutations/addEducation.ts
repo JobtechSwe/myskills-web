@@ -1,6 +1,6 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { storageHelper } from '../../../utils/helpers'
-import { Education } from '../../../generated/myskills'
+import { Education, EducationInput, Query } from '../../../generated/myskills'
 import gql from 'graphql-tag'
 
 export const GET_EDUCATIONS_CLIENT = gql`
@@ -12,19 +12,26 @@ export const GET_EDUCATIONS_CLIENT = gql`
   }
 `
 
-export const addEducation = (
+export const addEducationClient = (
   _: any,
-  { education }: { education: Education },
+  { education }: { education: EducationInput },
   { cache }: { cache: InMemoryCache }
-): Education => {
-  const { educations }: any = cache.readQuery({
-    query: GET_EDUCATIONS_CLIENT,
-  })
+): EducationInput => {
+  const { educations = [] } = cache.readQuery<{ educations: EducationInput[] }>(
+    {
+      query: GET_EDUCATIONS_CLIENT,
+    }
+  )!
 
-  const withoutDuplicates = (educations: Education[]): Education[] =>
-    educations.filter((e: Education) => e.taxonomyId !== education.taxonomyId)
+  const withoutDuplicates = (educations: EducationInput[]): EducationInput[] =>
+    educations.filter(
+      (e: EducationInput) => e.taxonomyId !== education.taxonomyId
+    )
 
-  const updatedEducations = [...withoutDuplicates(educations), education]
+  const updatedEducations = [
+    ...withoutDuplicates(educations),
+    { ...education, __typename: 'Education' },
+  ]
 
   cache.writeQuery({
     query: GET_EDUCATIONS_CLIENT,

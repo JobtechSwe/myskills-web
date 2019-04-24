@@ -13,9 +13,11 @@ export const addLanguage = (
   { language }: { language: Language },
   { cache }: { cache: InMemoryCache }
 ): Language => {
-  const { languages }: any = cache.readQuery({
+  const { languages = [] }: any = cache.readQuery<{
+    languages: Language[]
+  }>({
     query: GET_LANGUAGES_CLIENT,
-  })
+  })!
 
   const withoutDuplicates = (lang: Language[]): Language[] =>
     lang.filter((l: Language) => language !== l)

@@ -1,7 +1,9 @@
 interface Color {
-  lassekongo: 'dodgerblue'
-  white: 'white'
+  athensGray: '#E9ECF1'
+  cloudBurst: '#1F215F'
   green: 'green'
+  persianBlue: '#202ED1'
+  white: 'white'
 }
 
 interface Typography {
@@ -9,18 +11,20 @@ interface Typography {
 }
 
 const colors: Color = {
-  lassekongo: 'dodgerblue',
-  white: 'white',
+  athensGray: '#E9ECF1',
+  cloudBurst: '#1F215F',
   green: 'green',
+  persianBlue: '#202ED1',
+  white: 'white',
 }
 
 const buttons = {
   primary: {
     color: colors.white,
-    backgroundColor: colors.lassekongo,
+    backgroundColor: colors.persianBlue,
   },
   secondary: {
-    color: colors.lassekongo,
+    color: colors.persianBlue,
     backgroundColor: colors.white,
   },
 }

@@ -37,7 +37,7 @@ const Input = styled.input<InputProps>`
 Input.defaultProps = {
   border: '1px solid',
   borderRadius: '5px',
-  borderColor: 'lassekongo',
+  borderColor: 'persianBlue',
   fontFamily: 'default',
   fontSize: 'medium',
   p: '12px',

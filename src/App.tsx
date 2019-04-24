@@ -28,7 +28,7 @@ function App() {
           <Register path="/register" />
           <Login path="/login" />
           <CreateProfile path="/skapa-cv">
-            <AddExperience path="/" />
+            <AddExperience path="/erfarenhet" />
             <AddEducation path="/utbildning" />
           </CreateProfile>
           <RestrictedRoute component={Profile} path="/profile" />

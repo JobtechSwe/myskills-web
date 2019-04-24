@@ -1,5 +1,6 @@
 type Mutation {
   addExperienceClient(experience: ExperienceInput!): Experience
+  addEducationClient(education: EducationInput!): Education
 }
 
 type Query {

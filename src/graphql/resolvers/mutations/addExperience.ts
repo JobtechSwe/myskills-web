@@ -1,5 +1,5 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { ExperienceInput } from '../../../generated/myskills'
+import { Experience, ExperienceInput } from '../../../generated/myskills'
 import { storageHelper } from '../../../utils/helpers'
 import gql from 'graphql-tag'
 
@@ -18,9 +18,12 @@ export const addExperienceClient = (
   { experience }: { experience: ExperienceInput },
   { cache }: { cache: InMemoryCache }
 ): any => {
-  const { experiences }: any = cache.readQuery({
+  const { experiences = [] } = cache.readQuery<{
+    experiences: ExperienceInput[]
+  }>({
     query: GET_EXPERIENCES_CLIENT,
-  })
+  })!
+
   const withoutDuplicates = (exp: ExperienceInput[]): ExperienceInput[] =>
     exp.filter((e: ExperienceInput) => e.taxonomyId !== experience.taxonomyId)
 

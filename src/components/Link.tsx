@@ -24,7 +24,7 @@ const StyledLink = styled.a<LinkProps>`
 `
 
 StyledLink.defaultProps = {
-  color: 'lassekongo',
+  color: 'persianBlue',
   fontWeight: 500,
 }
 
@@ -38,6 +38,6 @@ Link.defaultProps = {
 export const InternalLink = Link.withComponent(RouterLink)
 
 InternalLink.defaultProps = {
-  color: 'lassekongo',
+  color: 'persianBlue',
   fontWeight: 500,
 }

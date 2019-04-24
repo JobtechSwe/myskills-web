@@ -7,6 +7,7 @@ import {
 } from '../generated/myskills'
 
 export const getCookie = (name: string) => Cookies.get(name)
+
 export const setCookie = (
   name: string,
   value: string,
@@ -14,6 +15,7 @@ export const setCookie = (
 ) => {
   Cookies.set(name, value, options)
 }
+
 export const removeCookie = (name: string) => {
   Cookies.remove(name)
 }
@@ -33,6 +35,7 @@ interface Experiences extends StorageEntryProps {
   type: 'experiences'
   data: ExperienceInput[]
 }
+
 interface Skills extends StorageEntryProps {
   type: 'skills'
   data: SkillInput[]

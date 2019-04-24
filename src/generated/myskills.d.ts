@@ -110,6 +110,7 @@ export type Mutation = {
   /** Save the complete cv to user */
   saveCV: Cv
   addExperienceClient?: Maybe<Experience>
+  addEducationClient?: Maybe<Education>
 }
 
 export type MutationAddLanguageArgs = {
@@ -154,6 +155,10 @@ export type MutationSaveCvArgs = {
 
 export type MutationAddExperienceClientArgs = {
   experience: ExperienceInput
+}
+
+export type MutationAddEducationClientArgs = {
+  education: EducationInput
 }
 
 export type OntologyConceptInput = {
@@ -419,13 +424,34 @@ export type TaxonomyQuery = { __typename?: 'Query' } & {
   }
 }
 
+export type AddEducationClientMutationVariables = {
+  education: EducationInput
+}
+
+export type AddEducationClientMutation = { __typename?: 'Mutation' } & {
+  addEducationClient: Maybe<
+    { __typename?: 'Education' } & Pick<Education, 'term' | 'taxonomyId'>
+  >
+}
+
+export type AddEducationApiMutationVariables = {
+  education: EducationInput
+}
+
+export type AddEducationApiMutation = { __typename?: 'Mutation' } & {
+  addEducation: { __typename: 'Education' } & Pick<
+    Education,
+    'term' | 'taxonomyId'
+  >
+}
+
 export type AddExperienceClientMutationVariables = {
   experience: ExperienceInput
 }
 
 export type AddExperienceClientMutation = { __typename?: 'Mutation' } & {
   addExperienceClient: Maybe<
-    { __typename: 'Experience' } & Pick<
+    { __typename?: 'Experience' } & Pick<
       Experience,
       'term' | 'years' | 'taxonomyId'
     >
@@ -442,13 +468,6 @@ export type AddExperienceApiMutation = { __typename?: 'Mutation' } & {
     'term' | 'years' | 'taxonomyId'
   >
 }
-
-export type IsLoggedInQueryVariables = {}
-
-export type IsLoggedInQuery = { __typename?: 'Query' } & Pick<
-  Query,
-  'isLoggedIn'
->
 
 export type ExperiencesQueryVariables = {}
 

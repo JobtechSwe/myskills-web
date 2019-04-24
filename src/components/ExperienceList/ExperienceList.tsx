@@ -23,9 +23,9 @@ const ExperienceList: React.FC<ExperienceListProps> = ({
 }) => {
   return (
     <List>
-      {list.map((experience: TaxonomyDefaultResult, i: number) => {
+      {list.map((experience: TaxonomyDefaultResult) => {
         return (
-          <li key={i}>
+          <li key={experience.taxonomyId}>
             {addExperience ? (
               <button
                 onClick={() =>

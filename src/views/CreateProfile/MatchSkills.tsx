@@ -167,7 +167,6 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
     dispatch({ type: 'LOADING', payload: false })
   }
 
-
   useEffect(() => {
     getRelatedSkills(occupations, state.skills)
   }, [occupations])

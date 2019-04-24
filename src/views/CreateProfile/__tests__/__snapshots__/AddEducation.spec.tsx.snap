@@ -24,12 +24,31 @@ exports[`views/AddEducation renders empty result 1`] = `
         EDUCATION_LEVEL_3
       </option>
     </select>
+    <select
+      data-testid="educationFieldSelect"
+    >
+      <option
+        value="EDUCATION_FIELD_1"
+      >
+        EDUCATION_FIELD_1
+      </option>
+      <option
+        value="EDUCATION_FIELD_2"
+      >
+        EDUCATION_FIELD_2
+      </option>
+      <option
+        value="EDUCATION_FIELD_3"
+      >
+        EDUCATION_FIELD_3
+      </option>
+    </select>
     <input
-      class="css-176jltm"
+      class="css-hn8wcy"
       font-family="default"
       font-size="medium"
       name="search"
-      placeholder="Utbildningar"
+      placeholder="Utbildningsnivå"
     />
   </div>
 </div>

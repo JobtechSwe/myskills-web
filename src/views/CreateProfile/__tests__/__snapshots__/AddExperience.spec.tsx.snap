@@ -6,7 +6,7 @@ exports[`views/AddExperience renders empty result 1`] = `
     class="css-fhv5oa"
   >
     <input
-      class="css-176jltm"
+      class="css-hn8wcy"
       font-family="default"
       font-size="medium"
       name="search"

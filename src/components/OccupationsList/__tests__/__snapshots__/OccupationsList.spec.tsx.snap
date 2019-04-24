@@ -16,13 +16,13 @@ exports[`views/OccupationsList renders experineces list 1`] = `
     color="blue"
   >
     <li
-      class="css-6e1t7r"
+      class="css-pxl19e"
       color="black"
     >
       Javascript
     </li>
     <li
-      class="css-6e1t7r"
+      class="css-pxl19e"
       color="black"
     >
       Java
@@ -38,13 +38,13 @@ exports[`views/OccupationsList renders experineces list with button 1`] = `
     color="blue"
   >
     <li
-      class="css-6e1t7r"
+      class="css-pxl19e"
       color="black"
     >
       Javascript
     </li>
     <li
-      class="css-6e1t7r"
+      class="css-pxl19e"
       color="black"
     >
       Java

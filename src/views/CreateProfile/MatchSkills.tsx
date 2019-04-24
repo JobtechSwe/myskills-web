@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useReducer } from 'react'
 import Loader from '../../components/Loader'
 import gql from 'graphql-tag'
 import { withApollo, WithApolloClient } from 'react-apollo'
 import { useQuery, useMutation } from 'react-apollo-hooks'
 import { RouteComponentProps } from '@reach/router'
-import { GET_OCCUPATIONS_CLIENT } from '../../graphql/resolvers/mutations/addOccupation'
-import { GET_SKILLS_CLIENT } from '../../graphql/resolvers/mutations/addSkill'
 import SkillsList from '../../components/SkillsList'
 import {
   OntologyType,
@@ -13,9 +11,23 @@ import {
   OntologyRelationResponse,
 } from '../../generated/myskills.d'
 
+export const GET_SKILLS_AND_OCCUPATIONS_CLIENT = gql`
+  query getSkillsAndOccupationsClient {
+    skills @client {
+      name
+    }
+
+    occupations @client {
+      name
+      id
+      type
+    }
+  }
+`
 export interface ClientSkillProps extends OntologyRelationResponse {
   isActive: boolean
 }
+
 export type SkillsPropsUnion = OntologyConceptResponse | ClientSkillProps
 
 export const GET_RELATED_SKILLS = gql`
@@ -47,19 +59,56 @@ export const ADD_SKILL_CLIENT = gql`
 
 const getName = (data: SkillsPropsUnion[]) => data.map(({ name }) => name)
 
+interface MatchState {
+  error: string
+  skills?: ClientSkillProps[]
+  loading: boolean
+}
+
+type MatchAction = {
+  type: 'ERROR' | 'DATA' | 'LOADING'
+  payload: string | boolean | ClientSkillProps[]
+}
+
+const reducer = (state: any, action: MatchAction) => {
+  switch (action.type) {
+    case 'ERROR':
+      return {
+        ...state,
+        error: action.payload,
+      }
+
+    case 'DATA':
+      return {
+        ...state,
+        skills: action.payload,
+      }
+
+    case 'LOADING':
+      return {
+        ...state,
+        loading: action.payload,
+      }
+
+    default:
+      return state
+  }
+}
+
+const initialState = {
+  skills: [],
+  error: '',
+  loading: false,
+}
+
 const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
   client,
 }) => {
   const {
-    data: { occupations = [] },
-  }: any = useQuery(GET_OCCUPATIONS_CLIENT)
-  const {
-    data: { skills: savedSkills = [] },
-  }: any = useQuery(GET_SKILLS_CLIENT)
+    data: { occupations = [], skills: savedSkills = [] },
+  }: any = useQuery(GET_SKILLS_AND_OCCUPATIONS_CLIENT)
   const addSkillMutation = useMutation(ADD_SKILL_CLIENT)
-  const [relatedSkills, setRelatedSkills] = useState<ClientSkillProps[]>([])
-  const [loading, setLoading] = useState<boolean>(false)
-  const [error, setError] = useState<string>('')
+  const [state, dispatch] = useReducer(reducer, initialState)
 
   const handleAddSkill = (skill: ClientSkillProps) => {
     addSkillMutation({
@@ -72,19 +121,22 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
   }
 
   const handleToggleActive = (skill: OntologyRelationResponse) => {
-    const toggled = relatedSkills.map(s =>
-      s.id === skill.id ? { ...s, isActive: !s.isActive } : s
+    const activeSkills = state.skills.map((stateSkill: ClientSkillProps) =>
+      stateSkill.id === skill.id
+        ? { ...stateSkill, isActive: !stateSkill.isActive }
+        : stateSkill
     )
 
-    setRelatedSkills(toggled)
-    getRelatedSkills([skill], toggled)
+    dispatch({ type: 'DATA', payload: activeSkills })
+
+    getRelatedSkills([skill], activeSkills)
   }
 
   const getRelatedSkills = async (
     skills: SkillsPropsUnion[],
-    relSkills: any
+    relSkills: OntologyRelationResponse[]
   ) => {
-    setLoading(true)
+    dispatch({ type: 'LOADING', payload: true })
     const { data } = await client.query({
       query: GET_RELATED_SKILLS,
       variables: {
@@ -95,8 +147,7 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
     })
 
     if (data.error) {
-      setError(data.error.message)
-      return
+      return dispatch({ type: 'ERROR', payload: data.error.message })
     }
 
     const withIsActive = data.ontologyRelated.relations.map((x: any) => ({
@@ -116,27 +167,28 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
   }
 
   const updateSkills = (skills: any) => {
-    setRelatedSkills(skills)
-    setLoading(false)
+    dispatch({ type: 'DATA', payload: skills })
+    dispatch({ type: 'LOADING', payload: false })
   }
 
   useEffect(() => {
-    getRelatedSkills(occupations, relatedSkills)
+    getRelatedSkills(occupations, state.skills)
   }, [occupations])
 
   return (
     <>
       <div style={{ marginBottom: '2rem' }}>
         Valda kompetenser:
-        {savedSkills.map((s: any, i: number) => (
-          <div key={i}>{s.name}</div>
+        {savedSkills.map((skill: ClientSkillProps, i: number) => (
+          <div key={i}>{skill.name}</div>
         ))}
       </div>
-      {error && <div>Error... {error}</div>}
-      {relatedSkills.length > 0 && (
-        <SkillsList handleAddSkill={handleAddSkill} skills={relatedSkills} />
+
+      {state.error && <div>Error... {state.error}</div>}
+      {state.skills.length > 0 && (
+        <SkillsList handleAddSkill={handleAddSkill} skills={state.skills} />
       )}
-      {loading && <Loader />}
+      {state.loading && <Loader />}
     </>
   )
 }

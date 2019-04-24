@@ -49,7 +49,7 @@ export const Paragraph = styled.p<ParagraphProps>`
 `
 
 const common: HeadingProps = {
-  color: 'white',
+  color: 'black',
   fontFamily: 'default',
   mt: 'none',
 }

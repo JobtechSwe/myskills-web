@@ -10,7 +10,7 @@ exports[`components/Button renders an Button 1`] = `
     Click me!
   </button>
 </div>
-`;
+`
 
 exports[`components/Button renders an Button with variant prop 1`] = `
 <div>
@@ -22,4 +22,4 @@ exports[`components/Button renders an Button with variant prop 1`] = `
     Click me!
   </button>
 </div>
-`;
+`

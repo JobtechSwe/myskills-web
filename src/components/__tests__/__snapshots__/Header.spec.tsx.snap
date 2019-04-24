@@ -24,4 +24,4 @@ exports[`components/Header renders Header component 1`] = `
     </h1>
   </div>
 </div>
-`;
+`

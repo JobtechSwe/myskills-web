@@ -7,4 +7,4 @@ exports[`components/List renders a List 1`] = `
     color="persianBlue"
   />
 </div>
-`;
+`

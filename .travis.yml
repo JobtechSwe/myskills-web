@@ -15,26 +15,27 @@ jobs:
         - npm run test:once -- --coverage
       after_script:
         - './cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT'
-    - stage: build
-      install: skip
+    - stage: release
+      language: node_js
       services:
         - docker
-      script:
-        - bash ./infrastructure/travis/build.sh
-    - stage: deploy
-      before_install:
-        - openssl aes-256-cbc -K $encrypted_6b48726482ce_key -iv $encrypted_6b48726482ce_iv
-          -in ./infrastructure/travis/openshift-token.enc -out ./infrastructure/travis/openshift-token -d
       install:
         - bash ./infrastructure/travis/install-openshift.sh
         - export PATH=$PATH:/tmp/openshift
-      script: bash ./infrastructure/travis/deploy.sh
+        - npm i -D @semantic-release/commit-analyzer @semantic-release/release-notes-generator
+          @semantic-release/github @semantic-release/exec semantic-release-docker
+      script:
+        - docker build . -t jobtechswe/myskills-web
+          --build-arg REACT_APP_GRAPHQL_URI=$REACT_APP_GRAPHQL_URI
+          --build-arg REACT_APP_GRAPHQL_WS_URI=$REACT_APP_GRAPHQL_WS_URI
+        - npx semantic-release
 stages:
   - test
-  - name: build
-    if: '(branch = master AND type != pull_request) OR tag IS present'
-  - name: deploy
-    if: '(branch = master AND type != pull_request) OR tag IS present'
+  - name: release
+    if: branch = master AND type != pull_request
+before_install:
+  - openssl aes-256-cbc -K $encrypted_6b48726482ce_key -iv $encrypted_6b48726482ce_iv
+    -in ./infrastructure/travis/openshift-token.enc -out ./infrastructure/travis/openshift-token -d
 notifications:
   slack:
     on_pull_requests: false

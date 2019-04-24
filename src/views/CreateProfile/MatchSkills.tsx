@@ -13,7 +13,7 @@ import {
 
 export const GET_SKILLS_AND_OCCUPATIONS_CLIENT = gql`
   query getSkillsAndOccupationsClient {
-    skills @client {
+    ontologyRelated @client {
       name
     }
 
@@ -50,7 +50,7 @@ export const GET_RELATED_SKILLS = gql`
 `
 
 export const ADD_SKILL_CLIENT = gql`
-  mutation addSkillClient($skill: String!) {
+  mutation addSkillClient($skill: OntologyRelatedInput!) {
     addSkillClient(skill: $skill) @client {
       name
     }

@@ -1,3 +1,14 @@
+enum OntologyType {
+  SKILL
+  OCCUPATION
+  TRAIT
+}
+
+input OntologyInput {
+  filter: String!
+  type: OntologyType
+}
+
 input ClientOccupationInput {
   id: String
   name: String
@@ -18,5 +29,5 @@ extend type Mutation {
     occupation: ClientOccupationInput!
   ): OntologyConceptResponse
 
-  addSkillClient(skill: Skill!): Skill
+  addSkillClient(skill: OntologyRelatedInput!): OntologyRelationResponse
 }

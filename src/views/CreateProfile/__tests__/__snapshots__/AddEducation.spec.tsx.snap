@@ -53,5 +53,16 @@ exports[`views/AddEducation renders empty result 1`] = `
       </button>
     </div>
   </form>
+  <a
+    href="/skapa-cv/"
+  >
+    <button
+      class="css-cu1m1g"
+      font-family="default"
+      font-size="medium"
+    >
+      Nästa
+    </button>
+  </a>
 </div>
 `;

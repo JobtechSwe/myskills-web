@@ -1,7 +1,7 @@
-import { removeEducation } from '../removeEducation'
+import { removeEducationClient } from '../removeEducation'
 import { GET_EDUCATIONS_CLIENT } from '../addEducation'
 
-let educationId: any
+let education: any
 let cache: any
 let readQueryMock: any
 let writeQueryMock: any
@@ -22,7 +22,9 @@ beforeEach(() => {
   readQueryMock = jest.fn(() => mockedEducationCache)
   writeQueryMock = jest.fn()
 
-  educationId = 'cba'
+  education = {
+    programme: 'cba',
+  }
 
   cache = {
     cache: {
@@ -34,7 +36,7 @@ beforeEach(() => {
 
 describe('resolvers/removeEducation', () => {
   it('reads cache', () => {
-    removeEducation({}, educationId, cache)
+    removeEducationClient({}, { education }, cache)
 
     expect(readQueryMock).toHaveBeenCalledWith({
       query: GET_EDUCATIONS_CLIENT,
@@ -42,7 +44,7 @@ describe('resolvers/removeEducation', () => {
   })
 
   it('removes education', () => {
-    removeEducation({}, educationId, cache)
+    removeEducationClient({}, { education }, cache)
 
     expect(writeQueryMock).toHaveBeenCalledWith({
       query: GET_EDUCATIONS_CLIENT,
@@ -57,7 +59,7 @@ describe('resolvers/removeEducation', () => {
   })
 
   it('returns the new educations list', () => {
-    const result = removeEducation({}, educationId, cache)
+    const result = removeEducationClient({}, { education }, cache)
 
     expect(result).toEqual([
       {

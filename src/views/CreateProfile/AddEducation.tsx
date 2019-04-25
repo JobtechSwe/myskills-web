@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import { useMutation } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
 import { TaxonomyDefaultResult } from '../../generated/myskills.d'
-import { RouteComponentProps } from '@reach/router'
+import { RouteComponentProps, Link } from '@reach/router'
 import { Paragraph } from '../../components/Typography'
 import Grid from '../../components/Grid'
 import Input from '../../components/Input'
 import Button from '../../components/Button'
 import AddedEducations from '../../components/AddedEducations'
+import styled from '@emotion/styled'
 
 export const ADD_EDUCATION_CLIENT = gql`
   mutation addEducationClient($education: EducationInput!) {
@@ -29,6 +30,12 @@ export const ADD_EDUCATION_API = gql`
       start
     }
   }
+`
+
+const NextButton = styled(Button)`
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
 `
 
 type EducationSelectAction = {
@@ -74,53 +81,58 @@ const AddEducation: React.FC<RouteComponentProps> = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Grid>
-        <AddedEducations />
+    <>
+      <form onSubmit={handleSubmit}>
+        <Grid>
+          <AddedEducations />
 
-        <Input
-          name="programme"
-          onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
-            handleUpdate('programme', target.value)
-          }
-          placeholder="Program"
-          type="text"
-          value={education.programme}
-        />
+          <Input
+            name="programme"
+            onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
+              handleUpdate('programme', target.value)
+            }
+            placeholder="Program"
+            type="text"
+            value={education.programme}
+          />
 
-        <Input
-          name="school"
-          onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
-            handleUpdate('school', target.value)
-          }
-          placeholder="Skola"
-          type="text"
-          value={education.school}
-        />
+          <Input
+            name="school"
+            onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
+              handleUpdate('school', target.value)
+            }
+            placeholder="Skola"
+            type="text"
+            value={education.school}
+          />
 
-        <Input
-          name="start"
-          onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
-            handleUpdate('start', target.value)
-          }
-          placeholder="Från"
-          type="date"
-          value={education.start}
-        />
+          <Input
+            name="start"
+            onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
+              handleUpdate('start', target.value)
+            }
+            placeholder="Från"
+            type="date"
+            value={education.start}
+          />
 
-        <Input
-          name="end"
-          onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
-            handleUpdate('end', target.value)
-          }
-          placeholder="Till"
-          type="date"
-          value={education.end}
-        />
+          <Input
+            name="end"
+            onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
+              handleUpdate('end', target.value)
+            }
+            placeholder="Till"
+            type="date"
+            value={education.end}
+          />
 
-        <Button type="submit">Lägg till</Button>
-      </Grid>
-    </form>
+          <Button type="submit">Lägg till</Button>
+        </Grid>
+      </form>
+      <Link to="/skapa-cv/">
+        <NextButton>Nästa</NextButton>
+      </Link>
+    </>
   )
 }
 

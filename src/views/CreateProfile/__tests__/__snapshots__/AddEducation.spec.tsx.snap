@@ -2,54 +2,56 @@
 
 exports[`views/AddEducation renders empty result 1`] = `
 <div>
-  <div
-    class="css-fhv5oa"
-  >
-    <select
-      data-testid="educationLevelSelect"
+  <form>
+    <div
+      class="css-fhv5oa"
     >
-      <option
-        value="EDUCATION_LEVEL_1"
+      <div />
+      <input
+        class="css-hn8wcy"
+        font-family="default"
+        font-size="medium"
+        name="programme"
+        placeholder="Program"
+        type="text"
+        value=""
+      />
+      <input
+        class="css-hn8wcy"
+        font-family="default"
+        font-size="medium"
+        name="school"
+        placeholder="Skola"
+        type="text"
+        value=""
+      />
+      <input
+        class="css-hn8wcy"
+        font-family="default"
+        font-size="medium"
+        name="start"
+        placeholder="Från"
+        type="date"
+        value=""
+      />
+      <input
+        class="css-hn8wcy"
+        font-family="default"
+        font-size="medium"
+        name="end"
+        placeholder="Till"
+        type="date"
+        value=""
+      />
+      <button
+        class="css-doul11"
+        font-family="default"
+        font-size="medium"
+        type="submit"
       >
-        EDUCATION_LEVEL_1
-      </option>
-      <option
-        value="EDUCATION_LEVEL_2"
-      >
-        EDUCATION_LEVEL_2
-      </option>
-      <option
-        value="EDUCATION_LEVEL_3"
-      >
-        EDUCATION_LEVEL_3
-      </option>
-    </select>
-    <select
-      data-testid="educationFieldSelect"
-    >
-      <option
-        value="EDUCATION_FIELD_1"
-      >
-        EDUCATION_FIELD_1
-      </option>
-      <option
-        value="EDUCATION_FIELD_2"
-      >
-        EDUCATION_FIELD_2
-      </option>
-      <option
-        value="EDUCATION_FIELD_3"
-      >
-        EDUCATION_FIELD_3
-      </option>
-    </select>
-    <input
-      class="css-hn8wcy"
-      font-family="default"
-      font-size="medium"
-      name="search"
-      placeholder="Utbildningsnivå"
-    />
-  </div>
+        Lägg till
+      </button>
+    </div>
+  </form>
 </div>
 `;

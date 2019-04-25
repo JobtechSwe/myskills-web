@@ -11,10 +11,10 @@ beforeEach(() => {
   mockedEducationCache = {
     educations: [
       {
-        taxonomyId: 'cba',
+        programme: 'cba',
       },
       {
-        taxonomyId: 'abc',
+        programme: 'abc',
       },
     ],
   }
@@ -49,7 +49,7 @@ describe('resolvers/removeEducation', () => {
       data: {
         educations: [
           {
-            taxonomyId: 'abc',
+            programme: 'abc',
           },
         ],
       },
@@ -61,7 +61,7 @@ describe('resolvers/removeEducation', () => {
 
     expect(result).toEqual([
       {
-        taxonomyId: 'abc',
+        programme: 'abc',
       },
     ])
   })

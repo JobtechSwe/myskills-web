@@ -4,7 +4,7 @@ import { GET_EDUCATIONS_CLIENT } from './addEducation'
 
 export const removeEducation = (
   _: any,
-  id: string,
+  programme: string,
   { cache }: { cache: InMemoryCache }
 ): Education => {
   const { educations }: any = cache.readQuery({
@@ -12,7 +12,7 @@ export const removeEducation = (
   })
 
   const updatedEducationList = educations.filter(
-    (education: Education) => education.id !== id
+    (education: Education) => education.programme !== programme
   )
 
   cache.writeQuery({

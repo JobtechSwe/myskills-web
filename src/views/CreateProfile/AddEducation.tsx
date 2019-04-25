@@ -42,50 +42,6 @@ type EducationSelectState = {
   name?: string
 }
 
-const educationSelectReducer = (
-  state: EducationSelectState,
-  action: EducationSelectAction
-) => {
-  switch (action.type) {
-    case 'FIELD':
-      return { ...state, field: action.payload }
-    case 'LEVEL':
-      return { ...state, level: action.payload }
-    case 'NAME':
-      return { ...state, name: action.payload }
-    default:
-      return state
-  }
-}
-
-const EducationSelect = ({
-  fields,
-  levels,
-}: {
-  fields: TaxonomyDefaultResult[]
-  levels: TaxonomyDefaultResult[]
-}) => {
-  const [state, dispatch] = React.useReducer(educationSelectReducer, {
-    field: undefined,
-    level: undefined,
-    name: undefined,
-  })
-
-  const { field, level, name } = state
-
-  return (
-    <>
-      {!field && !level && !name && <Paragraph>Fyll i inriktning</Paragraph>}
-
-      {field && <Paragraph>Fyll i nivå</Paragraph>}
-
-      {field && level && <Paragraph>Fyll i namn</Paragraph>}
-
-      {field && level && name && <Paragraph>Alla fält ifyllda</Paragraph>}
-    </>
-  )
-}
-
 const AddEducation: React.FC<RouteComponentProps> = () => {
   const initialState = {
     programme: '',

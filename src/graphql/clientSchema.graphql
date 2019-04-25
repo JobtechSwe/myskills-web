@@ -29,5 +29,6 @@ extend type Mutation {
     occupation: ClientOccupationInput!
   ): OntologyConceptResponse
 
-  addSkillClient(skill: OntologyRelatedInput!): OntologyRelationResponse
+  addSkillClient(skill: SkillInput!): Skill
+  addEducationClient(education: EducationInput!): Education
 }

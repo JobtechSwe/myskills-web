@@ -29,7 +29,7 @@ const SkillsList: React.FC<SkillsListProps> = ({ skills, handleAddSkill }) => (
           key={skill.id}
           onClick={() => handleAddSkill(skill)}
         >
-          {skill.name}
+          {skill.term}
         </Item>
       ))}
     </Grid>

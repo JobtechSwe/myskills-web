@@ -13,7 +13,7 @@ const ChosenOccupations: React.FC = () => {
     <div>
       Dina valda yrken:
       {data.occupations.map((occupation: OntologyConceptResponse) => (
-        <p key={occupation.id}>{occupation.name}</p>
+        <p key={occupation.id}>{occupation.term}</p>
       ))}
     </div>
   )

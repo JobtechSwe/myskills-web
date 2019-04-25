@@ -13,12 +13,12 @@ import {
 
 export const GET_SKILLS_AND_OCCUPATIONS_CLIENT = gql`
   query getSkillsAndOccupationsClient {
-    ontologyRelated @client {
-      name
+    skills @client {
+      term
     }
 
     occupations @client {
-      name
+      term
       id
       type
     }
@@ -40,7 +40,7 @@ export const GET_RELATED_SKILLS = gql`
       params: { concepts: $concepts, type: $type, limit: $limit }
     ) {
       relations {
-        name
+        term
         id
         score
         type
@@ -50,14 +50,14 @@ export const GET_RELATED_SKILLS = gql`
 `
 
 export const ADD_SKILL_CLIENT = gql`
-  mutation addSkillClient($skill: OntologyRelatedInput!) {
+  mutation addSkillClient($skill: SkillInput!) {
     addSkillClient(skill: $skill) @client {
-      name
+      term
     }
   }
 `
 
-const getName = (data: SkillsPropsUnion[]) => data.map(({ name }) => name)
+const getName = (data: SkillsPropsUnion[]) => data.map(({ term }) => term)
 
 interface MatchState {
   error: string
@@ -181,7 +181,7 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
       <div style={{ marginBottom: '2rem' }}>
         Valda kompetenser:
         {savedSkills.map((skill: ClientSkillProps) => (
-          <div key={skill.id}>{skill.name}</div>
+          <div key={skill.sourceId}>{skill.term}</div>
         ))}
       </div>
 

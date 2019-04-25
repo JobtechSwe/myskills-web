@@ -26,7 +26,7 @@ export const GET_ONTOLOGY_CONCEPTS = gql`
   query ontologyConcepts($filter: String!, $type: OntologyType) {
     ontologyConcepts(params: { filter: $filter, type: $type }) {
       id
-      name
+      term
       type
     }
   }
@@ -35,7 +35,7 @@ export const GET_ONTOLOGY_CONCEPTS = gql`
 export const ADD_OCCUPATION_CLIENT = gql`
   mutation addOccupationClient($occupation: ClientOccupationInput!) {
     addOccupationClient(occupation: $occupation) @client {
-      name
+      term
       type
       id
     }

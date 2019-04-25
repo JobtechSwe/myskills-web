@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
-import { useQuery, useMutation } from 'react-apollo-hooks'
+import { useMutation } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
-import { TaxonomyType, TaxonomyDefaultResult } from '../../generated/myskills.d'
-import { GET_TAXONOMY } from '../../graphql/shared/Queries'
+import { TaxonomyDefaultResult } from '../../generated/myskills.d'
 import { RouteComponentProps } from '@reach/router'
 import { Paragraph } from '../../components/Typography'
-import List from '../../components/List'
 import Grid from '../../components/Grid'
 import Input from '../../components/Input'
 import Button from '../../components/Button'
+import AddedEducations from '../../components/AddedEducations'
 
 export const ADD_EDUCATION_CLIENT = gql`
   mutation addEducationClient($education: EducationInput!) {
@@ -88,13 +87,14 @@ const EducationSelect = ({
 }
 
 const AddEducation: React.FC<RouteComponentProps> = () => {
-  const addEducationClient = useMutation(ADD_EDUCATION_CLIENT)
-  const [education, addEducation] = useState({
+  const initialState = {
     education: '',
     school: '',
     start: '',
     end: '',
-  })
+  }
+  const addEducationClient = useMutation(ADD_EDUCATION_CLIENT)
+  const [education, addEducation] = useState(initialState)
 
   const handleUpdate = (name: string, value: string) => {
     const updated = {
@@ -113,11 +113,15 @@ const AddEducation: React.FC<RouteComponentProps> = () => {
         education,
       },
     })
+
+    addEducation(initialState)
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <Grid>
+        <AddedEducations />
+
         <Input
           name="education"
           onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>

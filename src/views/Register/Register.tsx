@@ -12,6 +12,7 @@ export const GET_CONSENT_ID = gql`
     consent {
       id
       expires
+      url
     }
   }
 `
@@ -39,11 +40,13 @@ const Register: React.FC<RouteComponentProps> = props => {
           }
 
           if (data) {
-            return <Consent consentId={data.consent.id} />
+            return (
+              <Consent consentId={data.consent.id} url={data.consent.url} />
+            )
           }
 
           return (
-            <Button onClick={(_e: any) => consent()} variant="secondary">
+            <Button onClick={(_e: any) => consent()} variant="primary">
               Register
             </Button>
           )

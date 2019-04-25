@@ -9,7 +9,6 @@ import Input from '../../components/Input'
 import { H1, H3 } from '../../components/Typography'
 import Button from '../../components/Button'
 import styled from '@emotion/styled'
-import { useDebounce } from '@iteam/hooks'
 import { Link } from '@reach/router'
 import ChosenOccupations from '../../components/ChosenOccupations'
 
@@ -27,7 +26,7 @@ export const GET_ONTOLOGY_CONCEPTS = gql`
   query ontologyConcepts($filter: String!, $type: OntologyType) {
     ontologyConcepts(params: { filter: $filter, type: $type }) {
       id
-      name
+      term
       type
     }
   }
@@ -36,7 +35,7 @@ export const GET_ONTOLOGY_CONCEPTS = gql`
 export const ADD_OCCUPATION_CLIENT = gql`
   mutation addOccupationClient($occupation: ClientOccupationInput!) {
     addOccupationClient(occupation: $occupation) @client {
-      name
+      term
       type
       id
     }
@@ -66,7 +65,6 @@ export const IS_LOGGED_IN = gql`
 const ChooseProfession: React.FC<RouteComponentProps> = () => {
   const [query, setQuery] = useState('')
   // TODO: Use debounce, skipping for now because of complications in tests
-  // const debouncedQuery = useDebounce(query, 200)
   const { data: isLoggedIn } = useQuery(IS_LOGGED_IN, {
     fetchPolicy: 'network-only',
   })
@@ -89,7 +87,9 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
       <H1 mb={20}>Vad vill du jobba med?</H1>
       <SearchInput
         name="search"
-        onChange={({ target }) => setQuery(target.value)}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          setQuery(event.target.value)
+        }
         placeholder="Yrkesroll eller yrkesområde"
       />
       {loading && <div>Loading...</div>}

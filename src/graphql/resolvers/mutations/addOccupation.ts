@@ -6,7 +6,7 @@ import { OntologyConceptResponse } from '../../../generated/myskills'
 export const GET_OCCUPATIONS_CLIENT = gql`
   query occupations {
     occupations @client {
-      name
+      term
       id
       type
     }

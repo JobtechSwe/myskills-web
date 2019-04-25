@@ -6,13 +6,22 @@ exports[`components/Header renders Header component 1`] = `
     class="css-ca74jw"
   >
     <h1
-      class="css-1yyfh5p"
-      color="black"
+      class="css-1pedyaf"
+      color="persianBlue"
       font-family="default"
       font-size="small,medium,large"
+      font-weight="600"
     >
-      MySkills
+      <a
+        aria-current="page"
+        class="css-8v6n7y"
+        color="persianBlue"
+        font-weight="500"
+        href="/"
+      >
+        MySkills
+      </a>
     </h1>
   </div>
 </div>
-`;
+`

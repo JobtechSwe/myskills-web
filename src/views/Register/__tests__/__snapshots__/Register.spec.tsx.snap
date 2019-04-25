@@ -6,9 +6,9 @@ exports[`views/Register renders without errors 1`] = `
     class="css-1ggae92"
   >
     <button
-      class="css-szraxo"
+      class="css-doul11"
       font-family="default"
-      font-size="small,medium"
+      font-size="medium"
     >
       Register
     </button>

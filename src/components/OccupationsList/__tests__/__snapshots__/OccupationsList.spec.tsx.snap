@@ -3,8 +3,8 @@
 exports[`views/OccupationsList renders empty list 1`] = `
 <div>
   <ul
-    class="css-1qkqrd8"
-    color="blue"
+    class="css-1n9h91p"
+    color="persianBlue"
   />
 </div>
 `;
@@ -12,8 +12,8 @@ exports[`views/OccupationsList renders empty list 1`] = `
 exports[`views/OccupationsList renders experineces list 1`] = `
 <div>
   <ul
-    class="css-1qkqrd8"
-    color="blue"
+    class="css-1n9h91p"
+    color="persianBlue"
   >
     <li
       class="css-pxl19e"
@@ -34,17 +34,17 @@ exports[`views/OccupationsList renders experineces list 1`] = `
 exports[`views/OccupationsList renders experineces list with button 1`] = `
 <div>
   <ul
-    class="css-1qkqrd8"
-    color="blue"
+    class="css-1n9h91p"
+    color="persianBlue"
   >
     <li
-      class="css-pxl19e"
+      class="css-1mh231o"
       color="black"
     >
       Javascript
     </li>
     <li
-      class="css-pxl19e"
+      class="css-1mh231o"
       color="black"
     >
       Java

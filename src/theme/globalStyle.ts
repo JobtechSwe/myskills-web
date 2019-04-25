@@ -144,7 +144,7 @@ export const globalStyle = css`
     -moz-osx-font-smoothing: grayscale;
   }
   a,
-  li {
+  button {
     cursor: pointer;
   }
   *,

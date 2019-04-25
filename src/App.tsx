@@ -1,6 +1,8 @@
 import React from 'react'
 import { Router } from '@reach/router'
 import RestrictedRoute from './views/restricted'
+import Header from './components/Header'
+import { Paragraph } from './components/Typography'
 import styled from '@emotion/styled'
 import Loader from './components/Loader'
 
@@ -17,6 +19,9 @@ const ChooseProfession = React.lazy(() =>
 const MatchCompetences = React.lazy(() =>
   import('./views/CreateProfile/MatchSkills')
 )
+const AddEducation = React.lazy(() =>
+  import('./views/CreateProfile/AddEducation')
+)
 
 const WhoAmI = React.lazy(() => import(`./views/CreateProfile/WhoAmI`))
 
@@ -29,13 +34,14 @@ const Layout = styled.main`
 
 function App() {
   return (
-    <Layout>
+    <>
       <React.Suspense fallback={<Loader />}>
         <Router>
           <Start path="/" />
           <Register path="/register" />
           <Login path="/login" />
           <CreateProfile path="/skapa-cv">
+            <AddEducation path="/utbildning" />
             <ChooseProfession path="/" />
             <MatchCompetences path="/kompetenser" />
             <WhoAmI path="/beskriv-dig" />
@@ -44,7 +50,7 @@ function App() {
           <RestrictedRoute component={Profile} path="/profile" />
         </Router>
       </React.Suspense>
-    </Layout>
+    </>
   )
 }
 

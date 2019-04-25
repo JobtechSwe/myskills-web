@@ -48,7 +48,7 @@ const Login: React.FC<RouteComponentProps> = props => {
           }
 
           return (
-            <Button onClick={(_e: any) => login()} variant="secondary">
+            <Button onClick={(_e: any) => login()} variant="primary">
               Login
             </Button>
           )

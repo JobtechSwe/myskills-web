@@ -11,7 +11,7 @@ beforeEach(() => {
   mockedSkillCache = {
     skills: [
       {
-        taxonomyId: 'cba',
+        term: 'cba',
       },
     ],
   }
@@ -20,8 +20,7 @@ beforeEach(() => {
 
   skill = {
     skill: {
-      name: 'Javascript',
-      taxonomyId: 'abc',
+      term: 'abc',
     },
   }
   cache = {
@@ -54,8 +53,7 @@ describe('resolvers/addSkill', () => {
 
   it('returns education', () => {
     expect(addSkillClient({}, skill, cache)).toEqual({
-      name: 'Javascript',
-      taxonomyId: 'abc',
+      term: 'abc',
     })
   })
 })

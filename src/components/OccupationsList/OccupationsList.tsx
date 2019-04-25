@@ -6,7 +6,7 @@ import ListItem from '../ListItem'
 type MutationVariables = {
   variables: {
     occupation: {
-      name: string
+      term: string
       id: string
       type: OntologyType
     }
@@ -38,12 +38,12 @@ const OccupationsList: React.FC<OccupationsListProps> = ({
                 })
               }
             >
-              {occupation.name}
+              {occupation.term}
             </ListItem>
           )
         }
 
-        return <ListItem key={occupation.id}>{occupation.name}</ListItem>
+        return <ListItem key={occupation.id}>{occupation.term}</ListItem>
       })}
     </List>
   )

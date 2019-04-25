@@ -12,6 +12,7 @@ import {
   Language,
   OntologyRelationResponse,
   OntologyConceptResponse,
+  Skill,
 } from '../generated/myskills'
 import resolvers from './resolvers'
 import { storageHelper } from '../utils/helpers'
@@ -111,7 +112,7 @@ const terminatingLink = split(
 export type LocalStateProps = {
   occupations: OntologyConceptResponse[]
   language: Language[]
-  skills: OntologyRelationResponse[]
+  skills: Skill[]
   educations: Education[]
   traits: string[]
   whoAmI: string

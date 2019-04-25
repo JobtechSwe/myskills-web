@@ -1,34 +1,41 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { Skill, SkillInput } from '../../../generated/myskills'
+
 import gql from 'graphql-tag'
+import { OntologyRelationResponse } from '../../../generated/myskills'
+import { storageHelper } from '../../../utils/helpers'
 
 export const GET_SKILLS_CLIENT = gql`
   query getSkills {
     skills @client {
-      term
-      taxonomyId
-      type
+      name
     }
   }
 `
 
-export const addSkill = (
+export const addSkillClient = (
   _: any,
-  { skill }: { skill: Skill },
+  { skill }: { skill: OntologyRelationResponse },
   { cache }: { cache: InMemoryCache }
-): Skill => {
-  const { skills }: any = cache.readQuery({
+): OntologyRelationResponse => {
+  const { skills = [] } = cache.readQuery<{
+    skills: OntologyRelationResponse[]
+  }>({
     query: GET_SKILLS_CLIENT,
-  })
+  })!
 
-  const withoutDuplicates = (skills: Skill[]): Skill[] =>
-    skills.filter((s: Skill) => s.taxonomyId !== skill.taxonomyId)
+  const withoutDuplicates = (skills: OntologyRelationResponse[]) =>
+    skills.filter(s => s.name !== skill.name)
 
   const updatedSkills = [...withoutDuplicates(skills), skill]
 
   cache.writeQuery({
     query: GET_SKILLS_CLIENT,
     data: { skills: updatedSkills },
+  })
+
+  storageHelper.set({
+    type: 'skills',
+    data: updatedSkills,
   })
 
   return skill

@@ -2,7 +2,7 @@ import { RouteComponentProps } from '@reach/router'
 import { useQuery, useMutation } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
 import Grid from '../../components/Grid'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useDebounce } from '@iteam/hooks'
 import styled from '@emotion/styled'
 import Header from '../../components/Header'
@@ -72,17 +72,14 @@ export const ADD_WHO_AM_I = gql`
 
 export const GET_WHO_AM_I = gql`
   query getWhoAmI {
-    whoAmI @client(always: true)
+    whoAmI @client
   }
 `
 
 const WhoAmI: React.FC<RouteComponentProps> = () => {
-  const { data: whoAmIResult } = useQuery(GET_WHO_AM_I, {
-    fetchPolicy: 'network-only',
-  })
-  console.log('whoAmIResult', whoAmIResult.whoAmI)
+  const { data: whoAmIResult } = useQuery(GET_WHO_AM_I)
+
   const [query, setQuery] = useState(whoAmIResult.whoAmI)
-  console.log('query default', query)
 
   const [traits, setTraits] = useState<Query['ontologyTextParse']>([])
   const [charsLeft, setCharsLeft] = useState(280)
@@ -98,7 +95,7 @@ const WhoAmI: React.FC<RouteComponentProps> = () => {
     variables: {
       text: useDebounce(query, 500),
     },
-    skip: !query,
+    skip: !useDebounce(query, 500),
   })
 
   const Update = (e: any) => {

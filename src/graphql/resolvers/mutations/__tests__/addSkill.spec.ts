@@ -1,5 +1,5 @@
 import { GET_SKILLS_CLIENT } from '../addSkill'
-import { addSkill } from '../addSkill'
+import { addSkillClient } from '../addSkill'
 
 let skill: any
 let cache: any
@@ -34,7 +34,7 @@ beforeEach(() => {
 
 describe('resolvers/addSkill', () => {
   it('reads cache', () => {
-    addSkill({}, skill, cache)
+    addSkillClient({}, skill, cache)
 
     expect(readQueryMock).toHaveBeenCalledWith({
       query: GET_SKILLS_CLIENT,
@@ -42,7 +42,7 @@ describe('resolvers/addSkill', () => {
   })
 
   it('saves skill to cache', () => {
-    addSkill({}, skill, cache)
+    addSkillClient({}, skill, cache)
 
     expect(writeQueryMock).toHaveBeenCalledWith({
       query: GET_SKILLS_CLIENT,
@@ -53,7 +53,7 @@ describe('resolvers/addSkill', () => {
   })
 
   it('returns education', () => {
-    expect(addSkill({}, skill, cache)).toEqual({
+    expect(addSkillClient({}, skill, cache)).toEqual({
       name: 'Javascript',
       taxonomyId: 'abc',
     })

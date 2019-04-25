@@ -76,4 +76,6 @@ H3.defaultProps = {
 Paragraph.defaultProps = {
   fontFamily: 'default',
   fontSize: 'small',
+  mt: 'small',
+  mb: 'medium',
 }

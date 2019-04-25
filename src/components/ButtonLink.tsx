@@ -1,3 +1,4 @@
+import React from 'react'
 import styled from '@emotion/styled'
 import {
   fontFamily,
@@ -28,5 +29,9 @@ ButtonLink.defaultProps = {
   fontFamily: 'default',
   fontSize: ['small', 'medium'],
 }
+
+export const OpenInApp: React.FC<{ url: string }> = ({ url }) => (
+  <ButtonLink href={url}>Öppna i Egendata</ButtonLink>
+)
 
 export default ButtonLink

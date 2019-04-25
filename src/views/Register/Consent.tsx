@@ -3,6 +3,7 @@ import gql from 'graphql-tag'
 import { useSubscription } from 'react-apollo-hooks'
 import { Paragraph } from '../../components/Typography'
 import QR from '../../components/QR'
+import { OpenInApp } from '../../components/ButtonLink'
 import { navigate } from '@reach/router'
 import { setCookie } from '../../utils/helpers'
 
@@ -16,9 +17,10 @@ export const CONSENT_SUBSCRIPTION = gql`
 
 interface IConsentProps {
   consentId: string
+  url: string
 }
 
-const Consent: React.FC<IConsentProps> = ({ consentId }) => {
+const Consent: React.FC<IConsentProps> = ({ consentId, url }) => {
   const { data, error, loading } = useSubscription(CONSENT_SUBSCRIPTION, {
     variables: {
       consentRequestId: consentId,
@@ -44,8 +46,9 @@ const Consent: React.FC<IConsentProps> = ({ consentId }) => {
   return (
     <>
       {renderConsentStatus()}
-      <QR consentId={consentId} />
-      <Paragraph>mydata://register/{consentId}</Paragraph>
+      <QR consentId={url} />
+      <Paragraph>{url}</Paragraph>
+      <OpenInApp url={url} />
     </>
   )
 }

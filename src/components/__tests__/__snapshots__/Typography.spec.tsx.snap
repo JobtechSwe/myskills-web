@@ -11,24 +11,24 @@ exports[`components/Typography renders a Heading with props 1`] = `
     Heading Three
   </h3>
 </div>
-`
+`;
 
 exports[`components/Typography renders a Paragraph 1`] = `
 <div>
   <p
-    class="css-1t4aqy1"
+    class="css-h7l53x"
     font-family="default"
     font-size="small"
   >
     A paragraph.
   </p>
 </div>
-`
+`;
 
 exports[`components/Typography renders a Paragraph with props 1`] = `
 <div>
   <p
-    class="css-pb8t0v"
+    class="css-1mcoflr"
     color="red"
     font-family="default"
     font-size="small"
@@ -36,7 +36,7 @@ exports[`components/Typography renders a Paragraph with props 1`] = `
     Heading Three
   </p>
 </div>
-`
+`;
 
 exports[`components/Typography renders an H1 1`] = `
 <div>
@@ -50,7 +50,7 @@ exports[`components/Typography renders an H1 1`] = `
     Heading One
   </h1>
 </div>
-`
+`;
 
 exports[`components/Typography renders an H2 1`] = `
 <div>
@@ -63,7 +63,7 @@ exports[`components/Typography renders an H2 1`] = `
     Heading Two
   </h2>
 </div>
-`
+`;
 
 exports[`components/Typography renders an H3 1`] = `
 <div>
@@ -76,4 +76,4 @@ exports[`components/Typography renders an H3 1`] = `
     Heading Three
   </h3>
 </div>
-`
+`;

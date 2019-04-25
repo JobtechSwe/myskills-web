@@ -8,12 +8,15 @@ import { Paragraph } from '../../components/Typography'
 import List from '../../components/List'
 import Grid from '../../components/Grid'
 import Input from '../../components/Input'
+import Button from '../../components/Button'
 
 export const ADD_EDUCATION_CLIENT = gql`
   mutation addEducationClient($education: EducationInput!) {
     addEducationClient(education: $education) @client {
-      term
-      taxonomyId
+      education
+      end
+      school
+      start
     }
   }
 `
@@ -21,9 +24,10 @@ export const ADD_EDUCATION_CLIENT = gql`
 export const ADD_EDUCATION_API = gql`
   mutation addEducationApi($education: EducationInput!) {
     addEducation(education: $education) {
-      __typename
-      term
-      taxonomyId
+      education
+      end
+      school
+      start
     }
   }
 `
@@ -84,101 +88,79 @@ const EducationSelect = ({
 }
 
 const AddEducation: React.FC<RouteComponentProps> = () => {
-  const [query, setQuery] = useState('')
-  const [educationFieldOrType, setEducationFieldOrType] = useState(
-    TaxonomyType.EducationLevel_3
-  )
   const addEducationClient = useMutation(ADD_EDUCATION_CLIENT)
-
-  const { data, error, loading } = useQuery(GET_TAXONOMY, {
-    variables: {
-      q: query,
-      type: educationFieldOrType,
-    },
-    skip: !query,
+  const [education, addEducation] = useState({
+    education: '',
+    school: '',
+    start: '',
+    end: '',
   })
 
+  const handleUpdate = (name: string, value: string) => {
+    const updated = {
+      ...education,
+      [name]: value,
+    }
+
+    addEducation(updated)
+  }
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+
+    addEducationClient({
+      variables: {
+        education,
+      },
+    })
+  }
+
   return (
-    <Grid>
-      <select
-        data-testid="educationLevelSelect"
-        onBlur={(event: React.ChangeEvent<HTMLSelectElement>) =>
-          setEducationFieldOrType(event.target.value as TaxonomyType)
-        }
-      >
-        <option value={TaxonomyType.EducationLevel_1}>
-          {TaxonomyType.EducationLevel_1}
-        </option>
-        <option value={TaxonomyType.EducationLevel_2}>
-          {TaxonomyType.EducationLevel_2}
-        </option>
-        <option value={TaxonomyType.EducationLevel_3}>
-          {TaxonomyType.EducationLevel_3}
-        </option>
-      </select>
+    <form onSubmit={handleSubmit}>
+      <Grid>
+        <Input
+          name="education"
+          onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
+            handleUpdate('education', target.value)
+          }
+          placeholder="Utbildning"
+          type="text"
+          value={education.education}
+        />
 
-      <select
-        data-testid="educationFieldSelect"
-        onBlur={(event: React.ChangeEvent<HTMLSelectElement>) =>
-          setEducationFieldOrType(event.target.value as TaxonomyType)
-        }
-      >
-        <option value={TaxonomyType.EducationField_1}>
-          {TaxonomyType.EducationField_1}
-        </option>
-        <option value={TaxonomyType.EducationField_2}>
-          {TaxonomyType.EducationField_2}
-        </option>
-        <option value={TaxonomyType.EducationField_3}>
-          {TaxonomyType.EducationField_3}
-        </option>
-      </select>
+        <Input
+          name="school"
+          onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
+            handleUpdate('school', target.value)
+          }
+          placeholder="Skola"
+          type="text"
+          value={education.school}
+        />
 
-      <Input
-        name="search"
-        onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
-          setQuery(target.value)
-        }
-        placeholder="Utbildningsnivå"
-      />
+        <Input
+          name="start"
+          onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
+            handleUpdate('start', target.value)
+          }
+          placeholder="Från"
+          type="date"
+          value={education.start}
+        />
 
-      {loading && <Paragraph>Loading...</Paragraph>}
+        <Input
+          name="end"
+          onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
+            handleUpdate('end', target.value)
+          }
+          placeholder="Till"
+          type="date"
+          value={education.end}
+        />
 
-      {error && (
-        <Paragraph>
-          There was an error while trying to fetch Educations
-        </Paragraph>
-      )}
-
-      {data && data.taxonomy && (
-        <List>
-          {data.taxonomy.result.map((education: TaxonomyDefaultResult) => {
-            return (
-              <li key={education.taxonomyId}>
-                {addEducationClient ? (
-                  <button
-                    onClick={() =>
-                      addEducationClient({
-                        variables: {
-                          education: {
-                            term: education.term,
-                            taxonomyId: education.taxonomyId,
-                          },
-                        },
-                      })
-                    }
-                  >
-                    {education.term}
-                  </button>
-                ) : (
-                  <p>{education.term}</p>
-                )}
-              </li>
-            )
-          })}
-        </List>
-      )}
-    </Grid>
+        <Button type="submit">Lägg till</Button>
+      </Grid>
+    </form>
   )
 }
 

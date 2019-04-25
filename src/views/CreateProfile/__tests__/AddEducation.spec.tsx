@@ -1,5 +1,7 @@
 import * as React from 'react'
-import AddEducation, { GET_TAXONOMY_EDUCATIONS } from '../AddEducation'
+import AddEducation from '../AddEducation'
+import { GET_TAXONOMY } from '../../../graphql/shared/Queries'
+
 import { TaxonomyType } from '../../../generated/myskills.d'
 import { render } from '../../../utils/test-utils'
 import { wait, fireEvent } from 'react-testing-library'
@@ -7,7 +9,7 @@ import { wait, fireEvent } from 'react-testing-library'
 const addEducationLevel1Mock = [
   {
     request: {
-      query: GET_TAXONOMY_EDUCATIONS,
+      query: GET_TAXONOMY,
       variables: {
         q: 'Saknar',
         type: TaxonomyType.EducationLevel_1,
@@ -34,7 +36,7 @@ const addEducationLevel1Mock = [
 const addEducationLevel2Mock = [
   {
     request: {
-      query: GET_TAXONOMY_EDUCATIONS,
+      query: GET_TAXONOMY,
       variables: {
         q: 'gymnasial',
         type: TaxonomyType.EducationLevel_2,
@@ -85,7 +87,7 @@ describe('views/AddEducation', () => {
       addEducationLevel1Mock
     )
 
-    fireEvent.change(getByPlaceholderText('Utbildningar'), {
+    fireEvent.change(getByPlaceholderText('Utbildningsnivå'), {
       target: { value: 'Sak' },
     })
 
@@ -98,7 +100,7 @@ describe('views/AddEducation', () => {
       addEducationLevel1Mock
     )
 
-    fireEvent.change(getByPlaceholderText('Utbildningar'), {
+    fireEvent.change(getByPlaceholderText('Utbildningsnivå'), {
       target: { value: 'Saknar' },
     })
 
@@ -121,7 +123,7 @@ describe('views/AddEducation', () => {
 
     await wait()
 
-    fireEvent.change(getByPlaceholderText('Utbildningar'), {
+    fireEvent.change(getByPlaceholderText('Utbildningsnivå'), {
       target: { value: 'gymnasial' },
     })
 

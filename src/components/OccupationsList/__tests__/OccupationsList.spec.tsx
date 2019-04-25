@@ -11,11 +11,11 @@ describe('views/OccupationsList', () => {
     addOccupation = jest.fn()
     occupations = [
       {
-        name: 'Javascript',
+        term: 'Javascript',
         id: 'abc',
       },
       {
-        name: 'Java',
+        term: 'Java',
         id: 'cda',
       },
     ]
@@ -40,7 +40,7 @@ describe('views/OccupationsList', () => {
   it('renders experineces list with button', async () => {
     const { container } = render(
       <OccupationsList
-        addExperience={addOccupation}
+        addOccupation={addOccupation}
         occupations={occupations}
       />
     )
@@ -64,7 +64,7 @@ describe('views/OccupationsList', () => {
 
     expect(addOccupation).toHaveBeenCalledWith({
       variables: {
-        occupation: { name: 'Javascript', id: 'abc' },
+        occupation: { term: 'Javascript', id: 'abc' },
       },
     })
   })

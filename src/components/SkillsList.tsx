@@ -2,6 +2,7 @@ import React from 'react'
 import Grid from './Grid'
 import { ClientSkillProps } from '../views/CreateProfile/MatchSkills'
 import styled from '@emotion/styled'
+import { OntologyRelationResponse } from '../generated/myskills'
 
 interface SkillsListProps {
   skills: ClientSkillProps[]

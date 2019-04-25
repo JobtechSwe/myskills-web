@@ -9,6 +9,7 @@ import {
   OntologyType,
   OntologyConceptResponse,
   OntologyRelationResponse,
+  Skill,
 } from '../../generated/myskills.d'
 
 export const GET_SKILLS_AND_OCCUPATIONS_CLIENT = gql`
@@ -110,7 +111,7 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
   const addSkillMutation = useMutation(ADD_SKILL_CLIENT)
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  const handleAddSkill = (skill: ClientSkillProps) => {
+  const handleAddSkill = (skill: OntologyRelationResponse) => {
     addSkillMutation({
       variables: {
         skill,
@@ -133,8 +134,8 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
   }
 
   const getRelatedSkills = async (
-    skills: SkillsPropsUnion[],
-    relSkills: OntologyRelationResponse[]
+    skills: OntologyRelationResponse[],
+    relSkills: ClientSkillProps[]
   ) => {
     dispatch({ type: 'LOADING', payload: true })
     const { data } = await client.query({
@@ -180,8 +181,8 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
     <>
       <div style={{ marginBottom: '2rem' }}>
         Valda kompetenser:
-        {savedSkills.map((skill: ClientSkillProps) => (
-          <div key={skill.sourceId}>{skill.term}</div>
+        {savedSkills.map((skill: Skill) => (
+          <div key={skill.term}>{skill.term}</div>
         ))}
       </div>
 

@@ -7,7 +7,7 @@ import { storageHelper } from '../../../utils/helpers'
 export const GET_SKILLS_CLIENT = gql`
   query getSkills {
     skills @client {
-      name
+      term
     }
   }
 `
@@ -24,7 +24,7 @@ export const addSkillClient = (
   })!
 
   const withoutDuplicates = (skills: OntologyRelationResponse[]) =>
-    skills.filter(s => s.name !== skill.name)
+    skills.filter(s => s.term !== skill.term)
 
   const updatedSkills = [...withoutDuplicates(skills), skill]
 

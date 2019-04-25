@@ -1,5 +1,5 @@
 import { GET_EDUCATIONS_CLIENT } from '../addEducation'
-import { addEducation } from '../addEducation'
+import { addEducationClient } from '../addEducation'
 
 let education: any
 let cache: any
@@ -12,6 +12,7 @@ beforeEach(() => {
     educations: [
       {
         taxonomyId: 'cba',
+        __typename: 'Education',
       },
     ],
   }
@@ -22,6 +23,7 @@ beforeEach(() => {
     education: {
       name: 'Gymnasieutbildning',
       taxonomyId: 'abc',
+      __typename: 'Education',
     },
   }
   cache = {
@@ -34,7 +36,7 @@ beforeEach(() => {
 
 describe('resolvers/addEducation', () => {
   it('reads cache', () => {
-    addEducation({}, education, cache)
+    addEducationClient({}, education, cache)
 
     expect(readQueryMock).toHaveBeenCalledWith({
       query: GET_EDUCATIONS_CLIENT,
@@ -42,7 +44,7 @@ describe('resolvers/addEducation', () => {
   })
 
   it('saves education to cache', () => {
-    addEducation({}, education, cache)
+    addEducationClient({}, education, cache)
 
     expect(writeQueryMock).toHaveBeenCalledWith({
       query: GET_EDUCATIONS_CLIENT,
@@ -53,9 +55,10 @@ describe('resolvers/addEducation', () => {
   })
 
   it('returns education', () => {
-    expect(addEducation({}, education, cache)).toEqual({
+    expect(addEducationClient({}, education, cache)).toEqual({
       name: 'Gymnasieutbildning',
       taxonomyId: 'abc',
+      __typename: 'Education',
     })
   })
 })

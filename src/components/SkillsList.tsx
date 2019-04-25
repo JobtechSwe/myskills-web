@@ -2,6 +2,7 @@ import React from 'react'
 import Grid from './Grid'
 import { ClientSkillProps } from '../views/CreateProfile/MatchSkills'
 import styled from '@emotion/styled'
+import { OntologyRelationResponse } from '../generated/myskills'
 
 interface SkillsListProps {
   skills: ClientSkillProps[]
@@ -29,7 +30,7 @@ const SkillsList: React.FC<SkillsListProps> = ({ skills, handleAddSkill }) => (
           key={skill.id}
           onClick={() => handleAddSkill(skill)}
         >
-          {skill.name}
+          {skill.term}
         </Item>
       ))}
     </Grid>

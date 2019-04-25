@@ -9,16 +9,17 @@ import {
   OntologyType,
   OntologyConceptResponse,
   OntologyRelationResponse,
+  Skill,
 } from '../../generated/myskills.d'
 
 export const GET_SKILLS_AND_OCCUPATIONS_CLIENT = gql`
   query getSkillsAndOccupationsClient {
     skills @client {
-      name
+      term
     }
 
     occupations @client {
-      name
+      term
       id
       type
     }
@@ -40,7 +41,7 @@ export const GET_RELATED_SKILLS = gql`
       params: { concepts: $concepts, type: $type, limit: $limit }
     ) {
       relations {
-        name
+        term
         id
         score
         type
@@ -50,14 +51,14 @@ export const GET_RELATED_SKILLS = gql`
 `
 
 export const ADD_SKILL_CLIENT = gql`
-  mutation addSkillClient($skill: String!) {
+  mutation addSkillClient($skill: SkillInput!) {
     addSkillClient(skill: $skill) @client {
-      name
+      term
     }
   }
 `
 
-const getName = (data: SkillsPropsUnion[]) => data.map(({ name }) => name)
+const getName = (data: SkillsPropsUnion[]) => data.map(({ term }) => term)
 
 interface MatchState {
   error: string
@@ -110,7 +111,7 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
   const addSkillMutation = useMutation(ADD_SKILL_CLIENT)
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  const handleAddSkill = (skill: ClientSkillProps) => {
+  const handleAddSkill = (skill: OntologyRelationResponse) => {
     addSkillMutation({
       variables: {
         skill,
@@ -133,8 +134,8 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
   }
 
   const getRelatedSkills = async (
-    skills: SkillsPropsUnion[],
-    relSkills: OntologyRelationResponse[]
+    skills: OntologyRelationResponse[],
+    relSkills: ClientSkillProps[]
   ) => {
     dispatch({ type: 'LOADING', payload: true })
     const { data } = await client.query({
@@ -180,8 +181,8 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
     <>
       <div style={{ marginBottom: '2rem' }}>
         Valda kompetenser:
-        {savedSkills.map((skill: ClientSkillProps) => (
-          <div key={skill.id}>{skill.name}</div>
+        {savedSkills.map((skill: Skill) => (
+          <div key={skill.term}>{skill.term}</div>
         ))}
       </div>
 

@@ -46,7 +46,7 @@ const Register: React.FC<RouteComponentProps> = props => {
           }
 
           return (
-            <Button onClick={(_e: any) => consent()} variant="secondary">
+            <Button onClick={(_e: any) => consent()} variant="primary">
               Register
             </Button>
           )

@@ -1,8 +1,9 @@
 import React from 'react'
 import { RouteComponentProps } from '@reach/router'
+import { Paragraph } from '../../components/Typography'
 
 const Profile: React.FC<RouteComponentProps> = props => (
-  <div>This page requires logged in.</div>
+  <Paragraph>Profile page (you are logged in)</Paragraph>
 )
 
 export default Profile

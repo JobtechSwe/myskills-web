@@ -5,14 +5,13 @@ type ListProps = React.HTMLProps<HTMLUListElement> & ColorProps & SpaceProps
 
 const List = styled.ul<ListProps>`
   list-style: none;
-  width: 100%;
 
   ${color}
   ${space}
 `
 
 List.defaultProps = {
-  color: 'blue',
+  color: 'persianBlue',
   p: 0,
 }
 

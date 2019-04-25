@@ -1,8 +1,9 @@
 interface Color {
-  black: 'black'
-  blue: 'dodgerblue'
-  white: 'white'
+  athensGray: '#E9ECF1'
+  cloudBurst: '#1F215F'
   green: 'green'
+  persianBlue: '#202ED1'
+  white: 'white'
 }
 
 interface Typography {
@@ -10,40 +11,39 @@ interface Typography {
 }
 
 const colors: Color = {
-  black: 'black',
-  blue: 'dodgerblue',
-  white: 'white',
+  athensGray: '#E9ECF1',
+  cloudBurst: '#1F215F',
   green: 'green',
+  persianBlue: '#202ED1',
+  white: 'white',
 }
 
 const buttons = {
   primary: {
     color: colors.white,
-    backgroundColor: colors.black,
+    backgroundColor: colors.persianBlue,
   },
   secondary: {
-    color: colors.white,
-    backgroundColor: colors.green,
+    color: colors.persianBlue,
+    backgroundColor: colors.white,
   },
 }
-
-const sizes = [0, 16, 24, 32]
 
 const typography: Typography = {
   default: 'sans-serif',
 }
 
 const fontSizes = {
-  small: sizes[1],
-  medium: sizes[2],
-  large: sizes[3],
+  small: 14,
+  medium: 16,
+  large: 26,
 }
 
 const space = {
-  none: sizes[0],
-  small: sizes[1],
-  medium: sizes[2],
-  large: sizes[3],
+  none: 0,
+  small: 16,
+  medium: 24,
+  large: 32,
 }
 
 const theme = {

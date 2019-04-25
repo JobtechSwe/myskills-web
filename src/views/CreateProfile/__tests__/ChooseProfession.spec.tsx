@@ -23,7 +23,7 @@ describe('views/ChooseProfession', () => {
             __typename: 'OntologyConceptsResult',
             ontologyConcepts: [
               {
-                name: 'Systemutvecklare',
+                term: 'Systemutvecklare',
                 id: 'abc',
                 type: 'occupation-name',
                 __typename: 'OntologyConceptResult',

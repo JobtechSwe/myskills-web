@@ -2,6 +2,7 @@ import React from 'react'
 import gql from 'graphql-tag'
 import { useSubscription } from 'react-apollo-hooks'
 import QR from '../../components/QR'
+import { OpenInApp } from '../../components/ButtonLink'
 import { Paragraph } from '../../components/Typography'
 import { navigate } from '@reach/router'
 import { setCookie } from '../../utils/helpers'
@@ -47,6 +48,7 @@ const LoginQR: React.FC<ILoginQRProps> = ({ loginRequestId, loginUrl }) => {
       {renderLoginStatus()}
       <QR consentId={loginUrl} />
       <Paragraph id="consentId">{loginUrl}</Paragraph>
+      <OpenInApp url={loginUrl} />
     </>
   )
 }

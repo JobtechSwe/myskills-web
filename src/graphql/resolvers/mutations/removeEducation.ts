@@ -12,7 +12,7 @@ export const removeEducation = (
   })
 
   const updatedEducationList = educations.filter(
-    (education: Education) => education.taxonomyId !== id
+    (education: Education) => education.id !== id
   )
 
   cache.writeQuery({

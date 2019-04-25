@@ -22,6 +22,7 @@ input ClientSkillInput {
 extend type Query {
   isLoggedIn: Boolean!
   occupations: [OntologyConceptResponse!]!
+  educations: [Education!]!
 }
 
 extend type Mutation {

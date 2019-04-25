@@ -12,10 +12,10 @@ import AddedEducations from '../../components/AddedEducations'
 export const ADD_EDUCATION_CLIENT = gql`
   mutation addEducationClient($education: EducationInput!) {
     addEducationClient(education: $education) @client {
-      education
-      end
+      programme
       school
       start
+      end
     }
   }
 `
@@ -23,7 +23,7 @@ export const ADD_EDUCATION_CLIENT = gql`
 export const ADD_EDUCATION_API = gql`
   mutation addEducationApi($education: EducationInput!) {
     addEducation(education: $education) {
-      education
+      programme
       end
       school
       start
@@ -88,7 +88,7 @@ const EducationSelect = ({
 
 const AddEducation: React.FC<RouteComponentProps> = () => {
   const initialState = {
-    education: '',
+    programme: '',
     school: '',
     start: '',
     end: '',
@@ -123,13 +123,13 @@ const AddEducation: React.FC<RouteComponentProps> = () => {
         <AddedEducations />
 
         <Input
-          name="education"
+          name="programme"
           onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
-            handleUpdate('education', target.value)
+            handleUpdate('programme', target.value)
           }
-          placeholder="Utbildning"
+          placeholder="Program"
           type="text"
-          value={education.education}
+          value={education.programme}
         />
 
         <Input

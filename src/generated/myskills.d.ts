@@ -61,14 +61,18 @@ export type CvInput = {
 }
 
 export type Education = {
+  programme: Scalars['String']
+  school: Scalars['String']
+  start: Scalars['String']
+  end?: Maybe<Scalars['String']>
   id: Scalars['String']
-  taxonomyId: Scalars['String']
-  term?: Maybe<Scalars['String']>
 }
 
 export type EducationInput = {
-  taxonomyId: Scalars['String']
-  term?: Maybe<Scalars['String']>
+  programme: Scalars['String']
+  school: Scalars['String']
+  start: Scalars['String']
+  end?: Maybe<Scalars['String']>
 }
 
 export type Experience = {
@@ -392,7 +396,12 @@ export type GetEducationsQueryVariables = {}
 
 export type GetEducationsQuery = { __typename?: 'Query' } & {
   educations: Array<
-    Maybe<{ __typename?: 'Education' } & Pick<Education, 'term' | 'taxonomyId'>>
+    Maybe<
+      { __typename?: 'Education' } & Pick<
+        Education,
+        'programme' | 'school' | 'start' | 'end'
+      >
+    >
   >
 }
 
@@ -445,7 +454,10 @@ export type AddEducationClientMutationVariables = {
 
 export type AddEducationClientMutation = { __typename?: 'Mutation' } & {
   addEducationClient: Maybe<
-    { __typename?: 'Education' } & Pick<Education, 'term' | 'taxonomyId'>
+    { __typename?: 'Education' } & Pick<
+      Education,
+      'programme' | 'school' | 'start' | 'end'
+    >
   >
 }
 
@@ -454,9 +466,9 @@ export type AddEducationApiMutationVariables = {
 }
 
 export type AddEducationApiMutation = { __typename?: 'Mutation' } & {
-  addEducation: { __typename: 'Education' } & Pick<
+  addEducation: { __typename?: 'Education' } & Pick<
     Education,
-    'term' | 'taxonomyId'
+    'programme' | 'end' | 'school' | 'start'
   >
 }
 

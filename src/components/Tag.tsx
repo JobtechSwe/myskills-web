@@ -11,7 +11,6 @@ import {
   variant,
 } from 'styled-system'
 
-
 const tagStyle = variant({
   key: 'tags',
 })

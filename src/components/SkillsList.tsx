@@ -19,9 +19,9 @@ const SkillsList: React.FC<SkillsListProps> = ({ skills, handleAddSkill }) => (
     >
       {skills.map(skill => (
         <Tag
-          variant={skill.isActive ? 'active' : 'default'}
           key={skill.id}
           onClick={() => handleAddSkill(skill)}
+          variant={skill.isActive ? 'active' : 'default'}
         >
           {skill.term}
         </Tag>

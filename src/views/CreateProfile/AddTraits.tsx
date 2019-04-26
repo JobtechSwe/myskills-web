@@ -1,7 +1,7 @@
 import { RouteComponentProps } from '@reach/router'
 import Grid from '../../components/Grid'
 import { useMutation, useQuery } from 'react-apollo-hooks'
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import styled from '@emotion/styled'
 import Header from '../../components/Header'
 import Button from '../../components/Button'
@@ -61,6 +61,12 @@ export const ADD_TRAIT = gql`
   }
 `
 
+export const REMOVE_TRAIT = gql`
+  mutation removeTrait($trait: string!) {
+    removeTrait(trait: $trait) @client
+  }
+`
+
 export const GET_TRAITS = gql`
   query getTraits {
     traits @client
@@ -68,51 +74,53 @@ export const GET_TRAITS = gql`
 `
 
 const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
-  const results: OntologyTextParseResponse[] =
+  const navigationTraits: OntologyTextParseResponse[] =
     (location && location.state && location.state.traits) || []
-  const [traits, updateTraits] = useState<OntologyTextParseResponse[]>(results)
+
+  const { data: { traits = [] } = { traits: [] } } = useQuery(GET_TRAITS)
 
   const addTraitMutation = useMutation(ADD_TRAIT)
-
-  if (results.length) {
-    results.map(trait =>
-      addTraitMutation({
-        variables: {
-          trait: trait.name,
-        },
-      })
-    )
-  }
-
-  const { data } = useQuery(GET_TRAITS)
+  const removeTraitMutation = useMutation(REMOVE_TRAIT)
 
   const addTrait = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.keyCode === 13) {
-      updateTraits([
-        ...traits,
-        { name: e.currentTarget.value } as OntologyTextParseResponse,
-      ])
+      addTraitMutation({
+        variables: {
+          trait: e.currentTarget.value,
+        },
+      })
       e.currentTarget.value = ''
     }
   }
 
-  const onTagClick = (traitName: string) => {
-    const newTraits = traits.filter(trait => trait.name !== traitName)
-    updateTraits(newTraits)
+  useEffect(() => {
+    navigationTraits.map(trait =>
+      addTraitMutation({
+        variables: {
+          trait: trait.term,
+        },
+      })
+    )
+  }, [navigationTraits])
+
+  const onTagClick = (trait: string) => {
+    removeTraitMutation({
+      variables: {
+        trait,
+      },
+    })
   }
 
   return (
     <Grid>
       <Header title="Vilka är dina främsta egenskaper?" />
       <Tags>
-        {data &&
-          data.traits &&
-          data.traits.map((trait: string, i: number) => (
-            <TagContainer key={i}>
-              <Tag>{trait}</Tag>
-              <TagClose onClick={() => onTagClick(trait)}>X</TagClose>
-            </TagContainer>
-          ))}
+        {traits.map((trait: string, i: number) => (
+          <TagContainer key={i}>
+            <Tag>{trait}</Tag>
+            <TagClose onClick={() => onTagClick(trait)}>X</TagClose>
+          </TagContainer>
+        ))}
       </Tags>
       <AddTrait onKeyUp={addTrait} placeholder="Lägg till en annan egenskap" />
       <Footer>

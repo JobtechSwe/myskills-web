@@ -1,14 +1,9 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import gql from 'graphql-tag'
 import { storageHelper } from '../../../utils/helpers'
+import { GET_TRAITS_CLIENT } from './addTrait'
 
-export const GET_TRAITS_CLIENT = gql`
-  query getTraits {
-    traits @client
-  }
-`
-
-export const addTrait = (
+export const removeTrait = (
   _: any,
   { trait }: { trait: string },
   { cache }: { cache: InMemoryCache }
@@ -17,10 +12,9 @@ export const addTrait = (
     query: GET_TRAITS_CLIENT,
   }) || { traits: [] }
 
-  const withoutDuplicates = (traits: string[]): string[] =>
-    traits.filter((t: string) => t.toLowerCase() !== trait.toLowerCase())
-
-  const updatedTraits = [...withoutDuplicates(traits), trait]
+  const updatedTraits = traits.filter(
+    t => t.toLowerCase() !== trait.toLowerCase()
+  )
 
   cache.writeQuery({
     query: GET_TRAITS_CLIENT,

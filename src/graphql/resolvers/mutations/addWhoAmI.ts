@@ -13,7 +13,6 @@ export const addWhoAmI = (
   { whoAmI }: { whoAmI: string },
   { cache }: { cache: InMemoryCache }
 ): string => {
-  console.log('kommer jag hit?', whoAmI)
   cache.writeQuery({
     query: GET_WHO_AM_I_CLIENT,
     data: { whoAmI: whoAmI },

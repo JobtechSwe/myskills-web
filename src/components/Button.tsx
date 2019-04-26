@@ -28,6 +28,7 @@ type ButtonProps = React.HTMLProps<HTMLButtonElement> &
   BorderProps &
   FontFamilyProps &
   FontSizeProps &
+  PositionProps &
   SpaceProps &
   ColorProps &
   VariantProps

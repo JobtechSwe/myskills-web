@@ -1,5 +1,6 @@
 import React from 'react'
 import Grid from './Grid'
+import Tag from './Tag'
 import { ClientSkillProps } from '../views/CreateProfile/MatchSkills'
 import styled from '@emotion/styled'
 import { OntologyRelationResponse } from '../generated/myskills'
@@ -9,14 +10,6 @@ interface SkillsListProps {
   handleAddSkill: (skill: ClientSkillProps) => void
 }
 
-type ItemProps = {
-  isActive: boolean
-}
-
-const Item = styled.div<ItemProps>`
-  background: ${props => (props.isActive ? 'green' : 'none')};
-`
-
 const SkillsList: React.FC<SkillsListProps> = ({ skills, handleAddSkill }) => (
   <>
     föreslagna kompetenser:
@@ -25,13 +18,13 @@ const SkillsList: React.FC<SkillsListProps> = ({ skills, handleAddSkill }) => (
       style={{ width: '100vw' }}
     >
       {skills.map(skill => (
-        <Item
-          isActive={skill.isActive}
+        <Tag
+          variant={skill.isActive ? 'active' : 'default'}
           key={skill.id}
           onClick={() => handleAddSkill(skill)}
         >
           {skill.term}
-        </Item>
+        </Tag>
       ))}
     </Grid>
   </>

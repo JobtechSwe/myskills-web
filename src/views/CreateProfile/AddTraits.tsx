@@ -1,12 +1,21 @@
 import { RouteComponentProps } from '@reach/router'
 import Grid from '../../components/Grid'
 import { useMutation, useQuery } from 'react-apollo-hooks'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 import Header from '../../components/Header'
 import Button from '../../components/Button'
-import { OntologyTextParseResponse } from '../../generated/myskills'
+import {
+  OntologyTextParseResponse,
+  Query,
+  OntologyType,
+} from '../../generated/myskills.d'
 import gql from 'graphql-tag'
+import { GET_ONTOLOGY_CONCEPTS } from './ChooseProfession'
+
+interface TagContainerProps {
+  active?: boolean
+}
 
 const Footer = styled.div`
   display: flex;
@@ -24,20 +33,16 @@ const BackButton = styled(Button)`
   color: black;
 `
 
-const TagContainer = styled.div`
+const TagContainer = styled.div<TagContainerProps>`
   display: flex;
   flex-direction: row;
-  background-color: red;
+  background: ${(props: any) => (props.active ? 'green' : 'lightgrey')};
   justify-content: space-between;
-  border-radius: 5px;
+  border-radius: 8px;
 
   & * {
     margin: 5px 10px;
   }
-`
-
-const TagClose = styled.div`
-  cursor: pointer;
 `
 
 const Tag = styled.div`
@@ -77,52 +82,94 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
   const navigationTraits: OntologyTextParseResponse[] =
     (location && location.state && location.state.traits) || []
 
-  const { data: { traits = [] } = { traits: [] } } = useQuery(GET_TRAITS)
+  const { data: { traits = [] } = { traits: [] as string[] } } = useQuery(
+    GET_TRAITS
+  )
+  const [query, setQuery] = useState('')
+
+  const { data: ontologyRelated } = useQuery<{
+    ontologyConcept: Query['ontologyConcept']
+  }>(GET_ONTOLOGY_CONCEPTS, {
+    variables: {
+      filter: query,
+      type: OntologyType.Trait,
+    },
+    skip: !query,
+  })
+
+  const [suggestedTraits, setSuggestedTraits] = useState(
+    navigationTraits.map(t => t.term)
+  )
 
   const addTraitMutation = useMutation(ADD_TRAIT)
   const removeTraitMutation = useMutation(REMOVE_TRAIT)
 
-  const addTrait = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.keyCode === 13) {
+  const handleChange = (e: any) => {
+    if (e.keyCode && e.keyCode === 13) {
       addTraitMutation({
         variables: {
-          trait: e.currentTarget.value,
+          trait: query,
         },
       })
-      e.currentTarget.value = ''
+      setQuery('')
+    } else {
+      setQuery(e.currentTarget.value)
     }
   }
 
-  useEffect(() => {
-    navigationTraits.map(trait =>
-      addTraitMutation({
-        variables: {
-          trait: trait.term,
-        },
-      })
-    )
-  }, [navigationTraits])
-
-  const onTagClick = (trait: string) => {
+  const onTraitTagClick = (trait: string) => {
     removeTraitMutation({
       variables: {
         trait,
       },
     })
+
+    setSuggestedTraits([...suggestedTraits, trait])
   }
+
+  const onSuggestionTagClick = (trait: string) => {
+    addTraitMutation({
+      variables: {
+        trait,
+      },
+    })
+
+    setSuggestedTraits(suggestedTraits.filter(t => t !== trait))
+  }
+
+  useEffect(() => {
+    setSuggestedTraits(suggestedTraits.filter(t => traits.indexOf(t) === -1))
+  }, [traits])
 
   return (
     <Grid>
       <Header title="Vilka är dina främsta egenskaper?" />
       <Tags>
+        <div>sparade traits: </div>
         {traits.map((trait: string, i: number) => (
-          <TagContainer key={i}>
+          <TagContainer
+            active={false}
+            key={i}
+            onClick={() => onTraitTagClick(trait)}
+          >
             <Tag>{trait}</Tag>
-            <TagClose onClick={() => onTagClick(trait)}>X</TagClose>
           </TagContainer>
         ))}
       </Tags>
-      <AddTrait onKeyUp={addTrait} placeholder="Lägg till en annan egenskap" />
+      <Tags>
+        <div>förslag: </div>
+        {suggestedTraits.map((trait, i: number) => (
+          <TagContainer key={i} onClick={() => onSuggestionTagClick(trait)}>
+            <Tag>{trait}</Tag>
+          </TagContainer>
+        ))}
+      </Tags>
+      <AddTrait
+        onChange={handleChange}
+        onKeyUp={handleChange}
+        placeholder="Lägg till en annan egenskap"
+        value={query}
+      />
       <Footer>
         <BackButton onClick={() => history.back()}>BAKÅT</BackButton>
         <NextButton onClick={() => null}>NÄSTA</NextButton>

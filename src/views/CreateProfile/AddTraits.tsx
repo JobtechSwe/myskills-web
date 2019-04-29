@@ -13,10 +13,7 @@ import {
 } from '../../generated/myskills.d'
 import gql from 'graphql-tag'
 import { GET_ONTOLOGY_CONCEPTS } from './ChooseProfession'
-
-interface TagContainerProps {
-  active?: boolean
-}
+import TagList from '../../components/TagList'
 
 const Footer = styled.div`
   display: flex;
@@ -32,31 +29,6 @@ const NextButton = styled(Button)`
 const BackButton = styled(Button)`
   background: white;
   color: black;
-`
-
-const TagContainer = styled.div<TagContainerProps>`
-  display: flex;
-  flex-direction: row;
-  background: ${(props: any) => (props.active ? 'green' : 'lightgrey')};
-  justify-content: space-between;
-  border-radius: 8px;
-
-  & * {
-    margin: 5px 10px;
-  }
-`
-
-const Tag = styled.div`
-  color: white;
-`
-
-const Tags = styled.div`
-  display: flex;
-  flex-direction: row;
-
-  & * {
-    margin-right: 10px;
-  }
 `
 
 const AddTrait = styled.input``
@@ -107,18 +79,14 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
 
   const handleChange = (e: any) => {
     if (e.keyCode && e.keyCode === 13) {
-      addTraitMutation({
-        variables: {
-          trait: query,
-        },
-      })
+      addTrait(query)
       setQuery('')
     } else {
       setQuery(e.currentTarget.value)
     }
   }
 
-  const onTraitTagClick = (trait: string) => {
+  const removeTrait = (trait: string) => {
     removeTraitMutation({
       variables: {
         trait,
@@ -128,7 +96,7 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
     setSuggestedTraits([...suggestedTraits, trait])
   }
 
-  const onSuggestionTagClick = (trait: string) => {
+  const addTrait = (trait: string) => {
     addTraitMutation({
       variables: {
         trait,
@@ -138,6 +106,14 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
     setSuggestedTraits(suggestedTraits.filter(t => t !== trait))
   }
 
+  const onTagClick = (tag: any) => {
+    if (tag.isActive) {
+      return removeTrait(tag.term)
+    }
+
+    return addTrait(tag.term)
+  }
+
   useEffect(() => {
     setSuggestedTraits(suggestedTraits.filter(t => traits.indexOf(t) === -1))
   }, [traits])
@@ -145,26 +121,13 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
   return (
     <Grid>
       <Header title="Vilka är dina främsta egenskaper?" />
-      <Tags>
-        <div>sparade traits: </div>
-        {traits.map((trait: string, i: number) => (
-          <TagContainer
-            active={false}
-            key={i}
-            onClick={() => onTraitTagClick(trait)}
-          >
-            <Tag>{trait}</Tag>
-          </TagContainer>
-        ))}
-      </Tags>
-      <Tags>
-        <div>förslag: </div>
-        {suggestedTraits.map((trait, i: number) => (
-          <TagContainer key={i} onClick={() => onSuggestionTagClick(trait)}>
-            <Tag>{trait}</Tag>
-          </TagContainer>
-        ))}
-      </Tags>
+      <TagList
+        handleTagClick={onTagClick}
+        items={[
+          ...traits.map(x => ({ term: x, isActive: true })),
+          ...suggestedTraits.map(x => ({ term: x, isActive: false })),
+        ]}
+      />
       <AddTrait
         onChange={handleChange}
         onKeyUp={handleChange}

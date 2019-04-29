@@ -79,18 +79,14 @@ export const GET_WHO_AM_I = gql`
 const renderToStatic = (
   description: string,
   traits: OntologyTextParseResponse[] = []
-): string => {
-  const result = description
-    .split(' ')
-    .map((w: string) =>
-      traits.find(t => t !== null && w.indexOf(t.term.toLowerCase()) !== -1) ? (
-        <TagSpan> {w}</TagSpan>
-      ) : (
-        ` ${w}`
-      )
-    )
-  return ReactDOMServer.renderToString(result as any)
-}
+): string =>
+  traits.reduce(
+    (prev, curr) =>
+      prev.replace(new RegExp(curr.term, 'gi'), w =>
+        ReactDOMServer.renderToString(<TagSpan>{w}</TagSpan>)
+      ),
+    description
+  )
 
 const WhoAmI: React.FC<RouteComponentProps> = () => {
   const textArea = useRef<HTMLInputElement>(null)

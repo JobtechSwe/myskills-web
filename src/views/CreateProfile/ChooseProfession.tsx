@@ -7,19 +7,13 @@ import OccupationsList from '../../components/OccupationsList/OccupationsList'
 import Flex from '../../components/Flex'
 import Input from '../../components/Input'
 import { H1, H3 } from '../../components/Typography'
-import Button from '../../components/Button'
+import Button, { FloatingContinueButton } from '../../components/Button'
 import styled from '@emotion/styled'
-import { Link } from '@reach/router'
+import { InternalLink } from '../../components/Link'
 import ChosenOccupations from '../../components/ChosenOccupations'
 
 const SearchInput = styled(Input)`
   width: 100%;
-`
-
-const NextButton = styled(Button)`
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
 `
 
 export const GET_ONTOLOGY_CONCEPTS = gql`
@@ -101,9 +95,9 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
         />
       )}
       <ChosenOccupations />
-      <Link to="/skapa-cv/kompetenser">
-        <NextButton>Nästa</NextButton>
-      </Link>
+      <InternalLink to="/skapa-cv/kompetenser">
+        <FloatingContinueButton>Nästa</FloatingContinueButton>
+      </InternalLink>
     </Flex>
   )
 }

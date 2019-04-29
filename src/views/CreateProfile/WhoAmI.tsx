@@ -115,7 +115,6 @@ const WhoAmI: React.FC<RouteComponentProps> = () => {
     if (!textArea.current) return
     const value = textArea.current.innerText
 
-    setCharsLeft(280 - value.length)
     setDescription(value)
 
     addWhoAmI({
@@ -124,6 +123,10 @@ const WhoAmI: React.FC<RouteComponentProps> = () => {
       },
     })
   }
+
+  useEffect(() => {
+    setCharsLeft(280 - description.length)
+  }, [description])
 
   const staticHtml = React.useMemo(() => renderToStatic(description, traits), [
     traits,

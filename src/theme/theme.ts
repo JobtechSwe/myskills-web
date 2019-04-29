@@ -41,10 +41,12 @@ const tags = {
   default: {
     backgroundColor: colors.wildSand,
     color: colors.black,
+    fontWeight: 500,
   },
   active: {
     backgroundColor: colors.seashellPeach,
     color: colors.redOrange,
+    fontWeight: 'bold',
   },
 }
 

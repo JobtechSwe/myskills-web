@@ -31,16 +31,6 @@ const TextAreaDescription = styled.span`
   font-weight: bold;
 `
 
-const TextArea = styled(ContentEditable)`
-  width: 100%;
-  height: 100%;
-  border: none;
-  resize: none;
-  &:focus {
-    outline: none;
-  }
-`
-
 const TextAreaContainer = styled.div`
   position: relative;
   background: white;

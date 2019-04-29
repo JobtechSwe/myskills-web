@@ -2,6 +2,7 @@ import { RouteComponentProps } from '@reach/router'
 import Grid from '../../components/Grid'
 import { useMutation, useQuery } from 'react-apollo-hooks'
 import React, { useEffect, useState } from 'react'
+import { useDebounce } from '@iteam/hooks'
 import styled from '@emotion/styled'
 import Header from '../../components/Header'
 import Button from '../../components/Button'
@@ -91,7 +92,7 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
     ontologyConcept: Query['ontologyConcept']
   }>(GET_ONTOLOGY_CONCEPTS, {
     variables: {
-      filter: query,
+      filter: useDebounce(query, 500),
       type: OntologyType.Trait,
     },
     skip: !query,

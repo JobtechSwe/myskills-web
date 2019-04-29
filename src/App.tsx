@@ -37,7 +37,7 @@ function App() {
             <ChooseProfession path="/" />
             <MatchCompetences path="/kompetenser" />
           </CreateProfile>
-          <RestrictedRoute component={Profile} path="/profile" />
+          <Profile path="/profile" />
         </Router>
       </React.Suspense>
     </>

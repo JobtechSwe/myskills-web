@@ -12,6 +12,8 @@ import {
   FontFamilyProps,
   fontSize,
   FontSizeProps,
+  position,
+  PositionProps,
   space,
   SpaceProps,
 } from 'styled-system'
@@ -26,6 +28,7 @@ type ButtonProps = React.HTMLProps<HTMLButtonElement> &
   BorderProps &
   FontFamilyProps &
   FontSizeProps &
+  PositionProps &
   SpaceProps &
   ColorProps &
   VariantProps
@@ -41,6 +44,7 @@ const Button = styled.button<ButtonProps>`
   ${buttonStyle}
   ${color}
   ${fontSize}
+  ${position}
   ${space}
 `
 
@@ -52,5 +56,11 @@ Button.defaultProps = {
   p: '12px 36px',
   variant: 'primary',
 }
+
+export const FloatingContinueButton = styled(Button)`
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+`
 
 export default Button

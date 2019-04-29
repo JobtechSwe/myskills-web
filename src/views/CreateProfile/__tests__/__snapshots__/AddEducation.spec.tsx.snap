@@ -44,7 +44,7 @@ exports[`views/AddEducation renders empty result 1`] = `
         value=""
       />
       <button
-        class="css-doul11"
+        class="css-199cpun"
         font-family="default"
         font-size="medium"
         type="submit"
@@ -57,7 +57,7 @@ exports[`views/AddEducation renders empty result 1`] = `
     href="/skapa-cv/"
   >
     <button
-      class="css-cu1m1g"
+      class="css-bmiqs"
       font-family="default"
       font-size="medium"
     >

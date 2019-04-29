@@ -3,23 +3,23 @@
 exports[`components/Button renders an Button 1`] = `
 <div>
   <button
-    class="css-doul11"
+    class="css-199cpun"
     font-family="default"
     font-size="medium"
   >
     Click me!
   </button>
 </div>
-`
+`;
 
 exports[`components/Button renders an Button with variant prop 1`] = `
 <div>
   <button
-    class="css-1fxb7nx"
+    class="css-1cs091g"
     font-family="default"
     font-size="medium"
   >
     Click me!
   </button>
 </div>
-`
+`;

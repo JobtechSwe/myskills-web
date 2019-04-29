@@ -3,7 +3,7 @@
 exports[`components/ListItem renders a ListItem 1`] = `
 <div>
   <li
-    class="css-pxl19e"
+    class="css-vh9q91"
     color="black"
   />
 </div>

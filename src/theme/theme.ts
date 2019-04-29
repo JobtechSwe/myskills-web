@@ -1,9 +1,13 @@
 interface Color {
   athensGray: '#E9ECF1'
+  black: '#000000'
   cloudBurst: '#1F215F'
   green: 'green'
   persianBlue: '#202ED1'
+  redOrange: '#FE451D'
+  seashellPeach: '#FFF2EC'
   white: 'white'
+  wildSand: '#F6F6F6'
 }
 
 interface Typography {
@@ -12,10 +16,14 @@ interface Typography {
 
 const colors: Color = {
   athensGray: '#E9ECF1',
+  black: '#000000',
   cloudBurst: '#1F215F',
   green: 'green',
   persianBlue: '#202ED1',
+  redOrange: '#FE451D',
+  seashellPeach: '#FFF2EC',
   white: 'white',
+  wildSand: '#F6F6F6',
 }
 
 const buttons = {
@@ -26,6 +34,19 @@ const buttons = {
   secondary: {
     color: colors.persianBlue,
     backgroundColor: colors.white,
+  },
+}
+
+const tags = {
+  default: {
+    backgroundColor: colors.wildSand,
+    color: colors.black,
+    fontWeight: 500,
+  },
+  active: {
+    backgroundColor: colors.seashellPeach,
+    color: colors.redOrange,
+    fontWeight: 'bold',
   },
 }
 
@@ -47,11 +68,12 @@ const space = {
 }
 
 const theme = {
-  colors,
   buttons,
-  fonts: typography,
+  colors,
   fontSizes,
+  fonts: typography,
   space,
+  tags,
 }
 
 export default theme

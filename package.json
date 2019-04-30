@@ -29,6 +29,7 @@
     "react-dom": "16.8.4",
     "react-qr-svg": "^2.2.1",
     "react-scripts": "2.1.8",
+    "react-spring": "^8.0.19",
     "serve": "^10.1.2",
     "styled-system": "^4.0.4",
     "subscriptions-transport-ws": "^0.9.16",

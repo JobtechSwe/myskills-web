@@ -11,6 +11,7 @@ import {
   OntologyRelationResponse,
   Skill,
 } from '../../generated/myskills.d'
+import Layout from '../../components/Layout/RegistrationLayout'
 
 export const GET_SKILLS_AND_OCCUPATIONS_CLIENT = gql`
   query getSkillsAndOccupationsClient {
@@ -169,8 +170,8 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
       []
     )
 
-    dispatch({ type: 'DATA', payload: withoutDuplicates })
     dispatch({ type: 'LOADING', payload: false })
+    dispatch({ type: 'DATA', payload: withoutDuplicates })
   }
 
   useEffect(() => {
@@ -178,21 +179,23 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
   }, [occupations])
 
   return (
-    <>
-      <div style={{ marginBottom: '2rem' }}>
-        Valda kompetenser:
-        {savedSkills.map((skill: Skill) => (
-          <div key={skill.term}>{skill.term}</div>
-        ))}
-      </div>
+    <Layout nextPath="/skapa-cv/kompetenser" step={2}>
+      <>
+        <div style={{ marginBottom: '2rem' }}>
+          Valda kompetenser:
+          {savedSkills.map((skill: Skill) => (
+            <div key={skill.term}>{skill.term}</div>
+          ))}
+        </div>
 
-      {state.error && <div>Error... {state.error}</div>}
+        {state.error && <div>Error... {state.error}</div>}
 
-      {state.skills.length > 0 && (
-        <TagList handleTagClick={handleAddSkill} items={state.skills} />
-      )}
-      {state.loading && <Loader />}
-    </>
+        {state.skills.length > 0 && (
+          <TagList handleTagClick={handleAddSkill} items={state.skills} />
+        )}
+        {state.loading && <Loader />}
+      </>
+    </Layout>
   )
 }
 

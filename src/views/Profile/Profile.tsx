@@ -1,23 +1,17 @@
 import React from 'react'
 import { RouteComponentProps } from '@reach/router'
 import Flex from '../../components/Flex'
-import { H1, H3 } from '../../components/Typography'
-import {
-  Page,
-  Text,
-  Document,
-  StyleSheet,
-  PDFDownloadLink,
-} from '@react-pdf/renderer'
+import PdfLink from './PdfLink'
+import AddedEducations from '../../components/AddedEducations'
+import ChosenOccupations from '../../components/ChosenOccupations'
+import { Text, StyleSheet } from '@react-pdf/renderer'
 
 const Profile: React.FC<RouteComponentProps> = props => (
   <Flex alignItems="center" flexDirection="column" justifyContent="center">
     <CV />
-    <PDFDownloadLink document={<Pdf />} fileName="cv.pdf">
-      {({ blob, url, loading, error }) =>
-        loading ? 'Laddar...' : 'Spara CV som PDF'
-      }
-    </PDFDownloadLink>
+    <AddedEducations />
+    <ChosenOccupations />
+    <PdfLink CV={CV} />
   </Flex>
 )
 
@@ -150,19 +144,6 @@ const CV = () => (
       a caminar, y llegó a ella a tiempo que anochecía.
     </Text>
   </>
-)
-
-const Pdf = () => (
-  <Document>
-    <Page style={styles.body}>
-      <CV />
-      <Text
-        fixed
-        render={({ pageNumber, totalPages }) => `${pageNumber} / ${totalPages}`}
-        style={styles.pageNumber}
-      />
-    </Page>
-  </Document>
 )
 
 const styles = StyleSheet.create({

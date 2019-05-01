@@ -20,13 +20,21 @@ const MatchCompetences = React.lazy(() =>
   import('./views/CreateProfile/MatchSkills')
 )
 const AddEducation = React.lazy(() =>
-  import(`./views/CreateProfile/AddEducation`)
+  import('./views/CreateProfile/AddEducation')
 )
+
+const WhoAmI = React.lazy(() => import(`./views/CreateProfile/WhoAmI`))
+
+const AddTraits = React.lazy(() => import(`./views/CreateProfile/AddTraits`))
+
+const Layout = styled.main`
+  background: white;
+  min-height: 100vh;
+`
 
 function App() {
   return (
     <>
-      <Header />
       <React.Suspense fallback={<Loader />}>
         <Router>
           <Start path="/" />
@@ -36,6 +44,8 @@ function App() {
             <AddEducation path="/utbildning" />
             <ChooseProfession path="/" />
             <MatchCompetences path="/kompetenser" />
+            <WhoAmI path="/beskriv-dig" />
+            <AddTraits path="/egenskaper" />
           </CreateProfile>
           <Profile path="/profile" />
         </Router>

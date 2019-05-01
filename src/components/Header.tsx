@@ -3,7 +3,11 @@ import { H1 } from './Typography'
 import { InternalLink } from './Link'
 import Grid from './Grid'
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  title: String
+}
+
+const Header: React.FC<HeaderProps> = ({ title = '' }) => {
   return (
     <Grid justifyContent="center" p={32}>
       <H1>

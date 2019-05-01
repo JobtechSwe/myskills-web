@@ -9,6 +9,7 @@ import {
   borderRadius,
   BorderRadiusProps,
   variant,
+  style,
 } from 'styled-system'
 
 const tagStyle = variant({
@@ -19,8 +20,18 @@ type VariantProps = {
   variant?: 'default' | 'active'
 }
 
+const cursorStyle = style({
+  prop: 'cursor',
+  cssProperty: 'cursor',
+})
+
+type CursorProps = {
+  cursor?: 'pointer'
+}
+
 type TagProps = React.HTMLProps<HTMLElement> &
   ColorProps &
+  CursorProps &
   SpaceProps &
   BackgroundProps &
   BorderRadiusProps &
@@ -37,12 +48,14 @@ const Tag = styled.span<TagProps>`
   ${background}
   ${borderRadius}
   ${tagStyle}
+  ${cursorStyle}
 `
 
 Tag.defaultProps = {
   borderRadius: '96px',
   p: '12px 24px',
   variant: 'default',
+  cursor: 'pointer',
 }
 
 export default Tag

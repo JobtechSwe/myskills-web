@@ -40,8 +40,16 @@ interface Skills extends StorageEntryProps {
   type: 'skills'
   data: OntologyRelationResponse[]
 }
+interface Traits extends StorageEntryProps {
+  type: 'traits'
+  data: string[]
+}
+interface WhoAmI extends StorageEntryProps {
+  type: 'whoAmI'
+  data: string
+}
 
-export type StorageEntry = Educations | Occupations | Skills
+export type StorageEntry = Educations | Occupations | Skills | Traits | WhoAmI
 
 export const storageHelper = {
   load: (initialState: LocalStateProps) =>

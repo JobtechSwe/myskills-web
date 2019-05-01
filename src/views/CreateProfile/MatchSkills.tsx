@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useReducer } from 'react'
+import React, { useEffect, useReducer } from 'react'
 import Loader from '../../components/Loader'
 import gql from 'graphql-tag'
 import { withApollo, WithApolloClient } from 'react-apollo'
-import { useQuery, useMutation, QueryHookResult } from 'react-apollo-hooks'
+import { useQuery, useMutation } from 'react-apollo-hooks'
 import { RouteComponentProps } from '@reach/router'
-import SkillsList from '../../components/SkillsList'
+import TagList from '../../components/TagList'
 import {
   OntologyType,
   OntologyConceptResponse,
@@ -188,11 +188,10 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
 
       {state.error && <div>Error... {state.error}</div>}
 
-      {state.loading && <Loader />}
-
       {state.skills.length > 0 && (
-        <SkillsList handleAddSkill={handleAddSkill} skills={state.skills} />
+        <TagList handleTagClick={handleAddSkill} items={state.skills} />
       )}
+      {state.loading && <Loader />}
     </>
   )
 }

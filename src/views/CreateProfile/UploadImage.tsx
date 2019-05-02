@@ -46,6 +46,10 @@ const UploadImage: React.FC<RouteComponentProps> = props => {
       {image.src && (
         <ReactCrop
           crop={image.crop}
+          maxHeight={500}
+          maxWidth={500}
+          minHeight={150}
+          minWidth={150}
           onChange={onCropChange}
           onComplete={onCropComplete}
           onImageLoaded={onImageLoaded}

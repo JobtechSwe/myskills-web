@@ -6,9 +6,9 @@ import React, { useState, useRef, useEffect } from 'react'
 import ReactDOMServer from 'react-dom/server'
 import { useDebounce } from '@iteam/hooks'
 import styled from '@emotion/styled'
-import Header from '../../components/Header'
-import Button from '../../components/Button'
-import { navigate } from '@reach/router'
+import { H1, Paragraph } from '../../components/Typography'
+import { FloatingContinueButton } from '../../components/Button'
+import { InternalLink } from '../../components/Link'
 import {
   QueryOntologyTextParseArgs,
   Query,
@@ -27,6 +27,8 @@ export const GET_TRAITS = gql`
   }
 `
 
+const TextArea = styled(ContentEditable)``
+
 const TextAreaDescription = styled.span`
   font-weight: bold;
 `
@@ -41,22 +43,6 @@ const CharsLeft = styled.p`
   position: absolute;
   bottom: 0;
   right: 0;
-`
-
-const Footer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`
-
-const NextButton = styled(Button)`
-  background: black;
-  color: white;
-`
-
-const BackButton = styled(Button)`
-  background: white;
-  color: black;
 `
 
 const TagSpan = styled.span`
@@ -139,36 +125,32 @@ const WhoAmI: React.FC<RouteComponentProps> = () => {
   }, [data])
 
   return (
-    <Grid>
-      <Header title="Vem är Du?" />
-      <TextAreaDescription>Beskriv dig själv kortfattat</TextAreaDescription>
-      <TextAreaContainer>
-        <ContentEditable
-          html={staticHtml}
-          innerRef={textArea}
-          onChange={Update}
-          style={{
-            width: '100%',
-            height: '280px',
-          }}
-        />
-        <CharsLeft>{charsLeft} tecken kvar</CharsLeft>
-      </TextAreaContainer>
-      <Footer>
-        <BackButton onClick={() => history.back()}>BAKÅT</BackButton>
-        <NextButton
-          onClick={() =>
-            navigate('./egenskaper', {
-              state: {
-                traits,
-              },
-            })
-          }
-        >
-          NÄSTA
-        </NextButton>
-      </Footer>
-    </Grid>
+    <>
+      <Grid gridGap={20} justifyContent="center">
+        <H1>Vem är du?</H1>
+        <Paragraph>
+          Beskriv dig själv och hur du är som person! Baserat på din text kommer
+          du att få förslag på egenskaper som speglar din personlighet.
+        </Paragraph>
+      </Grid>
+      <Grid>
+        <TextAreaContainer>
+          <ContentEditable
+            html={staticHtml}
+            innerRef={textArea}
+            onChange={Update}
+            style={{
+              width: '100%',
+              height: '280px',
+            }}
+          />
+          <CharsLeft>{charsLeft} tecken kvar</CharsLeft>
+        </TextAreaContainer>
+        <InternalLink to="../egenskaper">
+          <FloatingContinueButton>Fortsätt</FloatingContinueButton>
+        </InternalLink>
+      </Grid>
+    </>
   )
 }
 

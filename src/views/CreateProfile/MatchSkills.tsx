@@ -3,6 +3,8 @@ import Loader from '../../components/Loader'
 import gql from 'graphql-tag'
 import { withApollo, WithApolloClient } from 'react-apollo'
 import { useQuery, useMutation } from 'react-apollo-hooks'
+import { FloatingContinueButton } from '../../components/Button'
+import Flex from '../../components/Flex'
 import { RouteComponentProps } from '@reach/router'
 import TagList from '../../components/TagList'
 import {
@@ -12,7 +14,6 @@ import {
   Skill,
 } from '../../generated/myskills.d'
 import { InternalLink } from '../../components/Link'
-import { FloatingContinueButton } from '../../components/Button'
 
 export const GET_SKILLS_AND_OCCUPATIONS_CLIENT = gql`
   query getSkillsAndOccupationsClient {
@@ -73,7 +74,7 @@ type MatchAction =
   | { type: 'LOADING'; payload: boolean }
   | { type: 'DATA'; payload: ClientSkillProps[] }
 
-const initialState = {
+const initialState: MatchState = {
   skills: [],
   error: '',
   loading: false,
@@ -181,12 +182,15 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
 
   return (
     <>
-      <div style={{ marginBottom: '2rem' }}>
+      <Flex flexDirection="column" mb={32}>
         Valda kompetenser:
         {savedSkills.map((skill: Skill) => (
           <div key={skill.term}>{skill.term}</div>
         ))}
-      </div>
+        <InternalLink to="../erfarenhet">
+          <FloatingContinueButton>Fortsätt</FloatingContinueButton>
+        </InternalLink>
+      </Flex>
 
       {state.error && <div>Error... {state.error}</div>}
 

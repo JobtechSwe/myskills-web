@@ -1,98 +1,78 @@
-import React, { useState, useRef } from 'react'
-import styled from '@emotion/styled'
+import 'rc-slider/assets/index.css'
+import React from 'react'
+import Flex from './Flex'
+import { Global, css } from '@emotion/core'
+import SliderInput, { createSliderWithTooltip } from 'rc-slider'
 import sliderThumb from '../images/slider_thumb.svg'
+import { theme } from '../theme'
 
-interface customProps {
+const SliderWithTooltip = createSliderWithTooltip(SliderInput)
+
+interface SliderProps {
   min: number
   max: number
-  onInput: Function
-  defaultValue: string
+  onInput: (val: number) => void
+  defaultValue: number
 }
 
-type SliderProps = React.HTMLProps<HTMLInputElement> & customProps
-
-const SliderInput = styled.input`
-  -webkit-appearance: none;
-  width: 100%;
-  height: 5px;
-  border-radius: 8px;
-  background: #d3d3d3;
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: 0.2s;
-  transition: opacity 0.2s;
-
-  :hover {
-    opacity: 1;
-  }
-  ::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 25px;
-    height: 24px;
-    border: 0;
-    background: url(${sliderThumb});
-    cursor: pointer;
-  }
-  ::-webkit-slider-thumb:after {
-    display: block;
-    background-color: blue;
-    width: 20px;
-    height: 20px;
-  }
-
-  ::-moz-range-thumb {
-    width: 25px;
-    height: 24px;
-    border: 0;
-    background: url(${sliderThumb});
-    cursor: pointer;
-  }
-`
-
-const SliderRangeContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 10px;
-`
-
-const SliderContainer = styled.div`
-  flex-direction: column;
-  width: 100%;
-`
-
-const Range = styled.span``
-const Bubble = styled.div`
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  opacity: 0;
-`
-
 const Slider: React.FC<SliderProps> = ({ min, max, onInput, defaultValue }) => {
-  const bubble = useRef(null)
-
-  const onSlideInput = (e: any) => {
-    bubble.current.style.opacity = 1
-    bubble.current.target.style.left = e.clientX - bubble.offsetWidth / 2 + 'px'
-    onInput(e)
-  }
   return (
-    <SliderContainer>
-      <Bubble ref={bubble} />
-      <SliderInput
+    <Flex flex={1} flexDirection="column">
+      <Global
+        styles={css`
+          .rc-slider-tooltip-content .rc-slider-tooltip-inner {
+            align-items: center;
+            background-color: ${theme.colors.seashellPeach};
+            box-shadow: none;
+            box-sizing: content-box;
+            color: ${theme.colors.black};
+            display: flex;
+            font-size: 14px;
+            font-weight: 500;
+            justify-content: center;
+            margin-top: 6px;
+            padding: 5px 10px;
+
+            &::after {
+              background: ${theme.colors.seashellPeach};
+              content: '';
+              height: 12px;
+              left: calc(50% - 6px);
+              position: absolute;
+              bottom: 2px;
+              transform: rotate(45deg);
+              width: 12px;
+            }
+          }
+        `}
+      />
+      <SliderWithTooltip
         defaultValue={defaultValue}
+        handleStyle={{
+          backgroundImage: `url(${sliderThumb})`,
+          backgroundRepeat: 'no-repeat',
+          border: 'none',
+          height: 24,
+          width: 24,
+          marginLeft: -14,
+          marginTop: -9,
+        }}
         max={max}
         min={min}
-        onInput={onSlideInput}
-        type="range"
+        onChange={onInput}
+        railStyle={{ backgroundColor: theme.colors.athensGray, height: 5 }}
+        tipFormatter={(value: number) => `${value} år`}
+        tipProps={{
+          placement: 'top',
+          prefixCls: 'rc-slider-tooltip',
+        }}
+        trackStyle={{ backgroundColor: theme.colors.bitterSweet, height: 5 }}
       />
-      <SliderRangeContainer>
-        <Range>{min}</Range>
-        <Range>{max}+</Range>
-      </SliderRangeContainer>
-    </SliderContainer>
+      <Flex justifyContent="space-between" mt="small">
+        <span>{min} år</span>
+        <span>{max}+ år</span>
+      </Flex>
+    </Flex>
   )
 }
 

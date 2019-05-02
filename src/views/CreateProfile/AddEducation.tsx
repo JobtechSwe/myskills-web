@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 import { useMutation } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
-import { TaxonomyDefaultResult } from '../../generated/myskills.d'
-import { RouteComponentProps, Link } from '@reach/router'
-import { Paragraph } from '../../components/Typography'
+import { RouteComponentProps } from '@reach/router'
+import { InternalLink } from '../../components/Link'
 import Grid from '../../components/Grid'
 import Input from '../../components/Input'
-import Button from '../../components/Button'
+import Button, { FloatingContinueButton } from '../../components/Button'
 import AddedEducations from '../../components/AddedEducations'
-import styled from '@emotion/styled'
 
 export const ADD_EDUCATION_CLIENT = gql`
   mutation addEducationClient($education: EducationInput!) {
@@ -31,23 +29,6 @@ export const ADD_EDUCATION_API = gql`
     }
   }
 `
-
-const NextButton = styled(Button)`
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-`
-
-type EducationSelectAction = {
-  type: 'FIELD' | 'LEVEL' | 'NAME'
-  payload: string
-}
-
-type EducationSelectState = {
-  field?: string
-  level?: string
-  name?: string
-}
 
 const AddEducation: React.FC<RouteComponentProps> = () => {
   const initialState = {
@@ -129,9 +110,9 @@ const AddEducation: React.FC<RouteComponentProps> = () => {
           <Button type="submit">Lägg till</Button>
         </Grid>
       </form>
-      <Link to="/skapa-cv/">
-        <NextButton>Nästa</NextButton>
-      </Link>
+      <InternalLink to="/skapa-cv/">
+        <FloatingContinueButton>Nästa</FloatingContinueButton>
+      </InternalLink>
     </>
   )
 }

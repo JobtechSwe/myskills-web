@@ -5,7 +5,8 @@ import React, { useEffect, useState } from 'react'
 import { useDebounce } from '@iteam/hooks'
 import styled from '@emotion/styled'
 import Header from '../../components/Header'
-import Button from '../../components/Button'
+import { InternalLink } from '../../components/Link'
+import { FloatingContinueButton } from '../../components/Button'
 import {
   OntologyTextParseResponse,
   Query,
@@ -14,22 +15,6 @@ import {
 import gql from 'graphql-tag'
 import { GET_ONTOLOGY_CONCEPTS } from './ChooseProfession'
 import TagList from '../../components/TagList'
-
-const Footer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`
-
-const NextButton = styled(Button)`
-  background: black;
-  color: white;
-`
-
-const BackButton = styled(Button)`
-  background: white;
-  color: black;
-`
 
 const AddTrait = styled.input``
 
@@ -134,10 +119,9 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
         placeholder="Lägg till en annan egenskap"
         value={query}
       />
-      <Footer>
-        <BackButton onClick={() => history.back()}>BAKÅT</BackButton>
-        <NextButton onClick={() => null}>NÄSTA</NextButton>
-      </Footer>
+      <InternalLink to="../kontaktuppgifter">
+        <FloatingContinueButton>Fortsätt</FloatingContinueButton>
+      </InternalLink>
     </Grid>
   )
 }

@@ -53,7 +53,7 @@ Button.defaultProps = {
   borderRadius: '5px',
   fontFamily: 'default',
   fontSize: ['medium'],
-  p: '12px 36px',
+  p: '16px 42px',
   variant: 'primary',
 }
 

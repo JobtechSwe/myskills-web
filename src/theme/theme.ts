@@ -1,8 +1,8 @@
 interface Color {
   athensGray: '#E9ECF1'
   black: '#000000'
+  bitterSweet: '#FF795B'
   cloudBurst: '#1F215F'
-  green: 'green'
   persianBlue: '#202ED1'
   redOrange: '#FE451D'
   seashellPeach: '#FFF2EC'
@@ -11,15 +11,14 @@ interface Color {
 }
 
 interface Typography {
-  default: 'sans-serif'
-  lato: 'Lato'
+  default: 'Lato'
 }
 
 const colors: Color = {
   athensGray: '#E9ECF1',
   black: '#000000',
+  bitterSweet: '#FF795B',
   cloudBurst: '#1F215F',
-  green: 'green',
   persianBlue: '#202ED1',
   redOrange: '#FE451D',
   seashellPeach: '#FFF2EC',
@@ -43,6 +42,7 @@ const buttons = {
   active: {
     backgroundColor: colors.seashellPeach,
     color: colors.redOrange,
+    fontWeight: 700,
   },
 }
 
@@ -60,8 +60,7 @@ const tags = {
 }
 
 const typography: Typography = {
-  default: 'sans-serif',
-  lato: 'Lato',
+  default: 'Lato',
 }
 
 const fontSizes = {

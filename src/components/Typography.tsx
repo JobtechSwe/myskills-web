@@ -23,6 +23,7 @@ type TypographyProps = ColorProps &
 
 type HeadingProps = React.HTMLProps<HTMLHeadingElement> & TypographyProps
 type ParagraphProps = React.HTMLProps<HTMLParagraphElement> & TypographyProps
+type LabelProps = React.HTMLProps<HTMLLabelElement> & TypographyProps
 
 export const H1 = styled.h1<HeadingProps & FontWeightProps>`
   ${color}
@@ -57,21 +58,31 @@ export const Paragraph = styled.p<ParagraphProps>`
   ${textAlign}
 `
 
+export const Label = styled.label<LabelProps & FontWeightProps>`
+  ${color}
+  ${fontFamily}
+  ${fontSize}
+  ${fontWeight}
+  ${space}
+  ${textAlign}
+`
+
 const common: HeadingProps = {
-  color: 'persianBlue',
+  color: 'black',
   fontFamily: 'default',
   mt: 'none',
+  mb: 'large',
 }
 
 H1.defaultProps = {
   ...common,
-  fontSize: ['small', 'medium', 'large'],
+  fontSize: ['large'],
   fontWeight: 600,
 }
 
 H2.defaultProps = {
   ...common,
-  fontSize: ['small', 'medium'],
+  fontSize: ['medium'],
 }
 
 H3.defaultProps = {
@@ -84,4 +95,12 @@ Paragraph.defaultProps = {
   fontSize: 'small',
   mt: 'small',
   mb: 'medium',
+}
+
+Label.defaultProps = {
+  fontFamily: 'default',
+  fontWeight: 700,
+  fontSize: 'small',
+  mb: 6,
+  ml: 6,
 }

@@ -4,6 +4,8 @@ import {
   AlignContentProps,
   alignItems,
   AlignItemsProps,
+  gridAutoFlow,
+  GridAutoFlowProps,
   gridColumnGap,
   GridColumnGapProps,
   gridColumn,
@@ -26,6 +28,7 @@ import {
 
 type GridProps = AlignContentProps &
   AlignItemsProps &
+  GridAutoFlowProps &
   GridColumnGapProps &
   GridColumnProps &
   GridTemplatesColumnsProps &
@@ -41,6 +44,7 @@ const Grid = styled.div<GridProps>`
 
   ${alignContent}
   ${alignItems}
+  ${gridAutoFlow}
   ${gridColumnGap}
   ${gridColumn}
   ${gridTemplateColumns}

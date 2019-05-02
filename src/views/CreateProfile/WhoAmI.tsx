@@ -135,7 +135,7 @@ const WhoAmI: React.FC<RouteComponentProps> = () => {
   }, [data])
 
   return (
-    <RegistrationLayout nextPath="egenskaper" step={6}>
+    <RegistrationLayout nextPath="/skapa-cv/egenskaper" step={5}>
       <Grid>
         <Header title="Vem är Du?" />
         <TextAreaDescription>Beskriv dig själv kortfattat</TextAreaDescription>

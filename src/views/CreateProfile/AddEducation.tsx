@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import { useMutation } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
-import { TaxonomyDefaultResult } from '../../generated/myskills.d'
 import { RouteComponentProps, Link } from '@reach/router'
-import { Paragraph } from '../../components/Typography'
 import Grid from '../../components/Grid'
 import Input from '../../components/Input'
 import Button from '../../components/Button'
@@ -82,7 +80,7 @@ const AddEducation: React.FC<RouteComponentProps> = () => {
   }
 
   return (
-    <RegistrationLayout nextPath="beskriv-dig" step={5}>
+    <RegistrationLayout nextPath="/skapa-cv/beskriv-dig" step={4}>
       <form onSubmit={handleSubmit}>
         <Grid>
           <AddedEducations />

@@ -20,11 +20,12 @@ const Container = styled.section`
   min-height: 100vh;
 `
 
-const onNextClick = async (nextPath: string, childSubmit: any) => {
+const onNextClick = async (nextPath: string, childSubmit: () => void) => {
   if (childSubmit) {
     childSubmit()
   }
-  navigate(`./${nextPath}`)
+
+  navigate(`${nextPath}`)
 }
 
 const RegistrationLayout: React.FC<
@@ -36,11 +37,9 @@ const RegistrationLayout: React.FC<
       <ArrowIcon />
       {children}
       <Flex justifyContent="center" style={{ border: '1px solid black' }}>
-        <InternalLink to={nextPath}>
-          <Button onClick={() => onNextClick(nextPath, childSubmit)}>
-            {nextBtnText}
-          </Button>
-        </InternalLink>
+        <Button onClick={() => onNextClick(nextPath, childSubmit)}>
+          {nextBtnText}
+        </Button>
       </Flex>
     </Container>
   )

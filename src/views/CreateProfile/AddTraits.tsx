@@ -28,11 +28,6 @@ const NextButton = styled(Button)`
   color: white;
 `
 
-const BackButton = styled(Button)`
-  background: white;
-  color: black;
-`
-
 const AddTrait = styled.input``
 
 export const ADD_TRAIT = gql`
@@ -115,7 +110,7 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
   }, [traits])
 
   return (
-    <RegistrationLayout nextPath="kontakt" step={5}>
+    <RegistrationLayout headerText="PERSON" nextPath="kontakt" step={5}>
       <Grid>
         <Header title="Vilka är dina främsta egenskaper?" />
         <TagList
@@ -131,10 +126,6 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
           placeholder="Lägg till en annan egenskap"
           value={query}
         />
-        <Footer>
-          <BackButton onClick={() => history.back()}>BAKÅT</BackButton>
-          <NextButton onClick={() => null}>NÄSTA</NextButton>
-        </Footer>
       </Grid>
     </RegistrationLayout>
   )

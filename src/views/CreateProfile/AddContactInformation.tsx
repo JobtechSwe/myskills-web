@@ -45,7 +45,7 @@ const AddContactInformation: React.FC<RouteComponentProps> = () => {
     setData({ ...inputData, [key]: val })
   }
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = (e: FormEvent): any => {
     updateContactMutation({
       variables: {
         data: inputData,
@@ -55,10 +55,11 @@ const AddContactInformation: React.FC<RouteComponentProps> = () => {
 
   return (
     <RegistrationLayout
-      childSubmit={handleSubmit}
+      childFn={handleSubmit}
+      headerText="KONTAKT"
       nextBtnText="Spara CV med Egendata"
       nextPath="egenskaper"
-      step={3}
+      step={6}
     >
       <Form>
         <div>Hur vill du bli nådd?</div>

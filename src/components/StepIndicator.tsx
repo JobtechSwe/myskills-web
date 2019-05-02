@@ -10,15 +10,14 @@ interface DotProps {
 }
 
 const Dot = styled.div<DotProps>`
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   background: ${({ isActive }) => (isActive ? 'green' : 'lightgrey')};
   margin: 5px;
 `
 
 const Container = styled.div`
-  border: 1px solid black;
   display: flex;
   justify-content: center;
 `

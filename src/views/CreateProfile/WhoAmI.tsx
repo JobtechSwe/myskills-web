@@ -56,11 +56,6 @@ const NextButton = styled(Button)`
   color: white;
 `
 
-const BackButton = styled(Button)`
-  background: white;
-  color: black;
-`
-
 const TagSpan = styled.span`
   font-weight: 700;
   color: red;
@@ -135,7 +130,16 @@ const WhoAmI: React.FC<RouteComponentProps> = () => {
   }, [data])
 
   return (
-    <RegistrationLayout nextPath="egenskaper" step={5}>
+    <RegistrationLayout
+      childFnArgs={{
+        state: {
+          traits,
+        },
+      }}
+      headerText="PERSON"
+      nextPath="egenskaper"
+      step={5}
+    >
       <Grid>
         <Header title="Vem är Du?" />
         <TextAreaDescription>Beskriv dig själv kortfattat</TextAreaDescription>
@@ -147,24 +151,12 @@ const WhoAmI: React.FC<RouteComponentProps> = () => {
             style={{
               width: '100%',
               height: '280px',
+              border: '1px solid black',
             }}
           />
           <CharsLeft>{charsLeft} tecken kvar</CharsLeft>
         </TextAreaContainer>
-        <Footer>
-          <BackButton onClick={() => history.back()}>BAKÅT</BackButton>
-          <NextButton
-            onClick={() =>
-              navigate('./egenskaper', {
-                state: {
-                  traits,
-                },
-              })
-            }
-          >
-            NÄSTA
-          </NextButton>
-        </Footer>
+        <Footer />
       </Grid>
     </RegistrationLayout>
   )

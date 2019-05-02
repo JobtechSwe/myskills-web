@@ -11,7 +11,7 @@ import {
   OntologyRelationResponse,
   Skill,
 } from '../../generated/myskills.d'
-import Layout from '../../components/Layout/RegistrationLayout'
+import RegistrationLayout from '../../components/Layout/RegistrationLayout'
 
 export const GET_SKILLS_AND_OCCUPATIONS_CLIENT = gql`
   query getSkillsAndOccupationsClient {
@@ -179,7 +179,7 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
   }, [occupations])
 
   return (
-    <Layout nextPath="utbildning" step={2}>
+    <RegistrationLayout headerText="KOMPETENS" nextPath="utbildning" step={2}>
       <>
         <div style={{ marginBottom: '2rem' }}>
           Valda kompetenser:
@@ -195,7 +195,7 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
         )}
         {state.loading && <Loader />}
       </>
-    </Layout>
+    </RegistrationLayout>
   )
 }
 

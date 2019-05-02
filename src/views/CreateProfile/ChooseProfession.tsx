@@ -41,7 +41,7 @@ export const ADD_OCCUPATION_API = gql`
     addExperience(experience: $experience) {
       term
       years
-      taxonomyId
+      id
     }
   }
 `

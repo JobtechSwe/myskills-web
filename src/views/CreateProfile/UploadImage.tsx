@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { RouteComponentProps } from '@reach/router'
-import Grid from '../../components/Grid'
 import ReactCrop from 'react-image-crop'
-// import 'react-image-crop/dist/ReactCrop.css'
 
 const UploadImage: React.FC<RouteComponentProps> = props => {
   const initialState = {

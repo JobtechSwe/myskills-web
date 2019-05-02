@@ -2,50 +2,86 @@
 
 exports[`views/ChooseProfession renders empty result 1`] = `
 <div>
-  <div
-    class="css-owzlzk"
+  <section
+    class="layout css-ic5la4"
   >
-    <h3
-      class="css-1onu1yh"
-      color="persianBlue"
-      font-family="default"
-      font-size="small"
+    <div
+      class="css-zzz07x"
     >
-      YRKE
-    </h3>
-    <h1
-      class="css-7jfuh8"
-      color="persianBlue"
-      font-family="default"
-      font-size="small,medium,large"
-      font-weight="600"
-    >
-      Vad vill du jobba med?
-    </h1>
-    <input
-      class="css-1fqt7xj"
-      font-family="default"
-      font-size="medium"
-      name="search"
-      placeholder="Yrkesroll eller yrkesområde"
-    />
-    <div>
-      Dina valda yrken:
+      <div
+        class="css-1y6f7jl"
+      />
+      <div
+        class="css-1l5oznz"
+      />
+      <div
+        class="css-1l5oznz"
+      />
+      <div
+        class="css-1l5oznz"
+      />
+      <div
+        class="css-1l5oznz"
+      />
+      <div
+        class="css-1l5oznz"
+      />
     </div>
-    <a
-      class="css-8v6n7y"
-      color="persianBlue"
-      font-weight="500"
-      href="/skapa-cv/kompetenser"
+    <svg
+      fill="none"
+      height="20"
+      viewBox="0 0 27 20"
+      width="27"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M0.395325 9.04442L9.04398 0.395757C9.57166 -0.131919 10.4274 -0.131919 10.9551 0.395757C11.4829 0.923542 11.4829 1.77911 10.9551 2.3069L4.61338 8.64863H24.7111C25.4574 8.64863 26.0625 9.25371 26.0625 9.99999C26.0625 10.7461 25.4574 11.3513 24.7111 11.3513H4.61338L10.9549 17.6931C11.4827 18.2209 11.4827 19.0764 10.9549 19.6042C10.6911 19.8679 10.3452 20 9.99934 20C9.6535 20 9.30766 19.8679 9.04377 19.6042L0.395325 10.9556C-0.13246 10.4278 -0.13246 9.5722 0.395325 9.04442Z"
+        fill="black"
+      />
+    </svg>
+    <div
+      class="css-owzlzk"
+    >
+      <h3
+        class="css-1onu1yh"
+        color="persianBlue"
+        font-family="default"
+        font-size="small"
+      >
+        YRKE
+      </h3>
+      <h1
+        class="css-7jfuh8"
+        color="persianBlue"
+        font-family="default"
+        font-size="small,medium,large"
+        font-weight="600"
+      >
+        Vad vill du jobba med?
+      </h1>
+      <input
+        class="css-1fqt7xj"
+        font-family="default"
+        font-size="medium"
+        name="search"
+        placeholder="Yrkesroll eller yrkesområde"
+      />
+      <div>
+        Dina valda yrken:
+      </div>
+    </div>
+    <div
+      class="css-52ud0e"
+      style="border: 1px solid black;"
     >
       <button
-        class="css-bmiqs"
+        class="css-199cpun"
         font-family="default"
         font-size="medium"
       >
-        Nästa
+        Fortsätt
       </button>
-    </a>
-  </div>
+    </div>
+  </section>
 </div>
 `;

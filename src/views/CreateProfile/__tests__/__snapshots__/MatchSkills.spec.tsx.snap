@@ -94,7 +94,7 @@ exports[`views/MatchSkills renders loading state 1`] = `
         font-family="default"
         font-size="medium"
       >
-        Nästa
+        Fortsätt
       </button>
     </div>
   </section>

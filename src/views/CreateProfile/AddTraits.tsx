@@ -115,7 +115,7 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
   }, [traits])
 
   return (
-    <RegistrationLayout nextPath="/skapa-cv/kontakt" step={5}>
+    <RegistrationLayout nextPath="kontakt" step={5}>
       <Grid>
         <Header title="Vilka är dina främsta egenskaper?" />
         <TagList

@@ -8,6 +8,7 @@ import { fireEvent, wait, waitForElement } from 'react-testing-library'
 const consent = {
   id: 'db993c65-0673-454e-b951-bcb8d274f184',
   expires: '1552561115',
+  url: '123',
   __typename: 'Consent',
 }
 

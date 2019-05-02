@@ -1,7 +1,6 @@
 import React from 'react'
 import StepIndicator from '../StepIndicator'
 import styled from '@emotion/styled'
-import { InternalLink } from '../Link'
 import Button from '../Button'
 import Flex from '../Flex'
 import ArrowIcon from '../../assets/icons/navigation_arrow'
@@ -25,7 +24,7 @@ const onNextClick = async (nextPath: string, childSubmit: () => void) => {
     childSubmit()
   }
 
-  navigate(`${nextPath}`)
+  navigate(`/skapa-cv/${nextPath}`)
 }
 
 const RegistrationLayout: React.FC<

@@ -80,7 +80,7 @@ const AddEducation: React.FC<RouteComponentProps> = () => {
   }
 
   return (
-    <RegistrationLayout nextPath="/skapa-cv/beskriv-dig" step={4}>
+    <RegistrationLayout nextPath="beskriv-dig" step={4}>
       <form onSubmit={handleSubmit}>
         <Grid>
           <AddedEducations />

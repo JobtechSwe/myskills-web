@@ -83,7 +83,7 @@ const AddContactInformation: React.FC<RouteComponentProps> = () => {
       </div>
       <div>
         <Input
-          name="name"
+          name="telephone"
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             handleChange('telephone', event.target.value)
           }
@@ -93,7 +93,9 @@ const AddContactInformation: React.FC<RouteComponentProps> = () => {
         />
       </div>
 
-      <Button variant="primary">Spara</Button>
+      <Button type="submit" variant="primary">
+        Spara
+      </Button>
     </Form>
   )
 }

@@ -8,12 +8,15 @@ import {
   FontWeightProps,
   space,
   SpaceProps,
+  width,
+  WidthProps,
 } from 'styled-system'
 
 type LinkProps = React.HTMLProps<HTMLAnchorElement> &
   ColorProps &
   FontWeightProps &
-  SpaceProps
+  SpaceProps &
+  WidthProps
 
 const StyledLink = styled.a<LinkProps>`
   font-family: ${({ theme }) => theme.fonts.default};
@@ -21,6 +24,7 @@ const StyledLink = styled.a<LinkProps>`
   ${color}
   ${fontWeight}
   ${space}
+  ${width}
 `
 
 StyledLink.defaultProps = {

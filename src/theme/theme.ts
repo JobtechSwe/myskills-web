@@ -4,6 +4,7 @@ interface Color {
   cloudBurst: '#1F215F'
   green: 'green'
   persianBlue: '#202ED1'
+  persianBlueDark: '#1B27B2'
   redOrange: '#FE451D'
   seashellPeach: '#FFF2EC'
   white: 'white'
@@ -20,6 +21,7 @@ const colors: Color = {
   cloudBurst: '#1F215F',
   green: 'green',
   persianBlue: '#202ED1',
+  persianBlueDark: '#1B27B2',
   redOrange: '#FE451D',
   seashellPeach: '#FFF2EC',
   white: 'white',
@@ -33,6 +35,10 @@ const buttons = {
   },
   secondary: {
     color: colors.persianBlue,
+    backgroundColor: colors.white,
+  },
+  secondaryBlack: {
+    color: colors.black,
     backgroundColor: colors.white,
   },
 }

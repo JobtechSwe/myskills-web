@@ -22,6 +22,9 @@ const MatchCompetences = React.lazy(() =>
 const AddEducation = React.lazy(() =>
   import('./views/CreateProfile/AddEducation')
 )
+const AddContactInformation = React.lazy(() =>
+  import(`./views/CreateProfile/AddContactInformation`)
+)
 
 const WhoAmI = React.lazy(() => import(`./views/CreateProfile/WhoAmI`))
 
@@ -46,6 +49,7 @@ function App() {
             <MatchCompetences path="/kompetenser" />
             <WhoAmI path="/beskriv-dig" />
             <AddTraits path="/egenskaper" />
+            <AddContactInformation path="/kontakt" />
           </CreateProfile>
           <RestrictedRoute component={Profile} path="/profile" />
         </Router>

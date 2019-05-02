@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie'
-import { LocalStateProps } from '../graphql/client'
+import { LocalStateProps, Contact } from '../graphql/client'
 import {
   EducationInput,
   OntologyConceptResponse,
@@ -49,7 +49,18 @@ interface WhoAmI extends StorageEntryProps {
   data: string
 }
 
-export type StorageEntry = Educations | Occupations | Skills | Traits | WhoAmI
+interface ContactInformation extends StorageEntryProps {
+  type: 'contact'
+  data: Contact
+}
+
+export type StorageEntry =
+  | Educations
+  | Occupations
+  | Skills
+  | ContactInformation
+  | Traits
+  | WhoAmI
 
 export const storageHelper = {
   load: (initialState: LocalStateProps) =>

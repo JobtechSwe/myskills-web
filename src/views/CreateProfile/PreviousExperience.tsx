@@ -32,7 +32,7 @@ export const PreviousExperience: React.FC<RouteComponentProps> = () => {
         >
           Ja
         </Button>
-        <InternalLink to="../beskriv-dig">
+        <InternalLink to="./tidigare-erfarenheter">
           <Button variant="inActive">Nej</Button>
         </InternalLink>
       </Grid>

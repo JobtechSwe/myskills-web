@@ -5,12 +5,13 @@ import { InternalLink } from '../Link'
 import Button from '../Button'
 import Flex from '../Flex'
 import ArrowIcon from '../../assets/icons/navigation_arrow'
-import { RouteComponentProps } from '@reach/router'
+import { RouteComponentProps, navigate } from '@reach/router'
 
 interface RegistrationLayoutProps {
   step: number
-  buttonText?: string
-  nextPath?: string
+  nextPath: string
+  nextBtnText?: string
+  childSubmit?: any
 }
 
 const Container = styled.section`
@@ -19,18 +20,27 @@ const Container = styled.section`
   min-height: 100vh;
 `
 
+const onNextClick = async (nextPath: string, childSubmit: any) => {
+  if (childSubmit) {
+    childSubmit()
+  }
+  navigate(`./${nextPath}`)
+}
+
 const RegistrationLayout: React.FC<
   RouteComponentProps & RegistrationLayoutProps
-> = ({ children, step, nextPath }) => {
+> = ({ children, step, nextPath, nextBtnText = 'Fortsätt', childSubmit }) => {
   return (
     <Container className="layout">
       <StepIndicator step={step} />
       <ArrowIcon />
       {children}
       <Flex justifyContent="center" style={{ border: '1px solid black' }}>
-        {/* <InternalLink to={nextPath}> */}
-        <Button>Nästa</Button>
-        {/* </InternalLink> */}
+        <InternalLink to={nextPath}>
+          <Button onClick={() => onNextClick(nextPath, childSubmit)}>
+            {nextBtnText}
+          </Button>
+        </InternalLink>
       </Flex>
     </Container>
   )

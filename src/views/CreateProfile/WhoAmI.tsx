@@ -16,6 +16,8 @@ import {
 } from '../../generated/myskills'
 import ContentEditable from 'react-contenteditable'
 import { GET_WHO_AM_I_CLIENT } from '../../graphql/resolvers/mutations/addWhoAmI'
+import RegistrationLayout from '../../components/Layout/RegistrationLayout'
+
 export const GET_TRAITS = gql`
   query ontologyTextParse($text: String!) {
     ontologyTextParse(text: $text) {
@@ -133,36 +135,38 @@ const WhoAmI: React.FC<RouteComponentProps> = () => {
   }, [data])
 
   return (
-    <Grid>
-      <Header title="Vem är Du?" />
-      <TextAreaDescription>Beskriv dig själv kortfattat</TextAreaDescription>
-      <TextAreaContainer>
-        <ContentEditable
-          html={staticHtml}
-          innerRef={textArea}
-          onChange={Update}
-          style={{
-            width: '100%',
-            height: '280px',
-          }}
-        />
-        <CharsLeft>{charsLeft} tecken kvar</CharsLeft>
-      </TextAreaContainer>
-      <Footer>
-        <BackButton onClick={() => history.back()}>BAKÅT</BackButton>
-        <NextButton
-          onClick={() =>
-            navigate('./egenskaper', {
-              state: {
-                traits,
-              },
-            })
-          }
-        >
-          NÄSTA
-        </NextButton>
-      </Footer>
-    </Grid>
+    <RegistrationLayout nextPath="egenskaper" step={6}>
+      <Grid>
+        <Header title="Vem är Du?" />
+        <TextAreaDescription>Beskriv dig själv kortfattat</TextAreaDescription>
+        <TextAreaContainer>
+          <ContentEditable
+            html={staticHtml}
+            innerRef={textArea}
+            onChange={Update}
+            style={{
+              width: '100%',
+              height: '280px',
+            }}
+          />
+          <CharsLeft>{charsLeft} tecken kvar</CharsLeft>
+        </TextAreaContainer>
+        <Footer>
+          <BackButton onClick={() => history.back()}>BAKÅT</BackButton>
+          <NextButton
+            onClick={() =>
+              navigate('./egenskaper', {
+                state: {
+                  traits,
+                },
+              })
+            }
+          >
+            NÄSTA
+          </NextButton>
+        </Footer>
+      </Grid>
+    </RegistrationLayout>
   )
 }
 

@@ -179,7 +179,7 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
   }, [occupations])
 
   return (
-    <Layout nextPath="/skapa-cv/kompetenser" step={2}>
+    <Layout nextPath="/skapa-cv/utbildning" step={2}>
       <>
         <div style={{ marginBottom: '2rem' }}>
           Valda kompetenser:

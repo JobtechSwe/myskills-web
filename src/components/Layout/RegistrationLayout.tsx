@@ -5,7 +5,7 @@ import { InternalLink } from '../Link'
 import Button from '../Button'
 import Flex from '../Flex'
 import ArrowIcon from '../../assets/icons/navigation_arrow'
-import { navigate, RouteComponentProps } from '@reach/router'
+import { RouteComponentProps } from '@reach/router'
 
 interface RegistrationLayoutProps {
   step: number
@@ -28,9 +28,9 @@ const RegistrationLayout: React.FC<
       <ArrowIcon />
       {children}
       <Flex justifyContent="center" style={{ border: '1px solid black' }}>
-        <InternalLink to={nextPath}>
-          <Button>Nästa</Button>
-        </InternalLink>
+        {/* <InternalLink to={nextPath}> */}
+        <Button>Nästa</Button>
+        {/* </InternalLink> */}
       </Flex>
     </Container>
   )

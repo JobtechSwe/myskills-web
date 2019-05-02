@@ -6,24 +6,24 @@ exports[`views/ChooseProfession renders empty result 1`] = `
     class="css-owzlzk"
   >
     <h3
-      class="css-1onu1yh"
-      color="persianBlue"
+      class="css-1npazeo"
+      color="black"
       font-family="default"
       font-size="small"
     >
       YRKE
     </h3>
     <h1
-      class="css-7jfuh8"
-      color="persianBlue"
+      class="css-16mj49v"
+      color="black"
       font-family="default"
-      font-size="small,medium,large"
+      font-size="large"
       font-weight="600"
     >
       Vad vill du jobba med?
     </h1>
     <input
-      class="css-q4ywri"
+      class="css-2yy4lo"
       font-family="default"
       font-size="medium"
       name="search"
@@ -33,13 +33,13 @@ exports[`views/ChooseProfession renders empty result 1`] = `
       Dina valda yrken:
     </div>
     <a
-      class="css-8v6n7y"
+      class="css-szl3t8"
       color="persianBlue"
       font-weight="500"
       href="/skapa-cv/kompetenser"
     >
       <button
-        class="css-bmiqs"
+        class="css-1ce9gp"
         font-family="default"
         font-size="medium"
       >

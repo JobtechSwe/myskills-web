@@ -3,18 +3,18 @@
 exports[`components/Header renders Header component 1`] = `
 <div>
   <div
-    class="css-ca74jw"
+    class="css-1j9bjys"
   >
     <h1
-      class="css-1pedyaf"
-      color="persianBlue"
+      class="css-11f7i7s"
+      color="black"
       font-family="default"
-      font-size="small,medium,large"
+      font-size="large"
       font-weight="600"
     >
       <a
         aria-current="page"
-        class="css-8v6n7y"
+        class="css-szl3t8"
         color="persianBlue"
         font-weight="500"
         href="/"
@@ -24,4 +24,4 @@ exports[`components/Header renders Header component 1`] = `
     </h1>
   </div>
 </div>
-`
+`;

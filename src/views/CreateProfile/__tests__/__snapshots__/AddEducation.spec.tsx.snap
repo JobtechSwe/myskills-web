@@ -4,11 +4,11 @@ exports[`views/AddEducation renders empty result 1`] = `
 <div>
   <form>
     <div
-      class="css-fhv5oa"
+      class="css-161cgc2"
     >
       <div />
       <input
-        class="css-hn8wcy"
+        class="css-j84gd6"
         font-family="default"
         font-size="medium"
         name="programme"
@@ -17,7 +17,7 @@ exports[`views/AddEducation renders empty result 1`] = `
         value=""
       />
       <input
-        class="css-hn8wcy"
+        class="css-j84gd6"
         font-family="default"
         font-size="medium"
         name="school"
@@ -26,7 +26,7 @@ exports[`views/AddEducation renders empty result 1`] = `
         value=""
       />
       <input
-        class="css-hn8wcy"
+        class="css-j84gd6"
         font-family="default"
         font-size="medium"
         name="start"
@@ -35,7 +35,7 @@ exports[`views/AddEducation renders empty result 1`] = `
         value=""
       />
       <input
-        class="css-hn8wcy"
+        class="css-j84gd6"
         font-family="default"
         font-size="medium"
         name="end"
@@ -44,7 +44,7 @@ exports[`views/AddEducation renders empty result 1`] = `
         value=""
       />
       <button
-        class="css-199cpun"
+        class="css-onwat"
         font-family="default"
         font-size="medium"
         type="submit"
@@ -54,10 +54,13 @@ exports[`views/AddEducation renders empty result 1`] = `
     </div>
   </form>
   <a
+    class="css-szl3t8"
+    color="persianBlue"
+    font-weight="500"
     href="/skapa-cv/"
   >
     <button
-      class="css-bmiqs"
+      class="css-1ce9gp"
       font-family="default"
       font-size="medium"
     >

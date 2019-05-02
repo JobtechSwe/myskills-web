@@ -3,9 +3,23 @@
 exports[`views/MatchSkills renders loading state 1`] = `
 <div>
   <div
-    style="margin-bottom: 2rem;"
+    class="css-1hgdqkz"
   >
     Valda kompetenser:
+    <a
+      class="css-szl3t8"
+      color="persianBlue"
+      font-weight="500"
+      href="/erfarenhet"
+    >
+      <button
+        class="css-1ce9gp"
+        font-family="default"
+        font-size="medium"
+      >
+        Fortsätt
+      </button>
+    </a>
   </div>
   
   <div
@@ -48,5 +62,19 @@ exports[`views/MatchSkills renders loading state 1`] = `
       class="sk-circle12 sk-circle"
     />
   </div>
+  <a
+    class="css-szl3t8"
+    color="persianBlue"
+    font-weight="500"
+    href="/skapa-cv/erfarenheter"
+  >
+    <button
+      class="css-1ce9gp"
+      font-family="default"
+      font-size="medium"
+    >
+      Nästa
+    </button>
+  </a>
 </div>
 `;

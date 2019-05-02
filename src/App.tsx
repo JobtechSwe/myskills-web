@@ -23,6 +23,10 @@ const AddEducation = React.lazy(() =>
   import('./views/CreateProfile/AddEducation')
 )
 
+const PreviousExperience = React.lazy(() =>
+  import('./views/CreateProfile/PreviousExperience')
+)
+
 const WhoAmI = React.lazy(() => import(`./views/CreateProfile/WhoAmI`))
 
 const AddTraits = React.lazy(() => import(`./views/CreateProfile/AddTraits`))
@@ -46,6 +50,7 @@ function App() {
             <MatchCompetences path="/kompetenser" />
             <WhoAmI path="/beskriv-dig" />
             <AddTraits path="/egenskaper" />
+            <PreviousExperience path="/erfarenheter" />
           </CreateProfile>
           <RestrictedRoute component={Profile} path="/profile" />
         </Router>

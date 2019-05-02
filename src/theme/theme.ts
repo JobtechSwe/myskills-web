@@ -12,6 +12,7 @@ interface Color {
 
 interface Typography {
   default: 'sans-serif'
+  lato: 'Lato'
 }
 
 const colors: Color = {
@@ -35,6 +36,14 @@ const buttons = {
     color: colors.persianBlue,
     backgroundColor: colors.white,
   },
+  inActive: {
+    backgroundColor: colors.wildSand,
+    color: colors.black,
+  },
+  active: {
+    backgroundColor: colors.seashellPeach,
+    color: colors.redOrange,
+  },
 }
 
 const tags = {
@@ -52,12 +61,13 @@ const tags = {
 
 const typography: Typography = {
   default: 'sans-serif',
+  lato: 'Lato',
 }
 
 const fontSizes = {
   small: 14,
   medium: 16,
-  large: 26,
+  large: 24,
 }
 
 const space = {

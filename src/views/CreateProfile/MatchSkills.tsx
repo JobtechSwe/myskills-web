@@ -11,6 +11,8 @@ import {
   OntologyRelationResponse,
   Skill,
 } from '../../generated/myskills.d'
+import { InternalLink } from '../../components/Link'
+import { FloatingContinueButton } from '../../components/Button'
 
 export const GET_SKILLS_AND_OCCUPATIONS_CLIENT = gql`
   query getSkillsAndOccupationsClient {
@@ -192,6 +194,10 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
         <TagList handleTagClick={handleAddSkill} items={state.skills} />
       )}
       {state.loading && <Loader />}
+
+      <InternalLink to="/skapa-cv/erfarenheter">
+        <FloatingContinueButton>Nästa</FloatingContinueButton>
+      </InternalLink>
     </>
   )
 }

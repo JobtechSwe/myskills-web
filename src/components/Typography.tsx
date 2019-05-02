@@ -11,13 +11,15 @@ import {
   FontWeightProps,
   space,
   SpaceProps,
+  textAlign,
+  TextAlignProps,
 } from 'styled-system'
 
 type TypographyProps = ColorProps &
   FontFamilyProps &
   FontSizeProps &
-  ColorProps &
-  SpaceProps
+  SpaceProps &
+  TextAlignProps
 
 type HeadingProps = React.HTMLProps<HTMLHeadingElement> & TypographyProps
 type ParagraphProps = React.HTMLProps<HTMLParagraphElement> & TypographyProps
@@ -28,6 +30,7 @@ export const H1 = styled.h1<HeadingProps & FontWeightProps>`
   ${fontSize}
   ${fontWeight}
   ${space}
+  ${textAlign}
 `
 
 export const H2 = styled.h2<HeadingProps>`
@@ -35,6 +38,7 @@ export const H2 = styled.h2<HeadingProps>`
   ${fontFamily}
   ${fontSize}
   ${space}
+  ${textAlign}
 `
 
 export const H3 = styled.h3<HeadingProps>`
@@ -42,6 +46,7 @@ export const H3 = styled.h3<HeadingProps>`
   ${fontFamily}
   ${fontSize}
   ${space}
+  ${textAlign}
 `
 
 export const Paragraph = styled.p<ParagraphProps>`
@@ -49,6 +54,7 @@ export const Paragraph = styled.p<ParagraphProps>`
   ${fontFamily}
   ${fontSize}
   ${space}
+  ${textAlign}
 `
 
 const common: HeadingProps = {

@@ -19,7 +19,7 @@ import {
 } from 'styled-system'
 
 type VariantProps = {
-  variant?: 'primary' | 'secondary'
+  variant?: 'primary' | 'secondary' | 'inActive' | 'active'
 }
 
 type ButtonProps = React.HTMLProps<HTMLButtonElement> &

@@ -57,19 +57,19 @@ const Start: React.FC<RouteComponentProps> = () => {
           <Paragraph color="white" mt={0}>
             Registrera ditt CV i 5 enkla steg
           </Paragraph>
-          <InternalLink to="/skapa-cv" mt={100} width={1}>
+          <InternalLink mt={100} to="/skapa-cv" width={1}>
             <Button variant="secondary" width={1}>
               Skapa CV
             </Button>
           </InternalLink>
-          <InternalLink to="/login" mt={10} width={1}>
+          <InternalLink mt={10} to="/login" width={1}>
             <Button variant="secondaryBlack" width={1}>
               Login med Egendata
             </Button>
           </InternalLink>
           <Info>
-            <img src="/images/info.svg" alt="info icon" />
-            <Paragraph mt={0} mb={0} ml={10}>
+            <img alt="info icon" src="/images/info.svg" />
+            <Paragraph mb={0} ml={10} mt={0}>
               Med Egendata får du kontroll över din data.{' '}
               <ReadMoreLink>Läs mer om hur det fungerar</ReadMoreLink>
             </Paragraph>
@@ -79,9 +79,9 @@ const Start: React.FC<RouteComponentProps> = () => {
       <InfoBlock>
         <H2
           color="cloudBurst"
-          mt="large"
-          mb="large"
           fontSize={24}
+          mb="large"
+          mt="large"
           textAlign="center"
         >
           Hur fungerar det?
@@ -90,7 +90,7 @@ const Start: React.FC<RouteComponentProps> = () => {
           <H3 color="cloudBurst" fontSize={16} fontWeight="bold">
             Skapa en profil
           </H3>
-          <Paragraph color="cloudBurst" mt={10} mb={40}>
+          <Paragraph color="cloudBurst" mb={40} mt={10}>
             Svara på frågor om dig själv och skapa ditt CV.
           </Paragraph>
         </div>

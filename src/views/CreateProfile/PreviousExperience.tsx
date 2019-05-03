@@ -2,7 +2,7 @@ import React from 'react'
 import { RouteComponentProps } from '@reach/router'
 import Grid from '../../components/Grid'
 import Flex from '../../components/Flex'
-import clockImage from '../../images/clock.svg'
+import laptopImage from '../../images/laptop.svg'
 import { H1, Paragraph } from '../../components/Typography'
 import Button from '../../components/Button'
 import Slider from '../../components/Slider'
@@ -22,7 +22,7 @@ export const PreviousExperience: React.FC<RouteComponentProps> = () => {
 
   return (
     <Flex flexDirection="column">
-      <img alt="Clock" src={clockImage} />
+      <img alt="Clock" src={laptopImage} />
       <H1 textAlign="center">Har du arbetat som det tidigare?</H1>
 
       <Grid gridAutoFlow="column" gridGap={12} justifyContent="center">

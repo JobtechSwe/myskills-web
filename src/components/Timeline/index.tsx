@@ -66,7 +66,7 @@ const Timeline: React.FC = () => {
       {mockData.map((entry, i) => (
         <TimelineEntry key={`entry-${i}`}>
           <div>
-            <img src="images/elipse.svg" alt="dot" />
+            <img alt="dot" src="images/elipse.svg" />
           </div>
           <div>
             <TimelineTitle>
@@ -74,12 +74,12 @@ const Timeline: React.FC = () => {
             </TimelineTitle>
             <TimelineInfo>
               {entry.schoolOrCompany}
-              <TimelineInfoDivider src="images/dot.svg" alt="divider" />
+              <TimelineInfoDivider alt="divider" src="images/dot.svg" />
               {entry.start} - {entry.end}
             </TimelineInfo>
           </div>
           <TimelineEntryEdit>
-            <img src="images/edit.svg" alt="edit" />
+            <img alt="edit" src="images/edit.svg" />
           </TimelineEntryEdit>
         </TimelineEntry>
       ))}

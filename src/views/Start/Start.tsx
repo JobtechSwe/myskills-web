@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Flex from '../../components/Flex'
 import { RouteComponentProps } from '@reach/router'
 import Button from '../../components/Button'
@@ -42,6 +42,15 @@ const Bold = styled.span`
 `
 
 const Start: React.FC<RouteComponentProps> = () => {
+  const infoElement = useRef<HTMLDivElement>(null)
+  const scrollTo = () => {
+    if (infoElement.current) {
+      infoElement.current.scrollIntoView({
+        behavior: 'smooth',
+      })
+    }
+  }
+
   return (
     <>
       <StartBlock>
@@ -71,14 +80,14 @@ const Start: React.FC<RouteComponentProps> = () => {
             <img alt="info icon" src="/images/info.svg" />
             <Paragraph mb={0} ml={10} mt={0}>
               Med Egendata får du kontroll över din data.{' '}
-              <Link textDecoration="underline">
+              <Link textDecoration="underline" onClick={scrollTo}>
                 Läs mer om hur det fungerar
               </Link>
             </Paragraph>
           </Info>
         </Flex>
       </StartBlock>
-      <InfoBlock>
+      <InfoBlock ref={infoElement}>
         <H2
           color="cloudBurst"
           fontSize={24}

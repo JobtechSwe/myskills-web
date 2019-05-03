@@ -157,12 +157,12 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
                       )
                       .map((item: OntologyConceptResponse, index: number) => (
                         <ListItem
-                          key={item.id}
                           bg={
                             highlightedIndex === index
                               ? 'seashellPeach'
                               : 'white'
                           }
+                          key={item.id}
                           px="medium"
                           {...getItemProps({
                             key: item.id,

@@ -18,6 +18,7 @@
     "apollo-link-error": "^1.1.8",
     "apollo-link-http": "^1.5.12",
     "apollo-link-ws": "^1.0.17",
+    "downshift": "^3.2.10",
     "emotion-theming": "^10.0.7",
     "graphql": "14.1.1",
     "jest-dom": "^3.1.2",

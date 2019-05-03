@@ -10,7 +10,7 @@ import { InternalLink } from '../../components/Link'
 
 export const PreviousExperience: React.FC<RouteComponentProps> = () => {
   const [hasPreviousExperiences, setYesButtonActive] = React.useState(false)
-  const [yearsActive, setYearsActive] = React.useState(0)
+  const [_yearsActive, setYearsActive] = React.useState(0)
 
   const hasPreviousExperiencesClick = () => {
     setYesButtonActive(true)

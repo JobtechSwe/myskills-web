@@ -95,7 +95,7 @@ describe('views/ChooseProfession', () => {
 
     await wait()
 
-    expect(getByText(/Some error.../i)).toBeInTheDocument()
+    expect(getByText(/Error.../i)).toBeInTheDocument()
   })
 
   it('should render with taxonomy query result', async () => {
@@ -104,7 +104,7 @@ describe('views/ChooseProfession', () => {
       withResultsMock
     )
 
-    fireEvent.change(getByPlaceholderText('Yrkesroll eller yrkesområde'), {
+    fireEvent.change(getByPlaceholderText(/Yrkesroll eller yrkesområde/i), {
       target: { value: 'Systemutvecklare' },
     })
 

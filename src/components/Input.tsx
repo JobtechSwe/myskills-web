@@ -30,11 +30,13 @@ const Input = styled.input<InputProps>`
   ${borderColor}
   ${borderRadius}
   ${color}
+  ${fontFamily}
   ${fontSize}
   ${space}
 `
 
 Input.defaultProps = {
+  bg: 'white',
   border: '1px solid',
   borderRadius: '5px',
   borderColor: 'athensGray',

@@ -7,6 +7,7 @@ interface Color {
   redOrange: '#FE451D'
   seashellPeach: '#FFF2EC'
   white: 'white'
+  whiteLilac: '#F1F1F9'
   wildSand: '#F6F6F6'
 }
 
@@ -23,6 +24,7 @@ const colors: Color = {
   redOrange: '#FE451D',
   seashellPeach: '#FFF2EC',
   white: 'white',
+  whiteLilac: '#F1F1F9',
   wildSand: '#F6F6F6',
 }
 

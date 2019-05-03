@@ -8,7 +8,7 @@ exports[`views/AddEducation renders empty result 1`] = `
     >
       <div />
       <input
-        class="css-j84gd6"
+        class="css-14atytx"
         font-family="default"
         font-size="medium"
         name="programme"
@@ -17,7 +17,7 @@ exports[`views/AddEducation renders empty result 1`] = `
         value=""
       />
       <input
-        class="css-j84gd6"
+        class="css-14atytx"
         font-family="default"
         font-size="medium"
         name="school"
@@ -26,7 +26,7 @@ exports[`views/AddEducation renders empty result 1`] = `
         value=""
       />
       <input
-        class="css-j84gd6"
+        class="css-14atytx"
         font-family="default"
         font-size="medium"
         name="start"
@@ -35,7 +35,7 @@ exports[`views/AddEducation renders empty result 1`] = `
         value=""
       />
       <input
-        class="css-j84gd6"
+        class="css-14atytx"
         font-family="default"
         font-size="medium"
         name="end"

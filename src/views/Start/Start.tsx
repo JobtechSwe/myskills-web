@@ -3,10 +3,12 @@ import Flex from '../../components/Flex'
 import { RouteComponentProps } from '@reach/router'
 import Button from '../../components/Button'
 import { InternalLink } from '../../components/Link'
+import Timeline from '../../components/Timeline'
 
 const Start: React.FC<RouteComponentProps> = () => {
   return (
     <Flex alignItems="center" flexDirection="column" justifyContent="center">
+      <Timeline />
       <Flex p={32}>
         <InternalLink to="/skapa-cv">
           <Button variant="primary">Skapa Cv</Button>

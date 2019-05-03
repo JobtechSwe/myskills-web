@@ -8,12 +8,14 @@ import styled from '@emotion/styled'
 
 const StartBlock = styled.div`
   align-items: flex-end;
-  background: ${({ theme }) => theme.colors.persianBlue} url('/images/dart.svg')
-    no-repeat top left;
-  background-size: contain;
+  background: ${({ theme }) => `radial-gradient(
+    647.69px at 6.66% 96.53%,
+    ${theme.colors.yourPink} 0%,
+    ${theme.colors.seashellPeach} 100%
+  )`};
   display: flex;
   height: 100vh;
-  padding: 25px;
+  padding: 0 25px;
 `
 
 const InfoBlock = styled.div`
@@ -22,23 +24,26 @@ const InfoBlock = styled.div`
 `
 
 const Divider = styled.hr`
-  background: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.colors.persianBlue};
   border: 0;
-  height: 1px;
-  width: calc(100% - 50px);
+  height: 2px;
+  width: 200px;
 `
 
 const Info = styled.div`
-  background-color: ${({ theme }) => theme.colors.persianBlueDark};
   border-radius: 8px;
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.black};
   display: flex;
   padding: 15px;
-  margin: 80px 0 25px 0;
+  margin: 50px 0 25px 0;
 `
 
 const Bold = styled.span`
   font-weight: bold;
+`
+
+const Clouds = styled.img`
+  margin-top: 65px;
 `
 
 const Start: React.FC<RouteComponentProps> = () => {
@@ -59,15 +64,14 @@ const Start: React.FC<RouteComponentProps> = () => {
           flexDirection="column"
           justifyContent="center"
         >
-          <H1 color="white" fontSize={36} mb={5}>
-            Nå ditt drömjobb!
-          </H1>
+          <img alt="logo" src="/images/logo.svg" />
           <Divider />
-          <Paragraph color="white" mt={0}>
-            Registrera ditt CV i 5 enkla steg
+          <Paragraph color="persianBlue" mt={0}>
+            Ditt digitala CV
           </Paragraph>
-          <InternalLink mt={100} to="/skapa-cv" width={1}>
-            <Button variant="secondary" width={1}>
+          <Clouds alt="clouds" src="/images/clouds.svg" />
+          <InternalLink mt={60} to="/skapa-cv" width={1}>
+            <Button variant="primary" width={1}>
               Skapa CV
             </Button>
           </InternalLink>
@@ -80,7 +84,7 @@ const Start: React.FC<RouteComponentProps> = () => {
             <img alt="info icon" src="/images/info.svg" />
             <Paragraph mb={0} ml={10} mt={0}>
               Med Egendata får du kontroll över din data.{' '}
-              <Link textDecoration="underline" onClick={scrollTo}>
+              <Link onClick={scrollTo} textDecoration="underline">
                 Läs mer om hur det fungerar
               </Link>
             </Paragraph>
@@ -99,7 +103,7 @@ const Start: React.FC<RouteComponentProps> = () => {
         </H2>
         <div>
           <H3 color="cloudBurst" fontSize={16} fontWeight="bold">
-            Skapa en profil
+            Skapa din profil
           </H3>
           <Paragraph color="cloudBurst" mb={40} mt={10}>
             Svara på frågor om dig själv och skapa ditt CV.
@@ -107,10 +111,19 @@ const Start: React.FC<RouteComponentProps> = () => {
         </div>
         <div>
           <H3 color="cloudBurst" fontSize={16} fontWeight="bold">
-            Spara ditt CV
+            Lagra ditt CV
           </H3>
           <Paragraph color="cloudBurst" mt={10}>
             Genom Egendata väljer du själv var ditt CV ska sparas.
+          </Paragraph>
+        </div>
+        <div>
+          <H3 color="cloudBurst" fontSize={16} fontWeight="bold">
+            Spara tid
+          </H3>
+          <Paragraph color="cloudBurst" mt={10}>
+            Hämta och dela din information istället för att skapa ett nytt CV
+            för varje jobbsökarsajt.
           </Paragraph>
         </div>
       </InfoBlock>

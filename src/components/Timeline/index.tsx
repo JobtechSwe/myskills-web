@@ -34,7 +34,7 @@ const Timeline: React.FC = () => {
   return (
     <Wrapper>
       {mockData.map((entry, i) => (
-        <TimelineEntry key={`entry-${i}`} entry={entry} />
+        <TimelineEntry entry={entry} key={`entry-${i}`} />
       ))}
     </Wrapper>
   )

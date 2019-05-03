@@ -13,8 +13,8 @@ export const WorkExperiences: React.FC<RouteComponentProps> = () => {
       <H1 textAlign="center">Vad har du för arbetslivserfarenhet?</H1>
       <Grid gridGap={6}>
         <Label>Lägg till erfarenhet</Label>
-        <Input name="experienceName" placeholder="Namn på tjänst..." />
-        <Input name="employeerName" placeholder="Arbetsgivare..." />
+        <Input name="experienceName" placeholder="Namn på tjänst" />
+        <Input name="employeerName" placeholder="Arbetsgivare" />
       </Grid>
       <Grid gridAutoFlow="column" gridGap={6} mt="small">
         <Flex flexDirection="column">
@@ -23,13 +23,13 @@ export const WorkExperiences: React.FC<RouteComponentProps> = () => {
             name="experienceName"
             onBlur={() => setFocused(false)}
             onFocus={() => setFocused(true)}
-            placeholder={!isFocused ? 'Startdatum...' : null}
+            placeholder={!isFocused ? 'Startdatum' : null}
             type={isFocused ? 'month' : 'text'}
           />
         </Flex>
         <Flex flexDirection="column">
           <Label>Till</Label>
-          <Input name="experienceName" placeholder="Slutdatum..." />
+          <Input name="experienceName" placeholder="Slutdatum" />
         </Flex>
       </Grid>
     </Flex>

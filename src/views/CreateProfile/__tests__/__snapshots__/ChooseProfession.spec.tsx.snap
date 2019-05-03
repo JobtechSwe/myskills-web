@@ -33,7 +33,7 @@ exports[`views/ChooseProfession renders empty result 1`] = `
       Dina valda yrken:
     </div>
     <a
-      class="css-1x8ra82"
+      class="css-3fr35d"
       color="persianBlue"
       font-weight="500"
       href="/skapa-cv/kompetenser"

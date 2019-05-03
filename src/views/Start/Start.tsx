@@ -37,13 +37,13 @@ const Info = styled.div`
   margin: 80px 0 25px 0;
 `
 
-const ReadMoreLink = styled(Link)`
-  text-decoration: underline;
+const Bold = styled.span`
+  font-weight: bold;
 `
 
 const Start: React.FC<RouteComponentProps> = () => {
   return (
-    <div>
+    <>
       <StartBlock>
         <Flex
           alignItems="center"
@@ -64,14 +64,16 @@ const Start: React.FC<RouteComponentProps> = () => {
           </InternalLink>
           <InternalLink mt={10} to="/login" width={1}>
             <Button variant="secondaryBlack" width={1}>
-              Login med Egendata
+              Login med <Bold>Egendata</Bold>
             </Button>
           </InternalLink>
           <Info>
             <img alt="info icon" src="/images/info.svg" />
             <Paragraph mb={0} ml={10} mt={0}>
               Med Egendata får du kontroll över din data.{' '}
-              <ReadMoreLink>Läs mer om hur det fungerar</ReadMoreLink>
+              <Link textDecoration="underline">
+                Läs mer om hur det fungerar
+              </Link>
             </Paragraph>
           </Info>
         </Flex>
@@ -103,7 +105,7 @@ const Start: React.FC<RouteComponentProps> = () => {
           </Paragraph>
         </div>
       </InfoBlock>
-    </div>
+    </>
   )
 }
 

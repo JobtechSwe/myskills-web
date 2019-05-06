@@ -116,6 +116,7 @@ export type LocalStateProps = {
   educations: Education[]
   traits: string[]
   whoAmI: string
+  image: string
 }
 
 const initialState: LocalStateProps = {
@@ -125,6 +126,7 @@ const initialState: LocalStateProps = {
   skills: [],
   traits: [],
   whoAmI: '',
+  image: '',
 }
 
 const apolloClient = new ApolloClient({

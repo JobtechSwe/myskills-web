@@ -19,6 +19,10 @@ input ClientSkillInput {
   name: String
 }
 
+input ImageInput {
+  imageString: String!
+}
+
 extend type Query {
   isLoggedIn: Boolean!
   occupations: [OntologyConceptResponse!]!
@@ -32,4 +36,5 @@ extend type Mutation {
 
   addSkillClient(skill: SkillInput!): Skill
   addEducationClient(education: EducationInput!): Education
+  uploadImage(imageString: ImageInput!): ImageString
 }

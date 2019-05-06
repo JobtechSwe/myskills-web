@@ -49,7 +49,18 @@ interface WhoAmI extends StorageEntryProps {
   data: string
 }
 
-export type StorageEntry = Educations | Occupations | Skills | Traits | WhoAmI
+interface Image extends StorageEntryProps {
+  type: 'image'
+  data: string
+}
+
+export type StorageEntry =
+  | Educations
+  | Occupations
+  | Skills
+  | Traits
+  | WhoAmI
+  | Image
 
 export const storageHelper = {
   load: (initialState: LocalStateProps) =>

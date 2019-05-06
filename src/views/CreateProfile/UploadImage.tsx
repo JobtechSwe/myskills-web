@@ -3,8 +3,33 @@ import { RouteComponentProps } from '@reach/router'
 import ReactCrop from 'react-image-crop'
 import Button, { FloatingContinueButton } from '../../components/Button'
 import { InternalLink } from '../../components/Link'
+import { useQuery, useMutation } from 'react-apollo-hooks'
+import gql from 'graphql-tag'
+
+export const UPLOAD_IMAGE_CLIENT = gql`
+  mutation uploadImage($imageString: imageString!) {
+    uploadImage(imageString: $imageString) @client {
+      imageString
+    }
+  }
+`
+
+export const UPLOAD_IMAGE_API = gql`
+  mutation uploadImage($imageString: imageString!) {
+    uploadImage(imageString: $imageString) {
+      imageString
+    }
+  }
+`
+
+export const GET_IMAGE = gql`
+  query image {
+    image @client
+  }
+`
 
 const UploadImage: React.FC<RouteComponentProps> = props => {
+  const { data } = useQuery(GET_IMAGE)
   const initialState = {
     src: '',
     crop: {
@@ -13,16 +38,26 @@ const UploadImage: React.FC<RouteComponentProps> = props => {
       width: 80,
       height: 80,
     },
-    croppedImageUrl: '',
+    base64Image: data.image,
     imageRef: '',
     isCropped: false,
   }
-  const [image, uploadImage] = useState(initialState)
+
+  const uploadImage = useMutation(UPLOAD_IMAGE_CLIENT)
+
+  const handleuploadImage = (imageString: string) => {
+    uploadImage({
+      variables: {
+        imageString,
+      },
+    })
+  }
+  const [image, updateImage] = useState(initialState)
 
   const makeClientCrop = async (crop: any) => {
     if (image.src && crop.width && crop.height) {
-      const croppedImageUrl = await getCroppedImg(image.imageRef, crop)
-      uploadImage({ ...image, croppedImageUrl })
+      const url = await getCroppedImg(image.imageRef, crop)
+      updateImage({ ...image, base64Image: url })
     }
   }
 
@@ -48,31 +83,28 @@ const UploadImage: React.FC<RouteComponentProps> = props => {
       )
     }
 
-    return new Promise<string>((resolve, reject) => {
-      canvas.toBlob(blob => {
-        if (!blob) {
-          reject('Canvas is empty')
-          return
-        }
-
-        resolve(window.URL.createObjectURL(blob))
-      }, 'image/jpeg')
+    return new Promise<any>(resolve => {
+      resolve(canvas.toDataURL('image/jpeg'))
     })
   }
 
-  const selectImage = (isCropped: any) => uploadImage({ ...image, isCropped })
-  const onCropChange = (crop: any) => uploadImage({ ...image, crop })
+  const selectImage = (isCropped: any) => {
+    updateImage({ ...image, isCropped })
+    handleuploadImage(image.base64Image)
+  }
+  const onCropChange = (crop: any) => updateImage({ ...image, crop })
   const onCropComplete = (crop: any) => makeClientCrop(crop)
   const onImageLoaded = (imageRef: any) =>
-    uploadImage({ ...image, imageRef, isCropped: false })
+    updateImage({ ...image, imageRef, isCropped: false })
   const onSelectFile = (e: any) => {
     if (e.target.files && e.target.files.length > 0) {
       const reader = new FileReader()
       reader.addEventListener('load', () => {
         if (typeof reader.result === 'string') {
-          return uploadImage({
+          return updateImage({
             ...image,
             src: reader.result,
+            isCropped: false,
           })
         }
       })
@@ -85,9 +117,12 @@ const UploadImage: React.FC<RouteComponentProps> = props => {
       <div>
         <input onChange={onSelectFile} type="file" />
       </div>
-      <Button onClick={(_e: any) => selectImage(true)} variant="primary">
-        Select
-      </Button>
+      {!image.base64Image ||
+        (image.src && !image.isCropped && (
+          <Button onClick={(_e: any) => selectImage(true)} variant="primary">
+            Select
+          </Button>
+        ))}
       {image.src && !image.isCropped && (
         <ReactCrop
           crop={image.crop}
@@ -102,12 +137,8 @@ const UploadImage: React.FC<RouteComponentProps> = props => {
           src={image.src}
         />
       )}
-      {image.croppedImageUrl && image.isCropped && (
-        <img
-          alt="Crop"
-          src={image.croppedImageUrl}
-          style={{ maxWidth: '100%' }}
-        />
+      {image.base64Image && (image.isCropped || !image.src) && (
+        <img alt="Crop" src={image.base64Image} style={{ maxWidth: '100%' }} />
       )}
       <InternalLink to="/skapa-cv/kompetenser">
         <FloatingContinueButton>Nästa</FloatingContinueButton>

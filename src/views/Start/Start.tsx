@@ -3,11 +3,11 @@ import Flex from '../../components/Flex'
 import { RouteComponentProps } from '@reach/router'
 import Button from '../../components/Button'
 import { Link, InternalLink } from '../../components/Link'
-import { H1, H2, H3, Paragraph } from '../../components/Typography'
+import { H2, H3, Paragraph } from '../../components/Typography'
 import styled from '@emotion/styled'
 
 const StartBlock = styled.div`
-  align-items: flex-end;
+  align-items: center;
   background: ${({ theme }) => `radial-gradient(
     647.69px at 6.66% 96.53%,
     ${theme.colors.yourPink} 0%,
@@ -15,7 +15,7 @@ const StartBlock = styled.div`
   )`};
   display: flex;
   height: 100vh;
-  padding: 0 25px;
+  padding: 25px;
 `
 
 const InfoBlock = styled.div`
@@ -35,7 +35,7 @@ const Info = styled.div`
   color: ${({ theme }) => theme.colors.black};
   display: flex;
   padding: 15px;
-  margin: 50px 0 25px 0;
+  margin: 30px 0 0 0;
 `
 
 const Bold = styled.span`
@@ -43,7 +43,10 @@ const Bold = styled.span`
 `
 
 const Clouds = styled.img`
-  margin-top: 65px;
+  @media (min-height: 768px) {
+    margin-top: 65px;
+    margin-bottom: 50px;
+  }
 `
 
 const Start: React.FC<RouteComponentProps> = () => {
@@ -70,7 +73,7 @@ const Start: React.FC<RouteComponentProps> = () => {
             Ditt digitala CV
           </Paragraph>
           <Clouds alt="clouds" src="/images/clouds.svg" />
-          <InternalLink mt={60} to="/skapa-cv" width={1}>
+          <InternalLink mt={30} to="/skapa-cv" width={1}>
             <Button variant="primary" width={1}>
               Skapa CV
             </Button>

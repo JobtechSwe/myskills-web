@@ -3,7 +3,7 @@
 exports[`views/Start renders Start 1`] = `
 <div>
   <div
-    class="css-164ksg8"
+    class="css-62zrxy"
   >
     <div
       class="css-owzlzk"
@@ -25,15 +25,15 @@ exports[`views/Start renders Start 1`] = `
       </p>
       <img
         alt="clouds"
-        class="css-7uebs5"
+        class="css-1yeq193"
         src="/images/clouds.svg"
       />
       <a
-        class="css-16cqdmt"
+        class="css-o0whc9"
         color="persianBlue"
         font-weight="500"
         href="/skapa-cv"
-        mt="60"
+        mt="30"
         width="1"
       >
         <button
@@ -68,7 +68,7 @@ exports[`views/Start renders Start 1`] = `
         </button>
       </a>
       <div
-        class="css-1sbvmfd"
+        class="css-efe99a"
       >
         <img
           alt="info icon"

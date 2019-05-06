@@ -1,9 +1,6 @@
 import React from 'react'
 import { Router } from '@reach/router'
 import RestrictedRoute from './views/restricted'
-import Header from './components/Header'
-import { Paragraph } from './components/Typography'
-import styled from '@emotion/styled'
 import Loader from './components/Loader'
 
 const Register = React.lazy(() => import(`./views/Register/Register`))

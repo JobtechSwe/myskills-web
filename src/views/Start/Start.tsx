@@ -43,6 +43,10 @@ const Bold = styled.span`
 `
 
 const Clouds = styled.img`
+  @media (max-width: 320px) {
+    max-height: 160px;
+  }
+
   @media (min-height: 768px) {
     margin-top: 65px;
     margin-bottom: 50px;

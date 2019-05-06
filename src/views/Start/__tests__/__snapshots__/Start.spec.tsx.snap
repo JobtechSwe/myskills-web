@@ -25,7 +25,7 @@ exports[`views/Start renders Start 1`] = `
       </p>
       <img
         alt="clouds"
-        class="css-1yeq193"
+        class="css-smyzqs"
         src="/images/clouds.svg"
       />
       <a

@@ -77,7 +77,7 @@ const Start: React.FC<RouteComponentProps> = () => {
           </InternalLink>
           <InternalLink mt={10} to="/login" width={1}>
             <Button variant="secondaryBlack" width={1}>
-              Login med <Bold>Egendata</Bold>
+              Logga in med <Bold>Egendata</Bold>
             </Button>
           </InternalLink>
           <Info>

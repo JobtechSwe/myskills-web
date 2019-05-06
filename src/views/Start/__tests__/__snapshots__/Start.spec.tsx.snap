@@ -59,7 +59,7 @@ exports[`views/Start renders Start 1`] = `
           font-size="medium"
           width="1"
         >
-          Login med 
+          Logga in med 
           <span
             class="css-1xxe9l9"
           >

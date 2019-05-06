@@ -8,6 +8,9 @@ export const GET_SKILLS_CLIENT = gql`
   query getSkills {
     skills @client {
       term
+      id
+      type
+      score
     }
   }
 `

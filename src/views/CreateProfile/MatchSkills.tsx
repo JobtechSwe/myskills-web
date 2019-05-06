@@ -16,6 +16,9 @@ export const GET_SKILLS_AND_OCCUPATIONS_CLIENT = gql`
   query getSkillsAndOccupationsClient {
     skills @client {
       term
+      id
+      type
+      score
     }
 
     occupations @client {
@@ -25,11 +28,13 @@ export const GET_SKILLS_AND_OCCUPATIONS_CLIENT = gql`
     }
   }
 `
-export interface ClientSkillProps extends OntologyRelationResponse {
-  isActive: boolean
-}
+// export interface OntologyRelationResponse extends OntologyRelationResponse {
+//   isActive: boolean
+// }
 
-export type SkillsPropsUnion = OntologyConceptResponse | ClientSkillProps
+export type SkillsPropsUnion =
+  | OntologyConceptResponse
+  | OntologyRelationResponse
 
 export const GET_RELATED_SKILLS = gql`
   query ontologyRelated(
@@ -62,14 +67,14 @@ const getName = (data: SkillsPropsUnion[]) => data.map(({ term }) => term)
 
 interface MatchState {
   error: string
-  skills: ClientSkillProps[]
+  skills: OntologyRelationResponse[]
   loading: boolean
 }
 
 type MatchAction =
   | { type: 'ERROR'; payload: string }
   | { type: 'LOADING'; payload: boolean }
-  | { type: 'DATA'; payload: ClientSkillProps[] }
+  | { type: 'DATA'; payload: OntologyRelationResponse[] }
 
 const initialState = {
   skills: [],
@@ -110,8 +115,9 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
   }: any = useQuery(GET_SKILLS_AND_OCCUPATIONS_CLIENT)
   const addSkillMutation = useMutation(ADD_SKILL_CLIENT)
   const [state, dispatch] = useReducer(reducer, initialState)
+  const [lastSelected, setLastSelected] = React.useState(null)
 
-  const handleAddSkill = (skill: OntologyRelationResponse) => {
+  const handleAddSkill = (skill: any) => {
     addSkillMutation({
       variables: {
         skill,
@@ -121,21 +127,15 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
     handleToggleActive(skill)
   }
 
-  const handleToggleActive = (skill: OntologyRelationResponse) => {
-    const activeSkills = state.skills.map((stateSkill: ClientSkillProps) =>
-      stateSkill.id === skill.id
-        ? { ...stateSkill, isActive: !stateSkill.isActive }
-        : stateSkill
-    )
+  const handleToggleActive = (skill: any) => {
+    setLastSelected(skill)
 
-    dispatch({ type: 'DATA', payload: activeSkills })
-
-    getRelatedSkills([skill], activeSkills)
+    getRelatedSkills([skill], state.skills)
   }
 
   const getRelatedSkills = async (
     skills: OntologyRelationResponse[],
-    relSkills: ClientSkillProps[]
+    relSkills: OntologyRelationResponse[]
   ) => {
     dispatch({ type: 'LOADING', payload: true })
     const { data } = await client.query({
@@ -151,16 +151,13 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
       return dispatch({ type: 'ERROR', payload: data.error.message })
     }
 
-    const withIsActive = data.ontologyRelated.relations.map(
-      (x: OntologyRelationResponse) => ({
-        ...x,
-        isActive: false,
-      })
-    )
+    // const withoutDuplicates: OntologyRelationResponse[] = [
+    //   ...new Set([...relSkills, ...data.ontologyRelated.relations]),
+    // ]
 
-    const withoutDuplicates: ClientSkillProps[] = [
+    const withoutDuplicates: OntologyRelationResponse[] = [
       ...relSkills,
-      ...withIsActive,
+      ...data.ontologyRelated.relations,
     ].reduce(
       (prev, skill) =>
         prev.some(({ id }: OntologyRelationResponse) => id === skill.id)
@@ -168,28 +165,25 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
           : [...prev, skill],
       []
     )
-
+    console.log('withoutdups: ', withoutDuplicates)
     dispatch({ type: 'DATA', payload: withoutDuplicates })
     dispatch({ type: 'LOADING', payload: false })
   }
 
   useEffect(() => {
     getRelatedSkills(occupations, state.skills)
-  }, [occupations])
-
+  }, [occupations, lastSelected])
+  console.log('savedSkills: ', savedSkills)
   return (
     <>
-      <div style={{ marginBottom: '2rem' }}>
-        Valda kompetenser:
-        {savedSkills.map((skill: Skill) => (
-          <div key={skill.term}>{skill.term}</div>
-        ))}
-      </div>
-
       {state.error && <div>Error... {state.error}</div>}
 
       {state.skills.length > 0 && (
-        <TagList handleTagClick={handleAddSkill} items={state.skills} />
+        <TagList
+          onSelect={handleAddSkill}
+          activeItems={savedSkills}
+          items={state.skills}
+        />
       )}
       {state.loading && <Loader />}
     </>

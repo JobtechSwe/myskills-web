@@ -1,4 +1,5 @@
 interface Color {
+  alabaster: '#F8F8F8'
   athensGray: '#E9ECF1'
   black: '#000000'
   cloudBurst: '#1F215F'
@@ -15,6 +16,7 @@ interface Typography {
 }
 
 const colors: Color = {
+  alabaster: '#F8F8F8',
   athensGray: '#E9ECF1',
   black: '#000000',
   cloudBurst: '#1F215F',

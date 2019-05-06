@@ -2,38 +2,46 @@ import React from 'react'
 import styled from '@emotion/styled'
 import TimelineEntry from './TimelineEntry'
 
-const mockData = [
-  {
-    title: 'Frontendutvecklare',
-    schoolOrCompany: 'Iteam',
-    degree: null,
-    start: '2018/11',
-    end: '2019/04',
-  },
-  {
-    title: 'Frontendutvecklare',
-    schoolOrCompany: 'Webbutveckling',
-    degree: 'Kandidat',
-    start: '2012/01',
-    end: '2018/10',
-  },
-  {
-    title: 'Pistvaktsutbildning',
-    schoolOrCompany: 'Skistar',
-    degree: 'Diplomerad',
-    start: '2009/01',
-    end: '2011/11',
-  },
-]
-
-const Wrapper = styled.div`
+const Wrapper = styled.ul<{ enableTimelineBar: boolean }>`
+  position: relative;
   width: 100%;
+
+  ${({ enableTimelineBar, theme }) =>
+    enableTimelineBar &&
+    `
+    &:after {
+      width: 5px;
+      background: ${theme.colors.alabaster};
+      height: calc(100% - 20px);
+      content: '';
+      display: block;
+      position: absolute;
+      top: 20px;
+      left: 5px;
+    }
+  `}
 `
 
-const Timeline: React.FC = () => {
+export type Entry = {
+  title: String
+  degree: String | undefined
+  schoolOrCompany: String
+  start: String
+  end: String
+}
+
+interface TimelineProps {
+  enableTimelineBar?: boolean
+  entries: Entry[]
+}
+
+const Timeline: React.FC<TimelineProps> = ({
+  enableTimelineBar = false,
+  entries,
+}) => {
   return (
-    <Wrapper>
-      {mockData.map((entry, i) => (
+    <Wrapper enableTimelineBar={enableTimelineBar}>
+      {entries.map((entry, i) => (
         <TimelineEntry entry={entry} key={`entry-${i}`} />
       ))}
     </Wrapper>

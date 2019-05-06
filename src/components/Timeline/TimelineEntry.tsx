@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
+import { Entry } from './index'
 
-const Wrapper = styled.div`
+const Wrapper = styled.li`
   display: grid;
   grid-template-columns: 20px 1fr;
   font-family: ${({ theme }) => theme.fonts.default};
@@ -9,6 +10,7 @@ const Wrapper = styled.div`
 
 const DotWrapper = styled.div`
   padding: 15px 0;
+  z-index: 1;
 `
 
 const ContentWrapper = styled.div<{ editing: boolean }>`
@@ -44,11 +46,11 @@ const TimelineEntryEdit = styled.div`
 `
 
 interface TimelineEntryProps {
-  entry: any
+  entry: Entry
 }
 
-const removeEntry = () => {
-  console.log('DELETE!')
+const editFunction = () => {
+  // do edit stuff
 }
 
 const TimelineEntry: React.FC<TimelineEntryProps> = ({ entry }) => {
@@ -62,7 +64,8 @@ const TimelineEntry: React.FC<TimelineEntryProps> = ({ entry }) => {
       <ContentWrapper editing={editing}>
         <div>
           <TimelineTitle>
-            {entry.title} <TimelineDegree>, {entry.degree}</TimelineDegree>
+            {entry.title}
+            {entry.degree && <TimelineDegree>, {entry.degree}</TimelineDegree>}
           </TimelineTitle>
           <TimelineInfo>
             {entry.schoolOrCompany}
@@ -72,8 +75,8 @@ const TimelineEntry: React.FC<TimelineEntryProps> = ({ entry }) => {
         </div>
         <TimelineEntryEdit>
           {editing ? (
-            <button onClick={removeEntry}>
-              <img alt="remove" src="images/trashcan.svg" />
+            <button onClick={editFunction}>
+              <img alt="remove" src="images/pen.svg" />
             </button>
           ) : (
             <button onClick={() => toggleEditMode(!editing)}>

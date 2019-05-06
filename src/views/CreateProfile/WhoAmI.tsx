@@ -15,6 +15,7 @@ import {
   OntologyTextParseResponse,
 } from '../../generated/myskills'
 import ContentEditable from 'react-contenteditable'
+import { GET_WHO_AM_I_CLIENT } from '../../graphql/resolvers/mutations/addWhoAmI'
 
 export const GET_TRAITS = gql`
   query ontologyTextParse($text: String!) {
@@ -51,14 +52,8 @@ const TagSpan = styled.span`
 `
 
 export const ADD_WHO_AM_I = gql`
-  mutation addWhoAmI($whoAmI: string!) {
+  mutation addWhoAmI($whoAmI: String!) {
     addWhoAmI(whoAmI: $whoAmI) @client
-  }
-`
-
-export const GET_WHO_AM_I = gql`
-  query getWhoAmI {
-    whoAmI @client
   }
 `
 
@@ -76,7 +71,7 @@ const renderToStatic = (
 
 const WhoAmI: React.FC<RouteComponentProps> = () => {
   const textArea = useRef<HTMLInputElement>(null)
-  const { data: whoAmIResult } = useQuery(GET_WHO_AM_I)
+  const { data: whoAmIResult } = useQuery(GET_WHO_AM_I_CLIENT)
 
   const [description, setDescription] = useState(whoAmIResult.whoAmI)
 

@@ -4,6 +4,8 @@ import Grid from '../../components/Grid'
 import Flex from '../../components/Flex'
 import Input from '../../components/Input'
 import { H1, Label } from '../../components/Typography'
+import { InternalLink } from '../../components/Link'
+import { FloatingContinueButton } from '../../components/Button'
 
 export const WorkExperiences: React.FC<RouteComponentProps> = () => {
   const [isFocused, setFocused] = React.useState(false)
@@ -32,6 +34,9 @@ export const WorkExperiences: React.FC<RouteComponentProps> = () => {
           <Input name="experienceName" placeholder="Slutdatum" />
         </Flex>
       </Grid>
+      <InternalLink to="../utbildning">
+        <FloatingContinueButton>Fortsätt</FloatingContinueButton>
+      </InternalLink>
     </Flex>
   )
 }

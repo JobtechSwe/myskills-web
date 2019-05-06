@@ -42,7 +42,7 @@ exports[`views/ChooseProfession renders empty result 1`] = `
       />
     </div>
     <div>
-      Dina valda yrken:
+      Ditt valda yrke:
     </div>
     <a
       class="css-szl3t8"

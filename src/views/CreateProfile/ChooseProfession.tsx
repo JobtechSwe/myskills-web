@@ -15,7 +15,7 @@ import { FloatingContinueButton } from '../../components/Button'
 import styled from '@emotion/styled'
 import { css, Global } from '@emotion/core'
 import { InternalLink } from '../../components/Link'
-import ChosenOccupations from '../../components/ChosenOccupations'
+import ChosenOccupation from '../../components/ChosenOccupation'
 import Downshift from 'downshift'
 
 const SearchInput = styled(Input)`
@@ -42,22 +42,24 @@ export const GET_ONTOLOGY_CONCEPTS = gql`
   }
 `
 
-export const ADD_OCCUPATION_CLIENT = gql`
-  mutation addOccupationClient($occupation: ClientOccupationInput!) {
-    addOccupationClient(occupation: $occupation) @client {
+export const CREATE_OCCUPATION_CLIENT = gql`
+  mutation createOccupationClient($occupation: OccupationInput!) {
+    createOccupationClient(occupation: $occupation) @client {
       term
-      type
-      id
+      experience {
+        years
+      }
     }
   }
 `
 
-export const ADD_OCCUPATION_API = gql`
-  mutation addExperienceApi($experience: ExperienceInput!) {
-    addExperience(experience: $experience) {
+export const CREATE_OCCUPATION_API = gql`
+  mutation createOccupationApi($occupation: OccupationInput!) {
+    createOccupation(occupation: $occupation) {
       term
-      years
-      taxonomyId
+      experience {
+        years
+      }
     }
   }
 `
@@ -86,8 +88,8 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
     fetchPolicy: 'network-only',
   })
 
-  const addOccupation = useMutation(
-    isLoggedIn.isLoggedIn ? ADD_OCCUPATION_API : ADD_OCCUPATION_CLIENT
+  const createOccupation = useMutation(
+    isLoggedIn.isLoggedIn ? CREATE_OCCUPATION_API : CREATE_OCCUPATION_CLIENT
   )
 
   const { data, error } = useQuery(GET_ONTOLOGY_CONCEPTS, {
@@ -115,9 +117,9 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
       <H3 mb={20}>YRKE</H3>
       <H1 mb={20}>Vad vill du jobba med?</H1>
       <Downshift
-        itemToString={item => (item ? item.iterm : '')}
+        itemToString={item => (item ? item.term : '')}
         onChange={occupation => {
-          addOccupation({
+          createOccupation({
             variables: {
               occupation,
             },
@@ -181,7 +183,7 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
           </div>
         )}
       </Downshift>
-      <ChosenOccupations />
+      <ChosenOccupation />
       <InternalLink to="/skapa-cv/kompetenser">
         <FloatingContinueButton>Nästa</FloatingContinueButton>
       </InternalLink>

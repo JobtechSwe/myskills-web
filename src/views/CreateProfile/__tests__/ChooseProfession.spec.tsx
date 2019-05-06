@@ -3,7 +3,7 @@ import ChooseProfession, { GET_ONTOLOGY_CONCEPTS } from '../ChooseProfession'
 import { render } from '../../../utils/test-utils'
 import { wait, fireEvent } from 'react-testing-library'
 import { OntologyType } from '../../../generated/myskills.d'
-import { GET_OCCUPATIONS_CLIENT } from '../../../graphql/resolvers/mutations'
+import { GET_OCCUPATION_CLIENT } from '../../../graphql/resolvers/mutations'
 
 describe('views/ChooseProfession', () => {
   let withResultsMock: any
@@ -39,11 +39,11 @@ describe('views/ChooseProfession', () => {
     const withResultsMock = [
       {
         request: {
-          query: GET_OCCUPATIONS_CLIENT,
+          query: GET_OCCUPATION_CLIENT,
         },
         result: {
           data: {
-            occupations: [],
+            occupation: {},
           },
         },
       },

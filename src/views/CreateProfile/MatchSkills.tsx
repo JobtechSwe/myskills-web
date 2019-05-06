@@ -15,16 +15,17 @@ import {
 } from '../../generated/myskills.d'
 import { InternalLink } from '../../components/Link'
 
-export const GET_SKILLS_AND_OCCUPATIONS_CLIENT = gql`
-  query getSkillsAndOccupationsClient {
+export const GET_SKILLS_AND_OCCUPATION_CLIENT = gql`
+  query getSkillsAndOccupationClient {
     skills @client {
       term
     }
 
-    occupations @client {
+    occupation @client {
       term
-      id
-      type
+      experience {
+        years
+      }
     }
   }
 `
@@ -109,8 +110,8 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
   client,
 }) => {
   const {
-    data: { occupations = [], skills: savedSkills = [] },
-  }: any = useQuery(GET_SKILLS_AND_OCCUPATIONS_CLIENT)
+    data: { occupation = {}, skills: savedSkills = [] },
+  }: any = useQuery(GET_SKILLS_AND_OCCUPATION_CLIENT)
   const addSkillMutation = useMutation(ADD_SKILL_CLIENT)
   const [state, dispatch] = useReducer(reducer, initialState)
 
@@ -177,8 +178,8 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
   }
 
   useEffect(() => {
-    getRelatedSkills(occupations, state.skills)
-  }, [occupations])
+    getRelatedSkills([occupation], state.skills)
+  }, [occupation])
 
   return (
     <>

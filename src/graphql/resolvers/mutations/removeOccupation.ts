@@ -1,26 +1,15 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { GET_OCCUPATIONS_CLIENT } from './addOccupation'
-import { OntologyConceptResponse } from '../../../generated/myskills'
+import { GET_OCCUPATION_CLIENT } from './createOccupation'
 
 export const removeOccupation = (
   _: any,
-  id: string,
+  args: any,
   { cache }: { cache: InMemoryCache }
-): OntologyConceptResponse[] => {
-  const { occupations = [] } = cache.readQuery<{
-    occupations: OntologyConceptResponse[]
-  }>({
-    query: GET_OCCUPATIONS_CLIENT,
-  })!
-
-  const updatedOccupationList = occupations.filter(
-    (occupation: OntologyConceptResponse) => occupation.id !== id
-  )
-
+): boolean => {
   cache.writeQuery({
-    query: GET_OCCUPATIONS_CLIENT,
-    data: { occupations: updatedOccupationList },
+    query: GET_OCCUPATION_CLIENT,
+    data: null,
   })
 
-  return updatedOccupationList
+  return true
 }

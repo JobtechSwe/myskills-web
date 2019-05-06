@@ -15,24 +15,19 @@ import {
 import gql from 'graphql-tag'
 import { GET_ONTOLOGY_CONCEPTS } from './ChooseProfession'
 import TagList from '../../components/TagList'
+import { GET_TRAITS_CLIENT } from '../../graphql/resolvers/mutations/addTrait'
 
 const AddTrait = styled.input``
 
 export const ADD_TRAIT = gql`
-  mutation addTrait($trait: string!) {
+  mutation addTrait($trait: String!) {
     addTrait(trait: $trait) @client
   }
 `
 
 export const REMOVE_TRAIT = gql`
-  mutation removeTrait($trait: string!) {
+  mutation removeTrait($trait: String!) {
     removeTrait(trait: $trait) @client
-  }
-`
-
-export const GET_TRAITS = gql`
-  query getTraits {
-    traits @client
   }
 `
 
@@ -41,7 +36,7 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
     (location && location.state && location.state.traits) || []
 
   const { data: { traits = [] } = { traits: [] as string[] } } = useQuery(
-    GET_TRAITS
+    GET_TRAITS_CLIENT
   )
   const [query, setQuery] = useState('')
 

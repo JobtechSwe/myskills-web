@@ -12,6 +12,7 @@ import {
   Language,
   OntologyConceptResponse,
   Skill,
+  Profile,
 } from '../generated/myskills'
 import resolvers from './resolvers'
 import { storageHelper } from '../utils/helpers'
@@ -108,10 +109,7 @@ const terminatingLink = split(
   authLink.concat(httpLink)
 )
 
-export type Contact = {
-  name: string
-  email: string
-  telephone: string
+export interface ContactInformationProps extends Profile {
   __typename: string
 }
 
@@ -122,7 +120,7 @@ export type LocalStateProps = {
   educations: Education[]
   traits: string[]
   whoAmI: string
-  contact: Contact
+  contact: ContactInformationProps
 }
 
 const initialState: LocalStateProps = {

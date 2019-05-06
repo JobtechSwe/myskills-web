@@ -19,23 +19,11 @@ input ClientSkillInput {
   name: String
 }
 
-input ContactInput {
-  name: String
-  email: String
-  telephone: String
-}
-
-type Contact {
-  name: String
-  email: String
-  telephone: String
-}
-
 extend type Query {
   isLoggedIn: Boolean!
   occupations: [OntologyConceptResponse!]!
   educations: [Education!]!
-  contact: Contact!
+  contact: Profile!
   traits: [String!]!
   whoAmI: String!
 }
@@ -49,7 +37,7 @@ extend type Mutation {
   addEducationClient(education: EducationInput!): Education
   addTrait(trait: String!): String!
   addWhoAmI(whoAmI: String!): String!
-  updateContactInformation(data: ContactInput!): Contact!
+  updateContactInformation(data: ProfileInput!): Profile!
   removeEducationClient(education: EducationInput!): Education
   removeTrait(trait: String!): String!
 }

@@ -16,7 +16,7 @@ const Form = styled.form`
 `
 
 export const UPDATE_CONTACT_CLIENT = gql`
-  mutation updateContactInformation($data: ContactInput!) {
+  mutation updateContactInformation($data: ProfileInput!) {
     updateContactInformation(data: $data) @client {
       name
       email
@@ -25,11 +25,14 @@ export const UPDATE_CONTACT_CLIENT = gql`
   }
 `
 
-export const ADD_SKILL_CLIENT = gql`
-  mutation addSkillClient($skill: SkillInput!) {
-    addSkillClient(skill: $skill) @client {
-      term
-    }
+const InputContainer = styled.div`
+  position: relative;
+  &:after {
+    content: ' *';
+    position: absolute;
+    color: red;
+    right: 0;
+    padding: 5px;
   }
 `
 
@@ -56,7 +59,7 @@ const AddContactInformation: React.FC<RouteComponentProps> = () => {
   return (
     <Form onSubmit={handleSubmit}>
       <div>Hur vill du bli nådd?</div>
-      <div>
+      <InputContainer>
         <Input
           name="name"
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
@@ -67,8 +70,8 @@ const AddContactInformation: React.FC<RouteComponentProps> = () => {
           value={inputData.name}
           width="100%"
         />
-      </div>
-      <div>
+      </InputContainer>
+      <InputContainer>
         <Input
           name="email"
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
@@ -80,7 +83,7 @@ const AddContactInformation: React.FC<RouteComponentProps> = () => {
           value={inputData.email}
           width="100%"
         />
-      </div>
+      </InputContainer>
       <div>
         <Input
           name="telephone"

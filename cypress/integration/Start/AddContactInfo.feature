@@ -8,14 +8,14 @@ Feature: AddContactInfo
 
   Scenario: User can add contact information
     When I type "Gordon Freeman" as "name"
-    And I type "gordon@freeman.com" as "email"
+    And I type "gordon@example.com" as "email"
     When I press Spara
     And I reload the page
     Then My "name" should still be set as "Gordon Freeman"
-    And My "email" should still be set as "gordon@freeman.com"
+    And My "email" should still be set as "gordon@example.com"
 
   Scenario: User can not save information if "name" is missing
-    When I type "gordon@freeman.com" as "email"
+    When I type "gordon@example.com" as "email"
     When I press Spara
     And I reload the page
     Then My information has not be saved

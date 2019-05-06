@@ -48,18 +48,6 @@ export type ConsentResponse = {
   accessToken: Scalars['String']
 }
 
-export type Contact = {
-  name?: Maybe<Scalars['String']>
-  email?: Maybe<Scalars['String']>
-  telephone?: Maybe<Scalars['Int']>
-}
-
-export type ContactInput = {
-  name?: Maybe<Scalars['String']>
-  email?: Maybe<Scalars['String']>
-  telephone?: Maybe<Scalars['Int']>
-}
-
 export type Cv = {
   skills?: Maybe<Array<Maybe<Skill>>>
   education?: Maybe<Array<Maybe<Education>>>
@@ -146,6 +134,7 @@ export type Mutation = {
   addEducationClient?: Maybe<Education>
   addTrait: Scalars['String']
   addWhoAmI: Scalars['String']
+  updateContactInformation: Profile
   removeEducationClient?: Maybe<Education>
   removeTrait: Scalars['String']
 }
@@ -212,6 +201,10 @@ export type MutationAddTraitArgs = {
 
 export type MutationAddWhoAmIArgs = {
   whoAmI: Scalars['String']
+}
+
+export type MutationUpdateContactInformationArgs = {
+  data: ProfileInput
 }
 
 export type MutationRemoveEducationClientArgs = {
@@ -301,13 +294,15 @@ export enum OntologyType {
 }
 
 export type Profile = {
-  firstName?: Maybe<Scalars['String']>
-  lastName?: Maybe<Scalars['String']>
+  name: Scalars['String']
+  email: Scalars['String']
+  telephone?: Maybe<Scalars['String']>
 }
 
 export type ProfileInput = {
-  firstName: Scalars['String']
-  lastName: Scalars['String']
+  name: Scalars['String']
+  email: Scalars['String']
+  telephone?: Maybe<Scalars['String']>
 }
 
 export type Query = {
@@ -332,7 +327,7 @@ export type Query = {
   ontologyTextParse: Array<Maybe<OntologyTextParseResponse>>
   isLoggedIn: Scalars['Boolean']
   occupations: Array<OntologyConceptResponse>
-  contact: Contact
+  contact: Profile
   traits: Array<Scalars['String']>
   whoAmI: Scalars['String']
 }
@@ -452,15 +447,6 @@ export type RemoveEducationClientMutation = { __typename?: 'Mutation' } & {
   >
 }
 
-export type GetContactQueryVariables = {}
-
-export type GetContactQuery = { __typename?: 'Query' } & {
-  contact: { __typename?: 'Contact' } & Pick<
-    Contact,
-    'name' | 'email' | 'telephone'
-  >
-}
-
 export type GetEducationsQueryVariables = {}
 
 export type GetEducationsQuery = { __typename?: 'Query' } & {
@@ -506,6 +492,15 @@ export type GetWhoAmIQueryVariables = {}
 
 export type GetWhoAmIQuery = { __typename?: 'Query' } & Pick<Query, 'whoAmI'>
 
+export type GetContactQueryVariables = {}
+
+export type GetContactQuery = { __typename?: 'Query' } & {
+  contact: { __typename?: 'Profile' } & Pick<
+    Profile,
+    'name' | 'email' | 'telephone'
+  >
+}
+
 export type TaxonomyQueryVariables = {
   q: Scalars['String']
   type?: Maybe<TaxonomyType>
@@ -523,6 +518,17 @@ export type TaxonomyQuery = { __typename?: 'Query' } & {
       >
     >
   }
+}
+
+export type UpdateContactInformationMutationVariables = {
+  data: ProfileInput
+}
+
+export type UpdateContactInformationMutation = { __typename?: 'Mutation' } & {
+  updateContactInformation: { __typename?: 'Profile' } & Pick<
+    Profile,
+    'name' | 'email' | 'telephone'
+  >
 }
 
 export type AddEducationClientMutationVariables = {

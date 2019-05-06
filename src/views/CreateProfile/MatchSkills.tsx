@@ -180,9 +180,9 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
 
       {state.skills.length > 0 && (
         <TagList
-          onSelect={handleAddSkill}
           activeItems={savedSkills}
           items={state.skills}
+          onSelect={handleAddSkill}
         />
       )}
       {state.loading && <Loader />}

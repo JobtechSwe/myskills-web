@@ -91,16 +91,16 @@ const TagList: React.FC<TagListProps<TagItemProps>> = ({
         {transitions.map<any>(({ item, props: { xy }, key }) => (
           <a.div
             key={key}
+            ref={ref => setWidth(item.id, ref)}
             style={{
               transform: xy.interpolate(
                 (x: number, y: number) => `translate3d(${x}px,${y}px,0)`
               ),
             }}
-            ref={ref => setWidth(item.id, ref)}
           >
             <Tag
-              variant={itemIsActive(item.id) ? 'active' : 'default'}
               onClick={() => handleTagClick(item)}
+              variant={itemIsActive(item.id) ? 'active' : 'default'}
             >
               {item.term} {item.row}
             </Tag>

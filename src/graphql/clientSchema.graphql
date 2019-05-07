@@ -23,6 +23,9 @@ extend type Query {
   isLoggedIn: Boolean!
   occupations: [OntologyConceptResponse!]!
   educations: [Education!]!
+  contact: Profile!
+  traits: [String!]!
+  whoAmI: String!
 }
 
 extend type Mutation {
@@ -32,4 +35,9 @@ extend type Mutation {
 
   addSkillClient(skill: SkillInput!): Skill
   addEducationClient(education: EducationInput!): Education
+  addTrait(trait: String!): String!
+  addWhoAmI(whoAmI: String!): String!
+  updateContactInformation(data: ProfileInput!): Profile!
+  removeEducationClient(education: EducationInput!): Education
+  removeTrait(trait: String!): String!
 }

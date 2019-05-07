@@ -121,7 +121,10 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
         onChange={occupation => {
           createOccupation({
             variables: {
-              occupation,
+              occupation: {
+                term: occupation.term,
+                experience: null,
+              },
             },
           })
           setQuery('')

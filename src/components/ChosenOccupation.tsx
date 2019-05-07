@@ -11,7 +11,7 @@ const ChosenOccupation: React.FC = () => {
   return (
     <div>
       Ditt valda yrke:
-      {data.occuaption && <p>{data.occupation.term}</p>}
+      {data.occupation && <p>{data.occupation.term}</p>}
     </div>
   )
 }

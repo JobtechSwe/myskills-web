@@ -16,8 +16,10 @@ beforeEach(() => {
   occupation = {
     occupation: {
       term: 'Systemutvecklare',
+      __typename: 'Occupation',
       experience: {
         years: 5,
+        __typename: 'OccupationExperience',
       },
     },
   }
@@ -51,6 +53,7 @@ describe('resolvers/createOccupation', () => {
       data: {
         occupation: {
           term: 'Förman',
+          __typename: 'Occupation',
         },
       },
     })
@@ -68,8 +71,10 @@ describe('resolvers/createOccupation', () => {
   it('returns experience', () => {
     expect(createOccupationClient({}, occupation, cache)).toEqual({
       term: 'Systemutvecklare',
+      __typename: 'Occupation',
       experience: {
         years: 5,
+        __typename: 'OccupationExperience',
       },
     })
   })

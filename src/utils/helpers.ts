@@ -4,6 +4,7 @@ import {
   EducationInput,
   Occupation,
   OntologyRelationResponse,
+  ExperienceInput,
 } from '../generated/myskills'
 
 export const getCookie = (name: string) => Cookies.get(name)
@@ -31,6 +32,11 @@ interface Educations extends StorageEntryProps {
   data: EducationInput[]
 }
 
+interface Experiences extends StorageEntryProps {
+  type: 'experiences'
+  data: ExperienceInput[]
+}
+
 interface OccupationStorage extends StorageEntryProps {
   type: 'occupation'
   data: Occupation
@@ -40,10 +46,12 @@ interface Skills extends StorageEntryProps {
   type: 'skills'
   data: OntologyRelationResponse[]
 }
+
 interface Traits extends StorageEntryProps {
   type: 'traits'
   data: string[]
 }
+
 interface WhoAmI extends StorageEntryProps {
   type: 'whoAmI'
   data: string
@@ -57,6 +65,7 @@ interface ContactInformation extends StorageEntryProps {
 export type StorageEntry =
   | ContactInformation
   | Educations
+  | Experiences
   | OccupationStorage
   | Skills
   | Traits

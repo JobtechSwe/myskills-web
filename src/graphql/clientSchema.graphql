@@ -26,9 +26,11 @@ extend type Mutation {
 
   addSkillClient(skill: SkillInput!): Skill
   addEducationClient(education: EducationInput!): Education
+  addExperienceClient(experience: ExperienceInput!): Experience
   addTrait(trait: String!): String!
   addWhoAmI(whoAmI: String!): String!
   updateContactInformation(data: ProfileInput!): Profile!
   removeEducationClient(education: EducationInput!): Education
+  removeExperienceClient(experience: ExperienceInput!): Experience
   removeTrait(trait: String!): String!
 }

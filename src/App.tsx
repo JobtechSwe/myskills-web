@@ -24,11 +24,6 @@ const WhoAmI = React.lazy(() => import(`./views/CreateProfile/WhoAmI`))
 
 const AddTraits = React.lazy(() => import(`./views/CreateProfile/AddTraits`))
 
-const Layout = styled.main`
-  background: white;
-  min-height: 100vh;
-`
-
 function App() {
   return (
     <>

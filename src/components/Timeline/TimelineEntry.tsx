@@ -45,6 +45,11 @@ const TimelineEntryEdit = styled.div`
   align-items: flex-end;
 `
 
+const EditButton = styled.button`
+  border: none;
+  background: inherit;
+`
+
 interface TimelineEntryProps {
   entry: Entry
 }
@@ -59,7 +64,7 @@ const TimelineEntry: React.FC<TimelineEntryProps> = ({ entry }) => {
   return (
     <Wrapper>
       <DotWrapper>
-        <img alt="dot" src="images/elipse.svg" />
+        <img alt="dot" src="/images/elipse.svg" />
       </DotWrapper>
       <ContentWrapper editing={editing}>
         <div>
@@ -69,19 +74,19 @@ const TimelineEntry: React.FC<TimelineEntryProps> = ({ entry }) => {
           </TimelineTitle>
           <TimelineInfo>
             {entry.schoolOrCompany}
-            <TimelineInfoDivider alt="divider" src="images/dot.svg" />
+            <TimelineInfoDivider alt="divider" src="/images/dot.svg" />
             {entry.start} - {entry.end}
           </TimelineInfo>
         </div>
         <TimelineEntryEdit>
           {editing ? (
-            <button onClick={editFunction}>
-              <img alt="remove" src="images/pen.svg" />
-            </button>
+            <EditButton onClick={editFunction}>
+              <img alt="remove" src="/images/pen.svg" />
+            </EditButton>
           ) : (
-            <button onClick={() => toggleEditMode(!editing)}>
-              <img alt="edit" src="images/edit.svg" />
-            </button>
+            <EditButton onClick={() => toggleEditMode(!editing)}>
+              <img alt="edit" src="/images/edit.svg" />
+            </EditButton>
           )}
         </TimelineEntryEdit>
       </ContentWrapper>

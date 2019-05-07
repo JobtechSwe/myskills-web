@@ -24,7 +24,7 @@ const Wrapper = styled.ul<{ enableTimelineBar: boolean }>`
 
 export type Entry = {
   title: String
-  degree: String | undefined
+  degree?: String | undefined
   schoolOrCompany: String
   start: String
   end: String

@@ -83,7 +83,7 @@ exports[`views/AddEducation renders empty result 1`] = `
           value=""
         />
         <button
-          class="css-199cpun"
+          class="css-lnfplo"
           font-family="default"
           font-size="medium"
           type="submit"
@@ -96,7 +96,7 @@ exports[`views/AddEducation renders empty result 1`] = `
       class="css-52ud0e"
     >
       <button
-        class="css-199cpun"
+        class="css-lnfplo"
         font-family="default"
         font-size="medium"
       >

@@ -4,6 +4,7 @@ import {
   EducationInput,
   OntologyConceptResponse,
   OntologyRelationResponse,
+  Profile,
 } from '../generated/myskills'
 
 export const getCookie = (name: string) => Cookies.get(name)
@@ -55,10 +56,10 @@ interface ContactInformation extends StorageEntryProps {
 }
 
 export type StorageEntry =
+  | ContactInformation
   | Educations
   | Occupations
   | Skills
-  | ContactInformation
   | Traits
   | WhoAmI
 

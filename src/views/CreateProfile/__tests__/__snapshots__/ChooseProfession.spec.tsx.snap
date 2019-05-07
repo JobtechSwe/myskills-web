@@ -45,7 +45,7 @@ exports[`views/ChooseProfession renders empty result 1`] = `
       class="css-owzlzk"
     >
       <h3
-        class="css-1onu1yh"
+        class="css-bqx4sj"
         color="persianBlue"
         font-family="default"
         font-size="small"
@@ -53,7 +53,7 @@ exports[`views/ChooseProfession renders empty result 1`] = `
         YRKE
       </h3>
       <h1
-        class="css-7jfuh8"
+        class="css-15memxd"
         color="persianBlue"
         font-family="default"
         font-size="small,medium,large"
@@ -76,7 +76,7 @@ exports[`views/ChooseProfession renders empty result 1`] = `
       class="css-52ud0e"
     >
       <button
-        class="css-199cpun"
+        class="css-lnfplo"
         font-family="default"
         font-size="medium"
       >

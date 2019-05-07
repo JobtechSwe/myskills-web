@@ -12,6 +12,7 @@ import {
   Language,
   OntologyConceptResponse,
   Skill,
+  Profile,
 } from '../generated/myskills'
 import resolvers from './resolvers'
 import { storageHelper } from '../utils/helpers'

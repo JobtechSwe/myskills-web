@@ -7,13 +7,13 @@ exports[`views/MatchSkills renders loading state 1`] = `
   >
     Valda kompetenser:
     <a
-      class="css-szl3t8"
+      class="css-z4cped"
       color="persianBlue"
       font-weight="500"
       href="/erfarenhet"
     >
       <button
-        class="css-1ce9gp"
+        class="css-wfxqxp"
         font-family="default"
         font-size="medium"
       >
@@ -63,13 +63,13 @@ exports[`views/MatchSkills renders loading state 1`] = `
     />
   </div>
   <a
-    class="css-szl3t8"
+    class="css-z4cped"
     color="persianBlue"
     font-weight="500"
     href="/skapa-cv/erfarenheter"
   >
     <button
-      class="css-1ce9gp"
+      class="css-wfxqxp"
       font-family="default"
       font-size="medium"
     >

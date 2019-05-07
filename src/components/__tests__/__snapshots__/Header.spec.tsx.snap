@@ -6,7 +6,7 @@ exports[`components/Header renders Header component 1`] = `
     class="css-1j9bjys"
   >
     <h1
-      class="css-11f7i7s"
+      class="css-1qnn9o4"
       color="black"
       font-family="default"
       font-size="large"
@@ -14,7 +14,7 @@ exports[`components/Header renders Header component 1`] = `
     >
       <a
         aria-current="page"
-        class="css-szl3t8"
+        class="css-z4cped"
         color="persianBlue"
         font-weight="500"
         href="/"

@@ -1,11 +1,14 @@
 interface Color {
+  alabaster: '#F8F8F8'
   athensGray: '#E9ECF1'
   black: '#000000'
   bitterSweet: '#FF795B'
   cloudBurst: '#1F215F'
   persianBlue: '#202ED1'
+  persianBlueDark: '#1B27B2'
   redOrange: '#FE451D'
   seashellPeach: '#FFF2EC'
+  yourPink: '#FFCEC2'
   white: 'white'
   whiteLilac: '#F1F1F9'
   wildSand: '#F6F6F6'
@@ -16,13 +19,16 @@ interface Typography {
 }
 
 const colors: Color = {
+  alabaster: '#F8F8F8',
   athensGray: '#E9ECF1',
   black: '#000000',
   bitterSweet: '#FF795B',
   cloudBurst: '#1F215F',
   persianBlue: '#202ED1',
+  persianBlueDark: '#1B27B2',
   redOrange: '#FE451D',
   seashellPeach: '#FFF2EC',
+  yourPink: '#FFCEC2',
   white: 'white',
   whiteLilac: '#F1F1F9',
   wildSand: '#F6F6F6',
@@ -45,6 +51,10 @@ const buttons = {
     backgroundColor: colors.seashellPeach,
     color: colors.redOrange,
     fontWeight: 700,
+  },
+  secondaryBlack: {
+    color: colors.black,
+    backgroundColor: colors.white,
   },
 }
 

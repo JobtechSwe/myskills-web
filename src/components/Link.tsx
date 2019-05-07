@@ -6,14 +6,29 @@ import {
   ColorProps,
   fontWeight,
   FontWeightProps,
+  style,
   space,
   SpaceProps,
+  width,
+  WidthProps,
 } from 'styled-system'
+
+interface StyleProps {
+  textDecoration?: String
+  to?: String
+}
 
 type LinkProps = React.HTMLProps<HTMLAnchorElement> &
   ColorProps &
   FontWeightProps &
-  SpaceProps
+  SpaceProps &
+  StyleProps &
+  WidthProps
+
+const textDecoration = style({
+  prop: 'textDecoration',
+  cssProperty: 'textDecoration',
+})
 
 const StyledLink = styled.a<LinkProps>`
   font-family: ${({ theme }) => theme.fonts.default};
@@ -21,6 +36,8 @@ const StyledLink = styled.a<LinkProps>`
   ${color}
   ${fontWeight}
   ${space}
+  ${textDecoration}
+  ${width}
 `
 
 StyledLink.defaultProps = {

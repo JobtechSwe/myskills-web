@@ -44,7 +44,7 @@ exports[`views/AddEducation renders empty result 1`] = `
         value=""
       />
       <button
-        class="css-onwat"
+        class="css-1qzvtil"
         font-family="default"
         font-size="medium"
         type="submit"
@@ -54,13 +54,13 @@ exports[`views/AddEducation renders empty result 1`] = `
     </div>
   </form>
   <a
-    class="css-szl3t8"
+    class="css-z4cped"
     color="persianBlue"
     font-weight="500"
     href="/skapa-cv/"
   >
     <button
-      class="css-1ce9gp"
+      class="css-wfxqxp"
       font-family="default"
       font-size="medium"
     >

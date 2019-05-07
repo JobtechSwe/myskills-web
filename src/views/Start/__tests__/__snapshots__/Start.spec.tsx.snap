@@ -1,0 +1,166 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`views/Start renders Start 1`] = `
+<div>
+  <div
+    class="css-62zrxy"
+  >
+    <div
+      class="css-owzlzk"
+    >
+      <img
+        alt="logo"
+        src="/images/logo.svg"
+      />
+      <hr
+        class="css-15g94ap"
+      />
+      <p
+        class="css-2t3v4m"
+        color="persianBlue"
+        font-family="default"
+        font-size="small"
+      >
+        Ditt digitala CV
+      </p>
+      <img
+        alt="clouds"
+        class="css-smyzqs"
+        src="/images/clouds.svg"
+      />
+      <a
+        class="css-mn2lek"
+        color="persianBlue"
+        font-weight="500"
+        href="/skapa-cv"
+        mt="30"
+        width="1"
+      >
+        <button
+          class="css-hf9ctd"
+          font-family="default"
+          font-size="medium"
+          width="1"
+        >
+          Skapa CV
+        </button>
+      </a>
+      <a
+        class="css-1r48ynl"
+        color="persianBlue"
+        font-weight="500"
+        href="/login"
+        mt="10"
+        width="1"
+      >
+        <button
+          class="css-18hvygx"
+          font-family="default"
+          font-size="medium"
+          width="1"
+        >
+          Logga in med 
+          <span
+            class="css-1xxe9l9"
+          >
+            Egendata
+          </span>
+        </button>
+      </a>
+      <div
+        class="css-efe99a"
+      >
+        <img
+          alt="info icon"
+          src="/images/info.svg"
+        />
+        <p
+          class="css-1h35e1d"
+          font-family="default"
+          font-size="small"
+        >
+          Med Egendata får du kontroll över din data.
+           
+          <a
+            class="css-1bcktkz"
+            rel="noopener"
+            target="_blank"
+            text-decoration="underline"
+          >
+            Läs mer om hur det fungerar
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div
+    class="css-bfkqop"
+  >
+    <h2
+      class="css-v6vnfu"
+      color="cloudBurst"
+      font-family="default"
+      font-size="24"
+    >
+      Hur fungerar det?
+    </h2>
+    <div>
+      <h3
+        class="css-hll8c"
+        color="cloudBurst"
+        font-family="default"
+        font-size="16"
+        font-weight="bold"
+      >
+        Skapa din profil
+      </h3>
+      <p
+        class="css-v9igpk"
+        color="cloudBurst"
+        font-family="default"
+        font-size="small"
+      >
+        Svara på frågor om dig själv och skapa ditt CV.
+      </p>
+    </div>
+    <div>
+      <h3
+        class="css-hll8c"
+        color="cloudBurst"
+        font-family="default"
+        font-size="16"
+        font-weight="bold"
+      >
+        Lagra ditt CV
+      </h3>
+      <p
+        class="css-m03p4m"
+        color="cloudBurst"
+        font-family="default"
+        font-size="small"
+      >
+        Genom Egendata väljer du själv var ditt CV ska sparas.
+      </p>
+    </div>
+    <div>
+      <h3
+        class="css-hll8c"
+        color="cloudBurst"
+        font-family="default"
+        font-size="16"
+        font-weight="bold"
+      >
+        Spara tid
+      </h3>
+      <p
+        class="css-m03p4m"
+        color="cloudBurst"
+        font-family="default"
+        font-size="small"
+      >
+        Hämta och dela din information istället för att skapa ett nytt CV för varje jobbsökarsajt.
+      </p>
+    </div>
+  </div>
+</div>
+`;

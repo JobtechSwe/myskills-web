@@ -6,7 +6,7 @@ exports[`views/ChooseProfession renders empty result 1`] = `
     class="css-owzlzk"
   >
     <h3
-      class="css-1npazeo"
+      class="css-1kxsmys"
       color="black"
       font-family="default"
       font-size="small"
@@ -14,7 +14,7 @@ exports[`views/ChooseProfession renders empty result 1`] = `
       YRKE
     </h3>
     <h1
-      class="css-16mj49v"
+      class="css-btq94"
       color="black"
       font-family="default"
       font-size="large"
@@ -45,13 +45,13 @@ exports[`views/ChooseProfession renders empty result 1`] = `
       Ditt valda yrke:
     </div>
     <a
-      class="css-szl3t8"
+      class="css-z4cped"
       color="persianBlue"
       font-weight="500"
       href="/skapa-cv/kompetenser"
     >
       <button
-        class="css-1ce9gp"
+        class="css-wfxqxp"
         font-family="default"
         font-size="medium"
       >

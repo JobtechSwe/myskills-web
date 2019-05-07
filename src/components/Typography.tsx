@@ -18,18 +18,21 @@ import {
 type TypographyProps = ColorProps &
   FontFamilyProps &
   FontSizeProps &
-  SpaceProps &
-  TextAlignProps
+  FontWeightProps &
+  ColorProps &
+  TextAlignProps &
+  SpaceProps
 
 type HeadingProps = React.HTMLProps<HTMLHeadingElement> & TypographyProps
 type ParagraphProps = React.HTMLProps<HTMLParagraphElement> & TypographyProps
 type LabelProps = React.HTMLProps<HTMLLabelElement> & TypographyProps
 
-export const H1 = styled.h1<HeadingProps & FontWeightProps>`
+export const H1 = styled.h1<HeadingProps>`
   ${color}
   ${fontFamily}
   ${fontSize}
   ${fontWeight}
+  ${textAlign}
   ${space}
   ${textAlign}
 `
@@ -38,6 +41,8 @@ export const H2 = styled.h2<HeadingProps>`
   ${color}
   ${fontFamily}
   ${fontSize}
+  ${fontWeight}
+  ${textAlign}
   ${space}
   ${textAlign}
 `
@@ -46,6 +51,8 @@ export const H3 = styled.h3<HeadingProps>`
   ${color}
   ${fontFamily}
   ${fontSize}
+  ${fontWeight}
+  ${textAlign}
   ${space}
   ${textAlign}
 `
@@ -54,6 +61,8 @@ export const Paragraph = styled.p<ParagraphProps>`
   ${color}
   ${fontFamily}
   ${fontSize}
+  ${fontWeight}
+  ${textAlign}
   ${space}
   ${textAlign}
 `

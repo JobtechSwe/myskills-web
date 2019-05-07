@@ -23,12 +23,10 @@ const Container = styled.section`
 const NavigationContainer = styled.nav`
   display: flex;
   align-items: center;
-  & > div {
+  & > div:last-child {
     flex-basis: 80%;
   }
 `
-
-const ArrowIcon = styled.img``
 
 const onNextClick = async (
   nextPath: string,
@@ -55,7 +53,15 @@ const RegistrationLayout: React.FC<
   return (
     <Container className="layout">
       <NavigationContainer>
-        <ArrowIcon onClick={() => history.back()} src={Icon} />
+        <div
+          onClick={() => history.back()}
+          onKeyUp={() => history.back()}
+          role="button"
+          tabIndex="0"
+        >
+          <img alt="Go back" src={Icon} />
+        </div>
+
         <StepIndicator step={step} />
       </NavigationContainer>
       {headerText}

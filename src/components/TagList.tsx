@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useLayoutEffect } from 'react'
 import Tag from './Tag'
 import useGrid, { GridItem } from '../hooks/useGrid'
 import { Global, css } from '@emotion/core'
@@ -12,6 +12,7 @@ interface TagListProps<T extends TagItemProps> {
   activeItems: T[]
   items: T[]
   onSelect(item: T): void
+  loading: boolean
 }
 
 const ROW_WIDTH = 500
@@ -21,15 +22,31 @@ const TagList: React.FC<TagListProps<TagItemProps>> = ({
   items,
   activeItems,
   onSelect,
+  loading,
 }) => {
   const gridItems = useGrid<TagItemProps>(
     [...activeItems, ...items],
     widths,
     ROW_WIDTH
   )
+  // const [triggerRerender, setTriggerRerender] = React.useState(true)
+
+  const transitions = useTransition(gridItems, (item: GridItem) => item.id, {
+    from: ({ xy, width, height }) => ({ xy, width, height, opacity: 0 }),
+    enter: ({ xy, width, height }) => ({ xy, width, height, opacity: 1 }),
+    update: ({ xy, width, height }) => ({ xy, width, height, opacity: 0 }),
+    leave: { opacity: 0, transition: 'opacity .25s ease' },
+
+    config: { mass: 5, tension: 500, friction: 100 },
+    trail: 0,
+  })
 
   // React.useLayoutEffect(() => {
-  //   console.log('hello')
+  //   setTriggerRerender(false)
+  // }, [triggerRerender])
+
+  // React.useLayoutEffect(() => {
+  //   console.log('Loading', loading)
   // }, [loading])
 
   const setWidth = (itemId: any, ref: any) => {
@@ -45,18 +62,9 @@ const TagList: React.FC<TagListProps<TagItemProps>> = ({
     const originalItem = items.find(i => i.id === item.id)
 
     onSelect(originalItem as TagItemProps)
+    // setTriggerRerender(true)
   }
-
-  // This turns gridItems into transitions, any addition, removal or change will be animated
-  const transitions = useTransition(gridItems, (item: GridItem) => item.id, {
-    from: ({ xy, width, height }) => ({ xy, width, height, opacity: 0 }),
-    enter: ({ xy, width, height }) => ({ xy, width, height, opacity: 1 }),
-    update: ({ xy, width, height }) => ({ xy, width, height }),
-    leave: { height: 0, opacity: 0 },
-    config: { mass: 5, tension: 500, friction: 100 },
-    trail: 0,
-  })
-
+  console.log('rerender taglist')
   return (
     <>
       <Global
@@ -94,7 +102,7 @@ const TagList: React.FC<TagListProps<TagItemProps>> = ({
         `}
       />
       <div className="list" style={{ width: ROW_WIDTH, height: ROW_WIDTH }}>
-        {transitions.map<any>(({ item, props: { xy } }: any) => {
+        {transitions.map<any>(({ item, props: { xy }, ...rest }: any) => {
           return (
             <a.div
               key={item.id}

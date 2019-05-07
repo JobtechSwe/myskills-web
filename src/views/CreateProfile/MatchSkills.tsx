@@ -9,7 +9,6 @@ import {
   OntologyType,
   OntologyConceptResponse,
   OntologyRelationResponse,
-  Skill,
 } from '../../generated/myskills.d'
 
 export const GET_SKILLS_AND_OCCUPATIONS_CLIENT = gql`
@@ -131,6 +130,8 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
   })
 
   const handleAddSkill = (skill: any) => {
+    console.log('***clicked***')
+
     addSkillMutation({
       variables: {
         skill,
@@ -157,25 +158,11 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
         type: OntologyType.Skill,
       },
     })
+    console.log('i now have new data')
 
     if (data.error) {
       return dispatch({ type: 'ERROR', payload: data.error.message })
     }
-
-    // const withoutDuplicates: OntologyRelationResponse[] = [
-    //   ...prevRelatedSkills,
-    //   ...data.ontologyRelated.relations,
-    // ]
-    //   .reduce(
-    //     (prev, skill) =>
-    //       prev.some(({ id }: OntologyRelationResponse) => id === skill.id)
-    //         ? prev
-    //         : [...prev, skill],
-    //     []
-    //   )
-    //   .filter((x: any) =>
-    //     state.savedSkills.find((y: any) => y.id === x.id) ? false : true
-    //   )
 
     dispatch({
       type: 'RELATED_SKILLS',
@@ -194,11 +181,6 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
       )
     }
   }, [state.lastSavedSkill])
-
-  const tempRelated = state.relatedSkills.filter(
-    (x: any) => !state.savedSkills.some((y: any) => y.id === x.id)
-  )
-
   return (
     <>
       {state.error && <div>Error... {state.error}</div>}
@@ -206,7 +188,10 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
       {state.relatedSkills.length > 0 && (
         <TagList
           activeItems={state.savedSkills}
-          items={tempRelated}
+          items={state.relatedSkills.filter(
+            (x: any) => !state.savedSkills.some((y: any) => y.id === x.id)
+          )}
+          loading={state.loading}
           onSelect={handleAddSkill}
         />
       )}

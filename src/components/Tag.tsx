@@ -43,6 +43,7 @@ const Tag = styled.span<TagProps>`
   font-family: ${({ theme }) => theme.fonts.default};
   justify-content: center;
 
+
   ${color}
   ${space}
   ${background}

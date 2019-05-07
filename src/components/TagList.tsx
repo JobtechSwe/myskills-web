@@ -22,20 +22,24 @@ const TagList: React.FC<TagListProps<TagItemProps>> = ({
   activeItems,
   onSelect,
 }) => {
-  const gridItems = useGrid<TagItemProps>(items, widths, ROW_WIDTH)
+  const gridItems = useGrid<TagItemProps>(
+    [...activeItems, ...items],
+    widths,
+    ROW_WIDTH
+  )
 
-  React.useLayoutEffect(() => {}, [activeItems])
+  // React.useLayoutEffect(() => {
+  //   console.log('hello')
+  // }, [loading])
 
   const setWidth = (itemId: any, ref: any) => {
     if (!widths.find(({ id }) => id === itemId)) {
       widths.push({ id: itemId, ref })
     }
   }
-  console.log('rerender')
-  console.log('activeItems: ', activeItems)
 
   const itemIsActive = (selectedId: string) =>
-    activeItems.find(({ id }) => id === selectedId) ? true : false
+    activeItems.find(({ id }) => id === selectedId)
 
   const handleTagClick = (item: any) => {
     const originalItem = items.find(i => i.id === item.id)
@@ -64,6 +68,8 @@ const TagList: React.FC<TagListProps<TagItemProps>> = ({
               sans-serif;
             width: 100%;
             height: 100%;
+            border: 1px solid black;
+            margin-top: 4rem;
           }
 
           .list > div {
@@ -88,24 +94,27 @@ const TagList: React.FC<TagListProps<TagItemProps>> = ({
         `}
       />
       <div className="list" style={{ width: ROW_WIDTH, height: ROW_WIDTH }}>
-        {transitions.map<any>(({ item, props: { xy }, key }) => (
-          <a.div
-            key={key}
-            ref={ref => setWidth(item.id, ref)}
-            style={{
-              transform: xy.interpolate(
-                (x: number, y: number) => `translate3d(${x}px,${y}px,0)`
-              ),
-            }}
-          >
-            <Tag
-              onClick={() => handleTagClick(item)}
-              variant={itemIsActive(item.id) ? 'active' : 'default'}
+        {transitions.map<any>(({ item, props: { xy } }: any) => {
+          return (
+            <a.div
+              key={item.id}
+              ref={ref => setWidth(item.id, ref)}
+              style={{
+                transform: xy.interpolate(
+                  (x: number, y: number) => `translate3d(${x}px,${y}px,0)`
+                ),
+              }}
             >
-              {item.term} {item.row}
-            </Tag>
-          </a.div>
-        ))}
+              <Tag
+                key={item.id}
+                onClick={() => handleTagClick(item)}
+                variant={itemIsActive(item.id) ? 'active' : 'default'}
+              >
+                {item.term}
+              </Tag>
+            </a.div>
+          )
+        })}
       </div>
     </>
   )

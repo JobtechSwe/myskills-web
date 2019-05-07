@@ -10,11 +10,14 @@ interface DotProps {
 }
 
 const Dot = styled.div<DotProps>`
-  width: 15px;
-  height: 15px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: ${({ isActive }) => (isActive ? 'green' : 'lightgrey')};
-  margin: 5px;
+  margin: 6px;
+  background: ${({ isActive, theme }) =>
+    isActive ? theme.colors.dotGreen : theme.colors.athensGray};
+  border: ${({ isActive, theme }) =>
+    isActive ? `1px solid ${theme.colors.athensGray} ` : 'none'};
 `
 
 const Container = styled.div`
@@ -27,7 +30,7 @@ const StepIndicator: React.FC<StepIndicatorProps> = ({ step }) => {
   const routes = 6
 
   const dots = new Array(routes)
-    .fill('x')
+    .fill('')
     .map((_, i) => <Dot isActive={i < val} key={i} />)
 
   useLayoutEffect(() => set(step), [step])

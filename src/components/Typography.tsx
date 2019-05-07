@@ -65,7 +65,6 @@ export const Paragraph = styled.p<ParagraphProps>`
 const common: HeadingProps = {
   color: 'persianBlue',
   fontFamily: 'default',
-  mt: 'none',
 }
 
 H1.defaultProps = {

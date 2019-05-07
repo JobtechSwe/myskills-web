@@ -5,6 +5,7 @@ import Button from '../Button'
 import Flex from '../Flex'
 import Icon from '../../assets/icons/navigation_arrow.svg'
 import { RouteComponentProps, navigate } from '@reach/router'
+import { H3 } from '../Typography'
 
 interface RegistrationLayoutProps {
   step: number
@@ -23,9 +24,18 @@ const Container = styled.section`
 const NavigationContainer = styled.nav`
   display: flex;
   align-items: center;
-  & > div:last-child {
-    flex-basis: 80%;
-  }
+  justify-content: center;
+  position: relative;
+`
+
+const ArrowContainer = styled.div`
+  position: absolute;
+  left: 0;
+`
+
+const PageName = styled.p`
+  width: 100%;
+  text-align: center;
 `
 
 const onNextClick = async (
@@ -53,18 +63,20 @@ const RegistrationLayout: React.FC<
   return (
     <Container className="layout">
       <NavigationContainer>
-        <div
+        <ArrowContainer
           onClick={() => history.back()}
           onKeyUp={() => history.back()}
           role="button"
           tabIndex={0}
         >
           <img alt="Go back" src={Icon} />
-        </div>
+        </ArrowContainer>
 
         <StepIndicator step={step} />
       </NavigationContainer>
-      {headerText}
+      <H3 fontSize={'medium'} mb={'small'} mt={'small'} textAlign="center">
+        {headerText}
+      </H3>
       {children}
       <Flex justifyContent="center">
         <Button onClick={() => onNextClick(nextPath, childFn, childFnArgs)}>

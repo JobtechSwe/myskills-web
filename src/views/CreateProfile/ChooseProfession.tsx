@@ -79,7 +79,6 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
   return (
     <RegistrationLayout headerText="YRKE" nextPath="kompetenser" step={1}>
       <Flex alignItems="center" flexDirection="column" justifyContent="center">
-        <H3 mb={20}>YRKE</H3>
         <H1 mb={20}>Vad vill du jobba med?</H1>
         <SearchInput
           name="search"

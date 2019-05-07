@@ -11,6 +11,7 @@ interface Color {
   yourPink: '#FFCEC2'
   white: 'white'
   wildSand: '#F6F6F6'
+  dotGreen: '#30C27F'
 }
 
 interface Typography {
@@ -30,6 +31,7 @@ const colors: Color = {
   yourPink: '#FFCEC2',
   white: 'white',
   wildSand: '#F6F6F6',
+  dotGreen: '#30C27F',
 }
 
 const buttons = {
@@ -72,7 +74,7 @@ const fontSizes = {
 
 const space = {
   none: 0,
-  small: 16,
+  small: 14,
   medium: 24,
   large: 32,
 }

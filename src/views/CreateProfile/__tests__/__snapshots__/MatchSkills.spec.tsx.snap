@@ -6,12 +6,17 @@ exports[`views/MatchSkills renders loading state 1`] = `
     class="layout css-pwfrln"
   >
     <nav
-      class="css-zcld8l"
+      class="css-zn5efa"
     >
-      <img
-        class="css-0"
-        src="navigation_arrow.svg"
-      />
+      <div
+        role="button"
+        tabindex="0"
+      >
+        <img
+          alt="Go back"
+          src="navigation_arrow.svg"
+        />
+      </div>
       <div
         class="css-1q2lbmy"
       >

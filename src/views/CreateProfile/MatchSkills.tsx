@@ -1,5 +1,6 @@
 import React, { useEffect, useReducer } from 'react'
 import { H1 } from '../../components/Typography'
+import Input from '../../components/Input'
 import Tag from '../../components/Tag'
 import Flex from '../../components/Flex'
 import Loader from '../../components/Loader'
@@ -133,6 +134,8 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
     savedSkills,
   })
 
+  const [addCompetenceActive, setAddCompetenceActive] = React.useState(false)
+
   const handleAddSkill = (skill: any) => {
     addSkillMutation({
       variables: {
@@ -198,7 +201,32 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
             onSelect={handleAddSkill}
           />
         )}
-        <Tag>+ Lägg till en kompetens</Tag>
+
+        {addCompetenceActive ? (
+          <Flex>
+            <Input
+              mb="medium"
+              mt="small"
+              placeholder="Lägg till en kompetens"
+            />
+            <Tag
+              mb="medium"
+              ml="small"
+              mt="small"
+              onClick={() => setAddCompetenceActive(true)}
+            >
+              Lägg till
+            </Tag>
+          </Flex>
+        ) : (
+          <Tag
+            mb="medium"
+            mt="small"
+            onClick={() => setAddCompetenceActive(true)}
+          >
+            + Lägg till en kompetens
+          </Tag>
+        )}
 
         {state.loading && <Loader />}
       </Flex>

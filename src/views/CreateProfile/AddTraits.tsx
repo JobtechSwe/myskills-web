@@ -114,24 +114,9 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
       <Grid>
         <Header title="Vilka är dina främsta egenskaper?" />
         <TagList
+          activeItems={traits.map(trait => ({ id: trait, term: trait }))}
+          items={suggestedTraits.map(trait => ({ id: trait, term: trait }))}
           onSelect={onTagClick}
-          items={[
-            ...traits.map(trait => ({
-              term: trait,
-              isActive: true,
-              id: trait,
-            })),
-            ...suggestedTraits.map(trait => ({
-              term: trait,
-              isActive: false,
-              id: trait,
-            })),
-          ]}
-        />
-        <TagList
-          onSelect={onTagClick}
-          activeItems={traits}
-          items={suggestedTraits}
         />
         <AddTrait
           onChange={handleChange}

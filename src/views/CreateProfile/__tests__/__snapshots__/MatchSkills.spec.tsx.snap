@@ -42,50 +42,64 @@ exports[`views/MatchSkills renders loading state 1`] = `
     </nav>
     KOMPETENS
     <div
-      style="margin-bottom: 2rem;"
+      class="css-owzlzk"
     >
-      Valda kompetenser:
-    </div>
-    
-    <div
-      class="sk-fading-circle css-rcik79"
-    >
+      
+      <h1
+        class="css-15memxd"
+        color="persianBlue"
+        font-family="default"
+        font-size="small,medium,large"
+        font-weight="600"
+      >
+        Vilka är dina kompetenser?
+      </h1>
+      <span
+        class="css-lx1g7e"
+        cursor="pointer"
+      >
+        + Lägg till en kompetens
+      </span>
       <div
-        class="sk-circle1 sk-circle"
-      />
-      <div
-        class="sk-circle2 sk-circle"
-      />
-      <div
-        class="sk-circle3 sk-circle"
-      />
-      <div
-        class="sk-circle4 sk-circle"
-      />
-      <div
-        class="sk-circle5 sk-circle"
-      />
-      <div
-        class="sk-circle6 sk-circle"
-      />
-      <div
-        class="sk-circle7 sk-circle"
-      />
-      <div
-        class="sk-circle8 sk-circle"
-      />
-      <div
-        class="sk-circle9 sk-circle"
-      />
-      <div
-        class="sk-circle10 sk-circle"
-      />
-      <div
-        class="sk-circle11 sk-circle"
-      />
-      <div
-        class="sk-circle12 sk-circle"
-      />
+        class="sk-fading-circle css-rcik79"
+      >
+        <div
+          class="sk-circle1 sk-circle"
+        />
+        <div
+          class="sk-circle2 sk-circle"
+        />
+        <div
+          class="sk-circle3 sk-circle"
+        />
+        <div
+          class="sk-circle4 sk-circle"
+        />
+        <div
+          class="sk-circle5 sk-circle"
+        />
+        <div
+          class="sk-circle6 sk-circle"
+        />
+        <div
+          class="sk-circle7 sk-circle"
+        />
+        <div
+          class="sk-circle8 sk-circle"
+        />
+        <div
+          class="sk-circle9 sk-circle"
+        />
+        <div
+          class="sk-circle10 sk-circle"
+        />
+        <div
+          class="sk-circle11 sk-circle"
+        />
+        <div
+          class="sk-circle12 sk-circle"
+        />
+      </div>
     </div>
     <div
       class="css-52ud0e"

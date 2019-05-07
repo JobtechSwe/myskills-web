@@ -7,7 +7,13 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { HttpLink } from 'apollo-link-http'
 import { getMainDefinition } from 'apollo-utilities'
 import { getCookie, removeCookie, redirect } from '../utils/helpers'
-import { Education, Language, Skill, Occupation } from '../generated/myskills'
+import {
+  Education,
+  Language,
+  Occupation,
+  Profile,
+  Skill,
+} from '../generated/myskills'
 import resolvers from './resolvers'
 import { storageHelper } from '../utils/helpers'
 
@@ -103,6 +109,10 @@ const terminatingLink = split(
   authLink.concat(httpLink)
 )
 
+export interface ContactInformationProps extends Profile {
+  __typename: string
+}
+
 export type LocalStateProps = {
   occupation: Occupation
   language: Language[]
@@ -110,6 +120,7 @@ export type LocalStateProps = {
   educations: Education[]
   traits: string[]
   whoAmI: string
+  contact: ContactInformationProps
 }
 
 const initialState: LocalStateProps = {
@@ -119,6 +130,12 @@ const initialState: LocalStateProps = {
   skills: [],
   traits: [],
   whoAmI: '',
+  contact: {
+    name: '',
+    email: '',
+    telephone: '',
+    __typename: 'ContactInformation',
+  },
 }
 
 const apolloClient = new ApolloClient({

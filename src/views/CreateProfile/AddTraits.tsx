@@ -14,8 +14,8 @@ import {
 } from '../../generated/myskills.d'
 import gql from 'graphql-tag'
 import { GET_ONTOLOGY_CONCEPTS } from './ChooseProfession'
-import TagList from '../../components/TagList'
 import { GET_TRAITS_CLIENT } from '../../graphql/resolvers/mutations/addTrait'
+import TagList from '../../components/TagList'
 
 const AddTrait = styled.input``
 

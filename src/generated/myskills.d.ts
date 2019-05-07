@@ -316,13 +316,15 @@ export enum OntologyType {
 }
 
 export type Profile = {
-  firstName?: Maybe<Scalars['String']>
-  lastName?: Maybe<Scalars['String']>
+  name: Scalars['String']
+  email: Scalars['String']
+  telephone?: Maybe<Scalars['String']>
 }
 
 export type ProfileInput = {
-  firstName: Scalars['String']
-  lastName: Scalars['String']
+  name: Scalars['String']
+  email: Scalars['String']
+  telephone?: Maybe<Scalars['String']>
 }
 
 export type Query = {
@@ -515,6 +517,15 @@ export type OccupationQuery = { __typename?: 'Query' } & {
     }
 }
 
+export type GetContactQueryVariables = {}
+
+export type GetContactQuery = { __typename?: 'Query' } & {
+  contact: { __typename?: 'Profile' } & Pick<
+    Profile,
+    'name' | 'email' | 'telephone'
+  >
+}
+
 export type TaxonomyQueryVariables = {
   q: Scalars['String']
   type?: Maybe<TaxonomyType>
@@ -532,6 +543,17 @@ export type TaxonomyQuery = { __typename?: 'Query' } & {
       >
     >
   }
+}
+
+export type UpdateContactInformationMutationVariables = {
+  data: ProfileInput
+}
+
+export type UpdateContactInformationMutation = { __typename?: 'Mutation' } & {
+  updateContactInformation: { __typename?: 'Profile' } & Pick<
+    Profile,
+    'name' | 'email' | 'telephone'
+  >
 }
 
 export type AddEducationClientMutationVariables = {

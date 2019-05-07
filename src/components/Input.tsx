@@ -14,6 +14,8 @@ import {
   FontSizeProps,
   space,
   SpaceProps,
+  width,
+  WidthProps,
 } from 'styled-system'
 
 type InputProps = React.HTMLProps<HTMLInputElement> &
@@ -23,7 +25,8 @@ type InputProps = React.HTMLProps<HTMLInputElement> &
   ColorProps &
   FontFamilyProps &
   FontSizeProps &
-  SpaceProps
+  SpaceProps &
+  WidthProps
 
 const Input = styled.input<InputProps>`
   ${border}
@@ -33,6 +36,7 @@ const Input = styled.input<InputProps>`
   ${fontFamily}
   ${fontSize}
   ${space}
+  ${width}
 `
 
 Input.defaultProps = {

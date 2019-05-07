@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
 import { useMutation } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
-import { TaxonomyDefaultResult } from '../../generated/myskills.d'
 import { RouteComponentProps, Link } from '@reach/router'
-import { Paragraph } from '../../components/Typography'
 import Grid from '../../components/Grid'
 import Input from '../../components/Input'
 import Button from '../../components/Button'
 import AddedEducations from '../../components/AddedEducations'
 import styled from '@emotion/styled'
+import RegistrationLayout from '../../components/Layout/RegistrationLayout'
 
 export const ADD_EDUCATION_CLIENT = gql`
   mutation addEducationClient($education: EducationInput!) {
@@ -81,7 +80,7 @@ const AddEducation: React.FC<RouteComponentProps> = () => {
   }
 
   return (
-    <>
+    <RegistrationLayout headerText="UTBILDNING" nextPath="beskriv-dig" step={4}>
       <form onSubmit={handleSubmit}>
         <Grid>
           <AddedEducations />
@@ -129,10 +128,7 @@ const AddEducation: React.FC<RouteComponentProps> = () => {
           <Button type="submit">Lägg till</Button>
         </Grid>
       </form>
-      <Link to="/skapa-cv/">
-        <NextButton>Nästa</NextButton>
-      </Link>
-    </>
+    </RegistrationLayout>
   )
 }
 

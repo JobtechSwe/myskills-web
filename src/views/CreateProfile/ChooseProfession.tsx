@@ -11,6 +11,7 @@ import Button, { FloatingContinueButton } from '../../components/Button'
 import styled from '@emotion/styled'
 import { InternalLink } from '../../components/Link'
 import ChosenOccupations from '../../components/ChosenOccupations'
+import RegistrationLayout from '../../components/Layout/RegistrationLayout'
 
 const SearchInput = styled(Input)`
   width: 100%;
@@ -76,29 +77,28 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
   })
 
   return (
-    <Flex alignItems="center" flexDirection="column" justifyContent="center">
-      <H3 mb={20}>YRKE</H3>
-      <H1 mb={20}>Vad vill du jobba med?</H1>
-      <SearchInput
-        name="search"
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-          setQuery(event.target.value)
-        }
-        placeholder="Yrkesroll eller yrkesområde"
-      />
-      {loading && <div>Loading...</div>}
-      {error && <div>Some error...</div>}
-      {data && data.ontologyConcepts && (
-        <OccupationsList
-          addOccupation={addOccupation}
-          occupations={data.ontologyConcepts}
+    <RegistrationLayout headerText="YRKE" nextPath="kompetenser" step={1}>
+      <Flex alignItems="center" flexDirection="column" justifyContent="center">
+        <H3 mb={20}>YRKE</H3>
+        <H1 mb={20}>Vad vill du jobba med?</H1>
+        <SearchInput
+          name="search"
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            setQuery(event.target.value)
+          }
+          placeholder="Yrkesroll eller yrkesområde"
         />
-      )}
-      <ChosenOccupations />
-      <InternalLink to="/skapa-cv/kompetenser">
-        <FloatingContinueButton>Nästa</FloatingContinueButton>
-      </InternalLink>
-    </Flex>
+        {loading && <div>Loading...</div>}
+        {error && <div>Some error...</div>}
+        {data && data.ontologyConcepts && (
+          <OccupationsList
+            addOccupation={addOccupation}
+            occupations={data.ontologyConcepts}
+          />
+        )}
+        <ChosenOccupations />
+      </Flex>
+    </RegistrationLayout>
   )
 }
 

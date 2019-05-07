@@ -2,67 +2,107 @@
 
 exports[`views/AddEducation renders empty result 1`] = `
 <div>
-  <form>
-    <div
-      class="css-fhv5oa"
+  <section
+    class="layout css-pwfrln"
+  >
+    <nav
+      class="css-zn5efa"
     >
-      <div />
-      <input
-        class="css-90stuz"
-        font-family="default"
-        font-size="medium"
-        name="programme"
-        placeholder="Program"
-        type="text"
-        value=""
-      />
-      <input
-        class="css-90stuz"
-        font-family="default"
-        font-size="medium"
-        name="school"
-        placeholder="Skola"
-        type="text"
-        value=""
-      />
-      <input
-        class="css-90stuz"
-        font-family="default"
-        font-size="medium"
-        name="start"
-        placeholder="Från"
-        type="date"
-        value=""
-      />
-      <input
-        class="css-90stuz"
-        font-family="default"
-        font-size="medium"
-        name="end"
-        placeholder="Till"
-        type="date"
-        value=""
-      />
+      <div
+        role="button"
+        tabindex="0"
+      >
+        <img
+          alt="Go back"
+          src="navigation_arrow.svg"
+        />
+      </div>
+      <div
+        class="css-1q2lbmy"
+      >
+        <div
+          class="css-1lvqd3g"
+        />
+        <div
+          class="css-1lvqd3g"
+        />
+        <div
+          class="css-1lvqd3g"
+        />
+        <div
+          class="css-1lvqd3g"
+        />
+        <div
+          class="css-181sygq"
+        />
+        <div
+          class="css-181sygq"
+        />
+      </div>
+    </nav>
+    UTBILDNING
+    <form>
+      <div
+        class="css-fhv5oa"
+      >
+        <div />
+        <input
+          class="css-90stuz"
+          font-family="default"
+          font-size="medium"
+          name="programme"
+          placeholder="Program"
+          type="text"
+          value=""
+        />
+        <input
+          class="css-90stuz"
+          font-family="default"
+          font-size="medium"
+          name="school"
+          placeholder="Skola"
+          type="text"
+          value=""
+        />
+        <input
+          class="css-90stuz"
+          font-family="default"
+          font-size="medium"
+          name="start"
+          placeholder="Från"
+          type="date"
+          value=""
+        />
+        <input
+          class="css-90stuz"
+          font-family="default"
+          font-size="medium"
+          name="end"
+          placeholder="Till"
+          type="date"
+          value=""
+        />
+        <button
+          class="css-lnfplo"
+          font-family="default"
+          font-size="medium"
+          type="submit"
+        >
+          Lägg till
+        </button>
+      </div>
+    </form>
+    <div
+      class="css-52ud0e"
+    >
       <button
         class="css-lnfplo"
         font-family="default"
         font-size="medium"
-        type="submit"
       >
-        Lägg till
+        Fortsätt
       </button>
     </div>
-  </form>
-  <a
-    href="/skapa-cv/"
-  >
-    <button
-      class="css-1ipvsz8"
-      font-family="default"
-      font-size="medium"
-    >
-      Nästa
-    </button>
-  </a>
+  </section>
 </div>
 `;

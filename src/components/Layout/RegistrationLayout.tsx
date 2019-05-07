@@ -57,7 +57,7 @@ const RegistrationLayout: React.FC<
           onClick={() => history.back()}
           onKeyUp={() => history.back()}
           role="button"
-          tabIndex="0"
+          tabIndex={0}
         >
           <img alt="Go back" src={Icon} />
         </div>

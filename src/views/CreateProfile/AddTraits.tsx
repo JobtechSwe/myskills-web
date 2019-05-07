@@ -13,7 +13,9 @@ import {
 } from '../../generated/myskills.d'
 import gql from 'graphql-tag'
 import { GET_ONTOLOGY_CONCEPTS } from './ChooseProfession'
+import { GET_TRAITS_CLIENT } from '../../graphql/resolvers/mutations/addTrait'
 import TagList from '../../components/TagList'
+import RegistrationLayout from '../../components/Layout/RegistrationLayout'
 
 const Footer = styled.div`
   display: flex;
@@ -26,28 +28,17 @@ const NextButton = styled(Button)`
   color: white;
 `
 
-const BackButton = styled(Button)`
-  background: white;
-  color: black;
-`
-
 const AddTrait = styled.input``
 
 export const ADD_TRAIT = gql`
-  mutation addTrait($trait: string!) {
+  mutation addTrait($trait: String!) {
     addTrait(trait: $trait) @client
   }
 `
 
 export const REMOVE_TRAIT = gql`
-  mutation removeTrait($trait: string!) {
+  mutation removeTrait($trait: String!) {
     removeTrait(trait: $trait) @client
-  }
-`
-
-export const GET_TRAITS = gql`
-  query getTraits {
-    traits @client
   }
 `
 
@@ -56,7 +47,7 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
     (location && location.state && location.state.traits) || []
 
   const { data: { traits = [] } = { traits: [] as string[] } } = useQuery(
-    GET_TRAITS
+    GET_TRAITS_CLIENT
   )
   const [query, setQuery] = useState('')
 
@@ -119,30 +110,37 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
   }, [traits])
 
   return (
-    <Grid>
-      <Header title="Vilka är dina främsta egenskaper?" />
-      {/* <TagList
-        onSelect={onTagClick}
-        items={[
-          ...traits.map(trait => ({ term: trait, isActive: true, id: trait })),
-          ...suggestedTraits.map(trait => ({
-            term: trait,
-            isActive: false,
-            id: trait,
-          })),
-        ]}
-      /> */}
-      <AddTrait
-        onChange={handleChange}
-        onKeyUp={handleChange}
-        placeholder="Lägg till en annan egenskap"
-        value={query}
-      />
-      <Footer>
-        <BackButton onClick={() => history.back()}>BAKÅT</BackButton>
-        <NextButton onClick={() => null}>NÄSTA</NextButton>
-      </Footer>
-    </Grid>
+    <RegistrationLayout headerText="PERSON" nextPath="kontakt" step={5}>
+      <Grid>
+        <Header title="Vilka är dina främsta egenskaper?" />
+        <TagList
+          onSelect={onTagClick}
+          items={[
+            ...traits.map(trait => ({
+              term: trait,
+              isActive: true,
+              id: trait,
+            })),
+            ...suggestedTraits.map(trait => ({
+              term: trait,
+              isActive: false,
+              id: trait,
+            })),
+          ]}
+        />
+        <TagList
+          onSelect={onTagClick}
+          activeItems={traits}
+          items={suggestedTraits}
+        />
+        <AddTrait
+          onChange={handleChange}
+          onKeyUp={handleChange}
+          placeholder="Lägg till en annan egenskap"
+          value={query}
+        />
+      </Grid>
+    </RegistrationLayout>
   )
 }
 

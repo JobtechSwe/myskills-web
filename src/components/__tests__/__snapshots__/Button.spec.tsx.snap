@@ -3,7 +3,7 @@
 exports[`components/Button renders an Button 1`] = `
 <div>
   <button
-    class="css-199cpun"
+    class="css-lnfplo"
     font-family="default"
     font-size="medium"
   >
@@ -15,7 +15,7 @@ exports[`components/Button renders an Button 1`] = `
 exports[`components/Button renders an Button with variant prop 1`] = `
 <div>
   <button
-    class="css-1cs091g"
+    class="css-91zwen"
     font-family="default"
     font-size="medium"
   >

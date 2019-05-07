@@ -2,50 +2,87 @@
 
 exports[`views/ChooseProfession renders empty result 1`] = `
 <div>
-  <div
-    class="css-owzlzk"
+  <section
+    class="layout css-pwfrln"
   >
-    <h3
-      class="css-1onu1yh"
-      color="persianBlue"
-      font-family="default"
-      font-size="small"
+    <nav
+      class="css-zn5efa"
     >
-      YRKE
-    </h3>
-    <h1
-      class="css-7jfuh8"
-      color="persianBlue"
-      font-family="default"
-      font-size="small,medium,large"
-      font-weight="600"
+      <div
+        role="button"
+        tabindex="0"
+      >
+        <img
+          alt="Go back"
+          src="navigation_arrow.svg"
+        />
+      </div>
+      <div
+        class="css-1q2lbmy"
+      >
+        <div
+          class="css-1lvqd3g"
+        />
+        <div
+          class="css-181sygq"
+        />
+        <div
+          class="css-181sygq"
+        />
+        <div
+          class="css-181sygq"
+        />
+        <div
+          class="css-181sygq"
+        />
+        <div
+          class="css-181sygq"
+        />
+      </div>
+    </nav>
+    YRKE
+    <div
+      class="css-owzlzk"
     >
-      Vad vill du jobba med?
-    </h1>
-    <input
-      class="css-q4ywri"
-      font-family="default"
-      font-size="medium"
-      name="search"
-      placeholder="Yrkesroll eller yrkesområde"
-    />
-    <div>
-      Dina valda yrken:
+      <h3
+        class="css-bqx4sj"
+        color="persianBlue"
+        font-family="default"
+        font-size="small"
+      >
+        YRKE
+      </h3>
+      <h1
+        class="css-15memxd"
+        color="persianBlue"
+        font-family="default"
+        font-size="small,medium,large"
+        font-weight="600"
+      >
+        Vad vill du jobba med?
+      </h1>
+      <input
+        class="css-1fqt7xj"
+        font-family="default"
+        font-size="medium"
+        name="search"
+        placeholder="Yrkesroll eller yrkesområde"
+      />
+      <div>
+        Dina valda yrken:
+      </div>
     </div>
-    <a
-      class="css-8v6n7y"
-      color="persianBlue"
-      font-weight="500"
-      href="/skapa-cv/kompetenser"
+    <div
+      class="css-52ud0e"
     >
       <button
-        class="css-bmiqs"
+        class="css-lnfplo"
         font-family="default"
         font-size="medium"
       >
-        Nästa
+        Fortsätt
       </button>
-    </a>
-  </div>
+    </div>
+  </section>
 </div>
 `;

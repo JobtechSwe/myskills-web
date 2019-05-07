@@ -15,6 +15,8 @@ import {
   OntologyTextParseResponse,
 } from '../../generated/myskills'
 import ContentEditable from 'react-contenteditable'
+import { GET_WHO_AM_I_CLIENT } from '../../graphql/resolvers/mutations/addWhoAmI'
+import RegistrationLayout from '../../components/Layout/RegistrationLayout'
 
 export const GET_TRAITS = gql`
   query ontologyTextParse($text: String!) {
@@ -54,25 +56,14 @@ const NextButton = styled(Button)`
   color: white;
 `
 
-const BackButton = styled(Button)`
-  background: white;
-  color: black;
-`
-
 const TagSpan = styled.span`
   font-weight: 700;
   color: red;
 `
 
 export const ADD_WHO_AM_I = gql`
-  mutation addWhoAmI($whoAmI: string!) {
+  mutation addWhoAmI($whoAmI: String!) {
     addWhoAmI(whoAmI: $whoAmI) @client
-  }
-`
-
-export const GET_WHO_AM_I = gql`
-  query getWhoAmI {
-    whoAmI @client
   }
 `
 
@@ -90,7 +81,7 @@ const renderToStatic = (
 
 const WhoAmI: React.FC<RouteComponentProps> = () => {
   const textArea = useRef<HTMLInputElement>(null)
-  const { data: whoAmIResult } = useQuery(GET_WHO_AM_I)
+  const { data: whoAmIResult } = useQuery(GET_WHO_AM_I_CLIENT)
 
   const [description, setDescription] = useState(whoAmIResult.whoAmI)
 
@@ -139,36 +130,35 @@ const WhoAmI: React.FC<RouteComponentProps> = () => {
   }, [data])
 
   return (
-    <Grid>
-      <Header title="Vem är Du?" />
-      <TextAreaDescription>Beskriv dig själv kortfattat</TextAreaDescription>
-      <TextAreaContainer>
-        <ContentEditable
-          html={staticHtml}
-          innerRef={textArea}
-          onChange={Update}
-          style={{
-            width: '100%',
-            height: '280px',
-          }}
-        />
-        <CharsLeft>{charsLeft} tecken kvar</CharsLeft>
-      </TextAreaContainer>
-      <Footer>
-        <BackButton onClick={() => history.back()}>BAKÅT</BackButton>
-        <NextButton
-          onClick={() =>
-            navigate('./egenskaper', {
-              state: {
-                traits,
-              },
-            })
-          }
-        >
-          NÄSTA
-        </NextButton>
-      </Footer>
-    </Grid>
+    <RegistrationLayout
+      childFnArgs={{
+        state: {
+          traits,
+        },
+      }}
+      headerText="PERSON"
+      nextPath="egenskaper"
+      step={5}
+    >
+      <Grid>
+        <Header title="Vem är Du?" />
+        <TextAreaDescription>Beskriv dig själv kortfattat</TextAreaDescription>
+        <TextAreaContainer>
+          <ContentEditable
+            html={staticHtml}
+            innerRef={textArea}
+            onChange={Update}
+            style={{
+              width: '100%',
+              height: '280px',
+              border: '1px solid black',
+            }}
+          />
+          <CharsLeft>{charsLeft} tecken kvar</CharsLeft>
+        </TextAreaContainer>
+        <Footer />
+      </Grid>
+    </RegistrationLayout>
   )
 }
 

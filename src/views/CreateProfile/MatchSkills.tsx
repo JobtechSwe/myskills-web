@@ -13,6 +13,7 @@ import {
   OntologyConceptResponse,
   OntologyRelationResponse,
 } from '../../generated/myskills.d'
+import RegistrationLayout from '../../components/Layout/RegistrationLayout'
 
 export const GET_SKILLS_AND_OCCUPATIONS_CLIENT = gql`
   query getSkillsAndOccupationsClient {
@@ -184,22 +185,24 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
   }, [state.lastSavedSkill])
 
   return (
-    <Flex alignItems="center" flexDirection="column" justifyContent="center">
-      {state.error && <div>Error... {state.error}</div>}
-      <H1 mb={20}>Vilka är dina kompetenser?</H1>
-      {state.relatedSkills.length > 0 && (
-        <TagList
-          activeItems={state.savedSkills}
-          items={state.relatedSkills.filter(
-            (x: any) => !state.savedSkills.some((y: any) => y.id === x.id)
-          )}
-          onSelect={handleAddSkill}
-        />
-      )}
-      <Tag>+ Lägg till en kompetens</Tag>
+    <RegistrationLayout headerText="KOMPETENS" nextPath="utbildning" step={2}>
+      <Flex alignItems="center" flexDirection="column" justifyContent="center">
+        {state.error && <div>Error... {state.error}</div>}
+        <H1 mb={20}>Vilka är dina kompetenser?</H1>
+        {state.relatedSkills.length > 0 && (
+          <TagList
+            activeItems={state.savedSkills}
+            items={state.relatedSkills.filter(
+              (x: any) => !state.savedSkills.some((y: any) => y.id === x.id)
+            )}
+            onSelect={handleAddSkill}
+          />
+        )}
+        <Tag>+ Lägg till en kompetens</Tag>
 
-      {state.loading && <Loader />}
-    </Flex>
+        {state.loading && <Loader />}
+      </Flex>
+    </RegistrationLayout>
   )
 }
 

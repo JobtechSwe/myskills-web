@@ -57,7 +57,7 @@ export default function useGrid<T extends UseGridItem>(
     const x = doesFit ? prevElement.xy[0] + getWidth(prevElement) : 0
     const y = doesFit
       ? prevElement.xy[1]
-      : prevElement.xy[1] + prevElement.height - 10
+      : prevElement.xy[1] + prevElement.height
     const gridItem = {
       ...child,
       xy: [x, y],

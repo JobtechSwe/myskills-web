@@ -130,8 +130,6 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
     savedSkills,
   })
 
-  console.log('after init reducer', state)
-
   const handleAddSkill = (skill: any) => {
     addSkillMutation({
       variables: {
@@ -147,7 +145,7 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
 
   const getRelatedSkills = async (
     skills: OntologyRelationResponse[],
-    relSkills: OntologyRelationResponse[]
+    prevRelatedSkills: OntologyRelationResponse[]
   ) => {
     dispatch({ type: 'LOADING', payload: true })
 
@@ -164,30 +162,29 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
       return dispatch({ type: 'ERROR', payload: data.error.message })
     }
 
-    const withoutDuplicates: OntologyRelationResponse[] = [
-      ...relSkills,
-      ...data.ontologyRelated.relations,
-    ]
-      .reduce(
-        (prev, skill) =>
-          prev.some(({ id }: OntologyRelationResponse) => id === skill.id)
-            ? prev
-            : [...prev, skill],
-        []
-      )
-      .filter((x: any) =>
-        state.savedSkills.find((y: any) => y.id === x.id) ? false : true
-      )
+    // const withoutDuplicates: OntologyRelationResponse[] = [
+    //   ...prevRelatedSkills,
+    //   ...data.ontologyRelated.relations,
+    // ]
+    //   .reduce(
+    //     (prev, skill) =>
+    //       prev.some(({ id }: OntologyRelationResponse) => id === skill.id)
+    //         ? prev
+    //         : [...prev, skill],
+    //     []
+    //   )
+    //   .filter((x: any) =>
+    //     state.savedSkills.find((y: any) => y.id === x.id) ? false : true
+    //   )
 
-    console.log('withoutDuplicates', withoutDuplicates)
-
-    dispatch({ type: 'RELATED_SKILLS', payload: withoutDuplicates })
+    dispatch({
+      type: 'RELATED_SKILLS',
+      payload: [...prevRelatedSkills, ...data.ontologyRelated.relations],
+    })
     dispatch({ type: 'LOADING', payload: false })
   }
 
   useEffect(() => {
-    console.log('should fetch')
-    console.log('state.relatedSkills in useEffect: ', state.relatedSkills)
     if (!state.savedSkills.length) {
       getRelatedSkills(occupations, savedSkills)
     } else {
@@ -198,19 +195,22 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
     }
   }, [state.lastSavedSkill])
 
+  const tempRelated = state.relatedSkills.filter(
+    (x: any) => !state.savedSkills.some((y: any) => y.id === x.id)
+  )
+
   return (
     <>
       {state.error && <div>Error... {state.error}</div>}
 
-      {state.loading && <Loader />}
-
       {state.relatedSkills.length > 0 && (
         <TagList
           activeItems={state.savedSkills}
-          items={state.relatedSkills}
+          items={tempRelated}
           onSelect={handleAddSkill}
         />
       )}
+      {state.loading && <Loader />}
     </>
   )
 }

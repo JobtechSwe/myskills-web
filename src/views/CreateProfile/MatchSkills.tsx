@@ -1,4 +1,7 @@
 import React, { useEffect, useReducer } from 'react'
+import { H1 } from '../../components/Typography'
+import Tag from '../../components/Tag'
+import Flex from '../../components/Flex'
 import Loader from '../../components/Loader'
 import gql from 'graphql-tag'
 import { withApollo, WithApolloClient } from 'react-apollo'
@@ -130,8 +133,6 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
   })
 
   const handleAddSkill = (skill: any) => {
-    console.log('***clicked***')
-
     addSkillMutation({
       variables: {
         skill,
@@ -158,7 +159,6 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
         type: OntologyType.Skill,
       },
     })
-    console.log('i now have new data')
 
     if (data.error) {
       return dispatch({ type: 'ERROR', payload: data.error.message })
@@ -168,6 +168,7 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
       type: 'RELATED_SKILLS',
       payload: [...prevRelatedSkills, ...data.ontologyRelated.relations],
     })
+
     dispatch({ type: 'LOADING', payload: false })
   }
 
@@ -181,22 +182,24 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
       )
     }
   }, [state.lastSavedSkill])
-  return (
-    <>
-      {state.error && <div>Error... {state.error}</div>}
 
+  return (
+    <Flex alignItems="center" flexDirection="column" justifyContent="center">
+      {state.error && <div>Error... {state.error}</div>}
+      <H1 mb={20}>Vilka är dina kompetenser?</H1>
       {state.relatedSkills.length > 0 && (
         <TagList
           activeItems={state.savedSkills}
           items={state.relatedSkills.filter(
             (x: any) => !state.savedSkills.some((y: any) => y.id === x.id)
           )}
-          loading={state.loading}
           onSelect={handleAddSkill}
         />
       )}
+      <Tag>+ Lägg till en kompetens</Tag>
+
       {state.loading && <Loader />}
-    </>
+    </Flex>
   )
 }
 

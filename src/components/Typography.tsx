@@ -61,6 +61,14 @@ export const Paragraph = styled.p<ParagraphProps>`
   ${textAlign}
   ${space}
 `
+export const Bold = styled(Paragraph)`
+  ${color}
+  ${fontFamily}
+  ${fontSize}
+  ${fontWeight}
+  ${textAlign}
+  ${space}
+`
 
 const common: HeadingProps = {
   color: 'persianBlue',
@@ -89,4 +97,12 @@ Paragraph.defaultProps = {
   fontSize: 'small',
   mt: 'small',
   mb: 'medium',
+}
+
+Bold.defaultProps = {
+  fontFamily: 'default',
+  fontSize: 'medium',
+  fontWeight: '700',
+  mt: 0,
+  mb: 0,
 }

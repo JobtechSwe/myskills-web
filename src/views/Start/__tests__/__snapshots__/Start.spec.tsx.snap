@@ -3,7 +3,7 @@
 exports[`views/Start renders Start 1`] = `
 <div>
   <div
-    class="css-62zrxy"
+    class="css-4ia2ti"
   >
     <div
       class="css-owzlzk"
@@ -61,7 +61,10 @@ exports[`views/Start renders Start 1`] = `
         >
           Logga in med 
           <span
-            class="css-1xxe9l9"
+            class="css-1x7kjku"
+            font-family="default"
+            font-size="medium"
+            font-weight="700"
           >
             Egendata
           </span>

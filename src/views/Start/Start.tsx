@@ -3,7 +3,7 @@ import Flex from '../../components/Flex'
 import { RouteComponentProps } from '@reach/router'
 import Button from '../../components/Button'
 import { Link, InternalLink } from '../../components/Link'
-import { H2, H3, Paragraph } from '../../components/Typography'
+import { Bold, H2, H3, Paragraph } from '../../components/Typography'
 import styled from '@emotion/styled'
 
 const StartBlock = styled.div`
@@ -14,6 +14,7 @@ const StartBlock = styled.div`
     ${theme.colors.seashellPeach} 100%
   )`};
   display: flex;
+  justify-content: center;
   height: 100vh;
   padding: 25px;
 `
@@ -36,10 +37,6 @@ const Info = styled.div`
   display: flex;
   padding: 15px;
   margin: 30px 0 0 0;
-`
-
-const Bold = styled.span`
-  font-weight: bold;
 `
 
 const Clouds = styled.img`
@@ -84,7 +81,7 @@ const Start: React.FC<RouteComponentProps> = () => {
           </InternalLink>
           <InternalLink mt={10} to="/login" width={1}>
             <Button variant="secondaryBlack" width={1}>
-              Logga in med <Bold>Egendata</Bold>
+              Logga in med <Bold as="span">Egendata</Bold>
             </Button>
           </InternalLink>
           <Info>

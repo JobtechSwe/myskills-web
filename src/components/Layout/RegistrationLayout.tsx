@@ -53,7 +53,7 @@ const RegistrationLayout: React.FC<
   return (
     <Grid height="100vh" p="large">
       <NavigationContainer>
-        <Flex mb="small" alignSelf="stretch" justifyContent="center">
+        <Flex alignSelf="stretch" justifyContent="center" mb="small">
           <div
             onClick={() => history.back()}
             onKeyUp={() => history.back()}

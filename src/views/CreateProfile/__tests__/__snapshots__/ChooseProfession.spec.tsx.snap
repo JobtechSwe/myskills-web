@@ -3,7 +3,7 @@
 exports[`views/ChooseProfession renders empty result 1`] = `
 <div>
   <div
-    class="css-56kh0l"
+    class="css-taq4a0"
     height="100vh"
   >
     <nav
@@ -47,25 +47,25 @@ exports[`views/ChooseProfession renders empty result 1`] = `
       YRKE
     </nav>
     <div
-      class="css-14vkvjf"
+      class="css-1vzknnt"
     >
-      <h3
-        class="css-bqx4sj"
-        color="persianBlue"
-        font-family="default"
-        font-size="small"
+      <div
+        class="css-1evk3il"
       >
-        YRKE
-      </h3>
-      <h1
-        class="css-15memxd"
-        color="persianBlue"
-        font-family="default"
-        font-size="small,medium,large"
-        font-weight="600"
-      >
-        Vad vill du jobba med?
-      </h1>
+        <img
+          alt="Resväska"
+          src="suitcase.svg"
+        />
+        <h1
+          class="css-2k4f6t"
+          color="persianBlue"
+          font-family="default"
+          font-size="small,medium,large"
+          font-weight="600"
+        >
+          Vad vill du jobba med?
+        </h1>
+      </div>
       <input
         class="css-1fqt7xj"
         font-family="default"

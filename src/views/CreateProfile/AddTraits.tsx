@@ -17,17 +17,6 @@ import { GET_TRAITS_CLIENT } from '../../graphql/resolvers/mutations/addTrait'
 import TagList from '../../components/TagList'
 import RegistrationLayout from '../../components/Layout/RegistrationLayout'
 
-const Footer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`
-
-const NextButton = styled(Button)`
-  background: black;
-  color: white;
-`
-
 const AddTrait = styled.input``
 
 export const ADD_TRAIT = gql`

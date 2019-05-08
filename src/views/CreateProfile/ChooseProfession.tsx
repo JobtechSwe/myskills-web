@@ -4,12 +4,11 @@ import gql from 'graphql-tag'
 import { OntologyType } from '../../generated/myskills.d'
 import { RouteComponentProps } from '@reach/router'
 import OccupationsList from '../../components/OccupationsList/OccupationsList'
-import Flex from '../../components/Flex'
+import Grid from '../../components/Grid'
 import Input from '../../components/Input'
-import { H1, H3 } from '../../components/Typography'
-import Button, { FloatingContinueButton } from '../../components/Button'
+import IllustrationHeader from '../../components/IllustrationHeader'
 import styled from '@emotion/styled'
-import { InternalLink } from '../../components/Link'
+import suitcaseIllustration from '../../assets/illustrations/suitcase.svg'
 import ChosenOccupations from '../../components/ChosenOccupations'
 import RegistrationLayout from '../../components/Layout/RegistrationLayout'
 
@@ -78,9 +77,13 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
 
   return (
     <RegistrationLayout headerText="YRKE" nextPath="kompetenser" step={1}>
-      <Flex alignItems="center" flexDirection="column" justifyContent="center">
-        <H3 mb={20}>YRKE</H3>
-        <H1 mb={20}>Vad vill du jobba med?</H1>
+      <Grid alignContent="start">
+        <IllustrationHeader
+          imageAltTag="Resväska"
+          imageFirst={true}
+          imageSource={suitcaseIllustration}
+          title="Vad vill du jobba med?"
+        />
         <SearchInput
           name="search"
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
@@ -97,7 +100,7 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
           />
         )}
         <ChosenOccupations />
-      </Flex>
+      </Grid>
     </RegistrationLayout>
   )
 }

@@ -51,7 +51,7 @@ const RegistrationLayout: React.FC<
   childFnArgs = {},
 }) => {
   return (
-    <Grid height="100vh" p="large">
+    <Grid gridTemplateRows="auto 1fr auto" height="100vh" p="large">
       <NavigationContainer>
         <Flex alignSelf="stretch" justifyContent="center" mb="small">
           <div

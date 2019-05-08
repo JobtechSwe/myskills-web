@@ -37,13 +37,13 @@ const ButtonToInput: React.FC<ButtonToInputProps> = ({
   }
 
   return addCompetenceActive ? (
-    <InputWrapper mb="medium" mt="small" p={0} as="div">
+    <InputWrapper as="div" mb="medium" mt="small" p={0}>
       <Input
         alignSelf="stretch"
         border="none"
         onChange={handleInputChange}
-        value={inputValue}
         placeholder="Lägg till en kompetens"
+        value={inputValue}
       />
       <TagButton
         borderRadius={8}

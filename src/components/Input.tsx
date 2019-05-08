@@ -1,5 +1,7 @@
 import styled from '@emotion/styled'
 import {
+  alignSelf,
+  AlignSelfProps,
   border,
   BorderProps,
   borderColor,
@@ -19,6 +21,7 @@ import {
 } from 'styled-system'
 
 type InputProps = React.HTMLProps<HTMLInputElement> &
+  AlignSelfProps &
   BorderColorProps &
   BorderProps &
   BorderRadiusProps &
@@ -29,6 +32,7 @@ type InputProps = React.HTMLProps<HTMLInputElement> &
   WidthProps
 
 const Input = styled.input<InputProps>`
+  ${alignSelf}
   ${border}
   ${borderColor}
   ${borderRadius}

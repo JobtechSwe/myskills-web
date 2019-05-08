@@ -1,14 +1,14 @@
-import React, { useEffect, useReducer } from 'react'
-import { H1 } from '../../components/Typography'
-import Input from '../../components/Input'
-import Tag from '../../components/Tag'
+import ButtonToInput from '../../components/ButtonToInput'
 import Flex from '../../components/Flex'
 import Loader from '../../components/Loader'
-import gql from 'graphql-tag'
-import { withApollo, WithApolloClient } from 'react-apollo'
-import { useQuery, useMutation } from 'react-apollo-hooks'
-import { RouteComponentProps } from '@reach/router'
+import React, { useEffect, useReducer } from 'react'
 import TagList from '../../components/TagList'
+import gql from 'graphql-tag'
+import { H1 } from '../../components/Typography'
+import { RouteComponentProps } from '@reach/router'
+import { useQuery, useMutation } from 'react-apollo-hooks'
+import { v4 } from 'uuid'
+import { withApollo, WithApolloClient } from 'react-apollo'
 import {
   OntologyType,
   OntologyConceptResponse,
@@ -79,6 +79,7 @@ type MatchAction =
   | { type: 'LOADING'; payload: boolean }
   | { type: 'RELATED_SKILLS'; payload: OntologyRelationResponse[] }
   | { type: 'SAVED_SKILLS'; payload: OntologyRelationResponse }
+  | { type: 'LAST_SAVED_SKILL'; payload: OntologyRelationResponse }
 
 const initialState = {
   relatedSkills: [],
@@ -106,6 +107,11 @@ const reducer = (state: MatchState, action: MatchAction) => {
       return {
         ...state,
         savedSkills: [...state.savedSkills, action.payload],
+      }
+
+    case 'LAST_SAVED_SKILL':
+      return {
+        ...state,
         lastSavedSkill: [action.payload],
       }
 
@@ -134,9 +140,7 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
     savedSkills,
   })
 
-  const [addCompetenceActive, setAddCompetenceActive] = React.useState(false)
-
-  const handleAddSkill = (skill: any) => {
+  const handleAddSkill = (skill: OntologyRelationResponse) => {
     addSkillMutation({
       variables: {
         skill,
@@ -145,6 +149,11 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
 
     dispatch({
       type: 'SAVED_SKILLS',
+      payload: skill,
+    })
+
+    dispatch({
+      type: 'LAST_SAVED_SKILL',
       payload: skill,
     })
   }
@@ -187,6 +196,30 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
     }
   }, [state.lastSavedSkill])
 
+  const handleFreeTextSkill = (value: string) => {
+    const skill = {
+      term: value,
+      id: v4(),
+      type: OntologyType.Skill,
+      score: 1.0,
+      details: {
+        word2Vec: undefined,
+      },
+      __typename: 'OntologyRelationResponse',
+    }
+
+    addSkillMutation({
+      variables: {
+        skill,
+      },
+    })
+
+    dispatch({
+      type: 'SAVED_SKILLS',
+      payload: skill,
+    })
+  }
+
   return (
     <RegistrationLayout headerText="KOMPETENS" nextPath="utbildning" step={2}>
       <Flex alignItems="center" flexDirection="column" justifyContent="center">
@@ -196,37 +229,16 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
           <TagList
             activeItems={state.savedSkills}
             items={state.relatedSkills.filter(
-              (x: any) => !state.savedSkills.some((y: any) => y.id === x.id)
+              (x: OntologyRelationResponse) =>
+                !state.savedSkills.some(
+                  (y: OntologyRelationResponse) => y.id === x.id
+                )
             )}
             onSelect={handleAddSkill}
           />
         )}
 
-        {addCompetenceActive ? (
-          <Flex>
-            <Input
-              mb="medium"
-              mt="small"
-              placeholder="Lägg till en kompetens"
-            />
-            <Tag
-              mb="medium"
-              ml="small"
-              mt="small"
-              onClick={() => setAddCompetenceActive(true)}
-            >
-              Lägg till
-            </Tag>
-          </Flex>
-        ) : (
-          <Tag
-            mb="medium"
-            mt="small"
-            onClick={() => setAddCompetenceActive(true)}
-          >
-            + Lägg till en kompetens
-          </Tag>
-        )}
+        <ButtonToInput onSelect={handleFreeTextSkill} />
 
         {state.loading && <Loader />}
       </Flex>

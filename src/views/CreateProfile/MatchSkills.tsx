@@ -238,7 +238,11 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
           />
         )}
 
-        <ButtonToInput onSelect={handleFreeTextSkill} />
+        <ButtonToInput
+          buttonText="+ Lägg till en kompetens"
+          inputPlaceholder="Lägg till en kompetens"
+          onSelect={handleFreeTextSkill}
+        />
 
         {state.loading && <Loader />}
       </Flex>

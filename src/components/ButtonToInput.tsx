@@ -5,7 +5,9 @@ import styled from '@emotion/styled'
 import { useToggle } from '@iteam/hooks'
 
 interface ButtonToInputProps {
-  buttonText?: string
+  buttonText: string
+  addButtonText?: string
+  inputPlaceholder: string
   onSelect: (value: string) => void
 }
 
@@ -21,7 +23,9 @@ const TagButton = styled(Tag)`
 `
 
 const ButtonToInput: React.FC<ButtonToInputProps> = ({
-  buttonText = 'OK',
+  addButtonText = 'OK',
+  buttonText,
+  inputPlaceholder,
   onSelect,
 }) => {
   const [inputValue, setInputValue] = React.useState('')
@@ -42,7 +46,7 @@ const ButtonToInput: React.FC<ButtonToInputProps> = ({
         alignSelf="stretch"
         border="none"
         onChange={handleInputChange}
-        placeholder="Lägg till en kompetens"
+        placeholder={inputPlaceholder}
         value={inputValue}
       />
       <TagButton
@@ -52,12 +56,12 @@ const ButtonToInput: React.FC<ButtonToInputProps> = ({
         p="small"
         role="button"
       >
-        {buttonText}
+        {addButtonText}
       </TagButton>
     </InputWrapper>
   ) : (
     <Tag mb="medium" mt="small" onClick={setAddCompetenceActive}>
-      + Lägg till en kompetens
+      {buttonText}
     </Tag>
   )
 }

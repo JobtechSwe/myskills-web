@@ -2,48 +2,53 @@
 
 exports[`views/AddEducation renders empty result 1`] = `
 <div>
-  <section
-    class="layout css-pwfrln"
+  <div
+    class="css-56kh0l"
+    height="100vh"
   >
     <nav
-      class="css-zn5efa"
+      class="css-208zbf"
     >
       <div
-        role="button"
-        tabindex="0"
-      >
-        <img
-          alt="Go back"
-          src="navigation_arrow.svg"
-        />
-      </div>
-      <div
-        class="css-1q2lbmy"
+        class="css-qwpu0i"
       >
         <div
-          class="css-1lvqd3g"
-        />
+          role="button"
+          tabindex="0"
+        >
+          <img
+            alt="Go back"
+            src="navigation_arrow.svg"
+          />
+        </div>
         <div
-          class="css-1lvqd3g"
-        />
-        <div
-          class="css-1lvqd3g"
-        />
-        <div
-          class="css-1lvqd3g"
-        />
-        <div
-          class="css-181sygq"
-        />
-        <div
-          class="css-181sygq"
-        />
+          class="css-19krx55"
+        >
+          <div
+            class="css-njydrf"
+          />
+          <div
+            class="css-njydrf"
+          />
+          <div
+            class="css-njydrf"
+          />
+          <div
+            class="css-njydrf"
+          />
+          <div
+            class="css-1fl5aa0"
+          />
+          <div
+            class="css-1fl5aa0"
+          />
+        </div>
       </div>
+      UTBILDNING
     </nav>
-    UTBILDNING
     <form>
       <div
-        class="css-fhv5oa"
+        class="css-170kgmb"
       >
         <div />
         <input
@@ -93,7 +98,7 @@ exports[`views/AddEducation renders empty result 1`] = `
       </div>
     </form>
     <div
-      class="css-52ud0e"
+      class="css-sibr1t"
     >
       <button
         class="css-lnfplo"
@@ -103,6 +108,6 @@ exports[`views/AddEducation renders empty result 1`] = `
         Fortsätt
       </button>
     </div>
-  </section>
+  </div>
 </div>
 `;

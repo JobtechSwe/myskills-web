@@ -1,4 +1,5 @@
 import React, { useState, useLayoutEffect } from 'react'
+import Flex from './Flex'
 import styled from '@emotion/styled'
 
 interface StepIndicatorProps {
@@ -10,16 +11,12 @@ interface DotProps {
 }
 
 const Dot = styled.div<DotProps>`
-  width: 15px;
-  height: 15px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: ${({ isActive }) => (isActive ? 'green' : 'lightgrey')};
+  background: ${({ isActive, theme }) =>
+    isActive ? theme.colors.shamrock : theme.colors.athensGray};
   margin: 5px;
-`
-
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
 `
 
 const StepIndicator: React.FC<StepIndicatorProps> = ({ step }) => {
@@ -32,7 +29,11 @@ const StepIndicator: React.FC<StepIndicatorProps> = ({ step }) => {
 
   useLayoutEffect(() => set(step), [step])
 
-  return <Container>{dots}</Container>
+  return (
+    <Flex flex={1} justifyContent="center">
+      {dots}
+    </Flex>
+  )
 }
 
 export default StepIndicator

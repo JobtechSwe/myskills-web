@@ -2,6 +2,8 @@ import styled from '@emotion/styled'
 import {
   alignItems,
   AlignItemsProps,
+  alignSelf,
+  AlignSelfProps,
   flex,
   FlexProps,
   flexBasis,
@@ -17,6 +19,7 @@ import {
 } from 'styled-system'
 
 type FlexContainerProps = AlignItemsProps &
+  AlignSelfProps &
   FlexProps &
   FlexBasisProps &
   FlexDirectionProps &
@@ -28,6 +31,7 @@ const Flex = styled.div<FlexContainerProps>`
   display: flex;
 
   ${alignItems}
+  ${alignSelf}
   ${flexBasis}
   ${flexDirection}
   ${flexWrap}

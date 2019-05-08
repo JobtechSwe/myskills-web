@@ -127,9 +127,7 @@ const WhoAmI: React.FC<RouteComponentProps> = () => {
       step={5}
     >
       <Grid>
-        <H1 mt="medium" mb="medium" textAlign="center">
-          Vem är du?
-        </H1>
+        <H1 textAlign="center">Vem är du?</H1>
         <Paragraph textAlign="center">
           Beskriv dig själv och hur du är som person! Baserat på din text kommer
           du att få förslag på egenskaper som speglar din personlighet.
@@ -149,8 +147,8 @@ const WhoAmI: React.FC<RouteComponentProps> = () => {
           />
           <Paragraph textAlign="right">
             <Bold
-              color={charsLeft > 0 ? 'black' : 'orangeRed'}
               as="span"
+              color={charsLeft > 0 ? 'black' : 'orangeRed'}
               fontSize="small"
             >
               {charsLeft}{' '}

@@ -4,7 +4,7 @@ import { useMutation, useQuery } from 'react-apollo-hooks'
 import React, { useEffect, useState } from 'react'
 import { useDebounce } from '@iteam/hooks'
 import styled from '@emotion/styled'
-import Header from '../../components/Header'
+import { H1 } from '../../components/Typography'
 import Button from '../../components/Button'
 import {
   OntologyTextParseResponse,
@@ -111,8 +111,8 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
 
   return (
     <RegistrationLayout headerText="PERSON" nextPath="kontakt" step={5}>
-      <Grid>
-        <Header title="Vilka är dina främsta egenskaper?" />
+      <Grid alignItems="start" justifyContent="start">
+        <H1 textAlign="center">Vilka är dina främsta egenskaper?</H1>
         <TagList
           handleTagClick={onTagClick}
           items={[

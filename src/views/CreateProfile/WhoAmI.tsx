@@ -127,7 +127,7 @@ const WhoAmI: React.FC<RouteComponentProps> = () => {
       step={5}
     >
       <Grid>
-        <H1 mb="medium" textAlign="center">
+        <H1 mt="medium" mb="medium" textAlign="center">
           Vem är du?
         </H1>
         <Paragraph textAlign="center">

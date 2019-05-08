@@ -148,10 +148,14 @@ const WhoAmI: React.FC<RouteComponentProps> = () => {
             }}
           />
           <Paragraph textAlign="right">
-            {charsLeft}{' '}
-            <Bold as="span" fontSize="small">
-              (280)
+            <Bold
+              color={charsLeft > 0 ? 'black' : 'orangeRed'}
+              as="span"
+              fontSize="small"
+            >
+              {charsLeft}{' '}
             </Bold>
+            (280)
           </Paragraph>
         </TextAreaContainer>
         <Footer />

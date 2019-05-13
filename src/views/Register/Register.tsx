@@ -41,7 +41,11 @@ const Register: React.FC<RouteComponentProps> = props => {
 
           if (data) {
             return (
-              <Consent consentId={data.consent.id} url={data.consent.url} />
+              <Consent
+                action="register"
+                consentId={data.consent.id}
+                url={data.consent.url}
+              />
             )
           }
 

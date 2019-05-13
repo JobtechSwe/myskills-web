@@ -119,7 +119,7 @@ export type Contact = {
 export type LocalStateProps = {
   occupations: OntologyConceptResponse[]
   language: Language[]
-  skills: Skill[]
+  skills?: Skill[]
   educations: Education[]
   traits: string[]
   whoAmI: string
@@ -130,7 +130,6 @@ const initialState: LocalStateProps = {
   occupations: [],
   language: [],
   educations: [],
-  skills: [],
   traits: [],
   whoAmI: '',
   contact: {

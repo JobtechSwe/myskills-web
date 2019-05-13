@@ -137,7 +137,7 @@ const WhoAmI: React.FC<RouteComponentProps> = () => {
         },
       }}
       headerText="PERSON"
-      nextPath="egenskaper"
+      nextPath="/skapa-cv/egenskaper"
       step={5}
     >
       <Grid>

@@ -36,7 +36,7 @@ const onNextClick = async (
   if (childFn) {
     childFn()
   }
-  navigate(`/skapa-cv/${nextPath}`, { ...childFnArgs })
+  navigate(nextPath, { ...childFnArgs })
 }
 
 const RegistrationLayout: React.FC<

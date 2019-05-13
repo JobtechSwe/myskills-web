@@ -1,5 +1,7 @@
 import styled from '@emotion/styled'
 import {
+  alignSelf,
+  AlignSelfProps,
   border,
   BorderProps,
   borderColor,
@@ -14,30 +16,38 @@ import {
   FontSizeProps,
   space,
   SpaceProps,
+  width,
+  WidthProps,
 } from 'styled-system'
 
 type InputProps = React.HTMLProps<HTMLInputElement> &
+  AlignSelfProps &
   BorderColorProps &
   BorderProps &
   BorderRadiusProps &
   ColorProps &
   FontFamilyProps &
   FontSizeProps &
-  SpaceProps
+  SpaceProps &
+  WidthProps
 
 const Input = styled.input<InputProps>`
+  ${alignSelf}
   ${border}
   ${borderColor}
   ${borderRadius}
   ${color}
+  ${fontFamily}
   ${fontSize}
   ${space}
+  ${width}
 `
 
 Input.defaultProps = {
+  bg: 'white',
   border: '1px solid',
   borderRadius: '5px',
-  borderColor: 'persianBlue',
+  borderColor: 'athensGray',
   fontFamily: 'default',
   fontSize: 'medium',
   p: '12px',

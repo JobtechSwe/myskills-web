@@ -2,6 +2,10 @@ import styled from '@emotion/styled'
 import {
   color,
   ColorProps,
+  fontWeight,
+  FontWeightProps,
+  opacity,
+  OpacityProps,
   space,
   SpaceProps,
   background,
@@ -32,6 +36,8 @@ type CursorProps = {
 type TagProps = React.HTMLProps<HTMLElement> &
   ColorProps &
   CursorProps &
+  FontWeightProps &
+  OpacityProps &
   SpaceProps &
   BackgroundProps &
   BorderRadiusProps &
@@ -43,19 +49,23 @@ const Tag = styled.span<TagProps>`
   font-family: ${({ theme }) => theme.fonts.default};
   justify-content: center;
 
-  ${color}
-  ${space}
+
   ${background}
   ${borderRadius}
-  ${tagStyle}
+  ${color}
   ${cursorStyle}
+  ${fontWeight}
+  ${opacity}
+  ${space}
+  ${tagStyle}
 `
 
 Tag.defaultProps = {
   borderRadius: '96px',
+  cursor: 'pointer',
+  opacity: 1.0,
   p: '12px 24px',
   variant: 'default',
-  cursor: 'pointer',
 }
 
 export default Tag

@@ -1,5 +1,4 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import gql from 'graphql-tag'
 import { storageHelper } from '../../../utils/helpers'
 import { GET_TRAITS_CLIENT } from './addTrait'
 

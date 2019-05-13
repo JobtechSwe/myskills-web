@@ -1,9 +1,6 @@
 import React from 'react'
 import { Router } from '@reach/router'
 import RestrictedRoute from './views/restricted'
-import Header from './components/Header'
-import { Paragraph } from './components/Typography'
-import styled from '@emotion/styled'
 import Loader from './components/Loader'
 
 const Register = React.lazy(() => import(`./views/Register/Register`))
@@ -22,15 +19,21 @@ const MatchCompetences = React.lazy(() =>
 const AddEducation = React.lazy(() =>
   import('./views/CreateProfile/AddEducation')
 )
+const AddContactInformation = React.lazy(() =>
+  import(`./views/CreateProfile/AddContactInformation`)
+)
+
+const PreviousOccupationExperience = React.lazy(() =>
+  import('./views/CreateProfile/PreviousOccupationExperience')
+)
+
+const WorkExperiences = React.lazy(() =>
+  import('./views/CreateProfile/WorkExperiences')
+)
 
 const WhoAmI = React.lazy(() => import(`./views/CreateProfile/WhoAmI`))
 
 const AddTraits = React.lazy(() => import(`./views/CreateProfile/AddTraits`))
-
-const Layout = styled.main`
-  background: white;
-  min-height: 100vh;
-`
 
 function App() {
   return (
@@ -46,6 +49,9 @@ function App() {
             <MatchCompetences path="/kompetenser" />
             <WhoAmI path="/beskriv-dig" />
             <AddTraits path="/egenskaper" />
+            <PreviousOccupationExperience path="/erfarenheter" />
+            <WorkExperiences path="/erfarenheter/tidigare-erfarenheter" />
+            <AddContactInformation path="/kontakt" />
           </CreateProfile>
           <Profile path="/profile" />
         </Router>

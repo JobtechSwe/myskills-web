@@ -4,6 +4,10 @@ import {
   AlignContentProps,
   alignItems,
   AlignItemsProps,
+  alignSelf,
+  AlignSelfProps,
+  gridAutoFlow,
+  GridAutoFlowProps,
   gridColumnGap,
   GridColumnGapProps,
   gridColumn,
@@ -18,6 +22,8 @@ import {
   GridRowGapProps,
   gridRow,
   GridRowProps,
+  height,
+  HeightProps,
   justifyContent,
   JustifyContentProps,
   space,
@@ -26,6 +32,8 @@ import {
 
 type GridProps = AlignContentProps &
   AlignItemsProps &
+  AlignSelfProps &
+  GridAutoFlowProps &
   GridColumnGapProps &
   GridColumnProps &
   GridTemplatesColumnsProps &
@@ -33,6 +41,7 @@ type GridProps = AlignContentProps &
   GridGapProps &
   GridRowGapProps &
   GridRowProps &
+  HeightProps &
   JustifyContentProps &
   SpaceProps
 
@@ -41,6 +50,8 @@ const Grid = styled.div<GridProps>`
 
   ${alignContent}
   ${alignItems}
+  ${alignSelf}
+  ${gridAutoFlow}
   ${gridColumnGap}
   ${gridColumn}
   ${gridTemplateColumns}
@@ -48,6 +59,7 @@ const Grid = styled.div<GridProps>`
   ${gridGap}
   ${gridRowGap}
   ${gridRow}
+  ${height}
   ${justifyContent}
   ${space}
 `

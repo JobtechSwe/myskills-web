@@ -3,7 +3,7 @@
 exports[`views/MatchSkills renders loading state 1`] = `
 <div>
   <div
-    class="css-taq4a0"
+    class="css-1ejilqi"
     height="100vh"
   >
     <nav
@@ -45,7 +45,7 @@ exports[`views/MatchSkills renders loading state 1`] = `
         </div>
       </div>
       <p
-        class="css-gjvzqs"
+        class="css-5fjnxu"
         font-family="default"
         font-size="small"
       >
@@ -53,7 +53,7 @@ exports[`views/MatchSkills renders loading state 1`] = `
       </p>
     </nav>
     <div
-      class="css-1hgdqkz"
+      class="css-11ikkm8"
     >
       Valda kompetenser:
     </div>
@@ -99,7 +99,7 @@ exports[`views/MatchSkills renders loading state 1`] = `
       />
     </div>
     <div
-      class="css-sibr1t"
+      class="css-1sadpxs"
     >
       <button
         class="css-1qzvtil"

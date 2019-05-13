@@ -3,19 +3,19 @@
 exports[`components/Grid renders a Grid 1`] = `
 <div>
   <div
-    class="css-161cgc2"
+    class="css-lg26gy"
   >
     Grid
   </div>
 </div>
-`
+`;
 
 exports[`components/Grid renders a Grid with props 1`] = `
 <div>
   <div
-    class="css-1yo4qbx"
+    class="css-mnuxwz"
   >
     GridWithProps
   </div>
 </div>
-`
+`;

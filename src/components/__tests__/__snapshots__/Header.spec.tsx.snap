@@ -3,7 +3,7 @@
 exports[`components/Header renders Header component 1`] = `
 <div>
   <div
-    class="css-1j9bjys"
+    class="css-le8va"
   >
     <h1
       class="css-1qnn9o4"
@@ -24,4 +24,4 @@ exports[`components/Header renders Header component 1`] = `
     </h1>
   </div>
 </div>
-`
+`;

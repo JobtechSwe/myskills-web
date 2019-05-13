@@ -61,7 +61,7 @@ exports[`views/Start renders Start 1`] = `
         >
           Logga in med 
           <span
-            class="css-1x7kjku"
+            class="css-6vhke0"
             font-family="default"
             font-size="medium"
             font-weight="700"

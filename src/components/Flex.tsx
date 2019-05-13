@@ -16,6 +16,8 @@ import {
   JustifyContentProps,
   space,
   SpaceProps,
+  zIndex,
+  ZIndexProps,
 } from 'styled-system'
 
 type FlexContainerProps = AlignItemsProps &
@@ -25,7 +27,8 @@ type FlexContainerProps = AlignItemsProps &
   FlexDirectionProps &
   FlexWrapProps &
   JustifyContentProps &
-  SpaceProps
+  SpaceProps &
+  ZIndexProps
 
 const Flex = styled.div<FlexContainerProps>`
   display: flex;
@@ -38,6 +41,7 @@ const Flex = styled.div<FlexContainerProps>`
   ${flex}
   ${justifyContent}
   ${space}
+  ${zIndex}
 `
 
 export default Flex

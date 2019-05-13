@@ -55,14 +55,15 @@ const RegistrationLayout: React.FC<
     <Grid gridTemplateRows="auto 1fr auto" height="100vh" p="large">
       <NavigationContainer>
         <Flex alignSelf="stretch" justifyContent="center" mb="small">
-          <div
+          <Flex
             onClick={() => history.back()}
             onKeyUp={() => history.back()}
             role="button"
             tabIndex={0}
+            zIndex={1}
           >
             <img alt="Go back" src={Icon} />
-          </div>
+          </Flex>
 
           <StepIndicator step={step} />
         </Flex>

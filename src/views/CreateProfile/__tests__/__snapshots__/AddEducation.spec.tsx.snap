@@ -43,7 +43,7 @@ exports[`views/AddEducation renders empty result 1`] = `
     UTBILDNING
     <form>
       <div
-        class="css-fhv5oa"
+        class="css-161cgc2"
       >
         <div />
         <input
@@ -83,7 +83,7 @@ exports[`views/AddEducation renders empty result 1`] = `
           value=""
         />
         <button
-          class="css-lnfplo"
+          class="css-1qzvtil"
           font-family="default"
           font-size="medium"
           type="submit"
@@ -96,7 +96,7 @@ exports[`views/AddEducation renders empty result 1`] = `
       class="css-52ud0e"
     >
       <button
-        class="css-lnfplo"
+        class="css-1qzvtil"
         font-family="default"
         font-size="medium"
       >
@@ -105,4 +105,4 @@ exports[`views/AddEducation renders empty result 1`] = `
     </div>
   </section>
 </div>
-`;
+`

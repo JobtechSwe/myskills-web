@@ -10,9 +10,9 @@ import { getCookie, removeCookie, redirect } from '../utils/helpers'
 import {
   Education,
   Language,
-  OntologyConceptResponse,
-  Skill,
+  Occupation,
   Profile,
+  Skill,
 } from '../generated/myskills'
 import resolvers from './resolvers'
 import { storageHelper } from '../utils/helpers'
@@ -117,7 +117,7 @@ export type Contact = {
 }
 
 export type LocalStateProps = {
-  occupations: OntologyConceptResponse[]
+  occupation: Occupation
   language: Language[]
   skills: Skill[]
   educations: Education[]
@@ -127,7 +127,7 @@ export type LocalStateProps = {
 }
 
 const initialState: LocalStateProps = {
-  occupations: [],
+  occupation: null,
   language: [],
   educations: [],
   skills: [],

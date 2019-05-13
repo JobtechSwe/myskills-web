@@ -27,7 +27,6 @@ const NextButton = styled(Button)`
   background: black;
   color: white;
 `
-
 const AddTrait = styled.input``
 
 export const ADD_TRAIT = gql`

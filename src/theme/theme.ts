@@ -2,33 +2,35 @@ interface Color {
   alabaster: '#F8F8F8'
   athensGray: '#E9ECF1'
   black: '#000000'
+  bitterSweet: '#FF795B'
   cloudBurst: '#1F215F'
-  green: 'green'
   persianBlue: '#202ED1'
   persianBlueDark: '#1B27B2'
   redOrange: '#FE451D'
   seashellPeach: '#FFF2EC'
   yourPink: '#FFCEC2'
   white: 'white'
+  whiteLilac: '#F1F1F9'
   wildSand: '#F6F6F6'
 }
 
 interface Typography {
-  default: 'sans-serif'
+  default: 'Lato'
 }
 
 const colors: Color = {
   alabaster: '#F8F8F8',
   athensGray: '#E9ECF1',
   black: '#000000',
+  bitterSweet: '#FF795B',
   cloudBurst: '#1F215F',
-  green: 'green',
   persianBlue: '#202ED1',
   persianBlueDark: '#1B27B2',
   redOrange: '#FE451D',
   seashellPeach: '#FFF2EC',
   yourPink: '#FFCEC2',
   white: 'white',
+  whiteLilac: '#F1F1F9',
   wildSand: '#F6F6F6',
 }
 
@@ -40,6 +42,15 @@ const buttons = {
   secondary: {
     color: colors.persianBlue,
     backgroundColor: colors.white,
+  },
+  inActive: {
+    backgroundColor: colors.wildSand,
+    color: colors.black,
+  },
+  active: {
+    backgroundColor: colors.seashellPeach,
+    color: colors.redOrange,
+    fontWeight: 700,
   },
   secondaryBlack: {
     color: colors.black,
@@ -61,13 +72,13 @@ const tags = {
 }
 
 const typography: Typography = {
-  default: 'sans-serif',
+  default: 'Lato',
 }
 
 const fontSizes = {
   small: 14,
   medium: 16,
-  large: 26,
+  large: 24,
 }
 
 const space = {

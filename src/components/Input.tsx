@@ -37,15 +37,17 @@ const Input = styled.input<InputProps>`
   ${borderColor}
   ${borderRadius}
   ${color}
+  ${fontFamily}
   ${fontSize}
   ${space}
   ${width}
 `
 
 Input.defaultProps = {
+  bg: 'white',
   border: '1px solid',
   borderRadius: '5px',
-  borderColor: 'persianBlue',
+  borderColor: 'athensGray',
   fontFamily: 'default',
   fontSize: 'medium',
   p: '12px',

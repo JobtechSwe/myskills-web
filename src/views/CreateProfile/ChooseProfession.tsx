@@ -1,20 +1,34 @@
 import React, { useState } from 'react'
 import { useQuery, useMutation } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
-import { OntologyType } from '../../generated/myskills.d'
+import {
+  OntologyType,
+  OntologyConceptResponse,
+} from '../../generated/myskills.d'
 import { RouteComponentProps } from '@reach/router'
-import OccupationsList from '../../components/OccupationsList/OccupationsList'
 import Flex from '../../components/Flex'
 import Input from '../../components/Input'
+import ListItem from '../../components/ListItem'
+import List from '../../components/List'
 import { H1, H3 } from '../../components/Typography'
-import Button, { FloatingContinueButton } from '../../components/Button'
 import styled from '@emotion/styled'
-import { InternalLink } from '../../components/Link'
-import ChosenOccupations from '../../components/ChosenOccupations'
+import { css, Global } from '@emotion/core'
+import ChosenOccupation from '../../components/ChosenOccupation'
+import Downshift from 'downshift'
 import RegistrationLayout from '../../components/Layout/RegistrationLayout'
 
 const SearchInput = styled(Input)`
   width: 100%;
+`
+
+const SearchList = styled(List)<{ isOpen: boolean }>`
+  border-top: none;
+  max-height: 224px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  box-shadow: ${({ theme }) => `0px 8px 16px 0px ${theme.colors.whiteLilac}`};
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
 `
 
 export const GET_ONTOLOGY_CONCEPTS = gql`
@@ -27,22 +41,24 @@ export const GET_ONTOLOGY_CONCEPTS = gql`
   }
 `
 
-export const ADD_OCCUPATION_CLIENT = gql`
-  mutation addOccupationClient($occupation: ClientOccupationInput!) {
-    addOccupationClient(occupation: $occupation) @client {
+export const CREATE_OCCUPATION_CLIENT = gql`
+  mutation createOccupationClient($occupation: OccupationInput!) {
+    createOccupationClient(occupation: $occupation) @client {
       term
-      type
-      id
+      experience {
+        years
+      }
     }
   }
 `
 
-export const ADD_OCCUPATION_API = gql`
-  mutation addExperienceApi($experience: ExperienceInput!) {
-    addExperience(experience: $experience) {
+export const CREATE_OCCUPATION_API = gql`
+  mutation createOccupationApi($occupation: OccupationInput!) {
+    createOccupation(occupation: $occupation) {
       term
-      years
-      id
+      experience {
+        years
+      }
     }
   }
 `
@@ -56,6 +72,13 @@ export const IS_LOGGED_IN = gql`
     isLoggedIn @client(always: true)
   }
 `
+const highlightMarked = (inputValue: string, term: string) => {
+  const reg = new RegExp(inputValue, 'i')
+
+  return {
+    __html: term.replace(reg, `<strong>${inputValue}</strong>`),
+  }
+}
 
 const ChooseProfession: React.FC<RouteComponentProps> = () => {
   const [query, setQuery] = useState('')
@@ -64,11 +87,11 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
     fetchPolicy: 'network-only',
   })
 
-  const addOccupation = useMutation(
-    isLoggedIn.isLoggedIn ? ADD_OCCUPATION_API : ADD_OCCUPATION_CLIENT
+  const createOccupation = useMutation(
+    isLoggedIn.isLoggedIn ? CREATE_OCCUPATION_API : CREATE_OCCUPATION_CLIENT
   )
 
-  const { data, error, loading } = useQuery(GET_ONTOLOGY_CONCEPTS, {
+  const { data, error } = useQuery(GET_ONTOLOGY_CONCEPTS, {
     variables: {
       filter: query,
       type: OntologyType.Occupation,
@@ -76,27 +99,94 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
     skip: !query,
   })
 
+  if (error) {
+    return <div>Error...</div>
+  }
+
   return (
     <RegistrationLayout headerText="YRKE" nextPath="kompetenser" step={1}>
       <Flex alignItems="center" flexDirection="column" justifyContent="center">
+        <Global
+          styles={css`
+            strong {
+              font-weight: 700;
+              text-transform: capitalize;
+            }
+          `}
+        />
         <H3 mb={20}>YRKE</H3>
         <H1 mb={20}>Vad vill du jobba med?</H1>
-        <SearchInput
-          name="search"
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            setQuery(event.target.value)
-          }
-          placeholder="Yrkesroll eller yrkesområde"
-        />
-        {loading && <div>Loading...</div>}
-        {error && <div>Some error...</div>}
-        {data && data.ontologyConcepts && (
-          <OccupationsList
-            addOccupation={addOccupation}
-            occupations={data.ontologyConcepts}
-          />
-        )}
-        <ChosenOccupations />
+        <Downshift
+          itemToString={item => (item ? item.term : '')}
+          onChange={occupation => {
+            createOccupation({
+              variables: {
+                occupation: {
+                  term: occupation.term,
+                  experience: null,
+                },
+              },
+            })
+            setQuery('')
+          }}
+        >
+          {({
+            getInputProps,
+            getItemProps,
+            getMenuProps,
+            isOpen,
+            inputValue,
+            highlightedIndex,
+          }) => (
+            <div>
+              <SearchInput
+                {...getInputProps({
+                  name: 'search',
+                  placeholder: 'Yrkesroll eller yrkesområde',
+                  onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
+                    setQuery(event.target.value),
+                  value: query,
+                })}
+              />
+
+              {data && data.ontologyConcepts && (
+                <SearchList isOpen={isOpen} {...getMenuProps()}>
+                  {isOpen
+                    ? data.ontologyConcepts
+                        .filter(
+                          (item: OntologyConceptResponse) =>
+                            !inputValue ||
+                            item.term
+                              .toLowerCase()
+                              .includes(inputValue.toLowerCase())
+                        )
+                        .map((item: OntologyConceptResponse, index: number) => (
+                          <ListItem
+                            bg={
+                              highlightedIndex === index
+                                ? 'seashellPeach'
+                                : 'white'
+                            }
+                            key={item.id}
+                            px="medium"
+                            {...getItemProps({
+                              key: item.id,
+                              index,
+                              item,
+                              dangerouslySetInnerHTML: highlightMarked(
+                                inputValue,
+                                item.term
+                              ),
+                            })}
+                          />
+                        ))
+                    : null}
+                </SearchList>
+              )}
+            </div>
+          )}
+        </Downshift>
+        <ChosenOccupation />
       </Flex>
     </RegistrationLayout>
   )

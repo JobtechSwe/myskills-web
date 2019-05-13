@@ -9,4 +9,4 @@ exports[`components/Input renders an Input 1`] = `
     name="search"
   />
 </div>
-`;
+`

@@ -3,7 +3,7 @@ import ChooseProfession, { GET_ONTOLOGY_CONCEPTS } from '../ChooseProfession'
 import { render } from '../../../utils/test-utils'
 import { wait, fireEvent } from 'react-testing-library'
 import { OntologyType } from '../../../generated/myskills.d'
-import { GET_OCCUPATIONS_CLIENT } from '../../../graphql/resolvers/mutations'
+import { GET_OCCUPATION_CLIENT } from '../../../graphql/resolvers/mutations'
 
 describe('views/ChooseProfession', () => {
   let withResultsMock: any
@@ -39,11 +39,11 @@ describe('views/ChooseProfession', () => {
     const withResultsMock = [
       {
         request: {
-          query: GET_OCCUPATIONS_CLIENT,
+          query: GET_OCCUPATION_CLIENT,
         },
         result: {
           data: {
-            occupations: [],
+            occupation: {},
           },
         },
       },
@@ -95,7 +95,7 @@ describe('views/ChooseProfession', () => {
 
     await wait()
 
-    expect(getByText(/Some error.../i)).toBeInTheDocument()
+    expect(getByText(/Error.../i)).toBeInTheDocument()
   })
 
   it('should render with taxonomy query result', async () => {
@@ -104,7 +104,7 @@ describe('views/ChooseProfession', () => {
       withResultsMock
     )
 
-    fireEvent.change(getByPlaceholderText('Yrkesroll eller yrkesområde'), {
+    fireEvent.change(getByPlaceholderText(/Yrkesroll eller yrkesområde/i), {
       target: { value: 'Systemutvecklare' },
     })
 

@@ -15,7 +15,7 @@ export const addWhoAmI = (
 ): string => {
   cache.writeQuery({
     query: GET_WHO_AM_I_CLIENT,
-    data: { whoAmI: whoAmI },
+    data: { whoAmI },
   })
 
   storageHelper.set({

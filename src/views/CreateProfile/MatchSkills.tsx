@@ -16,8 +16,8 @@ import {
 } from '../../generated/myskills.d'
 import RegistrationLayout from '../../components/Layout/RegistrationLayout'
 
-export const GET_SKILLS_AND_OCCUPATIONS_CLIENT = gql`
-  query getSkillsAndOccupationsClient {
+export const GET_SKILLS_AND_OCCUPATION_CLIENT = gql`
+  query getSkillsAndOccupationClient {
     skills @client {
       term
       id
@@ -25,10 +25,11 @@ export const GET_SKILLS_AND_OCCUPATIONS_CLIENT = gql`
       score
     }
 
-    occupations @client {
+    occupation @client {
       term
-      id
-      type
+      experience {
+        years
+      }
     }
   }
 `
@@ -90,7 +91,7 @@ type MatchAction =
   | { type: 'SAVED_SKILLS'; payload: OntologyRelationResponse[] }
   | { type: 'LAST_SAVED_SKILL'; payload: OntologyRelationResponse }
 
-const initialState = {
+const initialState: MatchState = {
   relatedSkills: [],
   savedSkills: [],
   lastSavedSkill: [],
@@ -139,9 +140,8 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
   client,
 }) => {
   const {
-    data: { occupations = [], skills: savedSkills = [] },
-  }: any = useQuery(GET_SKILLS_AND_OCCUPATIONS_CLIENT)
-
+    data: { occupation = {}, skills: savedSkills = [] },
+  }: any = useQuery(GET_SKILLS_AND_OCCUPATION_CLIENT)
   const addSkillMutation = useMutation(ADD_SKILL_CLIENT)
   const removeSkillMutation = useMutation(REMOVE_SKILL_CLIENT)
 
@@ -212,7 +212,7 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
 
   useEffect(() => {
     if (!state.savedSkills.length) {
-      getRelatedSkills(occupations, savedSkills)
+      getRelatedSkills([occupation], savedSkills)
     } else {
       getRelatedSkills(
         state.lastSavedSkill.length ? state.lastSavedSkill : state.savedSkills,
@@ -222,7 +222,7 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
   }, [state.lastSavedSkill])
 
   const handleFreeTextSkill = (value: string) => {
-    const skill = {
+    const skill: OntologyRelationResponse = {
       term: value,
       id: v4(),
       type: OntologyType.Skill,
@@ -230,7 +230,6 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
       details: {
         word2Vec: undefined,
       },
-      __typename: 'OntologyRelationResponse',
     }
 
     addSkillMutation({

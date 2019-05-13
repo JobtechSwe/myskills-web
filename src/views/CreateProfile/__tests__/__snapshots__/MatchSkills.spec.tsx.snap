@@ -106,7 +106,7 @@ exports[`views/MatchSkills renders loading state 1`] = `
       class="css-52ud0e"
     >
       <button
-        class="css-lnfplo"
+        class="css-1qzvtil"
         font-family="default"
         font-size="medium"
       >
@@ -115,4 +115,4 @@ exports[`views/MatchSkills renders loading state 1`] = `
     </div>
   </section>
 </div>
-`;
+`

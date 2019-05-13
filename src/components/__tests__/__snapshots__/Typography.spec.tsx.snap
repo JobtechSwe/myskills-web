@@ -3,7 +3,7 @@
 exports[`components/Typography renders a Heading with props 1`] = `
 <div>
   <h3
-    class="css-173wnsw"
+    class="css-2m1n73"
     color="red"
     font-family="default"
     font-size="small"
@@ -16,7 +16,7 @@ exports[`components/Typography renders a Heading with props 1`] = `
 exports[`components/Typography renders a Paragraph 1`] = `
 <div>
   <p
-    class="css-gjvzqs"
+    class="css-5fjnxu"
     font-family="default"
     font-size="small"
   >
@@ -28,7 +28,7 @@ exports[`components/Typography renders a Paragraph 1`] = `
 exports[`components/Typography renders a Paragraph with props 1`] = `
 <div>
   <p
-    class="css-1fsvr21"
+    class="css-rkidbd"
     color="red"
     font-family="default"
     font-size="small"
@@ -41,10 +41,10 @@ exports[`components/Typography renders a Paragraph with props 1`] = `
 exports[`components/Typography renders an H1 1`] = `
 <div>
   <h1
-    class="css-1wgkuhd"
-    color="persianBlue"
+    class="css-1qnn9o4"
+    color="black"
     font-family="default"
-    font-size="small,medium,large"
+    font-size="large"
     font-weight="600"
   >
     Heading One
@@ -55,10 +55,10 @@ exports[`components/Typography renders an H1 1`] = `
 exports[`components/Typography renders an H2 1`] = `
 <div>
   <h2
-    class="css-k982ew"
-    color="persianBlue"
+    class="css-1role2c"
+    color="black"
     font-family="default"
-    font-size="small,medium"
+    font-size="medium"
   >
     Heading Two
   </h2>
@@ -68,8 +68,8 @@ exports[`components/Typography renders an H2 1`] = `
 exports[`components/Typography renders an H3 1`] = `
 <div>
   <h3
-    class="css-wm2929"
-    color="persianBlue"
+    class="css-vcycx3"
+    color="black"
     font-family="default"
     font-size="small"
   >

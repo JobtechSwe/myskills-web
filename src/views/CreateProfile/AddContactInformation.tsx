@@ -6,6 +6,7 @@ import Button from '../../components/Button'
 import { GET_CONTACT_CLIENT } from '../../graphql/resolvers/mutations/updateContactInformation'
 import { useMutation, useQuery } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
+import RegistrationLayout from '../../components/Layout/RegistrationLayout'
 
 const Form = styled.form`
   width: 100%;
@@ -16,7 +17,7 @@ const Form = styled.form`
 `
 
 export const UPDATE_CONTACT_CLIENT = gql`
-  mutation updateContactInformation($data: ProfileInput!) {
+  mutation updateContactInformation($data: ContactInput!) {
     updateContactInformation(data: $data) @client {
       name
       email
@@ -25,14 +26,11 @@ export const UPDATE_CONTACT_CLIENT = gql`
   }
 `
 
-const InputContainer = styled.div`
-  position: relative;
-  &:after {
-    content: ' *';
-    position: absolute;
-    color: red;
-    right: 0;
-    padding: 5px;
+export const ADD_SKILL_CLIENT = gql`
+  mutation addSkillClient($skill: SkillInput!) {
+    addSkillClient(skill: $skill) @client {
+      term
+    }
   }
 `
 
@@ -47,8 +45,7 @@ const AddContactInformation: React.FC<RouteComponentProps> = () => {
     setData({ ...inputData, [key]: val })
   }
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault()
+  const handleSubmit = (e: FormEvent): any => {
     updateContactMutation({
       variables: {
         data: inputData,
@@ -57,49 +54,53 @@ const AddContactInformation: React.FC<RouteComponentProps> = () => {
   }
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <div>Hur vill du bli nådd?</div>
-      <InputContainer>
-        <Input
-          name="name"
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            handleChange('name', event.target.value)
-          }
-          placeholder="För- och efternamn..."
-          required
-          value={inputData.name}
-          width="100%"
-        />
-      </InputContainer>
-      <InputContainer>
-        <Input
-          name="email"
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            handleChange('email', event.target.value)
-          }
-          placeholder="E-post..."
-          required
-          type="email"
-          value={inputData.email}
-          width="100%"
-        />
-      </InputContainer>
-      <div>
-        <Input
-          name="telephone"
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            handleChange('telephone', event.target.value)
-          }
-          placeholder="Telefonnummer..."
-          value={inputData.telephone}
-          width="100%"
-        />
-      </div>
-
-      <Button type="submit" variant="primary">
-        Spara
-      </Button>
-    </Form>
+    <RegistrationLayout
+      childFn={handleSubmit}
+      headerText="KONTAKT"
+      nextBtnText="Spara CV med Egendata"
+      nextPath="egenskaper"
+      step={6}
+    >
+      <Form>
+        <div>Hur vill du bli nådd?</div>
+        <div>
+          <Input
+            name="name"
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              handleChange('name', event.target.value)
+            }
+            placeholder="För- och efternamn..."
+            required
+            value={inputData.name}
+            width="100%"
+          />
+        </div>
+        <div>
+          <Input
+            name="email"
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              handleChange('email', event.target.value)
+            }
+            placeholder="E-post..."
+            required
+            type="email"
+            value={inputData.email}
+            width="100%"
+          />
+        </div>
+        <div>
+          <Input
+            name="phone"
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              handleChange('telephone', event.target.value)
+            }
+            placeholder="Telefonnummer..."
+            value={inputData.telephone}
+            width="100%"
+          />
+        </div>
+      </Form>
+    </RegistrationLayout>
   )
 }
 

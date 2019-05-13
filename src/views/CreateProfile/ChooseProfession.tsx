@@ -11,12 +11,11 @@ import Input from '../../components/Input'
 import ListItem from '../../components/ListItem'
 import List from '../../components/List'
 import { H1, H3 } from '../../components/Typography'
-import { FloatingContinueButton } from '../../components/Button'
 import styled from '@emotion/styled'
 import { css, Global } from '@emotion/core'
-import { InternalLink } from '../../components/Link'
 import ChosenOccupation from '../../components/ChosenOccupation'
 import Downshift from 'downshift'
+import RegistrationLayout from '../../components/Layout/RegistrationLayout'
 
 const SearchInput = styled(Input)`
   width: 100%;
@@ -105,92 +104,91 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
   }
 
   return (
-    <Flex alignItems="center" flexDirection="column" justifyContent="center">
-      <Global
-        styles={css`
-          strong {
-            font-weight: 700;
-            text-transform: capitalize;
-          }
-        `}
-      />
-      <H3 mb={20}>YRKE</H3>
-      <H1 mb={20}>Vad vill du jobba med?</H1>
-      <Downshift
-        itemToString={item => (item ? item.term : '')}
-        onChange={occupation => {
-          createOccupation({
-            variables: {
-              occupation: {
-                term: occupation.term,
-                experience: null,
+    <RegistrationLayout headerText="YRKE" nextPath="kompetenser" step={1}>
+      <Flex alignItems="center" flexDirection="column" justifyContent="center">
+        <Global
+          styles={css`
+            strong {
+              font-weight: 700;
+              text-transform: capitalize;
+            }
+          `}
+        />
+        <H3 mb={20}>YRKE</H3>
+        <H1 mb={20}>Vad vill du jobba med?</H1>
+        <Downshift
+          itemToString={item => (item ? item.term : '')}
+          onChange={occupation => {
+            createOccupation({
+              variables: {
+                occupation: {
+                  term: occupation.term,
+                  experience: null,
+                },
               },
-            },
-          })
-          setQuery('')
-        }}
-      >
-        {({
-          getInputProps,
-          getItemProps,
-          getMenuProps,
-          isOpen,
-          inputValue,
-          highlightedIndex,
-        }) => (
-          <div>
-            <SearchInput
-              {...getInputProps({
-                name: 'search',
-                placeholder: 'Yrkesroll eller yrkesområde',
-                onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
-                  setQuery(event.target.value),
-                value: query,
-              })}
-            />
+            })
+            setQuery('')
+          }}
+        >
+          {({
+            getInputProps,
+            getItemProps,
+            getMenuProps,
+            isOpen,
+            inputValue,
+            highlightedIndex,
+          }) => (
+            <div>
+              <SearchInput
+                {...getInputProps({
+                  name: 'search',
+                  placeholder: 'Yrkesroll eller yrkesområde',
+                  onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
+                    setQuery(event.target.value),
+                  value: query,
+                })}
+              />
 
-            {data && data.ontologyConcepts && (
-              <SearchList isOpen={isOpen} {...getMenuProps()}>
-                {isOpen
-                  ? data.ontologyConcepts
-                      .filter(
-                        (item: OntologyConceptResponse) =>
-                          !inputValue ||
-                          item.term
-                            .toLowerCase()
-                            .includes(inputValue.toLowerCase())
-                      )
-                      .map((item: OntologyConceptResponse, index: number) => (
-                        <ListItem
-                          bg={
-                            highlightedIndex === index
-                              ? 'seashellPeach'
-                              : 'white'
-                          }
-                          key={item.id}
-                          px="medium"
-                          {...getItemProps({
-                            key: item.id,
-                            index,
-                            item,
-                            dangerouslySetInnerHTML: highlightMarked(
-                              inputValue,
-                              item.term
-                            ),
-                          })}
-                        />
-                      ))
-                  : null}
-              </SearchList>
-            )}
-          </div>
-        )}
-      </Downshift>
-      <ChosenOccupation />
-      <InternalLink to="/skapa-cv/kompetenser">
-        <FloatingContinueButton>Nästa</FloatingContinueButton>
-      </InternalLink>
-    </Flex>
+              {data && data.ontologyConcepts && (
+                <SearchList isOpen={isOpen} {...getMenuProps()}>
+                  {isOpen
+                    ? data.ontologyConcepts
+                        .filter(
+                          (item: OntologyConceptResponse) =>
+                            !inputValue ||
+                            item.term
+                              .toLowerCase()
+                              .includes(inputValue.toLowerCase())
+                        )
+                        .map((item: OntologyConceptResponse, index: number) => (
+                          <ListItem
+                            bg={
+                              highlightedIndex === index
+                                ? 'seashellPeach'
+                                : 'white'
+                            }
+                            key={item.id}
+                            px="medium"
+                            {...getItemProps({
+                              key: item.id,
+                              index,
+                              item,
+                              dangerouslySetInnerHTML: highlightMarked(
+                                inputValue,
+                                item.term
+                              ),
+                            })}
+                          />
+                        ))
+                    : null}
+                </SearchList>
+              )}
+            </div>
+          )}
+        </Downshift>
+        <ChosenOccupation />
+      </Flex>
+    </RegistrationLayout>
   )
 }
 

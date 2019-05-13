@@ -13,10 +13,22 @@ input ClientSkillInput {
   name: String
 }
 
+input ContactInput {
+  name: String
+  email: String
+  telephone: String
+}
+
+type Contact {
+  name: String
+  email: String
+  telephone: String
+}
+
 extend type Query {
   isLoggedIn: Boolean!
   educations: [Education!]!
-  contact: Profile!
+  contact: Contact!
   traits: [String!]!
   whoAmI: String!
 }
@@ -29,7 +41,7 @@ extend type Mutation {
   addExperienceClient(experience: ExperienceInput!): Experience
   addTrait(trait: String!): String!
   addWhoAmI(whoAmI: String!): String!
-  updateContactInformation(data: ProfileInput!): Profile!
+  updateContactInformation(data: ContactInput!): Contact!
   removeEducationClient(education: EducationInput!): Education
   removeExperienceClient(experience: ExperienceInput!): Experience
   removeTrait(trait: String!): String!

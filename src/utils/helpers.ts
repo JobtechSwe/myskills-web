@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie'
-import { LocalStateProps, ContactInformationProps } from '../graphql/client'
+import { LocalStateProps, Contact } from '../graphql/client'
 import {
   EducationInput,
   Occupation,
@@ -59,7 +59,7 @@ interface WhoAmI extends StorageEntryProps {
 
 interface ContactInformation extends StorageEntryProps {
   type: 'contact'
-  data: ContactInformationProps
+  data: Contact
 }
 
 export type StorageEntry =

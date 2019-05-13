@@ -7,8 +7,7 @@ import ReactDOMServer from 'react-dom/server'
 import { useDebounce } from '@iteam/hooks'
 import styled from '@emotion/styled'
 import { H1, Paragraph } from '../../components/Typography'
-import { FloatingContinueButton } from '../../components/Button'
-import { InternalLink } from '../../components/Link'
+import Button from '../../components/Button'
 import {
   QueryOntologyTextParseArgs,
   Query,
@@ -16,6 +15,7 @@ import {
 } from '../../generated/myskills'
 import ContentEditable from 'react-contenteditable'
 import { GET_WHO_AM_I_CLIENT } from '../../graphql/resolvers/mutations/addWhoAmI'
+import RegistrationLayout from '../../components/Layout/RegistrationLayout'
 
 export const GET_TRAITS = gql`
   query ontologyTextParse($text: String!) {
@@ -28,12 +28,6 @@ export const GET_TRAITS = gql`
   }
 `
 
-const TextArea = styled(ContentEditable)``
-
-const TextAreaDescription = styled.span`
-  font-weight: bold;
-`
-
 const TextAreaContainer = styled.div`
   position: relative;
   background: white;
@@ -44,6 +38,17 @@ const CharsLeft = styled.p`
   position: absolute;
   bottom: 0;
   right: 0;
+`
+
+const Footer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`
+
+const NextButton = styled(Button)`
+  background: black;
+  color: white;
 `
 
 const TagSpan = styled.span`
@@ -120,7 +125,16 @@ const WhoAmI: React.FC<RouteComponentProps> = () => {
   }, [data])
 
   return (
-    <>
+    <RegistrationLayout
+      childFnArgs={{
+        state: {
+          traits,
+        },
+      }}
+      headerText="PERSON"
+      nextPath="egenskaper"
+      step={5}
+    >
       <Grid gridGap={20} justifyContent="center">
         <H1>Vem är du?</H1>
         <Paragraph>
@@ -137,15 +151,13 @@ const WhoAmI: React.FC<RouteComponentProps> = () => {
             style={{
               width: '100%',
               height: '280px',
+              border: '1px solid black',
             }}
           />
           <CharsLeft>{charsLeft} tecken kvar</CharsLeft>
         </TextAreaContainer>
-        <InternalLink to="../egenskaper">
-          <FloatingContinueButton>Fortsätt</FloatingContinueButton>
-        </InternalLink>
       </Grid>
-    </>
+    </RegistrationLayout>
   )
 }
 

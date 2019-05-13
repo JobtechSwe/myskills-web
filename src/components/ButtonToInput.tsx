@@ -50,12 +50,11 @@ const ButtonToInput: React.FC<ButtonToInputProps> = ({
   return addCompetenceActive ? (
     <InputWrapper as="div" mb="medium" mt="small" p={0}>
       <Input
-        ref={inputRef}
         alignSelf="stretch"
         border="none"
         onChange={handleInputChange}
-        onBlur={setAddCompetenceActive}
         placeholder={inputPlaceholder}
+        ref={inputRef}
         value={inputValue}
       />
       <TagButton

@@ -57,9 +57,18 @@ export const GET_RELATED_SKILLS = gql`
 `
 
 export const ADD_SKILL_CLIENT = gql`
-  mutation addSkillClient($skill: SkillInput!) {
+  mutation addSkillClient($skill: OntologyRelationResponse!) {
     addSkillClient(skill: $skill) @client {
       term
+    }
+  }
+`
+
+export const REMOVE_SKILL_CLIENT = gql`
+  mutation removeSkillClient($skill: OntologyRelationResponse!) {
+    removeSkillClient(skill: $skill) @client {
+      term
+      id
     }
   }
 `
@@ -78,7 +87,7 @@ type MatchAction =
   | { type: 'ERROR'; payload: string }
   | { type: 'LOADING'; payload: boolean }
   | { type: 'RELATED_SKILLS'; payload: OntologyRelationResponse[] }
-  | { type: 'SAVED_SKILLS'; payload: OntologyRelationResponse }
+  | { type: 'SAVED_SKILLS'; payload: OntologyRelationResponse[] }
   | { type: 'LAST_SAVED_SKILL'; payload: OntologyRelationResponse }
 
 const initialState = {
@@ -106,7 +115,7 @@ const reducer = (state: MatchState, action: MatchAction) => {
     case 'SAVED_SKILLS':
       return {
         ...state,
-        savedSkills: [...state.savedSkills, action.payload],
+        savedSkills: action.payload,
       }
 
     case 'LAST_SAVED_SKILL':
@@ -134,28 +143,44 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
   }: any = useQuery(GET_SKILLS_AND_OCCUPATIONS_CLIENT)
 
   const addSkillMutation = useMutation(ADD_SKILL_CLIENT)
+  const removeSkillMutation = useMutation(REMOVE_SKILL_CLIENT)
 
   const [state, dispatch] = useReducer(reducer, {
     ...initialState,
     savedSkills,
   })
 
-  const handleAddSkill = (skill: OntologyRelationResponse) => {
-    addSkillMutation({
-      variables: {
-        skill,
-      },
-    })
+  const handleSkillClick = (skill: OntologyRelationResponse) => {
+    if (!state.savedSkills.some(s => s.id === skill.id)) {
+      addSkillMutation({
+        variables: {
+          skill,
+        },
+      })
 
-    dispatch({
-      type: 'SAVED_SKILLS',
-      payload: skill,
-    })
+      dispatch({
+        type: 'SAVED_SKILLS',
+        payload: [...state.savedSkills, skill],
+      })
 
-    dispatch({
-      type: 'LAST_SAVED_SKILL',
-      payload: skill,
-    })
+      dispatch({
+        type: 'LAST_SAVED_SKILL',
+        payload: skill,
+      })
+    } else {
+      removeSkillMutation({
+        variables: {
+          skill,
+        },
+      })
+
+      dispatch({
+        type: 'SAVED_SKILLS',
+        payload: state.savedSkills.filter(
+          (s: OntologyRelationResponse) => s.id !== skill.id
+        ),
+      })
+    }
   }
 
   const getRelatedSkills = async (
@@ -216,7 +241,7 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
 
     dispatch({
       type: 'SAVED_SKILLS',
-      payload: skill,
+      payload: [...state.savedSkills, skill],
     })
   }
 
@@ -234,7 +259,7 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
                   (y: OntologyRelationResponse) => y.id === x.id
                 )
             )}
-            onSelect={handleAddSkill}
+            onSelect={handleSkillClick}
           />
         )}
 

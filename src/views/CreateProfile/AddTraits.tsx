@@ -1,11 +1,11 @@
 import { RouteComponentProps } from '@reach/router'
 import Grid from '../../components/Grid'
+import { v4 } from 'uuid'
 import { useMutation, useQuery } from 'react-apollo-hooks'
 import React, { useEffect, useState } from 'react'
 import { useDebounce } from '@iteam/hooks'
 import styled from '@emotion/styled'
 import Header from '../../components/Header'
-import Button from '../../components/Button'
 import {
   OntologyTextParseResponse,
   Query,
@@ -17,16 +17,6 @@ import { GET_TRAITS_CLIENT } from '../../graphql/resolvers/mutations/addTrait'
 import TagList from '../../components/TagList'
 import RegistrationLayout from '../../components/Layout/RegistrationLayout'
 
-const Footer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`
-
-const NextButton = styled(Button)`
-  background: black;
-  color: white;
-`
 const AddTrait = styled.input``
 
 export const ADD_TRAIT = gql`
@@ -96,8 +86,8 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
     setSuggestedTraits(suggestedTraits.filter(t => t !== trait))
   }
 
-  const onTagClick = (tag: any) => {
-    if (tag.isActive) {
+  const onTagClick = (tag: { id: string; term: string }) => {
+    if (traits.some(t => t === tag.term)) {
       return removeTrait(tag.term)
     }
 
@@ -113,8 +103,8 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
       <Grid>
         <Header title="Vilka är dina främsta egenskaper?" />
         <TagList
-          activeItems={traits.map(trait => ({ id: trait, term: trait }))}
-          items={suggestedTraits.map(trait => ({ id: trait, term: trait }))}
+          activeItems={traits.map(trait => ({ id: v4(), term: trait }))}
+          items={suggestedTraits.map(trait => ({ id: v4(), term: trait }))}
           onSelect={onTagClick}
         />
         <AddTrait

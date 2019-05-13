@@ -42,6 +42,18 @@ export type ConsentResponse = {
   accessToken: Scalars['String']
 }
 
+export type Contact = {
+  name?: Maybe<Scalars['String']>
+  email?: Maybe<Scalars['String']>
+  telephone?: Maybe<Scalars['Int']>
+}
+
+export type ContactInput = {
+  name?: Maybe<Scalars['String']>
+  email?: Maybe<Scalars['String']>
+  telephone?: Maybe<Scalars['Int']>
+}
+
 export type Cv = {
   skills?: Maybe<Array<Maybe<Skill>>>
   education?: Maybe<Array<Maybe<Education>>>

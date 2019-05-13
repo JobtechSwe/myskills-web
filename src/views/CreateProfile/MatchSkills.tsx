@@ -13,7 +13,7 @@ import {
   OntologyRelationResponse,
   Skill,
 } from '../../generated/myskills.d'
-import { InternalLink } from '../../components/Link'
+import RegistrationLayout from '../../components/Layout/RegistrationLayout'
 
 export const GET_SKILLS_AND_OCCUPATION_CLIENT = gql`
   query getSkillsAndOccupationClient {
@@ -173,8 +173,8 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
       []
     )
 
-    dispatch({ type: 'DATA', payload: withoutDuplicates })
     dispatch({ type: 'LOADING', payload: false })
+    dispatch({ type: 'DATA', payload: withoutDuplicates })
   }
 
   useEffect(() => {
@@ -182,15 +182,12 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
   }, [occupation])
 
   return (
-    <>
+    <RegistrationLayout headerText="KOMPETENS" nextPath="utbildning" step={2}>
       <Flex flexDirection="column" mb={32}>
         Valda kompetenser:
         {savedSkills.map((skill: Skill) => (
           <div key={skill.term}>{skill.term}</div>
         ))}
-        <InternalLink to="../erfarenhet">
-          <FloatingContinueButton>Fortsätt</FloatingContinueButton>
-        </InternalLink>
       </Flex>
 
       {state.error && <div>Error... {state.error}</div>}
@@ -199,11 +196,7 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
         <TagList handleTagClick={handleAddSkill} items={state.skills} />
       )}
       {state.loading && <Loader />}
-
-      <InternalLink to="/skapa-cv/erfarenheter">
-        <FloatingContinueButton>Nästa</FloatingContinueButton>
-      </InternalLink>
-    </>
+    </RegistrationLayout>
   )
 }
 

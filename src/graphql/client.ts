@@ -109,7 +109,10 @@ const terminatingLink = split(
   authLink.concat(httpLink)
 )
 
-export interface ContactInformationProps extends Profile {
+export type Contact = {
+  name: string
+  email: string
+  telephone: string
   __typename: string
 }
 
@@ -120,7 +123,7 @@ export type LocalStateProps = {
   educations: Education[]
   traits: string[]
   whoAmI: string
-  contact: ContactInformationProps
+  contact: Contact
 }
 
 const initialState: LocalStateProps = {

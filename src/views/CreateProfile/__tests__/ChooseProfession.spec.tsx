@@ -116,6 +116,6 @@ describe('views/ChooseProfession', () => {
   it('renders next button', async () => {
     const { getByText } = render(<ChooseProfession />)
 
-    expect(getByText('Nästa')).toBeInTheDocument()
+    expect(getByText('Fortsätt')).toBeInTheDocument()
   })
 })

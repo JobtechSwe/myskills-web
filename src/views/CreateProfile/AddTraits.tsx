@@ -5,8 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { useDebounce } from '@iteam/hooks'
 import styled from '@emotion/styled'
 import Header from '../../components/Header'
-import { InternalLink } from '../../components/Link'
-import { FloatingContinueButton } from '../../components/Button'
+import Button from '../../components/Button'
 import {
   OntologyTextParseResponse,
   Query,
@@ -16,7 +15,18 @@ import gql from 'graphql-tag'
 import { GET_ONTOLOGY_CONCEPTS } from './ChooseProfession'
 import { GET_TRAITS_CLIENT } from '../../graphql/resolvers/mutations/addTrait'
 import TagList from '../../components/TagList'
+import RegistrationLayout from '../../components/Layout/RegistrationLayout'
 
+const Footer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`
+
+const NextButton = styled(Button)`
+  background: black;
+  color: white;
+`
 const AddTrait = styled.input``
 
 export const ADD_TRAIT = gql`
@@ -99,25 +109,24 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
   }, [traits])
 
   return (
-    <Grid>
-      <Header title="Vilka är dina främsta egenskaper?" />
-      <TagList
-        handleTagClick={onTagClick}
-        items={[
-          ...traits.map(x => ({ term: x, isActive: true })),
-          ...suggestedTraits.map(x => ({ term: x, isActive: false })),
-        ]}
-      />
-      <AddTrait
-        onChange={handleChange}
-        onKeyUp={handleChange}
-        placeholder="Lägg till en annan egenskap"
-        value={query}
-      />
-      <InternalLink to="../kontaktuppgifter">
-        <FloatingContinueButton>Fortsätt</FloatingContinueButton>
-      </InternalLink>
-    </Grid>
+    <RegistrationLayout headerText="PERSON" nextPath="kontakt" step={5}>
+      <Grid>
+        <Header title="Vilka är dina främsta egenskaper?" />
+        <TagList
+          handleTagClick={onTagClick}
+          items={[
+            ...traits.map(x => ({ term: x, isActive: true })),
+            ...suggestedTraits.map(x => ({ term: x, isActive: false })),
+          ]}
+        />
+        <AddTrait
+          onChange={handleChange}
+          onKeyUp={handleChange}
+          placeholder="Lägg till en annan egenskap"
+          value={query}
+        />
+      </Grid>
+    </RegistrationLayout>
   )
 }
 

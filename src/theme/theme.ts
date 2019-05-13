@@ -45,6 +45,10 @@ const buttons = {
     color: colors.black,
     backgroundColor: colors.white,
   },
+  inactive: {
+    color: colors.black,
+    backgroundColor: colors.athensGray,
+  },
 }
 
 const tags = {

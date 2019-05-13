@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import { Entry } from './index'
+import ellipse from '../../assets/images/elipse.svg'
+import dot from '../../assets/images/dot.svg'
+import pen from '../../assets/images/pen.svg'
+import edit from '../../assets/images/edit.svg'
 
 const Wrapper = styled.li`
   display: grid;
@@ -59,7 +63,7 @@ const TimelineEntry: React.FC<TimelineEntryProps> = ({ entry }) => {
   return (
     <Wrapper>
       <DotWrapper>
-        <img alt="dot" src="images/elipse.svg" />
+        <img alt="dot" src={ellipse} />
       </DotWrapper>
       <ContentWrapper editing={editing}>
         <div>
@@ -69,18 +73,18 @@ const TimelineEntry: React.FC<TimelineEntryProps> = ({ entry }) => {
           </TimelineTitle>
           <TimelineInfo>
             {entry.schoolOrCompany}
-            <TimelineInfoDivider alt="divider" src="images/dot.svg" />
+            <TimelineInfoDivider alt="divider" src={dot} />
             {entry.start} - {entry.end}
           </TimelineInfo>
         </div>
         <TimelineEntryEdit>
           {editing ? (
             <button onClick={editFunction}>
-              <img alt="remove" src="images/pen.svg" />
+              <img alt="remove" src={pen} />
             </button>
           ) : (
             <button onClick={() => toggleEditMode(!editing)}>
-              <img alt="edit" src="images/edit.svg" />
+              <img alt="edit" src={edit} />
             </button>
           )}
         </TimelineEntryEdit>

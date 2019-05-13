@@ -22,10 +22,10 @@ const AddEducation = React.lazy(() =>
 const AddContactInformation = React.lazy(() =>
   import(`./views/CreateProfile/AddContactInformation`)
 )
-
 const WhoAmI = React.lazy(() => import(`./views/CreateProfile/WhoAmI`))
-
 const AddTraits = React.lazy(() => import(`./views/CreateProfile/AddTraits`))
+const Home = React.lazy(() => import(`./views/Profile/Home`))
+const Timeline = React.lazy(() => import(`./views/Profile/Timeline`))
 
 function App() {
   return (
@@ -43,7 +43,11 @@ function App() {
             <AddTraits path="/egenskaper" />
             <AddContactInformation path="/kontakt" />
           </CreateProfile>
-          <RestrictedRoute component={Profile} path="/profile" />
+
+          <Profile path="/profil">
+            <RestrictedRoute component={Home} path="/" />
+            <RestrictedRoute component={Timeline} path="/tidslinje" />
+          </Profile>
         </Router>
       </React.Suspense>
     </>

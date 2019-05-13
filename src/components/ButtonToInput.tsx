@@ -30,6 +30,7 @@ const ButtonToInput: React.FC<ButtonToInputProps> = ({
 }) => {
   const [inputValue, setInputValue] = React.useState('')
   const [addCompetenceActive, setAddCompetenceActive] = useToggle(false)
+  const inputRef = React.useRef<HTMLInputElement>(null)
 
   const handleSelect = () => {
     onSelect(inputValue)
@@ -40,12 +41,20 @@ const ButtonToInput: React.FC<ButtonToInputProps> = ({
     setInputValue(event.target.value)
   }
 
+  React.useEffect(() => {
+    if (inputRef && inputRef.current) {
+      inputRef.current.focus()
+    }
+  }, [addCompetenceActive])
+
   return addCompetenceActive ? (
     <InputWrapper as="div" mb="medium" mt="small" p={0}>
       <Input
+        ref={inputRef}
         alignSelf="stretch"
         border="none"
         onChange={handleInputChange}
+        onBlur={setAddCompetenceActive}
         placeholder={inputPlaceholder}
         value={inputValue}
       />

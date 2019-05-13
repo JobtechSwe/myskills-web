@@ -3,6 +3,8 @@ import Loader from '../../components/Loader'
 import gql from 'graphql-tag'
 import { withApollo, WithApolloClient } from 'react-apollo'
 import { useQuery, useMutation } from 'react-apollo-hooks'
+import { FloatingContinueButton } from '../../components/Button'
+import Flex from '../../components/Flex'
 import { RouteComponentProps } from '@reach/router'
 import TagList from '../../components/TagList'
 import {
@@ -13,16 +15,17 @@ import {
 } from '../../generated/myskills.d'
 import RegistrationLayout from '../../components/Layout/RegistrationLayout'
 
-export const GET_SKILLS_AND_OCCUPATIONS_CLIENT = gql`
-  query getSkillsAndOccupationsClient {
+export const GET_SKILLS_AND_OCCUPATION_CLIENT = gql`
+  query getSkillsAndOccupationClient {
     skills @client {
       term
     }
 
-    occupations @client {
+    occupation @client {
       term
-      id
-      type
+      experience {
+        years
+      }
     }
   }
 `
@@ -72,7 +75,7 @@ type MatchAction =
   | { type: 'LOADING'; payload: boolean }
   | { type: 'DATA'; payload: ClientSkillProps[] }
 
-const initialState = {
+const initialState: MatchState = {
   skills: [],
   error: '',
   loading: false,
@@ -107,8 +110,8 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
   client,
 }) => {
   const {
-    data: { occupations = [], skills: savedSkills = [] },
-  }: any = useQuery(GET_SKILLS_AND_OCCUPATIONS_CLIENT)
+    data: { occupation = {}, skills: savedSkills = [] },
+  }: any = useQuery(GET_SKILLS_AND_OCCUPATION_CLIENT)
   const addSkillMutation = useMutation(ADD_SKILL_CLIENT)
   const [state, dispatch] = useReducer(reducer, initialState)
 
@@ -175,26 +178,24 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
   }
 
   useEffect(() => {
-    getRelatedSkills(occupations, state.skills)
-  }, [occupations])
+    getRelatedSkills([occupation], state.skills)
+  }, [occupation])
 
   return (
     <RegistrationLayout headerText="KOMPETENS" nextPath="utbildning" step={2}>
-      <>
-        <div style={{ marginBottom: '2rem' }}>
-          Valda kompetenser:
-          {savedSkills.map((skill: Skill) => (
-            <div key={skill.term}>{skill.term}</div>
-          ))}
-        </div>
+      <Flex flexDirection="column" mb={32}>
+        Valda kompetenser:
+        {savedSkills.map((skill: Skill) => (
+          <div key={skill.term}>{skill.term}</div>
+        ))}
+      </Flex>
 
-        {state.error && <div>Error... {state.error}</div>}
+      {state.error && <div>Error... {state.error}</div>}
 
-        {state.skills.length > 0 && (
-          <TagList handleTagClick={handleAddSkill} items={state.skills} />
-        )}
-        {state.loading && <Loader />}
-      </>
+      {state.skills.length > 0 && (
+        <TagList handleTagClick={handleAddSkill} items={state.skills} />
+      )}
+      {state.loading && <Loader />}
     </RegistrationLayout>
   )
 }

@@ -126,6 +126,13 @@ const WhoAmI: React.FC<RouteComponentProps> = () => {
       nextPath="egenskaper"
       step={5}
     >
+      <Grid gridGap={20} justifyContent="center">
+        <H1>Vem är du?</H1>
+        <Paragraph>
+          Beskriv dig själv och hur du är som person! Baserat på din text kommer
+          du att få förslag på egenskaper som speglar din personlighet.
+        </Paragraph>
+      </Grid>
       <Grid>
         <H1 textAlign="center">Vem är du?</H1>
         <Paragraph textAlign="center">
@@ -156,7 +163,6 @@ const WhoAmI: React.FC<RouteComponentProps> = () => {
             (280)
           </Paragraph>
         </TextAreaContainer>
-        <Footer />
       </Grid>
     </RegistrationLayout>
   )

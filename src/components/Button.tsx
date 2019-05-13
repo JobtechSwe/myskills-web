@@ -21,7 +21,7 @@ import {
 } from 'styled-system'
 
 type VariantProps = {
-  variant?: 'primary' | 'secondary' | 'secondaryBlack'
+  variant?: 'primary' | 'secondary' | 'secondaryBlack' | 'inActive' | 'active'
 }
 
 type ButtonProps = React.HTMLProps<HTMLButtonElement> &
@@ -57,7 +57,7 @@ Button.defaultProps = {
   borderRadius: '5px',
   fontFamily: 'default',
   fontSize: ['medium'],
-  p: '12px 36px',
+  p: '16px 42px',
   variant: 'primary',
 }
 

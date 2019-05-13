@@ -5,7 +5,6 @@ import React, { useEffect, useState } from 'react'
 import { useDebounce } from '@iteam/hooks'
 import styled from '@emotion/styled'
 import { H1 } from '../../components/Typography'
-import Button from '../../components/Button'
 import {
   OntologyTextParseResponse,
   Query,

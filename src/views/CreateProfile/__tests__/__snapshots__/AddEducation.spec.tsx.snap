@@ -58,7 +58,7 @@ exports[`views/AddEducation renders empty result 1`] = `
       >
         <div />
         <input
-          class="css-90stuz"
+          class="css-lo6wmm"
           font-family="default"
           font-size="medium"
           name="programme"
@@ -67,7 +67,7 @@ exports[`views/AddEducation renders empty result 1`] = `
           value=""
         />
         <input
-          class="css-90stuz"
+          class="css-lo6wmm"
           font-family="default"
           font-size="medium"
           name="school"
@@ -76,7 +76,7 @@ exports[`views/AddEducation renders empty result 1`] = `
           value=""
         />
         <input
-          class="css-90stuz"
+          class="css-lo6wmm"
           font-family="default"
           font-size="medium"
           name="start"
@@ -85,7 +85,7 @@ exports[`views/AddEducation renders empty result 1`] = `
           value=""
         />
         <input
-          class="css-90stuz"
+          class="css-lo6wmm"
           font-family="default"
           font-size="medium"
           name="end"
@@ -94,7 +94,7 @@ exports[`views/AddEducation renders empty result 1`] = `
           value=""
         />
         <button
-          class="css-lnfplo"
+          class="css-1qzvtil"
           font-family="default"
           font-size="medium"
           type="submit"
@@ -107,7 +107,7 @@ exports[`views/AddEducation renders empty result 1`] = `
       class="css-sibr1t"
     >
       <button
-        class="css-lnfplo"
+        class="css-1qzvtil"
         font-family="default"
         font-size="medium"
       >
@@ -116,4 +116,4 @@ exports[`views/AddEducation renders empty result 1`] = `
     </div>
   </div>
 </div>
-`;
+`

@@ -6,9 +6,8 @@ import React, { useState, useRef, useEffect } from 'react'
 import ReactDOMServer from 'react-dom/server'
 import { useDebounce } from '@iteam/hooks'
 import styled from '@emotion/styled'
-import Header from '../../components/Header'
+import { H1, Paragraph } from '../../components/Typography'
 import Button from '../../components/Button'
-import { navigate } from '@reach/router'
 import {
   QueryOntologyTextParseArgs,
   Query,
@@ -27,10 +26,6 @@ export const GET_TRAITS = gql`
       terms
     }
   }
-`
-
-const TextAreaDescription = styled.span`
-  font-weight: bold;
 `
 
 const TextAreaContainer = styled.div`
@@ -140,9 +135,14 @@ const WhoAmI: React.FC<RouteComponentProps> = () => {
       nextPath="egenskaper"
       step={5}
     >
+      <Grid gridGap={20} justifyContent="center">
+        <H1>Vem är du?</H1>
+        <Paragraph>
+          Beskriv dig själv och hur du är som person! Baserat på din text kommer
+          du att få förslag på egenskaper som speglar din personlighet.
+        </Paragraph>
+      </Grid>
       <Grid>
-        <Header title="Vem är Du?" />
-        <TextAreaDescription>Beskriv dig själv kortfattat</TextAreaDescription>
         <TextAreaContainer>
           <ContentEditable
             html={staticHtml}
@@ -156,7 +156,6 @@ const WhoAmI: React.FC<RouteComponentProps> = () => {
           />
           <CharsLeft>{charsLeft} tecken kvar</CharsLeft>
         </TextAreaContainer>
-        <Footer />
       </Grid>
     </RegistrationLayout>
   )

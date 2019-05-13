@@ -9,12 +9,6 @@ input OntologyInput {
   type: OntologyType
 }
 
-input ClientOccupationInput {
-  id: String
-  name: String
-  type: OntologyType
-}
-
 input ClientSkillInput {
   name: String
 }
@@ -33,7 +27,6 @@ type Contact {
 
 extend type Query {
   isLoggedIn: Boolean!
-  occupations: [OntologyConceptResponse!]!
   educations: [Education!]!
   contact: Contact!
   traits: [String!]!
@@ -41,9 +34,7 @@ extend type Query {
 }
 
 extend type Mutation {
-  addOccupationClient(
-    occupation: ClientOccupationInput!
-  ): OntologyConceptResponse
+  createOccupationClient(occupation: OccupationInput!): Occupation
 
   addSkillClient(skill: SkillInput!): Skill
   addEducationClient(education: EducationInput!): Education

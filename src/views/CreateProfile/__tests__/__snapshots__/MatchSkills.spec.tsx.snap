@@ -42,7 +42,7 @@ exports[`views/MatchSkills renders loading state 1`] = `
     </nav>
     KOMPETENS
     <div
-      style="margin-bottom: 2rem;"
+      class="css-1hgdqkz"
     >
       Valda kompetenser:
     </div>
@@ -91,7 +91,7 @@ exports[`views/MatchSkills renders loading state 1`] = `
       class="css-52ud0e"
     >
       <button
-        class="css-lnfplo"
+        class="css-1qzvtil"
         font-family="default"
         font-size="medium"
       >

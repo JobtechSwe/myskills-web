@@ -9,10 +9,10 @@ import {
   FontSizeProps,
   fontWeight,
   FontWeightProps,
-  textAlign,
-  TextAlignProps,
   space,
   SpaceProps,
+  textAlign,
+  TextAlignProps,
 } from 'styled-system'
 
 type TypographyProps = ColorProps &
@@ -25,6 +25,7 @@ type TypographyProps = ColorProps &
 
 type HeadingProps = React.HTMLProps<HTMLHeadingElement> & TypographyProps
 type ParagraphProps = React.HTMLProps<HTMLParagraphElement> & TypographyProps
+type LabelProps = React.HTMLProps<HTMLLabelElement> & TypographyProps
 
 export const H1 = styled.h1<HeadingProps>`
   ${color}
@@ -33,6 +34,7 @@ export const H1 = styled.h1<HeadingProps>`
   ${fontWeight}
   ${textAlign}
   ${space}
+  ${textAlign}
 `
 
 export const H2 = styled.h2<HeadingProps>`
@@ -42,6 +44,7 @@ export const H2 = styled.h2<HeadingProps>`
   ${fontWeight}
   ${textAlign}
   ${space}
+  ${textAlign}
 `
 
 export const H3 = styled.h3<HeadingProps>`
@@ -51,6 +54,7 @@ export const H3 = styled.h3<HeadingProps>`
   ${fontWeight}
   ${textAlign}
   ${space}
+  ${textAlign}
 `
 
 export const Paragraph = styled.p<ParagraphProps>`
@@ -60,23 +64,34 @@ export const Paragraph = styled.p<ParagraphProps>`
   ${fontWeight}
   ${textAlign}
   ${space}
+  ${textAlign}
+`
+
+export const Label = styled.label<LabelProps & FontWeightProps>`
+  ${color}
+  ${fontFamily}
+  ${fontSize}
+  ${fontWeight}
+  ${space}
+  ${textAlign}
 `
 
 const common: HeadingProps = {
-  color: 'persianBlue',
+  color: 'black',
   fontFamily: 'default',
   mt: 'none',
+  mb: 'large',
 }
 
 H1.defaultProps = {
   ...common,
-  fontSize: ['small', 'medium', 'large'],
+  fontSize: ['large'],
   fontWeight: 600,
 }
 
 H2.defaultProps = {
   ...common,
-  fontSize: ['small', 'medium'],
+  fontSize: ['medium'],
 }
 
 H3.defaultProps = {
@@ -89,4 +104,12 @@ Paragraph.defaultProps = {
   fontSize: 'small',
   mt: 'small',
   mb: 'medium',
+}
+
+Label.defaultProps = {
+  fontFamily: 'default',
+  fontWeight: 700,
+  fontSize: 'small',
+  mb: 6,
+  ml: 6,
 }

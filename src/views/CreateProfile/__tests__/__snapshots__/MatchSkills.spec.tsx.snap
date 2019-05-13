@@ -32,7 +32,7 @@ exports[`views/MatchSkills renders loading state 1`] = `
             class="css-njydrf"
           />
           <div
-            class="css-1fl5aa0"
+            class="css-njydrf"
           />
           <div
             class="css-1fl5aa0"
@@ -54,13 +54,7 @@ exports[`views/MatchSkills renders loading state 1`] = `
       </p>
     </nav>
     <div
-      class="css-zqx1br"
-    >
-      Valda kompetenser:
-    </div>
-    
-    <div
-      class="sk-fading-circle css-rcik79"
+      class="css-1mxfqvu"
     >
       
       <h1

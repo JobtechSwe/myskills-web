@@ -1,20 +1,15 @@
 import React, { useState, FormEvent, useEffect } from 'react'
 import { RouteComponentProps } from '@reach/router'
 import Input from '../../components/Input'
-import styled from '@emotion/styled'
-import Button from '../../components/Button'
+import smartphoneLetter from '../../assets/illustrations/smarthpone_letter.svg'
+import IllustrationHeader from '../../components/IllustrationHeader'
+import { H1 } from '../../components/Typography'
+import Flex from '../../components/Flex'
+import Grid from '../../components/Grid'
 import { GET_CONTACT_CLIENT } from '../../graphql/resolvers/mutations/updateContactInformation'
 import { useMutation, useQuery } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
 import RegistrationLayout from '../../components/Layout/RegistrationLayout'
-
-const Form = styled.form`
-  width: 100%;
-  height: 80vh;
-  display: flex;
-  justify-content: center;
-  flex-flow: column nowrap;
-`
 
 export const UPDATE_CONTACT_CLIENT = gql`
   mutation updateContactInformation($data: ContactInput!) {
@@ -53,9 +48,14 @@ const AddContactInformation: React.FC<RouteComponentProps> = () => {
       nextPath="egenskaper"
       step={6}
     >
-      <Form>
-        <div>Hur vill du bli nådd?</div>
-        <div>
+      <Grid alignContent="start">
+        <IllustrationHeader
+          imageAltTag="Telefon och brev"
+          imageFirst={false}
+          imageSource={smartphoneLetter}
+          title="Hur vill du bli nådd?"
+        />
+        <Grid gridGap={10}>
           <Input
             name="name"
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
@@ -66,8 +66,6 @@ const AddContactInformation: React.FC<RouteComponentProps> = () => {
             value={inputData.name}
             width="100%"
           />
-        </div>
-        <div>
           <Input
             name="email"
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
@@ -79,8 +77,6 @@ const AddContactInformation: React.FC<RouteComponentProps> = () => {
             value={inputData.email}
             width="100%"
           />
-        </div>
-        <div>
           <Input
             name="phone"
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
@@ -90,8 +86,8 @@ const AddContactInformation: React.FC<RouteComponentProps> = () => {
             value={inputData.telephone}
             width="100%"
           />
-        </div>
-      </Form>
+        </Grid>
+      </Grid>
     </RegistrationLayout>
   )
 }

@@ -2,65 +2,77 @@
 
 exports[`views/ChooseProfession renders empty result 1`] = `
 <div>
-  <section
-    class="layout css-pwfrln"
+  <div
+    class="css-1ejilqi"
+    height="100vh"
   >
     <nav
-      class="css-zn5efa"
+      class="css-208zbf"
     >
       <div
-        role="button"
-        tabindex="0"
-      >
-        <img
-          alt="Go back"
-          src="navigation_arrow.svg"
-        />
-      </div>
-      <div
-        class="css-1q2lbmy"
+        class="css-199nci9"
       >
         <div
-          class="css-1lvqd3g"
-        />
+          class="css-17a5fux"
+          role="button"
+          tabindex="0"
+        >
+          <img
+            alt="Go back"
+            src="navigation_arrow.svg"
+          />
+        </div>
         <div
-          class="css-181sygq"
-        />
-        <div
-          class="css-181sygq"
-        />
-        <div
-          class="css-181sygq"
-        />
-        <div
-          class="css-181sygq"
-        />
-        <div
-          class="css-181sygq"
-        />
+          class="css-1if0o7t"
+        >
+          <div
+            class="css-njydrf"
+          />
+          <div
+            class="css-1fl5aa0"
+          />
+          <div
+            class="css-1fl5aa0"
+          />
+          <div
+            class="css-1fl5aa0"
+          />
+          <div
+            class="css-1fl5aa0"
+          />
+          <div
+            class="css-1fl5aa0"
+          />
+        </div>
       </div>
-    </nav>
-    YRKE
-    <div
-      class="css-owzlzk"
-    >
-      <h3
-        class="css-1kxsmys"
-        color="black"
+      <p
+        class="css-5fjnxu"
         font-family="default"
         font-size="small"
       >
         YRKE
-      </h3>
-      <h1
-        class="css-btq94"
-        color="black"
-        font-family="default"
-        font-size="large"
-        font-weight="600"
+      </p>
+    </nav>
+    <div
+      class="css-w3q496"
+    >
+      <div
+        class="css-1n8dqvr"
       >
-        Vad vill du jobba med?
-      </h1>
+        <img
+          alt="Resväska"
+          src="suitcase.svg"
+        />
+        <h1
+          class="css-1cksnm8"
+          color="black"
+          font-family="default"
+          font-size="large"
+          font-weight="600"
+        >
+          Vad vill du jobba med?
+        </h1>
+      </div>
       <div
         aria-expanded="false"
         aria-haspopup="listbox"
@@ -85,7 +97,7 @@ exports[`views/ChooseProfession renders empty result 1`] = `
       </div>
     </div>
     <div
-      class="css-52ud0e"
+      class="css-1sadpxs"
     >
       <button
         class="css-1qzvtil"
@@ -95,6 +107,6 @@ exports[`views/ChooseProfession renders empty result 1`] = `
         Fortsätt
       </button>
     </div>
-  </section>
+  </div>
 </div>
 `;

@@ -58,7 +58,7 @@ export const GET_RELATED_SKILLS = gql`
 `
 
 export const ADD_SKILL_CLIENT = gql`
-  mutation addSkillClient($skill: OntologyRelationResponse!) {
+  mutation addSkillClient($skill: SkillInput!) {
     addSkillClient(skill: $skill) @client {
       term
     }
@@ -66,7 +66,7 @@ export const ADD_SKILL_CLIENT = gql`
 `
 
 export const REMOVE_SKILL_CLIENT = gql`
-  mutation removeSkillClient($skill: OntologyRelationResponse!) {
+  mutation removeSkillClient($skill: SkillInput!) {
     removeSkillClient(skill: $skill) @client {
       term
       id
@@ -221,18 +221,18 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
     }
   }, [state.lastSavedSkill])
 
-  const handleFreeTextSkill = (value: string) => {
-    const skill: OntologyRelationResponse = {
+  const handleFreeTextSkill = async (value: string) => {
+    const skill = {
       term: value,
       id: v4(),
       type: OntologyType.Skill,
       score: 1.0,
-      details: {
-        word2Vec: undefined,
-      },
+      __typename: 'OntologyRelationResponse',
     }
 
-    addSkillMutation({
+    const {
+      data: { addSkillClient: addedSkill },
+    } = await addSkillMutation({
       variables: {
         skill,
       },
@@ -240,7 +240,7 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
 
     dispatch({
       type: 'SAVED_SKILLS',
-      payload: [...state.savedSkills, skill],
+      payload: [...state.savedSkills, addedSkill],
     })
   }
 

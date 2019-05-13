@@ -1,5 +1,6 @@
 import { RouteComponentProps } from '@reach/router'
 import Grid from '../../components/Grid'
+import { v4 } from 'uuid'
 import { useMutation, useQuery } from 'react-apollo-hooks'
 import React, { useEffect, useState } from 'react'
 import { useDebounce } from '@iteam/hooks'
@@ -85,8 +86,8 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
     setSuggestedTraits(suggestedTraits.filter(t => t !== trait))
   }
 
-  const onTagClick = (tag: any) => {
-    if (tag.isActive) {
+  const onTagClick = (tag: { id: string; term: string }) => {
+    if (traits.some(t => t === tag.term)) {
       return removeTrait(tag.term)
     }
 
@@ -102,11 +103,9 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
       <Grid alignItems="start" justifyContent="start">
         <H1 textAlign="center">Vilka är dina främsta egenskaper?</H1>
         <TagList
-          handleTagClick={onTagClick}
-          items={[
-            ...traits.map(x => ({ term: x, isActive: true })),
-            ...suggestedTraits.map(x => ({ term: x, isActive: false })),
-          ]}
+          activeItems={traits.map(trait => ({ id: v4(), term: trait }))}
+          items={suggestedTraits.map(trait => ({ id: v4(), term: trait }))}
+          onSelect={onTagClick}
         />
         <AddTrait
           onChange={handleChange}

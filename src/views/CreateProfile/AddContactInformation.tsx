@@ -21,14 +21,6 @@ export const UPDATE_CONTACT_CLIENT = gql`
   }
 `
 
-export const ADD_SKILL_CLIENT = gql`
-  mutation addSkillClient($skill: SkillInput!) {
-    addSkillClient(skill: $skill) @client {
-      term
-    }
-  }
-`
-
 const AddContactInformation: React.FC<RouteComponentProps> = () => {
   const updateContactMutation = useMutation(UPDATE_CONTACT_CLIENT)
   const { data: contactData } = useQuery(GET_CONTACT_CLIENT)

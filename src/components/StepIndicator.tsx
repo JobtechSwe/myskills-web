@@ -30,7 +30,7 @@ const StepIndicator: React.FC<StepIndicatorProps> = ({ step }) => {
   useLayoutEffect(() => set(step), [step])
 
   return (
-    <Flex flex={1} justifyContent="center">
+    <Flex ml={-27} flex={1} justifyContent="center">
       {dots}
     </Flex>
   )

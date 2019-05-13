@@ -22,7 +22,7 @@ exports[`views/ChooseProfession renders empty result 1`] = `
           />
         </div>
         <div
-          class="css-19krx55"
+          class="css-jtlo7o"
         >
           <div
             class="css-njydrf"
@@ -44,7 +44,13 @@ exports[`views/ChooseProfession renders empty result 1`] = `
           />
         </div>
       </div>
-      YRKE
+      <p
+        class="css-gjvzqs"
+        font-family="default"
+        font-size="small"
+      >
+        YRKE
+      </p>
     </nav>
     <div
       class="css-1vzknnt"

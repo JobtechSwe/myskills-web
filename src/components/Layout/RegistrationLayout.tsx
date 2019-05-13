@@ -2,6 +2,7 @@ import React from 'react'
 import StepIndicator from '../StepIndicator'
 import styled from '@emotion/styled'
 import Button from '../Button'
+import { Paragraph } from '../Typography'
 import Grid from '../Grid'
 import Flex from '../Flex'
 import Icon from '../../assets/icons/navigation_arrow.svg'
@@ -65,7 +66,7 @@ const RegistrationLayout: React.FC<
 
           <StepIndicator step={step} />
         </Flex>
-        {headerText}
+        <Paragraph>{headerText}</Paragraph>
       </NavigationContainer>
       {children}
       <Grid alignSelf="end" justifyContent="stretch">

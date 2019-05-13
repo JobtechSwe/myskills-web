@@ -22,7 +22,7 @@ exports[`views/MatchSkills renders loading state 1`] = `
           />
         </div>
         <div
-          class="css-19krx55"
+          class="css-jtlo7o"
         >
           <div
             class="css-njydrf"
@@ -44,7 +44,13 @@ exports[`views/MatchSkills renders loading state 1`] = `
           />
         </div>
       </div>
-      KOMPETENS
+      <p
+        class="css-gjvzqs"
+        font-family="default"
+        font-size="small"
+      >
+        KOMPETENS
+      </p>
     </nav>
     <div
       style="margin-bottom: 2rem;"

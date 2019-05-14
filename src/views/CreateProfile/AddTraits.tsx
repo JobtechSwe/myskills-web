@@ -99,7 +99,7 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
   }, [traits])
 
   return (
-    <RegistrationLayout headerText="PERSON" nextPath="kontakt" step={5}>
+    <RegistrationLayout headerText="PERSON" nextPath="profilbild" step={5}>
       <Grid alignItems="start" justifyContent="start">
         <H1 textAlign="center">Vilka är dina främsta egenskaper?</H1>
         <TagList

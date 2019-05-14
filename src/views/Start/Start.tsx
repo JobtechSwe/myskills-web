@@ -15,7 +15,6 @@ const StartBlock = styled.div`
   )`};
   display: flex;
   justify-content: center;
-  height: 100vh;
   padding: 25px;
 `
 
@@ -106,26 +105,26 @@ const Start: React.FC<RouteComponentProps> = () => {
           Hur fungerar det?
         </H2>
         <div>
-          <H3 color="cloudBurst" fontSize={16} fontWeight="bold">
+          <H3 color="cloudBurst" fontSize={16} mb="small" fontWeight="bold">
             Skapa din profil
           </H3>
-          <Paragraph color="cloudBurst" mb={40} mt={10}>
+          <Paragraph color="cloudBurst" mb="large" mt="small">
             Svara på frågor om dig själv och skapa ditt CV.
           </Paragraph>
         </div>
         <div>
-          <H3 color="cloudBurst" fontSize={16} fontWeight="bold">
+          <H3 color="cloudBurst" fontSize={16} mb="small" fontWeight="bold">
             Lagra ditt CV
           </H3>
-          <Paragraph color="cloudBurst" mt={10}>
+          <Paragraph color="cloudBurst" mb="large">
             Genom Egendata väljer du själv var ditt CV ska sparas.
           </Paragraph>
         </div>
         <div>
-          <H3 color="cloudBurst" fontSize={16} fontWeight="bold">
+          <H3 color="cloudBurst" fontSize={16} mb="small" fontWeight="bold">
             Spara tid
           </H3>
-          <Paragraph color="cloudBurst" mt={10}>
+          <Paragraph color="cloudBurst" mb="large">
             Hämta och dela din information istället för att skapa ett nytt CV
             för varje jobbsökarsajt.
           </Paragraph>

@@ -1,23 +1,50 @@
 import React from 'react'
+import Flex from './Flex'
 import Grid from './Grid'
-import { H1 } from './Typography'
+import { H1, Paragraph } from './Typography'
 
 interface IllustrationHeaderProps {
-  imageFirst: boolean
+  description?: string
   imageAltTag: string
+  imageFirst: boolean
   imageSource: string
   title: string
 }
 const IllustrationHeader: React.FC<IllustrationHeaderProps> = ({
-  imageFirst,
+  description,
   imageAltTag,
-  title,
+  imageFirst = true,
   imageSource,
-}) => (
-  <Grid gridGap="large" justifyContent="center">
-    <img alt={imageAltTag} src={imageSource} />
-    <H1 textAlign="center">{title}</H1>
-  </Grid>
-)
+  title,
+}) =>
+  imageFirst ? (
+    <Grid alignItems="center" gridGap="medium" justifyContent="center">
+      <Flex justifyContent="center">
+        <img alt={imageAltTag} src={imageSource} />
+      </Flex>
+      <H1 mb={0} textAlign="center">
+        {title}
+      </H1>
+      {description && (
+        <Paragraph my={0} textAlign="center">
+          {description}
+        </Paragraph>
+      )}
+    </Grid>
+  ) : (
+    <Grid gridGap="large" alignItems="center" justifyContent="center">
+      <H1 mb={0} textAlign="center">
+        {title}
+      </H1>
+      {description && (
+        <Paragraph my={0} textAlign="center">
+          {description}
+        </Paragraph>
+      )}
+      <Flex justifyContent="center">
+        <img alt={imageAltTag} src={imageSource} />
+      </Flex>
+    </Grid>
+  )
 
 export default IllustrationHeader

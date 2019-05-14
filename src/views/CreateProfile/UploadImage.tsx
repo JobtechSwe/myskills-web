@@ -158,21 +158,21 @@ const UploadImage: React.FC<RouteComponentProps> = () => {
       <Grid alignItems="start">
         <IllustrationHeader
           description="Ladda upp en bild av dig själv för att göra din profil mer personlig."
+          imageAltTag="Profilbild"
+          imageFirst={false}
           imageSource={
             image.src && image.isCropped ? image.base64Image : profileImage
           }
-          imageFirst={false}
-          imageAltTag="Profilbild"
           title="Ladda upp en bild!"
         />
-        <Flex justifyContent="center" alignItems="center">
+        <Flex alignItems="center" justifyContent="center">
           <FileLabel color="redOrange" mb={0} ml={0}>
             + Välj bild
             <FileInput onChange={onSelectFile} type="file" />
           </FileLabel>
         </Flex>
         {image.src && !image.isCropped && (
-          <ModalContainer justifyContent="center" alignItems="center">
+          <ModalContainer alignItems="center" justifyContent="center">
             <Grid bg="white" borderRadius={5} m="medium" p="small" width="100%">
               <ReactCrop
                 crop={image.crop}

@@ -32,7 +32,7 @@ const IllustrationHeader: React.FC<IllustrationHeaderProps> = ({
       )}
     </Grid>
   ) : (
-    <Grid gridGap="large" alignItems="center" justifyContent="center">
+    <Grid alignItems="center" gridGap="large" justifyContent="center">
       <H1 mb={0} textAlign="center">
         {title}
       </H1>

@@ -105,7 +105,7 @@ const Start: React.FC<RouteComponentProps> = () => {
           Hur fungerar det?
         </H2>
         <div>
-          <H3 color="cloudBurst" fontSize={16} mb="small" fontWeight="bold">
+          <H3 color="cloudBurst" fontSize={16} fontWeight="bold" mb="small">
             Skapa din profil
           </H3>
           <Paragraph color="cloudBurst" mb="large" mt="small">
@@ -113,7 +113,7 @@ const Start: React.FC<RouteComponentProps> = () => {
           </Paragraph>
         </div>
         <div>
-          <H3 color="cloudBurst" fontSize={16} mb="small" fontWeight="bold">
+          <H3 color="cloudBurst" fontSize={16} fontWeight="bold" mb="small">
             Lagra ditt CV
           </H3>
           <Paragraph color="cloudBurst" mb="large">
@@ -121,7 +121,7 @@ const Start: React.FC<RouteComponentProps> = () => {
           </Paragraph>
         </div>
         <div>
-          <H3 color="cloudBurst" fontSize={16} mb="small" fontWeight="bold">
+          <H3 color="cloudBurst" fontSize={16} fontWeight="bold" mb="small">
             Spara tid
           </H3>
           <Paragraph color="cloudBurst" mb="large">

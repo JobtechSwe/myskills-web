@@ -7,6 +7,11 @@ const Register = React.lazy(() => import(`./views/Register/Register`))
 const Login = React.lazy(() => import(`./views/Login/Login`))
 const Start = React.lazy(() => import(`./views/Start/Start`))
 const Profile = React.lazy(() => import('./views/Profile/Profile'))
+
+const Congratulations = React.lazy(() =>
+  import('./views/CreateProfile/Congratulations')
+)
+
 const CreateProfile = React.lazy(() =>
   import('./views/CreateProfile/CreateProfile')
 )
@@ -27,6 +32,8 @@ const PreviousOccupationExperience = React.lazy(() =>
   import('./views/CreateProfile/PreviousOccupationExperience')
 )
 
+const SaveCV = React.lazy(() => import('./views/CreateProfile/SaveCV'))
+
 const WorkExperiences = React.lazy(() =>
   import('./views/CreateProfile/WorkExperiences')
 )
@@ -46,12 +53,14 @@ function App() {
           <CreateProfile path="/skapa-cv">
             <AddEducation path="/utbildning" />
             <ChooseProfession path="/" />
+            <Congratulations path="/congratulations" />
             <MatchCompetences path="/kompetenser" />
             <WhoAmI path="/beskriv-dig" />
             <AddTraits path="/egenskaper" />
             <PreviousOccupationExperience path="/erfarenheter" />
             <WorkExperiences path="/erfarenheter/tidigare-erfarenheter" />
             <AddContactInformation path="/kontakt" />
+            <SaveCV path="/spara-cv" />
           </CreateProfile>
           <RestrictedRoute component={Profile} path="/profile" />
         </Router>

@@ -1,78 +1,78 @@
-/* eslint-disable */
-import * as React from 'react'
-import Register, { GET_CONSENT_ID } from '../Register'
+// /* eslint-disable */
+// import * as React from 'react'
+// import Register, { GET_CONSENT_ID } from '../Register'
 
-import { render } from '../../../utils/test-utils'
-import { fireEvent, wait, waitForElement } from 'react-testing-library'
+// import { render } from '../../../utils/test-utils'
+// import { fireEvent, wait, waitForElement } from 'react-testing-library'
 
-const consent = {
-  id: 'db993c65-0673-454e-b951-bcb8d274f184',
-  expires: '1552561115',
-  url: '123',
-  __typename: 'Consent',
-}
+// const consent = {
+//   id: 'db993c65-0673-454e-b951-bcb8d274f184',
+//   expires: '1552561115',
+//   url: '123',
+//   __typename: 'Consent',
+// }
 
-const getConsentMock = [
-  {
-    request: {
-      query: GET_CONSENT_ID,
-    },
-    result: {
-      data: {
-        consent,
-      },
-    },
-  },
-]
+// const getConsentMock = [
+//   {
+//     request: {
+//       query: GET_CONSENT_ID,
+//     },
+//     result: {
+//       data: {
+//         consent,
+//       },
+//     },
+//   },
+// ]
 
-jest.mock('../Consent', () => () => (
-  <p>mydata://register/db993c65-0673-454e-b951-bcb8d274f184</p>
-))
+// jest.mock('../Consent', () => () => (
+//   <p>mydata://register/db993c65-0673-454e-b951-bcb8d274f184</p>
+// ))
 
-describe('views/Register', () => {
-  it('renders without errors', async () => {
-    const { container } = render(<Register />, [])
+// describe('views/Register', () => {
+//   it('renders without errors', async () => {
+//     const { container } = render(<Register />, [])
 
-    await wait()
+//     await wait()
 
-    expect(container).toMatchSnapshot()
-  })
+//     expect(container).toMatchSnapshot()
+//   })
 
-  it('should render loading state initially', async () => {
-    const { getByText } = render(<Register />, getConsentMock)
+//   it('should render loading state initially', async () => {
+//     const { getByText } = render(<Register />, getConsentMock)
 
-    fireEvent.click(getByText(/register/i))
+//     fireEvent.click(getByText(/register/i))
 
-    expect(getByText(/loading.../i)).toBeInTheDocument()
-  })
+//     expect(getByText(/loading.../i)).toBeInTheDocument()
+//   })
 
-  it.skip('should render errors', async () => {
-    const errorMock = [
-      {
-        request: {
-          query: GET_CONSENT_ID,
-        },
-        result: {
-          error: new Error('Error while trying to request consentId'),
-        },
-      },
-    ]
-    const { getByText } = render(<Register />, errorMock)
+//   it.skip('should render errors', async () => {
+//     const errorMock = [
+//       {
+//         request: {
+//           query: GET_CONSENT_ID,
+//         },
+//         result: {
+//           error: new Error('Error while trying to request consentId'),
+//         },
+//       },
+//     ]
+//     const { getByText } = render(<Register />, errorMock)
 
-    fireEvent.click(getByText(/login/i))
+//     fireEvent.click(getByText(/login/i))
 
-    await wait()
+//     await wait()
 
-    expect(getByText(/that’s an error./i)).toBeInTheDocument()
-  })
+//     expect(getByText(/that’s an error./i)).toBeInTheDocument()
+//   })
 
-  it('should render consentId after Register is clicked', async () => {
-    const { getByText } = render(<Register />, getConsentMock)
+//   it('should render consentId after Register is clicked', async () => {
+//     const { getByText } = render(<Register />, getConsentMock)
 
-    fireEvent.click(getByText(/register/i))
+//     fireEvent.click(getByText(/register/i))
 
-    await waitForElement(() => getByText(`mydata://register/${consent.id}`))
+//     await waitForElement(() => getByText(`mydata://register/${consent.id}`))
 
-    expect(getByText(`mydata://register/${consent.id}`)).toBeInTheDocument()
-  })
-})
+//     expect(getByText(`mydata://register/${consent.id}`)).toBeInTheDocument()
+//   })
+// })

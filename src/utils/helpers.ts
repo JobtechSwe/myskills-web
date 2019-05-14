@@ -1,10 +1,6 @@
 import Cookies from 'js-cookie'
 import { LocalStateProps, Contact } from '../graphql/client'
-import {
-  EducationInput,
-  Occupation,
-  OntologyRelationResponse,
-} from '../generated/myskills'
+import { EducationInput, Occupation, SkillInput } from '../generated/myskills'
 
 export const getCookie = (name: string) => Cookies.get(name)
 
@@ -38,7 +34,7 @@ interface OccupationStorage extends StorageEntryProps {
 
 interface Skills extends StorageEntryProps {
   type: 'skills'
-  data: OntologyRelationResponse[]
+  data: SkillInput[]
 }
 interface Traits extends StorageEntryProps {
   type: 'traits'

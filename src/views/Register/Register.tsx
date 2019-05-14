@@ -1,23 +1,37 @@
 import React from 'react'
-import gql from 'graphql-tag'
-import { Mutation } from 'react-apollo'
+// import gql from 'graphql-tag'
 import { RouteComponentProps } from '@reach/router'
-import Consent from './Consent'
-import Button from '../../components/Button'
+// import Consent from './Consent'
 import Flex from '../../components/Flex'
-import { Paragraph } from '../../components/Typography'
+// import { useMutation } from 'react-apollo-hooks'
+// import { setCookie } from '../../utils/helpers'
+// import { navigate } from '@reach/router'
 
-export const GET_CONSENT_ID = gql`
-  mutation consent {
-    consent {
-      id
-      expires
-      url
-    }
-  }
-`
+// export const GET_CONSENT_ID = gql`
+//   mutation consent {
+//     consent {
+//       id
+//       expires
+//       url
+//     }
+//   }
+// `
 
 const Register: React.FC<RouteComponentProps> = props => {
+  // const registerMutation = useMutation(GET_CONSENT_ID)
+  // const [consent, setConsent] = useState(null)
+
+  // useEffect(() => {
+  //   registerMutation().then(({ data: { consent } }) => {
+  //     setConsent(consent)
+  //   })
+  // }, [])
+
+  // const onConsentApproved = (data: any) => {
+  //   setCookie('token', data.consentApproved.accessToken)
+  //   navigate('/profile')
+  // }
+
   return (
     <Flex
       alignItems="center"
@@ -25,33 +39,16 @@ const Register: React.FC<RouteComponentProps> = props => {
       justifyContent="center"
       m={32}
     >
-      {/* TODO(@all):
-       *  Replace this with useMutation when support has been added:
-       *  https://github.com/trojanowski/react-apollo-hooks/pull/93
-       */}
-      <Mutation mutation={GET_CONSENT_ID}>
-        {(consent, { data, error, loading }) => {
-          if (loading) {
-            return <Paragraph>Loading...</Paragraph>
-          }
-
-          if (error) {
-            return <Paragraph>That’s an error.</Paragraph>
-          }
-
-          if (data) {
-            return (
-              <Consent consentId={data.consent.id} url={data.consent.url} />
-            )
-          }
-
-          return (
-            <Button onClick={(_e: any) => consent()} variant="primary">
-              Register
-            </Button>
-          )
-        }}
-      </Mutation>
+      {/* <>
+        Registrera consent
+        {consent && (
+          <Consent
+            onConsentApproved={onConsentApproved}
+            consentId={consent.id}
+            url={consent.url}
+          />
+        )}
+      </> */}
     </Flex>
   )
 }

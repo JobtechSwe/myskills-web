@@ -18,18 +18,18 @@ interface TimelineProps {
 const Wrapper = styled.ul<{ enableTimelineBar: boolean }>`
   position: relative;
   width: 100%;
+
   ${({ enableTimelineBar, theme }) =>
     enableTimelineBar &&
     `
-    &:after {
-      width: 5px;
+    > li:not(:last-of-type)::after {
       background: ${theme.colors.alabaster};
-      height: calc(100% - 20px);
-      content: '';
-      display: block;
+      content: ' ';
+      height: 100%;
+      left: 5px;
       position: absolute;
       top: 20px;
-      left: 5px;
+      width: 5px;
     }
   `}
 `

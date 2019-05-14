@@ -32,7 +32,7 @@ const Timeline: React.FC<RouteComponentProps> = ({
 }) => {
   return (
     <ProfileLayout currentPath={location.pathname}>
-      <TimelineComponent entries={mockData} />
+      <TimelineComponent enableTimelineBar={true} entries={mockData} />
     </ProfileLayout>
   )
 }

@@ -81,10 +81,10 @@ exports[`components/ProfileLayout renders 1`] = `
         </p>
       </div>
       <ul
-        class="css-k5snl0"
+        class="css-1e0t8yk"
       >
         <li
-          class="css-1fyi09c"
+          class="css-vs8u3f"
         >
           <div
             class="css-9p05dg"
@@ -130,7 +130,7 @@ exports[`components/ProfileLayout renders 1`] = `
           </div>
         </li>
         <li
-          class="css-1fyi09c"
+          class="css-vs8u3f"
         >
           <div
             class="css-9p05dg"
@@ -182,7 +182,7 @@ exports[`components/ProfileLayout renders 1`] = `
           </div>
         </li>
         <li
-          class="css-1fyi09c"
+          class="css-vs8u3f"
         >
           <div
             class="css-9p05dg"
@@ -456,10 +456,10 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
         </p>
       </div>
       <ul
-        class="css-k5snl0"
+        class="css-1e0t8yk"
       >
         <li
-          class="css-1fyi09c"
+          class="css-vs8u3f"
         >
           <div
             class="css-9p05dg"
@@ -505,7 +505,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
           </div>
         </li>
         <li
-          class="css-1fyi09c"
+          class="css-vs8u3f"
         >
           <div
             class="css-9p05dg"
@@ -557,7 +557,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
           </div>
         </li>
         <li
-          class="css-1fyi09c"
+          class="css-vs8u3f"
         >
           <div
             class="css-9p05dg"

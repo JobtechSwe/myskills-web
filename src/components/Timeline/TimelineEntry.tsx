@@ -10,6 +10,7 @@ const Wrapper = styled.li`
   display: grid;
   grid-template-columns: 20px 1fr;
   font-family: ${({ theme }) => theme.fonts.default};
+  position: relative;
 `
 
 const DotWrapper = styled.div`

@@ -12,11 +12,9 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "strictNullChecks": false,
-    "noImplicitAny": false,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve"
   },
-  "typeRoots": ["./node_modules/@types", "./typings"],
   "include": ["src"]
 }

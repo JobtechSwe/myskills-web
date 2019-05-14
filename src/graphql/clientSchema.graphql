@@ -9,14 +9,20 @@ input OntologyInput {
   type: OntologyType
 }
 
-input ClientOccupationInput {
-  id: String
-  name: String
-  type: OntologyType
-}
-
 input ClientSkillInput {
   name: String
+}
+
+input ContactInput {
+  name: String
+  email: String
+  telephone: String
+}
+
+type Contact {
+  name: String
+  email: String
+  telephone: String
 }
 
 input ImageInput {
@@ -25,16 +31,22 @@ input ImageInput {
 
 extend type Query {
   isLoggedIn: Boolean!
-  occupations: [OntologyConceptResponse!]!
   educations: [Education!]!
+  contact: Contact!
+  traits: [String!]!
+  whoAmI: String!
 }
 
 extend type Mutation {
-  addOccupationClient(
-    occupation: ClientOccupationInput!
-  ): OntologyConceptResponse
+  createOccupationClient(occupation: OccupationInput!): Occupation
 
   addSkillClient(skill: SkillInput!): Skill
+  removeSkillClient(skill: SkillInput!): Skill
   addEducationClient(education: EducationInput!): Education
   uploadImage(imageString: ImageInput!): ImageString
+  addTrait(trait: String!): String!
+  addWhoAmI(whoAmI: String!): String!
+  updateContactInformation(data: ContactInput!): Contact!
+  removeEducationClient(education: EducationInput!): Education
+  removeTrait(trait: String!): String!
 }

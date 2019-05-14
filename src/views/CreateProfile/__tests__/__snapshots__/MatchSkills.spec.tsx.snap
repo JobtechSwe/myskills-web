@@ -3,50 +3,128 @@
 exports[`views/MatchSkills renders loading state 1`] = `
 <div>
   <div
-    style="margin-bottom: 2rem;"
+    class="css-1ejilqi"
+    height="100vh"
   >
-    Valda kompetenser:
-  </div>
-  
-  <div
-    class="sk-fading-circle css-rcik79"
-  >
+    <nav
+      class="css-208zbf"
+    >
+      <div
+        class="css-199nci9"
+      >
+        <div
+          class="css-17a5fux"
+          role="button"
+          tabindex="0"
+        >
+          <img
+            alt="Go back"
+            src="navigation_arrow.svg"
+          />
+        </div>
+        <div
+          class="css-1if0o7t"
+        >
+          <div
+            class="css-njydrf"
+          />
+          <div
+            class="css-njydrf"
+          />
+          <div
+            class="css-njydrf"
+          />
+          <div
+            class="css-1fl5aa0"
+          />
+          <div
+            class="css-1fl5aa0"
+          />
+          <div
+            class="css-1fl5aa0"
+          />
+        </div>
+      </div>
+      <p
+        class="css-5fjnxu"
+        font-family="default"
+        font-size="small"
+      >
+        KOMPETENS
+      </p>
+    </nav>
     <div
-      class="sk-circle1 sk-circle"
-    />
+      class="css-1mxfqvu"
+    >
+      
+      <h1
+        class="css-btq94"
+        color="black"
+        font-family="default"
+        font-size="large"
+        font-weight="600"
+      >
+        Vilka är dina kompetenser?
+      </h1>
+      <span
+        class="css-bhiavv"
+        cursor="pointer"
+        opacity="1"
+      >
+        + Lägg till en kompetens
+      </span>
+      <div
+        class="sk-fading-circle css-rcik79"
+      >
+        <div
+          class="sk-circle1 sk-circle"
+        />
+        <div
+          class="sk-circle2 sk-circle"
+        />
+        <div
+          class="sk-circle3 sk-circle"
+        />
+        <div
+          class="sk-circle4 sk-circle"
+        />
+        <div
+          class="sk-circle5 sk-circle"
+        />
+        <div
+          class="sk-circle6 sk-circle"
+        />
+        <div
+          class="sk-circle7 sk-circle"
+        />
+        <div
+          class="sk-circle8 sk-circle"
+        />
+        <div
+          class="sk-circle9 sk-circle"
+        />
+        <div
+          class="sk-circle10 sk-circle"
+        />
+        <div
+          class="sk-circle11 sk-circle"
+        />
+        <div
+          class="sk-circle12 sk-circle"
+        />
+      </div>
+    </div>
     <div
-      class="sk-circle2 sk-circle"
-    />
-    <div
-      class="sk-circle3 sk-circle"
-    />
-    <div
-      class="sk-circle4 sk-circle"
-    />
-    <div
-      class="sk-circle5 sk-circle"
-    />
-    <div
-      class="sk-circle6 sk-circle"
-    />
-    <div
-      class="sk-circle7 sk-circle"
-    />
-    <div
-      class="sk-circle8 sk-circle"
-    />
-    <div
-      class="sk-circle9 sk-circle"
-    />
-    <div
-      class="sk-circle10 sk-circle"
-    />
-    <div
-      class="sk-circle11 sk-circle"
-    />
-    <div
-      class="sk-circle12 sk-circle"
-    />
+      class="css-1sadpxs"
+    >
+      <button
+        class="css-1qzvtil"
+        font-family="default"
+        font-size="medium"
+      >
+        Fortsätt
+      </button>
+    </div>
   </div>
 </div>
 `;

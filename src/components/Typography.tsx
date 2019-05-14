@@ -11,61 +11,95 @@ import {
   FontWeightProps,
   space,
   SpaceProps,
+  textAlign,
+  TextAlignProps,
 } from 'styled-system'
 
 type TypographyProps = ColorProps &
   FontFamilyProps &
   FontSizeProps &
+  FontWeightProps &
   ColorProps &
+  TextAlignProps &
   SpaceProps
 
 type HeadingProps = React.HTMLProps<HTMLHeadingElement> & TypographyProps
 type ParagraphProps = React.HTMLProps<HTMLParagraphElement> & TypographyProps
+type LabelProps = React.HTMLProps<HTMLLabelElement> & TypographyProps
 
-export const H1 = styled.h1<HeadingProps & FontWeightProps>`
+export const H1 = styled.h1<HeadingProps>`
   ${color}
   ${fontFamily}
   ${fontSize}
   ${fontWeight}
+  ${textAlign}
   ${space}
+  ${textAlign}
 `
 
 export const H2 = styled.h2<HeadingProps>`
   ${color}
   ${fontFamily}
   ${fontSize}
+  ${fontWeight}
+  ${textAlign}
   ${space}
+  ${textAlign}
 `
 
 export const H3 = styled.h3<HeadingProps>`
   ${color}
   ${fontFamily}
   ${fontSize}
+  ${fontWeight}
+  ${textAlign}
   ${space}
+  ${textAlign}
 `
 
 export const Paragraph = styled.p<ParagraphProps>`
   ${color}
   ${fontFamily}
   ${fontSize}
+  ${fontWeight}
+  ${textAlign}
+  ${space}
+  ${textAlign}
+`
+
+export const Label = styled.label<LabelProps & FontWeightProps>`
+  ${color}
+  ${fontFamily}
+  ${fontSize}
+  ${fontWeight}
+  ${space}
+  ${textAlign}
+`
+export const Bold = styled(Paragraph)`
+  ${color}
+  ${fontFamily}
+  ${fontSize}
+  ${fontWeight}
+  ${textAlign}
   ${space}
 `
 
 const common: HeadingProps = {
-  color: 'persianBlue',
+  color: 'black',
   fontFamily: 'default',
   mt: 'none',
+  mb: 'large',
 }
 
 H1.defaultProps = {
   ...common,
-  fontSize: ['small', 'medium', 'large'],
+  fontSize: ['large'],
   fontWeight: 600,
 }
 
 H2.defaultProps = {
   ...common,
-  fontSize: ['small', 'medium'],
+  fontSize: ['medium'],
 }
 
 H3.defaultProps = {
@@ -78,4 +112,20 @@ Paragraph.defaultProps = {
   fontSize: 'small',
   mt: 'small',
   mb: 'medium',
+}
+
+Bold.defaultProps = {
+  fontFamily: 'default',
+  fontSize: 'medium',
+  fontWeight: 700,
+  mt: 0,
+  mb: 0,
+}
+
+Label.defaultProps = {
+  fontFamily: 'default',
+  fontWeight: 700,
+  fontSize: 'small',
+  mb: 6,
+  ml: 6,
 }

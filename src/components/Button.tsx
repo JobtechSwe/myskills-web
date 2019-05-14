@@ -16,10 +16,12 @@ import {
   PositionProps,
   space,
   SpaceProps,
+  width,
+  WidthProps,
 } from 'styled-system'
 
 type VariantProps = {
-  variant?: 'primary' | 'secondary'
+  variant?: 'primary' | 'secondary' | 'secondaryBlack' | 'inActive' | 'active'
 }
 
 type ButtonProps = React.HTMLProps<HTMLButtonElement> &
@@ -31,7 +33,8 @@ type ButtonProps = React.HTMLProps<HTMLButtonElement> &
   PositionProps &
   SpaceProps &
   ColorProps &
-  VariantProps
+  VariantProps &
+  WidthProps
 
 const Button = styled.button<ButtonProps>`
   cursor: pointer;
@@ -46,6 +49,7 @@ const Button = styled.button<ButtonProps>`
   ${fontSize}
   ${position}
   ${space}
+  ${width}
 `
 
 Button.defaultProps = {
@@ -53,7 +57,7 @@ Button.defaultProps = {
   borderRadius: '5px',
   fontFamily: 'default',
   fontSize: ['medium'],
-  p: '12px 36px',
+  p: '16px 42px',
   variant: 'primary',
 }
 

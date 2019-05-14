@@ -5,16 +5,17 @@ import Grid from '../../components/Grid'
 import React, { useState, useRef, useEffect } from 'react'
 import ReactDOMServer from 'react-dom/server'
 import { useDebounce } from '@iteam/hooks'
+import { theme } from '../../theme'
 import styled from '@emotion/styled'
-import Header from '../../components/Header'
-import Button from '../../components/Button'
-import { navigate } from '@reach/router'
+import { H1, Bold, Paragraph } from '../../components/Typography'
 import {
   QueryOntologyTextParseArgs,
   Query,
   OntologyTextParseResponse,
 } from '../../generated/myskills'
 import ContentEditable from 'react-contenteditable'
+import { GET_WHO_AM_I_CLIENT } from '../../graphql/resolvers/mutations/addWhoAmI'
+import RegistrationLayout from '../../components/Layout/RegistrationLayout'
 
 export const GET_TRAITS = gql`
   query ontologyTextParse($text: String!) {
@@ -27,20 +28,9 @@ export const GET_TRAITS = gql`
   }
 `
 
-const TextAreaDescription = styled.span`
-  font-weight: bold;
-`
-
-const TextAreaContainer = styled.div`
+const TextAreaContainer = styled(Grid)`
   position: relative;
   background: white;
-  display: flex;
-`
-
-const CharsLeft = styled.p`
-  position: absolute;
-  bottom: 0;
-  right: 0;
 `
 
 const Footer = styled.div`
@@ -49,30 +39,14 @@ const Footer = styled.div`
   justify-content: space-between;
 `
 
-const NextButton = styled(Button)`
-  background: black;
-  color: white;
-`
-
-const BackButton = styled(Button)`
-  background: white;
-  color: black;
-`
-
 const TagSpan = styled.span`
   font-weight: 700;
   color: red;
 `
 
 export const ADD_WHO_AM_I = gql`
-  mutation addWhoAmI($whoAmI: string!) {
+  mutation addWhoAmI($whoAmI: String!) {
     addWhoAmI(whoAmI: $whoAmI) @client
-  }
-`
-
-export const GET_WHO_AM_I = gql`
-  query getWhoAmI {
-    whoAmI @client
   }
 `
 
@@ -90,7 +64,7 @@ const renderToStatic = (
 
 const WhoAmI: React.FC<RouteComponentProps> = () => {
   const textArea = useRef<HTMLInputElement>(null)
-  const { data: whoAmIResult } = useQuery(GET_WHO_AM_I)
+  const { data: whoAmIResult } = useQuery(GET_WHO_AM_I_CLIENT)
 
   const [description, setDescription] = useState(whoAmIResult.whoAmI)
 
@@ -111,17 +85,20 @@ const WhoAmI: React.FC<RouteComponentProps> = () => {
     skip: !useDebounce(description, 500),
   })
 
-  const Update = () => {
+  const handleContentUpdate = () => {
     if (!textArea.current) return
+
     const value = textArea.current.innerText
 
     setDescription(value)
 
-    addWhoAmI({
-      variables: {
-        whoAmI: value,
-      },
-    })
+    if (charsLeft >= 0) {
+      addWhoAmI({
+        variables: {
+          whoAmI: value,
+        },
+      })
+    }
   }
 
   useEffect(() => {
@@ -139,36 +116,48 @@ const WhoAmI: React.FC<RouteComponentProps> = () => {
   }, [data])
 
   return (
-    <Grid>
-      <Header title="Vem är Du?" />
-      <TextAreaDescription>Beskriv dig själv kortfattat</TextAreaDescription>
-      <TextAreaContainer>
-        <ContentEditable
-          html={staticHtml}
-          innerRef={textArea}
-          onChange={Update}
-          style={{
-            width: '100%',
-            height: '280px',
-          }}
-        />
-        <CharsLeft>{charsLeft} tecken kvar</CharsLeft>
-      </TextAreaContainer>
-      <Footer>
-        <BackButton onClick={() => history.back()}>BAKÅT</BackButton>
-        <NextButton
-          onClick={() =>
-            navigate('./egenskaper', {
-              state: {
-                traits,
-              },
-            })
-          }
-        >
-          NÄSTA
-        </NextButton>
-      </Footer>
-    </Grid>
+    <RegistrationLayout
+      childFnArgs={{
+        state: {
+          traits,
+        },
+      }}
+      headerText="PERSON"
+      nextPath="egenskaper"
+      step={5}
+    >
+      <Grid alignContent="start">
+        <H1 textAlign="center">Vem är du?</H1>
+        <Paragraph textAlign="center">
+          Beskriv dig själv och hur du är som person! Baserat på din text kommer
+          du att få förslag på egenskaper som speglar din personlighet.
+        </Paragraph>
+        <TextAreaContainer gridGap={6}>
+          <ContentEditable
+            html={staticHtml}
+            innerRef={textArea}
+            onChange={handleContentUpdate}
+            style={{
+              border: `1px solid ${theme.colors.alabaster}`,
+              borderRadius: '4px',
+              height: '30vh',
+              padding: '12px',
+              width: '100%',
+            }}
+          />
+          <Paragraph textAlign="right">
+            <Bold
+              as="span"
+              color={charsLeft > 0 ? 'black' : 'orangeRed'}
+              fontSize="small"
+            >
+              {charsLeft}{' '}
+            </Bold>
+            (280)
+          </Paragraph>
+        </TextAreaContainer>
+      </Grid>
+    </RegistrationLayout>
   )
 }
 

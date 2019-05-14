@@ -10,8 +10,8 @@ import { getCookie, removeCookie, redirect } from '../utils/helpers'
 import {
   Education,
   Language,
-  OntologyRelationResponse,
-  OntologyConceptResponse,
+  Occupation,
+  Profile,
   Skill,
 } from '../generated/myskills'
 import resolvers from './resolvers'
@@ -109,24 +109,38 @@ const terminatingLink = split(
   authLink.concat(httpLink)
 )
 
+export type Contact = {
+  name: string
+  email: string
+  telephone: string
+  __typename: string
+}
+
 export type LocalStateProps = {
-  occupations: OntologyConceptResponse[]
+  occupation: Occupation
   language: Language[]
   skills: Skill[]
   educations: Education[]
   traits: string[]
   whoAmI: string
   image: string
+  contact: Contact
 }
 
 const initialState: LocalStateProps = {
-  occupations: [],
+  occupation: null,
   language: [],
   educations: [],
   skills: [],
   traits: [],
   whoAmI: '',
   image: '',
+  contact: {
+    name: '',
+    email: '',
+    telephone: '',
+    __typename: 'ContactInformation',
+  },
 }
 
 const apolloClient = new ApolloClient({

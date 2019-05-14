@@ -1,4 +1,4 @@
-Given('I open the add experience page', () => {
+Given('I open the add occupation page', () => {
   cy.visit('/skapa-cv/')
 })
 
@@ -17,9 +17,7 @@ When('I search for {string}', string => {
 })
 
 Then('I should see a list with a list item that contains {string}', string => {
-  cy.get('li').within($listItem => {
-    cy.get('button').should('contain', string)
-  })
+  cy.get('li').should('contain', string)
 })
 
 When('I click the item containing the text {string}', string => {
@@ -32,11 +30,9 @@ When('I reload the page', () => {
   cy.reload(true)
 })
 
-Then('The added experience should still be present', () => {
-  cy.getLocalStorage('experiences').then(data => {
-    expect(JSON.parse(data)[0].term).to.equal(
-      'Banarbetare, utan behörighetsbevis'
-    )
+Then('The added occupation should still be present', () => {
+  cy.getLocalStorage('occupation').then(data => {
+    expect(JSON.parse(data).term).to.equal('Banarbetare')
   })
 })
 

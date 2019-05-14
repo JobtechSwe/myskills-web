@@ -18,7 +18,7 @@ const GET_PROFESSION_AND_CONTACT = gql`
     contact @client {
       name
     }
-    occupations @client {
+    occupation @client {
       term
     }
   }
@@ -70,8 +70,8 @@ const ProfileLayout: React.FC<ProfileLayoutProps> = ({
         </SavePdf>
         <Flex alignItems="flex-end" justifyContent="space-between">
           <Paragraph fontSize="medium" mb="0" ml="auto" mt="medium">
-            {data.occupations[0]
-              ? data.occupations[0].term.toUpperCase()
+            {data.occupation
+              ? data.occupation.term.toUpperCase()
               : 'Inget yrke angivet'}
           </Paragraph>
 

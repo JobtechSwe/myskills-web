@@ -2,87 +2,111 @@
 
 exports[`views/ChooseProfession renders empty result 1`] = `
 <div>
-  <section
-    class="layout css-pwfrln"
+  <div
+    class="css-1ejilqi"
+    height="100vh"
   >
     <nav
-      class="css-zn5efa"
+      class="css-208zbf"
     >
       <div
-        role="button"
-        tabindex="0"
-      >
-        <img
-          alt="Go back"
-          src="navigation_arrow.svg"
-        />
-      </div>
-      <div
-        class="css-1q2lbmy"
+        class="css-nshvkv"
       >
         <div
-          class="css-1lvqd3g"
-        />
+          class="css-cn959j"
+          role="button"
+          tabindex="0"
+        >
+          <img
+            alt="Go back"
+            src="navigation_arrow.svg"
+          />
+        </div>
         <div
-          class="css-181sygq"
-        />
-        <div
-          class="css-181sygq"
-        />
-        <div
-          class="css-181sygq"
-        />
-        <div
-          class="css-181sygq"
-        />
-        <div
-          class="css-181sygq"
-        />
+          class="css-1a620cz"
+        >
+          <div
+            class="css-njydrf"
+          />
+          <div
+            class="css-1fl5aa0"
+          />
+          <div
+            class="css-1fl5aa0"
+          />
+          <div
+            class="css-1fl5aa0"
+          />
+          <div
+            class="css-1fl5aa0"
+          />
+          <div
+            class="css-1fl5aa0"
+          />
+        </div>
       </div>
-    </nav>
-    YRKE
-    <div
-      class="css-1pgj5ws"
-    >
-      <h3
-        class="css-bqx4sj"
-        color="persianBlue"
+      <p
+        class="css-5fjnxu"
         font-family="default"
         font-size="small"
       >
         YRKE
-      </h3>
-      <h1
-        class="css-15memxd"
-        color="persianBlue"
-        font-family="default"
-        font-size="small,medium,large"
-        font-weight="600"
+      </p>
+    </nav>
+    <div
+      class="css-w3q496"
+    >
+      <div
+        class="css-1n8dqvr"
       >
-        Vad vill du jobba med?
-      </h1>
-      <input
-        class="css-1fqt7xj"
-        font-family="default"
-        font-size="medium"
-        name="search"
-        placeholder="Yrkesroll eller yrkesområde"
-      />
+        <img
+          alt="Resväska"
+          src="suitcase.svg"
+        />
+        <h1
+          class="css-1cksnm8"
+          color="black"
+          font-family="default"
+          font-size="large"
+          font-weight="600"
+        >
+          Vad vill du jobba med?
+        </h1>
+      </div>
+      <div
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        aria-labelledby="downshift-0-label"
+        role="combobox"
+      >
+        <input
+          aria-autocomplete="list"
+          aria-labelledby="downshift-0-label"
+          autocomplete="off"
+          class="css-o1oxsk"
+          font-family="default"
+          font-size="medium"
+          id="downshift-0-input"
+          name="search"
+          placeholder="Yrkesroll eller yrkesområde"
+          value=""
+        />
+      </div>
       <div>
-        Dina valda yrken:
+        Ditt valda yrke:
       </div>
     </div>
     <div
-      class="css-n24wnv"
+      class="css-1sadpxs"
     >
       <button
-        class="css-lnfplo"
+        class="css-1qzvtil"
         font-family="default"
         font-size="medium"
       >
         Fortsätt
       </button>
     </div>
-  </section>
+  </div>
 </div>
 `;

@@ -22,6 +22,15 @@ const AddEducation = React.lazy(() =>
 const AddContactInformation = React.lazy(() =>
   import(`./views/CreateProfile/AddContactInformation`)
 )
+
+const PreviousOccupationExperience = React.lazy(() =>
+  import('./views/CreateProfile/PreviousOccupationExperience')
+)
+
+const WorkExperiences = React.lazy(() =>
+  import('./views/CreateProfile/WorkExperiences')
+)
+
 const WhoAmI = React.lazy(() => import(`./views/CreateProfile/WhoAmI`))
 const AddTraits = React.lazy(() => import(`./views/CreateProfile/AddTraits`))
 const Home = React.lazy(() => import(`./views/Profile/Home`))
@@ -41,6 +50,8 @@ function App() {
             <MatchCompetences path="/kompetenser" />
             <WhoAmI path="/beskriv-dig" />
             <AddTraits path="/egenskaper" />
+            <PreviousOccupationExperience path="/erfarenheter" />
+            <WorkExperiences path="/erfarenheter/tidigare-erfarenheter" />
             <AddContactInformation path="/kontakt" />
           </CreateProfile>
 

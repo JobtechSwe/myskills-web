@@ -22,7 +22,7 @@ const ProfileButton: React.FC<ProfileButtonProps> = ({
       <Button
         borderRadius="5px 5px 0 0"
         p="14px 14px 16px 14px"
-        variant={isActive ? 'primary' : 'inactive'}
+        variant={isActive ? 'primary' : 'inActive'}
         width="inherit"
       >
         <Flex alignItems="center" justifyContent="center">

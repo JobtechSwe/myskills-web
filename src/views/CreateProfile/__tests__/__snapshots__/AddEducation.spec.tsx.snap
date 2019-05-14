@@ -2,52 +2,64 @@
 
 exports[`views/AddEducation renders empty result 1`] = `
 <div>
-  <section
-    class="layout css-pwfrln"
+  <div
+    class="css-1ejilqi"
+    height="100vh"
   >
     <nav
-      class="css-zn5efa"
+      class="css-208zbf"
     >
       <div
-        role="button"
-        tabindex="0"
-      >
-        <img
-          alt="Go back"
-          src="navigation_arrow.svg"
-        />
-      </div>
-      <div
-        class="css-1q2lbmy"
+        class="css-nshvkv"
       >
         <div
-          class="css-1lvqd3g"
-        />
+          class="css-cn959j"
+          role="button"
+          tabindex="0"
+        >
+          <img
+            alt="Go back"
+            src="navigation_arrow.svg"
+          />
+        </div>
         <div
-          class="css-1lvqd3g"
-        />
-        <div
-          class="css-1lvqd3g"
-        />
-        <div
-          class="css-1lvqd3g"
-        />
-        <div
-          class="css-181sygq"
-        />
-        <div
-          class="css-181sygq"
-        />
+          class="css-1a620cz"
+        >
+          <div
+            class="css-njydrf"
+          />
+          <div
+            class="css-njydrf"
+          />
+          <div
+            class="css-njydrf"
+          />
+          <div
+            class="css-njydrf"
+          />
+          <div
+            class="css-1fl5aa0"
+          />
+          <div
+            class="css-1fl5aa0"
+          />
+        </div>
       </div>
+      <p
+        class="css-5fjnxu"
+        font-family="default"
+        font-size="small"
+      >
+        UTBILDNING
+      </p>
     </nav>
-    UTBILDNING
     <form>
       <div
-        class="css-170kgmb"
+        class="css-lg26gy"
       >
         <div />
         <input
-          class="css-90stuz"
+          class="css-1cfla5g"
           font-family="default"
           font-size="medium"
           name="programme"
@@ -56,7 +68,7 @@ exports[`views/AddEducation renders empty result 1`] = `
           value=""
         />
         <input
-          class="css-90stuz"
+          class="css-1cfla5g"
           font-family="default"
           font-size="medium"
           name="school"
@@ -65,7 +77,7 @@ exports[`views/AddEducation renders empty result 1`] = `
           value=""
         />
         <input
-          class="css-90stuz"
+          class="css-1cfla5g"
           font-family="default"
           font-size="medium"
           name="start"
@@ -74,7 +86,7 @@ exports[`views/AddEducation renders empty result 1`] = `
           value=""
         />
         <input
-          class="css-90stuz"
+          class="css-1cfla5g"
           font-family="default"
           font-size="medium"
           name="end"
@@ -83,7 +95,7 @@ exports[`views/AddEducation renders empty result 1`] = `
           value=""
         />
         <button
-          class="css-lnfplo"
+          class="css-1qzvtil"
           font-family="default"
           font-size="medium"
           type="submit"
@@ -93,16 +105,16 @@ exports[`views/AddEducation renders empty result 1`] = `
       </div>
     </form>
     <div
-      class="css-n24wnv"
+      class="css-1sadpxs"
     >
       <button
-        class="css-lnfplo"
+        class="css-1qzvtil"
         font-family="default"
         font-size="medium"
       >
         Fortsätt
       </button>
     </div>
-  </section>
+  </div>
 </div>
 `;

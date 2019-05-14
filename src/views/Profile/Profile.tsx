@@ -2,18 +2,46 @@ import React from 'react'
 import { RouteComponentProps } from '@reach/router'
 import Flex from '../../components/Flex'
 import PdfLink from './PdfLink'
-import AddedEducations from '../../components/AddedEducations'
-import ChosenOccupations from '../../components/ChosenOccupations'
+import gql from 'graphql-tag'
+import { useQuery } from 'react-apollo-hooks'
 import { Text, StyleSheet } from '@react-pdf/renderer'
 
-const Profile: React.FC<RouteComponentProps> = props => (
-  <Flex alignItems="center" flexDirection="column" justifyContent="center">
-    <CV />
-    <AddedEducations />
-    <ChosenOccupations />
-    <PdfLink CV={CV} />
-  </Flex>
-)
+export const GET_PROFILE = gql`
+  query profile {
+    educations {
+      end
+      id
+      school
+      start
+      programme
+    }
+    experiences {
+      term
+      id
+    }
+    image
+    languages
+    skills {
+      id
+      term
+      years
+    }
+    traits
+  }
+`
+
+const Profile: React.FC<RouteComponentProps> = () => {
+  const { data, error, loading } = useQuery(GET_PROFILE)
+
+  console.log(data, error, loading)
+
+  return (
+    <Flex alignItems="center" flexDirection="column" justifyContent="center">
+      <CV />
+      <PdfLink CV={CV} />
+    </Flex>
+  )
+}
 
 const CV = () => (
   <>

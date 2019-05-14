@@ -42,7 +42,7 @@ exports[`views/ChooseProfession renders empty result 1`] = `
     </nav>
     YRKE
     <div
-      class="css-owzlzk"
+      class="css-1pgj5ws"
     >
       <h3
         class="css-bqx4sj"
@@ -73,7 +73,7 @@ exports[`views/ChooseProfession renders empty result 1`] = `
       </div>
     </div>
     <div
-      class="css-52ud0e"
+      class="css-n24wnv"
     >
       <button
         class="css-lnfplo"

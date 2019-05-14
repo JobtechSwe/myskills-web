@@ -4,7 +4,7 @@ import { Entry } from './index'
 import ellipse from '../../assets/images/elipse.svg'
 import dot from '../../assets/images/dot.svg'
 import pen from '../../assets/images/pen.svg'
-import edit from '../../assets/images/edit.svg'
+import edit from '../../assets/icons/edit.svg'
 
 const Wrapper = styled.li`
   display: grid;

@@ -1,13 +1,28 @@
-import React from 'react'
+import React, { useState, useLayoutEffect } from 'react'
 import Grid from '../Grid'
 import ProfileButton from '../ProfileButton'
 import Flex from '../Flex'
 import styled from '@emotion/styled'
 import { Paragraph } from '../Typography'
+import pdfIcon from '../../assets/icons/save_pdf.svg'
+import editIcon from '../../assets/icons/edit.svg'
+import { useQuery } from 'react-apollo-hooks'
+import gql from 'graphql-tag'
 
 interface ProfileLayoutProps {
   currentPath: string
 }
+
+const GET_PROFESSION_AND_CONTACT = gql`
+  query getProfessionAndContact {
+    contact @client {
+      name
+    }
+    occupations @client {
+      term
+    }
+  }
+`
 
 const NavigationContainer = styled(Flex)`
   left: 0;
@@ -17,20 +32,53 @@ const NavigationContainer = styled(Flex)`
     margin-right: 5px;
   }
 `
+const SavePdf = styled.div`
+  position: absolute;
+  top: ${({ theme }) => theme.space.small}px;
+  left: 0;
+  img {
+    margin-top: 2px;
+  }
+`
+
+const EditProfession = styled.img`
+  margin-left: 8px;
+  margin-bottom: 2px;
+`
 
 const ProfileLayout: React.FC<ProfileLayoutProps> = ({
   children,
   currentPath,
 }) => {
+  const { data } = useQuery(GET_PROFESSION_AND_CONTACT)
+
+  const [currentRoute, setCurrentRoute] = useState('')
+  useLayoutEffect(() => setCurrentRoute(currentPath.replace(/\/$/, '')), [
+    currentPath,
+  ])
+
   return (
     <Grid gridGap="0" gridTemplateRows="auto 1fr auto" p="large">
-      <Flex alignItems="center" flexDirection="column" justifyContent="center">
-        <Flex />
-        <Paragraph fontSize="medium" mb="10px" mt="0">
-          SYSTEMUTVECKLARE
-        </Paragraph>
-        <Paragraph fontSize="large" fontWeight="bold" mb="0" mt="0">
-          Lasse Kongo
+      <Flex
+        alignItems="center"
+        flexDirection="column"
+        justifyContent="center"
+        position="relative"
+      >
+        <SavePdf>
+          <img alt="save_as_pdf" src={pdfIcon} />
+        </SavePdf>
+        <Flex alignItems="flex-end" justifyContent="space-between">
+          <Paragraph fontSize="medium" mb="0" ml="auto" mt="medium">
+            {data.occupations[0]
+              ? data.occupations[0].term.toUpperCase()
+              : 'Inget yrke angivet'}
+          </Paragraph>
+
+          <EditProfession alt="edit" src={editIcon} />
+        </Flex>
+        <Paragraph fontSize="large" fontWeight="bold" mb="large" mt="medium">
+          {data.contact.name || 'Inget namn angivet'}
         </Paragraph>
       </Flex>
       {children}
@@ -41,12 +89,12 @@ const ProfileLayout: React.FC<ProfileLayoutProps> = ({
       >
         <ProfileButton
           buttonText="Min profil"
-          isActive={currentPath === '/profil/'}
+          isActive={currentRoute === '/profil'}
           route="/profil/"
         />
         <ProfileButton
           buttonText="Tidslinje"
-          isActive={currentPath === '/profil/tidslinje/'}
+          isActive={currentRoute === '/profil/tidslinje'}
           route="/profil/tidslinje/"
         />
       </NavigationContainer>

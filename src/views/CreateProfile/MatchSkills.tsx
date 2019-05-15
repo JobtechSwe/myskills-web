@@ -182,7 +182,7 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
   }, [occupation])
 
   return (
-    <RegistrationLayout headerText="KOMPETENS" nextPath="utbildning" step={2}>
+    <RegistrationLayout headerText="KOMPETENS" nextPath="erfarenheter" step={2}>
       <Flex flexDirection="column" mb={32}>
         Valda kompetenser:
         {savedSkills.map((skill: Skill) => (

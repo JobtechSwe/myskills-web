@@ -4,14 +4,13 @@ import Flex from './Flex'
 import Input from './Input'
 import { Label } from './Typography'
 import Button from './Button'
+import DatePicker from './DatePicker'
 
 interface AddAndEditFormProps {
-  handleSubmit: any
+  onSubmit: (payload: any) => void
 }
 
-export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({
-  handleSubmit,
-}) => {
+export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({ onSubmit }) => {
   const initialState = {
     employer: '',
     end: '',
@@ -19,11 +18,8 @@ export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({
     term: '',
   }
 
-  const [experienceStartFocused, setExperienceStartFocus] = React.useState(
-    false
-  )
-  const [experienceEndFocused, setExperienceEndFocus] = React.useState(false)
   const [experience, updateExperience] = useState(initialState)
+
   const handleUpdate = (name: string, value: string) => {
     const updated = {
       ...experience,
@@ -33,8 +29,14 @@ export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({
     updateExperience(updated)
   }
 
+  const handleSubmit = () => {
+    onSubmit(experience)
+
+    updateExperience(initialState)
+  }
+
   return (
-    <form onSubmit={handleSubmit}>
+    <>
       <Grid gridGap={6}>
         <Label>Lägg till erfarenhet</Label>
         <Input
@@ -54,41 +56,35 @@ export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({
           value={experience.employer}
         />
       </Grid>
-      <Grid gridAutoFlow="column" gridGap={6} mt="small">
+      <Grid gridTemplateColumns="1fr 1fr" gridGap={6} mt="small">
         <Flex flexDirection="column">
           <Label>Från</Label>
-          <Input
-            name="start"
-            onBlur={() => setExperienceStartFocus(false)}
-            onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
-              handleUpdate('start', target.value)
-            }
-            onFocus={() => setExperienceStartFocus(true)}
-            placeholder="Startdatum..."
-            type={experienceStartFocused ? 'month' : 'text'}
+          <DatePicker
             value={experience.start}
+            onChange={value => handleUpdate('start', value)}
+            placeholder="Startdatum"
           />
         </Flex>
         <Flex flexDirection="column">
           <Label>Till</Label>
-          <Input
-            name="end"
-            onBlur={() => setExperienceEndFocus(false)}
-            onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
-              handleUpdate('end', target.value)
-            }
-            onFocus={() => setExperienceEndFocus(true)}
-            placeholder="Slutdatum..."
-            type={experienceEndFocused ? 'month' : 'text'}
+          <DatePicker
             value={experience.end}
+            onChange={value => handleUpdate('end', value)}
+            placeholder="Slutdatum"
           />
         </Flex>
       </Grid>
 
-      <Button mt={35} type="submit" width={'100%'}>
+      <Button
+        mt={35}
+        variant="inActive"
+        type="submit"
+        width={1}
+        onClick={handleSubmit}
+      >
         Lägg till
       </Button>
-    </form>
+    </>
   )
 }
 

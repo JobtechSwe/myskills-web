@@ -10,6 +10,7 @@ import { InternalLink } from '../../components/Link'
 import { useQuery, useMutation } from 'react-apollo-hooks'
 import { GET_OCCUPATION_CLIENT } from '../../graphql/resolvers/mutations/createOccupation'
 import { CREATE_OCCUPATION_CLIENT } from './ChooseProfession'
+import RegistrationLayout from '../../components/Layout/RegistrationLayout'
 
 export const PreviousOccupationExperience: React.FC<RouteComponentProps> = ({
   navigate,
@@ -72,7 +73,11 @@ export const PreviousOccupationExperience: React.FC<RouteComponentProps> = ({
   }
 
   return (
-    <Flex flexDirection="column">
+    <RegistrationLayout
+      headerText="ERFARENHET"
+      nextPath="erfarenheter/tidigare-erfarenheter"
+      step={3}
+    >
       <img alt="Clock" src={laptopImage} />
       <H1 textAlign="center">
         Har du arbetat som {data.occupation.term.toLowerCase()} tidigare?
@@ -106,10 +111,7 @@ export const PreviousOccupationExperience: React.FC<RouteComponentProps> = ({
           />
         </Flex>
       )}
-      <InternalLink to="./tidigare-erfarenheter">
-        <FloatingContinueButton>Fortsätt</FloatingContinueButton>
-      </InternalLink>
-    </Flex>
+    </RegistrationLayout>
   )
 }
 

@@ -21,7 +21,6 @@ interface ILoginQRProps {
 }
 
 const LoginQR: React.FC<ILoginQRProps> = ({ loginRequestId, loginUrl }) => {
-  console.log('login', loginRequestId, loginUrl)
   const { data, error, loading } = useSubscription(LOGIN_SUBSCRIPTION, {
     variables: {
       loginRequestId,
@@ -36,7 +35,6 @@ const LoginQR: React.FC<ILoginQRProps> = ({ loginRequestId, loginUrl }) => {
     if (error) {
       return <Paragraph>That is an error...</Paragraph>
     }
-    console.log('data', data)
 
     if (data) {
       setCookie('token', data.loginApproved.accessToken)

@@ -53,7 +53,7 @@ function App() {
             <WorkExperiences path="/erfarenheter/tidigare-erfarenheter" />
             <AddContactInformation path="/kontakt" />
           </CreateProfile>
-          <RestrictedRoute component={Profile} path="/profile" />
+          <Profile path="/profile" />
         </Router>
       </React.Suspense>
     </>

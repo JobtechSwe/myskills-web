@@ -49,10 +49,10 @@ export const WorkExperiences: React.FC<RouteComponentProps> = () => {
         }))}
       />
       <AddAndEditForm
-        titlePlaceholder="Namn på tjänst..."
-        schoolOrCompanyPlaceholder="Arbetsgivare..."
         label="Lägg till erfarenhet"
         onSubmit={handleSubmit}
+        schoolOrCompanyPlaceholder="Arbetsgivare..."
+        titlePlaceholder="Namn på tjänst..."
       />
     </RegistrationLayout>
   )

@@ -7,53 +7,61 @@ import Button from './Button'
 import DatePicker from './DatePicker'
 
 interface AddAndEditFormProps {
+  titlePlaceholder: string
+  schoolOrCompanyPlaceholder: string
+  label: string
   onSubmit: (payload: any) => void
 }
 
-export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({ onSubmit }) => {
+export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({
+  titlePlaceholder,
+  schoolOrCompanyPlaceholder,
+  label,
+  onSubmit,
+}) => {
   const initialState = {
-    employer: '',
+    schoolOrCompany: '',
     end: '',
     start: '',
-    term: '',
+    title: '',
   }
 
-  const [experience, updateExperience] = useState(initialState)
+  const [state, updateState] = useState(initialState)
 
   const handleUpdate = (name: string, value: string) => {
     const updated = {
-      ...experience,
+      ...state,
       [name]: value,
     }
 
-    updateExperience(updated)
+    updateState(updated)
   }
 
   const handleSubmit = () => {
-    onSubmit(experience)
+    onSubmit(state)
 
-    updateExperience(initialState)
+    updateState(initialState)
   }
 
   return (
     <>
       <Grid gridGap={6}>
-        <Label>Lägg till erfarenhet</Label>
+        <Label>{label}</Label>
         <Input
-          name="term"
+          name="title"
           onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
-            handleUpdate('term', target.value)
+            handleUpdate('title', target.value)
           }
-          placeholder="Namn på tjänst..."
-          value={experience.term}
+          placeholder={titlePlaceholder}
+          value={state.title}
         />
         <Input
-          name="employer"
+          name="schoolOrCompany"
           onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
-            handleUpdate('employer', target.value)
+            handleUpdate('schoolOrCompany', target.value)
           }
-          placeholder="Arbetsgivare..."
-          value={experience.employer}
+          placeholder={schoolOrCompanyPlaceholder}
+          value={state.schoolOrCompany}
         />
       </Grid>
       <Grid gridGap={6} gridTemplateColumns="1fr 1fr" mt="small">
@@ -62,7 +70,7 @@ export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({ onSubmit }) => {
           <DatePicker
             onChange={value => handleUpdate('start', value)}
             placeholder="Startdatum"
-            value={experience.start}
+            value={state.start}
           />
         </Flex>
         <Flex flexDirection="column">
@@ -70,7 +78,7 @@ export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({ onSubmit }) => {
           <DatePicker
             onChange={value => handleUpdate('end', value)}
             placeholder="Slutdatum"
-            value={experience.end}
+            value={state.end}
           />
         </Flex>
       </Grid>

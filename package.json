@@ -32,11 +32,13 @@
     "react-dom": "16.8.4",
     "react-qr-svg": "^2.2.1",
     "react-scripts": "2.1.8",
+    "react-spring": "^9.0.0-beta.6",
     "serve": "^10.1.2",
     "styled-system": "^4.0.4",
     "subscriptions-transport-ws": "^0.9.16",
     "ts-jest": "^24.0.0",
-    "typescript": "3.3.3333"
+    "typescript": "3.3.3333",
+    "uuid": "^3.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -68,6 +70,7 @@
     "@types/node": "^11.10.5",
     "@types/rc-slider": "^8.6.3",
     "@types/styled-system": "^3.2.2",
+    "@types/uuid": "^3.4.4",
     "@typescript-eslint/eslint-plugin": "1.4.2",
     "acorn": "6.1.1",
     "cypress": "^3.2.0",

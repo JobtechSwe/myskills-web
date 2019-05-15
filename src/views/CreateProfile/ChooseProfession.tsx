@@ -6,11 +6,12 @@ import {
   OntologyConceptResponse,
 } from '../../generated/myskills.d'
 import { RouteComponentProps } from '@reach/router'
-import Flex from '../../components/Flex'
+import Grid from '../../components/Grid'
 import Input from '../../components/Input'
+import IllustrationHeader from '../../components/IllustrationHeader'
+import suitcaseIllustration from '../../assets/illustrations/suitcase.svg'
 import ListItem from '../../components/ListItem'
 import List from '../../components/List'
-import { H1, H3 } from '../../components/Typography'
 import styled from '@emotion/styled'
 import { css, Global } from '@emotion/core'
 import ChosenOccupation from '../../components/ChosenOccupation'
@@ -105,7 +106,13 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
 
   return (
     <RegistrationLayout headerText="YRKE" nextPath="kompetenser" step={1}>
-      <Flex alignItems="center" flexDirection="column" justifyContent="center">
+      <Grid alignContent="start">
+        <IllustrationHeader
+          imageAltTag="Resväska"
+          imageFirst={true}
+          imageSource={suitcaseIllustration}
+          title="Vad vill du jobba med?"
+        />
         <Global
           styles={css`
             strong {
@@ -114,8 +121,6 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
             }
           `}
         />
-        <H3 mb={20}>YRKE</H3>
-        <H1 mb={20}>Vad vill du jobba med?</H1>
         <Downshift
           itemToString={item => (item ? item.term : '')}
           onChange={occupation => {
@@ -187,7 +192,7 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
           )}
         </Downshift>
         <ChosenOccupation />
-      </Flex>
+      </Grid>
     </RegistrationLayout>
   )
 }

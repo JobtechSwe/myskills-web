@@ -8,6 +8,7 @@ interface Color {
   persianBlueDark: '#1B27B2'
   redOrange: '#FE451D'
   seashellPeach: '#FFF2EC'
+  shamrock: '#30C27F'
   yourPink: '#FFCEC2'
   white: 'white'
   whiteLilac: '#F1F1F9'
@@ -28,6 +29,7 @@ const colors: Color = {
   persianBlueDark: '#1B27B2',
   redOrange: '#FE451D',
   seashellPeach: '#FFF2EC',
+  shamrock: '#30C27F',
   yourPink: '#FFCEC2',
   white: 'white',
   whiteLilac: '#F1F1F9',

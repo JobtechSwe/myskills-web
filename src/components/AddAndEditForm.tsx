@@ -56,31 +56,31 @@ export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({ onSubmit }) => {
           value={experience.employer}
         />
       </Grid>
-      <Grid gridTemplateColumns="1fr 1fr" gridGap={6} mt="small">
+      <Grid gridGap={6} gridTemplateColumns="1fr 1fr" mt="small">
         <Flex flexDirection="column">
           <Label>Från</Label>
           <DatePicker
-            value={experience.start}
             onChange={value => handleUpdate('start', value)}
             placeholder="Startdatum"
+            value={experience.start}
           />
         </Flex>
         <Flex flexDirection="column">
           <Label>Till</Label>
           <DatePicker
-            value={experience.end}
             onChange={value => handleUpdate('end', value)}
             placeholder="Slutdatum"
+            value={experience.end}
           />
         </Flex>
       </Grid>
 
       <Button
         mt={35}
-        variant="inActive"
-        type="submit"
-        width={1}
         onClick={handleSubmit}
+        type="submit"
+        variant="inActive"
+        width={1}
       >
         Lägg till
       </Button>

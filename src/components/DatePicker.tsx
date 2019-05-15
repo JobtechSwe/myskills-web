@@ -57,10 +57,10 @@ const DatePicker: React.FC<DatePickerProps> = ({
       )}
       <Input
         isMobile={isMobile}
-        placeholder="Slutdatum"
         onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
           onChange(target.value)
         }
+        placeholder="Slutdatum"
         type="month"
       />
       <img alt="calendar" src={Icon} />

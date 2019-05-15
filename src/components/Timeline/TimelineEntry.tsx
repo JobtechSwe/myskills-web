@@ -50,6 +50,11 @@ const TimelineEntryEdit = styled.div`
   align-items: flex-end;
 `
 
+const EditButton = styled.button`
+  border: none;
+  background: inherit;
+`
+
 interface TimelineEntryProps {
   entry: Entry
 }

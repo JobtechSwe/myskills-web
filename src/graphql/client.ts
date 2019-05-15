@@ -9,6 +9,7 @@ import { getMainDefinition } from 'apollo-utilities'
 import { getCookie, removeCookie, redirect } from '../utils/helpers'
 import {
   Education,
+  Experience,
   Language,
   Occupation,
   Profile,
@@ -121,6 +122,7 @@ export type LocalStateProps = {
   language: Language[]
   skills: Skill[]
   educations: Education[]
+  experiences: Experience[]
   traits: string[]
   whoAmI: string
   contact: Contact
@@ -130,6 +132,7 @@ const initialState: LocalStateProps = {
   occupation: null,
   language: [],
   educations: [],
+  experiences: [],
   skills: [],
   traits: [],
   whoAmI: '',

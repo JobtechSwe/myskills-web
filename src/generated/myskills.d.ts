@@ -85,7 +85,7 @@ export type Experience = {
   id: Scalars['String']
   employer: Scalars['String']
   sourceId?: Maybe<Scalars['String']>
-  term?: Maybe<Scalars['String']>
+  term: Scalars['String']
   start: Scalars['String']
   end?: Maybe<Scalars['String']>
 }
@@ -144,6 +144,7 @@ export type Mutation = {
   createOccupationClient?: Maybe<Occupation>
   addSkillClient?: Maybe<Skill>
   addEducationClient?: Maybe<Education>
+  addExperienceClient?: Maybe<Experience>
   addTrait: Scalars['String']
   addWhoAmI: Scalars['String']
   updateContactInformation: Profile
@@ -211,6 +212,10 @@ export type MutationAddEducationClientArgs = {
   education: EducationInput
 }
 
+export type MutationAddExperienceClientArgs = {
+  experience: ExperienceInput
+}
+
 export type MutationAddTraitArgs = {
   trait: Scalars['String']
 }
@@ -237,11 +242,11 @@ export type Occupation = {
 }
 
 export type OccupationExperience = {
-  years?: Maybe<Scalars['Int']>
+  years: Scalars['Int']
 }
 
 export type OccupationExperienceInput = {
-  years?: Maybe<Scalars['Int']>
+  years: Scalars['Int']
 }
 
 export type OccupationInput = {
@@ -495,6 +500,19 @@ export type GetEducationsQuery = { __typename?: 'Query' } & {
   >
 }
 
+export type GetExperiencesQueryVariables = {}
+
+export type GetExperiencesQuery = { __typename?: 'Query' } & {
+  experiences: Array<
+    Maybe<
+      { __typename?: 'Experience' } & Pick<
+        Experience,
+        'employer' | 'term' | 'start' | 'end'
+      >
+    >
+  >
+}
+
 export type GetLanguagesQueryVariables = {}
 
 export type GetLanguagesQuery = { __typename?: 'Query' } & Pick<
@@ -729,6 +747,19 @@ export type AddWhoAmIMutation = { __typename?: 'Mutation' } & Pick<
   Mutation,
   'addWhoAmI'
 >
+
+export type AddExperienceClientMutationVariables = {
+  experience: ExperienceInput
+}
+
+export type AddExperienceClientMutation = { __typename?: 'Mutation' } & {
+  addExperienceClient: Maybe<
+    { __typename?: 'Experience' } & Pick<
+      Experience,
+      'employer' | 'end' | 'start' | 'term'
+    >
+  >
+}
 
 export type LoginMutationVariables = {}
 

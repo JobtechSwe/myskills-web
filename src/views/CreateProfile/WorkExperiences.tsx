@@ -1,43 +1,60 @@
 import React from 'react'
 import { RouteComponentProps } from '@reach/router'
-import Grid from '../../components/Grid'
-import Flex from '../../components/Flex'
-import Input from '../../components/Input'
-import { H1, Label } from '../../components/Typography'
-import { InternalLink } from '../../components/Link'
-import { FloatingContinueButton } from '../../components/Button'
+import { H1 } from '../../components/Typography'
+import gql from 'graphql-tag'
+import Timeline from '../../components/Timeline'
+import { useMutation, useQuery } from 'react-apollo-hooks'
+import { GET_EXPERIENCES_CLIENT } from '../../graphql/resolvers/mutations/addExperience'
+import { Experience } from '../../generated/myskills'
+import AddAndEditForm from '../../components/AddAndEditForm'
+import RegistrationLayout from '../../components/Layout/RegistrationLayout'
+import styled from '@emotion/styled'
+
+const TimelineStyled = styled(Timeline)`
+  margin-bottom: 20px;
+`
+
+const ADD_EXPERIENCE_CLIENT = gql`
+  mutation addExperienceClient($experience: ExperienceInput!) {
+    addExperienceClient(experience: $experience) @client {
+      employer
+      end
+      start
+      term
+    }
+  }
+`
 
 export const WorkExperiences: React.FC<RouteComponentProps> = () => {
-  const [isFocused, setFocused] = React.useState(false)
+  const addExperienceClient = useMutation(ADD_EXPERIENCE_CLIENT)
+  const {
+    data: { experiences },
+  } = useQuery(GET_EXPERIENCES_CLIENT)
+
+  const handleSubmit = (formState: any) => {
+    addExperienceClient({
+      variables: { experience: formState },
+    })
+  }
 
   return (
-    <Flex flexDirection="column">
+    <RegistrationLayout headerText="ERFARENHET" nextPath="utbildning" step={3}>
       <H1 textAlign="center">Vad har du för arbetslivserfarenhet?</H1>
-      <Grid gridGap={6}>
-        <Label>Lägg till erfarenhet</Label>
-        <Input name="experienceName" placeholder="Namn på tjänst" />
-        <Input name="employeerName" placeholder="Arbetsgivare" />
-      </Grid>
-      <Grid gridAutoFlow="column" gridGap={6} mt="small">
-        <Flex flexDirection="column">
-          <Label>Från</Label>
-          <Input
-            name="experienceName"
-            onBlur={() => setFocused(false)}
-            onFocus={() => setFocused(true)}
-            placeholder={!isFocused ? 'Startdatum' : null}
-            type={isFocused ? 'month' : 'text'}
-          />
-        </Flex>
-        <Flex flexDirection="column">
-          <Label>Till</Label>
-          <Input name="experienceName" placeholder="Slutdatum" />
-        </Flex>
-      </Grid>
-      <InternalLink to="../utbildning">
-        <FloatingContinueButton>Fortsätt</FloatingContinueButton>
-      </InternalLink>
-    </Flex>
+      <TimelineStyled
+        entries={experiences.map((exp: Experience) => ({
+          title: exp.term,
+          schoolOrCompany: exp.employer,
+          start: exp.start,
+          end: exp.end,
+        }))}
+      />
+      <AddAndEditForm
+        label="Lägg till erfarenhet"
+        onSubmit={handleSubmit}
+        schoolOrCompanyPlaceholder="Arbetsgivare..."
+        titlePlaceholder="Namn på tjänst..."
+      />
+    </RegistrationLayout>
   )
 }
 

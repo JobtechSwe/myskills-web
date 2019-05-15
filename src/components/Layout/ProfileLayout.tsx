@@ -32,8 +32,10 @@ const NavigationContainer = styled(Flex)`
     margin-right: 5px;
   }
 `
-const SavePdf = styled.div`
+const SavePdf = styled.button`
   position: absolute;
+  margin: 0;
+  padding: 0;
   top: ${({ theme }) => theme.space.small}px;
   left: 0;
   img {
@@ -51,11 +53,7 @@ const ProfileLayout: React.FC<ProfileLayoutProps> = ({
   currentPath,
 }) => {
   const { data } = useQuery(GET_PROFESSION_AND_CONTACT)
-
-  const [currentRoute, setCurrentRoute] = useState('')
-  useLayoutEffect(() => setCurrentRoute(currentPath.replace(/\/$/, '')), [
-    currentPath,
-  ])
+  const parsedPath = currentPath.replace(/\/$/, '')
 
   return (
     <Grid gridGap="0" gridTemplateRows="auto 1fr auto" p="large">
@@ -89,13 +87,13 @@ const ProfileLayout: React.FC<ProfileLayoutProps> = ({
       >
         <ProfileButton
           buttonText="Min profil"
-          isActive={currentRoute === '/profil'}
+          isActive={parsedPath === '/profil'}
           route="/profil/"
         />
         <ProfileButton
           buttonText="Tidslinje"
-          isActive={currentRoute === '/profil/tidslinje'}
-          route="/profil/tidslinje/"
+          isActive={parsedPath === '/profil/tidslinje'}
+          route="./tidslinje/"
         />
       </NavigationContainer>
     </Grid>

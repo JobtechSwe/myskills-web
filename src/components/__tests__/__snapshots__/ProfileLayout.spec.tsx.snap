@@ -8,14 +8,14 @@ exports[`components/ProfileLayout renders 1`] = `
     <div
       class="css-1bqxkm"
     >
-      <div
-        class="css-1i1fgx"
+      <button
+        class="css-ffgl9m"
       >
         <img
           alt="save_as_pdf"
           src="save_pdf.svg"
         />
-      </div>
+      </button>
       <div
         class="css-1jo84sd"
       >
@@ -47,14 +47,14 @@ exports[`components/ProfileLayout renders 1`] = `
       <div
         class="css-1bqxkm"
       >
-        <div
-          class="css-1i1fgx"
+        <button
+          class="css-ffgl9m"
         >
           <img
             alt="save_as_pdf"
             src="save_pdf.svg"
           />
-        </div>
+        </button>
         <div
           class="css-1jo84sd"
         >
@@ -273,7 +273,7 @@ exports[`components/ProfileLayout renders 1`] = `
           class="css-tzjau4"
           color="persianBlue"
           font-weight="500"
-          href="/profil/tidslinje/"
+          href="//tidslinje"
           width="100%"
         >
           <button
@@ -342,7 +342,7 @@ exports[`components/ProfileLayout renders 1`] = `
         class="css-tzjau4"
         color="persianBlue"
         font-weight="500"
-        href="/profil/tidslinje/"
+        href="//tidslinje"
         width="100%"
       >
         <button
@@ -383,14 +383,14 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
     <div
       class="css-1bqxkm"
     >
-      <div
-        class="css-1i1fgx"
+      <button
+        class="css-ffgl9m"
       >
         <img
           alt="save_as_pdf"
           src="save_pdf.svg"
         />
-      </div>
+      </button>
       <div
         class="css-1jo84sd"
       >
@@ -422,14 +422,14 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
       <div
         class="css-1bqxkm"
       >
-        <div
-          class="css-1i1fgx"
+        <button
+          class="css-ffgl9m"
         >
           <img
             alt="save_as_pdf"
             src="save_pdf.svg"
           />
-        </div>
+        </button>
         <div
           class="css-1jo84sd"
         >
@@ -648,7 +648,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
           class="css-tzjau4"
           color="persianBlue"
           font-weight="500"
-          href="/profil/tidslinje/"
+          href="//tidslinje"
           width="100%"
         >
           <button
@@ -717,7 +717,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
         class="css-tzjau4"
         color="persianBlue"
         font-weight="500"
-        href="/profil/tidslinje/"
+        href="//tidslinje"
         width="100%"
       >
         <button

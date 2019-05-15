@@ -10,12 +10,12 @@ export const GET_IMAGE_CLIENT = gql`
 
 export const uploadImage = (
   _: any,
-  { imageString }: { imageString: string },
+  { image: { imageString } }: { image: { imageString: string } },
   { cache }: { cache: InMemoryCache }
 ): string => {
   cache.writeQuery({
     query: GET_IMAGE_CLIENT,
-    data: { image: imageString },
+    data: { imageString },
   })
 
   storageHelper.set({

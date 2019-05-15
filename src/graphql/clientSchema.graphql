@@ -25,7 +25,7 @@ type Contact {
   telephone: String
 }
 
-input ImageInput {
+input ImgInput {
   imageString: String!
 }
 
@@ -43,7 +43,7 @@ extend type Mutation {
   addSkillClient(skill: SkillInput!): Skill
   removeSkillClient(skill: SkillInput!): Skill
   addEducationClient(education: EducationInput!): Education
-  uploadImage(imageString: ImageInput!): ImageString
+  uploadImage(imageString: ImgInput!): ImageString
   addTrait(trait: String!): String!
   addWhoAmI(whoAmI: String!): String!
   updateContactInformation(data: ContactInput!): Contact!

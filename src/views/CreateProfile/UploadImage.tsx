@@ -13,19 +13,18 @@ import Grid from '../../components/Grid'
 import profileImage from '../../assets/illustrations/profile_image.svg'
 import RegistrationLayout from '../../components/Layout/RegistrationLayout'
 import IllustrationHeader from '../../components/IllustrationHeader'
-import '@reach/dialog/styles.css'
 
 export const UPLOAD_IMAGE_CLIENT = gql`
-  mutation uploadImage($imageString: imageString!) {
-    uploadImage(imageString: $imageString) @client {
+  mutation uploadImage($image: ImgInput!) {
+    uploadImage(image: $image) @client {
       imageString
     }
   }
 `
 
 export const UPLOAD_IMAGE_API = gql`
-  mutation uploadImage($imageString: imageString!) {
-    uploadImage(imageString: $imageString) {
+  mutation uploadImage($image: ImgInput!) {
+    uploadImage(image: $image) {
       imageString
     }
   }
@@ -82,7 +81,9 @@ const UploadImage: React.FC<RouteComponentProps> = () => {
   const handleuploadImage = (imageString: string) => {
     uploadImage({
       variables: {
-        imageString,
+        image: {
+          imageString,
+        },
       },
     })
   }
@@ -161,7 +162,7 @@ const UploadImage: React.FC<RouteComponentProps> = () => {
           imageAltTag="Profilbild"
           imageFirst={false}
           imageSource={
-            image.src && image.isCropped ? image.base64Image : profileImage
+            image.src || image.isCropped || image.base64Image ? image.base64Image : profileImage
           }
           title="Ladda upp en bild!"
         />

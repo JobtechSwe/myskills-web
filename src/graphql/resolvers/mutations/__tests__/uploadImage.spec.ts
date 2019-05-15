@@ -1,6 +1,6 @@
 import { uploadImage, GET_IMAGE_CLIENT } from '../uploadImage'
 
-let image: any
+let imageInput: any
 let cache: any
 let readQueryMock: any
 let writeQueryMock: any
@@ -13,7 +13,11 @@ beforeEach(() => {
   readQueryMock = jest.fn(() => mockedImageCache)
   writeQueryMock = jest.fn()
 
-  image = { imageString: 'imageString' }
+  imageInput = {
+    image: {
+      imageString: 'imageString',
+    },
+  }
 
   cache = {
     cache: {
@@ -25,17 +29,17 @@ beforeEach(() => {
 
 describe('resolvers/uploadImage', () => {
   it('saves image to cache', () => {
-    uploadImage({}, image, cache)
+    uploadImage({}, imageInput, cache)
 
     expect(writeQueryMock).toHaveBeenCalledWith({
       query: GET_IMAGE_CLIENT,
       data: {
-        image: 'imageString',
+        imageString: 'imageString',
       },
     })
   })
 
   it('returns image', () => {
-    expect(uploadImage({}, image, cache)).toEqual('imageString')
+    expect(uploadImage({}, imageInput, cache)).toEqual('imageString')
   })
 })

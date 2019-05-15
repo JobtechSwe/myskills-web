@@ -43,7 +43,7 @@ extend type Mutation {
   addSkillClient(skill: SkillInput!): Skill
   removeSkillClient(skill: SkillInput!): Skill
   addEducationClient(education: EducationInput!): Education
-  uploadImage(imageString: ImgInput!): ImageString
+  uploadImage(imageString: ImgInput!): String!
   addTrait(trait: String!): String!
   addWhoAmI(whoAmI: String!): String!
   updateContactInformation(data: ContactInput!): Contact!

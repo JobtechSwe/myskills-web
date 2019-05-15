@@ -16,17 +16,13 @@ import IllustrationHeader from '../../components/IllustrationHeader'
 
 export const UPLOAD_IMAGE_CLIENT = gql`
   mutation uploadImage($image: ImgInput!) {
-    uploadImage(image: $image) @client {
-      imageString
-    }
+    uploadImage(image: $image) @client
   }
 `
 
 export const UPLOAD_IMAGE_API = gql`
   mutation uploadImage($image: ImgInput!) {
-    uploadImage(image: $image) {
-      imageString
-    }
+    uploadImage(image: $image)
   }
 `
 

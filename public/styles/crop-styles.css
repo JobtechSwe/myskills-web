@@ -5,6 +5,7 @@
   overflow: hidden;
   max-width: 100%;
   background-color: #000;
+  touch-action: none;
 }
 .ReactCrop:focus {
   outline: none;

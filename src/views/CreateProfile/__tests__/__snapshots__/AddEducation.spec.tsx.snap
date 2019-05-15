@@ -10,10 +10,10 @@ exports[`views/AddEducation renders empty result 1`] = `
       class="css-208zbf"
     >
       <div
-        class="css-199nci9"
+        class="css-nshvkv"
       >
         <div
-          class="css-17a5fux"
+          class="css-cn959j"
           role="button"
           tabindex="0"
         >
@@ -23,7 +23,7 @@ exports[`views/AddEducation renders empty result 1`] = `
           />
         </div>
         <div
-          class="css-1if0o7t"
+          class="css-1a620cz"
         >
           <div
             class="css-njydrf"

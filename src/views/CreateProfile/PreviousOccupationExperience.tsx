@@ -78,7 +78,7 @@ export const PreviousOccupationExperience: React.FC<RouteComponentProps> = ({
   return (
     <RegistrationLayout
       headerText="ERFARENHET"
-      nextPath="utbildning/tidigare-erfarenheter"
+      nextPath="erfarenheter/tidigare-erfarenheter"
       step={3}
     >
       <Flex flexDirection="column">

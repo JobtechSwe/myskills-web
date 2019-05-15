@@ -162,7 +162,9 @@ const UploadImage: React.FC<RouteComponentProps> = () => {
           imageAltTag="Profilbild"
           imageFirst={false}
           imageSource={
-            image.src || image.isCropped || image.base64Image ? image.base64Image : profileImage
+            image.src || image.isCropped || image.base64Image
+              ? image.base64Image
+              : profileImage
           }
           title="Ladda upp en bild!"
         />

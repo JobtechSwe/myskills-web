@@ -2,6 +2,8 @@ import React from 'react'
 import StepIndicator from '../StepIndicator'
 import styled from '@emotion/styled'
 import Button from '../Button'
+import { Paragraph } from '../Typography'
+import Grid from '../Grid'
 import Flex from '../Flex'
 import Icon from '../../assets/icons/navigation_arrow.svg'
 import { RouteComponentProps, navigate } from '@reach/router'
@@ -15,16 +17,15 @@ interface RegistrationLayoutProps {
   childFnArgs?: any
 }
 
-const Container = styled.section`
-  padding: 26px;
-  width: 100%;
-`
-
 const NavigationContainer = styled.nav`
+  align-self: start;
   display: flex;
+  justify-content: center;
   align-items: center;
+  flex-direction: column;
+
   & > div:last-child {
-    flex-basis: 80%;
+    flex: 1;
   }
 `
 
@@ -51,20 +52,23 @@ const RegistrationLayout: React.FC<
   childFnArgs = {},
 }) => {
   return (
-    <Container className="layout">
+    <Grid gridTemplateRows="auto 1fr auto" height="100vh" p="large">
       <NavigationContainer>
-        <div
-          onClick={() => history.back()}
-          onKeyUp={() => history.back()}
-          role="button"
-          tabIndex={0}
-        >
-          <img alt="Go back" src={Icon} />
-        </div>
+        <Flex alignSelf="stretch" justifyContent="center" mb="small">
+          <Flex
+            onClick={() => history.back()}
+            onKeyUp={() => history.back()}
+            role="button"
+            tabIndex={0}
+            zIndex={1}
+          >
+            <img alt="Go back" src={Icon} />
+          </Flex>
 
-        <StepIndicator step={step} />
+          <StepIndicator step={step} />
+        </Flex>
+        <Paragraph>{headerText}</Paragraph>
       </NavigationContainer>
-      {headerText}
       {children}
       {nextPath && (
         <Flex justifyContent="center">
@@ -73,7 +77,7 @@ const RegistrationLayout: React.FC<
           </Button>
         </Flex>
       )}
-    </Container>
+    </Grid>
   )
 }
 

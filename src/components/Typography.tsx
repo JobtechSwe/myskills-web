@@ -75,6 +75,14 @@ export const Label = styled.label<LabelProps & FontWeightProps>`
   ${space}
   ${textAlign}
 `
+export const Bold = styled(Paragraph)`
+  ${color}
+  ${fontFamily}
+  ${fontSize}
+  ${fontWeight}
+  ${textAlign}
+  ${space}
+`
 
 const common: HeadingProps = {
   color: 'black',
@@ -104,6 +112,14 @@ Paragraph.defaultProps = {
   fontSize: 'small',
   mt: 'small',
   mb: 'medium',
+}
+
+Bold.defaultProps = {
+  fontFamily: 'default',
+  fontSize: 'medium',
+  fontWeight: 700,
+  mt: 0,
+  mb: 0,
 }
 
 Label.defaultProps = {

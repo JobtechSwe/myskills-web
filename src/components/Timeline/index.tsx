@@ -2,26 +2,6 @@ import React from 'react'
 import styled from '@emotion/styled'
 import TimelineEntry from './TimelineEntry'
 
-const Wrapper = styled.ul<{ enableTimelineBar: boolean }>`
-  position: relative;
-  width: 100%;
-
-  ${({ enableTimelineBar, theme }) =>
-    enableTimelineBar &&
-    `
-    &:after {
-      width: 5px;
-      background: ${theme.colors.alabaster};
-      height: calc(100% - 20px);
-      content: '';
-      display: block;
-      position: absolute;
-      top: 20px;
-      left: 5px;
-    }
-  `}
-`
-
 export type Entry = {
   title: String
   degree: String | undefined
@@ -34,6 +14,25 @@ interface TimelineProps {
   enableTimelineBar?: boolean
   entries: Entry[]
 }
+
+const Wrapper = styled.ul<{ enableTimelineBar: boolean }>`
+  position: relative;
+  width: 100%;
+
+  ${({ enableTimelineBar, theme }) =>
+    enableTimelineBar &&
+    `
+    > li:not(:last-of-type)::after {
+      background: ${theme.colors.alabaster};
+      content: ' ';
+      height: 100%;
+      left: 5px;
+      position: absolute;
+      top: 20px;
+      width: 5px;
+    }
+  `}
+`
 
 const Timeline: React.FC<TimelineProps> = ({
   enableTimelineBar = false,

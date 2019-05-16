@@ -10,10 +10,10 @@ exports[`views/MatchSkills renders loading state 1`] = `
       class="css-208zbf"
     >
       <div
-        class="css-199nci9"
+        class="css-nshvkv"
       >
         <div
-          class="css-17a5fux"
+          class="css-cn959j"
           role="button"
           tabindex="0"
         >
@@ -23,7 +23,7 @@ exports[`views/MatchSkills renders loading state 1`] = `
           />
         </div>
         <div
-          class="css-1if0o7t"
+          class="css-1a620cz"
         >
           <div
             class="css-njydrf"
@@ -54,7 +54,7 @@ exports[`views/MatchSkills renders loading state 1`] = `
       </p>
     </nav>
     <div
-      class="css-1mxfqvu"
+      class="css-1vad0jj"
     >
       
       <h1

@@ -28,6 +28,7 @@
     "react-apollo": "2.5.2",
     "react-apollo-hooks": "^0.4.3",
     "react-contenteditable": "^3.2.6",
+    "react-device-detect": "^1.6.2",
     "react-dom": "16.8.4",
     "react-qr-svg": "^2.2.1",
     "react-scripts": "2.1.8",

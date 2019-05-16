@@ -76,7 +76,11 @@ export const PreviousOccupationExperience: React.FC<RouteComponentProps> = ({
   }
 
   return (
-    <RegistrationLayout headerText="ERFARENHET" nextPath="utbildning" step={3}>
+    <RegistrationLayout
+      headerText="ERFARENHET"
+      nextPath="erfarenheter/tidigare-erfarenheter"
+      step={3}
+    >
       <Flex flexDirection="column">
         <Image alt="Clock" src={laptopImage} />
         <H1 textAlign="center">

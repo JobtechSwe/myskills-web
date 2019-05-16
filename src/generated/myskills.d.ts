@@ -145,6 +145,7 @@ export type Mutation = {
   addSkillClient?: Maybe<Skill>
   removeSkillClient?: Maybe<Skill>
   addEducationClient?: Maybe<Education>
+  addExperienceClient?: Maybe<Experience>
   addTrait: Scalars['String']
   addWhoAmI: Scalars['String']
   updateContactInformation: Contact
@@ -214,6 +215,10 @@ export type MutationRemoveSkillClientArgs = {
 
 export type MutationAddEducationClientArgs = {
   education: EducationInput
+}
+
+export type MutationAddExperienceClientArgs = {
+  experience: ExperienceInput
 }
 
 export type MutationAddTraitArgs = {
@@ -495,6 +500,19 @@ export type GetEducationsQuery = { __typename?: 'Query' } & {
       { __typename?: 'Education' } & Pick<
         Education,
         'programme' | 'school' | 'start' | 'end'
+      >
+    >
+  >
+}
+
+export type GetExperiencesQueryVariables = {}
+
+export type GetExperiencesQuery = { __typename?: 'Query' } & {
+  experiences: Array<
+    Maybe<
+      { __typename?: 'Experience' } & Pick<
+        Experience,
+        'employer' | 'term' | 'start' | 'end'
       >
     >
   >
@@ -823,6 +841,19 @@ export type AddWhoAmIMutation = { __typename?: 'Mutation' } & Pick<
   Mutation,
   'addWhoAmI'
 >
+
+export type AddExperienceClientMutationVariables = {
+  experience: ExperienceInput
+}
+
+export type AddExperienceClientMutation = { __typename?: 'Mutation' } & {
+  addExperienceClient: Maybe<
+    { __typename?: 'Experience' } & Pick<
+      Experience,
+      'employer' | 'end' | 'start' | 'term'
+    >
+  >
+}
 
 export type LoginMutationVariables = {}
 

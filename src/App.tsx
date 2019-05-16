@@ -38,8 +38,9 @@ const WorkExperiences = React.lazy(() =>
 )
 
 const WhoAmI = React.lazy(() => import(`./views/CreateProfile/WhoAmI`))
-
 const AddTraits = React.lazy(() => import(`./views/CreateProfile/AddTraits`))
+const Home = React.lazy(() => import(`./views/Profile/Home`))
+const Timeline = React.lazy(() => import(`./views/Profile/Timeline`))
 
 function App() {
   return (
@@ -60,7 +61,11 @@ function App() {
             <AddContactInformation path="/kontakt" />
             <SaveCV path="/spara-cv" />
           </CreateProfile>
-          <RestrictedRoute component={Profile} path="/profile" />
+
+          <Profile path="/profil">
+            <RestrictedRoute component={Home} path="/" />
+            <RestrictedRoute component={Timeline} path="/tidslinje" />
+          </Profile>
         </Router>
       </React.Suspense>
     </>

@@ -1,9 +1,8 @@
 import React from 'react'
 import { RouteComponentProps } from '@reach/router'
-import { Paragraph } from '../../components/Typography'
 
-const Profile: React.FC<RouteComponentProps> = props => (
-  <Paragraph>Profile page (you are logged in)</Paragraph>
+const Profile: React.FC<RouteComponentProps> = ({ children }) => (
+  <div>{children}</div>
 )
 
 export default Profile

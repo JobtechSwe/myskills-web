@@ -49,9 +49,9 @@
     "lint": "eslint cypress/**/*.js 'src/**/*.ts' 'src/**/*.tsx'",
     "generate": "graphql-codegen --config codegen.yml",
     "temptest": "jest",
-    "cypress": "start-server-and-test buildAndServeAgainstCI http://localhost:3001 cypress:gui",
-    "buildAndServeAgainstCI": "npm run build && BROWSER=none REACT_APP_GRAPHQL_URI=https://api-myskills-ci.dev.services.jtech.se/graphql npm run start",
-    "cypress-ci": "start-server-and-test buildAndServeAgainstCI http://localhost:3001 cypress:run",
+    "cypress": "start-server-and-test buildAndServe http://localhost:3001 cypress:gui",
+    "buildAndServe": "npm run build && BROWSER=none npm run start",
+    "cypress-ci": "start-server-and-test buildAndServe http://localhost:3001 cypress:run",
     "cypress:gui": "cypress open",
     "cypress:run": "cypress run"
   },

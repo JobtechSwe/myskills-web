@@ -2,7 +2,9 @@ import React from 'react'
 import { RouteComponentProps } from '@reach/router'
 import Grid from '../../components/Grid'
 import Flex from '../../components/Flex'
-import laptopImage from '../../images/laptop.svg'
+import laptopBlob from '../../assets/illustrations/laptopBlob.svg'
+import laptopIllustration from '../../assets/illustrations/laptopIllustration.svg'
+import IllustrationAnimation from '../../components/IllustrationAnimation'
 import { H1, Paragraph } from '../../components/Typography'
 import Button from '../../components/Button'
 import Slider from '../../components/Slider'
@@ -15,6 +17,7 @@ import styled from '@emotion/styled'
 const Image = styled.img`
   width: 100%;
 `
+
 export const PreviousOccupationExperience: React.FC<RouteComponentProps> = ({
   navigate,
 }) => {
@@ -82,7 +85,10 @@ export const PreviousOccupationExperience: React.FC<RouteComponentProps> = ({
       step={3}
     >
       <Flex flexDirection="column">
-        <Image alt="Clock" src={laptopImage} />
+        <IllustrationAnimation
+          backgroundImage={laptopBlob}
+          illustrationImage={laptopIllustration}
+        />
         <H1 textAlign="center">
           Har du arbetat som {data.occupation.term.toLowerCase()} tidigare?
         </H1>

@@ -55,9 +55,9 @@ const useDeviceOrientation = () => {
       beta: number
       gamma: number
     }) {
-      let x = beta // In degree in the range [-180,180]
-      let y = gamma // In degree in the range [-90,90]
-      let z = alpha
+      const x = beta // In degree in the range [-180,180]
+      const y = gamma // In degree in the range [-90,90]
+      const z = alpha
 
       /* Magic number to keep illustration more on top */
       setCoords({ x: x - 60, y, z })

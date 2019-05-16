@@ -56,14 +56,16 @@ export type ContactInput = {
 
 export type Cv = {
   skills?: Maybe<Array<Maybe<Skill>>>
-  education?: Maybe<Array<Maybe<Education>>>
-  experience?: Maybe<Array<Maybe<Experience>>>
+  educations?: Maybe<Array<Maybe<Education>>>
+  experiences?: Maybe<Array<Maybe<Experience>>>
+  occupation?: Maybe<Occupation>
 }
 
 export type CvInput = {
   skills?: Maybe<Array<SkillInput>>
-  education?: Maybe<Array<EducationInput>>
-  experience?: Maybe<Array<ExperienceInput>>
+  educations?: Maybe<Array<EducationInput>>
+  experiences?: Maybe<Array<ExperienceInput>>
+  occupation?: Maybe<OccupationInput>
 }
 
 export type Education = {
@@ -113,8 +115,6 @@ export type Login = {
 }
 
 export type Mutation = {
-  /** Register consent for a user */
-  consent: Consent
   /** Login an existing user */
   login: Login
   /** Add languages to user */
@@ -150,6 +150,7 @@ export type Mutation = {
   addWhoAmI: Scalars['String']
   updateContactInformation: Contact
   removeEducationClient?: Maybe<Education>
+  removeExperienceClient?: Maybe<Experience>
   removeTrait: Scalars['String']
 }
 
@@ -235,6 +236,10 @@ export type MutationUpdateContactInformationArgs = {
 
 export type MutationRemoveEducationClientArgs = {
   education: EducationInput
+}
+
+export type MutationRemoveExperienceClientArgs = {
+  experience: ExperienceInput
 }
 
 export type MutationRemoveTraitArgs = {
@@ -350,6 +355,8 @@ export type ProfileInput = {
 }
 
 export type Query = {
+  /** Gets a consent request */
+  consent: Consent
   /** Get user languages */
   languages: Array<Language>
   /** Get user educations */
@@ -490,6 +497,13 @@ export type RemoveEducationClientMutation = { __typename?: 'Mutation' } & {
       'programme' | 'school' | 'start' | 'end'
     >
   >
+}
+
+export type GetProfessionAndContactQueryVariables = {}
+
+export type GetProfessionAndContactQuery = { __typename?: 'Query' } & {
+  contact: { __typename?: 'Contact' } & Pick<Contact, 'name'>
+  occupation: { __typename?: 'Occupation' } & Pick<Occupation, 'term'>
 }
 
 export type GetEducationsQueryVariables = {}
@@ -748,53 +762,33 @@ export type RemoveSkillClientMutation = { __typename?: 'Mutation' } & {
   >
 }
 
-export type ConsentMutationVariables = {}
+export type ConsentQueryVariables = {}
 
-export type ConsentMutation = { __typename?: 'Mutation' } & {
-  consent: { __typename?: 'Consent' } & Pick<Consent, 'id' | 'expires' | 'url'>
+export type ConsentQuery = { __typename?: 'Query' } & {
+  consent: { __typename?: 'Consent' } & Pick<Consent, 'id' | 'url'>
 }
 
 export type SaveCvMutationVariables = {
   skills?: Maybe<Array<SkillInput>>
-  education?: Maybe<Array<EducationInput>>
-  experience?: Maybe<Array<ExperienceInput>>
+  educations?: Maybe<Array<EducationInput>>
+  experiences?: Maybe<Array<ExperienceInput>>
+  occupation?: Maybe<OccupationInput>
 }
 
 export type SaveCvMutation = { __typename?: 'Mutation' } & {
   saveCV: { __typename?: 'CV' } & {
     skills: Maybe<
-      Array<
-        Maybe<
-          { __typename?: 'Skill' } & Pick<Skill, 'sourceId' | 'term' | 'type'>
-        >
-      >
-    >
-    education: Maybe<
-      Array<
-        Maybe<
-          { __typename?: 'Education' } & Pick<
-            Education,
-            'id' | 'programme' | 'school' | 'start' | 'end'
-          >
-        >
-      >
-    >
-    experience: Maybe<
-      Array<
-        Maybe<
-          { __typename?: 'Experience' } & Pick<
-            Experience,
-            'sourceId' | 'term' | 'employer' | 'start' | 'end'
-          >
-        >
-      >
+      Array<Maybe<{ __typename?: 'Skill' } & Pick<Skill, 'sourceId'>>>
     >
   }
 }
 
 export type GetCvQueryVariables = {}
 
-export type GetCvQuery = { __typename?: 'Query' } & Pick<Query, 'traits'> & {
+export type GetCvQuery = { __typename?: 'Query' } & Pick<
+  Query,
+  'traits' | 'languages'
+> & {
     skills: Array<
       Maybe<
         { __typename?: 'Skill' } & Pick<Skill, 'sourceId' | 'term' | 'type'>

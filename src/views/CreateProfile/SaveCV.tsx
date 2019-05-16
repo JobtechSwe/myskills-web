@@ -20,11 +20,30 @@ export const GET_CONSENT_ID = gql`
   }
 `
 
+function removeTypename(obj: any): any {
+  return Object.keys(obj).reduce((acc, key) => {
+    let withoutTypename
+    if (key === '__typename') {
+      return acc
+    }
+    if (Array.isArray(obj[key])) {
+      withoutTypename = obj[key].map(removeTypename)
+    } else if (obj[key] && typeof obj[key] === 'object') {
+      withoutTypename = removeTypename(obj[key])
+    }
+    return {
+      ...acc,
+      [key]: withoutTypename || obj[key],
+    }
+  }, {})
+}
+
 export const SAVE_CV = gql`
   mutation saveCV(
     $skills: [SkillInput!]
     $educations: [EducationInput!]
     $experiences: [ExperienceInput!]
+    $occupation: OccupationInput
   ) {
     saveCV(
       cv: {
@@ -65,7 +84,7 @@ export const GET_CV_CLIENT = gql`
         years
       }
     }
-    language
+    languages
   }
 `
 
@@ -103,10 +122,11 @@ const Register: React.FC<RouteComponentProps> = props => {
   const onConsentApproved = async ({
     consentApproved,
   }: ConsentApprovedSubscription) => {
+    const localCVWithoutTypename = removeTypename(localCV)
     setCookie('token', consentApproved.accessToken)
     await saveCVMutation({
       variables: {
-        ...localCV,
+        ...localCVWithoutTypename,
         skills: localCV.skills.map((skill: any) => ({
           type: skill.type,
           term: skill.term,

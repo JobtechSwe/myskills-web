@@ -156,12 +156,12 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
                     borderRadius={8}
                     data-testid="okButton"
                     ml={6}
-                    p="small"
-                    role="button"
                     onClick={() => {
                       handleChange(traitQuery)
                       setAddTraitActive()
                     }}
+                    p="small"
+                    role="button"
                   >
                     OK
                   </TagButton>
@@ -209,10 +209,10 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
         ) : (
           <Tag
             data-testid="addTraitButton"
-            role="button"
             mb="medium"
             mt="small"
             onClick={setAddTraitActive}
+            role="button"
           >
             + Lägg till en ny egenskap
           </Tag>

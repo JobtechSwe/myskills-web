@@ -74,7 +74,7 @@ const ButtonToInput: React.FC<ButtonToInputProps> = ({
       </TagButton>
     </InputWrapper>
   ) : (
-    <Tag role="button" mb="medium" mt="small" onClick={setAddCompetenceActive}>
+    <Tag mb="medium" mt="small" onClick={setAddCompetenceActive} role="button">
       {buttonText}
     </Tag>
   )

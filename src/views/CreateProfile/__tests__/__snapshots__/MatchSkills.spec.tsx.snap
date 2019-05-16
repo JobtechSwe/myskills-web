@@ -70,6 +70,7 @@ exports[`views/MatchSkills renders loading state 1`] = `
         class="css-bhiavv"
         cursor="pointer"
         opacity="1"
+        role="button"
       >
         + Lägg till en kompetens
       </span>

@@ -5,6 +5,9 @@ import Button from '../../components/Button'
 import { Link, InternalLink } from '../../components/Link'
 import { Bold, H2, H3, Paragraph } from '../../components/Typography'
 import styled from '@emotion/styled'
+import logotypeIcon from '../../assets/images/logo.svg'
+import cloudsIcon from '../../assets/images/clouds.svg'
+import infoIcon from '../../assets/images/info.svg'
 
 const StartBlock = styled.div`
   align-items: center;
@@ -67,12 +70,12 @@ const Start: React.FC<RouteComponentProps> = () => {
           flexDirection="column"
           justifyContent="center"
         >
-          <img alt="logo" src="/images/logo.svg" />
+          <img alt="logo" src={logotypeIcon} />
           <Divider />
           <Paragraph color="persianBlue" mt={0}>
             Ditt digitala CV
           </Paragraph>
-          <Clouds alt="clouds" src="/images/clouds.svg" />
+          <Clouds alt="clouds" src={cloudsIcon} />
           <InternalLink mt={30} to="/skapa-cv" width={1}>
             <Button variant="primary" width={1}>
               Skapa CV
@@ -84,7 +87,7 @@ const Start: React.FC<RouteComponentProps> = () => {
             </Button>
           </InternalLink>
           <Info>
-            <img alt="info icon" src="/images/info.svg" />
+            <img alt="info icon" src={infoIcon} />
             <Paragraph mb={0} ml={10} mt={0}>
               Med Egendata får du kontroll över din data.{' '}
               <Link onClick={scrollTo} textDecoration="underline">

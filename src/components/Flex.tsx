@@ -14,6 +14,8 @@ import {
   FlexWrapProps,
   justifyContent,
   JustifyContentProps,
+  position,
+  PositionProps,
   space,
   SpaceProps,
   zIndex,
@@ -27,6 +29,7 @@ type FlexContainerProps = AlignItemsProps &
   FlexDirectionProps &
   FlexWrapProps &
   JustifyContentProps &
+  PositionProps &
   SpaceProps &
   ZIndexProps
 
@@ -40,6 +43,7 @@ const Flex = styled.div<FlexContainerProps>`
   ${flexWrap}
   ${flex}
   ${justifyContent}
+  ${position}
   ${space}
   ${zIndex}
 `

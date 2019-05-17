@@ -4,13 +4,17 @@ import Grid from '../../components/Grid'
 import Flex from '../../components/Flex'
 import laptopImage from '../../images/laptop.svg'
 import { H1, Paragraph } from '../../components/Typography'
-import Button, { FloatingContinueButton } from '../../components/Button'
+import Button from '../../components/Button'
 import Slider from '../../components/Slider'
-import { InternalLink } from '../../components/Link'
 import { useQuery, useMutation } from 'react-apollo-hooks'
 import { GET_OCCUPATION_CLIENT } from '../../graphql/resolvers/mutations/createOccupation'
 import { CREATE_OCCUPATION_CLIENT } from './ChooseProfession'
+import RegistrationLayout from '../../components/Layout/RegistrationLayout'
+import styled from '@emotion/styled'
 
+const Image = styled.img`
+  width: 100%;
+`
 export const PreviousOccupationExperience: React.FC<RouteComponentProps> = ({
   navigate,
 }) => {
@@ -72,44 +76,48 @@ export const PreviousOccupationExperience: React.FC<RouteComponentProps> = ({
   }
 
   return (
-    <Flex flexDirection="column">
-      <img alt="Clock" src={laptopImage} />
-      <H1 textAlign="center">
-        Har du arbetat som {data.occupation.term.toLowerCase()} tidigare?
-      </H1>
+    <RegistrationLayout
+      headerText="ERFARENHET"
+      nextPath="erfarenheter/tidigare-erfarenheter"
+      step={3}
+    >
+      <Flex flexDirection="column">
+        <Image alt="Clock" src={laptopImage} />
+        <H1 textAlign="center">
+          Har du arbetat som {data.occupation.term.toLowerCase()} tidigare?
+        </H1>
 
-      <Grid gridAutoFlow="column" gridGap={12} justifyContent="center">
-        <Button
-          onClick={hasPreviousExperiencesClick}
-          variant={
-            data.occupation.experience &&
-            data.occupation.experience.years !== null
-              ? 'active'
-              : 'inActive'
-          }
-        >
-          Ja
-        </Button>
-        <Button onClick={noPreviousExperienceClick} variant="inActive">
-          Nej
-        </Button>
-      </Grid>
+        <Grid gridAutoFlow="column" gridGap={12} justifyContent="center">
+          <Button
+            onClick={hasPreviousExperiencesClick}
+            variant={
+              data.occupation.experience &&
+              data.occupation.experience.years !== null
+                ? 'active'
+                : 'inActive'
+            }
+          >
+            Ja
+          </Button>
+          <Button onClick={noPreviousExperienceClick} variant="inActive">
+            Nej
+          </Button>
+        </Grid>
 
-      {data.occupation.experience && data.occupation.experience.years !== null && (
-        <Flex flexDirection="column" mt="small" p="medium">
-          <Paragraph>Hur länge har du arbetat med det?</Paragraph>
-          <Slider
-            defaultValue={yearsActive}
-            max={5}
-            min={0}
-            onInput={onSliderChange}
-          />
-        </Flex>
-      )}
-      <InternalLink to="./tidigare-erfarenheter">
-        <FloatingContinueButton>Fortsätt</FloatingContinueButton>
-      </InternalLink>
-    </Flex>
+        {data.occupation.experience &&
+          data.occupation.experience.years !== null && (
+            <Flex flexDirection="column" mt="small" p="medium">
+              <Paragraph>Hur länge har du arbetat med det?</Paragraph>
+              <Slider
+                defaultValue={yearsActive}
+                max={5}
+                min={0}
+                onInput={onSliderChange}
+              />
+            </Flex>
+          )}
+      </Flex>
+    </RegistrationLayout>
   )
 }
 

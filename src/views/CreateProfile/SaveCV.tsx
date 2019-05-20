@@ -72,7 +72,6 @@ export const GET_CV_CLIENT = gql`
     }
 
     educations @client {
-      id
       programme
       school
       start
@@ -93,8 +92,6 @@ export const GET_CV_CLIENT = gql`
       email
       telephone
     }
-
-    language
   }
 `
 

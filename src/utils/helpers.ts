@@ -57,6 +57,11 @@ interface WhoAmI extends StorageEntryProps {
   data: string
 }
 
+interface Image extends StorageEntryProps {
+  type: 'image'
+  data: string
+}
+
 interface ContactInformation extends StorageEntryProps {
   type: 'contact'
   data: Contact
@@ -65,6 +70,7 @@ interface ContactInformation extends StorageEntryProps {
 export type StorageEntry =
   | ContactInformation
   | Educations
+  | Image
   | Experiences
   | OccupationStorage
   | Skills

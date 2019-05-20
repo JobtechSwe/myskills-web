@@ -10,6 +10,11 @@
     <meta name="theme-color" content="#000000" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <link
+      rel="stylesheet"
+      type="text/css"
+      href="%PUBLIC_URL%/styles/crop-styles.css"
+    />
+    <link
       href="https://fonts.googleapis.com/css?family=Lato:400,500,700"
       rel="stylesheet"
     />
@@ -19,4 +24,7 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
   </body>
+  <script>
+    document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+  </script>
 </html>

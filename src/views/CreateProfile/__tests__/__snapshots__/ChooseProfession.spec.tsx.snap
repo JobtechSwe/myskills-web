@@ -3,8 +3,8 @@
 exports[`views/ChooseProfession renders empty result 1`] = `
 <div>
   <div
-    class="css-1ejilqi"
-    height="100vh"
+    class="css-475q7k"
+    height="calc(var(--vh, 1vh) * 100)"
   >
     <nav
       class="css-208zbf"
@@ -54,17 +54,21 @@ exports[`views/ChooseProfession renders empty result 1`] = `
       </p>
     </nav>
     <div
-      class="css-w3q496"
+      class="css-vddp5l"
     >
       <div
-        class="css-1n8dqvr"
+        class="css-7glqfz"
       >
-        <img
-          alt="Resväska"
-          src="suitcase.svg"
-        />
+        <div
+          class="css-djo2sl"
+        >
+          <img
+            alt="Resväska"
+            src="suitcase.svg"
+          />
+        </div>
         <h1
-          class="css-1cksnm8"
+          class="css-jujqtm"
           color="black"
           font-family="default"
           font-size="large"
@@ -97,7 +101,7 @@ exports[`views/ChooseProfession renders empty result 1`] = `
       </div>
     </div>
     <div
-      class="css-1sadpxs"
+      class="css-5hfabl"
     >
       <button
         class="css-1qzvtil"

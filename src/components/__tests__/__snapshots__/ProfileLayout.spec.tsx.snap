@@ -3,7 +3,7 @@
 exports[`components/ProfileLayout renders 1`] = `
 <div>
   <div
-    class="css-3rp4fr"
+    class="css-zr6rkh"
   >
     <div
       class="css-1bqxkm"
@@ -42,7 +42,7 @@ exports[`components/ProfileLayout renders 1`] = `
       </p>
     </div>
     <div
-      class="css-3rp4fr"
+      class="css-zr6rkh"
     >
       <div
         class="css-1bqxkm"
@@ -378,7 +378,7 @@ exports[`components/ProfileLayout renders 1`] = `
 exports[`components/ProfileLayout renders with storage data 1`] = `
 <div>
   <div
-    class="css-3rp4fr"
+    class="css-zr6rkh"
   >
     <div
       class="css-1bqxkm"
@@ -417,7 +417,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
       </p>
     </div>
     <div
-      class="css-3rp4fr"
+      class="css-zr6rkh"
     >
       <div
         class="css-1bqxkm"

@@ -107,16 +107,18 @@ export const WorkExperiences: React.FC<RouteComponentProps> = () => {
   return (
     <RegistrationLayout headerText="ERFARENHET" nextPath="utbildning" step={3}>
       <H1 textAlign="center">Vad har du för arbetslivserfarenhet?</H1>
-      <Timeline
-        entries={experiences.map((exp: Experience) => ({
-          id: exp.id,
-          title: exp.term,
-          schoolOrCompany: exp.employer,
-          start: exp.start,
-          end: exp.end,
-        }))}
-        handleEdit={handleEdit}
-      />
+      {experiences && (
+        <Timeline
+          entries={experiences.map((exp: Experience) => ({
+            id: exp.id,
+            title: exp.term,
+            schoolOrCompany: exp.employer,
+            start: exp.start,
+            end: exp.end,
+          }))}
+          handleEdit={handleEdit}
+        />
+      )}
       {edit && (
         <AddAndEditForm
           abortEdit={() => toggleEdit(false)}

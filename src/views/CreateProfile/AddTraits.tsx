@@ -111,10 +111,10 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
         justifyContent="flex-start"
       >
         <Grid
-          mb="medium"
           alignItems="center"
           gridGap="medium"
           justifyContent="center"
+          mb="medium"
         >
           <H1 mb={0} textAlign="center">
             Vilka är dina främsta egenskaper?

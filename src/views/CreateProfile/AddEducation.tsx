@@ -52,9 +52,9 @@ const AddEducation: React.FC<RouteComponentProps> = () => {
   return (
     <RegistrationLayout headerText="UTBILDNING" nextPath="beskriv-dig" step={4}>
       <IllustrationHeader
-        imageSource={bookIllustration}
         imageAltTag="Bok-illustration"
         imageFirst={false}
+        imageSource={bookIllustration}
         title="Vad har du för utbildning?"
       />
       <AddedEducations />

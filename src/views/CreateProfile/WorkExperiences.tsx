@@ -41,8 +41,8 @@ export const WorkExperiences: React.FC<RouteComponentProps> = () => {
   return (
     <RegistrationLayout headerText="ERFARENHET" nextPath="utbildning" step={3}>
       <Flex
-        flexDirection="column"
         alignItems="stretch"
+        flexDirection="column"
         justifyContent="flex-start"
       >
         <H1 textAlign="center">Vad har du för arbetslivserfarenhet?</H1>

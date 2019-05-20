@@ -56,7 +56,7 @@ const AddContactInformation: React.FC<RouteComponentProps> = () => {
           imageSource={smartphoneLetter}
           title="Hur vill du bli nådd?"
         />
-        <Grid mt="small" gridGap={10}>
+        <Grid gridGap={10} mt="small">
           <Input
             name="name"
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>

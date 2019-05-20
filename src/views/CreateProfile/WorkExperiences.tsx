@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { RouteComponentProps } from '@reach/router'
-import Flex from '../../components/Flex'
 import { H1 } from '../../components/Typography'
 import gql from 'graphql-tag'
 import Timeline from '../../components/Timeline'

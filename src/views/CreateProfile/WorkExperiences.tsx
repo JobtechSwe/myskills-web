@@ -40,14 +40,16 @@ export const WorkExperiences: React.FC<RouteComponentProps> = () => {
   return (
     <RegistrationLayout headerText="ERFARENHET" nextPath="utbildning" step={3}>
       <H1 textAlign="center">Vad har du för arbetslivserfarenhet?</H1>
-      <TimelineStyled
-        entries={experiences.map((exp: Experience) => ({
-          title: exp.term,
-          schoolOrCompany: exp.employer,
-          start: exp.start,
-          end: exp.end,
-        }))}
-      />
+      {experiences && (
+        <TimelineStyled
+          entries={experiences.map((exp: Experience) => ({
+            title: exp.term,
+            schoolOrCompany: exp.employer,
+            start: exp.start,
+            end: exp.end,
+          }))}
+        />
+      )}
       <AddAndEditForm
         label="Lägg till erfarenhet"
         onSubmit={handleSubmit}

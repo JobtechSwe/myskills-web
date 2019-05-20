@@ -3,6 +3,7 @@ import React from 'react'
 import Tag from './Tag'
 import styled from '@emotion/styled'
 import { useToggle } from '@iteam/hooks'
+import { handleFocusKeyDown } from '../utils/helpers'
 
 interface ButtonToInputProps {
   buttonText: string
@@ -67,14 +68,23 @@ const ButtonToInput: React.FC<ButtonToInputProps> = ({
         borderRadius={8}
         ml={6}
         onClick={handleSelect}
+        onKeyDown={handleFocusKeyDown(handleSelect)}
         p="small"
         role="button"
+        tabIndex={0}
       >
         {addButtonText}
       </TagButton>
     </InputWrapper>
   ) : (
-    <Tag mb="medium" mt="small" onClick={setAddCompetenceActive} role="button">
+    <Tag
+      mb="medium"
+      mt="small"
+      onClick={setAddCompetenceActive}
+      onKeyDown={handleFocusKeyDown(setAddCompetenceActive)}
+      role="button"
+      tabIndex={0}
+    >
       {buttonText}
     </Tag>
   )

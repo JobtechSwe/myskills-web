@@ -5,6 +5,7 @@ import Button from '../Button'
 import { Paragraph } from '../Typography'
 import Grid from '../Grid'
 import Flex from '../Flex'
+import { handleFocusKeyDown } from '../../utils/helpers'
 import Icon from '../../assets/icons/navigation_arrow.svg'
 import { RouteComponentProps, navigate } from '@reach/router'
 
@@ -61,6 +62,7 @@ const RegistrationLayout: React.FC<
         <Flex alignSelf="stretch" justifyContent="center" mb="small">
           <Flex
             onClick={() => window.history.back()}
+            onKeyDown={handleFocusKeyDown(() => window.history.back())}
             role="button"
             tabIndex={0}
             zIndex={1}

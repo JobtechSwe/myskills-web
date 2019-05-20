@@ -1,6 +1,7 @@
 import React from 'react'
 import Flex from './Flex'
 import Tag from './Tag'
+import { handleFocusKeyDown } from '../utils/helpers'
 
 interface TagItemProps {
   id: string
@@ -33,6 +34,9 @@ const TagList: React.FC<TagListProps<TagItemProps>> = ({
           key={item.id}
           m={6}
           onClick={() => onSelect(item)}
+          onKeyDown={handleFocusKeyDown(() => onSelect(item))}
+          role="button"
+          tabIndex={0}
           variant={itemIsActive(item.id) ? 'active' : 'default'}
         >
           {item.term}

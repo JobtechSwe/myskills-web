@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 import { Entry } from './index'
 import ellipse from '../../assets/images/elipse.svg'
@@ -50,20 +50,12 @@ const TimelineEntryEdit = styled.div`
   align-items: flex-end;
 `
 
-const EditButton = styled.button`
-  border: none;
-  background: inherit;
-`
-
 interface TimelineEntryProps {
   entry: Entry
+  handleEdit: (data: any) => void
 }
 
-const editFunction = () => {
-  // do edit stuff
-}
-
-const TimelineEntry: React.FC<TimelineEntryProps> = ({ entry }) => {
+const TimelineEntry: React.FC<TimelineEntryProps> = ({ entry, handleEdit }) => {
   const [editing, toggleEditMode] = useState(false)
 
   return (
@@ -85,8 +77,8 @@ const TimelineEntry: React.FC<TimelineEntryProps> = ({ entry }) => {
         </div>
         <TimelineEntryEdit>
           {editing ? (
-            <button onClick={editFunction}>
-              <img alt="remove" src={pen} />
+            <button onClick={() => handleEdit(entry)}>
+              <img alt="edit" src={pen} />
             </button>
           ) : (
             <button onClick={() => toggleEditMode(!editing)}>

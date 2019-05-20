@@ -9,10 +9,11 @@ import { getMainDefinition } from 'apollo-utilities'
 import { getCookie, removeCookie, redirect } from '../utils/helpers'
 import {
   Education,
+  Experience,
   Language,
-  OntologyConceptResponse,
-  Skill,
+  Occupation,
   Profile,
+  Skill,
 } from '../generated/myskills'
 import resolvers from './resolvers'
 import { storageHelper } from '../utils/helpers'
@@ -117,22 +118,26 @@ export type Contact = {
 }
 
 export type LocalStateProps = {
-  occupations: OntologyConceptResponse[]
+  occupation: Occupation
   language: Language[]
   skills: Skill[]
   educations: Education[]
+  experiences: Experience[]
   traits: string[]
   whoAmI: string
+  image: string
   contact: Contact
 }
 
 const initialState: LocalStateProps = {
-  occupations: [],
+  occupation: null,
   language: [],
   educations: [],
+  experiences: [],
   skills: [],
   traits: [],
   whoAmI: '',
+  image: '',
   contact: {
     name: '',
     email: '',

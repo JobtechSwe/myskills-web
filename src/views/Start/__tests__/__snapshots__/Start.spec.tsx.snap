@@ -3,20 +3,20 @@
 exports[`views/Start renders Start 1`] = `
 <div>
   <div
-    class="css-62zrxy"
+    class="css-98ud7u"
   >
     <div
-      class="css-owzlzk"
+      class="css-1vad0jj"
     >
       <img
         alt="logo"
-        src="/images/logo.svg"
+        src="logo.svg"
       />
       <hr
         class="css-15g94ap"
       />
       <p
-        class="css-qt7uhv"
+        class="css-2t3v4m"
         color="persianBlue"
         font-family="default"
         font-size="small"
@@ -26,10 +26,10 @@ exports[`views/Start renders Start 1`] = `
       <img
         alt="clouds"
         class="css-smyzqs"
-        src="/images/clouds.svg"
+        src="clouds.svg"
       />
       <a
-        class="css-o0whc9"
+        class="css-mn2lek"
         color="persianBlue"
         font-weight="500"
         href="/skapa-cv"
@@ -37,7 +37,7 @@ exports[`views/Start renders Start 1`] = `
         width="1"
       >
         <button
-          class="css-kun9in"
+          class="css-hf9ctd"
           font-family="default"
           font-size="medium"
           width="1"
@@ -46,7 +46,7 @@ exports[`views/Start renders Start 1`] = `
         </button>
       </a>
       <a
-        class="css-19sxhvi"
+        class="css-1r48ynl"
         color="persianBlue"
         font-weight="500"
         href="/login"
@@ -54,14 +54,17 @@ exports[`views/Start renders Start 1`] = `
         width="1"
       >
         <button
-          class="css-bthv9p"
+          class="css-18hvygx"
           font-family="default"
           font-size="medium"
           width="1"
         >
           Logga in med 
           <span
-            class="css-1xxe9l9"
+            class="css-6vhke0"
+            font-family="default"
+            font-size="medium"
+            font-weight="700"
           >
             Egendata
           </span>
@@ -72,17 +75,17 @@ exports[`views/Start renders Start 1`] = `
       >
         <img
           alt="info icon"
-          src="/images/info.svg"
+          src="info.svg"
         />
         <p
-          class="css-dnci7j"
+          class="css-1h35e1d"
           font-family="default"
           font-size="small"
         >
           Med Egendata får du kontroll över din data.
            
           <a
-            class="css-bqii04"
+            class="css-1bcktkz"
             rel="noopener"
             target="_blank"
             text-decoration="underline"
@@ -97,7 +100,7 @@ exports[`views/Start renders Start 1`] = `
     class="css-bfkqop"
   >
     <h2
-      class="css-54k13x"
+      class="css-v6vnfu"
       color="cloudBurst"
       font-family="default"
       font-size="24"
@@ -106,7 +109,7 @@ exports[`views/Start renders Start 1`] = `
     </h2>
     <div>
       <h3
-        class="css-1vyeit5"
+        class="css-1g1g2j2"
         color="cloudBurst"
         font-family="default"
         font-size="16"
@@ -115,7 +118,7 @@ exports[`views/Start renders Start 1`] = `
         Skapa din profil
       </h3>
       <p
-        class="css-1el412k"
+        class="css-bu3hf1"
         color="cloudBurst"
         font-family="default"
         font-size="small"
@@ -125,7 +128,7 @@ exports[`views/Start renders Start 1`] = `
     </div>
     <div>
       <h3
-        class="css-1vyeit5"
+        class="css-1g1g2j2"
         color="cloudBurst"
         font-family="default"
         font-size="16"
@@ -134,7 +137,7 @@ exports[`views/Start renders Start 1`] = `
         Lagra ditt CV
       </h3>
       <p
-        class="css-1g7mhfo"
+        class="css-bu3hf1"
         color="cloudBurst"
         font-family="default"
         font-size="small"
@@ -144,7 +147,7 @@ exports[`views/Start renders Start 1`] = `
     </div>
     <div>
       <h3
-        class="css-1vyeit5"
+        class="css-1g1g2j2"
         color="cloudBurst"
         font-family="default"
         font-size="16"
@@ -153,7 +156,7 @@ exports[`views/Start renders Start 1`] = `
         Spara tid
       </h3>
       <p
-        class="css-1g7mhfo"
+        class="css-bu3hf1"
         color="cloudBurst"
         font-family="default"
         font-size="small"

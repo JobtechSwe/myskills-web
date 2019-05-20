@@ -3,33 +3,42 @@ import Flex from './Flex'
 import Tag from './Tag'
 
 interface TagItemProps {
-  isActive?: boolean
+  id: string
   term: string
 }
 
 interface TagListProps<T extends TagItemProps> {
+  activeItems: T[]
   items: T[]
-  handleTagClick(item: T): void
+  onSelect(item: T): void
 }
 
 const TagList: React.FC<TagListProps<TagItemProps>> = ({
   items,
-  handleTagClick,
-}) => (
-  <>
-    <Flex flexWrap="wrap" justifyContent="center" style={{ width: '80%' }}>
-      {items.map((item, i) => (
+  activeItems,
+  onSelect,
+}) => {
+  const itemIsActive = (selectedId: string) =>
+    activeItems.find(({ id }) => id === selectedId)
+
+  return (
+    <Flex
+      alignItems="center"
+      data-testid="tagList"
+      flexWrap="wrap"
+      justifyContent="center"
+    >
+      {[...activeItems, ...items].map(item => (
         <Tag
-          key={i}
-          m={5}
-          onClick={() => handleTagClick(item)}
-          variant={item.isActive ? 'active' : 'default'}
+          key={item.id}
+          m={6}
+          onClick={() => onSelect(item)}
+          variant={itemIsActive(item.id) ? 'active' : 'default'}
         >
           {item.term}
         </Tag>
       ))}
     </Flex>
-  </>
-)
-
+  )
+}
 export default TagList

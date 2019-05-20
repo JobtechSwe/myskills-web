@@ -23,9 +23,22 @@ const AddContactInformation = React.lazy(() =>
   import(`./views/CreateProfile/AddContactInformation`)
 )
 
-const WhoAmI = React.lazy(() => import(`./views/CreateProfile/WhoAmI`))
+const PreviousOccupationExperience = React.lazy(() =>
+  import('./views/CreateProfile/PreviousOccupationExperience')
+)
 
+const WorkExperiences = React.lazy(() =>
+  import('./views/CreateProfile/WorkExperiences')
+)
+
+const UploadImage = React.lazy(() =>
+  import('./views/CreateProfile/UploadImage')
+)
+
+const WhoAmI = React.lazy(() => import(`./views/CreateProfile/WhoAmI`))
 const AddTraits = React.lazy(() => import(`./views/CreateProfile/AddTraits`))
+const Home = React.lazy(() => import(`./views/Profile/Home`))
+const Timeline = React.lazy(() => import(`./views/Profile/Timeline`))
 
 function App() {
   return (
@@ -41,9 +54,16 @@ function App() {
             <MatchCompetences path="/kompetenser" />
             <WhoAmI path="/beskriv-dig" />
             <AddTraits path="/egenskaper" />
+            <UploadImage path="/profilbild" />
+            <PreviousOccupationExperience path="/erfarenheter" />
+            <WorkExperiences path="/erfarenheter/tidigare-erfarenheter" />
             <AddContactInformation path="/kontakt" />
           </CreateProfile>
-          <RestrictedRoute component={Profile} path="/profile" />
+
+          <Profile path="/profil">
+            <RestrictedRoute component={Home} path="/" />
+            <RestrictedRoute component={Timeline} path="/tidslinje" />
+          </Profile>
         </Router>
       </React.Suspense>
     </>

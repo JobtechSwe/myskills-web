@@ -6,7 +6,6 @@ import Grid from '../../components/Grid'
 import Input from '../../components/Input'
 import Button from '../../components/Button'
 import AddedEducations from '../../components/AddedEducations'
-import styled from '@emotion/styled'
 import RegistrationLayout from '../../components/Layout/RegistrationLayout'
 
 export const ADD_EDUCATION_CLIENT = gql`
@@ -30,23 +29,6 @@ export const ADD_EDUCATION_API = gql`
     }
   }
 `
-
-const NextButton = styled(Button)`
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-`
-
-type EducationSelectAction = {
-  type: 'FIELD' | 'LEVEL' | 'NAME'
-  payload: string
-}
-
-type EducationSelectState = {
-  field?: string
-  level?: string
-  name?: string
-}
 
 const AddEducation: React.FC<RouteComponentProps> = () => {
   const initialState = {

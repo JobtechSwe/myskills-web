@@ -5,7 +5,11 @@ metadata:
     app: ci
   name: web-ci
 spec:
-  host: myskills-ci.dev.services.jtech.se
+  host:
+    valueFrom:
+    secretKeyRef:
+      key: uri
+      name: myskills-web-uri
   port:
     targetPort: http
   to:

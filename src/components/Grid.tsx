@@ -4,6 +4,14 @@ import {
   AlignContentProps,
   alignItems,
   AlignItemsProps,
+  alignSelf,
+  AlignSelfProps,
+  borderRadius,
+  BorderRadiusProps,
+  color,
+  ColorProps,
+  gridAutoFlow,
+  GridAutoFlowProps,
   gridColumnGap,
   GridColumnGapProps,
   gridColumn,
@@ -18,14 +26,23 @@ import {
   GridRowGapProps,
   gridRow,
   GridRowProps,
+  height,
+  HeightProps,
   justifyContent,
   JustifyContentProps,
   space,
   SpaceProps,
+  width,
+  WidthProps,
 } from 'styled-system'
 
-type GridProps = AlignContentProps &
+type GridProps = React.HTMLProps<HTMLElement> &
+  AlignContentProps &
   AlignItemsProps &
+  AlignSelfProps &
+  BorderRadiusProps &
+  ColorProps &
+  GridAutoFlowProps &
   GridColumnGapProps &
   GridColumnProps &
   GridTemplatesColumnsProps &
@@ -33,14 +50,20 @@ type GridProps = AlignContentProps &
   GridGapProps &
   GridRowGapProps &
   GridRowProps &
+  HeightProps &
   JustifyContentProps &
-  SpaceProps
+  SpaceProps &
+  WidthProps
 
 const Grid = styled.div<GridProps>`
   display: grid;
 
   ${alignContent}
   ${alignItems}
+  ${alignSelf}
+  ${borderRadius}
+  ${color}
+  ${gridAutoFlow}
   ${gridColumnGap}
   ${gridColumn}
   ${gridTemplateColumns}
@@ -48,8 +71,10 @@ const Grid = styled.div<GridProps>`
   ${gridGap}
   ${gridRowGap}
   ${gridRow}
+  ${height}
   ${justifyContent}
   ${space}
+  ${width}
 `
 
 Grid.defaultProps = {

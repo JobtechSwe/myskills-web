@@ -1,77 +1,33 @@
 import { removeOccupation } from '../removeOccupation'
-import { GET_OCCUPATIONS_CLIENT } from '../addOccupation'
-import { OntologyType } from '../../../../generated/myskills.d'
+import { GET_OCCUPATION_CLIENT } from '../createOccupation'
 
-let occupationId: any
 let cache: any
-let readQueryMock: any
 let writeQueryMock: any
-let mockedOccupationCache: any
 
 beforeEach(() => {
-  mockedOccupationCache = {
-    occupations: [
-      {
-        name: 'Systemutvecklare',
-        id: '123',
-        type: OntologyType.Occupation,
-      },
-      {
-        name: 'Förman',
-        id: '321',
-        type: OntologyType.Occupation,
-      },
-    ],
-  }
-
-  readQueryMock = jest.fn(() => mockedOccupationCache)
   writeQueryMock = jest.fn()
-
-  occupationId = '321'
 
   cache = {
     cache: {
-      readQuery: readQueryMock,
+      readQuery: jest.fn(),
       writeQuery: writeQueryMock,
     },
   }
 })
 
 describe('resolvers/removeOccupation', () => {
-  it('reads cache', () => {
-    removeOccupation({}, occupationId, cache)
-
-    expect(readQueryMock).toHaveBeenCalledWith({
-      query: GET_OCCUPATIONS_CLIENT,
-    })
-  })
-
   it('removes occupation', () => {
-    removeOccupation({}, occupationId, cache)
+    removeOccupation({}, {}, cache)
 
     expect(writeQueryMock).toHaveBeenCalledWith({
-      query: GET_OCCUPATIONS_CLIENT,
-      data: {
-        occupations: [
-          {
-            name: 'Systemutvecklare',
-            id: '123',
-            type: OntologyType.Occupation,
-          },
-        ],
-      },
+      query: GET_OCCUPATION_CLIENT,
+      data: null,
     })
   })
 
-  it('returns the new occupations list', () => {
-    const result = removeOccupation({}, occupationId, cache)
+  it('returns true', () => {
+    const result = removeOccupation({}, {}, cache)
 
-    expect(result).toEqual([
-      {
-        name: 'Systemutvecklare',
-        id: '123',
-        type: OntologyType.Occupation,
-      },
-    ])
+    expect(result).toEqual(true)
   })
 })

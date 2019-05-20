@@ -2,9 +2,9 @@ import Cookies from 'js-cookie'
 import { LocalStateProps, Contact } from '../graphql/client'
 import {
   EducationInput,
-  OntologyConceptResponse,
+  Occupation,
   OntologyRelationResponse,
-  Profile,
+  ExperienceInput,
 } from '../generated/myskills'
 
 export const getCookie = (name: string) => Cookies.get(name)
@@ -21,7 +21,7 @@ export const removeCookie = (name: string) => {
   Cookies.remove(name)
 }
 
-export const redirect = (route: string) => (location.href = route)
+export const redirect = (route: string) => (window.location.href = route)
 
 interface StorageEntryProps {
   type: string
@@ -32,21 +32,33 @@ interface Educations extends StorageEntryProps {
   data: EducationInput[]
 }
 
-interface Occupations extends StorageEntryProps {
-  type: 'occupations'
-  data: OntologyConceptResponse[]
+interface Experiences extends StorageEntryProps {
+  type: 'experiences'
+  data: ExperienceInput[]
+}
+
+interface OccupationStorage extends StorageEntryProps {
+  type: 'occupation'
+  data: Occupation
 }
 
 interface Skills extends StorageEntryProps {
   type: 'skills'
   data: OntologyRelationResponse[]
 }
+
 interface Traits extends StorageEntryProps {
   type: 'traits'
   data: string[]
 }
+
 interface WhoAmI extends StorageEntryProps {
   type: 'whoAmI'
+  data: string
+}
+
+interface Image extends StorageEntryProps {
+  type: 'image'
   data: string
 }
 
@@ -58,7 +70,9 @@ interface ContactInformation extends StorageEntryProps {
 export type StorageEntry =
   | ContactInformation
   | Educations
-  | Occupations
+  | Image
+  | Experiences
+  | OccupationStorage
   | Skills
   | Traits
   | WhoAmI
@@ -74,4 +88,12 @@ export const storageHelper = {
     ),
   set: (payload: StorageEntry) =>
     localStorage.setItem(payload.type, JSON.stringify(payload.data)),
+}
+
+export const highlightMarked = (inputValue: string, term: string) => {
+  const reg = new RegExp(inputValue, 'i')
+
+  return {
+    __html: term.replace(reg, `<strong>${inputValue}</strong>`),
+  }
 }

@@ -140,6 +140,7 @@ export const globalStyle = css`
   body {
     margin: 0;
     padding: 0;
+    font-family: 'Lato', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -155,7 +156,7 @@ export const globalStyle = css`
     box-sizing: border-box;
   }
   #root {
-    min-height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
   }
 `
 

@@ -5,10 +5,9 @@ import Grid from '../../components/Grid'
 import React, { useState, useRef, useEffect } from 'react'
 import ReactDOMServer from 'react-dom/server'
 import { useDebounce } from '@iteam/hooks'
+import { theme } from '../../theme'
 import styled from '@emotion/styled'
-import Header from '../../components/Header'
-import Button from '../../components/Button'
-import { navigate } from '@reach/router'
+import { H1, Bold, Paragraph } from '../../components/Typography'
 import {
   QueryOntologyTextParseArgs,
   Query,
@@ -29,31 +28,15 @@ export const GET_TRAITS = gql`
   }
 `
 
-const TextAreaDescription = styled.span`
-  font-weight: bold;
-`
-
-const TextAreaContainer = styled.div`
+const TextAreaContainer = styled(Grid)`
   position: relative;
   background: white;
-  display: flex;
-`
-
-const CharsLeft = styled.p`
-  position: absolute;
-  bottom: 0;
-  right: 0;
 `
 
 const Footer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-`
-
-const NextButton = styled(Button)`
-  background: black;
-  color: white;
 `
 
 const TagSpan = styled.span`
@@ -102,17 +85,20 @@ const WhoAmI: React.FC<RouteComponentProps> = () => {
     skip: !useDebounce(description, 500),
   })
 
-  const Update = () => {
+  const handleContentUpdate = () => {
     if (!textArea.current) return
+
     const value = textArea.current.innerText
 
     setDescription(value)
 
-    addWhoAmI({
-      variables: {
-        whoAmI: value,
-      },
-    })
+    if (charsLeft >= 0) {
+      addWhoAmI({
+        variables: {
+          whoAmI: value,
+        },
+      })
+    }
   }
 
   useEffect(() => {
@@ -140,23 +126,36 @@ const WhoAmI: React.FC<RouteComponentProps> = () => {
       nextPath="egenskaper"
       step={5}
     >
-      <Grid>
-        <Header title="Vem är Du?" />
-        <TextAreaDescription>Beskriv dig själv kortfattat</TextAreaDescription>
-        <TextAreaContainer>
+      <Grid alignContent="start">
+        <H1 textAlign="center">Vem är du?</H1>
+        <Paragraph textAlign="center">
+          Beskriv dig själv och hur du är som person! Baserat på din text kommer
+          du att få förslag på egenskaper som speglar din personlighet.
+        </Paragraph>
+        <TextAreaContainer gridGap={6}>
           <ContentEditable
             html={staticHtml}
             innerRef={textArea}
-            onChange={Update}
+            onChange={handleContentUpdate}
             style={{
+              border: `1px solid ${theme.colors.alabaster}`,
+              borderRadius: '4px',
+              height: '30vh',
+              padding: '12px',
               width: '100%',
-              height: '280px',
-              border: '1px solid black',
             }}
           />
-          <CharsLeft>{charsLeft} tecken kvar</CharsLeft>
+          <Paragraph textAlign="right">
+            <Bold
+              as="span"
+              color={charsLeft > 0 ? 'black' : 'orangeRed'}
+              fontSize="small"
+            >
+              {charsLeft}{' '}
+            </Bold>
+            (280)
+          </Paragraph>
         </TextAreaContainer>
-        <Footer />
       </Grid>
     </RegistrationLayout>
   )

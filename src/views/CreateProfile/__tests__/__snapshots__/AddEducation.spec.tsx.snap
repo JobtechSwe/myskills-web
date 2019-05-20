@@ -78,14 +78,18 @@ exports[`views/AddEducation renders empty result 1`] = `
     <div
       class="css-18k1cn6"
     >
-      <label
-        class="css-rcg95n"
-        font-family="default"
-        font-size="small"
-        font-weight="700"
+      <div
+        class="css-jyqyzi"
       >
-        Lägg till utbildning
-      </label>
+        <label
+          class="css-rcg95n"
+          font-family="default"
+          font-size="small"
+          font-weight="700"
+        >
+          Lägg till utbildning
+        </label>
+      </div>
       <input
         class="css-hugbvh"
         font-family="default"

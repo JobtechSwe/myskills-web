@@ -21,7 +21,7 @@ export const removeCookie = (name: string) => {
   Cookies.remove(name)
 }
 
-export const redirect = (route: string) => (location.href = route)
+export const redirect = (route: string) => (window.location.href = route)
 
 interface StorageEntryProps {
   type: string

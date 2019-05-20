@@ -60,8 +60,8 @@ const RegistrationLayout: React.FC<
       <NavigationContainer>
         <Flex alignSelf="stretch" justifyContent="center" mb="small">
           <Flex
-            onClick={() => history.back()}
-            onKeyUp={() => history.back()}
+            onClick={() => window.history.back()}
+            onKeyUp={() => window.history.back()}
             role="button"
             tabIndex={0}
             zIndex={1}

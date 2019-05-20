@@ -46,7 +46,7 @@ exports[`views/MatchSkills renders loading state 1`] = `
         </div>
       </div>
       <p
-        class="css-5fjnxu"
+        class="css-1e8qwx1"
         font-family="default"
         font-size="small"
       >
@@ -58,7 +58,7 @@ exports[`views/MatchSkills renders loading state 1`] = `
     >
       
       <h1
-        class="css-btq94"
+        class="css-1h19gqr"
         color="black"
         font-family="default"
         font-size="large"

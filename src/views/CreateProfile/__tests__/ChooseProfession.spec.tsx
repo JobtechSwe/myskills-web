@@ -5,6 +5,10 @@ import { wait, fireEvent } from 'react-testing-library'
 import { OntologyType } from '../../../generated/myskills.d'
 import { GET_OCCUPATION_CLIENT } from '../../../graphql/resolvers/mutations'
 
+jest.mock('@iteam/hooks', () => ({
+  useDebounce: (val: string) => val,
+}))
+
 describe('views/ChooseProfession', () => {
   let withResultsMock: any
 
@@ -98,7 +102,7 @@ describe('views/ChooseProfession', () => {
     expect(getByText(/Error.../i)).toBeInTheDocument()
   })
 
-  it.skip('should render with ontology query result', async () => {
+  it('should render with ontology query result', async () => {
     const { getByPlaceholderText, getByText } = render(
       <ChooseProfession />,
       withResultsMock

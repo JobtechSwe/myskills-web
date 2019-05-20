@@ -45,8 +45,8 @@ const Timeline: React.FC<TimelineProps> = ({
     <Wrapper enableTimelineBar={enableTimelineBar}>
       {entries.map((entry, i) => (
         <TimelineEntry
-          handleEdit={handleEdit}
           entry={entry}
+          handleEdit={handleEdit}
           key={`entry-${i}`}
         />
       ))}

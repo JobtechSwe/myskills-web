@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styled from '@emotion/styled'
 import { Entry } from './index'
 import ellipse from '../../assets/images/elipse.svg'

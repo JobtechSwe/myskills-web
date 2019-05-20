@@ -14,8 +14,8 @@ interface ButtonToInputProps {
 }
 
 export const InputWrapper = styled(Input)`
-  display: flex;
   align-items: center;
+  display: flex;
 `
 
 export const TagButton = styled(Tag)`

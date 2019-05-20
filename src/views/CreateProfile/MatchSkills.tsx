@@ -249,7 +249,11 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
 
   return (
     <RegistrationLayout headerText="KOMPETENS" nextPath="erfarenheter" step={2}>
-      <Flex alignItems="center" flexDirection="column" justifyContent="center">
+      <Flex
+        alignItems="center"
+        flexDirection="column"
+        justifyContent="flex-start"
+      >
         {state.error && <div>Error... {state.error}</div>}
         <H1 mb={20}>Vilka är dina kompetenser?</H1>
         {state.relatedSkills.length > 0 && (

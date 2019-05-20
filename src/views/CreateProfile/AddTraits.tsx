@@ -1,4 +1,5 @@
 import { RouteComponentProps } from '@reach/router'
+import Grid from '../../components/Grid'
 import Flex from '../../components/Flex'
 import { v4 } from 'uuid'
 import { useMutation, useQuery } from 'react-apollo-hooks'
@@ -11,7 +12,7 @@ import { SearchList } from '../../components/List'
 import Tag from '../../components/Tag'
 import ListItem from '../../components/ListItem'
 import { InputWrapper, TagButton } from '../../components/ButtonToInput'
-import { H1 } from '../../components/Typography'
+import { H1, Paragraph } from '../../components/Typography'
 import {
   OntologyTextParseResponse,
   Query,
@@ -114,7 +115,20 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
         flexDirection="column"
         justifyContent="flex-start"
       >
-        <H1 textAlign="center">Vilka är dina främsta egenskaper?</H1>
+        <Grid
+          alignItems="center"
+          gridGap="medium"
+          justifyContent="center"
+          mb="medium"
+        >
+          <H1 mb={0} textAlign="center">
+            Vilka är dina främsta egenskaper?
+          </H1>
+          <Paragraph my={0} textAlign="center">
+            Markera de egenskaper som bäst motsvarar dina. Du kan också lägga
+            till egna.
+          </Paragraph>
+        </Grid>
         <TagList
           activeItems={traits.map(trait => ({ id: v4(), term: trait }))}
           items={suggestedTraits.map(trait => ({ id: v4(), term: trait }))}

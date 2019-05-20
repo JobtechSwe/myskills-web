@@ -46,69 +46,147 @@ exports[`views/AddEducation renders empty result 1`] = `
         </div>
       </div>
       <p
-        class="css-5fjnxu"
+        class="css-1wtsfx0"
         font-family="default"
         font-size="small"
       >
         UTBILDNING
       </p>
     </nav>
-    <form>
-      <div
-        class="css-79uff4"
+    <div
+      class="css-qaz948"
+    >
+      <h1
+        class="css-1wd37ko"
+        color="black"
+        font-family="default"
+        font-size="large"
+        font-weight="600"
       >
-        <div />
-        <input
-          class="css-1cfla5g"
-          font-family="default"
-          font-size="medium"
-          name="programme"
-          placeholder="Program"
-          type="text"
-          value=""
+        Vad har du för utbildning?
+      </h1>
+      <div
+        class="css-djo2sl"
+      >
+        <img
+          alt="Bok-illustration"
+          src="book.svg"
         />
-        <input
-          class="css-1cfla5g"
-          font-family="default"
-          font-size="medium"
-          name="school"
-          placeholder="Skola"
-          type="text"
-          value=""
-        />
-        <input
-          class="css-1cfla5g"
-          font-family="default"
-          font-size="medium"
-          name="start"
-          placeholder="Från"
-          type="date"
-          value=""
-        />
-        <input
-          class="css-1cfla5g"
-          font-family="default"
-          font-size="medium"
-          name="end"
-          placeholder="Till"
-          type="date"
-          value=""
-        />
-        <button
-          class="css-1qzvtil"
-          font-family="default"
-          font-size="medium"
-          type="submit"
-        >
-          Lägg till
-        </button>
       </div>
-    </form>
+    </div>
+    <div />
+    <div
+      class="css-18k1cn6"
+    >
+      <div
+        class="css-46aiqg"
+      >
+        <label
+          class="css-rcg95n"
+          font-family="default"
+          font-size="small"
+          font-weight="700"
+        >
+          Lägg till utbildning
+        </label>
+      </div>
+      <input
+        class="css-hugbvh"
+        font-family="default"
+        font-size="medium"
+        name="title"
+        placeholder="Namn på skola..."
+        value=""
+      />
+      <input
+        class="css-hugbvh"
+        font-family="default"
+        font-size="medium"
+        name="schoolOrCompany"
+        placeholder="Namn på utbildning..."
+        value=""
+      />
+    </div>
+    <div
+      class="css-1v4dtyt"
+    >
+      <div
+        class="css-y54doh"
+      >
+        <label
+          class="css-rcg95n"
+          font-family="default"
+          font-size="small"
+          font-weight="700"
+        >
+          Från
+        </label>
+        <label
+          class="css-1be2e5y"
+          data-testid="startDate"
+        >
+          <span
+            class="css-12kzefs"
+          >
+            Startdatum
+          </span>
+          <input
+            class="css-1oteowz"
+            placeholder="Slutdatum"
+            type="month"
+          />
+          <img
+            alt="calendar"
+            src="calendar.svg"
+          />
+        </label>
+      </div>
+      <div
+        class="css-y54doh"
+      >
+        <label
+          class="css-rcg95n"
+          font-family="default"
+          font-size="small"
+          font-weight="700"
+        >
+          Till
+        </label>
+        <label
+          class="css-1be2e5y"
+          data-testid="endDate"
+        >
+          <span
+            class="css-12kzefs"
+          >
+            Slutdatum
+          </span>
+          <input
+            class="css-1oteowz"
+            placeholder="Slutdatum"
+            type="month"
+          />
+          <img
+            alt="calendar"
+            src="calendar.svg"
+          />
+        </label>
+      </div>
+    </div>
+    <button
+      class="css-1iemawu"
+      font-family="default"
+      font-size="medium"
+      type="submit"
+      width="1"
+    >
+      Lägg till
+    </button>
     <div
       class="css-djo2sl"
     >
       <button
-        class="css-1qzvtil"
+        class="css-1fyzulv"
         font-family="default"
         font-size="medium"
       >

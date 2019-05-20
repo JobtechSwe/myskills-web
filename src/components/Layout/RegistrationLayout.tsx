@@ -10,7 +10,7 @@ import { RouteComponentProps, navigate } from '@reach/router'
 
 interface RegistrationLayoutProps {
   step: number
-  nextPath: string
+  nextPath?: string
   nextBtnText?: string
   childFn?: any
   headerText: string
@@ -74,11 +74,13 @@ const RegistrationLayout: React.FC<
         <Paragraph>{headerText}</Paragraph>
       </NavigationContainer>
       {children}
-      <Grid alignSelf="end" justifyContent="stretch">
-        <Button onClick={() => onNextClick(nextPath, childFn, childFnArgs)}>
-          {nextBtnText}
-        </Button>
-      </Grid>
+      {nextPath && (
+        <Flex justifyContent="center">
+          <Button onClick={() => onNextClick(nextPath, childFn, childFnArgs)}>
+            {nextBtnText}
+          </Button>
+        </Flex>
+      )}
     </Grid>
   )
 }

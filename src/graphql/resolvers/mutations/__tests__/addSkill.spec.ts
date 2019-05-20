@@ -20,6 +20,7 @@ beforeEach(() => {
 
   skill = {
     skill: {
+      __typename: 'Skill',
       term: 'abc',
     },
   }
@@ -54,6 +55,7 @@ describe('resolvers/addSkill', () => {
   it('returns education', () => {
     expect(addSkillClient({}, skill, cache)).toEqual({
       term: 'abc',
+      __typename: 'Skill',
     })
   })
 })

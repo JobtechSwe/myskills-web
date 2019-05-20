@@ -3,7 +3,7 @@ import { LocalStateProps, Contact } from '../graphql/client'
 import {
   EducationInput,
   Occupation,
-  OntologyRelationResponse,
+  SkillInput,
   ExperienceInput,
 } from '../generated/myskills'
 
@@ -44,7 +44,7 @@ interface OccupationStorage extends StorageEntryProps {
 
 interface Skills extends StorageEntryProps {
   type: 'skills'
-  data: OntologyRelationResponse[]
+  data: SkillInput[]
 }
 
 interface Traits extends StorageEntryProps {

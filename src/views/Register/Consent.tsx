@@ -1,11 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import gql from 'graphql-tag'
 import { useSubscription } from 'react-apollo-hooks'
-import { Paragraph } from '../../components/Typography'
 import QR from '../../components/QR'
-import { OpenInApp } from '../../components/ButtonLink'
-import { navigate } from '@reach/router'
-import { setCookie } from '../../utils/helpers'
+import { ConsentApprovedSubscription } from '../../generated/myskills'
 
 export const CONSENT_SUBSCRIPTION = gql`
   subscription consentApproved($consentRequestId: String!) {
@@ -15,42 +12,31 @@ export const CONSENT_SUBSCRIPTION = gql`
   }
 `
 
-interface IConsentProps {
+interface ConsentProps {
   consentId: string
   url: string
+  onConsentApproved: (data: ConsentApprovedSubscription) => void
 }
 
-const Consent: React.FC<IConsentProps> = ({ consentId, url }) => {
-  const { data, error, loading } = useSubscription(CONSENT_SUBSCRIPTION, {
-    variables: {
-      consentRequestId: consentId,
-    },
-  })
-
-  const renderConsentStatus = () => {
-    if (loading) {
-      return <Paragraph>Waiting for consent...</Paragraph>
+const Consent: React.FC<ConsentProps> = ({
+  consentId,
+  onConsentApproved,
+  url,
+}) => {
+  const { data } = useSubscription<ConsentApprovedSubscription>(
+    CONSENT_SUBSCRIPTION,
+    {
+      variables: {
+        consentRequestId: consentId,
+      },
     }
-
-    if (error) {
-      return <Paragraph>That is an error...</Paragraph>
-    }
-
-    if (data) {
-      setCookie('token', data.consentApproved.accessToken)
-      navigate('/profile')
-      return null
-    }
-  }
-
-  return (
-    <>
-      {renderConsentStatus()}
-      <QR consentId={url} />
-      <Paragraph>{url}</Paragraph>
-      <OpenInApp url={url} />
-    </>
   )
+
+  useEffect(() => {
+    data && onConsentApproved(data)
+  }, [data])
+
+  return <QR consentId={url} />
 }
 
 export default Consent

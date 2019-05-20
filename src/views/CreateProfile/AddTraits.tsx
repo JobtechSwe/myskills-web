@@ -2,7 +2,7 @@ import { RouteComponentProps } from '@reach/router'
 import Flex from '../../components/Flex'
 import { v4 } from 'uuid'
 import { useMutation, useQuery } from 'react-apollo-hooks'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useDebounce, useToggle } from '@iteam/hooks'
 import Downshift from 'downshift'
 import { Global, css } from '@emotion/core'
@@ -47,7 +47,7 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
 
   const [traitQuery, setTraitQuery] = useState('')
   const [addTraitActive, setAddTraitActive] = useToggle(false)
-  const inputRef = React.useRef<HTMLInputElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const { data: ontologyRelated } = useQuery<{
     ontologyConcepts: Query['ontologyConcept'][]

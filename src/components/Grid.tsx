@@ -6,6 +6,10 @@ import {
   AlignItemsProps,
   alignSelf,
   AlignSelfProps,
+  borderRadius,
+  BorderRadiusProps,
+  color,
+  ColorProps,
   gridAutoFlow,
   GridAutoFlowProps,
   gridColumnGap,
@@ -30,11 +34,16 @@ import {
   JustifyItemsProps,
   space,
   SpaceProps,
+  width,
+  WidthProps,
 } from 'styled-system'
 
-type GridProps = AlignContentProps &
+type GridProps = React.HTMLProps<HTMLElement> &
+  AlignContentProps &
   AlignItemsProps &
   AlignSelfProps &
+  BorderRadiusProps &
+  ColorProps &
   GridAutoFlowProps &
   GridColumnGapProps &
   GridColumnProps &
@@ -46,7 +55,8 @@ type GridProps = AlignContentProps &
   HeightProps &
   JustifyContentProps &
   JustifyItemsProps &
-  SpaceProps
+  SpaceProps &
+  WidthProps
 
 const Grid = styled.div<GridProps>`
   display: grid;
@@ -54,6 +64,8 @@ const Grid = styled.div<GridProps>`
   ${alignContent}
   ${alignItems}
   ${alignSelf}
+  ${borderRadius}
+  ${color}
   ${gridAutoFlow}
   ${gridColumnGap}
   ${gridColumn}
@@ -66,6 +78,7 @@ const Grid = styled.div<GridProps>`
   ${justifyContent}
   ${justifyItems}
   ${space}
+  ${width}
 `
 
 Grid.defaultProps = {

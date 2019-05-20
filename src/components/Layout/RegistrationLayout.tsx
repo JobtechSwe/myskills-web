@@ -10,7 +10,7 @@ import { RouteComponentProps, navigate } from '@reach/router'
 
 interface RegistrationLayoutProps {
   step: number
-  nextPath: string
+  nextPath?: string
   nextBtnText?: string
   childFn?: any
   headerText: string
@@ -52,12 +52,16 @@ const RegistrationLayout: React.FC<
   childFnArgs = {},
 }) => {
   return (
-    <Grid gridTemplateRows="auto 1fr auto" height="100vh" p="large">
+    <Grid
+      gridTemplateRows="auto 1fr auto"
+      height="calc(var(--vh, 1vh) * 100)"
+      p="large"
+    >
       <NavigationContainer>
         <Flex alignSelf="stretch" justifyContent="center" mb="small">
           <Flex
-            onClick={() => history.back()}
-            onKeyUp={() => history.back()}
+            onClick={() => window.history.back()}
+            onKeyUp={() => window.history.back()}
             role="button"
             tabIndex={0}
             zIndex={1}
@@ -70,11 +74,13 @@ const RegistrationLayout: React.FC<
         <Paragraph>{headerText}</Paragraph>
       </NavigationContainer>
       {children}
-      <Grid alignSelf="end" justifyContent="stretch">
-        <Button onClick={() => onNextClick(nextPath, childFn, childFnArgs)}>
-          {nextBtnText}
-        </Button>
-      </Grid>
+      {nextPath && (
+        <Flex justifyContent="center">
+          <Button onClick={() => onNextClick(nextPath, childFn, childFnArgs)}>
+            {nextBtnText}
+          </Button>
+        </Flex>
+      )}
     </Grid>
   )
 }

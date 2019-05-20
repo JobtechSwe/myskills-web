@@ -45,7 +45,7 @@ const AddContactInformation: React.FC<RouteComponentProps> = () => {
       childFn={handleSubmit}
       headerText="KONTAKT"
       nextBtnText="Spara CV med Egendata"
-      nextPath="egenskaper"
+      nextPath="spara-cv"
       step={6}
     >
       <Grid alignContent="start">

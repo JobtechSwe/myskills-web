@@ -1,23 +1,29 @@
 import { RouteComponentProps } from '@reach/router'
-import Grid from '../../components/Grid'
+import Flex from '../../components/Flex'
 import { v4 } from 'uuid'
 import { useMutation, useQuery } from 'react-apollo-hooks'
 import React, { useEffect, useState } from 'react'
-import { useDebounce } from '@iteam/hooks'
-import styled from '@emotion/styled'
+import { useDebounce, useToggle } from '@iteam/hooks'
+import Downshift from 'downshift'
+import { Global, css } from '@emotion/core'
+import Input from '../../components/Input'
+import { SearchList } from '../../components/List'
+import Tag from '../../components/Tag'
+import ListItem from '../../components/ListItem'
+import { InputWrapper, TagButton } from '../../components/ButtonToInput'
 import { H1 } from '../../components/Typography'
 import {
   OntologyTextParseResponse,
   Query,
   OntologyType,
+  OntologyConceptResponse,
 } from '../../generated/myskills.d'
 import gql from 'graphql-tag'
 import { GET_ONTOLOGY_CONCEPTS } from './ChooseProfession'
 import { GET_TRAITS_CLIENT } from '../../graphql/resolvers/mutations/addTrait'
+import { highlightMarked } from '../../utils/helpers'
 import TagList from '../../components/TagList'
 import RegistrationLayout from '../../components/Layout/RegistrationLayout'
-
-const AddTrait = styled.input``
 
 export const ADD_TRAIT = gql`
   mutation addTrait($trait: String!) {
@@ -38,32 +44,30 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
   const { data: { traits = [] } = { traits: [] as string[] } } = useQuery(
     GET_TRAITS_CLIENT
   )
-  const [query, setQuery] = useState('')
+
+  const [traitQuery, setTraitQuery] = useState('')
+  const [addTraitActive, setAddTraitActive] = useToggle(false)
 
   const { data: ontologyRelated } = useQuery<{
-    ontologyConcept: Query['ontologyConcept']
+    ontologyConcepts: Query['ontologyConcept'][]
   }>(GET_ONTOLOGY_CONCEPTS, {
     variables: {
-      filter: useDebounce(query, 500),
+      filter: useDebounce(traitQuery, 500),
       type: OntologyType.Trait,
     },
-    skip: !query,
+    skip: !traitQuery,
   })
+
+  const addTraitMutation = useMutation(ADD_TRAIT)
+  const removeTraitMutation = useMutation(REMOVE_TRAIT)
 
   const [suggestedTraits, setSuggestedTraits] = useState(
     navigationTraits.map(t => t.term)
   )
 
-  const addTraitMutation = useMutation(ADD_TRAIT)
-  const removeTraitMutation = useMutation(REMOVE_TRAIT)
-
-  const handleChange = (e: any) => {
-    if (e.keyCode && e.keyCode === 13) {
-      addTrait(query)
-      setQuery('')
-    } else {
-      setQuery(e.currentTarget.value)
-    }
+  const handleChange = (value: string) => {
+    addTrait(value)
+    setTraitQuery('')
   }
 
   const removeTrait = (trait: string) => {
@@ -100,20 +104,120 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
 
   return (
     <RegistrationLayout headerText="PERSON" nextPath="kontakt" step={5}>
-      <Grid alignItems="start" justifyContent="start">
+      <Flex
+        alignItems="center"
+        flexDirection="column"
+        justifyContent="flex-start"
+      >
         <H1 textAlign="center">Vilka är dina främsta egenskaper?</H1>
         <TagList
           activeItems={traits.map(trait => ({ id: v4(), term: trait }))}
           items={suggestedTraits.map(trait => ({ id: v4(), term: trait }))}
           onSelect={onTagClick}
         />
-        <AddTrait
-          onChange={handleChange}
-          onKeyUp={handleChange}
-          placeholder="Lägg till en annan egenskap"
-          value={query}
+        <Global
+          styles={css`
+            strong {
+              font-weight: 700;
+              text-transform: capitalize;
+            }
+          `}
         />
-      </Grid>
+        {addTraitActive ? (
+          <Downshift
+            itemToString={item => (item ? item.term : '')}
+            onChange={(item: OntologyConceptResponse) =>
+              setTraitQuery(item.term)
+            }
+          >
+            {({
+              getInputProps,
+              getItemProps,
+              getMenuProps,
+              isOpen,
+              inputValue,
+              highlightedIndex,
+            }) => (
+              <div>
+                <InputWrapper as="div" mt="small" p={0}>
+                  <Input
+                    alignSelf="stretch"
+                    border="none"
+                    {...getInputProps({
+                      name: 'trait',
+                      placeholder: 'Lägg till en egenskap',
+                      onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
+                        setTraitQuery(event.target.value),
+                      value: traitQuery,
+                    })}
+                  />
+
+                  <TagButton
+                    borderRadius={8}
+                    data-testid="okButton"
+                    ml={6}
+                    onClick={() => {
+                      handleChange(traitQuery)
+                      setAddTraitActive()
+                    }}
+                    p="small"
+                    role="button"
+                  >
+                    OK
+                  </TagButton>
+                </InputWrapper>
+
+                {ontologyRelated && ontologyRelated.ontologyConcepts && (
+                  <SearchList isOpen={isOpen} {...getMenuProps()}>
+                    {isOpen
+                      ? ontologyRelated.ontologyConcepts
+                          .filter(
+                            (item: OntologyConceptResponse) =>
+                              !inputValue ||
+                              item.term
+                                .toLowerCase()
+                                .includes(inputValue.toLowerCase())
+                          )
+                          .map(
+                            (item: OntologyConceptResponse, index: number) => (
+                              <ListItem
+                                bg={
+                                  highlightedIndex === index
+                                    ? 'seashellPeach'
+                                    : 'white'
+                                }
+                                key={item.id}
+                                px="medium"
+                                {...getItemProps({
+                                  key: item.id,
+                                  index,
+                                  item,
+                                  dangerouslySetInnerHTML: highlightMarked(
+                                    inputValue,
+                                    item.term
+                                  ),
+                                })}
+                              />
+                            )
+                          )
+                      : null}
+                  </SearchList>
+                )}
+              </div>
+            )}
+          </Downshift>
+        ) : (
+          <Tag
+            data-testid="addTraitButton"
+            mb="medium"
+            mt="small"
+            onClick={setAddTraitActive}
+            role="button"
+          >
+            + Lägg till en ny egenskap
+          </Tag>
+        )}
+      </Flex>
     </RegistrationLayout>
   )
 }

@@ -21,7 +21,7 @@ export const removeCookie = (name: string) => {
   Cookies.remove(name)
 }
 
-export const redirect = (route: string) => (location.href = route)
+export const redirect = (route: string) => (window.location.href = route)
 
 interface StorageEntryProps {
   type: string
@@ -57,6 +57,11 @@ interface WhoAmI extends StorageEntryProps {
   data: string
 }
 
+interface Image extends StorageEntryProps {
+  type: 'image'
+  data: string
+}
+
 interface ContactInformation extends StorageEntryProps {
   type: 'contact'
   data: Contact
@@ -65,6 +70,7 @@ interface ContactInformation extends StorageEntryProps {
 export type StorageEntry =
   | ContactInformation
   | Educations
+  | Image
   | Experiences
   | OccupationStorage
   | Skills
@@ -82,4 +88,12 @@ export const storageHelper = {
     ),
   set: (payload: StorageEntry) =>
     localStorage.setItem(payload.type, JSON.stringify(payload.data)),
+}
+
+export const highlightMarked = (inputValue: string, term: string) => {
+  const reg = new RegExp(inputValue, 'i')
+
+  return {
+    __html: term.replace(reg, `<strong>${inputValue}</strong>`),
+  }
 }

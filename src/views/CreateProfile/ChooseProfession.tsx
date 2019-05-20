@@ -11,25 +11,16 @@ import Input from '../../components/Input'
 import IllustrationHeader from '../../components/IllustrationHeader'
 import suitcaseIllustration from '../../assets/illustrations/suitcase.svg'
 import ListItem from '../../components/ListItem'
-import List from '../../components/List'
+import { SearchList } from '../../components/List'
 import styled from '@emotion/styled'
 import { css, Global } from '@emotion/core'
 import ChosenOccupation from '../../components/ChosenOccupation'
 import Downshift from 'downshift'
+import { highlightMarked } from '../../utils/helpers'
 import RegistrationLayout from '../../components/Layout/RegistrationLayout'
 
 const SearchInput = styled(Input)`
   width: 100%;
-`
-
-const SearchList = styled(List)<{ isOpen: boolean }>`
-  border-top: none;
-  max-height: 224px;
-  overflow-x: hidden;
-  overflow-y: auto;
-  box-shadow: ${({ theme }) => `0px 8px 16px 0px ${theme.colors.whiteLilac}`};
-  border-bottom-right-radius: 8px;
-  border-bottom-left-radius: 8px;
 `
 
 export const GET_ONTOLOGY_CONCEPTS = gql`
@@ -73,13 +64,6 @@ export const IS_LOGGED_IN = gql`
     isLoggedIn @client(always: true)
   }
 `
-const highlightMarked = (inputValue: string, term: string) => {
-  const reg = new RegExp(inputValue, 'i')
-
-  return {
-    __html: term.replace(reg, `<strong>${inputValue}</strong>`),
-  }
-}
 
 const ChooseProfession: React.FC<RouteComponentProps> = () => {
   const [query, setQuery] = useState('')

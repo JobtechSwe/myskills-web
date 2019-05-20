@@ -25,6 +25,10 @@ type Contact {
   telephone: String
 }
 
+input ImgInput {
+  imageString: String!
+}
+
 extend type Query {
   isLoggedIn: Boolean!
   educations: [Education!]!
@@ -36,9 +40,10 @@ extend type Query {
 extend type Mutation {
   createOccupationClient(occupation: OccupationInput!): Occupation
 
-  addSkillClient(skill: SkillInput!): Skill 
-  removeSkillClient(skill: SkillInput!): Skill 
+  addSkillClient(skill: SkillInput!): Skill
+  removeSkillClient(skill: SkillInput!): Skill
   addEducationClient(education: EducationInput!): Education
+  uploadImage(imageString: ImgInput!): String!
   addExperienceClient(experience: ExperienceInput!): Experience
   addTrait(trait: String!): String!
   addWhoAmI(whoAmI: String!): String!

@@ -3,7 +3,7 @@
 exports[`components/ProfileLayout renders 1`] = `
 <div>
   <div
-    class="css-3rp4fr"
+    class="css-zr6rkh"
   >
     <div
       class="css-1bqxkm"
@@ -42,7 +42,7 @@ exports[`components/ProfileLayout renders 1`] = `
       </p>
     </div>
     <div
-      class="css-3rp4fr"
+      class="css-zr6rkh"
     >
       <div
         class="css-1bqxkm"
@@ -95,7 +95,7 @@ exports[`components/ProfileLayout renders 1`] = `
             />
           </div>
           <div
-            class="css-1x4kj4v"
+            class="css-1d7vte8"
           >
             <div>
               <div
@@ -120,12 +120,10 @@ exports[`components/ProfileLayout renders 1`] = `
             <div
               class="css-1eid011"
             >
-              <button>
-                <img
-                  alt="edit"
-                  src="edit.svg"
-                />
-              </button>
+              <img
+                alt="edit"
+                src="pen.svg"
+              />
             </div>
           </div>
         </li>
@@ -141,7 +139,7 @@ exports[`components/ProfileLayout renders 1`] = `
             />
           </div>
           <div
-            class="css-1x4kj4v"
+            class="css-1d7vte8"
           >
             <div>
               <div
@@ -172,12 +170,10 @@ exports[`components/ProfileLayout renders 1`] = `
             <div
               class="css-1eid011"
             >
-              <button>
-                <img
-                  alt="edit"
-                  src="edit.svg"
-                />
-              </button>
+              <img
+                alt="edit"
+                src="pen.svg"
+              />
             </div>
           </div>
         </li>
@@ -193,7 +189,7 @@ exports[`components/ProfileLayout renders 1`] = `
             />
           </div>
           <div
-            class="css-1x4kj4v"
+            class="css-1d7vte8"
           >
             <div>
               <div
@@ -224,12 +220,10 @@ exports[`components/ProfileLayout renders 1`] = `
             <div
               class="css-1eid011"
             >
-              <button>
-                <img
-                  alt="edit"
-                  src="edit.svg"
-                />
-              </button>
+              <img
+                alt="edit"
+                src="pen.svg"
+              />
             </div>
           </div>
         </li>
@@ -378,7 +372,7 @@ exports[`components/ProfileLayout renders 1`] = `
 exports[`components/ProfileLayout renders with storage data 1`] = `
 <div>
   <div
-    class="css-3rp4fr"
+    class="css-zr6rkh"
   >
     <div
       class="css-1bqxkm"
@@ -417,7 +411,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
       </p>
     </div>
     <div
-      class="css-3rp4fr"
+      class="css-zr6rkh"
     >
       <div
         class="css-1bqxkm"
@@ -470,7 +464,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
             />
           </div>
           <div
-            class="css-1x4kj4v"
+            class="css-1d7vte8"
           >
             <div>
               <div
@@ -495,12 +489,10 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
             <div
               class="css-1eid011"
             >
-              <button>
-                <img
-                  alt="edit"
-                  src="edit.svg"
-                />
-              </button>
+              <img
+                alt="edit"
+                src="pen.svg"
+              />
             </div>
           </div>
         </li>
@@ -516,7 +508,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
             />
           </div>
           <div
-            class="css-1x4kj4v"
+            class="css-1d7vte8"
           >
             <div>
               <div
@@ -547,12 +539,10 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
             <div
               class="css-1eid011"
             >
-              <button>
-                <img
-                  alt="edit"
-                  src="edit.svg"
-                />
-              </button>
+              <img
+                alt="edit"
+                src="pen.svg"
+              />
             </div>
           </div>
         </li>
@@ -568,7 +558,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
             />
           </div>
           <div
-            class="css-1x4kj4v"
+            class="css-1d7vte8"
           >
             <div>
               <div
@@ -599,12 +589,10 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
             <div
               class="css-1eid011"
             >
-              <button>
-                <img
-                  alt="edit"
-                  src="edit.svg"
-                />
-              </button>
+              <img
+                alt="edit"
+                src="pen.svg"
+              />
             </div>
           </div>
         </li>

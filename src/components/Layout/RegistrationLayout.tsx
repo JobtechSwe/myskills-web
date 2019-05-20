@@ -52,12 +52,16 @@ const RegistrationLayout: React.FC<
   childFnArgs = {},
 }) => {
   return (
-    <Grid gridTemplateRows="auto 1fr auto" height="100vh" p="large">
+    <Grid
+      gridTemplateRows="auto 1fr auto"
+      height="calc(var(--vh, 1vh) * 100)"
+      p="large"
+    >
       <NavigationContainer>
         <Flex alignSelf="stretch" justifyContent="center" mb="small">
           <Flex
-            onClick={() => history.back()}
-            onKeyUp={() => history.back()}
+            onClick={() => window.history.back()}
+            onKeyUp={() => window.history.back()}
             role="button"
             tabIndex={0}
             zIndex={1}

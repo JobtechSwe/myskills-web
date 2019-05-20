@@ -27,9 +27,15 @@ spec:
       containers:
         - env:
             - name: REACT_APP_GRAPHQL_URI
-              value: http://api.myskills-ci.dev.services.jtech.se/graphql
+              valueFrom:
+                secretKeyRef:
+                  key: url
+                  name: myskills-api-url-graphql
             - name: REACT_APP_GRAPHQL_WS_URI
-              value: ws://api.myskills-ci.dev.services.jtech.se/graphql
+              valueFrom:
+                secretKeyRef:
+                  key: url
+                  name: myskills-api-url-ws
           image: docker.io/jobtechswe/myskills-web:latest
           imagePullPolicy: Always
           name: api-ci

@@ -125,6 +125,7 @@ export type LocalStateProps = {
   experiences: Experience[]
   traits: string[]
   whoAmI: string
+  image: string
   contact: Contact
 }
 
@@ -136,6 +137,7 @@ const initialState: LocalStateProps = {
   skills: [],
   traits: [],
   whoAmI: '',
+  image: '',
   contact: {
     name: '',
     email: '',

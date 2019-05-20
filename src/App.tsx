@@ -7,8 +7,8 @@ const Login = React.lazy(() => import(`./views/Login/Login`))
 const Start = React.lazy(() => import(`./views/Start/Start`))
 const Profile = React.lazy(() => import('./views/Profile/Profile'))
 
-const Congratulations = React.lazy(() =>
-  import('./views/CreateProfile/Congratulations')
+const RegistrationCompleted = React.lazy(() =>
+  import('./views/CreateProfile/RegistrationCompleted')
 )
 
 const CreateProfile = React.lazy(() =>
@@ -52,7 +52,7 @@ function App() {
           <CreateProfile path="/skapa-cv">
             <AddEducation path="/utbildning" />
             <ChooseProfession path="/" />
-            <Congratulations path="/congratulations" />
+            <RegistrationCompleted path="/grattis" />
             <MatchCompetences path="/kompetenser" />
             <WhoAmI path="/beskriv-dig" />
             <AddTraits path="/egenskaper" />

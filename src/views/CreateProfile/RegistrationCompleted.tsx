@@ -21,25 +21,21 @@ const Background = styled(Flex)`
   justify-content: center;
 `
 
-const P = styled(Paragraph)`
-  font-size: ${({ theme }) => theme.fontSizes.medium}px;
-`
-
-const Congratulations: React.FC<RouteComponentProps> = () => {
+const RegistrationCompleted: React.FC<RouteComponentProps> = () => {
   return (
     <Background>
       <H1 color="persianBlue">Grattis!</H1>
-      <P>Ditt digitala CV är nu sparat.</P>
+      <Paragraph fontSize="medium">Ditt digitala CV är nu sparat.</Paragraph>
 
-      <P>
+      <Paragraph fontSize="medium">
         Du har själv valt var din data lagras och är nu i full kontroll över hur
         och till vem din information ska delas.
-      </P>
+      </Paragraph>
 
-      <P>
+      <Paragraph fontSize="medium">
         Dessutom har du just gjort ditt liv enklare eftersom du nu bara behöver
         uppdatera ditt CV på ett enda ställe!
-      </P>
+      </Paragraph>
 
       <img alt="Present" src={present} />
       <Flex justifyContent="center">
@@ -49,4 +45,4 @@ const Congratulations: React.FC<RouteComponentProps> = () => {
   )
 }
 
-export default Congratulations
+export default RegistrationCompleted

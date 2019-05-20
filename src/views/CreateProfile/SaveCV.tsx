@@ -20,20 +20,23 @@ export const GET_CONSENT_ID = gql`
   }
 `
 
-function removeTypename(obj: any): any {
-  return Object.keys(obj).reduce((acc, key) => {
+export function removeTypename(prop: any): any {
+  if (typeof prop === 'string') {
+    return prop
+  }
+  return Object.keys(prop).reduce((acc, key) => {
     let withoutTypename
     if (key === '__typename') {
       return acc
     }
-    if (Array.isArray(obj[key])) {
-      withoutTypename = obj[key].map(removeTypename)
-    } else if (obj[key] && typeof obj[key] === 'object') {
-      withoutTypename = removeTypename(obj[key])
+    if (Array.isArray(prop[key])) {
+      withoutTypename = prop[key].map(removeTypename)
+    } else if (prop[key] && typeof prop[key] === 'object') {
+      withoutTypename = removeTypename(prop[key])
     }
     return {
       ...acc,
-      [key]: withoutTypename || obj[key],
+      [key]: withoutTypename || prop[key],
     }
   }, {})
 }
@@ -84,7 +87,14 @@ export const GET_CV_CLIENT = gql`
         years
       }
     }
-    languages
+
+    contact @client {
+      name
+      email
+      telephone
+    }
+
+    language
   }
 `
 
@@ -118,11 +128,11 @@ const Register: React.FC<RouteComponentProps> = props => {
 
   const saveCVMutation = useMutation(SAVE_CV)
   const { data: localCV } = useQuery(GET_CV_CLIENT)
-
   const onConsentApproved = async ({
     consentApproved,
   }: ConsentApprovedSubscription) => {
     const localCVWithoutTypename = removeTypename(localCV)
+
     setCookie('token', consentApproved.accessToken)
     await saveCVMutation({
       variables: {
@@ -134,7 +144,7 @@ const Register: React.FC<RouteComponentProps> = props => {
         })),
       },
     })
-    navigate('/skapa-cv/congratulations')
+    navigate('/skapa-cv/grattis')
   }
   if (error) return <div>{error.message}</div>
   if (loading) return <Loader />
@@ -142,6 +152,7 @@ const Register: React.FC<RouteComponentProps> = props => {
     <Background>
       {consent && (
         <>
+          {consent.url}
           <QrWrapper>
             <Consent
               consentId={consent.id}

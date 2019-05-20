@@ -1,34 +1,34 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import gql from 'graphql-tag'
-import { OntologyRelationResponse } from '../../../generated/myskills'
+import { SkillInput } from '../../../generated/myskills'
 import { storageHelper } from '../../../utils/helpers'
 
 export const GET_SKILLS_CLIENT = gql`
   query getSkills {
     skills @client {
       term
-      id
       type
-      score
+      sourceId
+      id
     }
   }
 `
-
 export const addSkillClient = (
   _: any,
-  { skill }: { skill: OntologyRelationResponse },
+  { skill }: { skill: SkillInput },
   { cache }: { cache: InMemoryCache }
-): OntologyRelationResponse => {
+): SkillInput => {
+  const clientSkill = { ...skill, __typename: 'Skill' }
   const { skills = [] } = cache.readQuery<{
-    skills: OntologyRelationResponse[]
+    skills: SkillInput[]
   }>({
     query: GET_SKILLS_CLIENT,
   })!
 
-  const withoutDuplicates = (skills: OntologyRelationResponse[]) =>
+  const withoutDuplicates = (skills: SkillInput[]) =>
     skills.filter(s => s.term !== skill.term)
 
-  const updatedSkills = [...withoutDuplicates(skills), skill]
+  const updatedSkills = [...withoutDuplicates(skills), clientSkill]
 
   cache.writeQuery({
     query: GET_SKILLS_CLIENT,
@@ -40,5 +40,5 @@ export const addSkillClient = (
     data: updatedSkills,
   })
 
-  return skill
+  return clientSkill
 }

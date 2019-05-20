@@ -99,7 +99,7 @@ export const highlightMarked = (inputValue: string, term: string) => {
 }
 
 export const handleFocusKeyDown = (callback: () => void) => (
-  e: React.KeyboardEvent<HTMLSpanElement>
+  e: React.KeyboardEvent<HTMLElement>
 ) => {
   if (e.which === 13) {
     callback()

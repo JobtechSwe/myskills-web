@@ -7,10 +7,10 @@ export const removeEducationClient = (
   _: any,
   { education }: { education: Education },
   { cache }: { cache: InMemoryCache }
-): Education => {
-  const { educations }: any = cache.readQuery({
+): Education[] => {
+  const { educations = [] } = cache.readQuery<{ educations: Education[] }>({
     query: GET_EDUCATIONS_CLIENT,
-  })
+  })!
 
   const updatedEducationList = educations.filter(
     (e: Education) => e.programme !== education.programme

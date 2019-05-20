@@ -123,6 +123,7 @@ exports[`views/AddEducation renders empty result 1`] = `
         </label>
         <label
           class="css-1be2e5y"
+          data-testid="startDate"
         >
           <span
             class="css-12kzefs"
@@ -153,6 +154,7 @@ exports[`views/AddEducation renders empty result 1`] = `
         </label>
         <label
           class="css-1be2e5y"
+          data-testid="endDate"
         >
           <span
             class="css-12kzefs"

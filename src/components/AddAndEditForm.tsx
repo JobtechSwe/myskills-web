@@ -92,6 +92,7 @@ export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({
         <Flex flexDirection="column">
           <Label>Från</Label>
           <DatePicker
+            dataTestId="startDate"
             onChange={value => handleUpdate('start', value)}
             placeholder="Startdatum"
             value={state.start}
@@ -100,6 +101,7 @@ export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({
         <Flex flexDirection="column">
           <Label>Till</Label>
           <DatePicker
+            dataTestId="endDate"
             onChange={value => handleUpdate('end', value)}
             placeholder="Slutdatum"
             value={state.end}

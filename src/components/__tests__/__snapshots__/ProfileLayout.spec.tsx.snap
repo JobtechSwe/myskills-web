@@ -82,6 +82,7 @@ exports[`components/ProfileLayout renders 1`] = `
       </div>
       <ul
         class="css-1e0t8yk"
+        data-testid="timelineWrapper"
       >
         <li
           class="css-vs8u3f"
@@ -451,6 +452,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
       </div>
       <ul
         class="css-1e0t8yk"
+        data-testid="timelineWrapper"
       >
         <li
           class="css-vs8u3f"

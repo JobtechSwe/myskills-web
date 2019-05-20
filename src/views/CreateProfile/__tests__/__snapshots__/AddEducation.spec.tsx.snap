@@ -79,7 +79,7 @@ exports[`views/AddEducation renders empty result 1`] = `
       class="css-18k1cn6"
     >
       <div
-        class="css-jyqyzi"
+        class="css-46aiqg"
       >
         <label
           class="css-rcg95n"
@@ -172,7 +172,7 @@ exports[`views/AddEducation renders empty result 1`] = `
       </div>
     </div>
     <button
-      class="css-10mzmsw"
+      class="css-1iemawu"
       font-family="default"
       font-size="medium"
       type="submit"
@@ -184,7 +184,7 @@ exports[`views/AddEducation renders empty result 1`] = `
       class="css-djo2sl"
     >
       <button
-        class="css-w4htsj"
+        class="css-1fyzulv"
         font-family="default"
         font-size="medium"
       >

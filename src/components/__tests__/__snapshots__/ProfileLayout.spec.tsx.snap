@@ -239,7 +239,7 @@ exports[`components/ProfileLayout renders 1`] = `
           width="100%"
         >
           <button
-            class="css-1o60u1p"
+            class="css-1ifp9gy"
             font-family="default"
             font-size="medium"
             width="inherit"
@@ -271,7 +271,7 @@ exports[`components/ProfileLayout renders 1`] = `
           width="100%"
         >
           <button
-            class="css-1o60u1p"
+            class="css-1ifp9gy"
             font-family="default"
             font-size="medium"
             width="inherit"
@@ -308,7 +308,7 @@ exports[`components/ProfileLayout renders 1`] = `
         width="100%"
       >
         <button
-          class="css-1o60u1p"
+          class="css-1ifp9gy"
           font-family="default"
           font-size="medium"
           width="inherit"
@@ -340,7 +340,7 @@ exports[`components/ProfileLayout renders 1`] = `
         width="100%"
       >
         <button
-          class="css-1m70hey"
+          class="css-1s8vdet"
           font-family="default"
           font-size="medium"
           width="inherit"
@@ -608,7 +608,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
           width="100%"
         >
           <button
-            class="css-1o60u1p"
+            class="css-1ifp9gy"
             font-family="default"
             font-size="medium"
             width="inherit"
@@ -640,7 +640,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
           width="100%"
         >
           <button
-            class="css-1o60u1p"
+            class="css-1ifp9gy"
             font-family="default"
             font-size="medium"
             width="inherit"
@@ -677,7 +677,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
         width="100%"
       >
         <button
-          class="css-1o60u1p"
+          class="css-1ifp9gy"
           font-family="default"
           font-size="medium"
           width="inherit"
@@ -709,7 +709,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
         width="100%"
       >
         <button
-          class="css-1m70hey"
+          class="css-1s8vdet"
           font-family="default"
           font-size="medium"
           width="inherit"

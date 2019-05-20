@@ -6,7 +6,6 @@ import { Label } from './Typography'
 import Button from './Button'
 import DatePicker from './DatePicker'
 import close from '../assets/icons/close.svg'
-import styled from '@emotion/styled'
 
 export interface FormState {
   schoolOrCompany: string
@@ -25,12 +24,6 @@ interface AddAndEditFormProps {
   onSubmit: (state: FormState) => void
   handleDelete?: (state: FormState) => void
 }
-
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-right: 6px;
-`
 
 export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({
   abortEdit,
@@ -70,14 +63,14 @@ export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({
   return (
     <>
       <Grid gridGap={6}>
-        <Header>
+        <Flex justifyContent="space-between" mr={6}>
           <Label>{label}</Label>
           {edit && (
             <button onClick={abortEdit}>
               <img alt="close" src={close} />
             </button>
           )}
-        </Header>
+        </Flex>
         <Input
           name="title"
           onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>

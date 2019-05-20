@@ -224,8 +224,8 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
             mt="small"
             onClick={setAddTraitActive}
             onKeyDown={handleFocusKeyDown(setAddTraitActive)}
-            tabIndex={0}
             role="button"
+            tabIndex={0}
           >
             + Lägg till en ny egenskap
           </Tag>

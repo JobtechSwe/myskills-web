@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useMutation } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
-import { RouteComponentProps, Link } from '@reach/router'
-import Grid from '../../components/Grid'
-import Input from '../../components/Input'
-import Button from '../../components/Button'
+import { RouteComponentProps } from '@reach/router'
+import AddAndEditForm, { FormState } from '../../components/AddAndEditForm'
 import AddedEducations from '../../components/AddedEducations'
+import IllustrationHeader from '../../components/IllustrationHeader'
+import bookIllustration from '../../assets/illustrations/book.svg'
 import RegistrationLayout from '../../components/Layout/RegistrationLayout'
+import { EducationInput } from '../../generated/myskills.d'
 
 export const ADD_EDUCATION_CLIENT = gql`
   mutation addEducationClient($education: EducationInput!) {
@@ -31,85 +32,38 @@ export const ADD_EDUCATION_API = gql`
 `
 
 const AddEducation: React.FC<RouteComponentProps> = () => {
-  const initialState = {
-    programme: '',
-    school: '',
-    start: '',
-    end: '',
-  }
   const addEducationClient = useMutation(ADD_EDUCATION_CLIENT)
-  const [education, addEducation] = useState(initialState)
 
-  const handleUpdate = (name: string, value: string) => {
-    const updated = {
-      ...education,
-      [name]: value,
+  const handleSubmit = ({ title, start, end, schoolOrCompany }: FormState) => {
+    const education: EducationInput = {
+      end,
+      programme: title,
+      school: schoolOrCompany,
+      start,
     }
-
-    addEducation(updated)
-  }
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
 
     addEducationClient({
       variables: {
         education,
       },
     })
-
-    addEducation(initialState)
   }
 
   return (
     <RegistrationLayout headerText="UTBILDNING" nextPath="beskriv-dig" step={4}>
-      <form onSubmit={handleSubmit}>
-        <Grid>
-          <AddedEducations />
-
-          <Input
-            name="programme"
-            onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
-              handleUpdate('programme', target.value)
-            }
-            placeholder="Program"
-            type="text"
-            value={education.programme}
-          />
-
-          <Input
-            name="school"
-            onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
-              handleUpdate('school', target.value)
-            }
-            placeholder="Skola"
-            type="text"
-            value={education.school}
-          />
-
-          <Input
-            name="start"
-            onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
-              handleUpdate('start', target.value)
-            }
-            placeholder="Från"
-            type="date"
-            value={education.start}
-          />
-
-          <Input
-            name="end"
-            onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
-              handleUpdate('end', target.value)
-            }
-            placeholder="Till"
-            type="date"
-            value={education.end}
-          />
-
-          <Button type="submit">Lägg till</Button>
-        </Grid>
-      </form>
+      <IllustrationHeader
+        imageSource={bookIllustration}
+        imageAltTag="Bok-illustration"
+        imageFirst={false}
+        title="Vad har du för utbildning?"
+      />
+      <AddedEducations />
+      <AddAndEditForm
+        label="Lägg till utbildning"
+        onSubmit={handleSubmit}
+        schoolOrCompanyPlaceholder="Namn på utbildning..."
+        titlePlaceholder="Namn på skola..."
+      />
     </RegistrationLayout>
   )
 }

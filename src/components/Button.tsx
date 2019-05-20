@@ -54,7 +54,7 @@ const Button = styled.button<ButtonProps>`
 
 Button.defaultProps = {
   border: 'none',
-  borderRadius: '5px',
+  borderRadius: '8px',
   fontFamily: 'default',
   fontSize: ['medium'],
   p: '16px 42px',

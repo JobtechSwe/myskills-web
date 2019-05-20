@@ -6,11 +6,18 @@ import { Label } from './Typography'
 import Button from './Button'
 import DatePicker from './DatePicker'
 
+export interface FormState {
+  end?: string
+  schoolOrCompany: string
+  start: string
+  title: string
+}
+
 interface AddAndEditFormProps {
   titlePlaceholder: string
   schoolOrCompanyPlaceholder: string
   label: string
-  onSubmit: (payload: any) => void
+  onSubmit: (payload: FormState) => void
 }
 
 export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({
@@ -19,7 +26,7 @@ export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({
   label,
   onSubmit,
 }) => {
-  const initialState = {
+  const initialState: FormState = {
     schoolOrCompany: '',
     end: '',
     start: '',

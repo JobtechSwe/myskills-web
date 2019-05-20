@@ -50,12 +50,13 @@ const AddContactInformation: React.FC<RouteComponentProps> = () => {
     >
       <Grid alignContent="start">
         <IllustrationHeader
+          description="Fyll i dina kontaktuppgifter för att kunna bli kontaktad av en arbetsgivare."
           imageAltTag="Telefon och brev"
-          imageFirst={false}
+          imageFirst={true}
           imageSource={smartphoneLetter}
           title="Hur vill du bli nådd?"
         />
-        <Grid gridGap={10}>
+        <Grid mt="small" gridGap={10}>
           <Input
             name="name"
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>

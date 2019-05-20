@@ -1,5 +1,6 @@
 import React from 'react'
 import { RouteComponentProps } from '@reach/router'
+import Flex from '../../components/Flex'
 import { H1 } from '../../components/Typography'
 import gql from 'graphql-tag'
 import Timeline from '../../components/Timeline'
@@ -39,23 +40,29 @@ export const WorkExperiences: React.FC<RouteComponentProps> = () => {
 
   return (
     <RegistrationLayout headerText="ERFARENHET" nextPath="utbildning" step={3}>
-      <H1 textAlign="center">Vad har du för arbetslivserfarenhet?</H1>
-      {experiences && (
-        <TimelineStyled
-          entries={experiences.map((exp: Experience) => ({
-            title: exp.term,
-            schoolOrCompany: exp.employer,
-            start: exp.start,
-            end: exp.end,
-          }))}
+      <Flex
+        flexDirection="column"
+        alignItems="stretch"
+        justifyContent="flex-start"
+      >
+        <H1 textAlign="center">Vad har du för arbetslivserfarenhet?</H1>
+        {experiences && (
+          <TimelineStyled
+            entries={experiences.map((exp: Experience) => ({
+              title: exp.term,
+              schoolOrCompany: exp.employer,
+              start: exp.start,
+              end: exp.end,
+            }))}
+          />
+        )}
+        <AddAndEditForm
+          label="Lägg till erfarenhet"
+          onSubmit={handleSubmit}
+          schoolOrCompanyPlaceholder="Arbetsgivare..."
+          titlePlaceholder="Namn på tjänst..."
         />
-      )}
-      <AddAndEditForm
-        label="Lägg till erfarenhet"
-        onSubmit={handleSubmit}
-        schoolOrCompanyPlaceholder="Arbetsgivare..."
-        titlePlaceholder="Namn på tjänst..."
-      />
+      </Flex>
     </RegistrationLayout>
   )
 }

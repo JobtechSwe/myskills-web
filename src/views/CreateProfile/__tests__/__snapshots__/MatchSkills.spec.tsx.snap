@@ -54,7 +54,7 @@ exports[`views/MatchSkills renders loading state 1`] = `
       </p>
     </nav>
     <div
-      class="css-1vad0jj"
+      class="css-13lzt9w"
     >
       
       <h1
@@ -119,7 +119,7 @@ exports[`views/MatchSkills renders loading state 1`] = `
       class="css-5hfabl"
     >
       <button
-        class="css-1qzvtil"
+        class="css-w4htsj"
         font-family="default"
         font-size="medium"
       >

@@ -20,7 +20,7 @@ exports[`components/ProfileLayout renders 1`] = `
         class="css-1jo84sd"
       >
         <p
-          class="css-1q7xqyo"
+          class="css-twz9yi"
           font-family="default"
           font-size="medium"
         >
@@ -33,7 +33,7 @@ exports[`components/ProfileLayout renders 1`] = `
         />
       </div>
       <p
-        class="css-1ffi3ob"
+        class="css-qlepwc"
         font-family="default"
         font-size="large"
         font-weight="bold"
@@ -59,7 +59,7 @@ exports[`components/ProfileLayout renders 1`] = `
           class="css-1jo84sd"
         >
           <p
-            class="css-1q7xqyo"
+            class="css-twz9yi"
             font-family="default"
             font-size="medium"
           >
@@ -72,7 +72,7 @@ exports[`components/ProfileLayout renders 1`] = `
           />
         </div>
         <p
-          class="css-1ffi3ob"
+          class="css-qlepwc"
           font-family="default"
           font-size="large"
           font-weight="bold"
@@ -395,7 +395,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
         class="css-1jo84sd"
       >
         <p
-          class="css-1q7xqyo"
+          class="css-twz9yi"
           font-family="default"
           font-size="medium"
         >
@@ -408,7 +408,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
         />
       </div>
       <p
-        class="css-1ffi3ob"
+        class="css-qlepwc"
         font-family="default"
         font-size="large"
         font-weight="bold"
@@ -434,7 +434,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
           class="css-1jo84sd"
         >
           <p
-            class="css-1q7xqyo"
+            class="css-twz9yi"
             font-family="default"
             font-size="medium"
           >
@@ -447,7 +447,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
           />
         </div>
         <p
-          class="css-1ffi3ob"
+          class="css-qlepwc"
           font-family="default"
           font-size="large"
           font-weight="bold"

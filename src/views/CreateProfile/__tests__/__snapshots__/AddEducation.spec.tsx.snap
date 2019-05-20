@@ -46,7 +46,7 @@ exports[`views/AddEducation renders empty result 1`] = `
         </div>
       </div>
       <p
-        class="css-5fjnxu"
+        class="css-1e8qwx1"
         font-family="default"
         font-size="small"
       >
@@ -57,7 +57,7 @@ exports[`views/AddEducation renders empty result 1`] = `
       class="css-qaz948"
     >
       <h1
-        class="css-jujqtm"
+        class="css-1wd37ko"
         color="black"
         font-family="default"
         font-size="large"

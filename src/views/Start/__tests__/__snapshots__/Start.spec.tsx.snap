@@ -16,7 +16,7 @@ exports[`views/Start renders Start 1`] = `
         class="css-15g94ap"
       />
       <p
-        class="css-2t3v4m"
+        class="css-rhpk2r"
         color="persianBlue"
         font-family="default"
         font-size="small"
@@ -61,7 +61,7 @@ exports[`views/Start renders Start 1`] = `
         >
           Logga in med 
           <span
-            class="css-6vhke0"
+            class="css-1ijtdw3"
             font-family="default"
             font-size="medium"
             font-weight="700"
@@ -78,7 +78,7 @@ exports[`views/Start renders Start 1`] = `
           src="info.svg"
         />
         <p
-          class="css-1h35e1d"
+          class="css-17eikna"
           font-family="default"
           font-size="small"
         >
@@ -100,7 +100,7 @@ exports[`views/Start renders Start 1`] = `
     class="css-bfkqop"
   >
     <h2
-      class="css-v6vnfu"
+      class="css-1vdlfou"
       color="cloudBurst"
       font-family="default"
       font-size="24"
@@ -109,7 +109,7 @@ exports[`views/Start renders Start 1`] = `
     </h2>
     <div>
       <h3
-        class="css-1g1g2j2"
+        class="css-1cxfzx1"
         color="cloudBurst"
         font-family="default"
         font-size="16"
@@ -118,7 +118,7 @@ exports[`views/Start renders Start 1`] = `
         Skapa din profil
       </h3>
       <p
-        class="css-bu3hf1"
+        class="css-17kp8oa"
         color="cloudBurst"
         font-family="default"
         font-size="small"
@@ -128,7 +128,7 @@ exports[`views/Start renders Start 1`] = `
     </div>
     <div>
       <h3
-        class="css-1g1g2j2"
+        class="css-1cxfzx1"
         color="cloudBurst"
         font-family="default"
         font-size="16"
@@ -137,7 +137,7 @@ exports[`views/Start renders Start 1`] = `
         Lagra ditt CV
       </h3>
       <p
-        class="css-bu3hf1"
+        class="css-17kp8oa"
         color="cloudBurst"
         font-family="default"
         font-size="small"
@@ -147,7 +147,7 @@ exports[`views/Start renders Start 1`] = `
     </div>
     <div>
       <h3
-        class="css-1g1g2j2"
+        class="css-1cxfzx1"
         color="cloudBurst"
         font-family="default"
         font-size="16"
@@ -156,7 +156,7 @@ exports[`views/Start renders Start 1`] = `
         Spara tid
       </h3>
       <p
-        class="css-bu3hf1"
+        class="css-17kp8oa"
         color="cloudBurst"
         font-family="default"
         font-size="small"

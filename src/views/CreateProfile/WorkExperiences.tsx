@@ -9,6 +9,7 @@ import { Experience } from '../../generated/myskills'
 import AddAndEditForm from '../../components/AddAndEditForm'
 import RegistrationLayout from '../../components/Layout/RegistrationLayout'
 import { v4 } from 'uuid'
+import { Entry } from '../../components/Timeline/index'
 
 const ADD_EXPERIENCE_CLIENT = gql`
   mutation addExperienceClient($experience: ExperienceInput!) {
@@ -39,15 +40,18 @@ const UPDATE_EXPERIENCE_CLIENT = gql`
 `
 
 export const WorkExperiences: React.FC<RouteComponentProps> = () => {
-  const [edit, toggleEdit] = useState(false)
-  const [entry, setEntry] = useState({
+  const initialEditEntry = {
     id: '',
     title: '',
     degree: '',
     schoolOrCompany: '',
     start: '',
     end: '',
-  })
+  } as Entry
+
+  const [edit, toggleEdit] = useState(false)
+  const [editEntry, setEditEntry] = useState(initialEditEntry)
+
   const addExperienceClient = useMutation(ADD_EXPERIENCE_CLIENT)
   const removeExperienceClient = useMutation(REMOVE_EXPERIENCE_CLIENT)
   const updateExperienceClient = useMutation(UPDATE_EXPERIENCE_CLIENT)
@@ -55,12 +59,17 @@ export const WorkExperiences: React.FC<RouteComponentProps> = () => {
     data: { experiences },
   } = useQuery(GET_EXPERIENCES_CLIENT)
 
-  const handleEdit = (data: any) => {
-    setEntry(data)
+  const handleEdit = (entry: Entry) => {
+    setEditEntry(entry)
     toggleEdit(true)
   }
 
-  const handleDelete = (entry: any) => {
+  const abortEdit = () => {
+    setEditEntry(initialEditEntry)
+    toggleEdit(false)
+  }
+
+  const handleDelete = (entry: Entry) => {
     removeExperienceClient({
       variables: {
         experience: {
@@ -72,10 +81,11 @@ export const WorkExperiences: React.FC<RouteComponentProps> = () => {
         },
       },
     })
+
     toggleEdit(false)
   }
 
-  const handleSubmit = (formState: any) => {
+  const handleSubmit = (formState: Entry) => {
     if (edit) {
       updateExperienceClient({
         variables: {
@@ -88,6 +98,8 @@ export const WorkExperiences: React.FC<RouteComponentProps> = () => {
           },
         },
       })
+
+      setEditEntry(initialEditEntry)
       return toggleEdit(false)
     }
 
@@ -109,6 +121,7 @@ export const WorkExperiences: React.FC<RouteComponentProps> = () => {
       <H1 textAlign="center">Vad har du för arbetslivserfarenhet?</H1>
       {experiences && (
         <Timeline
+          editingEntry={editEntry.id}
           entries={experiences.map((exp: Experience) => ({
             id: exp.id,
             title: exp.term,
@@ -121,9 +134,9 @@ export const WorkExperiences: React.FC<RouteComponentProps> = () => {
       )}
       {edit && (
         <AddAndEditForm
-          abortEdit={() => toggleEdit(false)}
+          abortEdit={abortEdit}
           edit={true}
-          editItem={entry}
+          editItem={editEntry}
           handleDelete={handleDelete}
           label="Uppdatera erfarenhet"
           onSubmit={handleSubmit}

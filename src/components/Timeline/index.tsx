@@ -3,18 +3,19 @@ import styled from '@emotion/styled'
 import TimelineEntry from './TimelineEntry'
 
 export type Entry = {
-  id?: String
-  title: String
-  degree?: String
-  schoolOrCompany: String
-  start: String
-  end: String
+  id?: string
+  title: string
+  degree?: string
+  schoolOrCompany: string
+  start: string
+  end: string
 }
 
 interface TimelineProps {
+  editingEntry?: string
   enableTimelineBar?: boolean
   entries: Entry[]
-  handleEdit?: (data: string) => void
+  handleEdit?: (entry: Entry) => void
 }
 
 const Wrapper = styled.ul<{ enableTimelineBar: boolean }>`
@@ -37,6 +38,7 @@ const Wrapper = styled.ul<{ enableTimelineBar: boolean }>`
 `
 
 const Timeline: React.FC<TimelineProps> = ({
+  editingEntry,
   enableTimelineBar = false,
   entries,
   handleEdit,
@@ -45,6 +47,7 @@ const Timeline: React.FC<TimelineProps> = ({
     <Wrapper enableTimelineBar={enableTimelineBar}>
       {entries.map((entry, i) => (
         <TimelineEntry
+          editing={editingEntry === entry.id}
           entry={entry}
           handleEdit={handleEdit}
           key={`entry-${i}`}

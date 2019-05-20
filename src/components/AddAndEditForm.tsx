@@ -8,6 +8,13 @@ import DatePicker from './DatePicker'
 import close from '../assets/icons/close.svg'
 import styled from '@emotion/styled'
 
+interface State {
+  schoolOrCompany: string
+  end: string
+  start: string
+  title: string
+}
+
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
@@ -20,8 +27,8 @@ interface AddAndEditFormProps {
   titlePlaceholder: string
   schoolOrCompanyPlaceholder: string
   label: string
-  onSubmit: (payload: any) => void
-  handleDelete?: (payload: any) => void
+  onSubmit: (state: State) => void
+  handleDelete?: (state: State) => void
 }
 
 export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({

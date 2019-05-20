@@ -26,6 +26,8 @@ import {
   HeightProps,
   justifyContent,
   JustifyContentProps,
+  justifyItems,
+  JustifyItemsProps,
   space,
   SpaceProps,
 } from 'styled-system'
@@ -43,6 +45,7 @@ type GridProps = AlignContentProps &
   GridRowProps &
   HeightProps &
   JustifyContentProps &
+  JustifyItemsProps &
   SpaceProps
 
 const Grid = styled.div<GridProps>`
@@ -61,6 +64,7 @@ const Grid = styled.div<GridProps>`
   ${gridRow}
   ${height}
   ${justifyContent}
+  ${justifyItems}
   ${space}
 `
 

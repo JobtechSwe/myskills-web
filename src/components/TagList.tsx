@@ -22,7 +22,12 @@ const TagList: React.FC<TagListProps<TagItemProps>> = ({
     activeItems.find(({ id }) => id === selectedId)
 
   return (
-    <Flex alignItems="center" flexWrap="wrap" justifyContent="center">
+    <Flex
+      alignItems="center"
+      data-testid="tagList"
+      flexWrap="wrap"
+      justifyContent="center"
+    >
       {[...activeItems, ...items].map(item => (
         <Tag
           key={item.id}

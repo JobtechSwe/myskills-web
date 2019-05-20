@@ -89,3 +89,11 @@ export const storageHelper = {
   set: (payload: StorageEntry) =>
     localStorage.setItem(payload.type, JSON.stringify(payload.data)),
 }
+
+export const highlightMarked = (inputValue: string, term: string) => {
+  const reg = new RegExp(inputValue, 'i')
+
+  return {
+    __html: term.replace(reg, `<strong>${inputValue}</strong>`),
+  }
+}

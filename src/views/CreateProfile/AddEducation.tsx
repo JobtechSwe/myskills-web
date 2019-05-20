@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useMutation } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
-import { RouteComponentProps, Link } from '@reach/router'
+import { RouteComponentProps } from '@reach/router'
 import Grid from '../../components/Grid'
 import Input from '../../components/Input'
 import Button from '../../components/Button'

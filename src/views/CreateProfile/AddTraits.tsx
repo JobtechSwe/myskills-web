@@ -100,10 +100,10 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
 
   useEffect(() => {
     setSuggestedTraits(suggestedTraits.filter(t => traits.indexOf(t) === -1))
-  }, [traits])
+  }, [traits, suggestedTraits])
 
   return (
-    <RegistrationLayout headerText="PERSON" nextPath="kontakt" step={5}>
+    <RegistrationLayout headerText="PERSON" nextPath="profilbild" step={5}>
       <Flex
         alignItems="center"
         flexDirection="column"

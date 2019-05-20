@@ -33,12 +33,6 @@ const TextAreaContainer = styled(Grid)`
   background: white;
 `
 
-const Footer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`
-
 const TagSpan = styled.span`
   font-weight: 700;
   color: red;

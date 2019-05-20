@@ -10,16 +10,16 @@ const Restricted: React.FC<RestrictedRouteProps> = ({
   component: RestrictedComponent,
   ...props
 }) => {
-  // const [isAuthenticated, setAuthenticated] = useState(false)
+  const [isAuthenticated, setAuthenticated] = useState(false)
 
-  // const checkAuthentication = () =>
-  //   !getCookie('token') ? navigate('/') : setAuthenticated(true)
+  const checkAuthentication = () =>
+    !getCookie('token') ? navigate('/') : setAuthenticated(true)
 
-  // useEffect(() => {
-  //   checkAuthentication()
-  // })
-  return <RestrictedComponent {...props} />
-  // return isAuthenticated ? <RestrictedComponent {...props} /> : null
+  useEffect(() => {
+    checkAuthentication()
+  })
+
+  return isAuthenticated ? <RestrictedComponent {...props} /> : null
 }
 
 export default Restricted

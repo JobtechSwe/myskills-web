@@ -1,7 +1,7 @@
 import ButtonToInput from '../../components/ButtonToInput'
 import Flex from '../../components/Flex'
 import Loader from '../../components/Loader'
-import React, { useEffect, useReducer } from 'react'
+import React, { useCallback, useEffect, useReducer } from 'react'
 import TagList from '../../components/TagList'
 import gql from 'graphql-tag'
 import { H1 } from '../../components/Typography'
@@ -185,46 +185,52 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
     type: ontologyItem.type,
   })
 
-  const getRelatedSkills = async (
-    skills: SkillInput[],
-    prevRelatedSkills: SkillInput[]
-  ) => {
-    dispatch({ type: 'LOADING', payload: true })
+  const getRelatedSkillsMemo = useCallback(
+    async (skills: SkillInput[], prevRelatedSkills: SkillInput[]) => {
+      dispatch({ type: 'LOADING', payload: true })
 
-    const { data } = await client.query({
-      query: GET_RELATED_SKILLS,
-      variables: {
-        concepts: skills.map(({ term }) => term),
-        limit: 5,
-        type: OntologyType.Skill,
-      },
-    })
+      const { data } = await client.query({
+        query: GET_RELATED_SKILLS,
+        variables: {
+          concepts: skills.map(({ term }) => term),
+          limit: 5,
+          type: OntologyType.Skill,
+        },
+      })
 
-    if (data.error) {
-      return dispatch({ type: 'ERROR', payload: data.error.message })
-    }
+      if (data.error) {
+        return dispatch({ type: 'ERROR', payload: data.error.message })
+      }
 
-    dispatch({
-      type: 'RELATED_SKILLS',
-      payload: [
-        ...prevRelatedSkills,
-        ...data.ontologyRelated.relations.map(ontologyRelationToSkill),
-      ],
-    })
+      dispatch({
+        type: 'RELATED_SKILLS',
+        payload: [
+          ...prevRelatedSkills,
+          ...data.ontologyRelated.relations.map(ontologyRelationToSkill),
+        ],
+      })
 
-    dispatch({ type: 'LOADING', payload: false })
-  }
+      dispatch({ type: 'LOADING', payload: false })
+    },
+    [client]
+  )
 
   useEffect(() => {
     if (!state.savedSkills.length) {
-      getRelatedSkills([occupation], savedSkills)
+      getRelatedSkillsMemo([occupation], savedSkills)
     } else {
-      getRelatedSkills(
+      getRelatedSkillsMemo(
         state.lastSavedSkill.length ? state.lastSavedSkill : state.savedSkills,
         state.savedSkills
       )
     }
-  }, [state.lastSavedSkill])
+  }, [
+    state.lastSavedSkill,
+    state.savedSkills,
+    savedSkills,
+    occupation,
+    getRelatedSkillsMemo,
+  ])
 
   const handleFreeTextSkill = async (value: string) => {
     const skill = {

@@ -3,8 +3,6 @@ import { RouteComponentProps } from '@reach/router'
 import Input from '../../components/Input'
 import smartphoneLetter from '../../assets/illustrations/smarthpone_letter.svg'
 import IllustrationHeader from '../../components/IllustrationHeader'
-import { H1 } from '../../components/Typography'
-import Flex from '../../components/Flex'
 import Grid from '../../components/Grid'
 import { GET_CONTACT_CLIENT } from '../../graphql/resolvers/mutations/updateContactInformation'
 import { useMutation, useQuery } from 'react-apollo-hooks'
@@ -26,7 +24,7 @@ const AddContactInformation: React.FC<RouteComponentProps> = () => {
   const { data: contactData } = useQuery(GET_CONTACT_CLIENT)
   const [inputData, setData] = useState({ name: '', email: '', telephone: '' })
 
-  useEffect(() => setData(contactData.contact), [])
+  useEffect(() => setData(contactData.contact), [contactData.contact])
 
   const handleChange = (key: string, val: string) => {
     setData({ ...inputData, [key]: val })

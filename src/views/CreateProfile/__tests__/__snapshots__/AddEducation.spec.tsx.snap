@@ -3,7 +3,7 @@
 exports[`views/AddEducation renders empty result 1`] = `
 <div>
   <div
-    class="css-475q7k"
+    class="css-15q7p9b"
     height="calc(var(--vh, 1vh) * 100)"
   >
     <nav
@@ -55,7 +55,7 @@ exports[`views/AddEducation renders empty result 1`] = `
     </nav>
     <form>
       <div
-        class="css-79uff4"
+        class="css-1dsdvod"
       >
         <div />
         <input

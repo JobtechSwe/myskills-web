@@ -106,10 +106,10 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
     if (inputRef && inputRef.current) {
       inputRef.current.focus()
     }
-  }, [traits, addTraitActive])
+  }, [traits, addTraitActive, suggestedTraits])
 
   return (
-    <RegistrationLayout headerText="PERSON" nextPath="kontakt" step={5}>
+    <RegistrationLayout headerText="PERSON" nextPath="profilbild" step={5}>
       <Flex
         alignItems="center"
         flexDirection="column"

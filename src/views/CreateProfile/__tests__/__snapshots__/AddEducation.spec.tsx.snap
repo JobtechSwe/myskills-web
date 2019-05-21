@@ -3,7 +3,7 @@
 exports[`views/AddEducation renders empty result 1`] = `
 <div>
   <div
-    class="css-475q7k"
+    class="css-15q7p9b"
     height="calc(var(--vh, 1vh) * 100)"
   >
     <nav
@@ -54,7 +54,7 @@ exports[`views/AddEducation renders empty result 1`] = `
       </p>
     </nav>
     <div
-      class="css-qaz948"
+      class="css-1kqrbn8"
     >
       <h1
         class="css-1wd37ko"
@@ -76,7 +76,7 @@ exports[`views/AddEducation renders empty result 1`] = `
     </div>
     <div />
     <div
-      class="css-18k1cn6"
+      class="css-u0khw4"
     >
       <div
         class="css-46aiqg"
@@ -108,7 +108,7 @@ exports[`views/AddEducation renders empty result 1`] = `
       />
     </div>
     <div
-      class="css-1v4dtyt"
+      class="css-k6djra"
     >
       <div
         class="css-y54doh"

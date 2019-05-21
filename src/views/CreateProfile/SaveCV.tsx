@@ -43,17 +43,21 @@ export function removeTypename(prop: any): any {
 
 export const SAVE_CV = gql`
   mutation saveCV(
-    $skills: [SkillInput!]
     $educations: [EducationInput!]
     $experiences: [ExperienceInput!]
     $occupation: OccupationInput
+    $personalDescription: String
+    $skills: [SkillInput!]
+    $traits: [String!]
   ) {
     saveCV(
       cv: {
-        skills: $skills
         educations: $educations
         experiences: $experiences
         occupation: $occupation
+        personalDescription: $personalDescription
+        skills: $skills
+        traits: $traits
       }
     ) {
       skills {
@@ -69,6 +73,14 @@ export const GET_CV_CLIENT = gql`
       sourceId
       term
       type
+    }
+
+    experiences {
+      employer
+      start
+      end
+      sourceId
+      term
     }
 
     educations @client {
@@ -92,6 +104,9 @@ export const GET_CV_CLIENT = gql`
       email
       telephone
     }
+
+    whoAmI @client
+    image @client(always: true)
   }
 `
 
@@ -125,6 +140,7 @@ const Register: React.FC<RouteComponentProps> = () => {
 
   const saveCVMutation = useMutation(SAVE_CV)
   const { data: localCV } = useQuery(GET_CV_CLIENT)
+
   const onConsentApproved = async ({
     consentApproved,
   }: ConsentApprovedSubscription) => {
@@ -134,6 +150,7 @@ const Register: React.FC<RouteComponentProps> = () => {
     await saveCVMutation({
       variables: {
         ...localCVWithoutTypename,
+        personalDescription: localCV.whoAmI,
         skills: localCV.skills.map((skill: any) => ({
           type: skill.type,
           term: skill.term,

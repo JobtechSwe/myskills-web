@@ -1,7 +1,7 @@
 import React from 'react'
 import Flex from './Flex'
 import Tag from './Tag'
-import { handleFocusKeyDown } from '../utils/helpers'
+import { handleFocusKeyDown } from 'utils/helpers'
 
 interface TagItemProps {
   id: string

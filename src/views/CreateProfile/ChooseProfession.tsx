@@ -2,22 +2,19 @@ import React, { useState } from 'react'
 import { useDebounce } from '@iteam/hooks'
 import { useQuery, useMutation } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
-import {
-  OntologyType,
-  OntologyConceptResponse,
-} from '../../generated/myskills.d'
+import { OntologyType, OntologyConceptResponse } from 'generated/myskills.d'
 import { RouteComponentProps } from '@reach/router'
-import Grid from '../../components/Grid'
-import Input from '../../components/Input'
-import IllustrationHeader from '../../components/IllustrationHeader'
-import suitcaseIllustration from '../../assets/illustrations/suitcase.svg'
-import ListItem from '../../components/ListItem'
-import { SearchList } from '../../components/List'
+import Grid from 'components/Grid'
+import Input from 'components/Input'
+import IllustrationHeader from 'components/IllustrationHeader'
+import suitcaseIllustration from 'assets/illustrations/suitcase.svg'
+import ListItem from 'components/ListItem'
+import { SearchList } from 'components/List'
 import { css, Global } from '@emotion/core'
-import ChosenOccupation from '../../components/ChosenOccupation'
+import ChosenOccupation from 'components/ChosenOccupation'
 import Downshift from 'downshift'
-import { highlightMarked } from '../../utils/helpers'
-import RegistrationLayout from '../../components/Layout/RegistrationLayout'
+import { highlightMarked } from 'utils/helpers'
+import RegistrationLayout from 'components/Layout/RegistrationLayout'
 
 export const GET_ONTOLOGY_CONCEPTS = gql`
   query ontologyConcepts($filter: String!, $type: OntologyType) {

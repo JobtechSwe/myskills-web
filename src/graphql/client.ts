@@ -6,17 +6,16 @@ import { onError } from 'apollo-link-error'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { HttpLink } from 'apollo-link-http'
 import { getMainDefinition } from 'apollo-utilities'
-import { getCookie, removeCookie, redirect } from '../utils/helpers'
+import { getCookie, removeCookie, redirect } from 'utils/helpers'
 import {
   Education,
   Experience,
   Language,
   Occupation,
-  Profile,
   Skill,
-} from '../generated/myskills'
+} from 'generated/myskills'
 import resolvers from './resolvers'
-import { storageHelper } from '../utils/helpers'
+import { storageHelper } from 'utils/helpers'
 
 const httpLink = new HttpLink({
   uri: process.env.REACT_APP_GRAPHQL_URI,
@@ -57,7 +56,7 @@ export const deconstructJWT = (token: string) => {
   return JSON.parse(decodeURIComponent(escape(window.atob(segments[1]))))
 }
 
-const authLink = setContext((root, { headers }) => {
+const authLink = setContext((_root, { headers }) => {
   const token = getCookie('token')
 
   // Redirect to login if no token

@@ -6,8 +6,6 @@ export type Scalars = {
   Boolean: boolean
   Int: number
   Float: number
-  /** The `Upload` scalar type represents a file upload. */
-  Upload: any
   /** A date string, such as 2007-12-03, compliant with the `full-date` format
    * outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for
    * representation of dates and times using the Gregorian calendar.
@@ -19,6 +17,8 @@ export type Scalars = {
   JSON: any
   /** A password string. Has to be at least 8 characters long. */
   Password: any
+  /** The `Upload` scalar type represents a file upload. */
+  Upload: any
   /** The UUID scalar type represents a UUID. */
   UUID: any
 }
@@ -58,14 +58,20 @@ export type Cv = {
   skills?: Maybe<Array<Maybe<Skill>>>
   educations?: Maybe<Array<Maybe<Education>>>
   experiences?: Maybe<Array<Maybe<Experience>>>
+  image?: Maybe<Scalars['String']>
   occupation?: Maybe<Occupation>
+  traits?: Maybe<Array<Scalars['String']>>
+  personalDescription?: Maybe<Scalars['String']>
 }
 
 export type CvInput = {
   skills?: Maybe<Array<SkillInput>>
   educations?: Maybe<Array<EducationInput>>
   experiences?: Maybe<Array<ExperienceInput>>
+  image?: Maybe<ImgInput>
   occupation?: Maybe<OccupationInput>
+  traits?: Maybe<Array<Scalars['String']>>
+  personalDescription?: Maybe<Scalars['String']>
 }
 
 export type Education = {
@@ -104,6 +110,10 @@ export type ImgFile = {
   imageString: Scalars['String']
 }
 
+export type ImgInput = {
+  imageString: Scalars['String']
+}
+
 export enum Language {
   Spanish = 'spanish',
   Swedish = 'swedish',
@@ -129,6 +139,10 @@ export type Mutation = {
   addSkill: Skill
   /** Add user occupation */
   createOccupation: Occupation
+  /** Add user trait */
+  addTrait: Scalars['String']
+  /** Add user description */
+  addPersonalDescription: Scalars['String']
   /** Remove skill from user */
   removeSkill: Scalars['Boolean']
   /** Remove education from user */
@@ -140,13 +154,14 @@ export type Mutation = {
   /** Save the complete cv to user */
   saveCV: Cv
   /** Save Image as base64 string */
-  uploadImage: ImgFile
+  uploadImage: Scalars['String']
   createOccupationClient?: Maybe<Occupation>
   addSkillClient?: Maybe<Skill>
   removeSkillClient?: Maybe<Skill>
   addEducationClient?: Maybe<Education>
+  updateEducationClient?: Maybe<Education>
   addExperienceClient?: Maybe<Experience>
-  addTrait: Scalars['String']
+  updateExperienceClient?: Maybe<Experience>
   addWhoAmI: Scalars['String']
   updateContactInformation: Contact
   removeEducationClient?: Maybe<Education>
@@ -178,6 +193,14 @@ export type MutationCreateOccupationArgs = {
   occupation: OccupationInput
 }
 
+export type MutationAddTraitArgs = {
+  trait: Scalars['String']
+}
+
+export type MutationAddPersonalDescriptionArgs = {
+  body: Scalars['String']
+}
+
 export type MutationRemoveSkillArgs = {
   id: Scalars['String']
 }
@@ -199,7 +222,7 @@ export type MutationSaveCvArgs = {
 }
 
 export type MutationUploadImageArgs = {
-  file: Scalars['Upload']
+  image: ImgInput
 }
 
 export type MutationCreateOccupationClientArgs = {
@@ -218,12 +241,16 @@ export type MutationAddEducationClientArgs = {
   education: EducationInput
 }
 
+export type MutationUpdateEducationClientArgs = {
+  education: EducationInput
+}
+
 export type MutationAddExperienceClientArgs = {
   experience: ExperienceInput
 }
 
-export type MutationAddTraitArgs = {
-  trait: Scalars['String']
+export type MutationUpdateExperienceClientArgs = {
+  experience: ExperienceInput
 }
 
 export type MutationAddWhoAmIArgs = {
@@ -369,6 +396,10 @@ export type Query = {
   profile: Profile
   /** Get user skills */
   skills: Array<Maybe<Skill>>
+  /** Get user personalDescription */
+  personalDescription?: Maybe<Scalars['String']>
+  /** Get user traits */
+  traits: Array<Maybe<Scalars['String']>>
   /** Get user image */
   image: Scalars['String']
   /** Get from taxonomy */
@@ -380,7 +411,6 @@ export type Query = {
   ontologyTextParse: Array<Maybe<OntologyTextParseResponse>>
   isLoggedIn: Scalars['Boolean']
   contact: Contact
-  traits: Array<Scalars['String']>
   whoAmI: Scalars['String']
 }
 
@@ -486,19 +516,6 @@ export enum TaxonomyType {
   WorktimeExtent = 'WORKTIME_EXTENT',
 }
 
-export type RemoveEducationClientMutationVariables = {
-  education: EducationInput
-}
-
-export type RemoveEducationClientMutation = { __typename?: 'Mutation' } & {
-  removeEducationClient: Maybe<
-    { __typename?: 'Education' } & Pick<
-      Education,
-      'programme' | 'school' | 'start' | 'end'
-    >
-  >
-}
-
 export type GetProfessionAndContactQueryVariables = {}
 
 export type GetProfessionAndContactQuery = { __typename?: 'Query' } & {
@@ -513,7 +530,7 @@ export type GetEducationsQuery = { __typename?: 'Query' } & {
     Maybe<
       { __typename?: 'Education' } & Pick<
         Education,
-        'programme' | 'school' | 'start' | 'end'
+        'id' | 'programme' | 'school' | 'start' | 'end'
       >
     >
   >
@@ -526,7 +543,7 @@ export type GetExperiencesQuery = { __typename?: 'Query' } & {
     Maybe<
       { __typename?: 'Experience' } & Pick<
         Experience,
-        'employer' | 'term' | 'start' | 'end'
+        'id' | 'employer' | 'term' | 'start' | 'end'
       >
     >
   >
@@ -582,6 +599,28 @@ export type GetContactQuery = { __typename?: 'Query' } & {
   >
 }
 
+export type ImageQueryVariables = {}
+
+export type ImageQuery = { __typename?: 'Query' } & Pick<Query, 'image'>
+
+export type AddSkillClientMutationVariables = {
+  skill: SkillInput
+}
+
+export type AddSkillClientMutation = { __typename?: 'Mutation' } & {
+  addSkillClient: Maybe<{ __typename?: 'Skill' } & Pick<Skill, 'term'>>
+}
+
+export type RemoveSkillClientMutationVariables = {
+  skill: SkillInput
+}
+
+export type RemoveSkillClientMutation = { __typename?: 'Mutation' } & {
+  removeSkillClient: Maybe<
+    { __typename?: 'Skill' } & Pick<Skill, 'term' | 'id'>
+  >
+}
+
 export type TaxonomyQueryVariables = {
   q: Scalars['String']
   type?: Maybe<TaxonomyType>
@@ -599,6 +638,46 @@ export type TaxonomyQuery = { __typename?: 'Query' } & {
       >
     >
   }
+}
+
+export type OntologyRelatedQueryVariables = {
+  concepts?: Maybe<Array<Scalars['String']>>
+  limit?: Maybe<Scalars['Int']>
+  type: OntologyType
+}
+
+export type OntologyRelatedQuery = { __typename?: 'Query' } & {
+  ontologyRelated: { __typename?: 'OntologyRelatedResponse' } & {
+    relations: Array<
+      Maybe<
+        { __typename?: 'OntologyRelationResponse' } & Pick<
+          OntologyRelationResponse,
+          'term' | 'id' | 'score' | 'type'
+        >
+      >
+    >
+  }
+}
+
+export type GetSkillsClientQueryVariables = {}
+
+export type GetSkillsClientQuery = { __typename?: 'Query' } & {
+  skills: Array<
+    Maybe<{ __typename?: 'Skill' } & Pick<Skill, 'term' | 'id' | 'type'>>
+  >
+}
+
+export type GetOccupationClientQueryVariables = {}
+
+export type GetOccupationClientQuery = { __typename?: 'Query' } & {
+  occupation: { __typename?: 'Occupation' } & Pick<Occupation, 'term'> & {
+      experience: Maybe<
+        { __typename?: 'OccupationExperience' } & Pick<
+          OccupationExperience,
+          'years'
+        >
+      >
+    }
 }
 
 export type UpdateContactInformationMutationVariables = {
@@ -620,19 +699,28 @@ export type AddEducationClientMutation = { __typename?: 'Mutation' } & {
   addEducationClient: Maybe<
     { __typename?: 'Education' } & Pick<
       Education,
-      'programme' | 'school' | 'start' | 'end'
+      'id' | 'programme' | 'school' | 'start' | 'end'
     >
   >
 }
 
-export type AddEducationApiMutationVariables = {
+export type RemoveEducationClientMutationVariables = {
   education: EducationInput
 }
 
-export type AddEducationApiMutation = { __typename?: 'Mutation' } & {
-  addEducation: { __typename?: 'Education' } & Pick<
-    Education,
-    'programme' | 'end' | 'school' | 'start'
+export type RemoveEducationClientMutation = { __typename?: 'Mutation' } & {
+  removeEducationClient: Maybe<
+    { __typename?: 'Education' } & Pick<Education, 'id'>
+  >
+}
+
+export type UpdateEducationClientMutationVariables = {
+  education: EducationInput
+}
+
+export type UpdateEducationClientMutation = { __typename?: 'Mutation' } & {
+  updateEducationClient: Maybe<
+    { __typename?: 'Education' } & Pick<Education, 'id'>
   >
 }
 
@@ -702,66 +790,6 @@ export type CreateOccupationApiMutation = { __typename?: 'Mutation' } & {
     }
 }
 
-export type IsLoggedInQueryVariables = {}
-
-export type IsLoggedInQuery = { __typename?: 'Query' } & Pick<
-  Query,
-  'isLoggedIn'
->
-
-export type GetSkillsAndOccupationClientQueryVariables = {}
-
-export type GetSkillsAndOccupationClientQuery = { __typename?: 'Query' } & {
-  skills: Array<
-    Maybe<{ __typename?: 'Skill' } & Pick<Skill, 'term' | 'id' | 'type'>>
-  >
-  occupation: { __typename?: 'Occupation' } & Pick<Occupation, 'term'> & {
-      experience: Maybe<
-        { __typename?: 'OccupationExperience' } & Pick<
-          OccupationExperience,
-          'years'
-        >
-      >
-    }
-}
-
-export type OntologyRelatedQueryVariables = {
-  concepts?: Maybe<Array<Scalars['String']>>
-  limit?: Maybe<Scalars['Int']>
-  type: OntologyType
-}
-
-export type OntologyRelatedQuery = { __typename?: 'Query' } & {
-  ontologyRelated: { __typename?: 'OntologyRelatedResponse' } & {
-    relations: Array<
-      Maybe<
-        { __typename?: 'OntologyRelationResponse' } & Pick<
-          OntologyRelationResponse,
-          'term' | 'id' | 'score' | 'type'
-        >
-      >
-    >
-  }
-}
-
-export type AddSkillClientMutationVariables = {
-  skill: SkillInput
-}
-
-export type AddSkillClientMutation = { __typename?: 'Mutation' } & {
-  addSkillClient: Maybe<{ __typename?: 'Skill' } & Pick<Skill, 'term'>>
-}
-
-export type RemoveSkillClientMutationVariables = {
-  skill: SkillInput
-}
-
-export type RemoveSkillClientMutation = { __typename?: 'Mutation' } & {
-  removeSkillClient: Maybe<
-    { __typename?: 'Skill' } & Pick<Skill, 'term' | 'id'>
-  >
-}
-
 export type ConsentQueryVariables = {}
 
 export type ConsentQuery = { __typename?: 'Query' } & {
@@ -785,10 +813,7 @@ export type SaveCvMutation = { __typename?: 'Mutation' } & {
 
 export type GetCvQueryVariables = {}
 
-export type GetCvQuery = { __typename?: 'Query' } & Pick<
-  Query,
-  'traits' | 'languages'
-> & {
+export type GetCvQuery = { __typename?: 'Query' } & Pick<Query, 'traits'> & {
     skills: Array<
       Maybe<
         { __typename?: 'Skill' } & Pick<Skill, 'sourceId' | 'term' | 'type'>
@@ -798,7 +823,7 @@ export type GetCvQuery = { __typename?: 'Query' } & Pick<
       Maybe<
         { __typename?: 'Education' } & Pick<
           Education,
-          'id' | 'programme' | 'school' | 'start' | 'end'
+          'programme' | 'school' | 'start' | 'end'
         >
       >
     >
@@ -810,7 +835,29 @@ export type GetCvQuery = { __typename?: 'Query' } & Pick<
           >
         >
       }
+    contact: { __typename?: 'Contact' } & Pick<
+      Contact,
+      'name' | 'email' | 'telephone'
+    >
   }
+
+export type UploadImageClientMutationVariables = {
+  image: ImgInput
+}
+
+export type UploadImageClientMutation = { __typename?: 'Mutation' } & Pick<
+  Mutation,
+  'uploadImage'
+>
+
+export type UploadImageMutationVariables = {
+  image: ImgInput
+}
+
+export type UploadImageMutation = { __typename?: 'Mutation' } & Pick<
+  Mutation,
+  'uploadImage'
+>
 
 export type OntologyTextParseQueryVariables = {
   text: Scalars['String']
@@ -844,8 +891,28 @@ export type AddExperienceClientMutation = { __typename?: 'Mutation' } & {
   addExperienceClient: Maybe<
     { __typename?: 'Experience' } & Pick<
       Experience,
-      'employer' | 'end' | 'start' | 'term'
+      'id' | 'employer' | 'end' | 'start' | 'term'
     >
+  >
+}
+
+export type RemoveExperienceClientMutationVariables = {
+  experience: ExperienceInput
+}
+
+export type RemoveExperienceClientMutation = { __typename?: 'Mutation' } & {
+  removeExperienceClient: Maybe<
+    { __typename?: 'Experience' } & Pick<Experience, 'id'>
+  >
+}
+
+export type UpdateExperienceClientMutationVariables = {
+  experience: ExperienceInput
+}
+
+export type UpdateExperienceClientMutation = { __typename?: 'Mutation' } & {
+  updateExperienceClient: Maybe<
+    { __typename?: 'Experience' } & Pick<Experience, 'id'>
   >
 }
 

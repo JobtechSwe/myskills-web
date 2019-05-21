@@ -2,9 +2,9 @@ import {
   createOccupationClient,
   GET_OCCUPATION_CLIENT,
 } from '../createOccupation'
-import { storageHelper } from '../../../../utils/helpers'
+import { storageHelper } from 'utils/helpers'
 
-jest.mock('../../../../utils/helpers')
+jest.mock('utils/helpers')
 
 let occupation: any
 let cache: any

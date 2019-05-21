@@ -1,7 +1,7 @@
 import { dataIdFromObject, deconstructJWT, handleErrors } from '../client'
-import { getCookie, redirect } from '../../utils/helpers'
+import { getCookie, redirect } from 'utils/helpers'
 
-jest.mock('../../utils/helpers')
+jest.mock('utils/helpers')
 
 describe('graphQL/client', () => {
   beforeEach(() => {
@@ -22,7 +22,7 @@ describe('graphQL/client', () => {
     })
 
     it('should not break if no graphql errors', () => {
-      (getCookie as jest.Mock).mockReturnValue(null)
+      ;(getCookie as jest.Mock).mockReturnValue(null)
 
       handleErrors({
         networkError: {},
@@ -32,7 +32,7 @@ describe('graphQL/client', () => {
     })
 
     it("redirects to start page if error and no token and it's a permission error", () => {
-      (getCookie as jest.Mock).mockReturnValue(null)
+      ;(getCookie as jest.Mock).mockReturnValue(null)
 
       handleErrors({
         graphQLErrors: [

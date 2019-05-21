@@ -1,7 +1,7 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { SkillInput } from '../../../generated/myskills'
-import { storageHelper } from '../../../utils/helpers'
-import { GET_SKILLS_CLIENT } from './addSkill'
+import { SkillInput } from 'generated/myskills'
+import { storageHelper } from 'utils/helpers'
+import { GET_SKILLS_CLIENT } from 'graphql/shared/Queries'
 
 export const removeSkillClient = (
   _: any,
@@ -14,7 +14,7 @@ export const removeSkillClient = (
     query: GET_SKILLS_CLIENT,
   })!
 
-  const updatedSkills = skills.filter(s => s.sourceId !== skill.sourceId)
+  const updatedSkills = skills.filter(s => s.term !== skill.term)
 
   cache.writeQuery({
     query: GET_SKILLS_CLIENT,

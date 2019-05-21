@@ -1,10 +1,10 @@
 import React from 'react'
 import { RouteComponentProps, navigate } from '@reach/router'
-import { H1, Paragraph } from '../../components/Typography'
-import present from '../../images/present.svg'
+import { H1, Paragraph } from 'components/Typography'
+import present from 'images/present.svg'
 import styled from '@emotion/styled'
-import Flex from '../../components/Flex'
-import Button from '../../components/Button'
+import Flex from 'components/Flex'
+import Button from 'components/Button'
 
 const Background = styled(Flex)`
   align-items: center;

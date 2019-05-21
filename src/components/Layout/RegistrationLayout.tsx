@@ -1,12 +1,12 @@
 import React from 'react'
-import StepIndicator from '../StepIndicator'
+import StepIndicator from 'components/StepIndicator'
 import styled from '@emotion/styled'
-import Button from '../Button'
+import Button from 'components/Button'
 import { Paragraph } from '../Typography'
-import Grid from '../Grid'
-import Flex from '../Flex'
-import { handleFocusKeyDown } from '../../utils/helpers'
-import Icon from '../../assets/icons/navigation_arrow.svg'
+import Grid from 'components//Grid'
+import Flex from 'components/Flex'
+import { handleFocusKeyDown } from 'utils/helpers'
+import Icon from 'assets/icons/navigation_arrow.svg'
 import { RouteComponentProps, navigate } from '@reach/router'
 
 interface RegistrationLayoutProps {

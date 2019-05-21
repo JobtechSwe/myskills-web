@@ -1,7 +1,7 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { storageHelper } from '../../../utils/helpers'
+import { storageHelper } from 'utils/helpers'
 import gql from 'graphql-tag'
-import { Contact } from '../../client'
+import { Contact } from 'graphql/client'
 
 export const GET_CONTACT_CLIENT = gql`
   query getContact {

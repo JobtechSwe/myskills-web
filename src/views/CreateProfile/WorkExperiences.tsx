@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import { RouteComponentProps } from '@reach/router'
-import { H1 } from '../../components/Typography'
+import { H1 } from 'components/Typography'
 import gql from 'graphql-tag'
-import Timeline from '../../components/Timeline'
+import Timeline from 'components/Timeline'
 import { useMutation, useQuery } from 'react-apollo-hooks'
-import { GET_EXPERIENCES_CLIENT } from '../../graphql/resolvers/mutations/addExperience'
-import { Experience } from '../../generated/myskills'
-import AddAndEditForm from '../../components/AddAndEditForm'
-import RegistrationLayout from '../../components/Layout/RegistrationLayout'
+import { GET_EXPERIENCES_CLIENT } from 'graphql/resolvers/mutations/addExperience'
+import { Experience } from 'generated/myskills'
+import AddAndEditForm from 'components/AddAndEditForm'
+import RegistrationLayout from 'components/Layout/RegistrationLayout'
 import { v4 } from 'uuid'
-import { Entry } from '../../components/Timeline/index'
+import { Entry } from 'components/Timeline/index'
 
 const ADD_EXPERIENCE_CLIENT = gql`
   mutation addExperienceClient($experience: ExperienceInput!) {

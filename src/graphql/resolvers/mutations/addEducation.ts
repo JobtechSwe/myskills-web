@@ -1,7 +1,7 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { storageHelper } from '../../../utils/helpers'
+import { storageHelper } from 'utils/helpers'
 import gql from 'graphql-tag'
-import { Education } from '../../../generated/myskills'
+import { Education } from 'generated/myskills'
 
 export const GET_EDUCATIONS_CLIENT = gql`
   query getEducations {

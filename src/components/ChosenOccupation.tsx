@@ -1,6 +1,6 @@
 import React from 'react'
 import { useQuery } from 'react-apollo-hooks'
-import { GET_OCCUPATION_CLIENT } from '../graphql/resolvers/mutations/createOccupation'
+import { GET_OCCUPATION_CLIENT } from 'graphql/resolvers/mutations/createOccupation'
 
 const ChosenOccupation: React.FC = () => {
   const { data, loading, error } = useQuery(GET_OCCUPATION_CLIENT)

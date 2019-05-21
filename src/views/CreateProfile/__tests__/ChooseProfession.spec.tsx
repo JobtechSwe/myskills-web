@@ -1,9 +1,11 @@
 import * as React from 'react'
-import ChooseProfession, { GET_ONTOLOGY_CONCEPTS } from '../ChooseProfession'
-import { render } from '../../../utils/test-utils'
+import ChooseProfession, {
+  GET_ONTOLOGY_CONCEPTS,
+} from 'views/CreateProfile/ChooseProfession'
+import { render } from 'utils/test-utils'
 import { wait, fireEvent } from 'react-testing-library'
-import { OntologyType } from '../../../generated/myskills.d'
-import { GET_OCCUPATION_CLIENT } from '../../../graphql/resolvers/mutations'
+import { OntologyType } from 'generated/myskills.d'
+import { GET_OCCUPATION_CLIENT } from 'graphql/resolvers/mutations'
 
 jest.mock('@iteam/hooks', () => ({
   useDebounce: (val: string) => val,

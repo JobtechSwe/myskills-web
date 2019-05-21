@@ -30,6 +30,6 @@ describe('resolvers/removeOccupation', () => {
   it('returns true', () => {
     const result = removeOccupationClient({}, {}, cache)
 
-    expect(result).toEqual({ occupation: null })
+    expect(result).toEqual(true)
   })
 })

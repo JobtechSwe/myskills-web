@@ -6,7 +6,7 @@ export const removeOccupationClient = (
   _: any,
   _args: any,
   { cache }: { cache: InMemoryCache }
-): any => {
+): boolean => {
   cache.writeQuery({
     query: GET_OCCUPATION_CLIENT,
     data: { occupation: null },
@@ -14,5 +14,5 @@ export const removeOccupationClient = (
 
   storageHelper.remove('occupation')
 
-  return { occupation: null }
+  return true
 }

@@ -61,7 +61,7 @@ describe('components/ProfileLayout', () => {
     ]
     const { container, getByText } = render(
       <ProfileLayout currentPath="/profil/tidslinje">
-        <Timeline />
+        <div />
       </ProfileLayout>,
       withResultsMock
     )

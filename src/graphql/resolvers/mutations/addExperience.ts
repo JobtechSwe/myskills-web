@@ -6,7 +6,7 @@ import { Experience } from '../../../generated/myskills'
 export const GET_EXPERIENCES_CLIENT = gql`
   query getExperiences {
     experiences @client {
-      id
+      sourceId
       employer
       term
       start

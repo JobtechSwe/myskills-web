@@ -34,7 +34,7 @@ const Consent: React.FC<ConsentProps> = ({
 
   useEffect(() => {
     data && onConsentApproved(data)
-  }, [data])
+  }, [data, onConsentApproved])
 
   return <QR consentId={url} />
 }

@@ -30,6 +30,8 @@ import {
   HeightProps,
   justifyContent,
   JustifyContentProps,
+  justifyItems,
+  JustifyItemsProps,
   space,
   SpaceProps,
   width,
@@ -52,6 +54,7 @@ type GridProps = React.HTMLProps<HTMLElement> &
   GridRowProps &
   HeightProps &
   JustifyContentProps &
+  JustifyItemsProps &
   SpaceProps &
   WidthProps
 
@@ -73,6 +76,7 @@ const Grid = styled.div<GridProps>`
   ${gridRow}
   ${height}
   ${justifyContent}
+  ${justifyItems}
   ${space}
   ${width}
 `

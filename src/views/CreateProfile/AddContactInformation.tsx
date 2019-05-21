@@ -24,7 +24,7 @@ const AddContactInformation: React.FC<RouteComponentProps> = () => {
   const { data: contactData } = useQuery(GET_CONTACT_CLIENT)
   const [inputData, setData] = useState({ name: '', email: '', telephone: '' })
 
-  useEffect(() => setData(contactData.contact), [])
+  useEffect(() => setData(contactData.contact), [contactData.contact])
 
   const handleChange = (key: string, val: string) => {
     setData({ ...inputData, [key]: val })

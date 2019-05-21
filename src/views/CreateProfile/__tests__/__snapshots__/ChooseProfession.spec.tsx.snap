@@ -3,7 +3,7 @@
 exports[`views/ChooseProfession renders empty result 1`] = `
 <div>
   <div
-    class="css-475q7k"
+    class="css-15q7p9b"
     height="calc(var(--vh, 1vh) * 100)"
   >
     <nav
@@ -54,10 +54,10 @@ exports[`views/ChooseProfession renders empty result 1`] = `
       </p>
     </nav>
     <div
-      class="css-vddp5l"
+      class="css-15qxrsc"
     >
       <div
-        class="css-7glqfz"
+        class="css-v7i14q"
       >
         <div
           class="css-djo2sl"

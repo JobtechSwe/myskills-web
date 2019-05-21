@@ -120,6 +120,7 @@ exports[`views/MatchSkills renders loading state 1`] = `
     >
       <button
         class="css-1qzvtil"
+        data-testid="okButton"
         font-family="default"
         font-size="medium"
       >

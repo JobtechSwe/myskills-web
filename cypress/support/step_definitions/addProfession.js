@@ -1,4 +1,4 @@
-Given('I open the add occupation page', () => {
+Given('I open the add profession page', () => {
   cy.visit('/skapa-cv/')
 })
 
@@ -30,7 +30,7 @@ When('I reload the page', () => {
   cy.reload(true)
 })
 
-Then('The added occupation should still be present', () => {
+Then('The added profession should still be present', () => {
   cy.getLocalStorage('occupation').then(data => {
     expect(JSON.parse(data).term).to.equal('Banarbetare')
   })
@@ -43,4 +43,16 @@ When('I use a new browser', () => {
 
 When('I login', () => {
   cy.login()
+})
+
+When('I try to go to the next view', () => {
+  cy.get('[data-testid="okButton"]').click()
+})
+
+Then('I should remain on the same view', () => {
+  cy.url().should('eq', 'http://localhost:3001/skapa-cv/')
+})
+
+Then('I should be able to navigate to next view', () => {
+  cy.url().should('eq', 'http://localhost:3001/skapa-cv/kompetenser')
 })

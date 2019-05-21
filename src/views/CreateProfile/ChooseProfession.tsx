@@ -14,13 +14,20 @@ import ListItem from '../../components/ListItem'
 import { SearchList } from '../../components/List'
 import styled from '@emotion/styled'
 import { css, Global } from '@emotion/core'
-import ChosenOccupation from '../../components/ChosenOccupation'
 import Downshift from 'downshift'
 import { highlightMarked } from '../../utils/helpers'
 import RegistrationLayout from '../../components/Layout/RegistrationLayout'
+import { GET_OCCUPATION_CLIENT } from '../../graphql/resolvers/mutations/createOccupation'
 
 const SearchInput = styled(Input)`
   width: 100%;
+`
+
+const FakeInput = styled.div`
+  border: ${({ theme }) => `1px solid ${theme.colors.athensGray}`};
+  border-radius: 5px;
+  font-family: ${({ theme }) => theme.fonts.default};
+  padding: 12px;
 `
 
 export const GET_ONTOLOGY_CONCEPTS = gql`
@@ -76,7 +83,7 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
     isLoggedIn.isLoggedIn ? CREATE_OCCUPATION_API : CREATE_OCCUPATION_CLIENT
   )
 
-  const { data, error } = useQuery(GET_ONTOLOGY_CONCEPTS, {
+  const { data, error: ontologyError } = useQuery(GET_ONTOLOGY_CONCEPTS, {
     variables: {
       filter: query,
       type: OntologyType.Occupation,
@@ -84,12 +91,21 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
     skip: !query,
   })
 
-  if (error) {
+  const { data: occupationResult, error: occupationError } = useQuery(
+    GET_OCCUPATION_CLIENT
+  )
+
+  if (ontologyError || occupationError) {
     return <div>Error...</div>
   }
 
   return (
-    <RegistrationLayout headerText="YRKE" nextPath="kompetenser" step={1}>
+    <RegistrationLayout
+      disableNextBtn={occupationResult.occupation ? false : true}
+      headerText="YRKE"
+      nextPath="kompetenser"
+      step={1}
+    >
       <Grid alignContent="start">
         <IllustrationHeader
           imageAltTag="Resväska"
@@ -105,77 +121,82 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
             }
           `}
         />
-        <Downshift
-          itemToString={item => (item ? item.term : '')}
-          onChange={occupation => {
-            createOccupation({
-              variables: {
-                occupation: {
-                  term: occupation.term,
-                  experience: null,
+        {occupationResult.occupation ? (
+          <FakeInput>{occupationResult.occupation.term}</FakeInput>
+        ) : (
+          <Downshift
+            itemToString={item => (item ? item.term : '')}
+            onChange={occupation => {
+              createOccupation({
+                variables: {
+                  occupation: {
+                    term: occupation.term,
+                    experience: null,
+                  },
                 },
-              },
-            })
-            setQuery('')
-          }}
-        >
-          {({
-            getInputProps,
-            getItemProps,
-            getMenuProps,
-            isOpen,
-            inputValue,
-            highlightedIndex,
-          }) => (
-            <div>
-              <SearchInput
-                {...getInputProps({
-                  name: 'search',
-                  placeholder: 'Yrkesroll eller yrkesområde',
-                  onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
-                    setQuery(event.target.value),
-                  value: query,
-                })}
-              />
+              })
+              setQuery('')
+            }}
+          >
+            {({
+              getInputProps,
+              getItemProps,
+              getMenuProps,
+              isOpen,
+              inputValue,
+              highlightedIndex,
+            }) => (
+              <div>
+                <SearchInput
+                  {...getInputProps({
+                    name: 'search',
+                    placeholder: 'Yrkesroll eller yrkesområde',
+                    onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
+                      setQuery(event.target.value),
+                    value: query,
+                  })}
+                />
 
-              {data && data.ontologyConcepts && (
-                <SearchList isOpen={isOpen} {...getMenuProps()}>
-                  {isOpen
-                    ? data.ontologyConcepts
-                        .filter(
-                          (item: OntologyConceptResponse) =>
-                            !inputValue ||
-                            item.term
-                              .toLowerCase()
-                              .includes(inputValue.toLowerCase())
-                        )
-                        .map((item: OntologyConceptResponse, index: number) => (
-                          <ListItem
-                            bg={
-                              highlightedIndex === index
-                                ? 'seashellPeach'
-                                : 'white'
-                            }
-                            key={item.id}
-                            px="medium"
-                            {...getItemProps({
-                              key: item.id,
-                              index,
-                              item,
-                              dangerouslySetInnerHTML: highlightMarked(
-                                inputValue,
-                                item.term
-                              ),
-                            })}
-                          />
-                        ))
-                    : null}
-                </SearchList>
-              )}
-            </div>
-          )}
-        </Downshift>
-        <ChosenOccupation />
+                {data && data.ontologyConcepts && (
+                  <SearchList isOpen={isOpen} {...getMenuProps()}>
+                    {isOpen
+                      ? data.ontologyConcepts
+                          .filter(
+                            (item: OntologyConceptResponse) =>
+                              !inputValue ||
+                              item.term
+                                .toLowerCase()
+                                .includes(inputValue.toLowerCase())
+                          )
+                          .map(
+                            (item: OntologyConceptResponse, index: number) => (
+                              <ListItem
+                                bg={
+                                  highlightedIndex === index
+                                    ? 'seashellPeach'
+                                    : 'white'
+                                }
+                                key={item.id}
+                                px="medium"
+                                {...getItemProps({
+                                  key: item.id,
+                                  index,
+                                  item,
+                                  dangerouslySetInnerHTML: highlightMarked(
+                                    inputValue,
+                                    item.term
+                                  ),
+                                })}
+                              />
+                            )
+                          )
+                      : null}
+                  </SearchList>
+                )}
+              </div>
+            )}
+          </Downshift>
+        )}
       </Grid>
     </RegistrationLayout>
   )

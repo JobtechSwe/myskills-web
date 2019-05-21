@@ -9,6 +9,7 @@ import Icon from '../../assets/icons/navigation_arrow.svg'
 import { RouteComponentProps, navigate } from '@reach/router'
 
 interface RegistrationLayoutProps {
+  disableNextBtn?: boolean
   step: number
   nextPath?: string
   nextBtnText?: string
@@ -43,6 +44,7 @@ const onNextClick = async (
 const RegistrationLayout: React.FC<
   RouteComponentProps & RegistrationLayoutProps
 > = ({
+  disableNextBtn = false,
   children,
   step,
   nextPath,
@@ -75,9 +77,19 @@ const RegistrationLayout: React.FC<
       {children}
       {nextPath && (
         <Flex justifyContent="center">
-          <Button onClick={() => onNextClick(nextPath, childFn, childFnArgs)}>
-            {nextBtnText}
-          </Button>
+          {disableNextBtn ? (
+            <Button data-testid="okButton" variant="inActive">
+              {nextBtnText}
+            </Button>
+          ) : (
+            <Button
+              data-testid="okButton"
+              onClick={() => onNextClick(nextPath, childFn, childFnArgs)}
+              variant={disableNextBtn ? 'inActive' : 'primary'}
+            >
+              {nextBtnText}
+            </Button>
+          )}
         </Flex>
       )}
     </Grid>

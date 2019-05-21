@@ -9,6 +9,8 @@ import {
   FontSizeProps,
   fontWeight,
   FontWeightProps,
+  lineHeight,
+  LineHeightProps,
   space,
   SpaceProps,
   textAlign,
@@ -20,6 +22,7 @@ type TypographyProps = ColorProps &
   FontSizeProps &
   FontWeightProps &
   ColorProps &
+  LineHeightProps &
   TextAlignProps &
   SpaceProps
 
@@ -32,6 +35,7 @@ export const H1 = styled.h1<HeadingProps>`
   ${fontFamily}
   ${fontSize}
   ${fontWeight}
+  ${lineHeight}
   ${textAlign}
   ${space}
   ${textAlign}
@@ -42,6 +46,7 @@ export const H2 = styled.h2<HeadingProps>`
   ${fontFamily}
   ${fontSize}
   ${fontWeight}
+  ${lineHeight}
   ${textAlign}
   ${space}
   ${textAlign}
@@ -51,6 +56,7 @@ export const H3 = styled.h3<HeadingProps>`
   ${color}
   ${fontFamily}
   ${fontSize}
+  ${lineHeight}
   ${fontWeight}
   ${textAlign}
   ${space}
@@ -61,6 +67,7 @@ export const Paragraph = styled.p<ParagraphProps>`
   ${color}
   ${fontFamily}
   ${fontSize}
+  ${lineHeight}
   ${fontWeight}
   ${textAlign}
   ${space}
@@ -110,8 +117,9 @@ H3.defaultProps = {
 Paragraph.defaultProps = {
   fontFamily: 'default',
   fontSize: 'small',
-  mt: 'small',
+  lineHeight: '22px',
   mb: 'medium',
+  mt: 'small',
 }
 
 Bold.defaultProps = {

@@ -8,6 +8,8 @@ import {
   ButtonStyleProps,
   color,
   ColorProps,
+  flex,
+  FlexProps,
   fontFamily,
   FontFamilyProps,
   fontSize,
@@ -25,14 +27,15 @@ type VariantProps = {
 }
 
 type ButtonProps = React.HTMLProps<HTMLButtonElement> &
-  ButtonStyleProps &
-  BorderRadiusProps &
   BorderProps &
+  BorderRadiusProps &
+  ButtonStyleProps &
+  ColorProps &
+  FlexProps &
   FontFamilyProps &
   FontSizeProps &
   PositionProps &
   SpaceProps &
-  ColorProps &
   VariantProps &
   WidthProps
 
@@ -41,11 +44,12 @@ const Button = styled.button<ButtonProps>`
   text-decoration: none;
   white-space: nowrap;
 
-  ${fontFamily}
-  ${border}
   ${borderRadius}
+  ${border}
   ${buttonStyle}
   ${color}
+  ${flex}
+  ${fontFamily}
   ${fontSize}
   ${position}
   ${space}
@@ -54,7 +58,8 @@ const Button = styled.button<ButtonProps>`
 
 Button.defaultProps = {
   border: 'none',
-  borderRadius: '5px',
+  borderRadius: '8px',
+  flex: ['1', 'auto'],
   fontFamily: 'default',
   fontSize: ['medium'],
   p: '16px 42px',

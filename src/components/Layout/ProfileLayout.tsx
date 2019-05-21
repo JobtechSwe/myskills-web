@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from 'react'
+import React from 'react'
 import Grid from '../Grid'
 import ProfileButton from '../ProfileButton'
 import Flex from '../Flex'

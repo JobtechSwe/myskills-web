@@ -6,6 +6,7 @@ import { Education } from '../../../generated/myskills'
 export const GET_EDUCATIONS_CLIENT = gql`
   query getEducations {
     educations @client {
+      id
       programme
       school
       start

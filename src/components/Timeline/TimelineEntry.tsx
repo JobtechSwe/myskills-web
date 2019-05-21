@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from '@emotion/styled'
 import { Entry } from './index'
 import ellipse from '../../assets/images/elipse.svg'
@@ -27,6 +27,7 @@ const ContentWrapper = styled.div<{ editing: boolean }>`
   padding: 15px;
   margin-bottom: 10px;
 `
+
 const TimelineTitle = styled.div`
   margin-bottom: 10px;
 `
@@ -50,22 +51,17 @@ const TimelineEntryEdit = styled.div`
   align-items: flex-end;
 `
 
-const EditButton = styled.button`
-  border: none;
-  background: inherit;
-`
-
 interface TimelineEntryProps {
+  editing: boolean
   entry: Entry
+  handleEdit: (entry: Entry) => void
 }
 
-const editFunction = () => {
-  // do edit stuff
-}
-
-const TimelineEntry: React.FC<TimelineEntryProps> = ({ entry }) => {
-  const [editing, toggleEditMode] = useState(false)
-
+const TimelineEntry: React.FC<TimelineEntryProps> = ({
+  editing,
+  entry,
+  handleEdit,
+}) => {
   return (
     <Wrapper>
       <DotWrapper>
@@ -85,11 +81,9 @@ const TimelineEntry: React.FC<TimelineEntryProps> = ({ entry }) => {
         </div>
         <TimelineEntryEdit>
           {editing ? (
-            <button onClick={editFunction}>
-              <img alt="remove" src={pen} />
-            </button>
+            <img alt="edit" src={pen} />
           ) : (
-            <button onClick={() => toggleEditMode(!editing)}>
+            <button onClick={() => handleEdit(entry)}>
               <img alt="edit" src={edit} />
             </button>
           )}

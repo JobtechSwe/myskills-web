@@ -3,20 +3,22 @@ import React from 'react'
 import Tag from './Tag'
 import styled from '@emotion/styled'
 import { useToggle } from '@iteam/hooks'
+import { handleFocusKeyDown } from '../utils/helpers'
 
 interface ButtonToInputProps {
   buttonText: string
   addButtonText?: string
   inputPlaceholder: string
   onSelect: (value: string) => void
+  onChange?: (value: string) => void
 }
 
-const InputWrapper = styled(Input)`
-  display: flex;
+export const InputWrapper = styled(Input)`
   align-items: center;
+  display: flex;
 `
 
-const TagButton = styled(Tag)`
+export const TagButton = styled(Tag)`
   background-color: ${({ theme }) => theme.colors.white};
   color: ${({ theme }) => theme.colors.redOrange};
   font-weight: 600;
@@ -26,6 +28,7 @@ const ButtonToInput: React.FC<ButtonToInputProps> = ({
   addButtonText = 'OK',
   buttonText,
   inputPlaceholder,
+  onChange,
   onSelect,
 }) => {
   const [inputValue, setInputValue] = React.useState('')
@@ -35,10 +38,14 @@ const ButtonToInput: React.FC<ButtonToInputProps> = ({
   const handleSelect = () => {
     onSelect(inputValue)
     setAddCompetenceActive()
+    setInputValue('')
   }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value)
+    if (typeof onChange === 'function') {
+      onChange(event.target.value)
+    }
   }
 
   React.useEffect(() => {
@@ -61,14 +68,23 @@ const ButtonToInput: React.FC<ButtonToInputProps> = ({
         borderRadius={8}
         ml={6}
         onClick={handleSelect}
+        onKeyDown={handleFocusKeyDown(handleSelect)}
         p="small"
         role="button"
+        tabIndex={0}
       >
         {addButtonText}
       </TagButton>
     </InputWrapper>
   ) : (
-    <Tag mb="medium" mt="small" onClick={setAddCompetenceActive}>
+    <Tag
+      mb="medium"
+      mt="small"
+      onClick={setAddCompetenceActive}
+      onKeyDown={handleFocusKeyDown(setAddCompetenceActive)}
+      role="button"
+      tabIndex={0}
+    >
       {buttonText}
     </Tag>
   )

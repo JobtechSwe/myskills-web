@@ -3,8 +3,8 @@
 exports[`views/ChooseProfession renders empty result 1`] = `
 <div>
   <div
-    class="css-1ejilqi"
-    height="100vh"
+    class="css-15q7p9b"
+    height="calc(var(--vh, 1vh) * 100)"
   >
     <nav
       class="css-208zbf"
@@ -46,7 +46,7 @@ exports[`views/ChooseProfession renders empty result 1`] = `
         </div>
       </div>
       <p
-        class="css-5fjnxu"
+        class="css-1wtsfx0"
         font-family="default"
         font-size="small"
       >
@@ -54,17 +54,21 @@ exports[`views/ChooseProfession renders empty result 1`] = `
       </p>
     </nav>
     <div
-      class="css-w3q496"
+      class="css-15qxrsc"
     >
       <div
-        class="css-1n8dqvr"
+        class="css-v7i14q"
       >
-        <img
-          alt="Resväska"
-          src="suitcase.svg"
-        />
+        <div
+          class="css-djo2sl"
+        >
+          <img
+            alt="Resväska"
+            src="suitcase.svg"
+          />
+        </div>
         <h1
-          class="css-1cksnm8"
+          class="css-1wd37ko"
           color="black"
           font-family="default"
           font-size="large"
@@ -83,13 +87,14 @@ exports[`views/ChooseProfession renders empty result 1`] = `
           aria-autocomplete="list"
           aria-labelledby="downshift-0-label"
           autocomplete="off"
-          class="css-o1oxsk"
+          class="css-zgxjqb"
           font-family="default"
           font-size="medium"
           id="downshift-0-input"
           name="search"
           placeholder="Yrkesroll eller yrkesområde"
           value=""
+          width="100%"
         />
       </div>
       <div>
@@ -97,10 +102,10 @@ exports[`views/ChooseProfession renders empty result 1`] = `
       </div>
     </div>
     <div
-      class="css-1sadpxs"
+      class="css-djo2sl"
     >
       <button
-        class="css-1qzvtil"
+        class="css-1fyzulv"
         font-family="default"
         font-size="medium"
       >

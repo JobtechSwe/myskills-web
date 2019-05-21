@@ -12,7 +12,6 @@ import {
   Experience,
   Language,
   Occupation,
-  Profile,
   Skill,
 } from '../generated/myskills'
 import resolvers from './resolvers'
@@ -125,6 +124,7 @@ export type LocalStateProps = {
   experiences: Experience[]
   traits: string[]
   whoAmI: string
+  image: string
   contact: Contact
 }
 
@@ -136,6 +136,7 @@ const initialState: LocalStateProps = {
   skills: [],
   traits: [],
   whoAmI: '',
+  image: '',
   contact: {
     name: '',
     email: '',

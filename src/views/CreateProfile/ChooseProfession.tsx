@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useDebounce } from '@iteam/hooks'
 import { useQuery, useMutation } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
 import {
@@ -11,26 +12,12 @@ import Input from '../../components/Input'
 import IllustrationHeader from '../../components/IllustrationHeader'
 import suitcaseIllustration from '../../assets/illustrations/suitcase.svg'
 import ListItem from '../../components/ListItem'
-import List from '../../components/List'
-import styled from '@emotion/styled'
+import { SearchList } from '../../components/List'
 import { css, Global } from '@emotion/core'
 import ChosenOccupation from '../../components/ChosenOccupation'
 import Downshift from 'downshift'
+import { highlightMarked } from '../../utils/helpers'
 import RegistrationLayout from '../../components/Layout/RegistrationLayout'
-
-const SearchInput = styled(Input)`
-  width: 100%;
-`
-
-const SearchList = styled(List)<{ isOpen: boolean }>`
-  border-top: none;
-  max-height: 224px;
-  overflow-x: hidden;
-  overflow-y: auto;
-  box-shadow: ${({ theme }) => `0px 8px 16px 0px ${theme.colors.whiteLilac}`};
-  border-bottom-right-radius: 8px;
-  border-bottom-left-radius: 8px;
-`
 
 export const GET_ONTOLOGY_CONCEPTS = gql`
   query ontologyConcepts($filter: String!, $type: OntologyType) {
@@ -64,37 +51,13 @@ export const CREATE_OCCUPATION_API = gql`
   }
 `
 
-/*
-  (always: true) is currently unreliable but Apollo reports bug is fixed in 2.6.0
-  https://github.com/apollographql/apollo-client/issues/4636#issuecomment-480307041
-*/
-export const IS_LOGGED_IN = gql`
-  query isLoggedIn {
-    isLoggedIn @client(always: true)
-  }
-`
-const highlightMarked = (inputValue: string, term: string) => {
-  const reg = new RegExp(inputValue, 'i')
-
-  return {
-    __html: term.replace(reg, `<strong>${inputValue}</strong>`),
-  }
-}
-
 const ChooseProfession: React.FC<RouteComponentProps> = () => {
   const [query, setQuery] = useState('')
-  // TODO: Use debounce, skipping for now because of complications in tests
-  const { data: isLoggedIn } = useQuery(IS_LOGGED_IN, {
-    fetchPolicy: 'network-only',
-  })
-
-  const createOccupation = useMutation(
-    isLoggedIn.isLoggedIn ? CREATE_OCCUPATION_API : CREATE_OCCUPATION_CLIENT
-  )
+  const createOccupation = useMutation(CREATE_OCCUPATION_CLIENT)
 
   const { data, error } = useQuery(GET_ONTOLOGY_CONCEPTS, {
     variables: {
-      filter: query,
+      filter: useDebounce(query, 200),
       type: OntologyType.Occupation,
     },
     skip: !query,
@@ -144,7 +107,8 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
             highlightedIndex,
           }) => (
             <div>
-              <SearchInput
+              <Input
+                width="100%"
                 {...getInputProps({
                   name: 'search',
                   placeholder: 'Yrkesroll eller yrkesområde',

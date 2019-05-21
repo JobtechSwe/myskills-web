@@ -3,8 +3,8 @@
 exports[`views/MatchSkills renders loading state 1`] = `
 <div>
   <div
-    class="css-1ejilqi"
-    height="100vh"
+    class="css-15q7p9b"
+    height="calc(var(--vh, 1vh) * 100)"
   >
     <nav
       class="css-208zbf"
@@ -46,7 +46,7 @@ exports[`views/MatchSkills renders loading state 1`] = `
         </div>
       </div>
       <p
-        class="css-5fjnxu"
+        class="css-1wtsfx0"
         font-family="default"
         font-size="small"
       >
@@ -54,11 +54,11 @@ exports[`views/MatchSkills renders loading state 1`] = `
       </p>
     </nav>
     <div
-      class="css-1vad0jj"
+      class="css-13lzt9w"
     >
       
       <h1
-        class="css-btq94"
+        class="css-1h19gqr"
         color="black"
         font-family="default"
         font-size="large"
@@ -70,6 +70,8 @@ exports[`views/MatchSkills renders loading state 1`] = `
         class="css-bhiavv"
         cursor="pointer"
         opacity="1"
+        role="button"
+        tabindex="0"
       >
         + Lägg till en kompetens
       </span>
@@ -115,10 +117,10 @@ exports[`views/MatchSkills renders loading state 1`] = `
       </div>
     </div>
     <div
-      class="css-1sadpxs"
+      class="css-djo2sl"
     >
       <button
-        class="css-1qzvtil"
+        class="css-1fyzulv"
         font-family="default"
         font-size="medium"
       >

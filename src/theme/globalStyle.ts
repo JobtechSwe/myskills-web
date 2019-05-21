@@ -156,7 +156,7 @@ export const globalStyle = css`
     box-sizing: border-box;
   }
   #root {
-    min-height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
   }
 `
 

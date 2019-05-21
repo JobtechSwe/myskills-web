@@ -3,7 +3,7 @@
 exports[`components/ProfileLayout renders 1`] = `
 <div>
   <div
-    class="css-3rp4fr"
+    class="css-1wk798u"
   >
     <div
       class="css-1bqxkm"
@@ -20,7 +20,7 @@ exports[`components/ProfileLayout renders 1`] = `
         class="css-1jo84sd"
       >
         <p
-          class="css-1q7xqyo"
+          class="css-twz9yi"
           font-family="default"
           font-size="medium"
         >
@@ -33,7 +33,7 @@ exports[`components/ProfileLayout renders 1`] = `
         />
       </div>
       <p
-        class="css-1ffi3ob"
+        class="css-qlepwc"
         font-family="default"
         font-size="large"
         font-weight="bold"
@@ -42,7 +42,7 @@ exports[`components/ProfileLayout renders 1`] = `
       </p>
     </div>
     <div
-      class="css-3rp4fr"
+      class="css-1wk798u"
     >
       <div
         class="css-1bqxkm"
@@ -59,7 +59,7 @@ exports[`components/ProfileLayout renders 1`] = `
           class="css-1jo84sd"
         >
           <p
-            class="css-1q7xqyo"
+            class="css-twz9yi"
             font-family="default"
             font-size="medium"
           >
@@ -72,7 +72,7 @@ exports[`components/ProfileLayout renders 1`] = `
           />
         </div>
         <p
-          class="css-1ffi3ob"
+          class="css-qlepwc"
           font-family="default"
           font-size="large"
           font-weight="bold"
@@ -82,6 +82,7 @@ exports[`components/ProfileLayout renders 1`] = `
       </div>
       <ul
         class="css-1e0t8yk"
+        data-testid="timelineWrapper"
       >
         <li
           class="css-vs8u3f"
@@ -95,7 +96,7 @@ exports[`components/ProfileLayout renders 1`] = `
             />
           </div>
           <div
-            class="css-1x4kj4v"
+            class="css-1d7vte8"
           >
             <div>
               <div
@@ -120,12 +121,10 @@ exports[`components/ProfileLayout renders 1`] = `
             <div
               class="css-1eid011"
             >
-              <button>
-                <img
-                  alt="edit"
-                  src="edit.svg"
-                />
-              </button>
+              <img
+                alt="edit"
+                src="pen.svg"
+              />
             </div>
           </div>
         </li>
@@ -141,7 +140,7 @@ exports[`components/ProfileLayout renders 1`] = `
             />
           </div>
           <div
-            class="css-1x4kj4v"
+            class="css-1d7vte8"
           >
             <div>
               <div
@@ -172,12 +171,10 @@ exports[`components/ProfileLayout renders 1`] = `
             <div
               class="css-1eid011"
             >
-              <button>
-                <img
-                  alt="edit"
-                  src="edit.svg"
-                />
-              </button>
+              <img
+                alt="edit"
+                src="pen.svg"
+              />
             </div>
           </div>
         </li>
@@ -193,7 +190,7 @@ exports[`components/ProfileLayout renders 1`] = `
             />
           </div>
           <div
-            class="css-1x4kj4v"
+            class="css-1d7vte8"
           >
             <div>
               <div
@@ -224,12 +221,10 @@ exports[`components/ProfileLayout renders 1`] = `
             <div
               class="css-1eid011"
             >
-              <button>
-                <img
-                  alt="edit"
-                  src="edit.svg"
-                />
-              </button>
+              <img
+                alt="edit"
+                src="pen.svg"
+              />
             </div>
           </div>
         </li>
@@ -245,7 +240,7 @@ exports[`components/ProfileLayout renders 1`] = `
           width="100%"
         >
           <button
-            class="css-1o60u1p"
+            class="css-1ifp9gy"
             font-family="default"
             font-size="medium"
             width="inherit"
@@ -277,7 +272,7 @@ exports[`components/ProfileLayout renders 1`] = `
           width="100%"
         >
           <button
-            class="css-1o60u1p"
+            class="css-1ifp9gy"
             font-family="default"
             font-size="medium"
             width="inherit"
@@ -314,7 +309,7 @@ exports[`components/ProfileLayout renders 1`] = `
         width="100%"
       >
         <button
-          class="css-1o60u1p"
+          class="css-1ifp9gy"
           font-family="default"
           font-size="medium"
           width="inherit"
@@ -346,7 +341,7 @@ exports[`components/ProfileLayout renders 1`] = `
         width="100%"
       >
         <button
-          class="css-1m70hey"
+          class="css-1s8vdet"
           font-family="default"
           font-size="medium"
           width="inherit"
@@ -378,7 +373,7 @@ exports[`components/ProfileLayout renders 1`] = `
 exports[`components/ProfileLayout renders with storage data 1`] = `
 <div>
   <div
-    class="css-3rp4fr"
+    class="css-1wk798u"
   >
     <div
       class="css-1bqxkm"
@@ -395,7 +390,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
         class="css-1jo84sd"
       >
         <p
-          class="css-1q7xqyo"
+          class="css-twz9yi"
           font-family="default"
           font-size="medium"
         >
@@ -408,7 +403,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
         />
       </div>
       <p
-        class="css-1ffi3ob"
+        class="css-qlepwc"
         font-family="default"
         font-size="large"
         font-weight="bold"
@@ -417,7 +412,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
       </p>
     </div>
     <div
-      class="css-3rp4fr"
+      class="css-1wk798u"
     >
       <div
         class="css-1bqxkm"
@@ -434,7 +429,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
           class="css-1jo84sd"
         >
           <p
-            class="css-1q7xqyo"
+            class="css-twz9yi"
             font-family="default"
             font-size="medium"
           >
@@ -447,7 +442,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
           />
         </div>
         <p
-          class="css-1ffi3ob"
+          class="css-qlepwc"
           font-family="default"
           font-size="large"
           font-weight="bold"
@@ -457,6 +452,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
       </div>
       <ul
         class="css-1e0t8yk"
+        data-testid="timelineWrapper"
       >
         <li
           class="css-vs8u3f"
@@ -470,7 +466,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
             />
           </div>
           <div
-            class="css-1x4kj4v"
+            class="css-1d7vte8"
           >
             <div>
               <div
@@ -495,12 +491,10 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
             <div
               class="css-1eid011"
             >
-              <button>
-                <img
-                  alt="edit"
-                  src="edit.svg"
-                />
-              </button>
+              <img
+                alt="edit"
+                src="pen.svg"
+              />
             </div>
           </div>
         </li>
@@ -516,7 +510,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
             />
           </div>
           <div
-            class="css-1x4kj4v"
+            class="css-1d7vte8"
           >
             <div>
               <div
@@ -547,12 +541,10 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
             <div
               class="css-1eid011"
             >
-              <button>
-                <img
-                  alt="edit"
-                  src="edit.svg"
-                />
-              </button>
+              <img
+                alt="edit"
+                src="pen.svg"
+              />
             </div>
           </div>
         </li>
@@ -568,7 +560,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
             />
           </div>
           <div
-            class="css-1x4kj4v"
+            class="css-1d7vte8"
           >
             <div>
               <div
@@ -599,12 +591,10 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
             <div
               class="css-1eid011"
             >
-              <button>
-                <img
-                  alt="edit"
-                  src="edit.svg"
-                />
-              </button>
+              <img
+                alt="edit"
+                src="pen.svg"
+              />
             </div>
           </div>
         </li>
@@ -620,7 +610,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
           width="100%"
         >
           <button
-            class="css-1o60u1p"
+            class="css-1ifp9gy"
             font-family="default"
             font-size="medium"
             width="inherit"
@@ -652,7 +642,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
           width="100%"
         >
           <button
-            class="css-1o60u1p"
+            class="css-1ifp9gy"
             font-family="default"
             font-size="medium"
             width="inherit"
@@ -689,7 +679,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
         width="100%"
       >
         <button
-          class="css-1o60u1p"
+          class="css-1ifp9gy"
           font-family="default"
           font-size="medium"
           width="inherit"
@@ -721,7 +711,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
         width="100%"
       >
         <button
-          class="css-1m70hey"
+          class="css-1s8vdet"
           font-family="default"
           font-size="medium"
           width="inherit"

@@ -46,7 +46,7 @@ const Input = styled.input<InputProps>`
 Input.defaultProps = {
   bg: 'white',
   border: '1px solid',
-  borderRadius: '5px',
+  borderRadius: '4px',
   borderColor: 'athensGray',
   fontFamily: 'default',
   fontSize: 'medium',

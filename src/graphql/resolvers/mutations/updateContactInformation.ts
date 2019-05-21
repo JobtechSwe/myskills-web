@@ -19,12 +19,6 @@ export const updateContactInformation = (
   { data }: { data: Contact },
   { cache }: { cache: InMemoryCache }
 ): Contact => {
-  const { contact } = cache.readQuery<{
-    contact: Contact
-  }>({
-    query: GET_CONTACT_CLIENT,
-  })!
-
   cache.writeQuery({
     query: GET_CONTACT_CLIENT,
     data: { contact: data },

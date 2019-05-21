@@ -10,9 +10,7 @@ import Loader from '../../components/Loader'
 const GET_EDUCATIONS_EXPERIENCES = gql`
   query getEducationsAndExperiences {
     experiences {
-      id
       employer
-      sourceId
       term
       start
       end
@@ -22,31 +20,32 @@ const GET_EDUCATIONS_EXPERIENCES = gql`
       school
       start
       end
-      id
     }
   }
 `
+
 const educationsToEntries = (educations: Education[]) =>
-  !educations
-    ? []
-    : educations.map(({ programme, start, end, school }: Education) => ({
-        title: programme,
-        degree: undefined,
-        schoolOrCompany: school,
-        start,
-        end,
-      }))
+  educations.map(
+    e =>
+      ({
+        title: e.programme,
+        schoolOrCompany: e.school,
+        start: e.start,
+        end: e.end,
+      } as Entry)
+  )
 
 const experiencesToEntries = (experiences: Experience[]) =>
-  !experiences
-    ? []
-    : experiences.map(({ employer, start, end, term }: Experience) => ({
-        title: term,
-        degree: undefined,
-        schoolOrCompany: employer,
-        start,
-        end,
-      }))
+  experiences.map(
+    e =>
+      ({
+        title: e.term,
+
+        schoolOrCompany: e.employer,
+        start: e.start,
+        end: e.end,
+      } as Entry)
+  )
 
 const sortByDate = (arr: Entry[]) =>
   arr.sort((a, b) => (a.start > b.start ? -1 : a.start < b.start ? 1 : 0))

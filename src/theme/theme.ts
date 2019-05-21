@@ -1,5 +1,6 @@
 interface Color {
   alabaster: '#F8F8F8'
+  alto: '#E0E0E0'
   athensGray: '#E9ECF1'
   black: '#000000'
   bitterSweet: '#FF795B'
@@ -21,6 +22,7 @@ interface Typography {
 
 const colors: Color = {
   alabaster: '#F8F8F8',
+  alto: '#E0E0E0',
   athensGray: '#E9ECF1',
   black: '#000000',
   bitterSweet: '#FF795B',

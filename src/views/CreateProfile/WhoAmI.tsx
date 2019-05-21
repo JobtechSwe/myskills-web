@@ -121,35 +121,39 @@ const WhoAmI: React.FC<RouteComponentProps> = () => {
       step={5}
     >
       <Grid alignContent="start">
-        <H1 textAlign="center">Vem är du?</H1>
-        <Paragraph textAlign="center">
-          Beskriv dig själv och hur du är som person! Baserat på din text kommer
-          du att få förslag på egenskaper som speglar din personlighet.
-        </Paragraph>
-        <TextAreaContainer gridGap={6}>
-          <ContentEditable
-            html={staticHtml}
-            innerRef={textArea}
-            onChange={handleContentUpdate}
-            style={{
-              border: `1px solid ${theme.colors.alabaster}`,
-              borderRadius: '4px',
-              height: '30vh',
-              padding: '12px',
-              width: '100%',
-            }}
-          />
-          <Paragraph textAlign="right">
-            <Bold
-              as="span"
-              color={charsLeft > 0 ? 'black' : 'orangeRed'}
-              fontSize="small"
-            >
-              {charsLeft}{' '}
-            </Bold>
-            (280)
+        <Grid alignItems="center" gridGap="medium" justifyContent="center">
+          <H1 mb={0} textAlign="center">
+            Vem är du?
+          </H1>
+          <Paragraph my={0} textAlign="center">
+            Beskriv dig själv och hur du är som person! Baserat på din text
+            kommer du att få förslag på egenskaper som speglar din personlighet.
           </Paragraph>
-        </TextAreaContainer>
+          <TextAreaContainer gridGap={6}>
+            <ContentEditable
+              html={staticHtml}
+              innerRef={textArea}
+              onChange={handleContentUpdate}
+              style={{
+                border: `1px solid ${theme.colors.alto}`,
+                borderRadius: '4px',
+                height: '30vh',
+                padding: '12px',
+                width: '100%',
+              }}
+            />
+            <Paragraph textAlign="right">
+              <Bold
+                as="span"
+                color={charsLeft > 0 ? 'black' : 'orangeRed'}
+                fontSize="small"
+              >
+                {charsLeft}{' '}
+              </Bold>
+              (280)
+            </Paragraph>
+          </TextAreaContainer>
+        </Grid>
       </Grid>
     </RegistrationLayout>
   )

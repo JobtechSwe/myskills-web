@@ -44,7 +44,10 @@ const Timeline: React.FC<TimelineProps> = ({
   handleEdit,
 }) => {
   return (
-    <Wrapper enableTimelineBar={enableTimelineBar}>
+    <Wrapper
+      data-testid="timelineWrapper"
+      enableTimelineBar={enableTimelineBar}
+    >
       {entries.map((entry, i) => (
         <TimelineEntry
           editing={editingEntry === entry.id}

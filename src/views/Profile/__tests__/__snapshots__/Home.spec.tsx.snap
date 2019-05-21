@@ -20,7 +20,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
         class="css-1jo84sd"
       >
         <p
-          class="css-1q7xqyo"
+          class="css-twz9yi"
           font-family="default"
           font-size="medium"
         >
@@ -33,7 +33,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
         />
       </div>
       <p
-        class="css-1ffi3ob"
+        class="css-qlepwc"
         font-family="default"
         font-size="large"
         font-weight="bold"
@@ -59,7 +59,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
           />
         </a>
         <p
-          class="css-1oid1oz"
+          class="css-wacz66"
           font-family="default"
           font-size="small"
         >
@@ -101,7 +101,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
           />
         </a>
         <h2
-          class="css-65i85i"
+          class="css-an7vzf"
           color="black"
           font-family="default"
           font-size="medium"
@@ -109,39 +109,44 @@ exports[`views/profile/Home should render with profile data 1`] = `
           Egenskaper
         </h2>
         <p
-          class="css-1oid1oz"
+          class="css-wacz66"
           font-family="default"
           font-size="small"
         >
           Ansvarstagande
+          ,
         </p>
         <p
-          class="css-1oid1oz"
+          class="css-wacz66"
           font-family="default"
           font-size="small"
         >
           Frukost
+          ,
         </p>
         <p
-          class="css-1oid1oz"
+          class="css-wacz66"
           font-family="default"
           font-size="small"
         >
           Stresshantering
+          ,
         </p>
         <p
-          class="css-1oid1oz"
+          class="css-wacz66"
           font-family="default"
           font-size="small"
         >
           Snäll
+          ,
         </p>
         <p
-          class="css-1oid1oz"
+          class="css-wacz66"
           font-family="default"
           font-size="small"
         >
           Godis
+          ,
         </p>
       </div>
       <div
@@ -159,7 +164,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
           />
         </a>
         <h2
-          class="css-65i85i"
+          class="css-an7vzf"
           color="black"
           font-family="default"
           font-size="medium"
@@ -167,7 +172,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
           Kompetens
         </h2>
         <p
-          class="css-1oid1oz"
+          class="css-wacz66"
           font-family="default"
           font-size="small"
         >
@@ -175,7 +180,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
           ,
         </p>
         <p
-          class="css-1oid1oz"
+          class="css-wacz66"
           font-family="default"
           font-size="small"
         >
@@ -183,7 +188,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
           ,
         </p>
         <p
-          class="css-1oid1oz"
+          class="css-wacz66"
           font-family="default"
           font-size="small"
         >
@@ -191,7 +196,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
           ,
         </p>
         <p
-          class="css-1oid1oz"
+          class="css-wacz66"
           font-family="default"
           font-size="small"
         >
@@ -218,7 +223,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
           />
         </a>
         <h2
-          class="css-65i85i"
+          class="css-an7vzf"
           color="black"
           font-family="default"
           font-size="medium"
@@ -226,7 +231,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
           Utbildning
         </h2>
         <p
-          class="css-1oid1oz"
+          class="css-wacz66"
           font-family="default"
           font-size="small"
         >
@@ -248,7 +253,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
           />
         </a>
         <p
-          class="css-1rxena4"
+          class="css-63olqc"
           font-family="default"
           font-size="small"
         >
@@ -256,7 +261,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
                   Systemutvecklare.
         </p>
         <p
-          class="css-1oid1oz"
+          class="css-wacz66"
           font-family="default"
           font-size="small"
         >
@@ -275,7 +280,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
         width="100%"
       >
         <button
-          class="css-1o60u1p"
+          class="css-1ifp9gy"
           font-family="default"
           font-size="medium"
           width="inherit"
@@ -307,7 +312,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
         width="100%"
       >
         <button
-          class="css-1o60u1p"
+          class="css-1ifp9gy"
           font-family="default"
           font-size="medium"
           width="inherit"

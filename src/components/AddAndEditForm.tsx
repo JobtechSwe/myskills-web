@@ -6,20 +6,14 @@ import { Label } from './Typography'
 import Button from './Button'
 import DatePicker from './DatePicker'
 import close from '../assets/icons/close.svg'
-import styled from '@emotion/styled'
 
-interface State {
+export interface FormState {
   schoolOrCompany: string
   end: string
   start: string
   title: string
 }
 
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-right: 6px;
-`
 interface AddAndEditFormProps {
   abortEdit?: () => void
   edit?: boolean
@@ -27,8 +21,8 @@ interface AddAndEditFormProps {
   titlePlaceholder: string
   schoolOrCompanyPlaceholder: string
   label: string
-  onSubmit: (state: State) => void
-  handleDelete?: (state: State) => void
+  onSubmit: (state: FormState) => void
+  handleDelete?: (state: FormState) => void
 }
 
 export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({
@@ -69,14 +63,14 @@ export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({
   return (
     <>
       <Grid gridGap={6}>
-        <Header>
+        <Flex justifyContent="space-between" mr={6}>
           <Label>{label}</Label>
           {edit && (
             <button onClick={abortEdit}>
               <img alt="close" src={close} />
             </button>
           )}
-        </Header>
+        </Flex>
         <Input
           name="title"
           onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
@@ -98,6 +92,7 @@ export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({
         <Flex flexDirection="column">
           <Label>Från</Label>
           <DatePicker
+            dataTestId="startDate"
             onChange={value => handleUpdate('start', value)}
             placeholder="Startdatum"
             value={state.start}
@@ -106,6 +101,7 @@ export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({
         <Flex flexDirection="column">
           <Label>Till</Label>
           <DatePicker
+            dataTestId="endDate"
             onChange={value => handleUpdate('end', value)}
             placeholder="Slutdatum"
             value={state.end}

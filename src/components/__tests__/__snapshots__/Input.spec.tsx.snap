@@ -3,7 +3,7 @@
 exports[`components/Input renders an Input 1`] = `
 <div>
   <input
-    class="css-1cfla5g"
+    class="css-hugbvh"
     font-family="default"
     font-size="medium"
     name="search"

@@ -1,8 +1,9 @@
 import { RouteComponentProps } from '@reach/router'
+import Grid from '../../components/Grid'
 import Flex from '../../components/Flex'
 import { v4 } from 'uuid'
 import { useMutation, useQuery } from 'react-apollo-hooks'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useDebounce, useToggle } from '@iteam/hooks'
 import Downshift from 'downshift'
 import { Global, css } from '@emotion/core'
@@ -11,7 +12,7 @@ import { SearchList } from '../../components/List'
 import Tag from '../../components/Tag'
 import ListItem from '../../components/ListItem'
 import { InputWrapper, TagButton } from '../../components/ButtonToInput'
-import { H1 } from '../../components/Typography'
+import { H1, Paragraph } from '../../components/Typography'
 import {
   OntologyTextParseResponse,
   Query,
@@ -21,7 +22,7 @@ import {
 import gql from 'graphql-tag'
 import { GET_ONTOLOGY_CONCEPTS } from './ChooseProfession'
 import { GET_TRAITS_CLIENT } from '../../graphql/resolvers/mutations/addTrait'
-import { highlightMarked } from '../../utils/helpers'
+import { highlightMarked, handleFocusKeyDown } from '../../utils/helpers'
 import TagList from '../../components/TagList'
 import RegistrationLayout from '../../components/Layout/RegistrationLayout'
 
@@ -47,6 +48,7 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
 
   const [traitQuery, setTraitQuery] = useState('')
   const [addTraitActive, setAddTraitActive] = useToggle(false)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const { data: ontologyRelated } = useQuery<{
     ontologyConcepts: Query['ontologyConcept'][]
@@ -100,7 +102,11 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
 
   useEffect(() => {
     setSuggestedTraits(suggestedTraits.filter(t => traits.indexOf(t) === -1))
-  }, [traits, suggestedTraits])
+
+    if (inputRef && inputRef.current) {
+      inputRef.current.focus()
+    }
+  }, [traits, addTraitActive, suggestedTraits])
 
   return (
     <RegistrationLayout headerText="PERSON" nextPath="profilbild" step={5}>
@@ -109,7 +115,20 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
         flexDirection="column"
         justifyContent="flex-start"
       >
-        <H1 textAlign="center">Vilka är dina främsta egenskaper?</H1>
+        <Grid
+          alignItems="center"
+          gridGap="medium"
+          justifyContent="center"
+          mb="medium"
+        >
+          <H1 mb={0} textAlign="center">
+            Vilka är dina främsta egenskaper?
+          </H1>
+          <Paragraph my={0} textAlign="center">
+            Markera de egenskaper som bäst motsvarar dina. Du kan också lägga
+            till egna.
+          </Paragraph>
+        </Grid>
         <TagList
           activeItems={traits.map(trait => ({ id: v4(), term: trait }))}
           items={suggestedTraits.map(trait => ({ id: v4(), term: trait }))}
@@ -143,6 +162,7 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
                   <Input
                     alignSelf="stretch"
                     border="none"
+                    ref={inputRef}
                     {...getInputProps({
                       name: 'trait',
                       placeholder: 'Lägg till en egenskap',
@@ -160,8 +180,13 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
                       handleChange(traitQuery)
                       setAddTraitActive()
                     }}
+                    onKeyDown={handleFocusKeyDown(() => {
+                      handleChange(traitQuery)
+                      setAddTraitActive()
+                    })}
                     p="small"
                     role="button"
+                    tabIndex={0}
                   >
                     OK
                   </TagButton>
@@ -212,7 +237,9 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
             mb="medium"
             mt="small"
             onClick={setAddTraitActive}
+            onKeyDown={handleFocusKeyDown(setAddTraitActive)}
             role="button"
+            tabIndex={0}
           >
             + Lägg till en ny egenskap
           </Tag>

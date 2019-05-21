@@ -45,7 +45,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
       class="css-29r7oe"
     >
       <div
-        class="css-46fyds"
+        class="css-1co92un"
       >
         <a
           class="css-jbzzha"
@@ -67,10 +67,10 @@ exports[`views/profile/Home should render with profile data 1`] = `
         </p>
       </div>
       <div
-        class="css-metx23"
+        class="css-16kezy5"
       >
         <a
-          class="css-jbzzha"
+          class="css-gkwnsu"
           color="persianBlue"
           font-weight="500"
           href="/editplace"
@@ -80,14 +80,14 @@ exports[`views/profile/Home should render with profile data 1`] = `
             src="edit_image.svg"
           />
         </a>
-        Bild
+        <div />
       </div>
     </div>
     <div
       class="css-29r7oe"
     >
       <div
-        class="css-mefo75"
+        class="css-1y75uhg"
       >
         <a
           class="css-jbzzha"
@@ -150,7 +150,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
         </p>
       </div>
       <div
-        class="css-mefo75"
+        class="css-1y75uhg"
       >
         <a
           class="css-jbzzha"
@@ -209,7 +209,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
       class="css-29r7oe"
     >
       <div
-        class="css-mefo75"
+        class="css-1y75uhg"
       >
         <a
           class="css-jbzzha"
@@ -239,7 +239,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
         </p>
       </div>
       <div
-        class="css-mefo75"
+        class="css-1y75uhg"
       >
         <a
           class="css-jbzzha"
@@ -252,6 +252,14 @@ exports[`views/profile/Home should render with profile data 1`] = `
             src="edit.svg"
           />
         </a>
+        <h2
+          class="css-an7vzf"
+          color="black"
+          font-family="default"
+          font-size="medium"
+        >
+          Erfarenhet
+        </h2>
         <p
           class="css-63olqc"
           font-family="default"

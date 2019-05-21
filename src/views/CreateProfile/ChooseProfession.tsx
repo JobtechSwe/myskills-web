@@ -35,6 +35,7 @@ const FakeInput = styled.div`
 `
 
 const RemoveButton = styled.button`
+  background: transparent;
   border: none;
   -webkit-appearance: none;
   -moz-appearance: none;

@@ -70,7 +70,6 @@ function App() {
           <Profile path="/profil">
             <RestrictedRoute component={Home} path="/" />
             <RestrictedRoute component={Timeline} path="/tidslinje" />
-            <RestrictedRoute component={WhoAmI} path="/beskrivning" />
           </Profile>
         </Router>
       </React.Suspense>

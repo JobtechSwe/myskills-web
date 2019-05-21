@@ -3,7 +3,7 @@
 exports[`views/MatchSkills renders loading state 1`] = `
 <div>
   <div
-    class="css-475q7k"
+    class="css-15q7p9b"
     height="calc(var(--vh, 1vh) * 100)"
   >
     <nav

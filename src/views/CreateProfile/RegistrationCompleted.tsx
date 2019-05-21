@@ -39,7 +39,7 @@ const RegistrationCompleted: React.FC<RouteComponentProps> = () => {
 
       <img alt="Present" src={present} />
       <Flex justifyContent="center">
-        <Button onClick={() => navigate('/profile')}>Till ditt CV</Button>
+        <Button onClick={() => navigate('/profil')}>Till ditt CV</Button>
       </Flex>
     </Background>
   )

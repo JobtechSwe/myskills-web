@@ -79,7 +79,7 @@ const Home: React.FC<RouteComponentProps> = ({
               </Paragraph>
             </ProfileDataCard>
             <ProfileDataCard flexVal={0.35} isImage isTop route="editplace">
-              Bild
+              <div />
             </ProfileDataCard>
           </Container>
           <Container mb="10px">
@@ -123,6 +123,7 @@ const Home: React.FC<RouteComponentProps> = ({
                 ))}
             </ProfileDataCard>
             <ProfileDataCard route="editplace">
+              <H2 mb="small">Erfarenhet</H2>
               {data.occupation && (
                 <Paragraph mb="small" mt="none">
                   {`${data.occupation.experience.years} års erfarenhet som 

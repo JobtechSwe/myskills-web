@@ -14,19 +14,24 @@ interface IProfileDataCardProps {
   route: string
 }
 
-const EditButton = styled(InternalLink)`
+interface IBoxProps {
+  noBackground: boolean
+  isTop: boolean
+  flexVal: number
+}
+const EditButton = styled(InternalLink)<{ isImage: boolean }>`
   position: absolute;
   right: 10px;
-  bottom: 10px;
+  bottom: ${({ isImage }) => (isImage ? 'calc(100% - 40px)' : '10px')};
 `
 
 const Edit = ({ route, isImage }: { route: string; isImage: boolean }) => (
-  <EditButton to={route}>
+  <EditButton isImage={isImage} to={route}>
     <img alt="Edit data" src={isImage ? editImageIcon : editIcon} />
   </EditButton>
 )
 
-const Box = styled.div<any>`
+const Box = styled.div<IBoxProps>`
   border-radius: 10px;
   background: ${({ theme, noBackground }) =>
     !noBackground ? theme.colors.alabaster : 'none'};
@@ -34,7 +39,8 @@ const Box = styled.div<any>`
   padding-bottom: 20px;
   position: relative;
   min-height: ${({ isTop }) => (isTop ? '100px' : '150px')};
-  flex: ${({ flexVal }) => (flexVal ? flexVal : 0.5)};
+  flex: ${({ flexVal }) => (flexVal ? flexVal : 1)};
+  overflow-x: scroll;
 `
 
 const ProfileDataCard: React.FC<IProfileDataCardProps> = ({

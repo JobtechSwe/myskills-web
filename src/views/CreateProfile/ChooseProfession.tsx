@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useDebounce } from '@iteam/hooks'
 import { useQuery, useMutation } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
 import {
@@ -12,13 +13,13 @@ import IllustrationHeader from '../../components/IllustrationHeader'
 import suitcaseIllustration from '../../assets/illustrations/suitcase.svg'
 import ListItem from '../../components/ListItem'
 import { SearchList } from '../../components/List'
-import styled from '@emotion/styled'
 import { css, Global } from '@emotion/core'
 import Downshift from 'downshift'
 import { highlightMarked } from '../../utils/helpers'
 import RegistrationLayout from '../../components/Layout/RegistrationLayout'
 import { GET_OCCUPATION_CLIENT } from '../../graphql/resolvers/mutations/createOccupation'
 import close from '../../assets/icons/close_black.svg'
+import styled from '@emotion/styled'
 
 const SearchInput = styled(Input)`
   width: 100%;
@@ -90,20 +91,13 @@ export const IS_LOGGED_IN = gql`
 
 const ChooseProfession: React.FC<RouteComponentProps> = () => {
   const [query, setQuery] = useState('')
-  // TODO: Use debounce, skipping for now because of complications in tests
-  const { data: isLoggedIn } = useQuery(IS_LOGGED_IN, {
-    fetchPolicy: 'network-only',
-  })
-
-  const createOccupation = useMutation(
-    isLoggedIn.isLoggedIn ? CREATE_OCCUPATION_API : CREATE_OCCUPATION_CLIENT
-  )
+  const createOccupation = useMutation(CREATE_OCCUPATION_CLIENT)
 
   const removeOccupationClient = useMutation(REMOVE_OCCUPATION_CLIENT)
 
   const { data, error: ontologyError } = useQuery(GET_ONTOLOGY_CONCEPTS, {
     variables: {
-      filter: query,
+      filter: useDebounce(query, 200),
       type: OntologyType.Occupation,
     },
     skip: !query,

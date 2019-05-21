@@ -38,18 +38,20 @@ const Placeholder = styled.span<{ isMobile: boolean }>`
 `
 
 interface DatePickerProps {
+  dataTestId?: string
   placeholder?: string
   onChange: (value: string) => void
   value: string
 }
 
 const DatePicker: React.FC<DatePickerProps> = ({
+  dataTestId = 'datePicker',
   placeholder,
   onChange,
   value,
 }) => {
   return (
-    <Label>
+    <Label data-testid={dataTestId}>
       {value.length > 0 ? (
         <PickedDate isMobile={isMobile}>{value}</PickedDate>
       ) : (

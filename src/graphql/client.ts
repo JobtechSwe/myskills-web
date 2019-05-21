@@ -12,7 +12,6 @@ import {
   Experience,
   Language,
   Occupation,
-  Profile,
   Skill,
 } from '../generated/myskills'
 import resolvers from './resolvers'

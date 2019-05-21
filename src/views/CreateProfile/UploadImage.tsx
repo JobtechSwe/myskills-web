@@ -144,7 +144,7 @@ const UploadImage: React.FC<RouteComponentProps> = () => {
   }
 
   return (
-    <RegistrationLayout headerText="PERSON" nextPath="egenskaper" step={5}>
+    <RegistrationLayout headerText="PERSON" nextPath="kontakt" step={5}>
       <Global
         styles={css`
           body {

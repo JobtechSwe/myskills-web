@@ -100,3 +100,11 @@ export const highlightMarked = (inputValue: string, term: string) => {
     __html: term.replace(reg, `<strong>${inputValue}</strong>`),
   }
 }
+
+export const handleFocusKeyDown = (callback: () => void) => (
+  e: React.KeyboardEvent<HTMLElement>
+) => {
+  if (e.which === 13) {
+    callback()
+  }
+}

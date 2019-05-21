@@ -4,6 +4,10 @@ import { render } from '../../../utils/test-utils'
 import { wait, fireEvent } from 'react-testing-library'
 import { OntologyType } from '../../../generated/myskills.d'
 
+jest.mock('@iteam/hooks', () => ({
+  useDebounce: (val: string) => val,
+}))
+
 describe('views/ChooseProfession', () => {
   it('renders error message', async () => {
     const withErrorMock = [

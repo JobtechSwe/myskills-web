@@ -14,7 +14,7 @@ import { Entry } from '../../components/Timeline/index'
 const ADD_EXPERIENCE_CLIENT = gql`
   mutation addExperienceClient($experience: ExperienceInput!) {
     addExperienceClient(experience: $experience) @client {
-      id
+      sourceId
       employer
       end
       start
@@ -26,7 +26,7 @@ const ADD_EXPERIENCE_CLIENT = gql`
 const REMOVE_EXPERIENCE_CLIENT = gql`
   mutation removeExperienceClient($experience: ExperienceInput!) {
     removeExperienceClient(experience: $experience) @client {
-      id
+      sourceId
     }
   }
 `
@@ -34,7 +34,7 @@ const REMOVE_EXPERIENCE_CLIENT = gql`
 const UPDATE_EXPERIENCE_CLIENT = gql`
   mutation updateExperienceClient($experience: ExperienceInput!) {
     updateExperienceClient(experience: $experience) @client {
-      id
+      sourceId
     }
   }
 `
@@ -106,7 +106,7 @@ export const WorkExperiences: React.FC<RouteComponentProps> = () => {
     addExperienceClient({
       variables: {
         experience: {
-          id: v4(),
+          sourceId: v4(),
           term: formState.title,
           employer: formState.schoolOrCompany,
           start: formState.start,

@@ -7,29 +7,6 @@ import gql from 'graphql-tag'
 import { Education, Experience } from '../../generated/myskills'
 import Loader from '../../components/Loader'
 
-const mockData = [
-  {
-    title: 'Frontendutvecklare',
-    schoolOrCompany: 'Iteam',
-    degree: undefined,
-    start: '2018/11',
-    end: '2019/04',
-  },
-  {
-    title: 'Frontendutvecklare',
-    schoolOrCompany: 'Webbutveckling',
-    degree: 'Kandidat',
-    start: '2012/01',
-    end: '2018/10',
-  },
-  {
-    title: 'Pistvaktsutbildning',
-    schoolOrCompany: 'Skistar',
-    degree: 'Diplomerad',
-    start: '2009/01',
-    end: '2011/11',
-  },
-]
 const GET_EDUCATIONS_EXPERIENCES = gql`
   query getEducationsAndExperiences {
     experiences {

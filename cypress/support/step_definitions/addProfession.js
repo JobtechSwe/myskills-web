@@ -56,3 +56,13 @@ Then('I should remain on the same view', () => {
 Then('I should be able to navigate to next view', () => {
   cy.url().should('eq', 'http://localhost:3001/skapa-cv/kompetenser')
 })
+
+When('I remove the chosen profession', () => {
+  cy.get('[data-testid="removeButton"]').click()
+})
+
+Then('The added profession should not be present', () => {
+  cy.getLocalStorage('occupation').then(data => {
+    expect(JSON.parse(data)).to.equal(null)
+  })
+})

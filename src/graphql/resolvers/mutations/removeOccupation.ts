@@ -2,20 +2,17 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { GET_OCCUPATION_CLIENT } from './createOccupation'
 import { storageHelper } from '../../../utils/helpers'
 
-export const removeOccupation = (
+export const removeOccupationClient = (
   _: any,
-  args: any,
+  _args: any,
   { cache }: { cache: InMemoryCache }
-): boolean => {
+): any => {
   cache.writeQuery({
     query: GET_OCCUPATION_CLIENT,
-    data: null,
+    data: { occupation: null },
   })
 
-  storageHelper.set({
-    type: 'occupation',
-    data: null,
-  })
+  storageHelper.remove('occupation')
 
-  return true
+  return { occupation: null }
 }

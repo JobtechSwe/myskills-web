@@ -18,6 +18,7 @@ import Downshift from 'downshift'
 import { highlightMarked } from '../../utils/helpers'
 import RegistrationLayout from '../../components/Layout/RegistrationLayout'
 import { GET_OCCUPATION_CLIENT } from '../../graphql/resolvers/mutations/createOccupation'
+import close from '../../assets/icons/close_black.svg'
 
 const SearchInput = styled(Input)`
   width: 100%;
@@ -26,7 +27,9 @@ const SearchInput = styled(Input)`
 const FakeInput = styled.div`
   border: ${({ theme }) => `1px solid ${theme.colors.athensGray}`};
   border-radius: 5px;
+  display: flex;
   font-family: ${({ theme }) => theme.fonts.default};
+  justify-content: space-between;
   padding: 12px;
 `
 
@@ -62,6 +65,12 @@ export const CREATE_OCCUPATION_API = gql`
   }
 `
 
+export const REMOVE_OCCUPATION_CLIENT = gql`
+  mutation removeOccupationClient($occupation: OccupationInput!) {
+    removeOccupationClient(occupation: $occupation) @client
+  }
+`
+
 /*
   (always: true) is currently unreliable but Apollo reports bug is fixed in 2.6.0
   https://github.com/apollographql/apollo-client/issues/4636#issuecomment-480307041
@@ -82,6 +91,8 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
   const createOccupation = useMutation(
     isLoggedIn.isLoggedIn ? CREATE_OCCUPATION_API : CREATE_OCCUPATION_CLIENT
   )
+
+  const removeOccupationClient = useMutation(REMOVE_OCCUPATION_CLIENT)
 
   const { data, error: ontologyError } = useQuery(GET_ONTOLOGY_CONCEPTS, {
     variables: {
@@ -121,8 +132,16 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
             }
           `}
         />
-        {occupationResult.occupation ? (
-          <FakeInput>{occupationResult.occupation.term}</FakeInput>
+        {occupationResult.occupation && occupationResult.occupation.term ? (
+          <FakeInput>
+            {occupationResult.occupation.term}{' '}
+            <button
+              data-testid="removeButton"
+              onClick={() => removeOccupationClient()}
+            >
+              <img alt="close" src={close} />
+            </button>
+          </FakeInput>
         ) : (
           <Downshift
             itemToString={item => (item ? item.term : '')}

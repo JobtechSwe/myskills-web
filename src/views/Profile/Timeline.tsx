@@ -63,8 +63,8 @@ const Timeline: React.FC<RouteComponentProps> = ({
         <TimelineComponent
           enableTimelineBar={true}
           entries={sortByDate([
-            ...experiencesToEntries(data.experiences),
-            ...educationsToEntries(data.educations),
+            ...experiencesToEntries(data.experiences || []),
+            ...educationsToEntries(data.educations || []),
           ])}
         />
       )}

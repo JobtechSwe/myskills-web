@@ -14,8 +14,17 @@ import {
   GET_OCCUPATION_CLIENT,
 } from 'graphql/shared/Queries'
 import {
-  OntologyType,
+  AddSkillClientMutation,
+  AddSkillClientMutationVariables,
+  GetOccupationClientQuery,
+  GetOccupationClientQueryVariables,
+  GetSkillsClientQueryVariables,
+  GetSkillsQuery,
+  Occupation,
   OntologyRelationResponse,
+  OntologyType,
+  RemoveSkillClientMutation,
+  RemoveSkillClientMutationVariables,
   Skill,
   SkillInput,
 } from 'generated/myskills.d'
@@ -25,26 +34,34 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
   client,
 }) => {
   const {
-    data: { occupation = {} },
-  }: any = useQuery(GET_OCCUPATION_CLIENT)
+    data: { occupation },
+  } = useQuery<GetOccupationClientQuery, GetOccupationClientQueryVariables>(
+    GET_OCCUPATION_CLIENT
+  )
 
   const {
     data: { skills = [] },
-  }: any = useQuery(GET_SKILLS_CLIENT)
+  } = useQuery<GetSkillsQuery, GetSkillsClientQueryVariables>(GET_SKILLS_CLIENT)
 
-  const addSkillMutation = useMutation(ADD_SKILL_CLIENT)
-  const removeSkillMutation = useMutation(REMOVE_SKILL_CLIENT)
+  const addSkillMutation = useMutation<
+    AddSkillClientMutation,
+    AddSkillClientMutationVariables
+  >(ADD_SKILL_CLIENT)
+  const removeSkillMutation = useMutation<
+    RemoveSkillClientMutation,
+    RemoveSkillClientMutationVariables
+  >(REMOVE_SKILL_CLIENT)
 
   const [relatedSkills, setRelatedSkills] = React.useState<
     OntologyRelationResponse[]
   >([])
 
   const getRelatedSkills = React.useCallback(
-    async (skills: any[]) => {
+    async (terms: (Skill | Occupation)[]) => {
       const { data } = await client.query({
         query: GET_RELATED_SKILLS,
         variables: {
-          concepts: skills.map(({ term }) => term),
+          concepts: terms.map(({ term }) => term),
           limit: 5,
           type: OntologyType.Skill,
         },

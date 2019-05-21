@@ -1,5 +1,4 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import gql from 'graphql-tag'
 import { SkillInput } from 'generated/myskills'
 import { storageHelper } from 'utils/helpers'
 import { GET_SKILLS_CLIENT } from 'graphql/shared/Queries'

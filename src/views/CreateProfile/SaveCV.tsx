@@ -45,6 +45,7 @@ export const SAVE_CV = gql`
   mutation saveCV(
     $educations: [EducationInput!]
     $experiences: [ExperienceInput!]
+    $image: ImgInput
     $occupation: OccupationInput
     $personalDescription: String
     $skills: [SkillInput!]
@@ -54,6 +55,7 @@ export const SAVE_CV = gql`
       cv: {
         educations: $educations
         experiences: $experiences
+        image: $image
         occupation: $occupation
         personalDescription: $personalDescription
         skills: $skills
@@ -150,6 +152,9 @@ const Register: React.FC<RouteComponentProps> = () => {
     await saveCVMutation({
       variables: {
         ...localCVWithoutTypename,
+        image: {
+          imageString: localCVWithoutTypename.image,
+        },
         personalDescription: localCV.whoAmI,
         skills: localCV.skills.map((skill: any) => ({
           type: skill.type,

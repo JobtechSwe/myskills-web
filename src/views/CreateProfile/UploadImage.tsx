@@ -1,21 +1,22 @@
 import React, { useState } from 'react'
 import { RouteComponentProps } from '@reach/router'
 import ReactCrop from 'react-image-crop'
-import Button from '../../components/Button'
-import { Label } from '../../components/Typography'
-import Input from '../../components/Input'
+import Button from 'components/Button'
+import { Label } from 'components/Typography'
+import Input from 'components/Input'
 import { useQuery, useMutation } from 'react-apollo-hooks'
 import { Global, css } from '@emotion/core'
 import styled from '@emotion/styled'
 import gql from 'graphql-tag'
-import Flex from '../../components/Flex'
-import Grid from '../../components/Grid'
-import profileImage from '../../assets/illustrations/profile_image.svg'
-import RegistrationLayout from '../../components/Layout/RegistrationLayout'
-import IllustrationHeader from '../../components/IllustrationHeader'
+import Flex from 'components/Flex'
+import Grid from 'components/Grid'
+import profileImage from 'assets/illustrations/profile_image.svg'
+import RegistrationLayout from 'components/Layout/RegistrationLayout'
+import IllustrationHeader from 'components/IllustrationHeader'
+import { GET_IMAGE_CLIENT } from 'graphql/resolvers/mutations/uploadImage'
 
 export const UPLOAD_IMAGE_CLIENT = gql`
-  mutation uploadImage($image: ImgInput!) {
+  mutation uploadImageClient($image: ImgInput!) {
     uploadImage(image: $image) @client
   }
 `
@@ -23,12 +24,6 @@ export const UPLOAD_IMAGE_CLIENT = gql`
 export const UPLOAD_IMAGE_API = gql`
   mutation uploadImage($image: ImgInput!) {
     uploadImage(image: $image)
-  }
-`
-
-export const GET_IMAGE = gql`
-  query image {
-    image @client
   }
 `
 
@@ -58,7 +53,7 @@ const ModalContainer = styled(Flex)`
 `
 
 const UploadImage: React.FC<RouteComponentProps> = () => {
-  const { data } = useQuery(GET_IMAGE)
+  const { data } = useQuery(GET_IMAGE_CLIENT)
   const initialState = {
     base64Image: data.image,
     crop: {

@@ -1,21 +1,21 @@
 import { RouteComponentProps } from '@reach/router'
 import { useQuery, useMutation } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
-import Grid from '../../components/Grid'
+import Grid from 'components/Grid'
 import React, { useState, useRef, useEffect } from 'react'
 import ReactDOMServer from 'react-dom/server'
 import { useDebounce } from '@iteam/hooks'
-import { theme } from '../../theme'
+import { theme } from 'theme'
 import styled from '@emotion/styled'
-import { H1, Bold, Paragraph } from '../../components/Typography'
+import { H1, Bold, Paragraph } from 'components/Typography'
 import {
   QueryOntologyTextParseArgs,
   Query,
   OntologyTextParseResponse,
-} from '../../generated/myskills'
+} from 'generated/myskills'
 import ContentEditable from 'react-contenteditable'
-import { GET_WHO_AM_I_CLIENT } from '../../graphql/resolvers/mutations/addWhoAmI'
-import RegistrationLayout from '../../components/Layout/RegistrationLayout'
+import { GET_WHO_AM_I_CLIENT } from 'graphql/resolvers/mutations/addWhoAmI'
+import RegistrationLayout from 'components/Layout/RegistrationLayout'
 
 export const GET_TRAITS = gql`
   query ontologyTextParse($text: String!) {

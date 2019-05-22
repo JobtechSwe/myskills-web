@@ -1,7 +1,7 @@
 import React from 'react'
 import { useQuery } from 'react-apollo-hooks'
-import { GET_EDUCATIONS_CLIENT } from '../graphql/resolvers/mutations/addEducation'
-import { Education } from '../generated/myskills'
+import { GET_EDUCATIONS_CLIENT } from 'graphql/resolvers/mutations/addEducation'
+import { Education } from 'generated/myskills'
 import Timeline from './Timeline'
 
 interface AddedEducationsProps {

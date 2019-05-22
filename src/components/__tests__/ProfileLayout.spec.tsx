@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { render } from '../../utils/test-utils'
-import Timeline from '../../views/Profile/Timeline'
+import { render } from 'utils/test-utils'
+import Timeline from 'views/Profile/Timeline'
 import { wait } from 'react-testing-library'
 
 import ProfileLayout from '../Layout/ProfileLayout'

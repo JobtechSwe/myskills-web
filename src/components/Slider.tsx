@@ -3,8 +3,8 @@ import React from 'react'
 import Flex from './Flex'
 import { Global, css } from '@emotion/core'
 import SliderInput, { createSliderWithTooltip } from 'rc-slider'
-import sliderThumb from '../images/slider_thumb.svg'
-import { theme } from '../theme'
+import sliderThumb from 'images/slider_thumb.svg'
+import { theme } from 'theme'
 
 const SliderWithTooltip = createSliderWithTooltip(SliderInput)
 

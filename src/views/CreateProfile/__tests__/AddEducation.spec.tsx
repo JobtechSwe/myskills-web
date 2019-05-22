@@ -1,10 +1,10 @@
 import * as React from 'react'
 import AddEducation from '../AddEducation'
-import { render } from '../../../utils/test-utils'
+import { render } from 'utils/test-utils'
 import { wait } from 'react-testing-library'
-import h from '../../../components/AddedEducations'
+
 jest.mock(
-  '../../../components/AddedEducations',
+  'components/AddedEducations',
   () =>
     function mockedComponent() {
       return <div />

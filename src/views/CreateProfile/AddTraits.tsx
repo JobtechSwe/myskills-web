@@ -1,30 +1,30 @@
 import { RouteComponentProps } from '@reach/router'
-import Grid from '../../components/Grid'
-import Flex from '../../components/Flex'
+import Grid from 'components/Grid'
+import Flex from 'components/Flex'
 import { v4 } from 'uuid'
 import { useMutation, useQuery } from 'react-apollo-hooks'
 import React, { useEffect, useState, useRef } from 'react'
 import { useDebounce, useToggle } from '@iteam/hooks'
 import Downshift from 'downshift'
 import { Global, css } from '@emotion/core'
-import Input from '../../components/Input'
-import { SearchList } from '../../components/List'
-import Tag from '../../components/Tag'
-import ListItem from '../../components/ListItem'
-import { InputWrapper, TagButton } from '../../components/ButtonToInput'
-import { H1, Paragraph } from '../../components/Typography'
+import Input from 'components/Input'
+import { SearchList } from 'components/List'
+import Tag from 'components/Tag'
+import ListItem from 'components/ListItem'
+import { InputWrapper, TagButton } from 'components/ButtonToInput'
+import { H1, Paragraph } from 'components/Typography'
 import {
   OntologyTextParseResponse,
   Query,
   OntologyType,
   OntologyConceptResponse,
-} from '../../generated/myskills.d'
+} from 'generated/myskills.d'
 import gql from 'graphql-tag'
 import { GET_ONTOLOGY_CONCEPTS } from './ChooseProfession'
-import { GET_TRAITS_CLIENT } from '../../graphql/resolvers/mutations/addTrait'
-import { highlightMarked, handleFocusKeyDown } from '../../utils/helpers'
-import TagList from '../../components/TagList'
-import RegistrationLayout from '../../components/Layout/RegistrationLayout'
+import { GET_TRAITS_CLIENT } from 'graphql/resolvers/mutations/addTrait'
+import { highlightMarked, handleFocusKeyDown } from 'utils/helpers'
+import TagList from 'components/TagList'
+import RegistrationLayout from 'components/Layout/RegistrationLayout'
 
 export const ADD_TRAIT = gql`
   mutation addTrait($trait: String!) {
@@ -101,7 +101,7 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
   }
 
   useEffect(() => {
-    setSuggestedTraits(suggestedTraits.filter(t => traits.indexOf(t) === -1))
+    setSuggestedTraits(s => s.filter(t => traits.indexOf(t) === -1))
 
     if (inputRef && inputRef.current) {
       inputRef.current.focus()

@@ -1,13 +1,13 @@
 import React, { useState, FormEvent, useEffect } from 'react'
 import { RouteComponentProps } from '@reach/router'
-import Input from '../../components/Input'
-import smartphoneLetter from '../../assets/illustrations/smarthpone_letter.svg'
-import IllustrationHeader from '../../components/IllustrationHeader'
-import Grid from '../../components/Grid'
-import { GET_CONTACT_CLIENT } from '../../graphql/resolvers/mutations/updateContactInformation'
+import Input from 'components/Input'
+import smartphoneLetter from 'assets/illustrations/smarthpone_letter.svg'
+import IllustrationHeader from 'components/IllustrationHeader'
+import Grid from 'components/Grid'
+import { GET_CONTACT_CLIENT } from 'graphql/resolvers/mutations/updateContactInformation'
 import { useMutation, useQuery } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
-import RegistrationLayout from '../../components/Layout/RegistrationLayout'
+import RegistrationLayout from 'components/Layout/RegistrationLayout'
 
 export const UPDATE_CONTACT_CLIENT = gql`
   mutation updateContactInformation($data: ContactInput!) {

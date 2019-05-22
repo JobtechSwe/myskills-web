@@ -3,8 +3,8 @@ import Button from './Button'
 import { InternalLink } from './Link'
 import Flex from './Flex'
 
-import ProfileIcon from '../assets/icons/profile_user'
-import TimelineIcon from '../assets/icons/timeline'
+import ProfileIcon from 'assets/icons/profile_user'
+import TimelineIcon from 'assets/icons/timeline'
 
 interface ProfileButtonProps {
   buttonText: string

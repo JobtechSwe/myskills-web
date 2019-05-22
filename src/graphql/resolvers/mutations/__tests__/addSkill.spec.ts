@@ -1,4 +1,4 @@
-import { GET_SKILLS_CLIENT } from '../addSkill'
+import { GET_SKILLS_CLIENT } from 'graphql/shared/Queries'
 import { addSkillClient } from '../addSkill'
 
 let skill: any

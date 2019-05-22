@@ -1,180 +1,111 @@
-import ButtonToInput from '../../components/ButtonToInput'
-import Flex from '../../components/Flex'
-import Loader from '../../components/Loader'
-import React, { useCallback, useEffect, useReducer } from 'react'
-import TagList from '../../components/TagList'
-import gql from 'graphql-tag'
-import { H1 } from '../../components/Typography'
+import ButtonToInput from 'components/ButtonToInput'
+import Flex from 'components/Flex'
+import React from 'react'
+import TagList from 'components/TagList'
+import { H1 } from 'components/Typography'
 import { RouteComponentProps } from '@reach/router'
 import { useQuery, useMutation } from 'react-apollo-hooks'
 import { v4 } from 'uuid'
 import { withApollo, WithApolloClient } from 'react-apollo'
+import { ADD_SKILL_CLIENT, REMOVE_SKILL_CLIENT } from 'graphql/shared/Mutations'
 import {
-  OntologyType,
+  GET_RELATED_SKILLS,
+  GET_SKILLS_CLIENT,
+  GET_OCCUPATION_CLIENT,
+} from 'graphql/shared/Queries'
+import {
+  AddSkillClientMutation,
+  AddSkillClientMutationVariables,
+  GetOccupationClientQuery,
+  GetOccupationClientQueryVariables,
+  GetSkillsClientQueryVariables,
+  GetSkillsQuery,
+  Occupation,
   OntologyRelationResponse,
+  OntologyType,
+  RemoveSkillClientMutation,
+  RemoveSkillClientMutationVariables,
   Skill,
   SkillInput,
-} from '../../generated/myskills.d'
-import RegistrationLayout from '../../components/Layout/RegistrationLayout'
-
-export const GET_SKILLS_AND_OCCUPATION_CLIENT = gql`
-  query getSkillsAndOccupationClient {
-    skills @client {
-      term
-      id
-      type
-    }
-
-    occupation @client {
-      term
-      experience {
-        years
-      }
-    }
-  }
-`
-
-export const GET_RELATED_SKILLS = gql`
-  query ontologyRelated(
-    $concepts: [String!]
-    $limit: Int
-    $type: OntologyType!
-  ) {
-    ontologyRelated(
-      params: { concepts: $concepts, type: $type, limit: $limit }
-    ) {
-      relations {
-        term
-        id
-        score
-        type
-      }
-    }
-  }
-`
-
-export const ADD_SKILL_CLIENT = gql`
-  mutation addSkillClient($skill: SkillInput!) {
-    addSkillClient(skill: $skill) @client {
-      term
-    }
-  }
-`
-
-export const REMOVE_SKILL_CLIENT = gql`
-  mutation removeSkillClient($skill: SkillInput!) {
-    removeSkillClient(skill: $skill) @client {
-      term
-      id
-    }
-  }
-`
-
-interface MatchState {
-  error: string
-  relatedSkills: SkillInput[]
-  savedSkills: SkillInput[]
-  lastSavedSkill: SkillInput[]
-  loading: boolean
-}
-
-type MatchAction =
-  | { type: 'ERROR'; payload: string }
-  | { type: 'LOADING'; payload: boolean }
-  | { type: 'RELATED_SKILLS'; payload: SkillInput[] }
-  | { type: 'SAVED_SKILLS'; payload: SkillInput[] }
-  | { type: 'LAST_SAVED_SKILL'; payload: SkillInput }
-
-const initialState: MatchState = {
-  relatedSkills: [],
-  savedSkills: [],
-  lastSavedSkill: [],
-  error: '',
-  loading: false,
-}
-
-const reducer = (state: MatchState, action: MatchAction) => {
-  switch (action.type) {
-    case 'ERROR':
-      return {
-        ...state,
-        error: action.payload,
-      }
-
-    case 'RELATED_SKILLS':
-      return {
-        ...state,
-        relatedSkills: action.payload,
-      }
-
-    case 'SAVED_SKILLS':
-      return {
-        ...state,
-        savedSkills: action.payload,
-      }
-
-    case 'LAST_SAVED_SKILL':
-      return {
-        ...state,
-        lastSavedSkill: [action.payload],
-      }
-
-    case 'LOADING':
-      return {
-        ...state,
-        loading: action.payload,
-      }
-
-    default:
-      return state
-  }
-}
+} from 'generated/myskills.d'
+import RegistrationLayout from 'components/Layout/RegistrationLayout'
 
 const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
   client,
 }) => {
   const {
-    data: { occupation = {}, skills: savedSkills = [] },
-  }: any = useQuery(GET_SKILLS_AND_OCCUPATION_CLIENT)
-  const addSkillMutation = useMutation(ADD_SKILL_CLIENT)
-  const removeSkillMutation = useMutation(REMOVE_SKILL_CLIENT)
+    data: { occupation },
+  } = useQuery<GetOccupationClientQuery, GetOccupationClientQueryVariables>(
+    GET_OCCUPATION_CLIENT
+  )
 
-  const [state, dispatch] = useReducer(reducer, {
-    ...initialState,
-    savedSkills,
-  })
+  const {
+    data: { skills = [] },
+  } = useQuery<GetSkillsQuery, GetSkillsClientQueryVariables>(GET_SKILLS_CLIENT)
 
-  const handleSkillClick = (skill: Skill) => {
-    if (!state.savedSkills.some(s => s.sourceId === skill.sourceId)) {
-      addSkillMutation({
+  const addSkillMutation = useMutation<
+    AddSkillClientMutation,
+    AddSkillClientMutationVariables
+  >(ADD_SKILL_CLIENT)
+  const removeSkillMutation = useMutation<
+    RemoveSkillClientMutation,
+    RemoveSkillClientMutationVariables
+  >(REMOVE_SKILL_CLIENT)
+
+  const [relatedSkills, setRelatedSkills] = React.useState<
+    OntologyRelationResponse[]
+  >([])
+
+  const getRelatedSkills = React.useCallback(
+    async (terms: (Skill | Occupation)[]) => {
+      const { data } = await client.query({
+        query: GET_RELATED_SKILLS,
         variables: {
-          skill,
+          concepts: terms.map(({ term }) => term),
+          limit: 5,
+          type: OntologyType.Skill,
         },
       })
 
-      dispatch({
-        type: 'SAVED_SKILLS',
-        payload: [...state.savedSkills, skill],
-      })
+      setRelatedSkills(data.ontologyRelated.relations)
+    },
+    [client]
+  )
 
-      dispatch({
-        type: 'LAST_SAVED_SKILL',
-        payload: skill,
-      })
-    } else {
+  React.useEffect(() => {
+    skills.length ? getRelatedSkills(skills) : getRelatedSkills([occupation])
+  }, [skills, occupation, getRelatedSkills])
+
+  const handleSkillClick = (skill: Skill) => {
+    const hasSkill = skills.some((s: Skill) => s.term === skill.term)
+
+    if (hasSkill) {
       removeSkillMutation({
         variables: {
           skill,
         },
       })
-
-      dispatch({
-        type: 'SAVED_SKILLS',
-        payload: state.savedSkills.filter(
-          (s: SkillInput) => s.sourceId !== skill.sourceId
-        ),
+    } else {
+      addSkillMutation({
+        variables: {
+          skill,
+        },
       })
     }
+  }
+
+  const handleFreeTextSkill = (value: string) => {
+    const skill = {
+      term: value,
+      type: OntologyType.Skill,
+      sourceId: v4(),
+    }
+
+    addSkillMutation({
+      variables: {
+        skill,
+      },
+    })
   }
 
   const ontologyRelationToSkill = (
@@ -185,74 +116,6 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
     type: ontologyItem.type,
   })
 
-  const getRelatedSkillsMemo = useCallback(
-    async (skills: SkillInput[], prevRelatedSkills: SkillInput[]) => {
-      dispatch({ type: 'LOADING', payload: true })
-
-      const { data } = await client.query({
-        query: GET_RELATED_SKILLS,
-        variables: {
-          concepts: skills.map(({ term }) => term),
-          limit: 5,
-          type: OntologyType.Skill,
-        },
-      })
-
-      if (data.error) {
-        return dispatch({ type: 'ERROR', payload: data.error.message })
-      }
-
-      dispatch({
-        type: 'RELATED_SKILLS',
-        payload: [
-          ...prevRelatedSkills,
-          ...data.ontologyRelated.relations.map(ontologyRelationToSkill),
-        ],
-      })
-
-      dispatch({ type: 'LOADING', payload: false })
-    },
-    [client]
-  )
-
-  useEffect(() => {
-    if (!state.savedSkills.length) {
-      getRelatedSkillsMemo([occupation], savedSkills)
-    } else {
-      getRelatedSkillsMemo(
-        state.lastSavedSkill.length ? state.lastSavedSkill : state.savedSkills,
-        state.savedSkills
-      )
-    }
-  }, [
-    state.lastSavedSkill,
-    state.savedSkills,
-    savedSkills,
-    occupation,
-    getRelatedSkillsMemo,
-  ])
-
-  const handleFreeTextSkill = async (value: string) => {
-    const skill = {
-      term: value,
-      sourceId: v4(),
-      __typename: 'Skill',
-    }
-
-    const {
-      data: { addSkillClient: addedSkill },
-    } = await addSkillMutation({
-      variables: {
-        skill,
-      },
-    })
-
-    dispatch({
-      type: 'SAVED_SKILLS',
-      payload: [...state.savedSkills, addedSkill],
-    })
-  }
-
   return (
     <RegistrationLayout headerText="KOMPETENS" nextPath="erfarenheter" step={2}>
       <Flex
@@ -260,33 +123,26 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
         flexDirection="column"
         justifyContent="flex-start"
       >
-        {state.error && <div>Error... {state.error}</div>}
         <H1 mb={20}>Vilka är dina kompetenser?</H1>
-        {state.relatedSkills.length > 0 && (
-          <TagList
-            activeItems={state.savedSkills.map(skill => ({
-              id: v4(),
-              ...skill,
-            }))}
-            items={state.relatedSkills
-              .filter(
-                (x: SkillInput) =>
-                  !state.savedSkills.some(
-                    (y: SkillInput) => y.sourceId === x.sourceId
-                  )
-              )
-              .map(skill => ({ id: v4(), ...skill }))}
-            onSelect={handleSkillClick}
-          />
-        )}
-
+        <TagList
+          activeItems={skills.map((s: SkillInput) => ({
+            ...s,
+            id: s.sourceId,
+          }))}
+          items={relatedSkills
+            .map(ontologyRelationToSkill)
+            .filter(
+              (relatedSkill: SkillInput) =>
+                !skills.some((s: SkillInput) => s.term === relatedSkill.term)
+            )
+            .map(s => ({ ...s, id: s.sourceId }))}
+          onSelect={handleSkillClick}
+        />
         <ButtonToInput
           buttonText="+ Lägg till en kompetens"
           inputPlaceholder="Lägg till en kompetens"
           onSelect={handleFreeTextSkill}
         />
-
-        {state.loading && <Loader />}
       </Flex>
     </RegistrationLayout>
   )

@@ -1,7 +1,7 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { storageHelper } from '../../../utils/helpers'
+import { storageHelper } from 'utils/helpers'
 import gql from 'graphql-tag'
-import { Occupation, OccupationInput } from '../../../generated/myskills'
+import { Occupation, OccupationInput } from 'generated/myskills'
 
 export const GET_OCCUPATION_CLIENT = gql`
   query occupation {

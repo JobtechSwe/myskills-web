@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { removeTypename } from '../SaveCV'
+import { removeTypename } from 'views/CreateProfile/SaveCV'
 
 describe('views/SaveCV', () => {
   describe('#removeTypename', () => {

@@ -1,9 +1,10 @@
 import * as React from 'react'
-import MatchSkills, { GET_RELATED_SKILLS } from '../MatchSkills'
-import { render } from '../../../utils/test-utils'
+import MatchSkills from 'views/CreateProfile/MatchSkills'
+import { render } from 'utils/test-utils'
 import { act, wait } from 'react-testing-library'
-import { OntologyType } from '../../../generated/myskills.d'
-import { GET_OCCUPATION_CLIENT } from '../../../graphql/resolvers/mutations/createOccupation'
+import { OntologyType } from 'generated/myskills.d'
+import { GET_RELATED_SKILLS } from 'graphql/shared/Queries'
+import { GET_OCCUPATION_CLIENT } from 'graphql/resolvers/mutations/createOccupation'
 
 describe('views/MatchSkills', () => {
   it('renders loading state', async done => {

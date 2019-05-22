@@ -163,7 +163,6 @@ const Register: React.FC<RouteComponentProps> = () => {
           term: skill.term,
           sourceId: skill.sourceId,
         })),
-        profile: localCVWithoutTypename.profile,
       },
     })
     navigate('/skapa-cv/grattis')

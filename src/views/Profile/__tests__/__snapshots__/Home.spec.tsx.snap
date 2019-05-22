@@ -265,7 +265,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
           font-family="default"
           font-size="small"
         >
-          4 års erfarenhet som 
+          4 års erfarenhet som
                   Systemutvecklare.
         </p>
         <p

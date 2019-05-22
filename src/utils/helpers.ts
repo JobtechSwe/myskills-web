@@ -77,6 +77,8 @@ export type StorageEntry =
   | Traits
   | WhoAmI
 
+export type StorageKeys = 'occupation' | 'educations' | 'skills' | 'experiences'
+
 export const storageHelper = {
   load: (initialState: LocalStateProps) =>
     Object.entries(initialState).reduce(
@@ -88,6 +90,7 @@ export const storageHelper = {
     ),
   set: (payload: StorageEntry) =>
     localStorage.setItem(payload.type, JSON.stringify(payload.data)),
+  remove: (key: StorageKeys) => localStorage.removeItem(key),
 }
 
 export const highlightMarked = (inputValue: string, term: string) => {

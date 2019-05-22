@@ -50,6 +50,7 @@ export const SAVE_CV = gql`
     $personalDescription: String
     $skills: [SkillInput!]
     $traits: [String!]
+    $profile: ProfileInput
   ) {
     saveCV(
       cv: {
@@ -60,6 +61,7 @@ export const SAVE_CV = gql`
         personalDescription: $personalDescription
         skills: $skills
         traits: $traits
+        profile: $profile
       }
     ) {
       skills {
@@ -70,7 +72,7 @@ export const SAVE_CV = gql`
 `
 
 export const GET_CV_CLIENT = gql`
-  query getCV {
+  query getCvClient {
     skills @client {
       sourceId
       term
@@ -101,7 +103,7 @@ export const GET_CV_CLIENT = gql`
       }
     }
 
-    contact @client {
+    profile @client {
       name
       email
       telephone

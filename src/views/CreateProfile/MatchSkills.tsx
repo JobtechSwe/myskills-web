@@ -19,13 +19,12 @@ import {
   GetOccupationClientQuery,
   GetOccupationClientQueryVariables,
   GetSkillsClientQueryVariables,
-  GetSkillsQuery,
+  GetSkillsClientQuery,
   Occupation,
   OntologyRelationResponse,
   OntologyType,
   RemoveSkillClientMutation,
   RemoveSkillClientMutationVariables,
-  Skill,
   SkillInput,
 } from 'generated/myskills.d'
 import RegistrationLayout from 'components/Layout/RegistrationLayout'
@@ -41,7 +40,9 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
 
   const {
     data: { skills = [] },
-  } = useQuery<GetSkillsQuery, GetSkillsClientQueryVariables>(GET_SKILLS_CLIENT)
+  } = useQuery<GetSkillsClientQuery, GetSkillsClientQueryVariables>(
+    GET_SKILLS_CLIENT
+  )
 
   const addSkillMutation = useMutation<
     AddSkillClientMutation,
@@ -57,7 +58,7 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
   >([])
 
   const getRelatedSkills = React.useCallback(
-    async (terms: (Skill | Occupation)[]) => {
+    async (terms: (SkillInput | Occupation)[]) => {
       const { data } = await client.query({
         query: GET_RELATED_SKILLS,
         variables: {
@@ -76,8 +77,8 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
     skills.length ? getRelatedSkills(skills) : getRelatedSkills([occupation])
   }, [skills, occupation, getRelatedSkills])
 
-  const handleSkillClick = (skill: Skill) => {
-    const hasSkill = skills.some((s: Skill) => s.term === skill.term)
+  const handleSkillClick = (skill: SkillInput) => {
+    const hasSkill = skills.some((s: SkillInput) => s.term === skill.term)
 
     if (hasSkill) {
       removeSkillMutation({
@@ -125,17 +126,13 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
       >
         <H1 mb={20}>Vilka är dina kompetenser?</H1>
         <TagList
-          activeItems={skills.map((s: SkillInput) => ({
-            ...s,
-            id: s.sourceId,
-          }))}
+          activeItems={skills}
           items={relatedSkills
             .map(ontologyRelationToSkill)
             .filter(
               (relatedSkill: SkillInput) =>
                 !skills.some((s: SkillInput) => s.term === relatedSkill.term)
-            )
-            .map(s => ({ ...s, id: s.sourceId }))}
+            )}
           onSelect={handleSkillClick}
         />
         <ButtonToInput

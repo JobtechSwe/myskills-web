@@ -15,7 +15,7 @@ interface ProfileLayoutProps {
 
 export const GET_PROFESSION_AND_CONTACT = gql`
   query getProfessionAndContact {
-    contact @client {
+    profile @client {
       name
     }
     occupation @client {
@@ -76,7 +76,7 @@ const ProfileLayout: React.FC<ProfileLayoutProps> = ({
           <EditProfession alt="edit" src={editIcon} />
         </Flex>
         <Paragraph fontSize="large" fontWeight="bold" mb="large" mt="medium">
-          {(data.contact && data.contact.name) || 'Inget namn angivet'}
+          {(data.profile && data.profile.name) || 'Inget namn angivet'}
         </Paragraph>
       </Flex>
       {children}

@@ -12,7 +12,6 @@ export const REMOVE_SKILL_CLIENT = gql`
   mutation removeSkillClient($skill: SkillInput!) {
     removeSkillClient(skill: $skill) @client {
       term
-      id
     }
   }
 `

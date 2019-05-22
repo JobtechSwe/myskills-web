@@ -29,7 +29,7 @@ describe('views/SaveCV', () => {
           },
           __typename: 'Occupation',
         },
-        contact: {
+        profile: {
           name: 'lasse kongo',
           email: 'lassekongo@example.com',
           telephone: '0123456677',
@@ -59,7 +59,7 @@ describe('views/SaveCV', () => {
             years: 2,
           },
         },
-        contact: {
+        profile: {
           name: 'lasse kongo',
           email: 'lassekongo@example.com',
           telephone: '0123456677',

@@ -8,7 +8,7 @@ export default {
     name: 'Lasse Kongo',
     email: 'lasse@kongo.se',
     telephone: '012345678',
-    __typename: 'ContactInformation',
+    __typename: 'Profile',
   },
   experiences: [
     {

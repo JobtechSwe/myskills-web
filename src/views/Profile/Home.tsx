@@ -10,11 +10,10 @@ import { Paragraph, H2 } from 'components/Typography'
 import { Skill, Education, Experience } from 'generated/myskills'
 import Loader from 'components/Loader'
 import editIcon from 'assets/icons/edit.svg'
-import dotIcon from 'assets/icons/dot.svg'
 import { InternalLink } from 'components/Link'
 
-export const GET_PROFILE = gql`
-  query getProfile {
+export const GET_CV = gql`
+  query getCV {
     occupation {
       term
       experience {
@@ -62,18 +61,11 @@ const Container = styled(Flex)`
     margin-right: 10px;
   }
 `
-const ContactEditButton = styled(InternalLink)`
-  position: absolute;
-  bottom: 0;
-  right: 0;
-`
-const ProfileContactInfoCard = styled.div`
-  position: relative;
-`
+
 const Home: React.FC<RouteComponentProps> = ({
   location = { pathname: '' },
 }) => {
-  const { data, error, loading } = useQuery(GET_PROFILE, {
+  const { data, error, loading } = useQuery(GET_CV, {
     fetchPolicy: 'network-only',
   })
 

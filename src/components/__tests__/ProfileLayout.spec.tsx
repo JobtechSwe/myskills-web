@@ -17,7 +17,7 @@ describe('components/ProfileLayout', () => {
         },
         result: {
           data: {
-            contact: {
+            profile: {
               name: '',
               __typename: 'ContactInformation',
             },
@@ -47,9 +47,9 @@ describe('components/ProfileLayout', () => {
         },
         result: {
           data: {
-            contact: {
+            profile: {
               name: 'Example Persson',
-              __typename: 'ContactInformation',
+              __typename: 'Profile',
             },
             occupation: {
               term: 'Systemutvecklare',

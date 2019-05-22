@@ -19,7 +19,7 @@ import {
   GetOccupationClientQuery,
   GetOccupationClientQueryVariables,
   GetSkillsClientQueryVariables,
-  GetSkillsQuery,
+  GetSkillsClientQuery,
   Occupation,
   OntologyRelationResponse,
   OntologyType,
@@ -41,7 +41,9 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
 
   const {
     data: { skills = [] },
-  } = useQuery<GetSkillsQuery, GetSkillsClientQueryVariables>(GET_SKILLS_CLIENT)
+  } = useQuery<GetSkillsClientQuery, GetSkillsClientQueryVariables>(
+    GET_SKILLS_CLIENT
+  )
 
   const addSkillMutation = useMutation<
     AddSkillClientMutation,
@@ -77,7 +79,7 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
   }, [skills, occupation, getRelatedSkills])
 
   const handleSkillClick = (skill: Skill) => {
-    const hasSkill = skills.some((s: Skill) => s.term === skill.term)
+    const hasSkill = skills.some((s: SkillInput) => s.term === skill.term)
 
     if (hasSkill) {
       removeSkillMutation({

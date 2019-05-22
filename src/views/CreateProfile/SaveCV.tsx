@@ -72,7 +72,7 @@ export const SAVE_CV = gql`
 `
 
 export const GET_CV_CLIENT = gql`
-  query getCV {
+  query getCvClient {
     skills @client {
       sourceId
       term
@@ -103,7 +103,7 @@ export const GET_CV_CLIENT = gql`
       }
     }
 
-    contact @client {
+    profile @client {
       name
       email
       telephone
@@ -163,7 +163,7 @@ const Register: React.FC<RouteComponentProps> = () => {
           term: skill.term,
           sourceId: skill.sourceId,
         })),
-        profile: localCVWithoutTypename.contact,
+        profile: localCVWithoutTypename.profile,
       },
     })
     navigate('/skapa-cv/grattis')

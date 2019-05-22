@@ -13,7 +13,9 @@ import {
   Language,
   Occupation,
   Skill,
+  Profile,
 } from 'generated/myskills'
+
 import resolvers from './resolvers'
 import { storageHelper } from 'utils/helpers'
 
@@ -109,10 +111,7 @@ const terminatingLink = split(
   authLink.concat(httpLink)
 )
 
-export type Contact = {
-  name: string
-  email: string
-  telephone: string
+export interface IClientProfileProps extends Profile {
   __typename: string
 }
 
@@ -125,7 +124,7 @@ export type LocalStateProps = {
   traits: string[]
   whoAmI: string
   image: string
-  contact: Contact
+  profile: IClientProfileProps
 }
 
 const initialState: LocalStateProps = {
@@ -137,11 +136,11 @@ const initialState: LocalStateProps = {
   traits: [],
   whoAmI: '',
   image: '',
-  contact: {
+  profile: {
     name: '',
     email: '',
     telephone: '',
-    __typename: 'ContactInformation',
+    __typename: 'Profile',
   },
 }
 

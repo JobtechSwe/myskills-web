@@ -1,33 +1,32 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { storageHelper } from 'utils/helpers'
 import gql from 'graphql-tag'
-import { Contact } from 'graphql/client'
+import { Profile } from 'generated/myskills'
 
-export const GET_CONTACT_CLIENT = gql`
-  query getContact {
-    contact @client {
+export const GET_PROFILE_CLIENT = gql`
+  query getProfile {
+    profile @client {
       name
       email
       telephone
-      __typename
     }
   }
 `
 
 export const updateContactInformation = (
   _: any,
-  { data }: { data: Contact },
+  { data }: { data: Profile },
   { cache }: { cache: InMemoryCache }
-): Contact => {
+): Profile => {
   cache.writeQuery({
-    query: GET_CONTACT_CLIENT,
-    data: { contact: data },
+    query: GET_PROFILE_CLIENT,
+    data: { profile: data },
   })
 
   storageHelper.set({
-    type: 'contact',
+    type: 'profile',
     data,
   })
 
-  return { ...data, __typename: 'ContactInformation' }
+  return data
 }

@@ -13,18 +13,6 @@ input ClientSkillInput {
   name: String
 }
 
-input ContactInput {
-  name: String
-  email: String
-  telephone: String
-}
-
-type Contact {
-  name: String
-  email: String
-  telephone: String
-}
-
 input ImgInput {
   imageString: String!
 }
@@ -32,7 +20,7 @@ input ImgInput {
 extend type Query {
   isLoggedIn: Boolean!
   educations: [Education!]!
-  contact: Contact!
+  profile: Profile!
   traits: [String!]!
   whoAmI: String!
 }
@@ -49,8 +37,9 @@ extend type Mutation {
   updateExperienceClient(experience: ExperienceInput!): Experience
   addTrait(trait: String!): String!
   addWhoAmI(whoAmI: String!): String!
-  updateContactInformation(data: ContactInput!): Contact!
+  updateContactInformation(data: ProfileInput!): Profile!
   removeEducationClient(education: EducationInput!): Education
   removeExperienceClient(experience: ExperienceInput!): Experience
   removeTrait(trait: String!): String!
+  removeOccupationClient(occupation: OccupationInput!): Occupation
 }

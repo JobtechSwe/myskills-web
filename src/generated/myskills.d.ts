@@ -28,8 +28,10 @@ export enum CacheControlScope {
   Private = 'PRIVATE',
 }
 
-export type ClientSkillInput = {
-  name?: Maybe<Scalars['String']>
+export type ClientSkill = {
+  term?: Maybe<Scalars['String']>
+  type?: Maybe<Scalars['String']>
+  sourceId?: Maybe<Scalars['String']>
 }
 
 export type Consent = {
@@ -146,8 +148,8 @@ export type Mutation = {
   /** Save Image as base64 string */
   uploadImage: Scalars['String']
   createOccupationClient?: Maybe<Occupation>
-  addSkillClient?: Maybe<Skill>
-  removeSkillClient?: Maybe<Skill>
+  addSkillClient?: Maybe<ClientSkill>
+  removeSkillClient?: Maybe<ClientSkill>
   addEducationClient?: Maybe<Education>
   updateEducationClient?: Maybe<Education>
   addExperienceClient?: Maybe<Experience>
@@ -589,7 +591,9 @@ export type AddSkillClientMutationVariables = {
 }
 
 export type AddSkillClientMutation = { __typename?: 'Mutation' } & {
-  addSkillClient: Maybe<{ __typename?: 'Skill' } & Pick<Skill, 'term'>>
+  addSkillClient: Maybe<
+    { __typename?: 'ClientSkill' } & Pick<ClientSkill, 'term'>
+  >
 }
 
 export type RemoveSkillClientMutationVariables = {
@@ -598,7 +602,7 @@ export type RemoveSkillClientMutationVariables = {
 
 export type RemoveSkillClientMutation = { __typename?: 'Mutation' } & {
   removeSkillClient: Maybe<
-    { __typename?: 'Skill' } & Pick<Skill, 'term' | 'id'>
+    { __typename?: 'ClientSkill' } & Pick<ClientSkill, 'term'>
   >
 }
 

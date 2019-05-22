@@ -4,7 +4,6 @@ import Tag from './Tag'
 import { handleFocusKeyDown } from 'utils/helpers'
 
 interface TagItemProps {
-  id: string
   term: string
 }
 
@@ -19,8 +18,8 @@ const TagList: React.FC<TagListProps<TagItemProps>> = ({
   activeItems,
   onSelect,
 }) => {
-  const itemIsActive = (selectedId: string) =>
-    activeItems.find(({ id }) => id === selectedId)
+  const itemIsActive = (selectedTerm: string) =>
+    activeItems.find(({ term }) => term === selectedTerm)
 
   return (
     <Flex
@@ -31,13 +30,13 @@ const TagList: React.FC<TagListProps<TagItemProps>> = ({
     >
       {[...activeItems, ...items].map(item => (
         <Tag
-          key={item.id}
+          key={item.term}
           m={6}
           onClick={() => onSelect(item)}
           onKeyDown={handleFocusKeyDown(() => onSelect(item))}
           role="button"
           tabIndex={0}
-          variant={itemIsActive(item.id) ? 'active' : 'default'}
+          variant={itemIsActive(item.term) ? 'active' : 'default'}
         >
           {item.term}
         </Tag>

@@ -9,8 +9,10 @@ input OntologyInput {
   type: OntologyType
 }
 
-input ClientSkillInput {
-  name: String
+type ClientSkill {
+  term: String
+  type: String
+  sourceId: String
 }
 
 input ImgInput {
@@ -27,9 +29,8 @@ extend type Query {
 
 extend type Mutation {
   createOccupationClient(occupation: OccupationInput!): Occupation
-
-  addSkillClient(skill: SkillInput!): Skill
-  removeSkillClient(skill: SkillInput!): Skill
+  addSkillClient(skill: SkillInput!): ClientSkill
+  removeSkillClient(skill: SkillInput!): ClientSkill
   addEducationClient(education: EducationInput!): Education
   updateEducationClient(education: EducationInput!): Education
   uploadImage(imageString: ImgInput!): String!

@@ -278,6 +278,60 @@ exports[`views/profile/Home should render with profile data 1`] = `
       </div>
     </div>
     <div
+      class="css-1ugbht8"
+    >
+      <div
+        class="css-66xcb5"
+      >
+        <h2
+          class="css-nj1l0l"
+          color="black"
+          font-family="default"
+          font-size="medium"
+          width="100%"
+        >
+          Kontakt
+        </h2>
+        <div
+          class="css-11hhein"
+        >
+          <p
+            class="css-147qp1h"
+            font-family="default"
+            font-size="small"
+          >
+            lasse@kongo.se
+          </p>
+          <p
+            class="css-1s5khgh"
+            font-family="default"
+            font-size="25"
+          >
+            ·
+          </p>
+          <p
+            class="css-147qp1h"
+            font-family="default"
+            font-size="small"
+          >
+            012345678
+          </p>
+          <a
+            class="css-gcz916"
+            color="persianBlue"
+            font-weight="500"
+            href="/editplace"
+            mb="4px"
+          >
+            <img
+              alt="Edit profile"
+              src="edit.svg"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
       class="css-1iewklz"
     >
       <a

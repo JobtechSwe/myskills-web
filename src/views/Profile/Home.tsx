@@ -1,14 +1,17 @@
 import React from 'react'
 import { RouteComponentProps } from '@reach/router'
-import ProfileLayout from '../../components/Layout/ProfileLayout'
+import ProfileLayout from 'components/Layout/ProfileLayout'
 import gql from 'graphql-tag'
 import { useQuery } from 'react-apollo-hooks'
 import styled from '@emotion/styled'
-import Flex from '../../components/Flex'
-import ProfileDataCard from '../../components/ProfileDataCard'
-import { Paragraph, H2 } from '../../components/Typography'
-import { Skill, Education, Experience } from '../../generated/myskills'
-import Loader from '../../components/Loader'
+import Flex from 'components/Flex'
+import ProfileDataCard from 'components/ProfileDataCard'
+import { Paragraph, H2 } from 'components/Typography'
+import { Skill, Education, Experience } from 'generated/myskills'
+import Loader from 'components/Loader'
+import editIcon from 'assets/icons/edit.svg'
+import dotIcon from 'assets/icons/dot.svg'
+import { InternalLink } from 'components/Link'
 
 export const GET_PROFILE = gql`
   query getProfile {
@@ -43,6 +46,12 @@ export const GET_PROFILE = gql`
       id
     }
 
+    profile {
+      name
+      email
+      telephone
+    }
+
     traits
     personalDescription
   }
@@ -53,7 +62,14 @@ const Container = styled(Flex)`
     margin-right: 10px;
   }
 `
-
+const ContactEditButton = styled(InternalLink)`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+`
+const ProfileContactInfoCard = styled.div`
+  position: relative;
+`
 const Home: React.FC<RouteComponentProps> = ({
   location = { pathname: '' },
 }) => {
@@ -144,6 +160,34 @@ const Home: React.FC<RouteComponentProps> = ({
                 ))}
             </ProfileDataCard>
           </Container>
+          <Flex mt="small" pl="small">
+            <Flex flex="1" flexDirection="column">
+              <H2 mb="none" width="100%">
+                Kontakt
+              </H2>
+              {data.profile && (
+                <Flex
+                  alignItems="flex-end"
+                  flexWrap="wrap"
+                  justifyContent="space-between"
+                >
+                  <Paragraph fontSize="small" mb="none" mr="5px" mt="8px">
+                    {data.profile.email}
+                  </Paragraph>
+                  <Paragraph fontSize={25} mb="none" mr="5px" mt="8px">
+                    ·
+                  </Paragraph>
+                  <Paragraph fontSize="small" mb="none" mr="5px" mt="8px">
+                    {data.profile.telephone}
+                  </Paragraph>
+
+                  <InternalLink mb="4px" to="editplace">
+                    <img alt="Edit profile" src={editIcon} />
+                  </InternalLink>
+                </Flex>
+              )}
+            </Flex>
+          </Flex>
         </>
       )}
     </ProfileLayout>

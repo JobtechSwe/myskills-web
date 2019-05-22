@@ -50,6 +50,7 @@ export const SAVE_CV = gql`
     $personalDescription: String
     $skills: [SkillInput!]
     $traits: [String!]
+    $profile: ProfileInput
   ) {
     saveCV(
       cv: {
@@ -60,6 +61,7 @@ export const SAVE_CV = gql`
         personalDescription: $personalDescription
         skills: $skills
         traits: $traits
+        profile: $profile
       }
     ) {
       skills {
@@ -161,6 +163,7 @@ const Register: React.FC<RouteComponentProps> = () => {
           term: skill.term,
           sourceId: skill.sourceId,
         })),
+        profile: localCVWithoutTypename.contact,
       },
     })
     navigate('/skapa-cv/grattis')

@@ -6,7 +6,8 @@ exports[`views/Start renders Start 1`] = `
     class="css-dv50ng"
   >
     <div
-      class="css-1vad0jj"
+      class="css-1fq4wiq"
+      height="100%"
     >
       <img
         alt="logo"
@@ -14,7 +15,7 @@ exports[`views/Start renders Start 1`] = `
         src="logo.svg"
       />
       <hr
-        class="css-1mx75qq"
+        class="css-j1x5w3"
       />
       <p
         class="css-g2loao"
@@ -23,11 +24,11 @@ exports[`views/Start renders Start 1`] = `
         font-size="small"
         font-weight="bold"
       >
-        Ditt digitala CV
+        ditt digitala CV
       </p>
       <img
         alt="clouds"
-        class="css-smyzqs"
+        class="css-1d1a3ay"
         src="clouds.svg"
       />
       <a
@@ -73,7 +74,7 @@ exports[`views/Start renders Start 1`] = `
         </button>
       </a>
       <div
-        class="css-efe99a"
+        class="css-fzs6az"
       >
         <img
           alt="info icon"

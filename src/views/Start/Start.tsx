@@ -36,7 +36,6 @@ const Divider = styled.hr`
   border: 0;
   height: 1px;
   width: 200px;
-  border-radius: 5px;
 `
 
 const Info = styled.div`
@@ -44,17 +43,18 @@ const Info = styled.div`
   color: ${({ theme }) => theme.colors.black};
   display: flex;
   padding: 15px;
-  margin: 30px 0 0 0;
+  margin-top: auto;
 `
 
 const Clouds = styled.img`
+  width: 70%;
   @media (max-width: 320px) {
     max-height: 160px;
   }
 
   @media (min-height: 768px) {
-    margin-top: 65px;
-    margin-bottom: 50px;
+    margin-top: 55px;
+    margin-bottom: 55px;
   }
 `
 
@@ -74,12 +74,13 @@ const Start: React.FC<RouteComponentProps> = () => {
         <Flex
           alignItems="center"
           flexDirection="column"
+          height="100%"
           justifyContent="center"
         >
           <LogoContainer alt="logo" src={logotypeIcon} />
           <Divider />
           <Paragraph color="persianBlue" fontWeight="bold" mt={0}>
-            Ditt digitala CV
+            ditt digitala CV
           </Paragraph>
           <Clouds alt="clouds" src={cloudsIcon} />
           <InternalLink mt={30} to="/skapa-cv" width={1}>

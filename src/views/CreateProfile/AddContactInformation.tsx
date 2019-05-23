@@ -1,93 +1,19 @@
-import React, { useState, FormEvent, useEffect } from 'react'
-import { RouteComponentProps } from '@reach/router'
-import Input from 'components/Input'
-import smartphoneLetter from 'assets/illustrations/smarthpone_letter.svg'
-import IllustrationHeader from 'components/IllustrationHeader'
-import Grid from 'components/Grid'
-import { GET_PROFILE_CLIENT } from 'graphql/resolvers/mutations/updateContactInformation'
-import { useMutation, useQuery } from 'react-apollo-hooks'
-import gql from 'graphql-tag'
-import RegistrationLayout from 'components/Layout/RegistrationLayout'
-
-export const UPDATE_CONTACT_CLIENT = gql`
-  mutation updateContactInformation($data: ProfileInput!) {
-    updateContactInformation(data: $data) @client {
-      name
-      email
-      telephone
-    }
-  }
-`
+import { Layout, Navigation } from 'components/Layout/Registration'
+import { Profile } from 'generated/myskills.d'
+import { RouteComponentProps, navigate } from '@reach/router'
+import ContactInformation from 'views/partials/ContactInformation'
+import React from 'react'
 
 const AddContactInformation: React.FC<RouteComponentProps> = () => {
-  const updateContactMutation = useMutation(UPDATE_CONTACT_CLIENT)
-  const { data: profileData } = useQuery(GET_PROFILE_CLIENT)
-  const [inputData, setData] = useState({ name: '', email: '', telephone: '' })
-
-  useEffect(() => setData(profileData.profile), [profileData.profile])
-
-  const handleChange = (key: string, val: string) => {
-    setData({ ...inputData, [key]: val })
-  }
-
-  const handleSubmit = (e: FormEvent): any => {
-    updateContactMutation({
-      variables: {
-        data: inputData,
-      },
-    })
+  const handleSubmit = (_profile: Profile) => {
+    navigate('/skapa-cv/spara-cv')
   }
 
   return (
-    <RegistrationLayout
-      childFn={handleSubmit}
-      headerText="KONTAKT"
-      nextBtnText="Spara CV med Egendata"
-      nextPath="spara-cv"
-      step={6}
-    >
-      <Grid alignContent="start">
-        <IllustrationHeader
-          description="Fyll i dina kontaktuppgifter för att kunna bli kontaktad av en arbetsgivare."
-          imageAltTag="Telefon och brev"
-          imageFirst={true}
-          imageSource={smartphoneLetter}
-          title="Hur vill du bli nådd?"
-        />
-        <Grid gridGap={10} mt="small">
-          <Input
-            name="name"
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-              handleChange('name', event.target.value)
-            }
-            placeholder="För- och efternamn..."
-            required
-            value={inputData.name}
-            width="100%"
-          />
-          <Input
-            name="email"
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-              handleChange('email', event.target.value)
-            }
-            placeholder="E-post..."
-            required
-            type="email"
-            value={inputData.email}
-            width="100%"
-          />
-          <Input
-            name="phone"
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-              handleChange('telephone', event.target.value)
-            }
-            placeholder="Telefonnummer..."
-            value={inputData.telephone}
-            width="100%"
-          />
-        </Grid>
-      </Grid>
-    </RegistrationLayout>
+    <Layout>
+      <Navigation section="Kontakt" step={6} />
+      <ContactInformation buttonText="Fortsätt" onSubmit={handleSubmit} />
+    </Layout>
   )
 }
 

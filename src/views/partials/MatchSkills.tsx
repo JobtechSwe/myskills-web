@@ -27,11 +27,16 @@ import {
   RemoveSkillClientMutationVariables,
   SkillInput,
 } from 'generated/myskills.d'
-import RegistrationLayout from 'components/Layout/RegistrationLayout'
+import { FooterButton } from 'components/Layout/Registration'
 
-const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
-  client,
-}) => {
+interface MatchSkillsProps {
+  buttonText: string
+  onSubmit: () => void
+}
+
+const MatchSkills: React.FC<
+  WithApolloClient<RouteComponentProps & MatchSkillsProps>
+> = ({ buttonText, client, onSubmit }) => {
   const {
     data: { occupation },
   } = useQuery<GetOccupationClientQuery, GetOccupationClientQueryVariables>(
@@ -118,7 +123,7 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
   })
 
   return (
-    <RegistrationLayout headerText="KOMPETENS" nextPath="erfarenheter" step={2}>
+    <>
       <Flex
         alignItems="center"
         flexDirection="column"
@@ -141,7 +146,8 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
           onSelect={handleFreeTextSkill}
         />
       </Flex>
-    </RegistrationLayout>
+      <FooterButton onClick={onSubmit} text={buttonText} />
+    </>
   )
 }
 

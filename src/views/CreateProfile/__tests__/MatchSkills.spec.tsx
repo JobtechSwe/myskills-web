@@ -1,5 +1,5 @@
 import * as React from 'react'
-import MatchSkills from 'views/CreateProfile/MatchSkills'
+import MatchSkills from 'views/CreateProfile/AddSkills'
 import { render } from 'utils/test-utils'
 import { act, wait } from 'react-testing-library'
 import { OntologyType } from 'generated/myskills.d'

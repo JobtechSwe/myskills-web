@@ -28,9 +28,9 @@ const TagList: React.FC<TagListProps<TagItemProps>> = ({
       flexWrap="wrap"
       justifyContent="center"
     >
-      {[...activeItems, ...items].map(item => (
+      {[...activeItems, ...items].map((item, i) => (
         <Tag
-          key={item.term}
+          key={`taglist-${item.term}-${i}`}
           m={6}
           onClick={() => onSelect(item)}
           onKeyDown={handleFocusKeyDown(() => onSelect(item))}

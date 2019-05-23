@@ -1,7 +1,6 @@
 import * as React from 'react'
-import ChooseProfession, {
-  GET_ONTOLOGY_CONCEPTS,
-} from 'views/CreateProfile/ChooseProfession'
+import { GET_ONTOLOGY_CONCEPTS } from 'views/partials/Profession'
+import ChooseProfession from 'views/CreateProfile/ChooseProfession'
 import { render } from 'utils/test-utils'
 import { wait, fireEvent } from 'react-testing-library'
 import { OntologyType } from 'generated/myskills.d'

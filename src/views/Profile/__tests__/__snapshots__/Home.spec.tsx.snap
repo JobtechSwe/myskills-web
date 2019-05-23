@@ -47,17 +47,21 @@ exports[`views/profile/Home should render with profile data 1`] = `
       <div
         class="css-1co92un"
       >
-        <a
-          class="css-jbzzha"
-          color="persianBlue"
-          font-weight="500"
-          href="/editplace"
+        <div
+          class="css-1cyw0ib"
         >
-          <img
-            alt="Edit data"
-            src="edit.svg"
-          />
-        </a>
+          <a
+            class="css-z4cped"
+            color="persianBlue"
+            font-weight="500"
+            href="/editplace"
+          >
+            <img
+              alt="Edit data"
+              src="edit.svg"
+            />
+          </a>
+        </div>
         <p
           class="css-wacz66"
           font-family="default"
@@ -69,17 +73,21 @@ exports[`views/profile/Home should render with profile data 1`] = `
       <div
         class="css-16kezy5"
       >
-        <a
-          class="css-gkwnsu"
-          color="persianBlue"
-          font-weight="500"
-          href="/editplace"
+        <div
+          class="css-o2v43c"
         >
-          <img
-            alt="Edit data"
-            src="edit_image.svg"
-          />
-        </a>
+          <a
+            class="css-z4cped"
+            color="persianBlue"
+            font-weight="500"
+            href="/editplace"
+          >
+            <img
+              alt="Edit data"
+              src="edit_image.svg"
+            />
+          </a>
+        </div>
         <div />
       </div>
     </div>
@@ -89,17 +97,21 @@ exports[`views/profile/Home should render with profile data 1`] = `
       <div
         class="css-1y75uhg"
       >
-        <a
-          class="css-jbzzha"
-          color="persianBlue"
-          font-weight="500"
-          href="/editplace"
+        <div
+          class="css-1cyw0ib"
         >
-          <img
-            alt="Edit data"
-            src="edit.svg"
-          />
-        </a>
+          <a
+            class="css-z4cped"
+            color="persianBlue"
+            font-weight="500"
+            href="/editplace"
+          >
+            <img
+              alt="Edit data"
+              src="edit.svg"
+            />
+          </a>
+        </div>
         <h2
           class="css-an7vzf"
           color="black"
@@ -152,17 +164,21 @@ exports[`views/profile/Home should render with profile data 1`] = `
       <div
         class="css-1y75uhg"
       >
-        <a
-          class="css-jbzzha"
-          color="persianBlue"
-          font-weight="500"
-          href="/editplace"
+        <div
+          class="css-1cyw0ib"
         >
-          <img
-            alt="Edit data"
-            src="edit.svg"
-          />
-        </a>
+          <a
+            class="css-z4cped"
+            color="persianBlue"
+            font-weight="500"
+            href="/editplace"
+          >
+            <img
+              alt="Edit data"
+              src="edit.svg"
+            />
+          </a>
+        </div>
         <h2
           class="css-an7vzf"
           color="black"
@@ -211,17 +227,21 @@ exports[`views/profile/Home should render with profile data 1`] = `
       <div
         class="css-1y75uhg"
       >
-        <a
-          class="css-jbzzha"
-          color="persianBlue"
-          font-weight="500"
-          href="/editplace"
+        <div
+          class="css-1cyw0ib"
         >
-          <img
-            alt="Edit data"
-            src="edit.svg"
-          />
-        </a>
+          <a
+            class="css-z4cped"
+            color="persianBlue"
+            font-weight="500"
+            href="/editplace"
+          >
+            <img
+              alt="Edit data"
+              src="edit.svg"
+            />
+          </a>
+        </div>
         <h2
           class="css-an7vzf"
           color="black"
@@ -241,17 +261,21 @@ exports[`views/profile/Home should render with profile data 1`] = `
       <div
         class="css-1y75uhg"
       >
-        <a
-          class="css-jbzzha"
-          color="persianBlue"
-          font-weight="500"
-          href="/editplace"
+        <div
+          class="css-1cyw0ib"
         >
-          <img
-            alt="Edit data"
-            src="edit.svg"
-          />
-        </a>
+          <a
+            class="css-z4cped"
+            color="persianBlue"
+            font-weight="500"
+            href="/editplace"
+          >
+            <img
+              alt="Edit data"
+              src="edit.svg"
+            />
+          </a>
+        </div>
         <h2
           class="css-an7vzf"
           color="black"

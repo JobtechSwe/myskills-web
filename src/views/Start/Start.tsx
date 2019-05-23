@@ -9,6 +9,10 @@ import logotypeIcon from '../../assets/images/logo.svg'
 import cloudsIcon from '../../assets/images/clouds.svg'
 import infoIcon from '../../assets/images/info.svg'
 
+const LogoContainer = styled.img`
+  margin-top: 10%;
+`
+
 const StartBlock = styled.div`
   align-items: center;
   background: ${({ theme }) => `radial-gradient(
@@ -19,6 +23,7 @@ const StartBlock = styled.div`
   display: flex;
   justify-content: center;
   padding: 25px;
+  height: 100vh;
 `
 
 const InfoBlock = styled.div`
@@ -29,7 +34,7 @@ const InfoBlock = styled.div`
 const Divider = styled.hr`
   background: ${({ theme }) => theme.colors.persianBlue};
   border: 0;
-  height: 2px;
+  height: 1px;
   width: 200px;
 `
 
@@ -38,17 +43,18 @@ const Info = styled.div`
   color: ${({ theme }) => theme.colors.black};
   display: flex;
   padding: 15px;
-  margin: 30px 0 0 0;
+  margin-top: auto;
 `
 
 const Clouds = styled.img`
+  width: 70%;
   @media (max-width: 320px) {
     max-height: 160px;
   }
 
   @media (min-height: 768px) {
-    margin-top: 65px;
-    margin-bottom: 50px;
+    margin-top: 55px;
+    margin-bottom: 55px;
   }
 `
 
@@ -68,12 +74,13 @@ const Start: React.FC<RouteComponentProps> = () => {
         <Flex
           alignItems="center"
           flexDirection="column"
+          height="100%"
           justifyContent="center"
         >
-          <img alt="logo" src={logotypeIcon} />
+          <LogoContainer alt="logo" src={logotypeIcon} />
           <Divider />
-          <Paragraph color="persianBlue" mt={0}>
-            Ditt digitala CV
+          <Paragraph color="persianBlue" fontWeight="bold" mt={0}>
+            ditt digitala CV
           </Paragraph>
           <Clouds alt="clouds" src={cloudsIcon} />
           <InternalLink mt={30} to="/skapa-cv" width={1}>
@@ -99,7 +106,7 @@ const Start: React.FC<RouteComponentProps> = () => {
       </StartBlock>
       <InfoBlock ref={infoElement}>
         <H2
-          color="cloudBurst"
+          color="black"
           fontSize={24}
           mb="large"
           mt="large"
@@ -108,26 +115,26 @@ const Start: React.FC<RouteComponentProps> = () => {
           Hur fungerar det?
         </H2>
         <div>
-          <H3 color="cloudBurst" fontSize={16} fontWeight="bold" mb="small">
+          <H3 color="black" fontSize={16} fontWeight="bold" mb="small">
             Skapa din profil
           </H3>
-          <Paragraph color="cloudBurst" mb="large" mt="small">
+          <Paragraph color="black" mb="large" mt="small">
             Svara på frågor om dig själv och skapa ditt CV.
           </Paragraph>
         </div>
         <div>
-          <H3 color="cloudBurst" fontSize={16} fontWeight="bold" mb="small">
+          <H3 color="black" fontSize={16} fontWeight="bold" mb="small">
             Lagra ditt CV
           </H3>
-          <Paragraph color="cloudBurst" mb="large">
+          <Paragraph color="black" mb="large">
             Genom Egendata väljer du själv var ditt CV ska sparas.
           </Paragraph>
         </div>
         <div>
-          <H3 color="cloudBurst" fontSize={16} fontWeight="bold" mb="small">
+          <H3 color="black" fontSize={16} fontWeight="bold" mb="small">
             Spara tid
           </H3>
-          <Paragraph color="cloudBurst" mb="large">
+          <Paragraph color="black" mb="large">
             Hämta och dela din information istället för att skapa ett nytt CV
             för varje jobbsökarsajt.
           </Paragraph>

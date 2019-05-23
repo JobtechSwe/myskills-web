@@ -70,7 +70,7 @@ exports[`views/MatchSkills renders loading state 1`] = `
         data-testid="tagList"
       />
       <span
-        class="css-bhiavv"
+        class="css-m5xupf"
         cursor="pointer"
         opacity="1"
         role="button"

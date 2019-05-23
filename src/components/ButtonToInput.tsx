@@ -3,7 +3,7 @@ import React from 'react'
 import Tag from './Tag'
 import styled from '@emotion/styled'
 import { useToggle } from '@iteam/hooks'
-import { handleFocusKeyDown } from '../utils/helpers'
+import { handleFocusKeyDown } from 'utils/helpers'
 
 interface ButtonToInputProps {
   buttonText: string

@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react'
 import styled from '@emotion/styled'
 import { InternalLink } from './Link'
-import editIcon from '../assets/icons/edit.svg'
-import editImageIcon from '../assets/icons/edit_image.svg'
+import editIcon from 'assets/icons/edit.svg'
+import editImageIcon from 'assets/icons/edit_image.svg'
 
 interface IProfileDataCardProps {
   children: ReactNode

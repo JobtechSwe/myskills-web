@@ -1,7 +1,7 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { Education } from '../../../generated/myskills'
+import { Education } from 'generated/myskills'
 import { GET_EDUCATIONS_CLIENT } from './addEducation'
-import { storageHelper } from '../../../utils/helpers'
+import { storageHelper } from 'utils/helpers'
 
 export const updateEducationClient = (
   _: any,

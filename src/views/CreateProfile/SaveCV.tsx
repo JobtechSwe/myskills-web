@@ -2,14 +2,14 @@ import React from 'react'
 import gql from 'graphql-tag'
 import { RouteComponentProps } from '@reach/router'
 import Consent from '../Register/Consent'
-import Flex from '../../components/Flex'
+import Flex from 'components/Flex'
 import { useMutation, useQuery } from 'react-apollo-hooks'
-import { setCookie } from '../../utils/helpers'
+import { setCookie } from 'utils/helpers'
 import { navigate } from '@reach/router'
-import { ConsentApprovedSubscription } from '../../generated/myskills'
+import { ConsentApprovedSubscription } from 'generated/myskills'
 import styled from '@emotion/styled'
-import { OpenInApp } from '../../components/ButtonLink'
-import Loader from '../../components/Loader'
+import { OpenInApp } from 'components/ButtonLink'
+import Loader from 'components/Loader'
 
 export const GET_CONSENT_ID = gql`
   query consent {
@@ -45,19 +45,23 @@ export const SAVE_CV = gql`
   mutation saveCV(
     $educations: [EducationInput!]
     $experiences: [ExperienceInput!]
+    $image: ImgInput
     $occupation: OccupationInput
     $personalDescription: String
     $skills: [SkillInput!]
     $traits: [String!]
+    $profile: ProfileInput
   ) {
     saveCV(
       cv: {
         educations: $educations
         experiences: $experiences
+        image: $image
         occupation: $occupation
         personalDescription: $personalDescription
         skills: $skills
         traits: $traits
+        profile: $profile
       }
     ) {
       skills {
@@ -68,7 +72,7 @@ export const SAVE_CV = gql`
 `
 
 export const GET_CV_CLIENT = gql`
-  query getCV {
+  query getCvClient {
     skills @client {
       sourceId
       term
@@ -99,7 +103,7 @@ export const GET_CV_CLIENT = gql`
       }
     }
 
-    contact @client {
+    profile @client {
       name
       email
       telephone
@@ -150,6 +154,9 @@ const Register: React.FC<RouteComponentProps> = () => {
     await saveCVMutation({
       variables: {
         ...localCVWithoutTypename,
+        image: {
+          imageString: localCVWithoutTypename.image,
+        },
         personalDescription: localCV.whoAmI,
         skills: localCV.skills.map((skill: any) => ({
           type: skill.type,

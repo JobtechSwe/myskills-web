@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { render } from '../../utils/test-utils'
-import Timeline from '../../views/Profile/Timeline'
+import { render } from 'utils/test-utils'
+import Timeline from 'views/Profile/Timeline'
 import { wait } from 'react-testing-library'
 
 import ProfileLayout from '../Layout/ProfileLayout'
@@ -17,7 +17,7 @@ describe('components/ProfileLayout', () => {
         },
         result: {
           data: {
-            contact: {
+            profile: {
               name: '',
               __typename: 'ContactInformation',
             },
@@ -47,9 +47,9 @@ describe('components/ProfileLayout', () => {
         },
         result: {
           data: {
-            contact: {
+            profile: {
               name: 'Example Persson',
-              __typename: 'ContactInformation',
+              __typename: 'Profile',
             },
             occupation: {
               term: 'Systemutvecklare',

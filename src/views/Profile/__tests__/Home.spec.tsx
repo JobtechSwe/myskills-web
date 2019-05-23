@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { render } from '../../../utils/test-utils'
 import { wait } from 'react-testing-library'
-import Home, { GET_PROFILE } from '../Home'
+import Home, { GET_CV } from '../Home'
 import mockData from '../__fixtures__/profileData.js'
 
 describe('views/profile/Home', () => {
@@ -11,7 +11,7 @@ describe('views/profile/Home', () => {
     withResultsMock = [
       {
         request: {
-          query: GET_PROFILE,
+          query: GET_CV,
         },
         result: {
           data: {

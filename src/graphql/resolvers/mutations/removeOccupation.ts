@@ -1,6 +1,6 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { GET_OCCUPATION_CLIENT } from './createOccupation'
-import { storageHelper } from '../../../utils/helpers'
+import { storageHelper } from 'utils/helpers'
 
 export const removeOccupationClient = (
   _: any,

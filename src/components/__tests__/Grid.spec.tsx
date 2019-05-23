@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Grid from '../Grid'
-import { render } from '../../utils/test-utils'
+import { render } from 'utils/test-utils'
 
 describe('components/Grid', () => {
   it('renders a Grid', async () => {

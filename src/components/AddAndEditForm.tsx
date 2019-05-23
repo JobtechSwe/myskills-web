@@ -5,7 +5,7 @@ import Input from './Input'
 import { Label } from './Typography'
 import Button from './Button'
 import DatePicker from './DatePicker'
-import close from '../assets/icons/close.svg'
+import close from 'assets/icons/close.svg'
 
 export interface FormState {
   schoolOrCompany: string

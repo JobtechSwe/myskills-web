@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { H1, H2, H3, Paragraph } from '../Typography'
-import { render } from '../../utils/test-utils'
+import { render } from 'utils/test-utils'
 
 describe('components/Typography', () => {
   it('renders an H1', async () => {

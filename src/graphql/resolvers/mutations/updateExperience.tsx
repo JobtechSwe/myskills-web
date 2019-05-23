@@ -1,7 +1,7 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { Experience } from '../../../generated/myskills'
+import { Experience } from 'generated/myskills'
 import { GET_EXPERIENCES_CLIENT } from './addExperience'
-import { storageHelper } from '../../../utils/helpers'
+import { storageHelper } from 'utils/helpers'
 
 export const updateExperienceClient = (
   _: any,

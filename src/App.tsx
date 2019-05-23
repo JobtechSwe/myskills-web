@@ -5,6 +5,7 @@ import Loader from 'components/Loader'
 
 const Login = React.lazy(() => import(`views/Login/Login`))
 const Start = React.lazy(() => import(`views/Start/Start`))
+const NotFound = React.lazy(() => import(`views/NotFound`))
 const Profile = React.lazy(() => import('views/Profile/Profile'))
 
 const RegistrationCompleted = React.lazy(() =>
@@ -63,12 +64,15 @@ function App() {
             <WorkExperiences path="/erfarenheter/tidigare-erfarenheter" />
             <AddContactInformation path="/kontakt" />
             <SaveCV path="/spara-cv" />
+            <NotFound default />
           </CreateProfile>
 
           <Profile path="/profil">
             <RestrictedRoute component={Home} path="/" />
             <RestrictedRoute component={Timeline} path="/tidslinje" />
+            <NotFound default />
           </Profile>
+          <NotFound default />
         </Router>
       </React.Suspense>
     </>

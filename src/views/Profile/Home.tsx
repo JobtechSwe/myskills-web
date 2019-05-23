@@ -134,7 +134,11 @@ const Home: React.FC<RouteComponentProps> = ({
               <H2 mb="small">Erfarenhet</H2>
               {data.occupation && (
                 <Paragraph mb="small" mt="none">
-                  {`${data.occupation.experience.years} års erfarenhet som 
+                  {`${
+                    data.occupation.experience
+                      ? data.occupation.experience.years
+                      : 0
+                  } års erfarenhet som
                   ${data.occupation.term}.`}
                 </Paragraph>
               )}

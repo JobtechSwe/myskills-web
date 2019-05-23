@@ -81,13 +81,13 @@ export const PreviousOccupationExperience: React.FC<RouteComponentProps> = ({
       nextPath="erfarenheter/tidigare-erfarenheter"
       step={3}
     >
-      <Flex flexDirection="column" alignItems="center">
+      <Flex alignItems="center" flexDirection="column">
         <Image alt="Clock" src={laptopImage} />
         <H1 textAlign="center">
           Har du arbetat som {data.occupation.term.toLowerCase()} tidigare?
         </H1>
 
-        <Grid gridTemplateColumns="1fr 1fr" gridGap={10} width="85%">
+        <Grid gridGap={10} gridTemplateColumns="1fr 1fr" width="85%">
           <Button
             onClick={hasPreviousExperiencesClick}
             variant={

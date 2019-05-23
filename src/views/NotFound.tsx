@@ -1,7 +1,6 @@
 import { RouteComponentProps } from '@reach/router'
 import React from 'react'
 import styled from '@emotion/styled'
-import Flex from '../components/Flex'
 import { InternalLink } from '../components/Link'
 import Button from '../components/Button'
 import { Paragraph } from '../components/Typography'

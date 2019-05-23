@@ -92,7 +92,18 @@ export const IS_LOGGED_IN = gql`
 const ChooseProfession: React.FC<RouteComponentProps> = () => {
   const [query, setQuery] = useState('')
   const createOccupation = useMutation(CREATE_OCCUPATION_CLIENT)
-
+  const onKeyPress = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      createOccupation({
+        variables: {
+          occupation: {
+            term: query,
+            experience: null,
+          },
+        },
+      })
+    }
+  }
   const removeOccupationClient = useMutation(REMOVE_OCCUPATION_CLIENT)
 
   const { data, error: ontologyError } = useQuery(GET_ONTOLOGY_CONCEPTS, {
@@ -174,6 +185,7 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
                     onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
                       setQuery(event.target.value),
                     value: query,
+                    onKeyPress,
                   })}
                 />
 

@@ -5,23 +5,20 @@ import Flex from '../components/Flex'
 import { InternalLink } from '../components/Link'
 import Button from '../components/Button'
 import { Paragraph } from '../components/Typography'
+import Grid from 'components/Grid'
 
-const Block = styled.span`
-  align-items: center;
+const Block = styled(Grid)`
   background: ${({ theme }) => `radial-gradient(
     647.69px at 6.66% 96.53%,
     ${theme.colors.yourPink} 0%,
     ${theme.colors.seashellPeach} 100%
   )`};
-  display: grid;
-  justify-content: center;
-  min-height: 677px;
   font-weight: bold;
 `
 
 const NotFound: React.FC<RouteComponentProps> = () => {
   return (
-    <Block>
+    <Block alignItems="center" height="100vh" justifyItems="center">
       <Paragraph>The page could not be found :( </Paragraph>
       <InternalLink to={'/'}>
         <Button>{'Go to start'}</Button>

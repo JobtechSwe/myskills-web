@@ -64,11 +64,13 @@ function App() {
             <WorkExperiences path="/erfarenheter/tidigare-erfarenheter" />
             <AddContactInformation path="/kontakt" />
             <SaveCV path="/spara-cv" />
+            <NotFound default />
           </CreateProfile>
 
           <Profile path="/profil">
             <RestrictedRoute component={Home} path="/" />
             <RestrictedRoute component={Timeline} path="/tidslinje" />
+            <NotFound default />
           </Profile>
           <NotFound default />
         </Router>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useMutation } from 'react-apollo-hooks'
+import { useMutation, useQuery } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
 import { RouteComponentProps } from '@reach/router'
 import AddAndEditForm from 'components/AddAndEditForm'
@@ -8,6 +8,7 @@ import IllustrationHeader from 'components/IllustrationHeader'
 import bookIllustration from 'assets/illustrations/book.svg'
 import { FooterButton } from 'components/Layout/Registration'
 import { v4 } from 'uuid'
+import { Education as EducationType } from 'generated/myskills'
 import { Entry } from 'components/Timeline/index'
 
 export type EducationInput = {
@@ -47,11 +48,13 @@ const UPDATE_EDUCATION_CLIENT = gql`
 `
 
 interface EducationProps {
-  onSubmit: () => void
+  onSubmit: (educations: EducationType[]) => void
   buttonText: string
+  educations: EducationType[]
 }
 
 const Education: React.FC<RouteComponentProps & EducationProps> = ({
+  educations,
   onSubmit,
   buttonText,
 }) => {
@@ -137,7 +140,13 @@ const Education: React.FC<RouteComponentProps & EducationProps> = ({
         imageSource={bookIllustration}
         title="Vad har du för utbildning?"
       />
-      <AddedEducations editingEntry={editEntry.id} handleEdit={handleEdit} />
+      {educations && (
+        <AddedEducations
+          educations={educations}
+          editingEntry={editEntry.id}
+          handleEdit={handleEdit}
+        />
+      )}
       {edit && (
         <AddAndEditForm
           abortEdit={abortEdit}
@@ -158,7 +167,7 @@ const Education: React.FC<RouteComponentProps & EducationProps> = ({
           titlePlaceholder="Namn på skola..."
         />
       )}
-      <FooterButton onClick={onSubmit} text={buttonText} />
+      <FooterButton onClick={() => onSubmit(educations)} text={buttonText} />
     </>
   )
 }

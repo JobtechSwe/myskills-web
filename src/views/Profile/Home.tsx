@@ -91,7 +91,7 @@ const Home: React.FC<RouteComponentProps> = ({
             </ProfileDataCard>
           </Container>
           <Container mb="10px">
-            <ProfileDataCard route="editplace">
+            <ProfileDataCard route="egenskaper">
               <H2 mb="small">Egenskaper</H2>
               {data.traits &&
                 data.traits.map((trait: string) => (
@@ -116,7 +116,7 @@ const Home: React.FC<RouteComponentProps> = ({
             </ProfileDataCard>
           </Container>
           <Container mb="10px">
-            <ProfileDataCard route="editplace">
+            <ProfileDataCard route="utbildning">
               <H2 mb="small">Utbildning</H2>
               {data.educations &&
                 data.educations.map((education: Education) => (

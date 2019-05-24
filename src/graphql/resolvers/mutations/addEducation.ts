@@ -2,18 +2,8 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { storageHelper } from 'utils/helpers'
 import gql from 'graphql-tag'
 import { Education } from 'generated/myskills'
+import { GET_EDUCATIONS_CLIENT } from 'graphql/shared/Queries'
 
-export const GET_EDUCATIONS_CLIENT = gql`
-  query getEducations {
-    educations @client {
-      id
-      programme
-      school
-      start
-      end
-    }
-  }
-`
 interface ClientEducation extends Education {
   __typename: string
 }

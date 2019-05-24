@@ -40,7 +40,7 @@ const Layout: React.FC<RouteComponentProps & LayoutProps> = ({ children }) => (
 )
 
 interface NavigationProps {
-  step: number
+  step?: number
   section: string
 }
 
@@ -56,11 +56,21 @@ const Navigation: React.FC<NavigationProps> = ({ step, section }) => (
       >
         <img alt="Go back" src={Icon} />
       </Flex>
-      <StepIndicator step={step} />
+      {step ? (
+        <StepIndicator step={step} />
+      ) : (
+        <Flex flex={1} justifyContent="center" alignItems="center">
+          <SectionHeader lineHeight="100%" mb={0} mt={0} ml={-27}>
+            {section}
+          </SectionHeader>
+        </Flex>
+      )}
     </Flex>
-    <SectionHeader lineHeight="100%" mt={0}>
-      {section}
-    </SectionHeader>
+    {step && (
+      <SectionHeader lineHeight="100%" mt={0}>
+        {section}
+      </SectionHeader>
+    )}
   </NavigationContainer>
 )
 

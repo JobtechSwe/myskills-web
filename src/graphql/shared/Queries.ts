@@ -14,6 +14,30 @@ export const GET_TAXONOMY = gql`
   }
 `
 
+export const GET_EDUCATIONS = gql`
+  query getEducations {
+    educations {
+      end
+      id
+      programme
+      school
+      start
+    }
+  }
+`
+
+export const GET_EDUCATIONS_CLIENT = gql`
+  query getEducations {
+    educations @client {
+      id
+      programme
+      school
+      start
+      end
+    }
+  }
+`
+
 export const GET_RELATED_SKILLS = gql`
   query ontologyRelated(
     $concepts: [String!]

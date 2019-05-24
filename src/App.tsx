@@ -36,6 +36,9 @@ const WhoAmI = React.lazy(() => import('views/CreateProfile/WhoAmI'))
 const AddTraits = React.lazy(() => import('views/CreateProfile/AddTraits'))
 const Home = React.lazy(() => import('views/Profile/Home'))
 const Timeline = React.lazy(() => import('views/Profile/Timeline'))
+const UpdateEducation = React.lazy(() =>
+  import('views/Profile/UpdateEducation')
+)
 
 function App() {
   return (
@@ -61,6 +64,7 @@ function App() {
           <Profile path="/profil">
             <RestrictedRoute component={Home} path="/" />
             <RestrictedRoute component={Timeline} path="/tidslinje" />
+            <RestrictedRoute component={UpdateEducation} path="/utbildning" />
           </Profile>
         </Router>
       </React.Suspense>

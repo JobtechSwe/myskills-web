@@ -3,7 +3,7 @@ import { RouteComponentProps, navigate } from '@reach/router'
 import React from 'react'
 import Traits from 'views/partials/Traits'
 
-const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
+const AddTraits: React.FC<RouteComponentProps> = () => {
   const handleSubmit = (_traits: string[]) => {
     navigate('/skapa-cv/profilbild')
   }
@@ -11,11 +11,7 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
   return (
     <Layout>
       <Navigation section="Person" step={5} />
-      <Traits
-        location={location}
-        buttonText="Fortsätt"
-        onSubmit={handleSubmit}
-      />
+      <Traits buttonText="Fortsätt" onSubmit={handleSubmit} />
     </Layout>
   )
 }

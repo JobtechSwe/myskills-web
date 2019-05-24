@@ -3,7 +3,7 @@ import gql from 'graphql-tag'
 export const ADD_EDUCATION = gql`
   mutation addEducation($education: EducationInput!) {
     addEducation(education: $education) {
-      term
+      id
     }
   }
 `

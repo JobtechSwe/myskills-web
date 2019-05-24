@@ -1,8 +1,8 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { storageHelper } from 'utils/helpers'
-import gql from 'graphql-tag'
 import { Education } from 'generated/myskills'
 import { GET_EDUCATIONS_CLIENT } from 'graphql/shared/Queries'
+import { v4 } from 'uuid'
 
 interface ClientEducation extends Education {
   __typename: string
@@ -16,10 +16,14 @@ export const addEducationClient = (
   const { educations = [] } = cache.readQuery<{ educations: Education[] }>({
     query: GET_EDUCATIONS_CLIENT,
   })!
-  const updatedEducations = [
-    ...educations,
-    { ...education, __typename: 'Education' },
-  ]
+
+  const educationWithId = {
+    ...education,
+    id: v4(),
+    __typename: 'Education',
+  }
+
+  const updatedEducations = [...educations, educationWithId]
 
   cache.writeQuery({
     query: GET_EDUCATIONS_CLIENT,
@@ -31,5 +35,5 @@ export const addEducationClient = (
     data: updatedEducations,
   })
 
-  return { ...education, __typename: 'Education' }
+  return educationWithId
 }

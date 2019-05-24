@@ -1,23 +1,40 @@
 import { Layout, Navigation } from 'components/Layout/Registration'
 import { RouteComponentProps, navigate } from '@reach/router'
-import { useMutation, useQuery } from 'react-apollo-hooks'
-import { Education as EducationType } from 'generated/myskills'
+import { useQuery, useMutation } from 'react-apollo-hooks'
+import {
+  MutationAddEducationArgs,
+  Mutation,
+  MutationRemoveEducationArgs,
+  GetEducationsQuery,
+} from 'generated/myskills'
 import { GET_EDUCATIONS } from 'graphql/shared/Queries'
-import { ADD_EDUCATION, REMOVE_EDUCATION } from 'graphql/shared/Mutations'
 import Education from 'views/partials/Education'
 import React from 'react'
+import { ADD_EDUCATION, REMOVE_EDUCATION } from 'graphql/shared/Mutations'
 
 const AddEducation: React.FC<RouteComponentProps> = () => {
   const {
     data: { educations = [] },
     loading,
-  } = useQuery(GET_EDUCATIONS)
+  } = useQuery<GetEducationsQuery>(GET_EDUCATIONS, {
+    fetchPolicy: 'network-only',
+  })
 
-  const handleSubmit = (updatedEducations: EducationType[]) => {
-    /* setEducations(updatedEducations) */
+  const addEducation = useMutation<
+    Mutation['addEducation'],
+    MutationAddEducationArgs
+  >(ADD_EDUCATION, {
+    refetchQueries: [{ query: GET_EDUCATIONS }],
+  })
 
-    navigate('/profil')
-  }
+  const removeEducation = useMutation<{}, MutationRemoveEducationArgs>(
+    REMOVE_EDUCATION,
+    {
+      refetchQueries: [{ query: GET_EDUCATIONS }],
+    }
+  )
+
+  const handleSubmit = () => navigate('/profil')
 
   return (
     <Layout>
@@ -25,9 +42,12 @@ const AddEducation: React.FC<RouteComponentProps> = () => {
       {loading && <p>Loading...</p>}
       {educations && (
         <Education
+          addEducation={addEducation}
           buttonText="Spara"
           educations={educations}
           onSubmit={handleSubmit}
+          removeEducation={removeEducation}
+          updateEducation={() => {}}
         />
       )}
     </Layout>

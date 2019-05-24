@@ -46,7 +46,7 @@ exports[`views/AddEducation renders empty result 1`] = `
         </div>
       </div>
       <p
-        class="css-1wtsfx0"
+        class="css-1d8t2vo"
         font-family="default"
         font-size="small"
       >
@@ -57,7 +57,7 @@ exports[`views/AddEducation renders empty result 1`] = `
       class="css-1kqrbn8"
     >
       <h1
-        class="css-1wd37ko"
+        class="css-2k7aps"
         color="black"
         font-family="default"
         font-size="large"
@@ -76,7 +76,7 @@ exports[`views/AddEducation renders empty result 1`] = `
     </div>
     <div />
     <div
-      class="css-u0khw4"
+      class="css-14oqj0j"
     >
       <div
         class="css-4ihyqn"
@@ -95,7 +95,7 @@ exports[`views/AddEducation renders empty result 1`] = `
         font-family="default"
         font-size="medium"
         name="title"
-        placeholder="Namn på skola..."
+        placeholder="Namn på utbildning..."
         value=""
       />
       <input
@@ -103,12 +103,45 @@ exports[`views/AddEducation renders empty result 1`] = `
         font-family="default"
         font-size="medium"
         name="schoolOrCompany"
-        placeholder="Namn på utbildning..."
+        placeholder="Namn på skola..."
         value=""
       />
+      <select
+        class="css-hz3u1s"
+        font-family="default"
+        font-size="medium"
+        name="degree"
+      >
+        <option
+          value=""
+        >
+          Ev. examen...
+        </option>
+        <option>
+          Diplomerad
+        </option>
+        <option>
+          Yrkeshögskoleexamen
+        </option>
+        <option>
+          Kvalificerad yrkeshögskoleexamen
+        </option>
+        <option>
+          Kandidat
+        </option>
+        <option>
+          Magister
+        </option>
+        <option>
+          Master
+        </option>
+        <option>
+          Doktorand
+        </option>
+      </select>
     </div>
     <div
-      class="css-k6djra"
+      class="css-t6zbdi"
     >
       <div
         class="css-y3xkt8"
@@ -126,7 +159,7 @@ exports[`views/AddEducation renders empty result 1`] = `
           data-testid="startDate"
         >
           <span
-            class="css-12kzefs"
+            class="css-1gmliaa"
           >
             Startdatum
           </span>
@@ -157,7 +190,7 @@ exports[`views/AddEducation renders empty result 1`] = `
           data-testid="endDate"
         >
           <span
-            class="css-12kzefs"
+            class="css-1gmliaa"
           >
             Slutdatum
           </span>
@@ -174,7 +207,7 @@ exports[`views/AddEducation renders empty result 1`] = `
       </div>
     </div>
     <button
-      class="css-1iemawu"
+      class="css-vmnbwz"
       font-family="default"
       font-size="medium"
       type="submit"

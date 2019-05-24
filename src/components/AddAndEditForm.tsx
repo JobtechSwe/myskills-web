@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Grid from './Grid'
 import Flex from './Flex'
 import Input from './Input'
+import Select from './Select'
 import { Label } from './Typography'
 import Button from './Button'
 import DatePicker from './DatePicker'
@@ -12,34 +13,40 @@ export interface FormState {
   end: string
   start: string
   title: string
+  degree?: string
 }
 
 interface AddAndEditFormProps {
   abortEdit?: () => void
+  degreePlaceholder?: string
   edit?: boolean
   editItem?: any
-  titlePlaceholder: string
-  schoolOrCompanyPlaceholder: string
+  handleDelete?: (state: FormState) => void
   label: string
   onSubmit: (state: FormState) => void
-  handleDelete?: (state: FormState) => void
+  schoolOrCompanyPlaceholder: string
+  titlePlaceholder: string
+  isEducation?: boolean
 }
 
 export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({
   abortEdit,
+  degreePlaceholder,
   edit,
   editItem,
+  handleDelete,
   titlePlaceholder,
   schoolOrCompanyPlaceholder,
   label,
   onSubmit,
-  handleDelete,
+  isEducation,
 }) => {
   const emptyState = {
     schoolOrCompany: '',
     end: '',
     start: '',
     title: '',
+    degree: '',
   }
   const initialState = edit ? editItem : emptyState
 
@@ -62,7 +69,7 @@ export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({
 
   return (
     <>
-      <Grid gridGap={6}>
+      <Grid gridGap={6} mb={15}>
         <Flex justifyContent="space-between" mr={6}>
           <Label>{label}</Label>
           {edit && (
@@ -87,8 +94,26 @@ export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({
           placeholder={schoolOrCompanyPlaceholder}
           value={state.schoolOrCompany}
         />
+        {isEducation ? (
+          <Select
+            name="degree"
+            onChange={({ target }: React.ChangeEvent<HTMLSelectElement>) =>
+              handleUpdate('degree', target.value)
+            }
+            value={state.degree}
+          >
+            <option value="">{degreePlaceholder}</option>
+            <option>Diplomerad</option>
+            <option>Yrkeshögskoleexamen</option>
+            <option>Kvalificerad yrkeshögskoleexamen</option>
+            <option>Kandidat</option>
+            <option>Magister</option>
+            <option>Master</option>
+            <option>Doktorand</option>
+          </Select>
+        ) : null}
       </Grid>
-      <Grid gridGap={6} gridTemplateColumns="1fr 1fr" mt="small">
+      <Grid gridGap={6} gridTemplateColumns="1fr 1fr">
         <Flex flexDirection="column">
           <Label>Från</Label>
           <DatePicker
@@ -124,7 +149,7 @@ export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({
         </Grid>
       ) : (
         <Button
-          mt={35}
+          mt={30}
           onClick={handleSubmit}
           type="submit"
           variant="inActive"

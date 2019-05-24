@@ -68,6 +68,7 @@ export type CvInput = {
 
 export type Education = {
   programme: Scalars['String']
+  degree?: Maybe<Scalars['String']>
   school: Scalars['String']
   start: Scalars['String']
   end?: Maybe<Scalars['String']>
@@ -76,6 +77,7 @@ export type Education = {
 
 export type EducationInput = {
   programme: Scalars['String']
+  degree?: Maybe<Scalars['String']>
   school: Scalars['String']
   start: Scalars['String']
   end?: Maybe<Scalars['String']>
@@ -526,7 +528,7 @@ export type GetEducationsQuery = { __typename?: 'Query' } & {
     Maybe<
       { __typename?: 'Education' } & Pick<
         Education,
-        'id' | 'programme' | 'school' | 'start' | 'end'
+        'id' | 'degree' | 'programme' | 'school' | 'start' | 'end'
       >
     >
   >
@@ -684,7 +686,7 @@ export type AddEducationClientMutation = { __typename?: 'Mutation' } & {
   addEducationClient: Maybe<
     { __typename?: 'Education' } & Pick<
       Education,
-      'id' | 'programme' | 'school' | 'start' | 'end'
+      'id' | 'programme' | 'degree' | 'school' | 'start' | 'end'
     >
   >
 }

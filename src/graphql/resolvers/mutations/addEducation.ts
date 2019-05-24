@@ -7,6 +7,7 @@ export const GET_EDUCATIONS_CLIENT = gql`
   query getEducations {
     educations @client {
       id
+      degree
       programme
       school
       start

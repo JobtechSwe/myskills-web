@@ -31,14 +31,6 @@ const FakeInput = styled.div`
   padding: 12px;
 `
 
-const RemoveButton = styled.button`
-  background: transparent;
-  border: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-`
-
 export const GET_ONTOLOGY_CONCEPTS = gql`
   query ontologyConcepts($filter: String!, $type: OntologyType) {
     ontologyConcepts(params: { filter: $filter, type: $type }) {
@@ -136,12 +128,12 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
         {occupationResult.occupation && occupationResult.occupation.term ? (
           <FakeInput>
             {occupationResult.occupation.term}{' '}
-            <RemoveButton
+            <button
               data-testid="removeButton"
               onClick={() => removeOccupationClient()}
             >
               <img alt="close" src={close} />
-            </RemoveButton>
+            </button>
           </FakeInput>
         ) : (
           <Downshift

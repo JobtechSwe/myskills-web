@@ -159,7 +159,7 @@ export type Mutation = {
   removeEducationClient?: Maybe<Education>
   removeExperienceClient?: Maybe<Experience>
   removeTrait: Scalars['String']
-  removeOccupationClient?: Maybe<Occupation>
+  removeOccupationClient?: Maybe<Scalars['Boolean']>
 }
 
 export type MutationAddLanguageArgs = {
@@ -779,11 +779,10 @@ export type RemoveOccupationClientMutationVariables = {
   occupation: OccupationInput
 }
 
-export type RemoveOccupationClientMutation = { __typename?: 'Mutation' } & {
-  removeOccupationClient: Maybe<
-    { __typename?: 'Occupation' } & Pick<Occupation, 'term'>
-  >
-}
+export type RemoveOccupationClientMutation = { __typename?: 'Mutation' } & Pick<
+  Mutation,
+  'removeOccupationClient'
+>
 
 export type IsLoggedInQueryVariables = {}
 

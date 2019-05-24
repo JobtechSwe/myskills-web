@@ -22,7 +22,7 @@ const IllustrationHeader: React.FC<IllustrationHeaderProps> = ({
       <Flex justifyContent="center">
         <img alt={imageAltTag} src={imageSource} />
       </Flex>
-      <H1 mb={0} textAlign="center">
+      <H1 mb="15%" mt="15%" textAlign="center">
         {title}
       </H1>
       {description && (

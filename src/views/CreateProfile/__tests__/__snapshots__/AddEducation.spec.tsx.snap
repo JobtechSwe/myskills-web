@@ -92,6 +92,7 @@ exports[`views/AddEducation renders empty result 1`] = `
       </div>
       <input
         class="css-hugbvh"
+        data-testid="title"
         font-family="default"
         font-size="medium"
         name="title"
@@ -100,6 +101,7 @@ exports[`views/AddEducation renders empty result 1`] = `
       />
       <input
         class="css-hugbvh"
+        data-testid="schoolOrCompany"
         font-family="default"
         font-size="medium"
         name="schoolOrCompany"
@@ -132,6 +134,7 @@ exports[`views/AddEducation renders empty result 1`] = `
           </span>
           <input
             class="css-1oteowz"
+            data-testid="startDate-input"
             placeholder="Slutdatum"
             type="month"
           />
@@ -163,6 +166,7 @@ exports[`views/AddEducation renders empty result 1`] = `
           </span>
           <input
             class="css-1oteowz"
+            data-testid="endDate-input"
             placeholder="Slutdatum"
             type="month"
           />
@@ -175,6 +179,7 @@ exports[`views/AddEducation renders empty result 1`] = `
     </div>
     <button
       class="css-vmnbwz"
+      data-testid="saveButton"
       font-family="default"
       font-size="medium"
       type="submit"

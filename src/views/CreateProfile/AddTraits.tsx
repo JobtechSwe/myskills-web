@@ -12,8 +12,8 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
     <Layout>
       <Navigation section="Person" step={5} />
       <Traits
-        location={location}
         buttonText="Fortsätt"
+        location={location}
         onSubmit={handleSubmit}
       />
     </Layout>

@@ -16,7 +16,6 @@ const AddEducation: React.FC<RouteComponentProps> = () => {
   const handleSubmit = (updatedEducations: EducationType[]) => {
     /* setEducations(updatedEducations) */
 
-
     navigate('/profil')
   }
 
@@ -26,8 +25,8 @@ const AddEducation: React.FC<RouteComponentProps> = () => {
       {loading && <p>Loading...</p>}
       {educations && (
         <Education
-          educations={educations}
           buttonText="Spara"
+          educations={educations}
           onSubmit={handleSubmit}
         />
       )}

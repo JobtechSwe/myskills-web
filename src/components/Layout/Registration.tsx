@@ -59,8 +59,8 @@ const Navigation: React.FC<NavigationProps> = ({ step, section }) => (
       {step ? (
         <StepIndicator step={step} />
       ) : (
-        <Flex flex={1} justifyContent="center" alignItems="center">
-          <SectionHeader lineHeight="100%" mb={0} mt={0} ml={-27}>
+        <Flex alignItems="center" flex={1} justifyContent="center">
+          <SectionHeader lineHeight="100%" mb={0} ml={-27} mt={0}>
             {section}
           </SectionHeader>
         </Flex>

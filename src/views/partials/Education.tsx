@@ -142,8 +142,8 @@ const Education: React.FC<RouteComponentProps & EducationProps> = ({
       />
       {educations && (
         <AddedEducations
-          educations={educations}
           editingEntry={editEntry.id}
+          educations={educations}
           handleEdit={handleEdit}
         />
       )}

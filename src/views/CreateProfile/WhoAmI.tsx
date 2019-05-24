@@ -140,6 +140,7 @@ const WhoAmI: React.FC<RouteComponentProps> = () => {
                 height: '30vh',
                 padding: '12px',
                 width: '100%',
+                wordBreak: 'break-word',
               }}
             />
             <Paragraph textAlign="right">

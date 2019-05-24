@@ -102,6 +102,7 @@ H1.defaultProps = {
   ...common,
   fontSize: ['large'],
   fontWeight: 600,
+  lineHeight: '28px',
 }
 
 H2.defaultProps = {

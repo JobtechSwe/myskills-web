@@ -57,7 +57,7 @@ exports[`views/AddEducation renders empty result 1`] = `
       class="css-1kqrbn8"
     >
       <h1
-        class="css-1wd37ko"
+        class="css-2k7aps"
         color="black"
         font-family="default"
         font-size="large"
@@ -76,7 +76,7 @@ exports[`views/AddEducation renders empty result 1`] = `
     </div>
     <div />
     <div
-      class="css-u0khw4"
+      class="css-14oqj0j"
     >
       <div
         class="css-46aiqg"
@@ -108,7 +108,7 @@ exports[`views/AddEducation renders empty result 1`] = `
       />
     </div>
     <div
-      class="css-k6djra"
+      class="css-t6zbdi"
     >
       <div
         class="css-y54doh"
@@ -126,7 +126,7 @@ exports[`views/AddEducation renders empty result 1`] = `
           data-testid="startDate"
         >
           <span
-            class="css-12kzefs"
+            class="css-1gmliaa"
           >
             Startdatum
           </span>
@@ -157,7 +157,7 @@ exports[`views/AddEducation renders empty result 1`] = `
           data-testid="endDate"
         >
           <span
-            class="css-12kzefs"
+            class="css-1gmliaa"
           >
             Slutdatum
           </span>
@@ -174,7 +174,7 @@ exports[`views/AddEducation renders empty result 1`] = `
       </div>
     </div>
     <button
-      class="css-1iemawu"
+      class="css-vmnbwz"
       font-family="default"
       font-size="medium"
       type="submit"

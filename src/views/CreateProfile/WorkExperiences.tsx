@@ -10,6 +10,21 @@ import AddAndEditForm from 'components/AddAndEditForm'
 import RegistrationLayout from 'components/Layout/RegistrationLayout'
 import { v4 } from 'uuid'
 import { Entry } from 'components/Timeline/index'
+import styled from '@emotion/styled'
+
+const TimelineWrapper = styled.div`
+  margin: 25px 0;
+`
+
+const AddOrEditFormWrapper = styled.div<{ edit: boolean }>`
+  ${({ edit }) =>
+    edit &&
+    `
+    position: absolute;
+    bottom: 32px;
+    width: calc(100% - 64px);
+  `}
+`
 
 const ADD_EXPERIENCE_CLIENT = gql`
   mutation addExperienceClient($experience: ExperienceInput!) {
@@ -73,7 +88,7 @@ export const WorkExperiences: React.FC<RouteComponentProps> = () => {
     removeExperienceClient({
       variables: {
         experience: {
-          id: entry.id,
+          sourceId: entry.id,
           term: entry.title,
           employer: entry.schoolOrCompany,
           start: entry.start,
@@ -90,7 +105,7 @@ export const WorkExperiences: React.FC<RouteComponentProps> = () => {
       updateExperienceClient({
         variables: {
           experience: {
-            id: formState.id,
+            sourceId: formState.id,
             term: formState.title,
             employer: formState.schoolOrCompany,
             start: formState.start,
@@ -117,41 +132,52 @@ export const WorkExperiences: React.FC<RouteComponentProps> = () => {
   }
 
   return (
-    <RegistrationLayout headerText="ERFARENHET" nextPath="utbildning" step={3}>
-      <H1 textAlign="center">Vad har du för arbetslivserfarenhet?</H1>
-      {experiences && (
-        <Timeline
-          editingEntry={editEntry.id}
-          entries={experiences.map((exp: Experience) => ({
-            id: exp.id,
-            title: exp.term,
-            schoolOrCompany: exp.employer,
-            start: exp.start,
-            end: exp.end,
-          }))}
-          handleEdit={handleEdit}
-        />
-      )}
-      {edit && (
-        <AddAndEditForm
-          abortEdit={abortEdit}
-          edit={true}
-          editItem={editEntry}
-          handleDelete={handleDelete}
-          label="Uppdatera erfarenhet"
-          onSubmit={handleSubmit}
-          schoolOrCompanyPlaceholder="Arbetsgivare..."
-          titlePlaceholder="Namn på tjänst..."
-        />
-      )}
-      {!edit && (
-        <AddAndEditForm
-          label="Lägg till erfarenhet"
-          onSubmit={handleSubmit}
-          schoolOrCompanyPlaceholder="Arbetsgivare..."
-          titlePlaceholder="Namn på tjänst..."
-        />
-      )}
+    <RegistrationLayout
+      hideNextBtn={edit}
+      headerText="ERFARENHET"
+      nextPath="utbildning"
+      step={3}
+    >
+      <div>
+        <H1 textAlign="center">Vad har du för arbetslivserfarenhet?</H1>
+        {experiences && (
+          <TimelineWrapper>
+            <Timeline
+              editingEntry={editEntry.id}
+              entries={experiences.map((exp: Experience) => ({
+                id: exp.sourceId,
+                title: exp.term,
+                schoolOrCompany: exp.employer,
+                start: exp.start,
+                end: exp.end,
+              }))}
+              handleEdit={handleEdit}
+            />
+          </TimelineWrapper>
+        )}
+        <AddOrEditFormWrapper edit={edit}>
+          {edit && (
+            <AddAndEditForm
+              abortEdit={abortEdit}
+              edit={true}
+              editItem={editEntry}
+              handleDelete={handleDelete}
+              label="Uppdatera erfarenhet"
+              onSubmit={handleSubmit}
+              schoolOrCompanyPlaceholder="Arbetsgivare..."
+              titlePlaceholder="Namn på tjänst..."
+            />
+          )}
+          {!edit && (
+            <AddAndEditForm
+              label="Lägg till erfarenhet"
+              onSubmit={handleSubmit}
+              schoolOrCompanyPlaceholder="Arbetsgivare..."
+              titlePlaceholder="Namn på tjänst..."
+            />
+          )}
+        </AddOrEditFormWrapper>
+      </div>
     </RegistrationLayout>
   )
 }

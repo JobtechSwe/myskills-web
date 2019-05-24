@@ -62,7 +62,7 @@ export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({
 
   return (
     <>
-      <Grid gridGap={6}>
+      <Grid gridGap={6} mb={15}>
         <Flex justifyContent="space-between" mr={6}>
           <Label>{label}</Label>
           {edit && (
@@ -88,7 +88,7 @@ export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({
           value={state.schoolOrCompany}
         />
       </Grid>
-      <Grid gridGap={6} gridTemplateColumns="1fr 1fr" mt="small">
+      <Grid gridGap={6} gridTemplateColumns="1fr 1fr">
         <Flex flexDirection="column">
           <Label>Från</Label>
           <DatePicker
@@ -124,7 +124,7 @@ export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({
         </Grid>
       ) : (
         <Button
-          mt={35}
+          mt={30}
           onClick={handleSubmit}
           type="submit"
           variant="inActive"

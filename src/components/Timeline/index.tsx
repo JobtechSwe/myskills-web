@@ -48,14 +48,18 @@ const Timeline: React.FC<TimelineProps> = ({
       data-testid="timelineWrapper"
       enableTimelineBar={enableTimelineBar}
     >
-      {entries.map((entry, i) => (
-        <TimelineEntry
-          editing={editingEntry === entry.id}
-          entry={entry}
-          handleEdit={handleEdit}
-          key={`entry-${i}`}
-        />
-      ))}
+      {entries
+        .sort((a, b) => {
+          return new Date(b.start).getTime() - new Date(a.start).getTime()
+        })
+        .map((entry, i) => (
+          <TimelineEntry
+            editing={editingEntry === entry.id}
+            entry={entry}
+            handleEdit={handleEdit}
+            key={`entry-${i}`}
+          />
+        ))}
     </Wrapper>
   )
 }

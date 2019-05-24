@@ -30,11 +30,13 @@ const Input = styled.input<{ isMobile: boolean }>`
 const PickedDate = styled.span<{ isMobile: boolean }>`
   color: ${({ theme }) => theme.colors.black};
   display: ${({ isMobile }) => (isMobile ? 'inline-block' : 'none')};
+  line-height: 20px;
 `
 
 const Placeholder = styled.span<{ isMobile: boolean }>`
   color: grey;
   display: ${({ isMobile }) => (isMobile ? 'inline-block' : 'none')};
+  line-height: 20px;
 `
 
 interface DatePickerProps {

@@ -13,7 +13,7 @@ export const removeExperienceClient = (
   })
 
   const updatedExperienceList = experiences.filter(
-    (e: Experience) => e.id !== experience.id
+    (e: Experience) => e.sourceId !== experience.sourceId
   )
 
   cache.writeQuery({

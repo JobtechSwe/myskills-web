@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Grid from './Grid'
 import Flex from './Flex'
 import Input from './Input'
+import Select from './Select'
 import { Label } from './Typography'
 import Button from './Button'
 import DatePicker from './DatePicker'
@@ -12,34 +13,38 @@ export interface FormState {
   end: string
   start: string
   title: string
+  degree?: string
 }
 
 interface AddAndEditFormProps {
   abortEdit?: () => void
+  degreePlaceholder?: string
   edit?: boolean
   editItem?: any
-  titlePlaceholder: string
-  schoolOrCompanyPlaceholder: string
+  handleDelete?: (state: FormState) => void
   label: string
   onSubmit: (state: FormState) => void
-  handleDelete?: (state: FormState) => void
+  schoolOrCompanyPlaceholder: string
+  titlePlaceholder: string
 }
 
 export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({
   abortEdit,
+  degreePlaceholder,
   edit,
   editItem,
+  handleDelete,
   titlePlaceholder,
   schoolOrCompanyPlaceholder,
   label,
   onSubmit,
-  handleDelete,
 }) => {
   const emptyState = {
     schoolOrCompany: '',
     end: '',
     start: '',
     title: '',
+    degree: '',
   }
   const initialState = edit ? editItem : emptyState
 
@@ -76,17 +81,28 @@ export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({
           onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
             handleUpdate('title', target.value)
           }
-          placeholder={titlePlaceholder}
-          value={state.title}
+          placeholder={schoolOrCompanyPlaceholder}
+          value={state.schoolOrCompany}
         />
         <Input
           name="schoolOrCompany"
           onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
             handleUpdate('schoolOrCompany', target.value)
           }
-          placeholder={schoolOrCompanyPlaceholder}
-          value={state.schoolOrCompany}
+          placeholder={titlePlaceholder}
+          value={state.title}
         />
+        <Select
+          name="degree"
+          onChange={({ target }: React.ChangeEvent<HTMLSelectElement>) =>
+            handleUpdate('title', target.value)
+          }
+          value={state.title}
+        >
+          <option value="">{degreePlaceholder}</option>
+          <option>hej</option>
+          <option>hej</option>
+        </Select>
       </Grid>
       <Grid gridGap={6} gridTemplateColumns="1fr 1fr" mt="small">
         <Flex flexDirection="column">

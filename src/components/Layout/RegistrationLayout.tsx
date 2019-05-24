@@ -74,7 +74,9 @@ const RegistrationLayout: React.FC<
 
           <StepIndicator step={step} />
         </Flex>
-        <Paragraph lineHeight="100%">{headerText}</Paragraph>
+        <Paragraph lineHeight="100%" mt="none">
+          {headerText}
+        </Paragraph>
       </NavigationContainer>
       {children}
       {nextPath && (

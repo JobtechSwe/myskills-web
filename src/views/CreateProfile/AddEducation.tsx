@@ -144,6 +144,7 @@ const AddEducation: React.FC<RouteComponentProps> = () => {
       )}
       {!edit && (
         <AddAndEditForm
+          degreePlaceholder="Ev. examen..."
           label="Lägg till utbildning"
           onSubmit={handleSubmit}
           schoolOrCompanyPlaceholder="Namn på utbildning..."

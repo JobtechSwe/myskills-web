@@ -60,6 +60,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
         <Placeholder isMobile={isMobile}>{placeholder}</Placeholder>
       )}
       <Input
+        data-testid={`${dataTestId}-input`}
         isMobile={isMobile}
         onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
           onChange(target.value)

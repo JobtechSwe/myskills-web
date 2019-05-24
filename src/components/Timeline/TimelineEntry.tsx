@@ -83,7 +83,10 @@ const TimelineEntry: React.FC<TimelineEntryProps> = ({
           {editing ? (
             <img alt="edit" src={pen} />
           ) : (
-            <button onClick={() => handleEdit(entry)}>
+            <button
+              data-testid="timelineUpdateButton"
+              onClick={() => handleEdit(entry)}
+            >
               <img alt="edit" src={edit} />
             </button>
           )}

@@ -46,7 +46,7 @@ exports[`views/AddEducation renders empty result 1`] = `
         </div>
       </div>
       <p
-        class="css-1wtsfx0"
+        class="css-1d8t2vo"
         font-family="default"
         font-size="small"
       >
@@ -95,7 +95,7 @@ exports[`views/AddEducation renders empty result 1`] = `
         font-family="default"
         font-size="medium"
         name="title"
-        placeholder="Namn på skola..."
+        placeholder="Namn på utbildning..."
         value=""
       />
       <input
@@ -103,9 +103,27 @@ exports[`views/AddEducation renders empty result 1`] = `
         font-family="default"
         font-size="medium"
         name="schoolOrCompany"
-        placeholder="Namn på utbildning..."
+        placeholder="Namn på skola..."
         value=""
       />
+      <select
+        class="css-hz3u1s"
+        font-family="default"
+        font-size="medium"
+        name="degree"
+      >
+        <option
+          value=""
+        >
+          Ev. examen...
+        </option>
+        <option>
+          hej
+        </option>
+        <option>
+          hej
+        </option>
+      </select>
     </div>
     <div
       class="css-k6djra"

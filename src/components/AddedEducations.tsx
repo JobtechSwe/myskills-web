@@ -25,6 +25,7 @@ const AddedEducations: React.FC<AddedEducationsProps> = ({
           editingEntry={editingEntry}
           entries={data.educations.map((education: Education) => ({
             id: education.id,
+            degree: education.degree,
             title: education.programme,
             schoolOrCompany: education.school,
             start: education.start,

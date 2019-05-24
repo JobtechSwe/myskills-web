@@ -13,6 +13,7 @@ import { Entry } from 'components/Timeline/index'
 export type EducationInput = {
   id?: String
   programme: String
+  degree?: String
   school: String
   start: String
   end?: String
@@ -23,6 +24,7 @@ export const ADD_EDUCATION_CLIENT = gql`
     addEducationClient(education: $education) @client {
       id
       programme
+      degree
       school
       start
       end
@@ -89,10 +91,18 @@ const AddEducation: React.FC<RouteComponentProps> = () => {
     toggleEdit(false)
   }
 
-  const handleSubmit = ({ id, title, start, end, schoolOrCompany }: Entry) => {
+  const handleSubmit = ({
+    id,
+    title,
+    start,
+    end,
+    schoolOrCompany,
+    degree,
+  }: Entry) => {
     const education: EducationInput = {
       end,
       programme: title,
+      degree,
       school: schoolOrCompany,
       start,
     }
@@ -136,19 +146,21 @@ const AddEducation: React.FC<RouteComponentProps> = () => {
           edit={true}
           editItem={editEntry}
           handleDelete={handleDelete}
+          isEducation={true}
           label="Uppdatera utbildning"
           onSubmit={handleSubmit}
-          schoolOrCompanyPlaceholder="Namn på utbildning..."
-          titlePlaceholder="Namn på skola..."
+          schoolOrCompanyPlaceholder="Namn på skola..."
+          titlePlaceholder="Namn på utbildning..."
         />
       )}
       {!edit && (
         <AddAndEditForm
           degreePlaceholder="Ev. examen..."
+          isEducation={true}
           label="Lägg till utbildning"
           onSubmit={handleSubmit}
-          schoolOrCompanyPlaceholder="Namn på utbildning..."
-          titlePlaceholder="Namn på skola..."
+          schoolOrCompanyPlaceholder="Namn på skola..."
+          titlePlaceholder="Namn på utbildning..."
         />
       )}
     </RegistrationLayout>

@@ -26,6 +26,7 @@ interface AddAndEditFormProps {
   onSubmit: (state: FormState) => void
   schoolOrCompanyPlaceholder: string
   titlePlaceholder: string
+  isEducation?: boolean
 }
 
 export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({
@@ -38,6 +39,7 @@ export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({
   schoolOrCompanyPlaceholder,
   label,
   onSubmit,
+  isEducation,
 }) => {
   const emptyState = {
     schoolOrCompany: '',
@@ -81,28 +83,35 @@ export const AddAndEditForm: React.FC<AddAndEditFormProps> = ({
           onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
             handleUpdate('title', target.value)
           }
-          placeholder={schoolOrCompanyPlaceholder}
-          value={state.schoolOrCompany}
+          placeholder={titlePlaceholder}
+          value={state.title}
         />
         <Input
           name="schoolOrCompany"
           onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
             handleUpdate('schoolOrCompany', target.value)
           }
-          placeholder={titlePlaceholder}
-          value={state.title}
+          placeholder={schoolOrCompanyPlaceholder}
+          value={state.schoolOrCompany}
         />
-        <Select
-          name="degree"
-          onChange={({ target }: React.ChangeEvent<HTMLSelectElement>) =>
-            handleUpdate('title', target.value)
-          }
-          value={state.title}
-        >
-          <option value="">{degreePlaceholder}</option>
-          <option>hej</option>
-          <option>hej</option>
-        </Select>
+        {isEducation ? (
+          <Select
+            name="degree"
+            onChange={({ target }: React.ChangeEvent<HTMLSelectElement>) =>
+              handleUpdate('degree', target.value)
+            }
+            value={state.degree}
+          >
+            <option value="">{degreePlaceholder}</option>
+            <option>Diplomerad</option>
+            <option>Yrkeshögskoleexamen</option>
+            <option>Kvalificerad yrkeshögskoleexamen</option>
+            <option>Kandidat</option>
+            <option>Magister</option>
+            <option>Master</option>
+            <option>Doktorand</option>
+          </Select>
+        ) : null}
       </Grid>
       <Grid gridGap={6} gridTemplateColumns="1fr 1fr" mt="small">
         <Flex flexDirection="column">

@@ -12,6 +12,7 @@ import {
   MutationRemoveEducationArgs,
   EducationInput,
   MutationAddEducationArgs,
+  MutationEditEducationArgs,
 } from 'generated/myskills'
 
 interface EducationProps {
@@ -24,7 +25,9 @@ interface EducationProps {
   removeEducation: (
     args: MutationHookOptions<{}, MutationRemoveEducationArgs>
   ) => any
-  updateEducation: (args: any) => any
+  updateEducation: (
+    args: MutationHookOptions<{}, MutationEditEducationArgs>
+  ) => any
 }
 
 const Education: React.FC<RouteComponentProps & EducationProps> = ({

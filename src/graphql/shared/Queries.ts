@@ -27,7 +27,7 @@ export const GET_EDUCATIONS = gql`
 `
 
 export const GET_EDUCATIONS_CLIENT = gql`
-  query getEducations {
+  query getEducationsClient {
     educations @client {
       id
       programme

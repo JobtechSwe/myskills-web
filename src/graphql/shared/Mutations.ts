@@ -29,3 +29,11 @@ export const REMOVE_SKILL_CLIENT = gql`
     }
   }
 `
+
+export const EDIT_EDUCATION = gql`
+  mutation editEducation($education: EditEducationInput!) {
+    editEducation(education: $education) {
+      id
+    }
+  }
+`

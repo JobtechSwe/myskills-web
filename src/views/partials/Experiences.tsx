@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { RouteComponentProps } from '@reach/router'
 import { H1 } from 'components/Typography'
-import gql from 'graphql-tag'
 import Timeline from 'components/Timeline'
-import { useMutation, useQuery } from 'react-apollo-hooks'
+import { useQuery } from 'react-apollo-hooks'
 import { GET_EXPERIENCES_CLIENT } from 'graphql/resolvers/mutations/addExperience'
 import { Experience } from 'generated/myskills'
 import AddAndEditForm from 'components/AddAndEditForm'
@@ -11,42 +10,23 @@ import { FooterButton } from 'components/Layout/Registration'
 import { v4 } from 'uuid'
 import { Entry } from 'components/Timeline/index'
 
-const ADD_EXPERIENCE_CLIENT = gql`
-  mutation addExperienceClient($experience: ExperienceInput!) {
-    addExperienceClient(experience: $experience) @client {
-      sourceId
-      employer
-      end
-      start
-      term
-    }
-  }
-`
-
-const REMOVE_EXPERIENCE_CLIENT = gql`
-  mutation removeExperienceClient($experience: ExperienceInput!) {
-    removeExperienceClient(experience: $experience) @client {
-      sourceId
-    }
-  }
-`
-
-const UPDATE_EXPERIENCE_CLIENT = gql`
-  mutation updateExperienceClient($experience: ExperienceInput!) {
-    updateExperienceClient(experience: $experience) @client {
-      sourceId
-    }
-  }
-`
-
 interface WorkExperienceProps {
   buttonText: string
   onSubmit: (experiences: Experience[]) => void
+  addExperience: (args: any) => any
+  removeExperience: (args: any) => any
+  updateExperience: (args: any) => any
 }
 
 export const Experiences: React.FC<
   RouteComponentProps & WorkExperienceProps
-> = ({ buttonText, onSubmit }) => {
+> = ({
+  buttonText,
+  onSubmit,
+  addExperience,
+  removeExperience,
+  updateExperience,
+}) => {
   const initialEditEntry = {
     id: '',
     title: '',
@@ -59,9 +39,6 @@ export const Experiences: React.FC<
   const [edit, toggleEdit] = useState(false)
   const [editEntry, setEditEntry] = useState(initialEditEntry)
 
-  const addExperienceClient = useMutation(ADD_EXPERIENCE_CLIENT)
-  const removeExperienceClient = useMutation(REMOVE_EXPERIENCE_CLIENT)
-  const updateExperienceClient = useMutation(UPDATE_EXPERIENCE_CLIENT)
   const {
     data: { experiences },
   } = useQuery(GET_EXPERIENCES_CLIENT)
@@ -77,7 +54,7 @@ export const Experiences: React.FC<
   }
 
   const handleDelete = (entry: Entry) => {
-    removeExperienceClient({
+    removeExperience({
       variables: {
         experience: {
           id: entry.id,
@@ -94,7 +71,7 @@ export const Experiences: React.FC<
 
   const handleSubmit = (formState: Entry) => {
     if (edit) {
-      updateExperienceClient({
+      updateExperience({
         variables: {
           experience: {
             id: formState.id,
@@ -110,7 +87,7 @@ export const Experiences: React.FC<
       return toggleEdit(false)
     }
 
-    addExperienceClient({
+    addExperience({
       variables: {
         experience: {
           sourceId: v4(),

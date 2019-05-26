@@ -39,6 +39,9 @@ const Timeline = React.lazy(() => import('views/Profile/Timeline'))
 const UpdateEducation = React.lazy(() =>
   import('views/Profile/UpdateEducation')
 )
+const UpdateWorkExperience = React.lazy(() =>
+  import('views/Profile/UpdateWorkExperiences')
+)
 
 function App() {
   return (
@@ -65,6 +68,10 @@ function App() {
             <RestrictedRoute component={Home} path="/" />
             <RestrictedRoute component={Timeline} path="/tidslinje" />
             <RestrictedRoute component={UpdateEducation} path="/utbildning" />
+            <RestrictedRoute
+              component={UpdateWorkExperience}
+              path="/erfarenheter"
+            />
           </Profile>
         </Router>
       </React.Suspense>

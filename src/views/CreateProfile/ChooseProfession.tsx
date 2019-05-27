@@ -20,15 +20,23 @@ import styled from '@emotion/styled'
 
 const SearchInput = styled(Input)`
   width: 100%;
+  &:focus {
+    outline: none;
+  }
 `
-
-const FakeInput = styled.div`
-  border: ${({ theme }) => `1px solid ${theme.colors.athensGray}`};
-  border-radius: 5px;
-  display: flex;
-  font-family: ${({ theme }) => theme.fonts.default};
-  justify-content: space-between;
-  padding: 12px;
+const RemoveButton = styled.button`
+  background: transparent;
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-top: 5px;
+  &:focus {
+    outline: none;
+  }
+  &:active {
+    background: none;
+  }
 `
 
 export const GET_ONTOLOGY_CONCEPTS = gql`
@@ -65,9 +73,7 @@ export const CREATE_OCCUPATION_API = gql`
 
 export const REMOVE_OCCUPATION_CLIENT = gql`
   mutation removeOccupationClient($occupation: OccupationInput!) {
-    removeOccupationClient(occupation: $occupation) @client {
-      term
-    }
+    removeOccupationClient(occupation: $occupation) @client
   }
 `
 
@@ -80,11 +86,27 @@ export const IS_LOGGED_IN = gql`
     isLoggedIn @client(always: true)
   }
 `
+const InputContainer = styled.div`
+  display: flex;
+  border: ${({ theme }) => `1px solid ${theme.colors.athensGray}`};
+  border-radius: 5px;
+`
 
 const ChooseProfession: React.FC<RouteComponentProps> = () => {
   const [query, setQuery] = useState('')
   const createOccupation = useMutation(CREATE_OCCUPATION_CLIENT)
-
+  const onKeyPress = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      createOccupation({
+        variables: {
+          occupation: {
+            term: query,
+            experience: null,
+          },
+        },
+      })
+    }
+  }
   const removeOccupationClient = useMutation(REMOVE_OCCUPATION_CLIENT)
 
   const { data, error: ontologyError } = useQuery(GET_ONTOLOGY_CONCEPTS, {
@@ -125,90 +147,94 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
             }
           `}
         />
-        {occupationResult.occupation && occupationResult.occupation.term ? (
-          <FakeInput>
-            {occupationResult.occupation.term}{' '}
-            <button
-              data-testid="removeButton"
-              onClick={() => removeOccupationClient()}
-            >
-              <img alt="close" src={close} />
-            </button>
-          </FakeInput>
-        ) : (
-          <Downshift
-            itemToString={item => (item ? item.term : '')}
-            onChange={occupation => {
-              createOccupation({
-                variables: {
-                  occupation: {
-                    term: occupation.term,
-                    experience: null,
-                  },
+        <Downshift
+          itemToString={item => (item ? item.term : '')}
+          onChange={occupation => {
+            createOccupation({
+              variables: {
+                occupation: {
+                  term: occupation.term,
+                  experience: null,
                 },
-              })
-              setQuery('')
-            }}
-          >
-            {({
-              getInputProps,
-              getItemProps,
-              getMenuProps,
-              isOpen,
-              inputValue,
-              highlightedIndex,
-            }) => (
-              <div>
+              },
+            })
+            setQuery('')
+          }}
+        >
+          {({
+            getInputProps,
+            getItemProps,
+            getMenuProps,
+            isOpen,
+            inputValue,
+            highlightedIndex,
+          }) => (
+            <div>
+              <InputContainer role="textbox">
                 <SearchInput
+                  border="none"
                   {...getInputProps({
                     name: 'search',
                     placeholder: 'Yrkesroll eller yrkesområde',
                     onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
                       setQuery(event.target.value),
-                    value: query,
+                    value:
+                      (occupationResult.occupation &&
+                        occupationResult.occupation.term) ||
+                      query,
+                    onKeyPress,
                   })}
                 />
 
-                {data && data.ontologyConcepts && (
-                  <SearchList isOpen={isOpen} {...getMenuProps()}>
-                    {isOpen
-                      ? data.ontologyConcepts
-                          .filter(
-                            (item: OntologyConceptResponse) =>
-                              !inputValue ||
-                              item.term
-                                .toLowerCase()
-                                .includes(inputValue.toLowerCase())
-                          )
-                          .map(
-                            (item: OntologyConceptResponse, index: number) => (
-                              <ListItem
-                                bg={
-                                  highlightedIndex === index
-                                    ? 'seashellPeach'
-                                    : 'white'
-                                }
-                                key={item.id}
-                                px="medium"
-                                {...getItemProps({
-                                  key: item.id,
-                                  index,
-                                  item,
-                                  dangerouslySetInnerHTML: highlightMarked(
-                                    inputValue,
-                                    item.term
-                                  ),
-                                })}
-                              />
-                            )
-                          )
-                      : null}
-                  </SearchList>
-                )}
-              </div>
-            )}
-          </Downshift>
-        )}
+                <RemoveButton
+                  data-testid="removeButton"
+                  onClick={() => {
+                    setQuery('')
+                    removeOccupationClient()
+                  }}
+                >
+                  {query || occupationResult.occupation ? (
+                    <img alt="close" src={close} />
+                  ) : null}
+                </RemoveButton>
+              </InputContainer>
+              {data && data.ontologyConcepts && (
+                <SearchList isOpen={isOpen} {...getMenuProps()}>
+                  {isOpen
+                    ? data.ontologyConcepts
+                        .filter(
+                          (item: OntologyConceptResponse) =>
+                            !inputValue ||
+                            item.term
+                              .toLowerCase()
+                              .includes(inputValue.toLowerCase())
+                        )
+                        .map((item: OntologyConceptResponse, index: number) => (
+                          <ListItem
+                            bg={
+                              highlightedIndex === index
+                                ? 'seashellPeach'
+                                : 'white'
+                            }
+                            key={item.id}
+                            px="medium"
+                            {...getItemProps({
+                              key: item.id,
+                              index,
+                              item,
+                              dangerouslySetInnerHTML: highlightMarked(
+                                inputValue,
+                                item.term
+                              ),
+                            })}
+                          />
+                        ))
+                    : null}
+                </SearchList>
+              )}
+            </div>
+          )}
+        </Downshift>
       </Grid>
     </RegistrationLayout>
   )

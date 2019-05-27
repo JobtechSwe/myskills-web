@@ -64,7 +64,7 @@ Tag.defaultProps = {
   borderRadius: '96px',
   cursor: 'pointer',
   opacity: 1.0,
-  p: '12px 24px',
+  p: '12px 16px',
   variant: 'default',
 }
 

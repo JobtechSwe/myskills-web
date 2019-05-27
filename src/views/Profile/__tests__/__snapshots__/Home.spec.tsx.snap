@@ -6,7 +6,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
     class="css-1wk798u"
   >
     <div
-      class="css-1bqxkm"
+      class="css-11sia2j"
     >
       <button
         class="css-ffgl9m"
@@ -17,7 +17,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
         />
       </button>
       <div
-        class="css-1jo84sd"
+        class="css-19o3oa4"
       >
         <p
           class="css-twz9yi"
@@ -42,7 +42,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
       </p>
     </div>
     <div
-      class="css-29r7oe"
+      class="css-1481orm"
     >
       <div
         class="css-1co92un"
@@ -92,7 +92,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
       </div>
     </div>
     <div
-      class="css-29r7oe"
+      class="css-1481orm"
     >
       <div
         class="css-1y75uhg"
@@ -222,7 +222,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
       </div>
     </div>
     <div
-      class="css-29r7oe"
+      class="css-1481orm"
     >
       <div
         class="css-1y75uhg"
@@ -302,10 +302,10 @@ exports[`views/profile/Home should render with profile data 1`] = `
       </div>
     </div>
     <div
-      class="css-1ugbht8"
+      class="css-1fxw16y"
     >
       <div
-        class="css-66xcb5"
+        class="css-12gbme"
       >
         <h2
           class="css-nj1l0l"
@@ -317,7 +317,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
           Kontakt
         </h2>
         <div
-          class="css-11hhein"
+          class="css-1ah7ap"
         >
           <p
             class="css-147qp1h"
@@ -356,7 +356,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
       </div>
     </div>
     <div
-      class="css-1iewklz"
+      class="css-144p7d0"
     >
       <a
         class="css-tzjau4"
@@ -372,7 +372,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
           width="inherit"
         >
           <div
-            class="css-6591i1"
+            class="css-lo5jji"
           >
             <svg
               fill="none"
@@ -404,7 +404,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
           width="inherit"
         >
           <div
-            class="css-6591i1"
+            class="css-lo5jji"
           >
             <svg
               fill="none"

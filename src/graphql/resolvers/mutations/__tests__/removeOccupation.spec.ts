@@ -1,4 +1,4 @@
-import { removeOccupation } from '../removeOccupation'
+import { removeOccupationClient } from '../removeOccupation'
 import { GET_OCCUPATION_CLIENT } from '../createOccupation'
 
 let cache: any
@@ -17,16 +17,18 @@ beforeEach(() => {
 
 describe('resolvers/removeOccupation', () => {
   it('removes occupation', () => {
-    removeOccupation({}, {}, cache)
+    removeOccupationClient({}, {}, cache)
 
     expect(writeQueryMock).toHaveBeenCalledWith({
       query: GET_OCCUPATION_CLIENT,
-      data: null,
+      data: {
+        occupation: null,
+      },
     })
   })
 
   it('returns true', () => {
-    const result = removeOccupation({}, {}, cache)
+    const result = removeOccupationClient({}, {}, cache)
 
     expect(result).toEqual(true)
   })

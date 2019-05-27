@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { removeTypename } from '../SaveCV'
+import { removeTypename } from 'views/CreateProfile/SaveCV'
 
 describe('views/SaveCV', () => {
   describe('#removeTypename', () => {
@@ -29,7 +29,7 @@ describe('views/SaveCV', () => {
           },
           __typename: 'Occupation',
         },
-        contact: {
+        profile: {
           name: 'lasse kongo',
           email: 'lassekongo@example.com',
           telephone: '0123456677',
@@ -59,7 +59,7 @@ describe('views/SaveCV', () => {
             years: 2,
           },
         },
-        contact: {
+        profile: {
           name: 'lasse kongo',
           email: 'lassekongo@example.com',
           telephone: '0123456677',

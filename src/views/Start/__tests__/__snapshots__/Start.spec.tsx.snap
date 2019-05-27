@@ -3,29 +3,32 @@
 exports[`views/Start renders Start 1`] = `
 <div>
   <div
-    class="css-98ud7u"
+    class="css-dv50ng"
   >
     <div
-      class="css-1vad0jj"
+      class="css-1fq4wiq"
+      height="100%"
     >
       <img
         alt="logo"
+        class="css-1wixaj7"
         src="logo.svg"
       />
       <hr
-        class="css-15g94ap"
+        class="css-j1x5w3"
       />
       <p
-        class="css-rhpk2r"
+        class="css-g2loao"
         color="persianBlue"
         font-family="default"
         font-size="small"
+        font-weight="bold"
       >
-        Ditt digitala CV
+        ditt digitala CV
       </p>
       <img
         alt="clouds"
-        class="css-smyzqs"
+        class="css-1d1a3ay"
         src="clouds.svg"
       />
       <a
@@ -37,7 +40,7 @@ exports[`views/Start renders Start 1`] = `
         width="1"
       >
         <button
-          class="css-sccnw7"
+          class="css-11gcybv"
           font-family="default"
           font-size="medium"
           width="1"
@@ -54,7 +57,7 @@ exports[`views/Start renders Start 1`] = `
         width="1"
       >
         <button
-          class="css-pgx0ci"
+          class="css-1xukb9o"
           font-family="default"
           font-size="medium"
           width="1"
@@ -71,7 +74,7 @@ exports[`views/Start renders Start 1`] = `
         </button>
       </a>
       <div
-        class="css-efe99a"
+        class="css-fzs6az"
       >
         <img
           alt="info icon"
@@ -100,8 +103,8 @@ exports[`views/Start renders Start 1`] = `
     class="css-bfkqop"
   >
     <h2
-      class="css-1vdlfou"
-      color="cloudBurst"
+      class="css-1ukgmsw"
+      color="black"
       font-family="default"
       font-size="24"
     >
@@ -109,8 +112,8 @@ exports[`views/Start renders Start 1`] = `
     </h2>
     <div>
       <h3
-        class="css-1cxfzx1"
-        color="cloudBurst"
+        class="css-1e75y3k"
+        color="black"
         font-family="default"
         font-size="16"
         font-weight="bold"
@@ -118,8 +121,8 @@ exports[`views/Start renders Start 1`] = `
         Skapa din profil
       </h3>
       <p
-        class="css-17kp8oa"
-        color="cloudBurst"
+        class="css-msqe90"
+        color="black"
         font-family="default"
         font-size="small"
       >
@@ -128,8 +131,8 @@ exports[`views/Start renders Start 1`] = `
     </div>
     <div>
       <h3
-        class="css-1cxfzx1"
-        color="cloudBurst"
+        class="css-1e75y3k"
+        color="black"
         font-family="default"
         font-size="16"
         font-weight="bold"
@@ -137,8 +140,8 @@ exports[`views/Start renders Start 1`] = `
         Lagra ditt CV
       </h3>
       <p
-        class="css-17kp8oa"
-        color="cloudBurst"
+        class="css-msqe90"
+        color="black"
         font-family="default"
         font-size="small"
       >
@@ -147,8 +150,8 @@ exports[`views/Start renders Start 1`] = `
     </div>
     <div>
       <h3
-        class="css-1cxfzx1"
-        color="cloudBurst"
+        class="css-1e75y3k"
+        color="black"
         font-family="default"
         font-size="16"
         font-weight="bold"
@@ -156,8 +159,8 @@ exports[`views/Start renders Start 1`] = `
         Spara tid
       </h3>
       <p
-        class="css-17kp8oa"
-        color="cloudBurst"
+        class="css-msqe90"
+        color="black"
         font-family="default"
         font-size="small"
       >

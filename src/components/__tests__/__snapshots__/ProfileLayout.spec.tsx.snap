@@ -6,7 +6,7 @@ exports[`components/ProfileLayout renders 1`] = `
     class="css-1wk798u"
   >
     <div
-      class="css-1bqxkm"
+      class="css-11sia2j"
     >
       <button
         class="css-ffgl9m"
@@ -17,7 +17,7 @@ exports[`components/ProfileLayout renders 1`] = `
         />
       </button>
       <div
-        class="css-1jo84sd"
+        class="css-19o3oa4"
       >
         <p
           class="css-twz9yi"
@@ -45,7 +45,7 @@ exports[`components/ProfileLayout renders 1`] = `
       class="css-1wk798u"
     >
       <div
-        class="css-1bqxkm"
+        class="css-11sia2j"
       >
         <button
           class="css-ffgl9m"
@@ -56,7 +56,7 @@ exports[`components/ProfileLayout renders 1`] = `
           />
         </button>
         <div
-          class="css-1jo84sd"
+          class="css-19o3oa4"
         >
           <p
             class="css-twz9yi"
@@ -80,157 +80,48 @@ exports[`components/ProfileLayout renders 1`] = `
           Inget namn angivet
         </p>
       </div>
-      <ul
-        class="css-1e0t8yk"
-        data-testid="timelineWrapper"
-      >
-        <li
-          class="css-vs8u3f"
-        >
-          <div
-            class="css-9p05dg"
-          >
-            <img
-              alt="dot"
-              src="elipse.svg"
-            />
-          </div>
-          <div
-            class="css-1d7vte8"
-          >
-            <div>
-              <div
-                class="css-1dxws33"
-              >
-                Frontendutvecklare
-              </div>
-              <div
-                class="css-vuusdt"
-              >
-                Iteam
-                <img
-                  alt="divider"
-                  class="css-zm2lsd"
-                  src="dot.svg"
-                />
-                2018/11
-                 - 
-                2019/04
-              </div>
-            </div>
-            <div
-              class="css-1eid011"
-            >
-              <img
-                alt="edit"
-                src="pen.svg"
-              />
-            </div>
-          </div>
-        </li>
-        <li
-          class="css-vs8u3f"
-        >
-          <div
-            class="css-9p05dg"
-          >
-            <img
-              alt="dot"
-              src="elipse.svg"
-            />
-          </div>
-          <div
-            class="css-1d7vte8"
-          >
-            <div>
-              <div
-                class="css-1dxws33"
-              >
-                Frontendutvecklare
-                <span
-                  class="css-uahybi"
-                >
-                  , 
-                  Kandidat
-                </span>
-              </div>
-              <div
-                class="css-vuusdt"
-              >
-                Webbutveckling
-                <img
-                  alt="divider"
-                  class="css-zm2lsd"
-                  src="dot.svg"
-                />
-                2012/01
-                 - 
-                2018/10
-              </div>
-            </div>
-            <div
-              class="css-1eid011"
-            >
-              <img
-                alt="edit"
-                src="pen.svg"
-              />
-            </div>
-          </div>
-        </li>
-        <li
-          class="css-vs8u3f"
-        >
-          <div
-            class="css-9p05dg"
-          >
-            <img
-              alt="dot"
-              src="elipse.svg"
-            />
-          </div>
-          <div
-            class="css-1d7vte8"
-          >
-            <div>
-              <div
-                class="css-1dxws33"
-              >
-                Pistvaktsutbildning
-                <span
-                  class="css-uahybi"
-                >
-                  , 
-                  Diplomerad
-                </span>
-              </div>
-              <div
-                class="css-vuusdt"
-              >
-                Skistar
-                <img
-                  alt="divider"
-                  class="css-zm2lsd"
-                  src="dot.svg"
-                />
-                2009/01
-                 - 
-                2011/11
-              </div>
-            </div>
-            <div
-              class="css-1eid011"
-            >
-              <img
-                alt="edit"
-                src="pen.svg"
-              />
-            </div>
-          </div>
-        </li>
-      </ul>
       <div
-        class="css-1iewklz"
+        class="sk-fading-circle css-rcik79"
+      >
+        <div
+          class="sk-circle1 sk-circle"
+        />
+        <div
+          class="sk-circle2 sk-circle"
+        />
+        <div
+          class="sk-circle3 sk-circle"
+        />
+        <div
+          class="sk-circle4 sk-circle"
+        />
+        <div
+          class="sk-circle5 sk-circle"
+        />
+        <div
+          class="sk-circle6 sk-circle"
+        />
+        <div
+          class="sk-circle7 sk-circle"
+        />
+        <div
+          class="sk-circle8 sk-circle"
+        />
+        <div
+          class="sk-circle9 sk-circle"
+        />
+        <div
+          class="sk-circle10 sk-circle"
+        />
+        <div
+          class="sk-circle11 sk-circle"
+        />
+        <div
+          class="sk-circle12 sk-circle"
+        />
+      </div>
+      <div
+        class="css-144p7d0"
       >
         <a
           class="css-tzjau4"
@@ -246,7 +137,7 @@ exports[`components/ProfileLayout renders 1`] = `
             width="inherit"
           >
             <div
-              class="css-6591i1"
+              class="css-lo5jji"
             >
               <svg
                 fill="none"
@@ -278,7 +169,7 @@ exports[`components/ProfileLayout renders 1`] = `
             width="inherit"
           >
             <div
-              class="css-6591i1"
+              class="css-lo5jji"
             >
               <svg
                 fill="none"
@@ -299,7 +190,7 @@ exports[`components/ProfileLayout renders 1`] = `
       </div>
     </div>
     <div
-      class="css-1iewklz"
+      class="css-144p7d0"
     >
       <a
         class="css-tzjau4"
@@ -315,7 +206,7 @@ exports[`components/ProfileLayout renders 1`] = `
           width="inherit"
         >
           <div
-            class="css-6591i1"
+            class="css-lo5jji"
           >
             <svg
               fill="none"
@@ -347,7 +238,7 @@ exports[`components/ProfileLayout renders 1`] = `
           width="inherit"
         >
           <div
-            class="css-6591i1"
+            class="css-lo5jji"
           >
             <svg
               fill="none"
@@ -376,7 +267,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
     class="css-1wk798u"
   >
     <div
-      class="css-1bqxkm"
+      class="css-11sia2j"
     >
       <button
         class="css-ffgl9m"
@@ -387,7 +278,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
         />
       </button>
       <div
-        class="css-1jo84sd"
+        class="css-19o3oa4"
       >
         <p
           class="css-twz9yi"
@@ -411,265 +302,9 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
         Example Persson
       </p>
     </div>
+    <div />
     <div
-      class="css-1wk798u"
-    >
-      <div
-        class="css-1bqxkm"
-      >
-        <button
-          class="css-ffgl9m"
-        >
-          <img
-            alt="save_as_pdf"
-            src="save_pdf.svg"
-          />
-        </button>
-        <div
-          class="css-1jo84sd"
-        >
-          <p
-            class="css-twz9yi"
-            font-family="default"
-            font-size="medium"
-          >
-            SYSTEMUTVECKLARE
-          </p>
-          <img
-            alt="edit"
-            class="css-ns6bdc"
-            src="edit.svg"
-          />
-        </div>
-        <p
-          class="css-qlepwc"
-          font-family="default"
-          font-size="large"
-          font-weight="bold"
-        >
-          Example Persson
-        </p>
-      </div>
-      <ul
-        class="css-1e0t8yk"
-        data-testid="timelineWrapper"
-      >
-        <li
-          class="css-vs8u3f"
-        >
-          <div
-            class="css-9p05dg"
-          >
-            <img
-              alt="dot"
-              src="elipse.svg"
-            />
-          </div>
-          <div
-            class="css-1d7vte8"
-          >
-            <div>
-              <div
-                class="css-1dxws33"
-              >
-                Frontendutvecklare
-              </div>
-              <div
-                class="css-vuusdt"
-              >
-                Iteam
-                <img
-                  alt="divider"
-                  class="css-zm2lsd"
-                  src="dot.svg"
-                />
-                2018/11
-                 - 
-                2019/04
-              </div>
-            </div>
-            <div
-              class="css-1eid011"
-            >
-              <img
-                alt="edit"
-                src="pen.svg"
-              />
-            </div>
-          </div>
-        </li>
-        <li
-          class="css-vs8u3f"
-        >
-          <div
-            class="css-9p05dg"
-          >
-            <img
-              alt="dot"
-              src="elipse.svg"
-            />
-          </div>
-          <div
-            class="css-1d7vte8"
-          >
-            <div>
-              <div
-                class="css-1dxws33"
-              >
-                Frontendutvecklare
-                <span
-                  class="css-uahybi"
-                >
-                  , 
-                  Kandidat
-                </span>
-              </div>
-              <div
-                class="css-vuusdt"
-              >
-                Webbutveckling
-                <img
-                  alt="divider"
-                  class="css-zm2lsd"
-                  src="dot.svg"
-                />
-                2012/01
-                 - 
-                2018/10
-              </div>
-            </div>
-            <div
-              class="css-1eid011"
-            >
-              <img
-                alt="edit"
-                src="pen.svg"
-              />
-            </div>
-          </div>
-        </li>
-        <li
-          class="css-vs8u3f"
-        >
-          <div
-            class="css-9p05dg"
-          >
-            <img
-              alt="dot"
-              src="elipse.svg"
-            />
-          </div>
-          <div
-            class="css-1d7vte8"
-          >
-            <div>
-              <div
-                class="css-1dxws33"
-              >
-                Pistvaktsutbildning
-                <span
-                  class="css-uahybi"
-                >
-                  , 
-                  Diplomerad
-                </span>
-              </div>
-              <div
-                class="css-vuusdt"
-              >
-                Skistar
-                <img
-                  alt="divider"
-                  class="css-zm2lsd"
-                  src="dot.svg"
-                />
-                2009/01
-                 - 
-                2011/11
-              </div>
-            </div>
-            <div
-              class="css-1eid011"
-            >
-              <img
-                alt="edit"
-                src="pen.svg"
-              />
-            </div>
-          </div>
-        </li>
-      </ul>
-      <div
-        class="css-1iewklz"
-      >
-        <a
-          class="css-tzjau4"
-          color="persianBlue"
-          font-weight="500"
-          href="/profil/"
-          width="100%"
-        >
-          <button
-            class="css-1ifp9gy"
-            font-family="default"
-            font-size="medium"
-            width="inherit"
-          >
-            <div
-              class="css-6591i1"
-            >
-              <svg
-                fill="none"
-                height="18"
-                viewBox="0 0 18 18"
-                width="18"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M9 9C10.6575 9 12 7.6575 12 6C12 4.3425 10.6575 3 9 3C7.3425 3 6 4.3425 6 6C6 7.6575 7.3425 9 9 9ZM9 10.5C6.9975 10.5 3 11.505 3 13.5V15H15V13.5C15 11.505 11.0025 10.5 9 10.5Z"
-                  fill="black"
-                />
-              </svg>
-              Min profil
-            </div>
-          </button>
-        </a>
-        <a
-          class="css-tzjau4"
-          color="persianBlue"
-          font-weight="500"
-          href="//tidslinje"
-          width="100%"
-        >
-          <button
-            class="css-1ifp9gy"
-            font-family="default"
-            font-size="medium"
-            width="inherit"
-          >
-            <div
-              class="css-6591i1"
-            >
-              <svg
-                fill="none"
-                height="10"
-                viewBox="0 0 21 10"
-                width="21"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M20.0571 1.66667C20.0571 2.58333 19.2723 3.33333 18.313 3.33333C18.156 3.33333 18.0077 3.31667 17.8682 3.275L14.7635 6.23333C14.8071 6.36667 14.8246 6.51667 14.8246 6.66667C14.8246 7.58333 14.0397 8.33333 13.0804 8.33333C12.1211 8.33333 11.3362 7.58333 11.3362 6.66667C11.3362 6.51667 11.3536 6.36667 11.3973 6.23333L9.17342 4.10833C9.03388 4.15 8.87691 4.16667 8.71993 4.16667C8.56295 4.16667 8.40598 4.15 8.26644 4.10833L4.29842 7.90833C4.34202 8.04167 4.35947 8.18333 4.35947 8.33333C4.35947 9.25 3.57458 10 2.61528 10C1.65598 10 0.871094 9.25 0.871094 8.33333C0.871094 7.41667 1.65598 6.66667 2.61528 6.66667C2.77226 6.66667 2.92051 6.68333 3.06005 6.725L7.03679 2.93333C6.99319 2.8 6.97574 2.65 6.97574 2.5C6.97574 1.58333 7.76063 0.833333 8.71993 0.833333C9.67923 0.833333 10.4641 1.58333 10.4641 2.5C10.4641 2.65 10.4467 2.8 10.4031 2.93333L12.6269 5.05833C12.7664 5.01667 12.9234 5 13.0804 5C13.2374 5 13.3943 5.01667 13.5339 5.05833L16.6298 2.09167C16.5862 1.95833 16.5688 1.81667 16.5688 1.66667C16.5688 0.75 17.3536 0 18.313 0C19.2723 0 20.0571 0.75 20.0571 1.66667Z"
-                  fill="black"
-                />
-              </svg>
-              Tidslinje
-            </div>
-          </button>
-        </a>
-      </div>
-    </div>
-    <div
-      class="css-1iewklz"
+      class="css-144p7d0"
     >
       <a
         class="css-tzjau4"
@@ -685,7 +320,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
           width="inherit"
         >
           <div
-            class="css-6591i1"
+            class="css-lo5jji"
           >
             <svg
               fill="none"
@@ -717,7 +352,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
           width="inherit"
         >
           <div
-            class="css-6591i1"
+            class="css-lo5jji"
           >
             <svg
               fill="none"

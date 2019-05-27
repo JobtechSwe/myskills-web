@@ -1,7 +1,7 @@
 import * as React from 'react'
 import ButtonToInput from '../ButtonToInput'
 import { fireEvent } from 'react-testing-library'
-import { render } from '../../utils/test-utils'
+import { render } from 'utils/test-utils'
 
 describe('components/ButtonToInput', () => {
   it('calls onSelect with input value', async () => {

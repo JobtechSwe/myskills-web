@@ -1,5 +1,5 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { getCookie } from '../../../utils/helpers'
+import { getCookie } from 'utils/helpers'
 
 export const isLoggedIn = (
   _: any,

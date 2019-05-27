@@ -1,5 +1,5 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { storageHelper } from '../../../utils/helpers'
+import { storageHelper } from 'utils/helpers'
 import { GET_TRAITS_CLIENT } from './addTrait'
 
 export const removeTrait = (

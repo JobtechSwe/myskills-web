@@ -1,10 +1,10 @@
 import * as React from 'react'
 import AddTraits, { ADD_TRAIT } from '../AddTraits'
 import { GET_ONTOLOGY_CONCEPTS } from '../ChooseProfession'
-import { render } from '../../../utils/test-utils'
+import { render } from 'utils/test-utils'
 import { waitForElement, fireEvent } from 'react-testing-library'
-import { OntologyType } from '../../../generated/myskills.d'
-import { GET_TRAITS_CLIENT } from '../../../graphql/resolvers/mutations/addTrait'
+import { OntologyType } from 'generated/myskills.d'
+import { GET_TRAITS_CLIENT } from 'graphql/resolvers/mutations/addTrait'
 
 describe('views/AddTraits', () => {
   let withResultsMock: any

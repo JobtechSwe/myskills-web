@@ -1,7 +1,7 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { Experience } from '../../../generated/myskills'
+import { Experience } from 'generated/myskills'
 import { GET_EXPERIENCES_CLIENT } from './addExperience'
-import { storageHelper } from '../../../utils/helpers'
+import { storageHelper } from 'utils/helpers'
 
 export const updateExperienceClient = (
   _: any,
@@ -13,7 +13,7 @@ export const updateExperienceClient = (
   })
 
   const updatedExperienceList = experiences.map((e: Experience) => {
-    if (e.id === experience.id) {
+    if (e.sourceId === experience.sourceId) {
       return { ...experience, __typename: 'Experience' }
     }
 

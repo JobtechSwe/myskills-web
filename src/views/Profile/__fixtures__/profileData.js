@@ -4,6 +4,12 @@ export default {
     experience: { years: 4, __typename: 'OccupationExperience' },
     __typename: 'Occupation',
   },
+  profile: {
+    name: 'Lasse Kongo',
+    email: 'lasse@kongo.se',
+    telephone: '012345678',
+    __typename: 'Profile',
+  },
   experiences: [
     {
       id: 'a2a98e2f-e0df-46b0-a516-c8fa34f3fcda',

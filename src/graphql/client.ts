@@ -6,16 +6,18 @@ import { onError } from 'apollo-link-error'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { HttpLink } from 'apollo-link-http'
 import { getMainDefinition } from 'apollo-utilities'
-import { getCookie, removeCookie, redirect } from '../utils/helpers'
+import { getCookie, removeCookie, redirect } from 'utils/helpers'
 import {
   Education,
   Experience,
   Language,
   Occupation,
   Skill,
-} from '../generated/myskills'
+  Profile,
+} from 'generated/myskills'
+
 import resolvers from './resolvers'
-import { storageHelper } from '../utils/helpers'
+import { storageHelper } from 'utils/helpers'
 
 const httpLink = new HttpLink({
   uri: process.env.REACT_APP_GRAPHQL_URI,
@@ -56,7 +58,7 @@ export const deconstructJWT = (token: string) => {
   return JSON.parse(decodeURIComponent(escape(window.atob(segments[1]))))
 }
 
-const authLink = setContext((root, { headers }) => {
+const authLink = setContext((_root, { headers }) => {
   const token = getCookie('token')
 
   // Redirect to login if no token
@@ -109,10 +111,7 @@ const terminatingLink = split(
   authLink.concat(httpLink)
 )
 
-export type Contact = {
-  name: string
-  email: string
-  telephone: string
+export interface IClientProfileProps extends Profile {
   __typename: string
 }
 
@@ -125,7 +124,7 @@ export type LocalStateProps = {
   traits: string[]
   whoAmI: string
   image: string
-  contact: Contact
+  profile: IClientProfileProps
 }
 
 const initialState: LocalStateProps = {
@@ -137,11 +136,11 @@ const initialState: LocalStateProps = {
   traits: [],
   whoAmI: '',
   image: '',
-  contact: {
+  profile: {
     name: '',
     email: '',
     telephone: '',
-    __typename: 'ContactInformation',
+    __typename: 'Profile',
   },
 }
 

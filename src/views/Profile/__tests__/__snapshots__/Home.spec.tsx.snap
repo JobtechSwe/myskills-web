@@ -6,7 +6,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
     class="css-1wk798u"
   >
     <div
-      class="css-1bqxkm"
+      class="css-11sia2j"
     >
       <button
         class="css-ffgl9m"
@@ -17,7 +17,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
         />
       </button>
       <div
-        class="css-1jo84sd"
+        class="css-19o3oa4"
       >
         <p
           class="css-twz9yi"
@@ -42,22 +42,26 @@ exports[`views/profile/Home should render with profile data 1`] = `
       </p>
     </div>
     <div
-      class="css-29r7oe"
+      class="css-1481orm"
     >
       <div
         class="css-1co92un"
       >
-        <a
-          class="css-jbzzha"
-          color="persianBlue"
-          font-weight="500"
-          href="/editplace"
+        <div
+          class="css-1cyw0ib"
         >
-          <img
-            alt="Edit data"
-            src="edit.svg"
-          />
-        </a>
+          <a
+            class="css-z4cped"
+            color="persianBlue"
+            font-weight="500"
+            href="/editplace"
+          >
+            <img
+              alt="Edit data"
+              src="edit.svg"
+            />
+          </a>
+        </div>
         <p
           class="css-wacz66"
           font-family="default"
@@ -69,37 +73,45 @@ exports[`views/profile/Home should render with profile data 1`] = `
       <div
         class="css-16kezy5"
       >
-        <a
-          class="css-gkwnsu"
-          color="persianBlue"
-          font-weight="500"
-          href="/editplace"
+        <div
+          class="css-o2v43c"
         >
-          <img
-            alt="Edit data"
-            src="edit_image.svg"
-          />
-        </a>
+          <a
+            class="css-z4cped"
+            color="persianBlue"
+            font-weight="500"
+            href="/editplace"
+          >
+            <img
+              alt="Edit data"
+              src="edit_image.svg"
+            />
+          </a>
+        </div>
         <div />
       </div>
     </div>
     <div
-      class="css-29r7oe"
+      class="css-1481orm"
     >
       <div
         class="css-1y75uhg"
       >
-        <a
-          class="css-jbzzha"
-          color="persianBlue"
-          font-weight="500"
-          href="/editplace"
+        <div
+          class="css-1cyw0ib"
         >
-          <img
-            alt="Edit data"
-            src="edit.svg"
-          />
-        </a>
+          <a
+            class="css-z4cped"
+            color="persianBlue"
+            font-weight="500"
+            href="/editplace"
+          >
+            <img
+              alt="Edit data"
+              src="edit.svg"
+            />
+          </a>
+        </div>
         <h2
           class="css-an7vzf"
           color="black"
@@ -152,17 +164,21 @@ exports[`views/profile/Home should render with profile data 1`] = `
       <div
         class="css-1y75uhg"
       >
-        <a
-          class="css-jbzzha"
-          color="persianBlue"
-          font-weight="500"
-          href="/editplace"
+        <div
+          class="css-1cyw0ib"
         >
-          <img
-            alt="Edit data"
-            src="edit.svg"
-          />
-        </a>
+          <a
+            class="css-z4cped"
+            color="persianBlue"
+            font-weight="500"
+            href="/editplace"
+          >
+            <img
+              alt="Edit data"
+              src="edit.svg"
+            />
+          </a>
+        </div>
         <h2
           class="css-an7vzf"
           color="black"
@@ -206,22 +222,26 @@ exports[`views/profile/Home should render with profile data 1`] = `
       </div>
     </div>
     <div
-      class="css-29r7oe"
+      class="css-1481orm"
     >
       <div
         class="css-1y75uhg"
       >
-        <a
-          class="css-jbzzha"
-          color="persianBlue"
-          font-weight="500"
-          href="/editplace"
+        <div
+          class="css-1cyw0ib"
         >
-          <img
-            alt="Edit data"
-            src="edit.svg"
-          />
-        </a>
+          <a
+            class="css-z4cped"
+            color="persianBlue"
+            font-weight="500"
+            href="/editplace"
+          >
+            <img
+              alt="Edit data"
+              src="edit.svg"
+            />
+          </a>
+        </div>
         <h2
           class="css-an7vzf"
           color="black"
@@ -241,17 +261,21 @@ exports[`views/profile/Home should render with profile data 1`] = `
       <div
         class="css-1y75uhg"
       >
-        <a
-          class="css-jbzzha"
-          color="persianBlue"
-          font-weight="500"
-          href="/editplace"
+        <div
+          class="css-1cyw0ib"
         >
-          <img
-            alt="Edit data"
-            src="edit.svg"
-          />
-        </a>
+          <a
+            class="css-z4cped"
+            color="persianBlue"
+            font-weight="500"
+            href="/editplace"
+          >
+            <img
+              alt="Edit data"
+              src="edit.svg"
+            />
+          </a>
+        </div>
         <h2
           class="css-an7vzf"
           color="black"
@@ -265,7 +289,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
           font-family="default"
           font-size="small"
         >
-          4 års erfarenhet som 
+          4 års erfarenhet som
                   Systemutvecklare.
         </p>
         <p
@@ -278,7 +302,61 @@ exports[`views/profile/Home should render with profile data 1`] = `
       </div>
     </div>
     <div
-      class="css-1iewklz"
+      class="css-1fxw16y"
+    >
+      <div
+        class="css-12gbme"
+      >
+        <h2
+          class="css-nj1l0l"
+          color="black"
+          font-family="default"
+          font-size="medium"
+          width="100%"
+        >
+          Kontakt
+        </h2>
+        <div
+          class="css-1ah7ap"
+        >
+          <p
+            class="css-147qp1h"
+            font-family="default"
+            font-size="small"
+          >
+            lasse@kongo.se
+          </p>
+          <p
+            class="css-1s5khgh"
+            font-family="default"
+            font-size="25"
+          >
+            ·
+          </p>
+          <p
+            class="css-147qp1h"
+            font-family="default"
+            font-size="small"
+          >
+            012345678
+          </p>
+          <a
+            class="css-gcz916"
+            color="persianBlue"
+            font-weight="500"
+            href="/editplace"
+            mb="4px"
+          >
+            <img
+              alt="Edit profile"
+              src="edit.svg"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      class="css-144p7d0"
     >
       <a
         class="css-tzjau4"
@@ -294,7 +372,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
           width="inherit"
         >
           <div
-            class="css-6591i1"
+            class="css-lo5jji"
           >
             <svg
               fill="none"
@@ -326,7 +404,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
           width="inherit"
         >
           <div
-            class="css-6591i1"
+            class="css-lo5jji"
           >
             <svg
               fill="none"

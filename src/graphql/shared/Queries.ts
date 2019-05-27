@@ -13,3 +13,43 @@ export const GET_TAXONOMY = gql`
     }
   }
 `
+
+export const GET_RELATED_SKILLS = gql`
+  query ontologyRelated(
+    $concepts: [String!]
+    $limit: Int
+    $type: OntologyType!
+  ) {
+    ontologyRelated(
+      params: { concepts: $concepts, type: $type, limit: $limit }
+    ) {
+      relations {
+        term
+        id
+        score
+        type
+      }
+    }
+  }
+`
+
+export const GET_SKILLS_CLIENT = gql`
+  query getSkillsClient {
+    skills @client {
+      term
+      sourceId
+      type
+    }
+  }
+`
+
+export const GET_OCCUPATION_CLIENT = gql`
+  query getOccupationClient {
+    occupation @client {
+      term
+      experience {
+        years
+      }
+    }
+  }
+`

@@ -1,20 +1,22 @@
 import React from 'react'
-import StepIndicator from '../StepIndicator'
+import StepIndicator from 'components/StepIndicator'
 import styled from '@emotion/styled'
-import Button from '../Button'
+import Button from 'components/Button'
 import { Paragraph } from '../Typography'
-import Grid from '../Grid'
-import Flex from '../Flex'
-import { handleFocusKeyDown } from '../../utils/helpers'
-import Icon from '../../assets/icons/navigation_arrow.svg'
+import Grid from 'components/Grid'
+import Flex from 'components/Flex'
+import { handleFocusKeyDown } from 'utils/helpers'
+import Icon from 'assets/icons/navigation_arrow.svg'
 import { RouteComponentProps, navigate } from '@reach/router'
 
 interface RegistrationLayoutProps {
+  disableNextBtn?: boolean
   step: number
   nextPath?: string
   nextBtnText?: string
   childFn?: any
   headerText: string
+  showNextButton?: boolean
   childFnArgs?: any
 }
 
@@ -44,11 +46,13 @@ const onNextClick = async (
 const RegistrationLayout: React.FC<
   RouteComponentProps & RegistrationLayoutProps
 > = ({
+  disableNextBtn = false,
   children,
   step,
   nextPath,
   nextBtnText = 'Fortsätt',
   headerText,
+  showNextButton = true,
   childFn,
   childFnArgs = {},
 }) => {
@@ -72,14 +76,26 @@ const RegistrationLayout: React.FC<
 
           <StepIndicator step={step} />
         </Flex>
-        <Paragraph lineHeight="100%">{headerText}</Paragraph>
+        <Paragraph lineHeight="100%" mt="0">
+          {headerText}
+        </Paragraph>
       </NavigationContainer>
       {children}
-      {nextPath && (
+      {nextPath && showNextButton && (
         <Flex justifyContent="center">
-          <Button onClick={() => onNextClick(nextPath, childFn, childFnArgs)}>
-            {nextBtnText}
-          </Button>
+          {disableNextBtn ? (
+            <Button data-testid="okButton" variant="inActive">
+              {nextBtnText}
+            </Button>
+          ) : (
+            <Button
+              data-testid="okButton"
+              onClick={() => onNextClick(nextPath, childFn, childFnArgs)}
+              variant={disableNextBtn ? 'inActive' : 'primary'}
+            >
+              {nextBtnText}
+            </Button>
+          )}
         </Flex>
       )}
     </Grid>

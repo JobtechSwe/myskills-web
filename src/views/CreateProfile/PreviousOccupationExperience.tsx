@@ -9,9 +9,9 @@ import { H1, Paragraph } from '../../components/Typography'
 import Button from '../../components/Button'
 import Slider from '../../components/Slider'
 import { useQuery, useMutation } from 'react-apollo-hooks'
-import { GET_OCCUPATION_CLIENT } from '../../graphql/resolvers/mutations/createOccupation'
+import { GET_OCCUPATION_CLIENT } from 'graphql/resolvers/mutations/createOccupation'
 import { CREATE_OCCUPATION_CLIENT } from './ChooseProfession'
-import RegistrationLayout from '../../components/Layout/RegistrationLayout'
+import RegistrationLayout from 'components/Layout/RegistrationLayout'
 import styled from '@emotion/styled'
 
 const Image = styled.img`
@@ -93,7 +93,7 @@ export const PreviousOccupationExperience: React.FC<RouteComponentProps> = ({
           Har du arbetat som {data.occupation.term.toLowerCase()} tidigare?
         </H1>
 
-        <Grid gridAutoFlow="column" gridGap={12} justifyContent="center">
+        <Grid gridGap={10} gridTemplateColumns="1fr 1fr" width="85%">
           <Button
             onClick={hasPreviousExperiencesClick}
             variant={

@@ -1,16 +1,16 @@
 import React, { useState, FormEvent, useEffect } from 'react'
 import { RouteComponentProps } from '@reach/router'
-import Input from '../../components/Input'
-import smartphoneLetter from '../../assets/illustrations/smarthpone_letter.svg'
-import IllustrationHeader from '../../components/IllustrationHeader'
-import Grid from '../../components/Grid'
-import { GET_CONTACT_CLIENT } from '../../graphql/resolvers/mutations/updateContactInformation'
+import Input from 'components/Input'
+import smartphoneLetter from 'assets/illustrations/smarthpone_letter.svg'
+import IllustrationHeader from 'components/IllustrationHeader'
+import Grid from 'components/Grid'
+import { GET_PROFILE_CLIENT } from 'graphql/resolvers/mutations/updateContactInformation'
 import { useMutation, useQuery } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
-import RegistrationLayout from '../../components/Layout/RegistrationLayout'
+import RegistrationLayout from 'components/Layout/RegistrationLayout'
 
 export const UPDATE_CONTACT_CLIENT = gql`
-  mutation updateContactInformation($data: ContactInput!) {
+  mutation updateContactInformation($data: ProfileInput!) {
     updateContactInformation(data: $data) @client {
       name
       email
@@ -21,10 +21,10 @@ export const UPDATE_CONTACT_CLIENT = gql`
 
 const AddContactInformation: React.FC<RouteComponentProps> = () => {
   const updateContactMutation = useMutation(UPDATE_CONTACT_CLIENT)
-  const { data: contactData } = useQuery(GET_CONTACT_CLIENT)
+  const { data: profileData } = useQuery(GET_PROFILE_CLIENT)
   const [inputData, setData] = useState({ name: '', email: '', telephone: '' })
 
-  useEffect(() => setData(contactData.contact), [contactData.contact])
+  useEffect(() => setData(profileData.profile), [profileData.profile])
 
   const handleChange = (key: string, val: string) => {
     setData({ ...inputData, [key]: val })

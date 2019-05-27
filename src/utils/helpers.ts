@@ -1,10 +1,11 @@
 import Cookies from 'js-cookie'
-import { LocalStateProps, Contact } from '../graphql/client'
+import { LocalStateProps } from '../graphql/client'
 import {
   EducationInput,
   Occupation,
   SkillInput,
   ExperienceInput,
+  ProfileInput,
 } from '../generated/myskills'
 
 export const getCookie = (name: string) => Cookies.get(name)
@@ -62,13 +63,13 @@ interface Image extends StorageEntryProps {
   data: string
 }
 
-interface ContactInformation extends StorageEntryProps {
-  type: 'contact'
-  data: Contact
+interface Profile extends StorageEntryProps {
+  type: 'profile'
+  data: ProfileInput
 }
 
 export type StorageEntry =
-  | ContactInformation
+  | Profile
   | Educations
   | Image
   | Experiences
@@ -76,6 +77,8 @@ export type StorageEntry =
   | Skills
   | Traits
   | WhoAmI
+
+export type StorageKeys = 'occupation' | 'educations' | 'skills' | 'experiences'
 
 export const storageHelper = {
   load: (initialState: LocalStateProps) =>
@@ -88,6 +91,7 @@ export const storageHelper = {
     ),
   set: (payload: StorageEntry) =>
     localStorage.setItem(payload.type, JSON.stringify(payload.data)),
+  remove: (key: StorageKeys) => localStorage.removeItem(key),
 }
 
 export const highlightMarked = (inputValue: string, term: string) => {

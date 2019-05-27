@@ -10,10 +10,10 @@ exports[`views/MatchSkills renders loading state 1`] = `
       class="css-208zbf"
     >
       <div
-        class="css-nshvkv"
+        class="css-vem3mr"
       >
         <div
-          class="css-cn959j"
+          class="css-1ek26aj"
           role="button"
           tabindex="0"
         >
@@ -23,7 +23,7 @@ exports[`views/MatchSkills renders loading state 1`] = `
           />
         </div>
         <div
-          class="css-1a620cz"
+          class="css-v96mrh"
         >
           <div
             class="css-njydrf"
@@ -46,7 +46,7 @@ exports[`views/MatchSkills renders loading state 1`] = `
         </div>
       </div>
       <p
-        class="css-1wtsfx0"
+        class="css-1d8t2vo"
         font-family="default"
         font-size="small"
       >
@@ -54,11 +54,10 @@ exports[`views/MatchSkills renders loading state 1`] = `
       </p>
     </nav>
     <div
-      class="css-13lzt9w"
+      class="css-wjxpyv"
     >
-      
       <h1
-        class="css-1h19gqr"
+        class="css-1jc8j5a"
         color="black"
         font-family="default"
         font-size="large"
@@ -66,8 +65,12 @@ exports[`views/MatchSkills renders loading state 1`] = `
       >
         Vilka är dina kompetenser?
       </h1>
+      <div
+        class="css-18ms0gs"
+        data-testid="tagList"
+      />
       <span
-        class="css-bhiavv"
+        class="css-m5xupf"
         cursor="pointer"
         opacity="1"
         role="button"
@@ -75,52 +78,13 @@ exports[`views/MatchSkills renders loading state 1`] = `
       >
         + Lägg till en kompetens
       </span>
-      <div
-        class="sk-fading-circle css-rcik79"
-      >
-        <div
-          class="sk-circle1 sk-circle"
-        />
-        <div
-          class="sk-circle2 sk-circle"
-        />
-        <div
-          class="sk-circle3 sk-circle"
-        />
-        <div
-          class="sk-circle4 sk-circle"
-        />
-        <div
-          class="sk-circle5 sk-circle"
-        />
-        <div
-          class="sk-circle6 sk-circle"
-        />
-        <div
-          class="sk-circle7 sk-circle"
-        />
-        <div
-          class="sk-circle8 sk-circle"
-        />
-        <div
-          class="sk-circle9 sk-circle"
-        />
-        <div
-          class="sk-circle10 sk-circle"
-        />
-        <div
-          class="sk-circle11 sk-circle"
-        />
-        <div
-          class="sk-circle12 sk-circle"
-        />
-      </div>
     </div>
     <div
-      class="css-djo2sl"
+      class="css-18cthkh"
     >
       <button
-        class="css-1fyzulv"
+        class="css-spuwu"
+        data-testid="okButton"
         font-family="default"
         font-size="medium"
       >

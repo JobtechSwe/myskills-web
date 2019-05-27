@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react'
 import styled from '@emotion/styled'
 import { InternalLink } from './Link'
-import editIcon from '../assets/icons/edit.svg'
-import editImageIcon from '../assets/icons/edit_image.svg'
+import editIcon from 'assets/icons/edit.svg'
+import editImageIcon from 'assets/icons/edit_image.svg'
 
 interface IProfileDataCardProps {
   children: ReactNode
@@ -19,16 +19,19 @@ interface IBoxProps {
   isTop: boolean
   flexVal: number
 }
-const EditButton = styled(InternalLink)<{ isImage: boolean }>`
+
+const EditButtonContainer = styled.div<{ isImage: boolean }>`
   position: absolute;
   right: 10px;
   bottom: ${({ isImage }) => (isImage ? 'calc(100% - 40px)' : '10px')};
 `
 
 const Edit = ({ route, isImage }: { route: string; isImage: boolean }) => (
-  <EditButton isImage={isImage} to={route}>
-    <img alt="Edit data" src={isImage ? editImageIcon : editIcon} />
-  </EditButton>
+  <EditButtonContainer isImage={isImage}>
+    <InternalLink to={route}>
+      <img alt="Edit data" src={isImage ? editImageIcon : editIcon} />
+    </InternalLink>
+  </EditButtonContainer>
 )
 
 const Box = styled.div<IBoxProps>`

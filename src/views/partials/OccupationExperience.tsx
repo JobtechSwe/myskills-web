@@ -11,6 +11,7 @@ import { GET_OCCUPATION_CLIENT } from 'graphql/resolvers/mutations/createOccupat
 import { CREATE_OCCUPATION_CLIENT } from 'views/partials/Profession'
 import { FooterButton } from 'components/Layout/Registration'
 import styled from '@emotion/styled'
+import { navigate } from '@reach/router'
 
 const Image = styled.img`
   width: 100%;
@@ -23,7 +24,7 @@ interface OccupationExperienceProps {
 
 export const OccupationExperience: React.FC<
   RouteComponentProps & OccupationExperienceProps
-> = ({ buttonText, navigate, onSubmit }) => {
+> = ({ buttonText, onSubmit }) => {
   const { data, loading, error } = useQuery(GET_OCCUPATION_CLIENT)
   const setOccupationExperience = useMutation(CREATE_OCCUPATION_CLIENT)
 
@@ -55,7 +56,7 @@ export const OccupationExperience: React.FC<
       },
     })
 
-    navigate('./tidigare-erfarenheter')
+    navigate('./erfarenheter/tidigare-erfarenheter')
     return
   }
 

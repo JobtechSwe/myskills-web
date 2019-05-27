@@ -13,6 +13,8 @@ import {
   QueryOntologyTextParseArgs,
   Query,
   OntologyTextParseResponse,
+  AddWhoAmIMutation,
+  AddWhoAmIMutationVariables,
 } from 'generated/myskills'
 import ContentEditable from 'react-contenteditable'
 
@@ -73,9 +75,14 @@ const WhoAmI: React.FC<RouteComponentProps & WhoAmIProps> = ({
   const [traits, setTraits] = useState<OntologyTextParseResponse[]>([])
   const [charsLeft, setCharsLeft] = useState(280)
 
-  const addWhoAmI = useMutation(ADD_WHO_AM_I, {
-    variables: description,
-  })
+  const addWhoAmI = useMutation<AddWhoAmIMutation, AddWhoAmIMutationVariables>(
+    ADD_WHO_AM_I,
+    {
+      variables: {
+        whoAmI: description,
+      },
+    }
+  )
 
   const { data } = useQuery<
     { ontologyTextParse: Query['ontologyTextParse'] },
@@ -96,7 +103,7 @@ const WhoAmI: React.FC<RouteComponentProps & WhoAmIProps> = ({
 
     if (charsLeft >= 0) {
       addWhoAmI({
-        variables: value,
+        variables: { whoAmI: value },
       })
     }
   }

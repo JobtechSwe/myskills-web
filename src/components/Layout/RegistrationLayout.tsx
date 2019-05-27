@@ -16,7 +16,7 @@ interface RegistrationLayoutProps {
   nextBtnText?: string
   childFn?: any
   headerText: string
-  hideNextBtn?: boolean
+  showNextButton?: boolean
   childFnArgs?: any
 }
 
@@ -52,7 +52,7 @@ const RegistrationLayout: React.FC<
   nextPath,
   nextBtnText = 'Fortsätt',
   headerText,
-  hideNextBtn = false,
+  showNextButton = true,
   childFn,
   childFnArgs = {},
 }) => {
@@ -79,7 +79,7 @@ const RegistrationLayout: React.FC<
         <Paragraph lineHeight="100%">{headerText}</Paragraph>
       </NavigationContainer>
       {children}
-      {nextPath && !hideNextBtn && (
+      {nextPath && showNextButton && (
         <Flex justifyContent="center">
           {disableNextBtn ? (
             <Button data-testid="okButton" variant="inActive">

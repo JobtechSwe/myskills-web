@@ -134,7 +134,7 @@ export const WorkExperiences: React.FC<RouteComponentProps> = () => {
   return (
     <RegistrationLayout
       headerText="ERFARENHET"
-      hideNextBtn={edit}
+      showNextButton={edit}
       nextPath="utbildning"
       step={3}
     >

@@ -32,6 +32,10 @@ const PreviousOccupationExperience = React.lazy(() =>
   import('views/CreateProfile/PreviousOccupationExperience')
 )
 
+const OccupationTrivia = React.lazy(() =>
+  import('views/CreateProfile/OccupationTrivia')
+)
+
 const SaveCV = React.lazy(() => import('views/CreateProfile/SaveCV'))
 
 const WorkExperiences = React.lazy(() =>
@@ -60,6 +64,7 @@ function App() {
             <WhoAmI path="/beskriv-dig" />
             <AddTraits path="/egenskaper" />
             <UploadImage path="/profilbild" />
+            <OccupationTrivia path="/visste-du-att" />
             <PreviousOccupationExperience path="/erfarenheter" />
             <WorkExperiences path="/erfarenheter/tidigare-erfarenheter" />
             <AddContactInformation path="/kontakt" />

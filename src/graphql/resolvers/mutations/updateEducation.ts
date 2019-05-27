@@ -1,6 +1,6 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { Education } from 'generated/myskills'
-import { GET_EDUCATIONS_CLIENT } from './addEducation'
+import { GET_EDUCATIONS_CLIENT } from 'graphql/shared/Queries'
 import { storageHelper } from 'utils/helpers'
 
 export const updateEducationClient = (

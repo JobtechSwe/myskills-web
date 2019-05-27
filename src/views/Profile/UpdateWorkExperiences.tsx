@@ -4,39 +4,54 @@ import Experiences from 'views/partials/Experiences'
 import { Layout, Navigation } from 'components/Layout/Registration'
 import {
   Experience,
+  GetExperiencesQuery,
   Mutation,
   MutationAddExperienceArgs,
-  GetExperiencesQuery,
   MutationRemoveExperienceArgs,
   MutationEditExperienceArgs,
 } from 'generated/myskills.d'
+import Loader from 'components/Loader'
 import {
-  ADD_EXPERIENCE_CLIENT,
-  REMOVE_EXPERIENCE_CLIENT,
-  UPDATE_EXPERIENCE_CLIENT,
+  ADD_EXPERIENCE,
+  REMOVE_EXPERIENCE,
+  EDIT_EXPERIENCE,
 } from 'graphql/shared/Mutations'
+import { GET_EXPERIENCES } from 'graphql/shared/Queries'
+
 import { useMutation, useQuery } from 'react-apollo-hooks'
-import { GET_EXPERIENCES_CLIENT } from 'graphql/resolvers/mutations'
 
 const WorkExperiences: React.FC<RouteComponentProps> = () => {
   const {
     data: { experiences },
-  } = useQuery<GetExperiencesQuery>(GET_EXPERIENCES_CLIENT)
+    loading,
+    error,
+  } = useQuery<GetExperiencesQuery>(GET_EXPERIENCES, {
+    fetchPolicy: 'network-only',
+  })
 
   const addExperience = useMutation<
     Mutation['addExperience'],
     MutationAddExperienceArgs
-  >(ADD_EXPERIENCE_CLIENT)
+  >(ADD_EXPERIENCE, {
+    fetchPolicy: 'no-cache',
+    refetchQueries: [{ query: GET_EXPERIENCES }],
+  })
 
   const removeExperience = useMutation<
     Mutation['removeExperience'],
     MutationRemoveExperienceArgs
-  >(REMOVE_EXPERIENCE_CLIENT)
+  >(REMOVE_EXPERIENCE, {
+    fetchPolicy: 'no-cache',
+    refetchQueries: [{ query: GET_EXPERIENCES }],
+  })
 
   const updateExperience = useMutation<
     Mutation['editExperience'],
     MutationEditExperienceArgs
-  >(UPDATE_EXPERIENCE_CLIENT)
+  >(EDIT_EXPERIENCE, {
+    fetchPolicy: 'no-cache',
+    refetchQueries: [{ query: GET_EXPERIENCES }],
+  })
 
   const handleSubmit = (_experiences: Experience[]) => {
     navigate('/skapa-cv/utbildning')
@@ -44,7 +59,9 @@ const WorkExperiences: React.FC<RouteComponentProps> = () => {
 
   return (
     <Layout>
-      <Navigation section="ERFARENHET" step={3} />
+      <Navigation section="ERFARENHET" />
+      {error && <div>error...</div>}
+      {loading && <Loader />}
       {experiences && (
         <Experiences
           addExperience={addExperience}

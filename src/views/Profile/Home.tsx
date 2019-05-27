@@ -80,7 +80,7 @@ const Home: React.FC<RouteComponentProps> = ({
               flexVal={0.65}
               isTop
               noBackground
-              route="editplace"
+              route="beskriv-dig"
             >
               <Paragraph fontSize="small" mb="none" mt="none">
                 {data.personalDescription}
@@ -91,7 +91,7 @@ const Home: React.FC<RouteComponentProps> = ({
             </ProfileDataCard>
           </Container>
           <Container mb="10px">
-            <ProfileDataCard route="editplace">
+            <ProfileDataCard route="egenskaper">
               <H2 mb="small">Egenskaper</H2>
               {data.traits &&
                 data.traits.map((trait: string) => (
@@ -116,7 +116,7 @@ const Home: React.FC<RouteComponentProps> = ({
             </ProfileDataCard>
           </Container>
           <Container mb="10px">
-            <ProfileDataCard route="editplace">
+            <ProfileDataCard route="utbildning">
               <H2 mb="small">Utbildning</H2>
               {data.educations &&
                 data.educations.map((education: Education) => (
@@ -130,7 +130,7 @@ const Home: React.FC<RouteComponentProps> = ({
                   </Paragraph>
                 ))}
             </ProfileDataCard>
-            <ProfileDataCard route="editplace">
+            <ProfileDataCard route="erfarenheter">
               <H2 mb="small">Erfarenhet</H2>
               {data.occupation && (
                 <Paragraph mb="small" mt="none">

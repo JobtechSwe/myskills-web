@@ -1,22 +1,16 @@
-import React, { useState } from 'react'
-import { useMutation } from 'react-apollo-hooks'
+import { Layout, Navigation } from 'components/Layout/Registration'
+import { RouteComponentProps, navigate } from '@reach/router'
+import { useQuery, useMutation } from 'react-apollo-hooks'
+import { GET_EDUCATIONS_CLIENT } from 'graphql/shared/Queries'
+import Education from 'views/partials/Education'
+import React from 'react'
 import gql from 'graphql-tag'
-import { RouteComponentProps } from '@reach/router'
-import AddAndEditForm from 'components/AddAndEditForm'
-import AddedEducations from 'components/AddedEducations'
-import IllustrationHeader from 'components/IllustrationHeader'
-import bookIllustration from 'assets/illustrations/book.svg'
-import RegistrationLayout from 'components/Layout/RegistrationLayout'
-import { v4 } from 'uuid'
-import { Entry } from 'components/Timeline/index'
-
-export type EducationInput = {
-  id?: String
-  programme: String
-  school: String
-  start: String
-  end?: String
-}
+import {
+  Mutation,
+  MutationAddEducationArgs,
+  MutationRemoveEducationArgs,
+  GetEducationsQuery,
+} from 'generated/myskills'
 
 export const ADD_EDUCATION_CLIENT = gql`
   mutation addEducationClient($education: EducationInput!) {
@@ -31,10 +25,8 @@ export const ADD_EDUCATION_CLIENT = gql`
 `
 
 const REMOVE_EDUCATION_CLIENT = gql`
-  mutation removeEducationClient($education: EducationInput!) {
-    removeEducationClient(education: $education) @client {
-      id
-    }
+  mutation removeEducationClient($id: String!) {
+    removeEducationClient(id: $id) @client
   }
 `
 
@@ -47,110 +39,42 @@ const UPDATE_EDUCATION_CLIENT = gql`
 `
 
 const AddEducation: React.FC<RouteComponentProps> = () => {
-  const initialEditEntry = {
-    id: '',
-    title: '',
-    degree: '',
-    schoolOrCompany: '',
-    start: '',
-    end: '',
-  } as Entry
-
-  const addEducationClient = useMutation(ADD_EDUCATION_CLIENT)
-  const removeEducationClient = useMutation(REMOVE_EDUCATION_CLIENT)
-  const updateEducationClient = useMutation(UPDATE_EDUCATION_CLIENT)
-
-  const [edit, toggleEdit] = useState(false)
-  const [editEntry, setEditEntry] = useState(initialEditEntry)
-
-  const handleEdit = (entry: Entry) => {
-    setEditEntry(entry)
-    toggleEdit(true)
+  const handleSubmit = () => {
+    navigate('/skapa-cv/beskriv-dig')
   }
 
-  const abortEdit = () => {
-    setEditEntry(initialEditEntry)
-    toggleEdit(false)
-  }
+  const addEducation = useMutation<
+    Mutation['addEducation'],
+    MutationAddEducationArgs
+  >(ADD_EDUCATION_CLIENT)
 
-  const handleDelete = (entry: Entry) => {
-    removeEducationClient({
-      variables: {
-        education: {
-          id: entry.id,
-          programme: entry.title,
-          school: entry.schoolOrCompany,
-          start: entry.start,
-          end: entry.end,
-        },
-      },
-    })
+  const removeEducation = useMutation<
+    Mutation['removeEducation'],
+    MutationRemoveEducationArgs
+  >(REMOVE_EDUCATION_CLIENT)
 
-    toggleEdit(false)
-  }
+  const updateEducation = useMutation<{}, any>(UPDATE_EDUCATION_CLIENT)
 
-  const handleSubmit = ({ id, title, start, end, schoolOrCompany }: Entry) => {
-    const education: EducationInput = {
-      end,
-      programme: title,
-      school: schoolOrCompany,
-      start,
-    }
-
-    if (edit) {
-      updateEducationClient({
-        variables: {
-          education: {
-            ...education,
-            id,
-          },
-        },
-      })
-
-      setEditEntry(initialEditEntry)
-      return toggleEdit(false)
-    }
-
-    addEducationClient({
-      variables: {
-        education: {
-          ...education,
-          id: v4(),
-        },
-      },
-    })
-  }
+  const {
+    data: { educations = [] },
+    loading,
+  } = useQuery<GetEducationsQuery>(GET_EDUCATIONS_CLIENT)
 
   return (
-    <RegistrationLayout headerText="UTBILDNING" nextPath="beskriv-dig" step={4}>
-      <IllustrationHeader
-        imageAltTag="Bok-illustration"
-        imageFirst={false}
-        imageSource={bookIllustration}
-        title="Vad har du för utbildning?"
-      />
-      <AddedEducations editingEntry={editEntry.id} handleEdit={handleEdit} />
-      {edit && (
-        <AddAndEditForm
-          abortEdit={abortEdit}
-          edit={true}
-          editItem={editEntry}
-          handleDelete={handleDelete}
-          label="Uppdatera utbildning"
+    <Layout>
+      <Navigation section="Utbildning" step={4} />
+      {loading && <p>Loading...</p>}
+      {educations && (
+        <Education
+          addEducation={addEducation}
+          buttonText="Fortsätt"
+          educations={educations}
           onSubmit={handleSubmit}
-          schoolOrCompanyPlaceholder="Namn på utbildning..."
-          titlePlaceholder="Namn på skola..."
+          removeEducation={removeEducation}
+          updateEducation={updateEducation}
         />
       )}
-      {!edit && (
-        <AddAndEditForm
-          label="Lägg till utbildning"
-          onSubmit={handleSubmit}
-          schoolOrCompanyPlaceholder="Namn på utbildning..."
-          titlePlaceholder="Namn på skola..."
-        />
-      )}
-    </RegistrationLayout>
+    </Layout>
   )
 }
 

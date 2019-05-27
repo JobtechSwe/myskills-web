@@ -10,6 +10,7 @@ interface Color {
   redOrange: '#FE451D'
   seashellPeach: '#FFF2EC'
   shamrock: '#30C27F'
+  silverChalice: '#B2B2B2'
   yourPink: '#FFCEC2'
   white: 'white'
   whiteLilac: '#F1F1F9'
@@ -32,6 +33,7 @@ const colors: Color = {
   redOrange: '#FE451D',
   seashellPeach: '#FFF2EC',
   shamrock: '#30C27F',
+  silverChalice: '#B2B2B2',
   yourPink: '#FFCEC2',
   white: 'white',
   whiteLilac: '#F1F1F9',
@@ -39,6 +41,10 @@ const colors: Color = {
 }
 
 const buttons = {
+  disabled: {
+    backgroundColor: colors.wildSand,
+    color: colors.silverChalice,
+  },
   primary: {
     color: colors.white,
     backgroundColor: colors.persianBlue,

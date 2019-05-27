@@ -46,11 +46,11 @@ exports[`views/AddEducation renders empty result 1`] = `
         </div>
       </div>
       <p
-        class="css-1d8t2vo"
+        class="css-1aqgmvz"
         font-family="default"
         font-size="small"
       >
-        UTBILDNING
+        Utbildning
       </p>
     </nav>
     <div

@@ -1,27 +1,30 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { Education } from 'generated/myskills'
-import { GET_EDUCATIONS_CLIENT } from './addEducation'
+import { GET_EDUCATIONS_CLIENT } from 'graphql/shared/Queries'
 import { storageHelper } from 'utils/helpers'
 
 export const removeEducationClient = (
   _: any,
-  { education }: { education: Education },
+  { id }: { id: string },
   { cache }: { cache: InMemoryCache }
-): Education[] => {
+): boolean => {
   const { educations = [] } = cache.readQuery<{ educations: Education[] }>({
     query: GET_EDUCATIONS_CLIENT,
   })!
 
-  const updatedEducationList = educations.filter(
-    (e: Education) => e.programme !== education.programme
-  )
+  try {
+    const updatedEducationList = educations.filter(
+      (e: Education) => e.id !== id
+    )
+    cache.writeQuery({
+      query: GET_EDUCATIONS_CLIENT,
+      data: { educations: updatedEducationList },
+    })
 
-  cache.writeQuery({
-    query: GET_EDUCATIONS_CLIENT,
-    data: { educations: updatedEducationList },
-  })
+    storageHelper.set({ type: 'educations', data: updatedEducationList })
 
-  storageHelper.set({ type: 'educations', data: updatedEducationList })
-
-  return updatedEducationList
+    return true
+  } catch (e) {
+    return false
+  }
 }

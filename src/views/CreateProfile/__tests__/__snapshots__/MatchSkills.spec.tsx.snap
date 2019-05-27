@@ -46,11 +46,11 @@ exports[`views/MatchSkills renders loading state 1`] = `
         </div>
       </div>
       <p
-        class="css-1d8t2vo"
+        class="css-1aqgmvz"
         font-family="default"
         font-size="small"
       >
-        KOMPETENS
+        Kompetens
       </p>
     </nav>
     <div

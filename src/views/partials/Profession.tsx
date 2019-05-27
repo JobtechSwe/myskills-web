@@ -79,9 +79,7 @@ export const CREATE_OCCUPATION_API = gql`
 
 export const REMOVE_OCCUPATION_CLIENT = gql`
   mutation removeOccupationClient($occupation: OccupationInput!) {
-    removeOccupationClient(occupation: $occupation) @client {
-      term
-    }
+    removeOccupationClient(occupation: $occupation) @client
   }
 `
 

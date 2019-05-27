@@ -3,8 +3,9 @@ import { Router } from '@reach/router'
 import RestrictedRoute from 'views/restricted'
 import Loader from 'components/Loader'
 
-const Login = React.lazy(() => import('views/Login/Login'))
-const Start = React.lazy(() => import('views/Start/Start'))
+const Login = React.lazy(() => import(`views/Login/Login`))
+const Start = React.lazy(() => import(`views/Start/Start`))
+const NotFound = React.lazy(() => import(`views/NotFound`))
 const Profile = React.lazy(() => import('views/Profile/Profile'))
 const RegistrationCompleted = React.lazy(() =>
   import('views/CreateProfile/RegistrationCompleted')
@@ -65,8 +66,8 @@ function App() {
             <UploadImage path="/profilbild" />
             <WhoAmI path="/beskriv-dig" />
             <WorkExperiences path="/erfarenheter/tidigare-erfarenheter" />
+            <NotFound default />
           </CreateProfile>
-
           <Profile path="/profil">
             <RestrictedRoute component={Home} path="/" />
             <RestrictedRoute component={Timeline} path="/tidslinje" />
@@ -76,7 +77,10 @@ function App() {
               component={UpdateWorkExperience}
               path="/erfarenheter"
             />
+            <NotFound default />
           </Profile>
+
+          <NotFound default />
         </Router>
       </React.Suspense>
     </>

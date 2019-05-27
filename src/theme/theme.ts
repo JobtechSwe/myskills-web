@@ -97,6 +97,7 @@ const space = {
   small: 16,
   medium: 24,
   large: 32,
+  jumbo: 48,
 }
 
 const theme = {

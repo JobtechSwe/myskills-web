@@ -10,10 +10,10 @@ exports[`views/MatchSkills renders loading state 1`] = `
       class="css-208zbf"
     >
       <div
-        class="css-nshvkv"
+        class="css-188o47b"
       >
         <div
-          class="css-cn959j"
+          class="css-2djru0"
           role="button"
           tabindex="0"
         >
@@ -23,7 +23,7 @@ exports[`views/MatchSkills renders loading state 1`] = `
           />
         </div>
         <div
-          class="css-1a620cz"
+          class="css-zei2do"
         >
           <div
             class="css-njydrf"
@@ -54,10 +54,10 @@ exports[`views/MatchSkills renders loading state 1`] = `
       </p>
     </nav>
     <div
-      class="css-13lzt9w"
+      class="css-16bqc7z"
     >
       <h1
-        class="css-1h19gqr"
+        class="css-1jc8j5a"
         color="black"
         font-family="default"
         font-size="large"
@@ -65,25 +65,32 @@ exports[`views/MatchSkills renders loading state 1`] = `
       >
         Vilka är dina kompetenser?
       </h1>
+      <p
+        class="css-njmd2e"
+        font-family="default"
+        font-size="small"
+      >
+        Ditt val av yrkesroll matchar ofta nedan föreslagna kompetenser. Markera dina eller lägg till egna.
+      </p>
       <div
-        class="css-10utzyq"
+        class="css-17byi71"
         data-testid="tagList"
       />
       <span
-        class="css-bhiavv"
+        class="css-m5xupf"
         cursor="pointer"
         opacity="1"
         role="button"
         tabindex="0"
       >
-        + Lägg till en kompetens
+        + Lägg till kompetens
       </span>
     </div>
     <div
-      class="css-djo2sl"
+      class="css-xyw5i4"
     >
       <button
-        class="css-1fyzulv"
+        class="css-spuwu"
         data-testid="okButton"
         font-family="default"
         font-size="medium"

@@ -68,7 +68,7 @@ Button.defaultProps = {
   flex: ['1', 'auto'],
   fontFamily: 'default',
   fontSize: ['medium'],
-  p: '16px 42px',
+  p: '12px 42px',
   variant: 'primary',
 }
 

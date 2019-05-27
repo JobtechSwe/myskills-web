@@ -42,5 +42,5 @@ extend type Mutation {
   removeEducationClient(id: String!): Boolean
   removeExperienceClient(id: String!): Boolean
   removeTrait(trait: String!): String!
-  removeOccupationClient(occupation: OccupationInput!): Occupation
+  removeOccupationClient(occupation: OccupationInput!): Boolean
 }

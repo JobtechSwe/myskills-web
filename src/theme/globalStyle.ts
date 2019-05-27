@@ -158,6 +158,16 @@ export const globalStyle = css`
   #root {
     height: calc(var(--vh, 1vh) * 100);
   }
+
+  /* browser style resets */
+  button,
+  input {
+    background: transparent;
+    border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
 `
 
 export default globalStyle

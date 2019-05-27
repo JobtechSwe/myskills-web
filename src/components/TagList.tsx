@@ -30,8 +30,11 @@ const TagList: React.FC<TagListProps<TagItemProps>> = ({
     >
       {[...activeItems, ...items].map((item, i) => (
         <Tag
-          key={`taglist-${item.term}-${i}`}
-          m={6}
+          key={item.term}
+          mb={5}
+          ml={2}
+          mr={2}
+          mt={5}
           onClick={() => onSelect(item)}
           onKeyDown={handleFocusKeyDown(() => onSelect(item))}
           role="button"

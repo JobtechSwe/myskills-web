@@ -15,7 +15,6 @@ import {
   OntologyTextParseResponse,
 } from 'generated/myskills'
 import ContentEditable from 'react-contenteditable'
-import { GET_WHO_AM_I_CLIENT } from 'graphql/resolvers/mutations/addWhoAmI'
 
 export const GET_TRAITS = gql`
   query ontologyTextParse($text: String!) {
@@ -59,16 +58,17 @@ const renderToStatic = (
 interface WhoAmIProps {
   buttonText: string
   onSubmit: (traits: OntologyTextParseResponse[]) => void
+  personalDescription: string
 }
 
 const WhoAmI: React.FC<RouteComponentProps & WhoAmIProps> = ({
   buttonText,
   onSubmit,
+  personalDescription,
 }) => {
   const textArea = useRef<HTMLInputElement>(null)
-  const { data: whoAmIResult } = useQuery(GET_WHO_AM_I_CLIENT)
 
-  const [description, setDescription] = useState(whoAmIResult.whoAmI)
+  const [description, setDescription] = useState(personalDescription)
 
   const [traits, setTraits] = useState<OntologyTextParseResponse[]>([])
   const [charsLeft, setCharsLeft] = useState(280)
@@ -96,9 +96,7 @@ const WhoAmI: React.FC<RouteComponentProps & WhoAmIProps> = ({
 
     if (charsLeft >= 0) {
       addWhoAmI({
-        variables: {
-          whoAmI: value,
-        },
+        variables: value,
       })
     }
   }

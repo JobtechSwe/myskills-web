@@ -80,7 +80,7 @@ const Home: React.FC<RouteComponentProps> = ({
               flexVal={0.65}
               isTop
               noBackground
-              route="editplace"
+              route="beskriv-dig"
             >
               <Paragraph fontSize="small" mb="none" mt="none">
                 {data.personalDescription}

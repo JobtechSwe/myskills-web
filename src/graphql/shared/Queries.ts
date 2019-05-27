@@ -89,3 +89,9 @@ export const GET_EXPERIENCES = gql`
     }
   }
 `
+
+export const GET_PERSONAL_DESCRIPTION = gql`
+  query getPersonalDescription {
+    personalDescription
+  }
+`

@@ -683,7 +683,7 @@ export type AddExperienceClientMutation = { __typename?: 'Mutation' } & {
   addExperienceClient: Maybe<
     { __typename?: 'Experience' } & Pick<
       Experience,
-      'sourceId' | 'employer' | 'end' | 'start' | 'term'
+      'id' | 'employer' | 'end' | 'start' | 'term'
     >
   >
 }
@@ -703,7 +703,7 @@ export type UpdateExperienceClientMutationVariables = {
 
 export type UpdateExperienceClientMutation = { __typename?: 'Mutation' } & {
   updateExperienceClient: Maybe<
-    { __typename?: 'Experience' } & Pick<Experience, 'sourceId'>
+    { __typename?: 'Experience' } & Pick<Experience, 'id'>
   >
 }
 
@@ -804,6 +804,13 @@ export type GetExperiencesQuery = { __typename?: 'Query' } & {
     >
   >
 }
+
+export type GetPersonalDescriptionQueryVariables = {}
+
+export type GetPersonalDescriptionQuery = { __typename?: 'Query' } & Pick<
+  Query,
+  'personalDescription'
+>
 
 export type AddEducationClientMutationVariables = {
   education: EducationInput

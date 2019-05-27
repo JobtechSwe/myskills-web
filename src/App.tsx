@@ -42,6 +42,9 @@ const UpdateEducation = React.lazy(() =>
 const UpdateWorkExperience = React.lazy(() =>
   import('views/Profile/UpdateWorkExperiences')
 )
+const UpdateWhoAmI = React.lazy(() =>
+  import('views/Profile/UpdatePersonalDescription')
+)
 
 function App() {
   return (
@@ -68,6 +71,7 @@ function App() {
             <RestrictedRoute component={Home} path="/" />
             <RestrictedRoute component={Timeline} path="/tidslinje" />
             <RestrictedRoute component={UpdateEducation} path="/utbildning" />
+            <RestrictedRoute component={UpdateWhoAmI} path="/beskriv-dig" />
             <RestrictedRoute
               component={UpdateWorkExperience}
               path="/erfarenheter"

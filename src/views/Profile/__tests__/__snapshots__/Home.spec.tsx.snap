@@ -51,7 +51,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
           class="css-jbzzha"
           color="persianBlue"
           font-weight="500"
-          href="/editplace"
+          href="/beskriv-dig"
         >
           <img
             alt="Edit data"

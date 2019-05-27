@@ -2,7 +2,7 @@ import React from 'react'
 import gql from 'graphql-tag'
 import { RouteComponentProps } from '@reach/router'
 import Grid from 'components/Grid'
-import { useMutation, useQuery } from 'react-apollo-hooks'
+import { useMutation, useQuery, useSubscription } from 'react-apollo-hooks'
 import { setCookie } from 'utils/helpers'
 import { navigate } from '@reach/router'
 import { ConsentApprovedSubscription } from 'generated/myskills'
@@ -16,6 +16,14 @@ export const GET_CONSENT_ID = gql`
     consent {
       id
       url
+    }
+  }
+`
+
+export const CONSENT_SUBSCRIPTION = gql`
+  subscription consentApproved($consentRequestId: String!) {
+    consentApproved(consentRequestId: $consentRequestId) {
+      accessToken
     }
   }
 `
@@ -133,6 +141,15 @@ const Register: React.FC<RouteComponentProps> = () => {
   const saveCVMutation = useMutation(SAVE_CV)
   const { data: localCV } = useQuery(GET_CV_CLIENT)
 
+  const subscription = useSubscription<ConsentApprovedSubscription>(
+    CONSENT_SUBSCRIPTION,
+    {
+      variables: {
+        consentRequestId: consent.id,
+      },
+    }
+  )
+
   const onConsentApproved = async ({
     consentApproved,
   }: ConsentApprovedSubscription) => {
@@ -160,7 +177,14 @@ const Register: React.FC<RouteComponentProps> = () => {
     <Background alignItems="center" justifyContent="center">
       {error && <Paragraph>{error.message}</Paragraph>}
       {loading && <Loader />}
-      {consent && <EgenData btnText="Spara CV med" loginUrl={consent.url} />}
+      {consent && (
+        <EgenData
+          subscription={subscription}
+          onConsentApproved={onConsentApproved}
+          btnText="Spara CV med"
+          loginUrl={consent.url}
+        />
+      )}
     </Background>
   )
 }

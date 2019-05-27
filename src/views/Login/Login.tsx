@@ -5,6 +5,18 @@ import { RouteComponentProps } from '@reach/router'
 import Button from '../../components/Button'
 import { Paragraph } from '../../components/Typography'
 import EgenData from '../../components/EgenData'
+import { navigate } from '@reach/router'
+import { setCookie } from '../../utils/helpers'
+import { ConsentApprovedSubscription } from 'generated/myskills'
+import { useSubscription } from 'react-apollo-hooks'
+
+export const LOGIN_SUBSCRIPTION = gql`
+  subscription loginApproved($loginRequestId: String!) {
+    loginApproved(loginRequestId: $loginRequestId) {
+      accessToken
+    }
+  }
+`
 
 export const GET_LOGIN_ID = gql`
   mutation login {
@@ -16,6 +28,21 @@ export const GET_LOGIN_ID = gql`
 `
 
 const Login: React.FC<RouteComponentProps> = () => {
+  const onConsentApproved = async ({
+    consentApproved,
+  }: ConsentApprovedSubscription) => {
+    setCookie('token', consentApproved.accessToken)
+    navigate('/profil')
+  }
+
+  const subscription = (loginRequestId: string) => {
+    useSubscription<ConsentApprovedSubscription>(LOGIN_SUBSCRIPTION, {
+      variables: {
+        loginRequestId,
+      },
+    })
+  }
+
   return (
     <>
       {/* TODO(@all):
@@ -33,7 +60,14 @@ const Login: React.FC<RouteComponentProps> = () => {
           }
 
           if (data) {
-            return <EgenData btnText="Logga in med" loginUrl={data.login.url} />
+            return (
+              <EgenData
+                btnText="Logga in med"
+                subscription={() => subscription(data.login.sessionId)}
+                onConsentApproved={onConsentApproved}
+                loginUrl={data.login.url}
+              />
+            )
           }
 
           return (

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { OpenInApp } from 'components/ButtonLink'
 import styled from '@emotion/styled'
 import Flex from './Flex'
@@ -10,8 +10,11 @@ import { H3, Paragraph } from './Typography'
 import Info from './Info'
 import { Link } from './Link'
 import check from '../assets/icons/check_blue.svg'
+import { ConsentApprovedSubscription } from 'generated/myskills'
 
 interface LoginViewProps {
+  subscription?: any
+  onConsentApproved?: (onConsentApproved: ConsentApprovedSubscription) => void
   loginUrl: string
   btnText: string
 }
@@ -44,7 +47,18 @@ const InfoBulletsWrapper = styled.div`
   padding: 0 30px;
 `
 
-const EgenData: React.FC<LoginViewProps> = ({ loginUrl, btnText }) => {
+const EgenData: React.FC<LoginViewProps> = ({
+  loginUrl,
+  btnText,
+  onConsentApproved,
+  subscription,
+}) => {
+  const { data } = subscription()
+
+  useEffect(() => {
+    data && onConsentApproved(data)
+  }, [data, onConsentApproved])
+
   return (
     <>
       <Wrapper>

@@ -1,11 +1,13 @@
 import React from 'react'
 import { RouteComponentProps } from '@reach/router'
-import Grid from 'components/Grid'
-import Flex from 'components/Flex'
-import laptopImage from 'images/laptop.svg'
-import { H1, Paragraph } from 'components/Typography'
-import Button from 'components/Button'
-import Slider from 'components/Slider'
+import Grid from '../../components/Grid'
+import Flex from '../../components/Flex'
+import laptopBlob from '../../assets/illustrations/laptopBlob.svg'
+import laptopIllustration from '../../assets/illustrations/laptopIllustration.svg'
+import IllustrationAnimation from '../../components/IllustrationAnimation'
+import { H1, Paragraph } from '../../components/Typography'
+import Button from '../../components/Button'
+import Slider from '../../components/Slider'
 import { useQuery, useMutation } from 'react-apollo-hooks'
 import { GET_OCCUPATION_CLIENT } from 'graphql/resolvers/mutations/createOccupation'
 import { CREATE_OCCUPATION_CLIENT } from './ChooseProfession'
@@ -15,6 +17,7 @@ import styled from '@emotion/styled'
 const Image = styled.img`
   width: 100%;
 `
+
 export const PreviousOccupationExperience: React.FC<RouteComponentProps> = ({
   navigate,
 }) => {
@@ -81,8 +84,11 @@ export const PreviousOccupationExperience: React.FC<RouteComponentProps> = ({
       nextPath="erfarenheter/tidigare-erfarenheter"
       step={3}
     >
-      <Flex alignItems="center" flexDirection="column">
-        <Image alt="Clock" src={laptopImage} />
+      <Flex flexDirection="column">
+        <IllustrationAnimation
+          backgroundImage={laptopBlob}
+          illustrationImage={laptopIllustration}
+        />
         <H1 textAlign="center">
           Har du arbetat som {data.occupation.term.toLowerCase()} tidigare?
         </H1>

@@ -32,6 +32,7 @@ Layout.defaultProps = {
   gridTemplateRows: 'auto 1fr auto',
   height: 'calc(var(--vh, 1vh) * 100)',
   p: 'large',
+  gridGap: 'small',
 }
 
 interface NavigationProps {

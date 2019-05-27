@@ -3,7 +3,7 @@
 exports[`views/AddEducation renders empty result 1`] = `
 <div>
   <div
-    class="css-10tfbxr"
+    class="css-19p8cce"
     height="calc(var(--vh, 1vh) * 100)"
   >
     <nav

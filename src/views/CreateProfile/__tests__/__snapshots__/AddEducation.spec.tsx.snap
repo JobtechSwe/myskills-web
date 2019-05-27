@@ -183,6 +183,7 @@ exports[`views/AddEducation renders empty result 1`] = `
       font-family="default"
       font-size="medium"
       type="submit"
+      width="1"
     >
       Lägg till
     </button>
@@ -200,4 +201,4 @@ exports[`views/AddEducation renders empty result 1`] = `
     </div>
   </div>
 </div>
-`
+`;

@@ -1,18 +1,19 @@
 import React from 'react'
 import { OpenInApp } from 'components/ButtonLink'
 import styled from '@emotion/styled'
-import Flex from '../../components/Flex'
-import Grid from '../../components/Grid'
-import logotypeIcon from '../../assets/images/logo.svg'
-import egendataLogotypeIcon from '../../assets/icons/egendata_logo.svg'
-import egendataLogotypeIconWhite from '../../assets/icons/egendata_logo_white.svg'
-import { H3, Paragraph } from '../../components/Typography'
-import Info from '../../components/Info'
-import { Link } from '../../components/Link'
-import check from '../../assets/icons/check_blue.svg'
+import Flex from './Flex'
+import Grid from './Grid'
+import logotypeIcon from '../assets/images/logo.svg'
+import egendataLogotypeIcon from '../assets/icons/egendata_logo.svg'
+import egendataLogotypeIconWhite from '../assets/icons/egendata_logo_white.svg'
+import { H3, Paragraph } from './Typography'
+import Info from './Info'
+import { Link } from './Link'
+import check from '../assets/icons/check_blue.svg'
 
 interface LoginViewProps {
   loginUrl: string
+  btnText: string
 }
 
 const Wrapper = styled.div`
@@ -43,7 +44,7 @@ const InfoBulletsWrapper = styled.div`
   padding: 0 30px;
 `
 
-const LoginView: React.FC<LoginViewProps> = ({ loginUrl }) => {
+const EgenData: React.FC<LoginViewProps> = ({ loginUrl, btnText }) => {
   return (
     <>
       <Wrapper>
@@ -60,7 +61,7 @@ const LoginView: React.FC<LoginViewProps> = ({ loginUrl }) => {
             <img alt="egendatalogo" src={egendataLogotypeIcon} />
           </LogosWrapper>
           <OpenInApp url={loginUrl}>
-            Logga in med{' '}
+            {btnText}
             <Image alt="egendatalogo" src={egendataLogotypeIconWhite} />
           </OpenInApp>
           <InfoBulletsWrapper>
@@ -99,4 +100,4 @@ const LoginView: React.FC<LoginViewProps> = ({ loginUrl }) => {
   )
 }
 
-export default LoginView
+export default EgenData

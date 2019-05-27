@@ -4,7 +4,7 @@ import { Mutation } from 'react-apollo'
 import { RouteComponentProps } from '@reach/router'
 import Button from '../../components/Button'
 import { Paragraph } from '../../components/Typography'
-import LoginView from './LoginView'
+import EgenData from '../../components/EgenData'
 
 export const GET_LOGIN_ID = gql`
   mutation login {
@@ -33,7 +33,7 @@ const Login: React.FC<RouteComponentProps> = () => {
           }
 
           if (data) {
-            return <LoginView loginUrl={data.login.url} />
+            return <EgenData btnText="Logga in med" loginUrl={data.login.url} />
           }
 
           return (

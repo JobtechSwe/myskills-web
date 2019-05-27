@@ -1,5 +1,5 @@
 import { removeEducationClient } from '../removeEducation'
-import { GET_EDUCATIONS_CLIENT } from '../addEducation'
+import { GET_EDUCATIONS_CLIENT } from 'graphql/shared/Queries'
 
 let education: any
 let cache: any
@@ -12,9 +12,11 @@ beforeEach(() => {
     educations: [
       {
         programme: 'cba',
+        id: '1',
       },
       {
         programme: 'abc',
+        id: '2',
       },
     ],
   }
@@ -23,7 +25,7 @@ beforeEach(() => {
   writeQueryMock = jest.fn()
 
   education = {
-    programme: 'cba',
+    id: '1',
   }
 
   cache = {
@@ -36,7 +38,7 @@ beforeEach(() => {
 
 describe('resolvers/removeEducation', () => {
   it('reads cache', () => {
-    removeEducationClient({}, { education }, cache)
+    removeEducationClient({}, { id: education.id }, cache)
 
     expect(readQueryMock).toHaveBeenCalledWith({
       query: GET_EDUCATIONS_CLIENT,
@@ -44,7 +46,7 @@ describe('resolvers/removeEducation', () => {
   })
 
   it('removes education', () => {
-    removeEducationClient({}, { education }, cache)
+    removeEducationClient({}, { id: education.id }, cache)
 
     expect(writeQueryMock).toHaveBeenCalledWith({
       query: GET_EDUCATIONS_CLIENT,
@@ -52,19 +54,16 @@ describe('resolvers/removeEducation', () => {
         educations: [
           {
             programme: 'abc',
+            id: '2',
           },
         ],
       },
     })
   })
 
-  it('returns the new educations list', () => {
-    const result = removeEducationClient({}, { education }, cache)
+  it('returns true on success', () => {
+    const result = removeEducationClient({}, { id: education.id }, cache)
 
-    expect(result).toEqual([
-      {
-        programme: 'abc',
-      },
-    ])
+    expect(result).toEqual(true)
   })
 })

@@ -2,23 +2,55 @@ import React from 'react'
 import { RouteComponentProps, navigate } from '@reach/router'
 import Experiences from 'views/partials/Experiences'
 import { Layout, Navigation } from 'components/Layout/Registration'
-import { Experience } from 'generated/myskills.d'
+import {
+  Experience,
+  GetExperiencesQuery,
+  Mutation,
+  MutationAddExperienceArgs,
+  MutationRemoveExperienceArgs,
+  MutationEditExperienceArgs,
+} from 'generated/myskills.d'
+import Loader from 'components/Loader'
 import {
   ADD_EXPERIENCE,
   REMOVE_EXPERIENCE,
   EDIT_EXPERIENCE,
 } from 'graphql/shared/Mutations'
-import { useMutation } from 'react-apollo-hooks'
+import { GET_EXPERIENCES } from 'graphql/shared/Queries'
+
+import { useMutation, useQuery } from 'react-apollo-hooks'
 
 const WorkExperiences: React.FC<RouteComponentProps> = () => {
-  const addExperience = useMutation(ADD_EXPERIENCE, {
-    fetchPolicy: 'no-cache',
+  const {
+    data: { experiences },
+    loading,
+    error,
+  } = useQuery<GetExperiencesQuery>(GET_EXPERIENCES, {
+    fetchPolicy: 'network-only',
   })
-  const removeExperience = useMutation(REMOVE_EXPERIENCE, {
+
+  const addExperience = useMutation<
+    Mutation['addExperience'],
+    MutationAddExperienceArgs
+  >(ADD_EXPERIENCE, {
     fetchPolicy: 'no-cache',
+    refetchQueries: [{ query: GET_EXPERIENCES }],
   })
-  const updateExperience = useMutation(EDIT_EXPERIENCE, {
+
+  const removeExperience = useMutation<
+    Mutation['removeExperience'],
+    MutationRemoveExperienceArgs
+  >(REMOVE_EXPERIENCE, {
     fetchPolicy: 'no-cache',
+    refetchQueries: [{ query: GET_EXPERIENCES }],
+  })
+
+  const updateExperience = useMutation<
+    Mutation['editExperience'],
+    MutationEditExperienceArgs
+  >(EDIT_EXPERIENCE, {
+    fetchPolicy: 'no-cache',
+    refetchQueries: [{ query: GET_EXPERIENCES }],
   })
 
   const handleSubmit = (_experiences: Experience[]) => {
@@ -28,13 +60,18 @@ const WorkExperiences: React.FC<RouteComponentProps> = () => {
   return (
     <Layout>
       <Navigation section="ERFARENHET" />
-      <Experiences
-        addExperience={addExperience}
-        buttonText="Fortsätt"
-        onSubmit={handleSubmit}
-        removeExperience={removeExperience}
-        updateExperience={updateExperience}
-      />
+      {error && <div>error...</div>}
+      {loading && <Loader />}
+      {experiences && (
+        <Experiences
+          addExperience={addExperience}
+          buttonText="Fortsätt"
+          experiences={experiences}
+          onSubmit={handleSubmit}
+          removeExperience={removeExperience}
+          updateExperience={updateExperience}
+        />
+      )}
     </Layout>
   )
 }

@@ -75,6 +75,15 @@ export type EditEducationInput = {
   id: Scalars['String']
 }
 
+export type EditExperienceInput = {
+  id: Scalars['String']
+  employer: Scalars['String']
+  sourceId?: Maybe<Scalars['String']>
+  term: Scalars['String']
+  start: Scalars['String']
+  end?: Maybe<Scalars['String']>
+}
+
 export type Education = {
   programme: Scalars['String']
   degree?: Maybe<Scalars['String']>
@@ -160,6 +169,8 @@ export type Mutation = {
   uploadImage: Scalars['String']
   /** Edit education */
   editEducation: Education
+  /** Edit experience */
+  editExperience: Experience
   createOccupationClient?: Maybe<Occupation>
   addSkillClient?: Maybe<ClientSkill>
   removeSkillClient?: Maybe<ClientSkill>
@@ -170,7 +181,7 @@ export type Mutation = {
   addWhoAmI: Scalars['String']
   updateContactInformation: Profile
   removeEducationClient?: Maybe<Scalars['Boolean']>
-  removeExperienceClient?: Maybe<Experience>
+  removeExperienceClient?: Maybe<Scalars['Boolean']>
   removeTrait: Scalars['String']
   removeOccupationClient?: Maybe<Occupation>
 }
@@ -235,6 +246,10 @@ export type MutationEditEducationArgs = {
   education: EditEducationInput
 }
 
+export type MutationEditExperienceArgs = {
+  experience: EditExperienceInput
+}
+
 export type MutationCreateOccupationClientArgs = {
   occupation: OccupationInput
 }
@@ -276,7 +291,7 @@ export type MutationRemoveEducationClientArgs = {
 }
 
 export type MutationRemoveExperienceClientArgs = {
-  experience: ExperienceInput
+  id: Scalars['String']
 }
 
 export type MutationRemoveTraitArgs = {
@@ -536,14 +551,14 @@ export type GetProfessionAndContactQuery = { __typename?: 'Query' } & {
   occupation: { __typename?: 'Occupation' } & Pick<Occupation, 'term'>
 }
 
-export type GetExperiencesQueryVariables = {}
+export type GetExperiencesClientQueryVariables = {}
 
-export type GetExperiencesQuery = { __typename?: 'Query' } & {
+export type GetExperiencesClientQuery = { __typename?: 'Query' } & {
   experiences: Array<
     Maybe<
       { __typename?: 'Experience' } & Pick<
         Experience,
-        'sourceId' | 'employer' | 'term' | 'start' | 'end'
+        'employer' | 'id' | 'term' | 'start' | 'end'
       >
     >
   >
@@ -624,6 +639,71 @@ export type RemoveSkillClientMutationVariables = {
 export type RemoveSkillClientMutation = { __typename?: 'Mutation' } & {
   removeSkillClient: Maybe<
     { __typename?: 'ClientSkill' } & Pick<ClientSkill, 'term'>
+  >
+}
+
+export type AddExperienceMutationVariables = {
+  experience: ExperienceInput
+}
+
+export type AddExperienceMutation = { __typename?: 'Mutation' } & {
+  addExperience: { __typename?: 'Experience' } & Pick<Experience, 'id'>
+}
+
+export type RemoveExperienceMutationVariables = {
+  id: Scalars['String']
+}
+
+export type RemoveExperienceMutation = { __typename?: 'Mutation' } & Pick<
+  Mutation,
+  'removeExperience'
+>
+
+export type EditExperienceMutationVariables = {
+  experience: EditExperienceInput
+}
+
+export type EditExperienceMutation = { __typename?: 'Mutation' } & {
+  editExperience: { __typename?: 'Experience' } & Pick<Experience, 'id'>
+}
+
+export type EditEducationMutationVariables = {
+  education: EditEducationInput
+}
+
+export type EditEducationMutation = { __typename?: 'Mutation' } & {
+  editEducation: { __typename?: 'Education' } & Pick<Education, 'id'>
+}
+
+export type AddExperienceClientMutationVariables = {
+  experience: ExperienceInput
+}
+
+export type AddExperienceClientMutation = { __typename?: 'Mutation' } & {
+  addExperienceClient: Maybe<
+    { __typename?: 'Experience' } & Pick<
+      Experience,
+      'sourceId' | 'employer' | 'end' | 'start' | 'term'
+    >
+  >
+}
+
+export type RemoveExperienceClientMutationVariables = {
+  id: Scalars['String']
+}
+
+export type RemoveExperienceClientMutation = { __typename?: 'Mutation' } & Pick<
+  Mutation,
+  'removeExperienceClient'
+>
+
+export type UpdateExperienceClientMutationVariables = {
+  experience: ExperienceInput
+}
+
+export type UpdateExperienceClientMutation = { __typename?: 'Mutation' } & {
+  updateExperienceClient: Maybe<
+    { __typename?: 'Experience' } & Pick<Experience, 'sourceId'>
   >
 }
 
@@ -710,6 +790,19 @@ export type GetOccupationClientQuery = { __typename?: 'Query' } & {
         >
       >
     }
+}
+
+export type GetExperiencesQueryVariables = {}
+
+export type GetExperiencesQuery = { __typename?: 'Query' } & {
+  experiences: Array<
+    Maybe<
+      { __typename?: 'Experience' } & Pick<
+        Experience,
+        'sourceId' | 'employer' | 'term' | 'start' | 'end' | 'id'
+      >
+    >
+  >
 }
 
 export type AddEducationClientMutationVariables = {
@@ -835,39 +928,6 @@ export type UpdateContactInformationMutation = { __typename?: 'Mutation' } & {
   updateContactInformation: { __typename?: 'Profile' } & Pick<
     Profile,
     'name' | 'email' | 'telephone'
-  >
-}
-
-export type AddExperienceClientMutationVariables = {
-  experience: ExperienceInput
-}
-
-export type AddExperienceClientMutation = { __typename?: 'Mutation' } & {
-  addExperienceClient: Maybe<
-    { __typename?: 'Experience' } & Pick<
-      Experience,
-      'sourceId' | 'employer' | 'end' | 'start' | 'term'
-    >
-  >
-}
-
-export type RemoveExperienceClientMutationVariables = {
-  experience: ExperienceInput
-}
-
-export type RemoveExperienceClientMutation = { __typename?: 'Mutation' } & {
-  removeExperienceClient: Maybe<
-    { __typename?: 'Experience' } & Pick<Experience, 'sourceId'>
-  >
-}
-
-export type UpdateExperienceClientMutationVariables = {
-  experience: ExperienceInput
-}
-
-export type UpdateExperienceClientMutation = { __typename?: 'Mutation' } & {
-  updateExperienceClient: Maybe<
-    { __typename?: 'Experience' } & Pick<Experience, 'sourceId'>
   >
 }
 

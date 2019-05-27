@@ -2,16 +2,16 @@ import React, { useState } from 'react'
 import { RouteComponentProps } from '@reach/router'
 import { H1 } from 'components/Typography'
 import Timeline from 'components/Timeline'
-import { useQuery } from 'react-apollo-hooks'
-import { GET_EXPERIENCES_CLIENT } from 'graphql/resolvers/mutations/addExperience'
+
 import { Experience } from 'generated/myskills'
 import AddAndEditForm from 'components/AddAndEditForm'
 import { FooterButton } from 'components/Layout/Registration'
-import { v4 } from 'uuid'
+
 import { Entry } from 'components/Timeline/index'
 
 interface WorkExperienceProps {
   buttonText: string
+  experiences: Experience[]
   onSubmit: (experiences: Experience[]) => void
   addExperience: (args: any) => any
   removeExperience: (args: any) => any
@@ -23,6 +23,7 @@ export const Experiences: React.FC<
 > = ({
   buttonText,
   onSubmit,
+  experiences,
   addExperience,
   removeExperience,
   updateExperience,
@@ -39,10 +40,6 @@ export const Experiences: React.FC<
   const [edit, toggleEdit] = useState(false)
   const [editEntry, setEditEntry] = useState(initialEditEntry)
 
-  const {
-    data: { experiences },
-  } = useQuery(GET_EXPERIENCES_CLIENT)
-
   const handleEdit = (entry: Entry) => {
     setEditEntry(entry)
     toggleEdit(true)
@@ -56,13 +53,7 @@ export const Experiences: React.FC<
   const handleDelete = (entry: Entry) => {
     removeExperience({
       variables: {
-        experience: {
-          id: entry.id,
-          term: entry.title,
-          employer: entry.schoolOrCompany,
-          start: entry.start,
-          end: entry.end,
-        },
+        id: entry.id,
       },
     })
 
@@ -90,7 +81,6 @@ export const Experiences: React.FC<
     addExperience({
       variables: {
         experience: {
-          sourceId: v4(),
           term: formState.title,
           employer: formState.schoolOrCompany,
           start: formState.start,

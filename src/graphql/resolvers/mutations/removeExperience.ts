@@ -1,27 +1,28 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { Experience } from 'generated/myskills'
+import { Experience, GetExperiencesClientQuery } from 'generated/myskills'
 import { GET_EXPERIENCES_CLIENT } from './addExperience'
 import { storageHelper } from 'utils/helpers'
 
 export const removeExperienceClient = (
   _: any,
-  { experience }: { experience: Experience },
+  { id }: { id: string },
   { cache }: { cache: InMemoryCache }
-): Experience => {
-  const { experiences }: any = cache.readQuery({
+): boolean => {
+  const { experiences } = cache.readQuery<GetExperiencesClientQuery>({
     query: GET_EXPERIENCES_CLIENT,
   })
+  try {
+    const updatedExperienceList = experiences.filter(
+      (e: Experience) => e.id !== id
+    )
 
-  const updatedExperienceList = experiences.filter(
-    (e: Experience) => e.id !== experience.id
-  )
-
-  cache.writeQuery({
-    query: GET_EXPERIENCES_CLIENT,
-    data: { experiences: updatedExperienceList },
-  })
-
-  storageHelper.set({ type: 'experiences', data: updatedExperienceList })
-
-  return updatedExperienceList
+    cache.writeQuery({
+      query: GET_EXPERIENCES_CLIENT,
+      data: { experiences: updatedExperienceList },
+    })
+    storageHelper.set({ type: 'experiences', data: updatedExperienceList })
+    return true
+  } catch (error) {
+    throw new Error(`Remove client experience error, ${error}`)
+  }
 }

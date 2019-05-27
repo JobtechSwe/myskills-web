@@ -2,12 +2,13 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { storageHelper } from 'utils/helpers'
 import gql from 'graphql-tag'
 import { Experience } from 'generated/myskills'
+import { v4 } from 'uuid'
 
 export const GET_EXPERIENCES_CLIENT = gql`
-  query getExperiences {
+  query getExperiencesClient {
     experiences @client {
-      sourceId
       employer
+      id
       term
       start
       end
@@ -26,10 +27,13 @@ export const addExperienceClient = (
   const { experiences = [] } = cache.readQuery<{ experiences: Experience[] }>({
     query: GET_EXPERIENCES_CLIENT,
   })!
-  const updatedExperiences = [
-    ...experiences,
-    { ...experience, __typename: 'Experience' },
-  ]
+
+  const experienceWithId = {
+    ...experience,
+    id: v4(),
+    __typename: 'Experience',
+  }
+  const updatedExperiences = [...experiences, experienceWithId]
 
   cache.writeQuery({
     query: GET_EXPERIENCES_CLIENT,
@@ -41,5 +45,5 @@ export const addExperienceClient = (
     data: updatedExperiences,
   })
 
-  return { ...experience, __typename: 'Experience' }
+  return experienceWithId
 }

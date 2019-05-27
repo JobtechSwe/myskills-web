@@ -77,3 +77,15 @@ export const GET_OCCUPATION_CLIENT = gql`
     }
   }
 `
+export const GET_EXPERIENCES = gql`
+  query getExperiences {
+    experiences {
+      sourceId
+      employer
+      term
+      start
+      end
+      id
+    }
+  }
+`

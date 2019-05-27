@@ -31,7 +31,7 @@ export const REMOVE_SKILL_CLIENT = gql`
 `
 
 export const ADD_EXPERIENCE = gql`
-  mutation addExperience($experience: EditExperienceInput!) {
+  mutation addExperience($experience: ExperienceInput!) {
     addExperience(experience: $experience) {
       id
     }
@@ -40,13 +40,15 @@ export const ADD_EXPERIENCE = gql`
 
 export const REMOVE_EXPERIENCE = gql`
   mutation removeExperience($id: String!) {
-    addExperience(id: $id)
+    removeExperience(id: $id)
   }
 `
 
 export const EDIT_EXPERIENCE = gql`
-  mutation editExperience($id: String!) {
-    addExperience(id: $id)
+  mutation editExperience($experience: EditExperienceInput!) {
+    editExperience(experience: $experience) {
+      id
+    }
   }
 `
 
@@ -61,7 +63,7 @@ export const EDIT_EDUCATION = gql`
 export const ADD_EXPERIENCE_CLIENT = gql`
   mutation addExperienceClient($experience: ExperienceInput!) {
     addExperienceClient(experience: $experience) @client {
-      sourceId
+      id
       employer
       end
       start
@@ -71,17 +73,15 @@ export const ADD_EXPERIENCE_CLIENT = gql`
 `
 
 export const REMOVE_EXPERIENCE_CLIENT = gql`
-  mutation removeExperienceClient($experience: ExperienceInput!) {
-    removeExperienceClient(experience: $experience) @client {
-      sourceId
-    }
+  mutation removeExperienceClient($id: String!) {
+    removeExperienceClient(id: $id) @client
   }
 `
 
 export const UPDATE_EXPERIENCE_CLIENT = gql`
   mutation updateExperienceClient($experience: ExperienceInput!) {
     updateExperienceClient(experience: $experience) @client {
-      sourceId
+      id
     }
   }
 `

@@ -93,7 +93,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
           class="css-jbzzha"
           color="persianBlue"
           font-weight="500"
-          href="/editplace"
+          href="/egenskaper"
         >
           <img
             alt="Edit data"
@@ -215,7 +215,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
           class="css-jbzzha"
           color="persianBlue"
           font-weight="500"
-          href="/editplace"
+          href="/utbildning"
         >
           <img
             alt="Edit data"

@@ -14,7 +14,7 @@ const Wrapper = styled.li`
 `
 
 const DotWrapper = styled.div`
-  padding: 15px 0;
+  padding: 10px 0;
   z-index: 1;
 `
 
@@ -24,12 +24,12 @@ const ContentWrapper = styled.div<{ editing: boolean }>`
   display: grid;
   grid-template-columns: 1fr 20px;
   border-radius: 8px;
-  padding: 15px;
-  margin-bottom: 10px;
+  padding: 10px;
 `
 
 const TimelineTitle = styled.div`
-  margin-bottom: 10px;
+  font-size: ${({ theme }) => `${theme.fontSizes.small}px`};
+  margin-bottom: 5px;
 `
 
 const TimelineDegree = styled.span`
@@ -39,16 +39,16 @@ const TimelineDegree = styled.span`
 const TimelineInfo = styled.div`
   align-items: center;
   display: flex;
-  font-size: 12px;
+  font-size: ${({ theme }) => `${theme.fontSizes.xsmall}px`};
 `
 
 const TimelineInfoDivider = styled.img`
   margin: 0 10px;
 `
 
-const TimelineEntryEdit = styled.div`
+const TimelineEntryEdit = styled.div<{ editing: boolean }>`
   display: flex;
-  align-items: flex-end;
+  align-items: ${({ editing }) => (editing ? 'center' : 'flex-end')};
 `
 
 interface TimelineEntryProps {
@@ -79,11 +79,14 @@ const TimelineEntry: React.FC<TimelineEntryProps> = ({
             {entry.start} - {entry.end}
           </TimelineInfo>
         </div>
-        <TimelineEntryEdit>
+        <TimelineEntryEdit editing={editing}>
           {editing ? (
             <img alt="edit" src={pen} />
           ) : (
-            <button onClick={() => handleEdit(entry)}>
+            <button
+              data-testid="timelineUpdateButton"
+              onClick={() => handleEdit(entry)}
+            >
               <img alt="edit" src={edit} />
             </button>
           )}

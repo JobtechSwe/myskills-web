@@ -57,7 +57,7 @@ exports[`views/AddEducation renders empty result 1`] = `
       class="css-1kqrbn8"
     >
       <h1
-        class="css-1wd37ko"
+        class="css-2k7aps"
         color="black"
         font-family="default"
         font-size="large"
@@ -76,7 +76,7 @@ exports[`views/AddEducation renders empty result 1`] = `
     </div>
     <div />
     <div
-      class="css-u0khw4"
+      class="css-14oqj0j"
     >
       <div
         class="css-4ihyqn"
@@ -92,6 +92,7 @@ exports[`views/AddEducation renders empty result 1`] = `
       </div>
       <input
         class="css-hugbvh"
+        data-testid="title"
         font-family="default"
         font-size="medium"
         name="title"
@@ -100,6 +101,7 @@ exports[`views/AddEducation renders empty result 1`] = `
       />
       <input
         class="css-hugbvh"
+        data-testid="schoolOrCompany"
         font-family="default"
         font-size="medium"
         name="schoolOrCompany"
@@ -108,7 +110,7 @@ exports[`views/AddEducation renders empty result 1`] = `
       />
     </div>
     <div
-      class="css-k6djra"
+      class="css-t6zbdi"
     >
       <div
         class="css-y3xkt8"
@@ -126,12 +128,13 @@ exports[`views/AddEducation renders empty result 1`] = `
           data-testid="startDate"
         >
           <span
-            class="css-12kzefs"
+            class="css-1gmliaa"
           >
             Startdatum
           </span>
           <input
             class="css-1oteowz"
+            data-testid="startDate-input"
             placeholder="Slutdatum"
             type="month"
           />
@@ -157,12 +160,13 @@ exports[`views/AddEducation renders empty result 1`] = `
           data-testid="endDate"
         >
           <span
-            class="css-12kzefs"
+            class="css-1gmliaa"
           >
             Slutdatum
           </span>
           <input
             class="css-1oteowz"
+            data-testid="endDate-input"
             placeholder="Slutdatum"
             type="month"
           />
@@ -174,7 +178,8 @@ exports[`views/AddEducation renders empty result 1`] = `
       </div>
     </div>
     <button
-      class="css-1iemawu"
+      class="css-1t15cbl"
+      data-testid="saveButton"
       font-family="default"
       font-size="medium"
       type="submit"
@@ -186,7 +191,7 @@ exports[`views/AddEducation renders empty result 1`] = `
       class="css-18cthkh"
     >
       <button
-        class="css-1fyzulv"
+        class="css-spuwu"
         data-testid="okButton"
         font-family="default"
         font-size="medium"

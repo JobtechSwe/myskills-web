@@ -30,11 +30,13 @@ const Input = styled.input<{ isMobile: boolean }>`
 const PickedDate = styled.span<{ isMobile: boolean }>`
   color: ${({ theme }) => theme.colors.black};
   display: ${({ isMobile }) => (isMobile ? 'inline-block' : 'none')};
+  line-height: 20px;
 `
 
 const Placeholder = styled.span<{ isMobile: boolean }>`
   color: grey;
   display: ${({ isMobile }) => (isMobile ? 'inline-block' : 'none')};
+  line-height: 20px;
 `
 
 interface DatePickerProps {
@@ -58,6 +60,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
         <Placeholder isMobile={isMobile}>{placeholder}</Placeholder>
       )}
       <Input
+        data-testid={`${dataTestId}-input`}
         isMobile={isMobile}
         onChange={({ target }: React.ChangeEvent<HTMLInputElement>) =>
           onChange(target.value)

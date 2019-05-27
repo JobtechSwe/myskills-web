@@ -429,6 +429,8 @@ export type Query = {
   personalDescription?: Maybe<Scalars['String']>
   /** Get user traits */
   traits: Array<Maybe<Scalars['String']>>
+  /** Get occupation trivia */
+  trivia: Trivia
   /** Get user image */
   image: Scalars['String']
   /** Get from taxonomy */
@@ -440,6 +442,10 @@ export type Query = {
   ontologyTextParse: Array<Maybe<OntologyTextParseResponse>>
   isLoggedIn: Scalars['Boolean']
   whoAmI: Scalars['String']
+}
+
+export type QueryTriviaArgs = {
+  occupation: Scalars['String']
 }
 
 export type QueryTaxonomyArgs = {
@@ -542,6 +548,11 @@ export enum TaxonomyType {
   OccupationName = 'OCCUPATION_NAME',
   Skill = 'SKILL',
   WorktimeExtent = 'WORKTIME_EXTENT',
+}
+
+export type Trivia = {
+  info?: Maybe<Scalars['String']>
+  source?: Maybe<Scalars['String']>
 }
 
 export type GetProfessionAndContactQueryVariables = {}
@@ -1059,6 +1070,14 @@ export type RemoveTraitMutation = { __typename?: 'Mutation' } & Pick<
   Mutation,
   'removeTrait'
 >
+
+export type TriviaQueryVariables = {
+  occupation: Scalars['String']
+}
+
+export type TriviaQuery = { __typename?: 'Query' } & {
+  trivia: { __typename?: 'Trivia' } & Pick<Trivia, 'info'>
+}
 
 export type OntologyTextParseQueryVariables = {
   text: Scalars['String']

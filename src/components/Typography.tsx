@@ -91,6 +91,17 @@ export const Bold = styled(Paragraph)`
   ${space}
 `
 
+export const Italic = styled(Paragraph)`
+  font-style: italic;
+
+  ${color}
+  ${fontFamily}
+  ${fontSize}
+  ${fontWeight}
+  ${textAlign}
+  ${space}
+`
+
 const common: HeadingProps = {
   color: 'black',
   fontFamily: 'default',
@@ -127,6 +138,14 @@ Bold.defaultProps = {
   fontFamily: 'default',
   fontSize: 'medium',
   fontWeight: 700,
+  mt: 0,
+  mb: 0,
+}
+
+Italic.defaultProps = {
+  fontFamily: 'default',
+  fontSize: 'medium',
+  fontWeight: 300,
   mt: 0,
   mb: 0,
 }

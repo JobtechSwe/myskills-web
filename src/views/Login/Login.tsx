@@ -34,7 +34,6 @@ const Login: React.FC<RouteComponentProps> = () => {
   const {
     data: { getLoginUrl },
     loading,
-    error,
   } = useQuery<LoginQuery>(GET_LOGIN_ID)
   return (
     <>

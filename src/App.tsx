@@ -30,6 +30,11 @@ const AddContactInformation = React.lazy(() =>
 const PreviousOccupationExperience = React.lazy(() =>
   import('views/CreateProfile/PreviousOccupationExperience')
 )
+
+const OccupationTrivia = React.lazy(() =>
+  import('views/CreateProfile/OccupationTrivia')
+)
+
 const SaveCV = React.lazy(() => import('views/CreateProfile/SaveCV'))
 const WorkExperiences = React.lazy(() =>
   import('views/CreateProfile/WorkExperiences')
@@ -70,6 +75,7 @@ function App() {
                     <AddTraits path="/egenskaper" />
                     <ChooseProfession path="/" />
                     <MatchCompetences path="/kompetenser" />
+                    <OccupationTrivia path="/visste-du-att" />
                     <PreviousOccupationExperience path="/erfarenheter" />
                     <RegistrationCompleted path="/grattis" />
                     <SaveCV path="/spara-cv" />

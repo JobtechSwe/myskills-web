@@ -7,9 +7,13 @@ import {
   Mutation,
   MutationAddExperienceArgs,
   GetExperiencesQuery,
+  GetOccupationClientQuery,
   MutationRemoveExperienceArgs,
   MutationEditExperienceArgs,
+  QueryTriviaArgs,
+  Query,
 } from 'generated/myskills.d'
+import { GET_TRIVIA, GET_OCCUPATION_CLIENT } from 'graphql/shared/Queries'
 import {
   ADD_EXPERIENCE_CLIENT,
   REMOVE_EXPERIENCE_CLIENT,
@@ -22,6 +26,23 @@ const WorkExperiences: React.FC<RouteComponentProps> = () => {
   const {
     data: { experiences },
   } = useQuery<GetExperiencesQuery>(GET_EXPERIENCES_CLIENT)
+
+  const {
+    data: { occupation },
+  } = useQuery<GetOccupationClientQuery>(GET_OCCUPATION_CLIENT)
+
+  const {
+    data: { trivia },
+  } = useQuery<
+    {
+      trivia: Query['trivia']
+    },
+    QueryTriviaArgs
+  >(GET_TRIVIA, {
+    variables: {
+      occupation: occupation.term,
+    },
+  })
 
   const addExperience = useMutation<
     Mutation['addExperience'],
@@ -39,7 +60,13 @@ const WorkExperiences: React.FC<RouteComponentProps> = () => {
   >(UPDATE_EXPERIENCE_CLIENT)
 
   const handleSubmit = (_experiences: Experience[]) => {
-    navigate('/skapa-cv/utbildning')
+    if (trivia && trivia.info) {
+      navigate('/skapa-cv/visste-du-att', {
+        state: trivia,
+      })
+    } else {
+      navigate('/skapa-cv/utbildning')
+    }
   }
 
   return (

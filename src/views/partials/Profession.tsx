@@ -230,9 +230,9 @@ const Profession: React.FC<RouteComponentProps & ProfessionProps> = ({
         )}
       </Grid>
       <FooterButton
-        disabled={occupationResult.occupation ? false : true}
         onClick={handleSubmit}
         text={buttonText}
+        variant={occupationResult.occupation ? 'primary' : 'disabled'}
       />
     </>
   )

@@ -22,7 +22,7 @@ import {
   WidthProps,
 } from 'styled-system'
 
-type VariantProps = {
+export type VariantProps = {
   variant?:
     | 'disabled'
     | 'primary'

@@ -185,7 +185,7 @@ exports[`views/AddEducation renders empty result 1`] = `
       class="css-xyw5i4"
     >
       <button
-        class="css-1fyzulv"
+        class="css-spuwu"
         data-testid="okButton"
         font-family="default"
         font-size="medium"

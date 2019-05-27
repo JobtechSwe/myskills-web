@@ -90,7 +90,7 @@ exports[`views/MatchSkills renders loading state 1`] = `
       class="css-xyw5i4"
     >
       <button
-        class="css-1fyzulv"
+        class="css-spuwu"
         data-testid="okButton"
         font-family="default"
         font-size="medium"

@@ -174,7 +174,7 @@ exports[`views/AddEducation renders empty result 1`] = `
       </div>
     </div>
     <button
-      class="css-1jbieww"
+      class="css-1pmolsj"
       font-family="default"
       font-size="medium"
       type="submit"

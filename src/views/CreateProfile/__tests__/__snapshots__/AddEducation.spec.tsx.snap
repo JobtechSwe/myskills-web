@@ -178,7 +178,7 @@ exports[`views/AddEducation renders empty result 1`] = `
       </div>
     </div>
     <button
-      class="css-vmnbwz"
+      class="css-1t15cbl"
       data-testid="saveButton"
       font-family="default"
       font-size="medium"

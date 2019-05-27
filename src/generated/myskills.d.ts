@@ -66,8 +66,27 @@ export type CvInput = {
   profile?: Maybe<ProfileInput>
 }
 
+export type EditEducationInput = {
+  programme: Scalars['String']
+  degree?: Maybe<Scalars['String']>
+  school: Scalars['String']
+  start: Scalars['String']
+  end?: Maybe<Scalars['String']>
+  id: Scalars['String']
+}
+
+export type EditExperienceInput = {
+  id: Scalars['String']
+  employer: Scalars['String']
+  sourceId?: Maybe<Scalars['String']>
+  term: Scalars['String']
+  start: Scalars['String']
+  end?: Maybe<Scalars['String']>
+}
+
 export type Education = {
   programme: Scalars['String']
+  degree?: Maybe<Scalars['String']>
   school: Scalars['String']
   start: Scalars['String']
   end?: Maybe<Scalars['String']>
@@ -76,6 +95,7 @@ export type Education = {
 
 export type EducationInput = {
   programme: Scalars['String']
+  degree?: Maybe<Scalars['String']>
   school: Scalars['String']
   start: Scalars['String']
   end?: Maybe<Scalars['String']>
@@ -117,8 +137,6 @@ export type Login = {
 }
 
 export type Mutation = {
-  /** Login an existing user */
-  login: Login
   /** Add languages to user */
   addLanguage: Language
   /** Add experiences to user */
@@ -147,6 +165,10 @@ export type Mutation = {
   saveCV: Cv
   /** Save Image as base64 string */
   uploadImage: Scalars['String']
+  /** Edit education */
+  editEducation: Education
+  /** Edit experience */
+  editExperience: Experience
   createOccupationClient?: Maybe<Occupation>
   addSkillClient?: Maybe<ClientSkill>
   removeSkillClient?: Maybe<ClientSkill>
@@ -216,6 +238,14 @@ export type MutationSaveCvArgs = {
 
 export type MutationUploadImageArgs = {
   image: ImgInput
+}
+
+export type MutationEditEducationArgs = {
+  education: EditEducationInput
+}
+
+export type MutationEditExperienceArgs = {
+  experience: EditExperienceInput
 }
 
 export type MutationCreateOccupationClientArgs = {
@@ -379,6 +409,8 @@ export type ProfileInput = {
 }
 
 export type Query = {
+  /** Login an existing user */
+  getLoginUrl: Login
   /** Gets a consent request */
   consent: Consent
   /** Get user languages */
@@ -797,6 +829,17 @@ export type ConsentQuery = { __typename?: 'Query' } & {
   consent: { __typename?: 'Consent' } & Pick<Consent, 'id' | 'url'>
 }
 
+export type ConsentApprovedSubscriptionVariables = {
+  consentRequestId: Scalars['String']
+}
+
+export type ConsentApprovedSubscription = { __typename?: 'Subscription' } & {
+  consentApproved: { __typename?: 'ConsentResponse' } & Pick<
+    ConsentResponse,
+    'accessToken'
+  >
+}
+
 export type SaveCvMutationVariables = {
   educations?: Maybe<Array<EducationInput>>
   experiences?: Maybe<Array<ExperienceInput>>
@@ -932,10 +975,21 @@ export type UpdateExperienceClientMutation = { __typename?: 'Mutation' } & {
   >
 }
 
-export type LoginMutationVariables = {}
+export type LoginSubscriptionSubscriptionVariables = {
+  loginRequestId: Scalars['String']
+}
 
-export type LoginMutation = { __typename?: 'Mutation' } & {
-  login: { __typename?: 'Login' } & Pick<Login, 'url' | 'sessionId'>
+export type LoginSubscriptionSubscription = { __typename?: 'Subscription' } & {
+  loginApproved: { __typename?: 'ConsentResponse' } & Pick<
+    ConsentResponse,
+    'accessToken'
+  >
+}
+
+export type LoginQueryVariables = {}
+
+export type LoginQuery = { __typename?: 'Query' } & {
+  getLoginUrl: { __typename?: 'Login' } & Pick<Login, 'url' | 'sessionId'>
 }
 
 export type LoginApprovedSubscriptionVariables = {
@@ -1014,11 +1068,13 @@ export type GetEducationsAndExperiencesQuery = { __typename?: 'Query' } & {
   >
 }
 
-export type ConsentApprovedSubscriptionVariables = {
+export type ConsentApprovedTempSubscriptionVariables = {
   consentRequestId: Scalars['String']
 }
 
-export type ConsentApprovedSubscription = { __typename?: 'Subscription' } & {
+export type ConsentApprovedTempSubscription = {
+  __typename?: 'Subscription'
+} & {
   consentApproved: { __typename?: 'ConsentResponse' } & Pick<
     ConsentResponse,
     'accessToken'

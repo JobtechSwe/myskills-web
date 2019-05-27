@@ -1,13 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`views/Login renders without errors 1`] = `
-<div>
-  <button
-    class="css-spuwu"
-    font-family="default"
-    font-size="medium"
-  >
-    Login
-  </button>
-</div>
-`;
+exports[`views/Login renders without errors 1`] = `<div />`;

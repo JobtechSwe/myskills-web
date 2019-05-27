@@ -11,12 +11,16 @@ import Info from './Info'
 import { Link } from './Link'
 import check from '../assets/icons/check_blue.svg'
 import { ConsentApprovedSubscription } from 'generated/myskills'
+import { useSubscription } from 'react-apollo-hooks'
+import { CONSENT_SUBSCRIPTION } from 'views/CreateProfile/SaveCV'
+import { LOGIN_SUBSCRIPTION } from 'views/Login/Login'
 
 interface LoginViewProps {
-  subscription?: any
   onConsentApproved?: (onConsentApproved: ConsentApprovedSubscription) => void
   loginUrl: string
   btnText: string
+  consentId: string
+  isLogin?: boolean
 }
 
 const Wrapper = styled.div`
@@ -51,9 +55,17 @@ const EgenData: React.FC<LoginViewProps> = ({
   loginUrl,
   btnText,
   onConsentApproved,
-  subscription,
+  consentId,
+  isLogin = false,
 }) => {
-  const { data } = subscription()
+  const { data } = useSubscription<ConsentApprovedSubscription>(
+    isLogin ? LOGIN_SUBSCRIPTION : CONSENT_SUBSCRIPTION,
+    {
+      variables: {
+        [isLogin ? 'loginRequestId' : 'consentRequestId']: consentId,
+      },
+    }
+  )
 
   useEffect(() => {
     data && onConsentApproved(data)

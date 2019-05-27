@@ -166,7 +166,7 @@ const Register: React.FC<RouteComponentProps> = () => {
   }
 
   return (
-    <Background justifyContent="center" alignItems="center">
+    <Background alignItems="center" justifyContent="center">
       {error && <Paragraph>{error.message}</Paragraph>}
       {loading && <Loader />}
       {consent && (

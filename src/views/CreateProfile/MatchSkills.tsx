@@ -125,7 +125,7 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
         justifyContent="flex-start"
       >
         <H1 mb={20}>Vilka är dina kompetenser?</H1>
-        <Paragraph mt={0} mb="large" textAlign="center">
+        <Paragraph mb="large" mt={0} textAlign="center">
           Ditt val av yrkesroll matchar ofta nedan föreslagna kompetenser.
           Markera dina eller lägg till egna.
         </Paragraph>

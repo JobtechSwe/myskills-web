@@ -29,6 +29,7 @@ export const GET_CV = gql`
       start
       end
     }
+    image
 
     educations {
       programme
@@ -61,7 +62,10 @@ const Container = styled(Flex)`
     margin-right: 10px;
   }
 `
-
+const Image = styled.img`
+  width: 100%;
+  height: 100%;
+`
 const Home: React.FC<RouteComponentProps> = ({
   location = { pathname: '' },
 }) => {
@@ -87,7 +91,7 @@ const Home: React.FC<RouteComponentProps> = ({
               </Paragraph>
             </ProfileDataCard>
             <ProfileDataCard flexVal={0.35} isImage isTop route="editplace">
-              <div />
+              <Image src={`data:image/jpeg;base64,${data.image}`} />
             </ProfileDataCard>
           </Container>
           <Container mb="10px">
@@ -126,7 +130,7 @@ const Home: React.FC<RouteComponentProps> = ({
                     mb="none"
                     mt="none"
                   >
-                    {education.programme}
+                    {education.school}
                   </Paragraph>
                 ))}
             </ProfileDataCard>
@@ -157,7 +161,7 @@ const Home: React.FC<RouteComponentProps> = ({
             </ProfileDataCard>
           </Container>
           <Flex mt="small" pl="small">
-            <Flex flex="1" flexDirection="column">
+            <Flex flex="1" flexDirection="column" mb="large">
               <H2 mb="none" width="100%">
                 Kontakt
               </H2>

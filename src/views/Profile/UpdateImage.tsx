@@ -11,7 +11,6 @@ const UploadImage: React.FC<RouteComponentProps> = () => {
   return (
     <Layout>
       <Navigation section="Bild" step={5} />
-      <Image buttonText="Fortsätt" onSubmit={handleSubmit} />
     </Layout>
   )
 }

@@ -4,55 +4,39 @@ import RestrictedRoute from 'views/restricted'
 import Loader from 'components/Loader'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import './fade.css'
+import Login from 'views/Login/Login'
+import Start from 'views/Start/Start'
+import NotFound from 'views/NotFound'
+import Profile from 'views/Profile/Profile'
+import RegistrationCompleted from 'views/CreateProfile/RegistrationCompleted'
 
-const Login = React.lazy(() => import(`views/Login/Login`))
-const Start = React.lazy(() => import(`views/Start/Start`))
-const NotFound = React.lazy(() => import(`views/NotFound`))
-const Profile = React.lazy(() => import('views/Profile/Profile'))
-const RegistrationCompleted = React.lazy(() =>
-  import('views/CreateProfile/RegistrationCompleted')
-)
-const CreateProfile = React.lazy(() =>
-  import('views/CreateProfile/CreateProfile')
-)
-const ChooseProfession = React.lazy(() =>
-  import('views/CreateProfile/ChooseProfession')
-)
-const MatchCompetences = React.lazy(() =>
-  import('views/CreateProfile/AddSkills')
-)
-const AddEducation = React.lazy(() =>
-  import('views/CreateProfile/AddEducation')
-)
-const AddContactInformation = React.lazy(() =>
-  import('views/CreateProfile/AddContactInformation')
-)
-const PreviousOccupationExperience = React.lazy(() =>
-  import('views/CreateProfile/PreviousOccupationExperience')
-)
+import CreateProfile from 'views/CreateProfile/CreateProfile'
 
-const OccupationTrivia = React.lazy(() =>
-  import('views/CreateProfile/OccupationTrivia')
-)
+import ChooseProfession from 'views/CreateProfile/ChooseProfession'
 
-const SaveCV = React.lazy(() => import('views/CreateProfile/SaveCV'))
-const WorkExperiences = React.lazy(() =>
-  import('views/CreateProfile/WorkExperiences')
-)
-const UploadImage = React.lazy(() => import('views/CreateProfile/UploadImage'))
-const WhoAmI = React.lazy(() => import('views/CreateProfile/WhoAmI'))
-const AddTraits = React.lazy(() => import('views/CreateProfile/AddTraits'))
-const Home = React.lazy(() => import('views/Profile/Home'))
-const Timeline = React.lazy(() => import('views/Profile/Timeline'))
-const UpdateEducation = React.lazy(() =>
-  import('views/Profile/UpdateEducation')
-)
-const UpdateWorkExperience = React.lazy(() =>
-  import('views/Profile/UpdateWorkExperiences')
-)
-const UpdateWhoAmI = React.lazy(() =>
-  import('views/Profile/UpdatePersonalDescription')
-)
+import MatchCompetences from 'views/CreateProfile/AddSkills'
+
+import AddEducation from 'views/CreateProfile/AddEducation'
+
+import AddContactInformation from 'views/CreateProfile/AddContactInformation'
+
+import PreviousOccupationExperience from 'views/CreateProfile/PreviousOccupationExperience'
+
+import OccupationTrivia from 'views/CreateProfile/OccupationTrivia'
+
+import SaveCV from 'views/CreateProfile/SaveCV'
+import WorkExperiences from 'views/CreateProfile/WorkExperiences'
+
+import UploadImage from 'views/CreateProfile/UploadImage'
+import WhoAmI from 'views/CreateProfile/WhoAmI'
+import AddTraits from 'views/CreateProfile/AddTraits'
+import Home from 'views/Profile/Home'
+import Timeline from 'views/Profile/Timeline'
+import UpdateEducation from 'views/Profile/UpdateEducation'
+
+import UpdateWorkExperience from 'views/Profile/UpdateWorkExperiences'
+
+import UpdateWhoAmI from 'views/Profile/UpdatePersonalDescription'
 
 function App() {
   return (
@@ -65,46 +49,44 @@ function App() {
               key={location.key}
               timeout={1000}
             >
-              <React.Suspense fallback={<Loader />}>
-                <Router location={location}>
-                  <Start path="/" />
-                  <Login path="/logga-in" />
-                  <CreateProfile path="/skapa-cv">
-                    <AddContactInformation path="/kontakt" />
-                    <AddEducation path="/utbildning" />
-                    <AddTraits path="/egenskaper" />
-                    <ChooseProfession path="/" />
-                    <MatchCompetences path="/kompetenser" />
-                    <OccupationTrivia path="/visste-du-att" />
-                    <PreviousOccupationExperience path="/erfarenheter" />
-                    <RegistrationCompleted path="/grattis" />
-                    <SaveCV path="/spara-cv" />
-                    <UploadImage path="/profilbild" />
-                    <WhoAmI path="/beskriv-dig" />
-                    <WorkExperiences path="/erfarenheter/tidigare-erfarenheter" />
-                    <NotFound default />
-                  </CreateProfile>
-                  <Profile path="/profil">
-                    <RestrictedRoute component={Home} path="/" />
-                    <RestrictedRoute component={Timeline} path="/tidslinje" />
-                    <RestrictedRoute
-                      component={UpdateEducation}
-                      path="/utbildning"
-                    />
-                    <RestrictedRoute
-                      component={UpdateWhoAmI}
-                      path="/beskriv-dig"
-                    />
-                    <RestrictedRoute
-                      component={UpdateWorkExperience}
-                      path="/erfarenheter"
-                    />
-                    <NotFound default />
-                  </Profile>
-
+              <Router location={location}>
+                <Start path="/" />
+                <Login path="/logga-in" />
+                <CreateProfile path="/skapa-cv">
+                  <AddContactInformation path="/kontakt" />
+                  <AddEducation path="/utbildning" />
+                  <AddTraits path="/egenskaper" />
+                  <ChooseProfession path="/" />
+                  <MatchCompetences path="/kompetenser" />
+                  <OccupationTrivia path="/visste-du-att" />
+                  <PreviousOccupationExperience path="/erfarenheter" />
+                  <RegistrationCompleted path="/grattis" />
+                  <SaveCV path="/spara-cv" />
+                  <UploadImage path="/profilbild" />
+                  <WhoAmI path="/beskriv-dig" />
+                  <WorkExperiences path="/erfarenheter/tidigare-erfarenheter" />
                   <NotFound default />
-                </Router>
-              </React.Suspense>
+                </CreateProfile>
+                <Profile path="/profil">
+                  <RestrictedRoute component={Home} path="/" />
+                  <RestrictedRoute component={Timeline} path="/tidslinje" />
+                  <RestrictedRoute
+                    component={UpdateEducation}
+                    path="/utbildning"
+                  />
+                  <RestrictedRoute
+                    component={UpdateWhoAmI}
+                    path="/beskriv-dig"
+                  />
+                  <RestrictedRoute
+                    component={UpdateWorkExperience}
+                    path="/erfarenheter"
+                  />
+                  <NotFound default />
+                </Profile>
+
+                <NotFound default />
+              </Router>
             </CSSTransition>
           </TransitionGroup>
         )}

@@ -63,7 +63,7 @@ function App() {
               <React.Suspense fallback={<Loader />}>
                 <Router location={location}>
                   <Start path="/" />
-                  <Login path="/login" />
+                  <Login path="/logga-in" />
                   <CreateProfile path="/skapa-cv">
                     <AddContactInformation path="/kontakt" />
                     <AddEducation path="/utbildning" />

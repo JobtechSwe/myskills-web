@@ -47,7 +47,8 @@ const LoginQR: React.FC<ILoginQRProps> = ({ loginRequestId, loginUrl }) => {
     <>
       {renderLoginStatus()}
       <QR consentId={loginUrl} />
-      <OpenInApp url={loginUrl} />
+      <Paragraph id="consentId">{loginUrl}</Paragraph>
+      <OpenInApp url={loginUrl}>Logga in med Egendata</OpenInApp>
     </>
   )
 }

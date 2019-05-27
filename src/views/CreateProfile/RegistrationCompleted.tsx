@@ -15,30 +15,37 @@ const Background = styled(Flex)`
 )`};
   flex-direction: column;
   height: 100vh;
+  align-items: center;
   padding: 25px;
   text-align: center;
   color: ${({ theme }) => theme.colors.persianBlue};
   justify-content: center;
 `
 
+const Container = styled.div`
+  margin-top: 30%;
+`
+
 const RegistrationCompleted: React.FC<RouteComponentProps> = () => {
   return (
     <Background>
-      <H1 color="persianBlue">Grattis!</H1>
-      <Paragraph fontSize="medium">Ditt digitala CV är nu sparat.</Paragraph>
+      <Container>
+        <H1 color="persianBlue">Grattis!</H1>
+        <Paragraph fontSize="medium">Ditt digitala CV är nu sparat.</Paragraph>
 
-      <Paragraph fontSize="medium">
-        Du har själv valt var din data lagras och är nu i full kontroll över hur
-        och till vem din information ska delas.
-      </Paragraph>
+        <Paragraph fontSize="medium">
+          Du har själv valt var din data lagras och är nu i full kontroll över
+          hur och till vem din information ska delas.
+        </Paragraph>
 
-      <Paragraph fontSize="medium">
-        Dessutom har du just gjort ditt liv enklare eftersom du nu bara behöver
-        uppdatera ditt CV på ett enda ställe!
-      </Paragraph>
+        <Paragraph fontSize="medium">
+          Dessutom har du just gjort ditt liv enklare eftersom du nu bara
+          behöver uppdatera ditt CV på ett enda ställe!
+        </Paragraph>
 
-      <img alt="Present" src={present} />
-      <Flex justifyContent="center">
+        <img alt="Present" src={present} />
+      </Container>
+      <Flex alignItems="flex-end" flex="1" justifyContent="center">
         <Button onClick={() => navigate('/profil')}>Till ditt CV</Button>
       </Flex>
     </Background>

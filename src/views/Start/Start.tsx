@@ -7,7 +7,7 @@ import { Bold, H2, H3, Paragraph } from '../../components/Typography'
 import styled from '@emotion/styled'
 import logotypeIcon from '../../assets/images/logo.svg'
 import cloudsIcon from '../../assets/images/clouds.svg'
-import infoIcon from '../../assets/images/info.svg'
+import Info from '../../components/Info'
 
 const LogoContainer = styled.img`
   margin-top: 10%;
@@ -37,14 +37,6 @@ const Divider = styled.hr`
   border: 0;
   height: 1px;
   width: 200px;
-`
-
-const Info = styled.div`
-  border-radius: 8px;
-  color: ${({ theme }) => theme.colors.black};
-  display: flex;
-  padding: 15px;
-  margin-top: auto;
 `
 
 const Clouds = styled.img`
@@ -89,14 +81,13 @@ const Start: React.FC<RouteComponentProps> = () => {
               Skapa CV
             </Button>
           </InternalLink>
-          <InternalLink mt={10} to="/login" width={1}>
+          <InternalLink mt={10} to="/logga-in" width={1}>
             <Button variant="secondaryBlack" width={1}>
               Logga in med <Bold as="span">Egendata</Bold>
             </Button>
           </InternalLink>
           <Info>
-            <img alt="info icon" src={infoIcon} />
-            <Paragraph mb={0} ml={10} mt={0}>
+            <Paragraph m={0}>
               Med Egendata får du kontroll över din data.{' '}
               <Link onClick={scrollTo} textDecoration="underline">
                 Läs mer om hur det fungerar

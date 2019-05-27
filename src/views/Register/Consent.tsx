@@ -5,7 +5,7 @@ import QR from '../../components/QR'
 import { ConsentApprovedSubscription } from '../../generated/myskills'
 
 export const CONSENT_SUBSCRIPTION = gql`
-  subscription consentApproved($consentRequestId: String!) {
+  subscription consentApprovedTemp($consentRequestId: String!) {
     consentApproved(consentRequestId: $consentRequestId) {
       accessToken
     }

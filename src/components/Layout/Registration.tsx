@@ -1,12 +1,13 @@
 import React from 'react'
 import StepIndicator from 'components/StepIndicator'
 import styled from '@emotion/styled'
-import Button from 'components/Button'
+import Button, { VariantProps } from 'components/Button'
 import { Paragraph } from '../Typography'
 import Grid from 'components/Grid'
 import Flex from 'components/Flex'
 import { handleFocusKeyDown } from 'utils/helpers'
-import Icon from 'assets/icons/navigation_arrow.svg'
+import NavigationIconWhite from 'assets/icons/navigation_arrow_white.svg'
+import NavigationIconBlack from 'assets/icons/navigation_arrow.svg'
 import { RouteComponentProps } from '@reach/router'
 
 const NavigationContainer = styled.nav`
@@ -25,26 +26,25 @@ const SectionHeader = styled(Paragraph)`
   text-transform: uppercase;
 `
 
-interface LayoutProps {
-  children: React.ReactNode
-}
+const Layout = styled(Grid)<RouteComponentProps>``
 
-const Layout: React.FC<RouteComponentProps & LayoutProps> = ({ children }) => (
-  <Grid
-    gridTemplateRows="auto 1fr auto"
-    height="calc(var(--vh, 1vh) * 100)"
-    p="large"
-  >
-    {children}
-  </Grid>
-)
+Layout.defaultProps = {
+  gridTemplateRows: 'auto 1fr auto',
+  height: 'calc(var(--vh, 1vh) * 100)',
+  p: 'large',
+}
 
 interface NavigationProps {
   step?: number
-  section: string
+  section?: string
+  variant?: 'white' | 'black'
 }
 
-const Navigation: React.FC<NavigationProps> = ({ step, section }) => (
+const Navigation: React.FC<NavigationProps> = ({
+  step,
+  section,
+  variant = 'black',
+}) => (
   <NavigationContainer>
     <Flex alignSelf="stretch" justifyContent="center" mb="small">
       <Flex
@@ -54,7 +54,10 @@ const Navigation: React.FC<NavigationProps> = ({ step, section }) => (
         tabIndex={0}
         zIndex={1}
       >
-        <img alt="Go back" src={Icon} />
+        <img
+          alt="Go back"
+          src={variant === 'black' ? NavigationIconBlack : NavigationIconWhite}
+        />
       </Flex>
       {step ? (
         <StepIndicator step={step} />
@@ -75,25 +78,22 @@ const Navigation: React.FC<NavigationProps> = ({ step, section }) => (
 )
 
 interface FooterButtonProps {
-  disabled?: boolean
   text: string
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-const FooterButton: React.FC<FooterButtonProps> = ({
-  disabled,
+const FooterButton: React.FC<FooterButtonProps & VariantProps> = ({
   text,
   onClick,
-}) => (
-  <Flex justifyContent="center">
-    <Button
-      data-testid="okButton"
-      onClick={onClick}
-      variant={disabled ? 'disabled' : 'primary'}
-    >
-      {text}
-    </Button>
-  </Flex>
-)
+  variant = 'primary',
+}) => {
+  return (
+    <Flex justifyContent="center">
+      <Button data-testid="okButton" onClick={onClick} variant={variant}>
+        {text}
+      </Button>
+    </Flex>
+  )
+}
 
 export { FooterButton, Navigation, Layout }

@@ -3,10 +3,11 @@
 exports[`components/Trivia renders Trivia 1`] = `
 <div>
   <div
-    class="css-71ynm3"
+    class="css-19641yj"
   >
     <img
       alt="Frågetecken"
+      class="css-exhu38"
       src="question_mark.svg"
     />
     <h1
@@ -19,7 +20,7 @@ exports[`components/Trivia renders Trivia 1`] = `
       Visste du att?
     </h1>
     <p
-      class="css-1d428vd"
+      class="css-1v4oytv"
       color="white"
       font-family="default"
       font-size="small"

@@ -95,3 +95,12 @@ export const GET_PERSONAL_DESCRIPTION = gql`
     personalDescription
   }
 `
+
+export const GET_TRIVIA = gql`
+  query trivia($occupation: String!) {
+    trivia(occupation: $occupation) {
+      info
+      source
+    }
+  }
+`

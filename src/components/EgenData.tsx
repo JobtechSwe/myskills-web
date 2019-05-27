@@ -16,7 +16,7 @@ import { CONSENT_SUBSCRIPTION } from 'views/CreateProfile/SaveCV'
 import { LOGIN_SUBSCRIPTION } from 'views/Login/Login'
 
 interface LoginViewProps {
-  onConsentApproved?: (onConsentApproved: ConsentApprovedSubscription) => void
+  onConsentApproved?: (onConsentApproved: any) => void
   loginUrl: string
   btnText: string
   consentId: string

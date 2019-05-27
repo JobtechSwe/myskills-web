@@ -83,7 +83,7 @@ export const PreviousOccupationExperience: React.FC<RouteComponentProps> = ({
     >
       <Flex alignItems="center" flexDirection="column">
         <Image alt="Clock" src={laptopImage} />
-        <H1 textAlign="center">
+        <H1 mb="jumbo" textAlign="center">
           Har du arbetat som {data.occupation.term.toLowerCase()} tidigare?
         </H1>
 
@@ -106,7 +106,7 @@ export const PreviousOccupationExperience: React.FC<RouteComponentProps> = ({
 
         {data.occupation.experience &&
           data.occupation.experience.years !== null && (
-            <Flex flexDirection="column" mt="small" p="medium">
+            <Flex flexDirection="column" mt="small" p="medium" width="100%">
               <Paragraph>Hur länge har du arbetat med det?</Paragraph>
               <Slider
                 defaultValue={yearsActive}

@@ -2,13 +2,14 @@ import React from 'react'
 import gql from 'graphql-tag'
 import { RouteComponentProps } from '@reach/router'
 import Consent from '../Register/Consent'
-import Flex from 'components/Flex'
+import Grid from 'components/Grid'
 import { useMutation, useQuery } from 'react-apollo-hooks'
 import { setCookie } from 'utils/helpers'
 import { navigate } from '@reach/router'
 import { ConsentApprovedSubscription } from 'generated/myskills'
 import styled from '@emotion/styled'
-import { OpenInApp } from 'components/ButtonLink'
+import OpenInApp from 'components/OpenInApp'
+import { H1, Paragraph } from 'components/Typography'
 import Loader from 'components/Loader'
 
 export const GET_CONSENT_ID = gql`
@@ -114,19 +115,15 @@ export const GET_CV_CLIENT = gql`
   }
 `
 
-const Background = styled(Flex)`
-  align-items: center;
+const Background = styled(Grid)`
   background: ${({ theme }) => `radial-gradient(
   647.69px at 6.66% 96.53%,
   ${theme.colors.yourPink} 0%,
   ${theme.colors.seashellPeach} 100%
 )`};
-  flex-direction: column;
   height: 100vh;
-  padding: 25px;
   text-align: center;
   color: ${({ theme }) => theme.colors.persianBlue};
-  justify-content: center;
 `
 
 const QrWrapper = styled.div`
@@ -167,14 +164,15 @@ const Register: React.FC<RouteComponentProps> = () => {
     })
     navigate('/skapa-cv/grattis')
   }
-  if (error) return <div>{error.message}</div>
-  if (loading) return <Loader />
+
   return (
-    <Background>
+    <Background alignItems="center" justifyContent="center">
+      {error && <Paragraph>{error.message}</Paragraph>}
+      {loading && <Loader />}
       {consent && (
-        <>
-          {consent.url}
-          <QrWrapper>
+        <Grid gridGap="medium" p="large">
+          <H1 mb={0}>Spara i Egendata</H1>
+          <QrWrapper style={{ margin: '0 auto' }}>
             <Consent
               consentId={consent.id}
               onConsentApproved={onConsentApproved}
@@ -182,7 +180,7 @@ const Register: React.FC<RouteComponentProps> = () => {
             />
           </QrWrapper>
           <OpenInApp url={consent.url}>Spara CV med Egendata</OpenInApp>
-        </>
+        </Grid>
       )}
     </Background>
   )

@@ -20,6 +20,8 @@ import {
   PositionProps,
   space,
   SpaceProps,
+  width,
+  WidthProps,
   zIndex,
   ZIndexProps,
 } from 'styled-system'
@@ -30,11 +32,12 @@ type FlexContainerProps = AlignItemsProps &
   FlexBasisProps &
   FlexDirectionProps &
   FlexWrapProps &
+  HeightProps &
   JustifyContentProps &
   PositionProps &
   SpaceProps &
   ZIndexProps &
-  HeightProps
+  WidthProps
 
 const Flex = styled.div<FlexContainerProps>`
   display: flex;
@@ -49,6 +52,7 @@ const Flex = styled.div<FlexContainerProps>`
   ${justifyContent}
   ${position}
   ${space}
+  ${width}
   ${zIndex}
 `
 

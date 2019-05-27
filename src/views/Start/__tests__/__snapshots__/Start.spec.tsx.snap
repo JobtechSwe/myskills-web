@@ -6,7 +6,7 @@ exports[`views/Start renders Start 1`] = `
     class="css-dv50ng"
   >
     <div
-      class="css-1fq4wiq"
+      class="css-1qj2cx6"
       height="100%"
     >
       <img
@@ -40,7 +40,7 @@ exports[`views/Start renders Start 1`] = `
         width="1"
       >
         <button
-          class="css-sccnw7"
+          class="css-11gcybv"
           font-family="default"
           font-size="medium"
           width="1"
@@ -57,7 +57,7 @@ exports[`views/Start renders Start 1`] = `
         width="1"
       >
         <button
-          class="css-pgx0ci"
+          class="css-1xukb9o"
           font-family="default"
           font-size="medium"
           width="1"

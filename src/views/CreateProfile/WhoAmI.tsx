@@ -35,7 +35,7 @@ const TextAreaContainer = styled(Grid)`
 
 const TagSpan = styled.span`
   font-weight: 700;
-  color: red;
+  color: ${theme.colors.redOrange};
 `
 
 export const ADD_WHO_AM_I = gql`
@@ -139,7 +139,9 @@ const WhoAmI: React.FC<RouteComponentProps> = () => {
                 borderRadius: '4px',
                 height: '30vh',
                 padding: '12px',
+                fontSize: `${theme.fontSizes.small}px`,
                 width: '100%',
+                wordBreak: 'break-word',
               }}
             />
             <Paragraph textAlign="right">

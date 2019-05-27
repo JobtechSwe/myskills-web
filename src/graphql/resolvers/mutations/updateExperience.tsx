@@ -13,7 +13,7 @@ export const updateExperienceClient = (
   })
 
   const updatedExperienceList = experiences.map((e: Experience) => {
-    if (e.id === experience.id) {
+    if (e.sourceId === experience.sourceId) {
       return { ...experience, __typename: 'Experience' }
     }
 

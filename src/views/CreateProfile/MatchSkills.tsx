@@ -2,7 +2,7 @@ import ButtonToInput from 'components/ButtonToInput'
 import Flex from 'components/Flex'
 import React from 'react'
 import TagList from 'components/TagList'
-import { H1 } from 'components/Typography'
+import { H1, Paragraph } from 'components/Typography'
 import { RouteComponentProps } from '@reach/router'
 import { useQuery, useMutation } from 'react-apollo-hooks'
 import { v4 } from 'uuid'
@@ -125,6 +125,10 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
         justifyContent="flex-start"
       >
         <H1 mb={20}>Vilka är dina kompetenser?</H1>
+        <Paragraph mb="large" mt={0} textAlign="center">
+          Ditt val av yrkesroll matchar ofta nedan föreslagna kompetenser.
+          Markera dina eller lägg till egna.
+        </Paragraph>
         <TagList
           activeItems={skills}
           items={relatedSkills
@@ -136,8 +140,8 @@ const MatchSkills: React.FC<WithApolloClient<RouteComponentProps>> = ({
           onSelect={handleSkillClick}
         />
         <ButtonToInput
-          buttonText="+ Lägg till en kompetens"
-          inputPlaceholder="Lägg till en kompetens"
+          buttonText="+ Lägg till kompetens"
+          inputPlaceholder="Lägg till kompetens"
           onSelect={handleFreeTextSkill}
         />
       </Flex>

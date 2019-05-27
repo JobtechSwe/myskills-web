@@ -241,7 +241,7 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
             role="button"
             tabIndex={0}
           >
-            + Lägg till en ny egenskap
+            + Lägg till egenskap
           </Tag>
         )}
       </Flex>

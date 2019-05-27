@@ -20,6 +20,10 @@ import {
   WidthProps,
 } from 'styled-system'
 
+interface CypressProps {
+  dataTestid?: string
+}
+
 type InputProps = React.HTMLProps<HTMLInputElement> &
   AlignSelfProps &
   BorderColorProps &
@@ -29,7 +33,8 @@ type InputProps = React.HTMLProps<HTMLInputElement> &
   FontFamilyProps &
   FontSizeProps &
   SpaceProps &
-  WidthProps
+  WidthProps &
+  CypressProps
 
 const Input = styled.input<InputProps>`
   ${alignSelf}

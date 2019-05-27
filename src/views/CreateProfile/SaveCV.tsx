@@ -8,7 +8,7 @@ import { setCookie } from 'utils/helpers'
 import { navigate } from '@reach/router'
 import { ConsentApprovedSubscription } from 'generated/myskills'
 import styled from '@emotion/styled'
-import { OpenInApp } from 'components/ButtonLink'
+import OpenInApp from 'components/OpenInApp'
 import { H1, Paragraph } from 'components/Typography'
 import Loader from 'components/Loader'
 

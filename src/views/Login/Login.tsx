@@ -4,7 +4,11 @@ import { RouteComponentProps } from '@reach/router'
 import EgenData from '../../components/EgenData'
 import { navigate } from '@reach/router'
 import { setCookie } from '../../utils/helpers'
-import { ConsentApprovedSubscription, LoginQuery } from 'generated/myskills'
+import {
+  ConsentApprovedSubscription,
+  LoginQuery,
+  LoginApprovedSubscription,
+} from 'generated/myskills'
 import { useQuery } from 'react-apollo-hooks'
 import Loader from 'components/Loader'
 export const LOGIN_SUBSCRIPTION = gql`
@@ -26,9 +30,9 @@ export const GET_LOGIN_ID = gql`
 
 const Login: React.FC<RouteComponentProps> = () => {
   const onConsentApproved = async ({
-    consentApproved,
-  }: ConsentApprovedSubscription) => {
-    setCookie('token', consentApproved.accessToken)
+    loginApproved,
+  }: LoginApprovedSubscription) => {
+    setCookie('token', loginApproved.accessToken)
     navigate('/profil')
   }
   const {

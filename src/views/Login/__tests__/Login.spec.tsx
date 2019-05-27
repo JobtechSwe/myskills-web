@@ -67,14 +67,4 @@ describe('views/Login', () => {
 
     expect(getByText(/that’s an error./i)).toBeInTheDocument()
   })
-
-  it('should render login-url after Login is clicked', async () => {
-    const { getByText } = render(<Login />, getLoginMock)
-
-    fireEvent.click(getByText(/login/i))
-
-    await waitForElement(() => getByText(login.url))
-
-    expect(getByText(login.url)).toBeInTheDocument()
-  })
 })

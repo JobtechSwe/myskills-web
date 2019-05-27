@@ -80,7 +80,7 @@ const Start: React.FC<RouteComponentProps> = () => {
               Skapa CV
             </Button>
           </InternalLink>
-          <InternalLink mt={10} to="/login" width={1}>
+          <InternalLink mt={10} to="/logga-in" width={1}>
             <Button variant="secondaryBlack" width={1}>
               Logga in med <Bold as="span">Egendata</Bold>
             </Button>

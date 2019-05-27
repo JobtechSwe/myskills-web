@@ -1,5 +1,5 @@
 Given('I open the login page', () => {
-  cy.visit('/login')
+  cy.visit('/logga-in')
 })
 
 Then('I click login button', () => {

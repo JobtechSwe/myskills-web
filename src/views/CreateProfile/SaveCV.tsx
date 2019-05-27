@@ -181,7 +181,7 @@ const Register: React.FC<RouteComponentProps> = () => {
               url={consent.url}
             />
           </QrWrapper>
-          <OpenInApp url={consent.url} />
+          <OpenInApp url={consent.url}>Spara CV med Egendata</OpenInApp>
         </>
       )}
     </Background>

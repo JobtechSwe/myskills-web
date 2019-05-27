@@ -52,7 +52,7 @@ exports[`views/Start renders Start 1`] = `
         class="css-1r48ynl"
         color="persianBlue"
         font-weight="500"
-        href="/login"
+        href="/logga-in"
         mt="10"
         width="1"
       >

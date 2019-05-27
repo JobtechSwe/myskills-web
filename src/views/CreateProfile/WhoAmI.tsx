@@ -35,7 +35,7 @@ const TextAreaContainer = styled(Grid)`
 
 const TagSpan = styled.span`
   font-weight: 700;
-  color: red;
+  color: ${theme.colors.redOrange};
 `
 
 export const ADD_WHO_AM_I = gql`

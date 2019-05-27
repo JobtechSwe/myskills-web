@@ -132,7 +132,7 @@ const ChooseProfession: React.FC<RouteComponentProps> = () => {
       nextPath="kompetenser"
       step={1}
     >
-      <Grid alignContent="start">
+      <Grid gridGap="jumbo" alignContent="start">
         <IllustrationHeader
           imageAltTag="Resväska"
           imageFirst={true}

@@ -2,26 +2,26 @@
 
 exports[`components/ButtonLink renders a ButtonLink 1`] = `
 <div>
-  <a
-    class="css-1avxxxc"
+  <button
+    class="css-nk1mll"
     font-family="default"
     font-size="small,medium"
     href="/test"
   >
     Link text
-  </a>
+  </button>
 </div>
 `;
 
 exports[`components/ButtonLink renders a ButtonLink with props 1`] = `
 <div>
-  <a
-    class="css-ud99ti"
+  <button
+    class="css-1ulqbpi"
     font-family="default"
     font-size="medium"
     href="/test"
   >
     Link text
-  </a>
+  </button>
 </div>
 `;

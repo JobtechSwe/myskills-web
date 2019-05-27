@@ -47,7 +47,6 @@ const LoginQR: React.FC<ILoginQRProps> = ({ loginRequestId, loginUrl }) => {
     <>
       {renderLoginStatus()}
       <QR consentId={loginUrl} />
-      <Paragraph id="consentId">{loginUrl}</Paragraph>
       <OpenInApp url={loginUrl} />
     </>
   )

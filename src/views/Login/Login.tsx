@@ -16,7 +16,7 @@ export const GET_LOGIN_ID = gql`
   }
 `
 
-const Login: React.FC<RouteComponentProps> = props => {
+const Login: React.FC<RouteComponentProps> = () => {
   return (
     <Flex
       alignItems="center"

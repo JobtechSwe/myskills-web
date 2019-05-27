@@ -8,18 +8,11 @@ import {
   space,
   SpaceProps,
 } from 'styled-system'
+import Button from 'components/Button'
 
 type ButtonLinkProps = FontFamilyProps & FontSizeProps & SpaceProps
 
-const ButtonLink = styled.a<ButtonLinkProps>`
-  text-decoration: none;
-  color: #000;
-  transition: color 0.1s ease-in-out;
-
-  &:hover {
-    color: #444;
-  }
-
+const ButtonLink = styled(Button)<ButtonLinkProps>`
   ${fontFamily}
   ${fontSize}
   ${space}
@@ -31,7 +24,9 @@ ButtonLink.defaultProps = {
 }
 
 export const OpenInApp: React.FC<{ url: string }> = ({ url }) => (
-  <ButtonLink href={url}>Öppna i Egendata</ButtonLink>
+  <Button as="a" href={url}>
+    Öppna i Egendata
+  </Button>
 )
 
 export default ButtonLink

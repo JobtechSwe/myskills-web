@@ -2,10 +2,9 @@ import React from 'react'
 import gql from 'graphql-tag'
 import { Mutation } from 'react-apollo'
 import { RouteComponentProps } from '@reach/router'
-import LoginQR from './LoginQR'
 import Button from '../../components/Button'
-import Flex from '../../components/Flex'
 import { Paragraph } from '../../components/Typography'
+import LoginView from './LoginView'
 
 export const GET_LOGIN_ID = gql`
   mutation login {
@@ -18,12 +17,7 @@ export const GET_LOGIN_ID = gql`
 
 const Login: React.FC<RouteComponentProps> = props => {
   return (
-    <Flex
-      alignItems="center"
-      flexDirection="column"
-      justifyContent="center"
-      m={32}
-    >
+    <>
       {/* TODO(@all):
        *  Replace this with useMutation when support has been added:
        *  https://github.com/trojanowski/react-apollo-hooks/pull/93
@@ -39,12 +33,7 @@ const Login: React.FC<RouteComponentProps> = props => {
           }
 
           if (data) {
-            return (
-              <LoginQR
-                loginRequestId={data.login.sessionId}
-                loginUrl={data.login.url}
-              />
-            )
+            return <LoginView loginUrl={data.login.url} />
           }
 
           return (
@@ -54,7 +43,7 @@ const Login: React.FC<RouteComponentProps> = props => {
           )
         }}
       </Mutation>
-    </Flex>
+    </>
   )
 }
 

@@ -78,10 +78,11 @@ exports[`views/Start renders Start 1`] = `
       >
         <img
           alt="info icon"
+          class="css-12frltk"
           src="info.svg"
         />
         <p
-          class="css-17eikna"
+          class="css-6ah1k0"
           font-family="default"
           font-size="small"
         >

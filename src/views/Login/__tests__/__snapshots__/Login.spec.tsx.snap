@@ -2,16 +2,12 @@
 
 exports[`views/Login renders without errors 1`] = `
 <div>
-  <div
-    class="css-100vdgb"
+  <button
+    class="css-1fyzulv"
+    font-family="default"
+    font-size="medium"
   >
-    <button
-      class="css-1fyzulv"
-      font-family="default"
-      font-size="medium"
-    >
-      Login
-    </button>
-  </div>
+    Login
+  </button>
 </div>
 `;

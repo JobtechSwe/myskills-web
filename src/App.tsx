@@ -1,7 +1,9 @@
 import React from 'react'
-import { Router } from '@reach/router'
+import { Location, Router } from '@reach/router'
 import RestrictedRoute from 'views/restricted'
 import Loader from 'components/Loader'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
+import './fade.css'
 
 const Login = React.lazy(() => import(`views/Login/Login`))
 const Start = React.lazy(() => import(`views/Start/Start`))
@@ -50,39 +52,57 @@ const UpdateWhoAmI = React.lazy(() =>
 function App() {
   return (
     <>
-      <React.Suspense fallback={<Loader />}>
-        <Router>
-          <Start path="/" />
-          <Login path="/login" />
-          <CreateProfile path="/skapa-cv">
-            <AddContactInformation path="/kontakt" />
-            <AddEducation path="/utbildning" />
-            <AddTraits path="/egenskaper" />
-            <ChooseProfession path="/" />
-            <MatchCompetences path="/kompetenser" />
-            <PreviousOccupationExperience path="/erfarenheter" />
-            <RegistrationCompleted path="/grattis" />
-            <SaveCV path="/spara-cv" />
-            <UploadImage path="/profilbild" />
-            <WhoAmI path="/beskriv-dig" />
-            <WorkExperiences path="/erfarenheter/tidigare-erfarenheter" />
-            <NotFound default />
-          </CreateProfile>
-          <Profile path="/profil">
-            <RestrictedRoute component={Home} path="/" />
-            <RestrictedRoute component={Timeline} path="/tidslinje" />
-            <RestrictedRoute component={UpdateEducation} path="/utbildning" />
-            <RestrictedRoute component={UpdateWhoAmI} path="/beskriv-dig" />
-            <RestrictedRoute
-              component={UpdateWorkExperience}
-              path="/erfarenheter"
-            />
-            <NotFound default />
-          </Profile>
+      <Location>
+        {({ location }) => (
+          <TransitionGroup>
+            <CSSTransition
+              classNames="fadeTranslate"
+              key={location.key}
+              timeout={1000}
+            >
+              <React.Suspense fallback={<Loader />}>
+                <Router>
+                  <Start path="/" />
+                  <Login path="/login" />
+                  <CreateProfile path="/skapa-cv">
+                    <AddContactInformation path="/kontakt" />
+                    <AddEducation path="/utbildning" />
+                    <AddTraits path="/egenskaper" />
+                    <ChooseProfession path="/" />
+                    <MatchCompetences path="/kompetenser" />
+                    <PreviousOccupationExperience path="/erfarenheter" />
+                    <RegistrationCompleted path="/grattis" />
+                    <SaveCV path="/spara-cv" />
+                    <UploadImage path="/profilbild" />
+                    <WhoAmI path="/beskriv-dig" />
+                    <WorkExperiences path="/erfarenheter/tidigare-erfarenheter" />
+                    <NotFound default />
+                  </CreateProfile>
+                  <Profile path="/profil">
+                    <RestrictedRoute component={Home} path="/" />
+                    <RestrictedRoute component={Timeline} path="/tidslinje" />
+                    <RestrictedRoute
+                      component={UpdateEducation}
+                      path="/utbildning"
+                    />
+                    <RestrictedRoute
+                      component={UpdateWhoAmI}
+                      path="/beskriv-dig"
+                    />
+                    <RestrictedRoute
+                      component={UpdateWorkExperience}
+                      path="/erfarenheter"
+                    />
+                    <NotFound default />
+                  </Profile>
 
-          <NotFound default />
-        </Router>
-      </React.Suspense>
+                  <NotFound default />
+                </Router>
+              </React.Suspense>
+            </CSSTransition>
+          </TransitionGroup>
+        )}
+      </Location>
     </>
   )
 }

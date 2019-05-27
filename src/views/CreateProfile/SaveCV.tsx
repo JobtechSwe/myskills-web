@@ -146,6 +146,7 @@ const Register: React.FC<RouteComponentProps> = () => {
     const localCVWithoutTypename = removeTypename(localCV)
 
     setCookie('token', consentApproved.accessToken)
+
     await saveCVMutation({
       variables: {
         ...localCVWithoutTypename,
@@ -160,6 +161,7 @@ const Register: React.FC<RouteComponentProps> = () => {
         })),
       },
     })
+
     navigate('/skapa-cv/grattis')
   }
 

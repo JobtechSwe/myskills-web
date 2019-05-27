@@ -54,7 +54,7 @@ const LoginView: React.FC<LoginViewProps> = ({ loginUrl }) => {
         >
           <LogosWrapper>
             <img alt="logo" src={logotypeIcon} />
-            <Paragraph mt={10} mb={10}>
+            <Paragraph mb={10} mt={10}>
               vill öpnna
             </Paragraph>
             <img alt="egendatalogo" src={egendataLogotypeIcon} />

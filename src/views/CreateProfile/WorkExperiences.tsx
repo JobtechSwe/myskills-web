@@ -16,16 +16,6 @@ const TimelineWrapper = styled.div`
   margin: 25px 0;
 `
 
-const AddOrEditFormWrapper = styled.div<{ edit: boolean }>`
-  ${({ edit }) =>
-    edit &&
-    `
-    position: absolute;
-    bottom: 32px;
-    width: calc(100% - 64px);
-  `}
-`
-
 const ADD_EXPERIENCE_CLIENT = gql`
   mutation addExperienceClient($experience: ExperienceInput!) {
     addExperienceClient(experience: $experience) @client {
@@ -134,8 +124,8 @@ export const WorkExperiences: React.FC<RouteComponentProps> = () => {
   return (
     <RegistrationLayout
       headerText="ERFARENHET"
-      showNextButton={edit}
       nextPath="utbildning"
+      showNextButton={!edit}
       step={3}
     >
       <div>
@@ -155,28 +145,26 @@ export const WorkExperiences: React.FC<RouteComponentProps> = () => {
             />
           </TimelineWrapper>
         )}
-        <AddOrEditFormWrapper edit={edit}>
-          {edit && (
-            <AddAndEditForm
-              abortEdit={abortEdit}
-              edit={true}
-              editItem={editEntry}
-              handleDelete={handleDelete}
-              label="Uppdatera erfarenhet"
-              onSubmit={handleSubmit}
-              schoolOrCompanyPlaceholder="Arbetsgivare..."
-              titlePlaceholder="Namn på tjänst..."
-            />
-          )}
-          {!edit && (
-            <AddAndEditForm
-              label="Lägg till erfarenhet"
-              onSubmit={handleSubmit}
-              schoolOrCompanyPlaceholder="Arbetsgivare..."
-              titlePlaceholder="Namn på tjänst..."
-            />
-          )}
-        </AddOrEditFormWrapper>
+        {edit && (
+          <AddAndEditForm
+            abortEdit={abortEdit}
+            edit={true}
+            editItem={editEntry}
+            handleDelete={handleDelete}
+            label="Uppdatera erfarenhet"
+            onSubmit={handleSubmit}
+            schoolOrCompanyPlaceholder="Arbetsgivare..."
+            titlePlaceholder="Namn på tjänst..."
+          />
+        )}
+        {!edit && (
+          <AddAndEditForm
+            label="Lägg till erfarenhet"
+            onSubmit={handleSubmit}
+            schoolOrCompanyPlaceholder="Arbetsgivare..."
+            titlePlaceholder="Namn på tjänst..."
+          />
+        )}
       </div>
     </RegistrationLayout>
   )

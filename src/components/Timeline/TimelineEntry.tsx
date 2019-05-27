@@ -39,7 +39,7 @@ const TimelineDegree = styled.span`
 const TimelineInfo = styled.div`
   align-items: center;
   display: flex;
-  font-size: ${({ theme }) => `${theme.fontSizes.small}px`};
+  font-size: ${({ theme }) => `${theme.fontSizes.xsmall}px`};
 `
 
 const TimelineInfoDivider = styled.img`

@@ -61,7 +61,7 @@ function App() {
               timeout={1000}
             >
               <React.Suspense fallback={<Loader />}>
-                <Router>
+                <Router location={location}>
                   <Start path="/" />
                   <Login path="/login" />
                   <CreateProfile path="/skapa-cv">

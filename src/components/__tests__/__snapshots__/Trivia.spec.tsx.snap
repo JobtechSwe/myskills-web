@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Trivia renders Trivia 1`] = `
+<div>
+  <div
+    class="css-71ynm3"
+  >
+    <img
+      alt="Frågetecken"
+      src="question_mark.svg"
+    />
+    <h1
+      class="css-ei8wm3"
+      color="white"
+      font-family="default"
+      font-size="large"
+      font-weight="600"
+    >
+      Visste du att?
+    </h1>
+    <p
+      class="css-1d428vd"
+      color="white"
+      font-family="default"
+      font-size="small"
+    >
+      Yrkesprognosen för lärare ser god ut inom de närmaste åren.
+    </p>
+    <p
+      class="css-1496y5v"
+      color="white"
+      font-family="default"
+      font-size="medium"
+      font-weight="300"
+    >
+      Källa: 
+      acme.se
+    </p>
+  </div>
+</div>
+`;

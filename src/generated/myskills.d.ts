@@ -66,8 +66,27 @@ export type CvInput = {
   profile?: Maybe<ProfileInput>
 }
 
+export type EditEducationInput = {
+  programme: Scalars['String']
+  degree?: Maybe<Scalars['String']>
+  school: Scalars['String']
+  start: Scalars['String']
+  end?: Maybe<Scalars['String']>
+  id: Scalars['String']
+}
+
+export type EditExperienceInput = {
+  id: Scalars['String']
+  employer: Scalars['String']
+  sourceId?: Maybe<Scalars['String']>
+  term: Scalars['String']
+  start: Scalars['String']
+  end?: Maybe<Scalars['String']>
+}
+
 export type Education = {
   programme: Scalars['String']
+  degree?: Maybe<Scalars['String']>
   school: Scalars['String']
   start: Scalars['String']
   end?: Maybe<Scalars['String']>
@@ -76,6 +95,7 @@ export type Education = {
 
 export type EducationInput = {
   programme: Scalars['String']
+  degree?: Maybe<Scalars['String']>
   school: Scalars['String']
   start: Scalars['String']
   end?: Maybe<Scalars['String']>
@@ -147,6 +167,10 @@ export type Mutation = {
   saveCV: Cv
   /** Save Image as base64 string */
   uploadImage: Scalars['String']
+  /** Edit education */
+  editEducation: Education
+  /** Edit experience */
+  editExperience: Experience
   createOccupationClient?: Maybe<Occupation>
   addSkillClient?: Maybe<ClientSkill>
   removeSkillClient?: Maybe<ClientSkill>
@@ -216,6 +240,14 @@ export type MutationSaveCvArgs = {
 
 export type MutationUploadImageArgs = {
   image: ImgInput
+}
+
+export type MutationEditEducationArgs = {
+  education: EditEducationInput
+}
+
+export type MutationEditExperienceArgs = {
+  experience: EditExperienceInput
 }
 
 export type MutationCreateOccupationClientArgs = {
@@ -397,6 +429,8 @@ export type Query = {
   personalDescription?: Maybe<Scalars['String']>
   /** Get user traits */
   traits: Array<Maybe<Scalars['String']>>
+  /** Get occupation trivia */
+  trivia: Trivia
   /** Get user image */
   image: Scalars['String']
   /** Get from taxonomy */
@@ -408,6 +442,10 @@ export type Query = {
   ontologyTextParse: Array<Maybe<OntologyTextParseResponse>>
   isLoggedIn: Scalars['Boolean']
   whoAmI: Scalars['String']
+}
+
+export type QueryTriviaArgs = {
+  occupation: Scalars['String']
 }
 
 export type QueryTaxonomyArgs = {
@@ -510,6 +548,11 @@ export enum TaxonomyType {
   OccupationName = 'OCCUPATION_NAME',
   Skill = 'SKILL',
   WorktimeExtent = 'WORKTIME_EXTENT',
+}
+
+export type Trivia = {
+  info?: Maybe<Scalars['String']>
+  source?: Maybe<Scalars['String']>
 }
 
 export type GetProfessionAndContactQueryVariables = {}
@@ -790,6 +833,14 @@ export type IsLoggedInQuery = { __typename?: 'Query' } & Pick<
   Query,
   'isLoggedIn'
 >
+
+export type TriviaQueryVariables = {
+  occupation: Scalars['String']
+}
+
+export type TriviaQuery = { __typename?: 'Query' } & {
+  trivia: { __typename?: 'Trivia' } & Pick<Trivia, 'info'>
+}
 
 export type ConsentQueryVariables = {}
 

@@ -14,6 +14,30 @@ export const GET_TAXONOMY = gql`
   }
 `
 
+export const GET_EDUCATIONS = gql`
+  query getEducations {
+    educations {
+      end
+      id
+      programme
+      school
+      start
+    }
+  }
+`
+
+export const GET_EDUCATIONS_CLIENT = gql`
+  query getEducationsClient {
+    educations @client {
+      id
+      programme
+      school
+      start
+      end
+    }
+  }
+`
+
 export const GET_RELATED_SKILLS = gql`
   query ontologyRelated(
     $concepts: [String!]
@@ -51,5 +75,23 @@ export const GET_OCCUPATION_CLIENT = gql`
         years
       }
     }
+  }
+`
+export const GET_EXPERIENCES = gql`
+  query getExperiences {
+    experiences {
+      sourceId
+      employer
+      term
+      start
+      end
+      id
+    }
+  }
+`
+
+export const GET_PERSONAL_DESCRIPTION = gql`
+  query getPersonalDescription {
+    personalDescription
   }
 `

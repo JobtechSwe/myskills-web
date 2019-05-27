@@ -39,8 +39,8 @@ extend type Mutation {
   addTrait(trait: String!): String!
   addWhoAmI(whoAmI: String!): String!
   updateContactInformation(data: ProfileInput!): Profile!
-  removeEducationClient(education: EducationInput!): Education
-  removeExperienceClient(experience: ExperienceInput!): Experience
+  removeEducationClient(id: String!): Boolean
+  removeExperienceClient(id: String!): Boolean
   removeTrait(trait: String!): String!
   removeOccupationClient(occupation: OccupationInput!): Boolean
 }

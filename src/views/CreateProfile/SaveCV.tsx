@@ -87,11 +87,10 @@ export const GET_CV_CLIENT = gql`
       type
     }
 
-    experiences {
+    experiences @client {
       employer
       start
       end
-      sourceId
       term
     }
 

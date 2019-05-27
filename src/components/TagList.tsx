@@ -28,7 +28,7 @@ const TagList: React.FC<TagListProps<TagItemProps>> = ({
       flexWrap="wrap"
       justifyContent="center"
     >
-      {[...activeItems, ...items].map(item => (
+      {[...activeItems, ...items].map((item, i) => (
         <Tag
           key={item.term}
           mb={5}

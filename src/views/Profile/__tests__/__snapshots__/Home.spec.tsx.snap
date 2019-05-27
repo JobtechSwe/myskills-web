@@ -54,7 +54,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
             class="css-z4cped"
             color="persianBlue"
             font-weight="500"
-            href="/editplace"
+            href="/beskriv-dig"
           >
             <img
               alt="Edit data"
@@ -104,7 +104,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
             class="css-z4cped"
             color="persianBlue"
             font-weight="500"
-            href="/editplace"
+            href="/egenskaper"
           >
             <img
               alt="Edit data"
@@ -234,7 +234,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
             class="css-z4cped"
             color="persianBlue"
             font-weight="500"
-            href="/editplace"
+            href="/utbildning"
           >
             <img
               alt="Edit data"
@@ -268,7 +268,7 @@ exports[`views/profile/Home should render with profile data 1`] = `
             class="css-z4cped"
             color="persianBlue"
             font-weight="500"
-            href="/editplace"
+            href="/erfarenheter"
           >
             <img
               alt="Edit data"

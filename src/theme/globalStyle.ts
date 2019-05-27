@@ -156,6 +156,7 @@ export const globalStyle = css`
     box-sizing: border-box;
   }
   #root {
+    /* Explanation: https://css-tricks.com/the-trick-to-viewport-units-on-mobile/ */
     height: calc(var(--vh, 1vh) * 100);
   }
 

@@ -11,9 +11,9 @@ interface TriviaProps {
 
 const Trivia: React.FC<TriviaProps> = ({ title, info, source }) => {
   return (
-    <Grid justifyContent="center" justifyItems="center" gridGap="medium">
+    <Grid gridGap="medium" justifyContent="center" justifyItems="center">
       <img alt="Frågetecken" src={questionMarkIllustration} />
-      <H1 mb={0} color="white">
+      <H1 color="white" mb={0}>
         {title}
       </H1>
       <Paragraph color="white">{info}</Paragraph>

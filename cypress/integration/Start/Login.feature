@@ -1,10 +1,10 @@
 @qrCode
-Feature: QRCode
+Feature: Login 
 
-    Describes scenarios of Logging in with a QR-code
+    Describes scenarios of Logging in
 
     Background:
         Given I open the login page
 
-    Scenario: User can't login with invalid credentials
+    Scenario: Login-page shows an link to Egendata 
         Then I should see a link which can open the Egendata-application

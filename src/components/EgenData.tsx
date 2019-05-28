@@ -33,7 +33,8 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   padding: 25px;
-  height: 100vh;
+  /* Explanation: https://css-tricks.com/the-trick-to-viewport-units-on-mobile/ */
+  height: calc(var(--vh, 1vh) * 100);
 `
 
 const LogosWrapper = styled.div`

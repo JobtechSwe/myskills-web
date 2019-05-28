@@ -4,7 +4,6 @@ import ReactCrop from 'react-image-crop'
 import Button from 'components/Button'
 import { Label } from 'components/Typography'
 import Input from 'components/Input'
-import { useQuery, useMutation } from 'react-apollo-hooks'
 import { Global, css } from '@emotion/core'
 import styled from '@emotion/styled'
 import gql from 'graphql-tag'
@@ -13,7 +12,6 @@ import Grid from 'components/Grid'
 import profileImage from 'assets/illustrations/profile_image.svg'
 import { FooterButton } from 'components/Layout/Registration'
 import IllustrationHeader from 'components/IllustrationHeader'
-import { GET_IMAGE_CLIENT } from 'graphql/resolvers/mutations/uploadImage'
 
 export const UPLOAD_IMAGE_CLIENT = gql`
   mutation uploadImageClient($image: ImgInput!) {

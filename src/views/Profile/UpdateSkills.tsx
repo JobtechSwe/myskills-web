@@ -11,7 +11,7 @@ const AddSkills: React.FC<RouteComponentProps> = () => {
   return (
     <Layout>
       <Navigation section="Kompetens" step={2} />
-      <MatchSkills buttonText="Fortsätt" onSubmit={handleSubmit} />
+      {/* <MatchSkills buttonText="Fortsätt" onSubmit={handleSubmit} /> */}
     </Layout>
   )
 }

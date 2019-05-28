@@ -4,66 +4,50 @@ import React from 'react'
 import TagList from 'components/TagList'
 import { H1, Paragraph } from 'components/Typography'
 import { RouteComponentProps } from '@reach/router'
-import { useQuery, useMutation } from 'react-apollo-hooks'
+import { MutationHookOptions } from 'react-apollo-hooks'
 import { v4 } from 'uuid'
 import { withApollo, WithApolloClient } from 'react-apollo'
-import { ADD_SKILL_CLIENT, REMOVE_SKILL_CLIENT } from 'graphql/shared/Mutations'
+import { GET_RELATED_SKILLS } from 'graphql/shared/Queries'
 import {
-  GET_RELATED_SKILLS,
-  GET_SKILLS_CLIENT,
-  GET_OCCUPATION_CLIENT,
-} from 'graphql/shared/Queries'
-import {
-  AddSkillClientMutation,
-  AddSkillClientMutationVariables,
-  GetOccupationClientQuery,
-  GetOccupationClientQueryVariables,
-  GetSkillsClientQueryVariables,
-  GetSkillsClientQuery,
   Occupation,
   OntologyRelationResponse,
   OntologyType,
-  RemoveSkillClientMutation,
-  RemoveSkillClientMutationVariables,
-  SkillInput,
+  Skill,
+  MutationRemoveSkillArgs,
+  MutationAddSkillArgs,
 } from 'generated/myskills.d'
 import { FooterButton } from 'components/Layout/Registration'
+
+interface ISkillProps {
+  term: string
+}
 
 interface MatchSkillsProps {
   buttonText: string
   onSubmit: () => void
+  addSkill: (skill: MutationHookOptions<{}, MutationAddSkillArgs>) => any
+  removeSkill: (id: MutationHookOptions<{}, MutationRemoveSkillArgs>) => any
+  occupation: Occupation
+  skills: Skill[]
 }
 
 const MatchSkills: React.FC<
   WithApolloClient<RouteComponentProps & MatchSkillsProps>
-> = ({ buttonText, client, onSubmit }) => {
-  const {
-    data: { occupation },
-  } = useQuery<GetOccupationClientQuery, GetOccupationClientQueryVariables>(
-    GET_OCCUPATION_CLIENT
-  )
-
-  const {
-    data: { skills = [] },
-  } = useQuery<GetSkillsClientQuery, GetSkillsClientQueryVariables>(
-    GET_SKILLS_CLIENT
-  )
-
-  const addSkillMutation = useMutation<
-    AddSkillClientMutation,
-    AddSkillClientMutationVariables
-  >(ADD_SKILL_CLIENT)
-  const removeSkillMutation = useMutation<
-    RemoveSkillClientMutation,
-    RemoveSkillClientMutationVariables
-  >(REMOVE_SKILL_CLIENT)
-
+> = ({
+  buttonText,
+  client,
+  onSubmit,
+  skills,
+  occupation,
+  addSkill,
+  removeSkill,
+}) => {
   const [relatedSkills, setRelatedSkills] = React.useState<
     OntologyRelationResponse[]
   >([])
 
   const getRelatedSkills = React.useCallback(
-    async (terms: (SkillInput | Occupation)[]) => {
+    async (terms: (Skill | Occupation)[]) => {
       const { data } = await client.query({
         query: GET_RELATED_SKILLS,
         variables: {
@@ -82,17 +66,16 @@ const MatchSkills: React.FC<
     skills.length ? getRelatedSkills(skills) : getRelatedSkills([occupation])
   }, [skills, occupation, getRelatedSkills])
 
-  const handleSkillClick = (skill: SkillInput) => {
-    const hasSkill = skills.some((s: SkillInput) => s.term === skill.term)
-
+  const handleSkillClick = (skill: Skill) => {
+    const hasSkill = skills.some(s => s.term === skill.term)
     if (hasSkill) {
-      removeSkillMutation({
+      removeSkill({
         variables: {
-          skill,
+          id: skill.id,
         },
       })
     } else {
-      addSkillMutation({
+      addSkill({
         variables: {
           skill,
         },
@@ -105,9 +88,10 @@ const MatchSkills: React.FC<
       term: value,
       type: OntologyType.Skill,
       sourceId: v4(),
+      id: v4(),
     }
 
-    addSkillMutation({
+    addSkill({
       variables: {
         skill,
       },
@@ -116,10 +100,11 @@ const MatchSkills: React.FC<
 
   const ontologyRelationToSkill = (
     ontologyItem: OntologyRelationResponse
-  ): SkillInput => ({
+  ): Skill => ({
     sourceId: ontologyItem.id,
     term: ontologyItem.term,
     type: ontologyItem.type,
+    id: ontologyItem.id,
   })
 
   return (
@@ -139,8 +124,7 @@ const MatchSkills: React.FC<
           items={relatedSkills
             .map(ontologyRelationToSkill)
             .filter(
-              (relatedSkill: SkillInput) =>
-                !skills.some((s: SkillInput) => s.term === relatedSkill.term)
+              relatedSkill => !skills.some(s => s.term === relatedSkill.term)
             )}
           onSelect={handleSkillClick}
         />

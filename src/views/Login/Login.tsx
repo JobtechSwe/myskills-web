@@ -4,11 +4,7 @@ import { RouteComponentProps } from '@reach/router'
 import EgenData from '../../components/EgenData'
 import { navigate } from '@reach/router'
 import { setCookie } from '../../utils/helpers'
-import {
-  ConsentApprovedSubscription,
-  LoginQuery,
-  LoginApprovedSubscription,
-} from 'generated/myskills'
+import { LoginQuery, LoginApprovedSubscription } from 'generated/myskills'
 import { useQuery } from 'react-apollo-hooks'
 import Loader from 'components/Loader'
 export const LOGIN_SUBSCRIPTION = gql`

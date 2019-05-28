@@ -1,7 +1,6 @@
 import React from 'react'
 import { Location, Router } from '@reach/router'
 import RestrictedRoute from 'views/restricted'
-import Loader from 'components/Loader'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import './fade.css'
 import Login from 'views/Login/Login'

@@ -85,3 +85,10 @@ export const UPDATE_EXPERIENCE_CLIENT = gql`
     }
   }
 `
+
+export const ADD_WHO_AM_I = gql`
+  mutation addWhoAmI($whoAmI: String!) {
+    addWhoAmI(whoAmI: $whoAmI) @client
+  }
+`
+

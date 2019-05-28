@@ -57,13 +57,21 @@ interface UploadImageProps {
   imageData: any
 }
 
+interface UploadImageState {
+  base64Image: string
+  crop: ReactCrop.Crop
+  imageRef: React.Ref<HTMLImageElement | null>
+  isCropped: boolean
+  src: string
+}
+
 const UploadImage: React.FC<RouteComponentProps & UploadImageProps> = ({
   buttonText,
   onSubmit,
   uploadImage,
   imageData,
 }) => {
-  const initialState = {
+  const initialState: UploadImageState = {
     base64Image: imageData.image,
     crop: {
       x: 10,
@@ -71,7 +79,7 @@ const UploadImage: React.FC<RouteComponentProps & UploadImageProps> = ({
       width: 80,
       height: 80,
     },
-    imageRef: '',
+    imageRef: null,
     isCropped: false,
     src: '',
   }
@@ -85,16 +93,19 @@ const UploadImage: React.FC<RouteComponentProps & UploadImageProps> = ({
       },
     })
   }
-  const [image, updateImage] = useState(initialState)
+  const [image, updateImage] = useState<UploadImageState>(initialState)
 
-  const makeClientCrop = async (crop: any) => {
+  const makeClientCrop = async (crop: ReactCrop.Crop) => {
     if (image.src && crop.width && crop.height) {
       const url = await getCroppedImg(image.imageRef, crop)
       updateImage({ ...image, base64Image: url })
     }
   }
 
-  const getCroppedImg = async (image: any, crop: any): Promise<string> => {
+  const getCroppedImg = async (
+    image: any,
+    crop: ReactCrop.Crop
+  ): Promise<string> => {
     const canvas = document.createElement('canvas')
     const scaleX = image.naturalWidth / image.width
     const scaleY = image.naturalHeight / image.height
@@ -121,15 +132,16 @@ const UploadImage: React.FC<RouteComponentProps & UploadImageProps> = ({
     })
   }
 
-  const selectImage = (isCropped: any) => {
+  const selectImage = (isCropped: boolean) => {
     updateImage({ ...image, isCropped })
     handleuploadImage(image.base64Image)
   }
-  const onCropChange = (crop: any) => updateImage({ ...image, crop })
-  const onCropComplete = (crop: any) => makeClientCrop(crop)
+
+  const onCropChange = (crop: ReactCrop.Crop) => updateImage({ ...image, crop })
+  const onCropComplete = (crop: ReactCrop.Crop) => makeClientCrop(crop)
   const onImageLoaded = (imageRef: any) =>
     updateImage({ ...image, imageRef, isCropped: false })
-  const onSelectFile = (e: any) => {
+  const onSelectFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const reader = new FileReader()
       reader.addEventListener('load', () => {

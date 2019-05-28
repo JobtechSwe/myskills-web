@@ -31,8 +31,8 @@ const AddContactInformation: React.FC<
   const updateContactMutation = useMutation(UPDATE_CONTACT_CLIENT)
   const { data: profileData } = useQuery(GET_PROFILE_CLIENT)
   const [inputData, setData] = useState<Profile>({
-    name: '',
     email: '',
+    name: '',
     telephone: '',
   })
 

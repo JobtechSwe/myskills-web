@@ -21,10 +21,10 @@ const StartBlock = styled.div`
     ${theme.colors.seashellPeach} 100%
   )`};
   display: flex;
-  justify-content: center;
-  padding: 25px;
   /* Explanation: https://css-tricks.com/the-trick-to-viewport-units-on-mobile/ */
   height: calc(var(--vh, 1vh) * 100);
+  justify-content: center;
+  padding: 25px;
 `
 
 const InfoBlock = styled.div`
@@ -46,8 +46,8 @@ const Clouds = styled.img`
   }
 
   @media (min-height: 768px) {
-    margin-top: 55px;
     margin-bottom: 55px;
+    margin-top: 55px;
   }
 `
 

@@ -62,10 +62,12 @@ const Container = styled(Flex)`
     margin-right: 10px;
   }
 `
+
 const Image = styled.img`
   width: 100%;
   height: 100%;
 `
+
 const Home: React.FC<RouteComponentProps> = ({
   location = { pathname: '' },
 }) => {

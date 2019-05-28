@@ -56,9 +56,9 @@ export const SAVE_CV = gql`
     $image: ImgInput
     $occupation: OccupationInput
     $personalDescription: String
+    $profile: ProfileInput
     $skills: [SkillInput!]
     $traits: [String!]
-    $profile: ProfileInput
   ) {
     saveCV(
       cv: {
@@ -67,9 +67,9 @@ export const SAVE_CV = gql`
         image: $image
         occupation: $occupation
         personalDescription: $personalDescription
+        profile: $profile
         skills: $skills
         traits: $traits
-        profile: $profile
       }
     ) {
       skills {
@@ -89,16 +89,16 @@ export const GET_CV_CLIENT = gql`
 
     experiences @client {
       employer
-      start
       end
+      start
       term
     }
 
     educations @client {
+      end
       programme
       school
       start
-      end
     }
 
     traits @client
@@ -111,8 +111,8 @@ export const GET_CV_CLIENT = gql`
     }
 
     profile @client {
-      name
       email
+      name
       telephone
     }
 
@@ -155,9 +155,9 @@ const Register: React.FC<RouteComponentProps> = () => {
         },
         personalDescription: localCV.whoAmI,
         skills: localCV.skills.map((skill: any) => ({
-          type: skill.type,
-          term: skill.term,
           sourceId: skill.sourceId,
+          term: skill.term,
+          type: skill.type,
         })),
       },
     })

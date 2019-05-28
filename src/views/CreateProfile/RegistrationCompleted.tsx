@@ -13,13 +13,12 @@ const Background = styled(Flex)`
   ${theme.colors.yourPink} 0%,
   ${theme.colors.seashellPeach} 100%
 )`};
+  color: ${({ theme }) => theme.colors.persianBlue};
   flex-direction: column;
   height: 100vh;
-  align-items: center;
+  justify-content: center;
   padding: 25px;
   text-align: center;
-  color: ${({ theme }) => theme.colors.persianBlue};
-  justify-content: center;
 `
 
 const Container = styled.div`

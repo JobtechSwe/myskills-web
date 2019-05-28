@@ -6,8 +6,19 @@ Given('I am not logged in', () => {
   cy.clearCookie('token')
 })
 
+Given('I have an occupation of {string} set', string =>
+  window.localStorage.setItem(
+    'occupation',
+    JSON.stringify({ term: string, experience: null, __typename: 'Occupation' })
+  )
+)
+
 When('I try to go to the next view', () => {
   cy.get('[data-testid="okButton"]').click()
+})
+
+Then('I should be able to navigate to {string}', string => {
+  cy.url().should('include', string)
 })
 
 Then('I should be able to navigate to next view', () => {

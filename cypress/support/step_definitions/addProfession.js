@@ -22,7 +22,9 @@ Then('I should see a list with a list item that contains {string}', string => {
 
 When('I click the item containing the text {string}', string => {
   cy.get('ul').within($list => {
-    cy.get('li').click()
+    cy.get('li')
+      .contains(string)
+      .click()
   })
 })
 
@@ -53,8 +55,8 @@ Then('I should remain on the same view', () => {
   cy.url().should('eq', 'http://localhost:3001/skapa-cv/')
 })
 
-Then('I should be able to navigate to next view', () => {
-  cy.url().should('eq', 'http://localhost:3001/skapa-cv/kompetenser')
+Then('I should be able to navigate to {string}', string => {
+  cy.url().should('include', string)
 })
 
 When('I remove the chosen profession', () => {

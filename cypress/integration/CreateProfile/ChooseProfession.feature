@@ -28,9 +28,10 @@ Feature: ChooseProfession
       And I reload the page
     Then The added profession should not be present
 
-  Scenario: Unauthenticated user can go navigate to next view when profession os chosen
+  Scenario: Unauthenticated user can go navigate to next view when profession is chosen
     Given I am not logged in
     When I search for "Banarbetare"
+    Then I should see a list with a list item that contains "Banarbetare"
     When I click the item containing the text "Banarbetare"
     When I try to go to the next view
-    Then I should be able to navigate to next view
+    Then I should be able to navigate to "/skapa-cv/kompetenser"

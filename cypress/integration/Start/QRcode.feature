@@ -7,5 +7,4 @@ Feature: QRCode
         Given I open the login page
 
     Scenario: User can't login with invalid credentials
-        When I click login button
-        Then I should see a qr-code
+        Then I should see a link which can open the Egendata-application

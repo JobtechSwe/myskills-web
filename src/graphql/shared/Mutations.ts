@@ -91,4 +91,3 @@ export const ADD_WHO_AM_I = gql`
     addWhoAmI(whoAmI: $whoAmI) @client
   }
 `
-

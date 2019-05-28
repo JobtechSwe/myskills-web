@@ -29,8 +29,8 @@ const SearchInput = styled(Input)`
 `
 
 const FakeInput = styled.div`
-  border: ${({ theme }) => `1px solid ${theme.colors.athensGray}`};
   border-radius: 5px;
+  border: ${({ theme }) => `1px solid ${theme.colors.athensGray}`};
   display: flex;
   font-family: ${({ theme }) => theme.fonts.default};
   justify-content: space-between;
@@ -38,11 +38,11 @@ const FakeInput = styled.div`
 `
 
 const RemoveButton = styled.button`
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
   background: transparent;
   border: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
 `
 
 export const GET_ONTOLOGY_CONCEPTS = gql`

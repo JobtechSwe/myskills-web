@@ -1,12 +1,13 @@
 import { RouteComponentProps } from '@reach/router'
 import { useQuery, useMutation } from 'react-apollo-hooks'
-import gql from 'graphql-tag'
 import Grid from 'components/Grid'
 import React, { useState, useRef, useEffect } from 'react'
 import ReactDOMServer from 'react-dom/server'
 import { useDebounce } from '@iteam/hooks'
 import { theme } from 'theme'
 import styled from '@emotion/styled'
+import { ADD_WHO_AM_I } from 'graphql/shared/Mutations'
+import { GET_TRAITS } from 'graphql/shared/Queries'
 import { FooterButton } from 'components/Layout/Registration'
 import { H1, Bold, Paragraph } from 'components/Typography'
 import {
@@ -18,31 +19,14 @@ import {
 } from 'generated/myskills'
 import ContentEditable from 'react-contenteditable'
 
-export const GET_TRAITS = gql`
-  query ontologyTextParse($text: String!) {
-    ontologyTextParse(text: $text) {
-      id
-      term
-      type
-      terms
-    }
-  }
-`
-
 const TextAreaContainer = styled(Grid)`
-  position: relative;
   background: white;
+  position: relative;
 `
 
 const TagSpan = styled.span`
+  color: ${theme.colors.redOrange};
   font-weight: 700;
-  color: red;
-`
-
-export const ADD_WHO_AM_I = gql`
-  mutation addWhoAmI($whoAmI: String!) {
-    addWhoAmI(whoAmI: $whoAmI) @client
-  }
 `
 
 const renderToStatic = (

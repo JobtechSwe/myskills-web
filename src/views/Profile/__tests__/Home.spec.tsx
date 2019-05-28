@@ -22,7 +22,7 @@ describe('views/profile/Home', () => {
     ]
   })
 
-  it('should render with profile data', async () => {
+  xit('should render with profile data', async () => {
     const { getByText, container } = render(<Home />, withResultsMock)
     await wait()
     expect(getByText('Webbutvecklare')).toBeInTheDocument()

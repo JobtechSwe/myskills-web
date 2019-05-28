@@ -18,6 +18,7 @@ interface IBoxProps {
   noBackground: boolean
   isTop: boolean
   flexVal: number
+  isImage: boolean
 }
 
 const EditButtonContainer = styled.div<{ isImage: boolean }>`
@@ -38,8 +39,8 @@ const Box = styled.div<IBoxProps>`
   border-radius: 10px;
   background: ${({ theme, noBackground }) =>
     !noBackground ? theme.colors.alabaster : 'none'};
-  padding: ${({ theme }) => theme.space.small}px;
-  padding-bottom: 20px;
+  padding: ${({ theme, isImage }) => (!isImage ? theme.space.small : 0)}px;
+  padding-bottom: ${({ theme, isImage }) => (!isImage ? 20 : 0)}px;
   position: relative;
   min-height: ${({ isTop }) => (isTop ? '100px' : '150px')};
   flex: ${({ flexVal }) => (flexVal ? flexVal : 1)};
@@ -55,7 +56,12 @@ const ProfileDataCard: React.FC<IProfileDataCardProps> = ({
   noBackground = false,
   route = '',
 }) => (
-  <Box flexVal={flexVal} isTop={isTop} noBackground={noBackground}>
+  <Box
+    flexVal={flexVal}
+    isImage={isImage}
+    isTop={isTop}
+    noBackground={noBackground}
+  >
     {hasEdit && <Edit isImage={isImage} route={route} />}
     {children}
   </Box>

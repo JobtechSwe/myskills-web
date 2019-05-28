@@ -55,15 +55,18 @@ const ModalContainer = styled(Flex)`
 interface UploadImageProps {
   buttonText: string
   onSubmit: () => void
+  uploadImage: (args: any) => void
+  imageData: any
 }
 
 const UploadImage: React.FC<RouteComponentProps & UploadImageProps> = ({
   buttonText,
   onSubmit,
+  uploadImage,
+  imageData,
 }) => {
-  const { data } = useQuery(GET_IMAGE_CLIENT)
   const initialState = {
-    base64Image: data.image,
+    base64Image: imageData.image,
     crop: {
       x: 10,
       y: 10,
@@ -74,8 +77,6 @@ const UploadImage: React.FC<RouteComponentProps & UploadImageProps> = ({
     isCropped: false,
     src: '',
   }
-
-  const uploadImage = useMutation(UPLOAD_IMAGE_CLIENT)
 
   const handleuploadImage = (imageString: string) => {
     uploadImage({

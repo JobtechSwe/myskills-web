@@ -15,6 +15,14 @@ npm install
 npm start
 ```
 
+## Tech
+
+### GraphQL
+
+Apollo GraphQL is used both for server-queries and for local (global) state-management.
+
+In the register-process (`views/CreateProfile`) all data is saved via [`apollo-client`](https://www.apollographql.com/docs/react/why-apollo#combine-data) in local storage until a CV is saved. When a CV is saved, the views that are provided are located in `views/Profile` and all mutations and queries are then made towards the API which handles data from Egendata. To re-use the main-logic of the components we've decided to put these in `views/partials`.
+
 ## Importing modules
 
 The `baseUrl`-flag is enabled and pointed to `src/` in `tsconfig.json` to enable us to import
@@ -22,3 +30,15 @@ modules and components via `import X from 'components/X` which resolves to `impo
 when moving files around.
 
 You can read more about it here: [https://www.typescriptlang.org/docs/handbook/module-resolution.html](https://www.typescriptlang.org/docs/handbook/module-resolution.html)
+
+## Scripts
+
+| Command       | Description |
+| ------------- | ----------- |
+| lint          |             |
+| generate      |             |
+| cypress       |             |
+| cypress-ci    |             |
+| cypress:gui   |             |
+| cypress:run   |             |
+| buildAndServe |             |

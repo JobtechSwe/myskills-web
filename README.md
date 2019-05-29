@@ -9,10 +9,59 @@ A web-interface for [myskills-api](https://github.com/JobtechSwe/myskills-api)
 
 ## Getting started
 
+Create docker network.
+
+```bash
+docker create network myskills
 ```
+
+Run the API, either you follow instructions at [myskills-api](https://github.com/JobtechSwe/myskills-api) or:
+
+```bash
+docker-compose up -d
+```
+
+Run the correct node-version using [nvm](https://github.com/nvm-sh/nvm)
+
+```bash
 nvm use
-npm install
+```
+
+Install dependencies
+
+```bash
+npm i
+```
+
+Build:
+
+```bash
+npm run build
+```
+
+Start application:
+
+```bash
 npm start
+```
+
+## Running tests.
+
+[Commands](https://github.com/JobtechSwe/myskills-web/blob/master/package.json#L38)
+
+Unit:
+
+```bash
+npm run test
+```
+
+Integration:
+
+```bash
+## with ui
+npm run cypress:gui
+## in console
+npm run cypress:run
 ```
 
 ## Tech

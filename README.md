@@ -30,15 +30,3 @@ modules and components via `import X from 'components/X` which resolves to `impo
 when moving files around.
 
 You can read more about it here: [https://www.typescriptlang.org/docs/handbook/module-resolution.html](https://www.typescriptlang.org/docs/handbook/module-resolution.html)
-
-## Scripts
-
-| Command       | Description |
-| ------------- | ----------- |
-| lint          |             |
-| generate      |             |
-| cypress       |             |
-| cypress-ci    |             |
-| cypress:gui   |             |
-| cypress:run   |             |
-| buildAndServe |             |

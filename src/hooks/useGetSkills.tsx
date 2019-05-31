@@ -1,5 +1,5 @@
 import React from 'react'
-import { OntologyRelationResponse, Skill } from 'generated/myskills'
+import { OntologyRelationResponse, Skill, SkillInput } from 'generated/myskills'
 import { useApolloClient } from 'react-apollo-hooks'
 import { GET_RELATED_SKILLS } from 'graphql/shared/Queries'
 
@@ -12,20 +12,24 @@ const ontologyRelationToSkill = (
   id: ontologyItem.id,
 })
 
-export const useGetSkills = (): any => {
-  const [data, setData] = React.useState([])
-  const [loading, setLoading] = React.useState(false)
+export const useGetSkills = (): [
+  Skill[],
+  (terms: { term: string }[]) => void,
+  boolean
+] => {
+  const [data, setData] = React.useState<Skill[]>([])
+  const [loading, setLoading] = React.useState<boolean>(false)
   const { query } = useApolloClient()
 
   const getData = React.useCallback(
-    async (terms: any) => {
+    async (terms: { term: string }[]) => {
       setLoading(true)
       const {
         data: { ontologyRelated },
       } = await query({
         query: GET_RELATED_SKILLS,
         variables: {
-          concepts: terms.map(({ term }: any) => term),
+          concepts: terms.map(({ term }) => term),
           limit: 5,
           type: 'SKILL',
         },
@@ -35,7 +39,7 @@ export const useGetSkills = (): any => {
         ...data,
         ...ontologyRelated.relations
           .map(ontologyRelationToSkill)
-          .filter((rel: any) => !data.some(d => d.id === rel.id)),
+          .filter((rel: Skill) => !data.some(d => d.id === rel.id)),
       ])
       setLoading(false)
     },

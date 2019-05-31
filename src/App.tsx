@@ -8,34 +8,24 @@ import Start from 'views/Start/Start'
 import NotFound from 'views/NotFound'
 import Profile from 'views/Profile/Profile'
 import RegistrationCompleted from 'views/CreateProfile/RegistrationCompleted'
-
 import CreateProfile from 'views/CreateProfile/CreateProfile'
-
 import ChooseProfession from 'views/CreateProfile/ChooseProfession'
-
 import MatchCompetences from 'views/CreateProfile/AddSkills'
-
 import AddEducation from 'views/CreateProfile/AddEducation'
-
 import AddContactInformation from 'views/CreateProfile/AddContactInformation'
-
 import PreviousOccupationExperience from 'views/CreateProfile/PreviousOccupationExperience'
-
 import OccupationTrivia from 'views/CreateProfile/OccupationTrivia'
-
 import SaveCV from 'views/CreateProfile/SaveCV'
 import WorkExperiences from 'views/CreateProfile/WorkExperiences'
-
 import UploadImage from 'views/CreateProfile/UploadImage'
 import WhoAmI from 'views/CreateProfile/WhoAmI'
 import AddTraits from 'views/CreateProfile/AddTraits'
 import Home from 'views/Profile/Home'
 import Timeline from 'views/Profile/Timeline'
 import UpdateEducation from 'views/Profile/UpdateEducation'
-
 import UpdateWorkExperience from 'views/Profile/UpdateWorkExperiences'
-
 import UpdateWhoAmI from 'views/Profile/UpdatePersonalDescription'
+import UpdateSkills from 'views/Profile/UpdateSkills'
 
 function App() {
   return (
@@ -80,6 +70,10 @@ function App() {
                   <RestrictedRoute
                     component={UpdateWorkExperience}
                     path="/erfarenheter"
+                  />
+                  <RestrictedRoute
+                    component={UpdateSkills}
+                    path="/kompetenser"
                   />
                   <NotFound default />
                 </Profile>

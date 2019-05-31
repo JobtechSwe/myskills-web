@@ -5,17 +5,22 @@ import {
   MutationRemoveSkillArgs,
   Skill,
   Occupation,
-} from 'generated/myskills'
+  OntologyType,
+} from 'generated/myskills.d'
 import Loader from 'components/Loader'
 import TagList from 'components/TagList'
 import { useGetSkills } from 'hooks/useGetSkills'
+import Flex from 'components/Flex'
+import ButtonToInput from 'components/ButtonToInput'
+import { v4 } from 'uuid'
+import { FooterButton } from 'components/Layout/Registration'
 
 interface MatchSkillsProps {
   buttonText: string
   onSubmit: () => void
   addSkill: (skill: MutationHookOptions<{}, MutationAddSkillArgs>) => any
   removeSkill: (id: MutationHookOptions<{}, MutationRemoveSkillArgs>) => any
-  occupation: Occupation
+  occupation?: Occupation
   skills: Skill[]
 }
 
@@ -24,11 +29,13 @@ const MatchSkills: React.FC<MatchSkillsProps> = ({
   skills,
   addSkill,
   removeSkill,
+  onSubmit,
+  buttonText,
 }) => {
   const [relatedData, getRelatedData, loading] = useGetSkills()
 
   React.useEffect(() => {
-    if (!relatedData.length) getRelatedData([occupation])
+    if (!relatedData.length && occupation) getRelatedData([occupation])
   }, [occupation, getRelatedData, relatedData.length])
 
   const handleClick = (skill: Skill) => {
@@ -45,23 +52,45 @@ const MatchSkills: React.FC<MatchSkillsProps> = ({
           skill,
         },
       })
-      getRelatedData([skill])
+
+      if (occupation) getRelatedData([skill])
     }
   }
 
+  const handleInputSubmit = (value: string) =>
+    addSkill({
+      variables: {
+        skill: {
+          term: value,
+          type: OntologyType.Skill,
+          sourceId: v4(),
+        },
+      },
+    })
+
   return (
-    <>
-      {relatedData.length > 0 && (
+    <Flex
+      alignItems="center"
+      flexDirection="column"
+      justifyContent="flex-start"
+    >
+      {relatedData.length > 0 && occupation ? (
         <TagList
           activeItems={skills}
-          items={relatedData.filter(
-            (x: any) => !skills.some((y: any) => y.term === x.term)
-          )}
+          items={relatedData.filter(x => !skills.some(y => y.term === x.term))}
           onSelect={handleClick}
         />
+      ) : (
+        <TagList activeItems={skills} items={[]} onSelect={handleClick} />
       )}
+      <ButtonToInput
+        buttonText="+ Lägg till kompetens"
+        inputPlaceholder="Lägg till kompetens"
+        onSelect={handleInputSubmit}
+      />
       {loading && <Loader />}
-    </>
+      <FooterButton onClick={onSubmit} text={buttonText} />
+    </Flex>
   )
 }
 

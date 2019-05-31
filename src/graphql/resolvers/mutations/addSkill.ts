@@ -1,5 +1,5 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { SkillInput, Skill } from 'generated/myskills'
+import { Skill } from 'generated/myskills'
 import { storageHelper } from 'utils/helpers'
 import { GET_SKILLS_CLIENT } from 'graphql/shared/Queries'
 import { v4 } from 'uuid'
@@ -8,7 +8,7 @@ export const addSkillClient = (
   { skill }: { skill: Skill },
   { cache }: { cache: InMemoryCache }
 ): Skill => {
-  const clientSkill = { ...skill, __typename: 'Skill' }
+  const clientSkill = { ...skill, id: v4(), __typename: 'Skill' }
   const { skills = [] } = cache.readQuery<{
     skills: Skill[]
   }>({

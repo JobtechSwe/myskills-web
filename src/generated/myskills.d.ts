@@ -251,7 +251,7 @@ export type MutationAddSkillClientArgs = {
 }
 
 export type MutationRemoveSkillClientArgs = {
-  skill: SkillInput
+  id: Scalars['String']
 }
 
 export type MutationAddEducationClientArgs = {
@@ -606,10 +606,6 @@ export type GetProfileQuery = { __typename?: 'Query' } & {
   >
 }
 
-export type ImageQueryVariables = {}
-
-export type ImageQuery = { __typename?: 'Query' } & Pick<Query, 'image'>
-
 export type AddEducationMutationVariables = {
   education: EducationInput
 }
@@ -636,7 +632,7 @@ export type AddSkillClientMutation = { __typename?: 'Mutation' } & {
 }
 
 export type RemoveSkillClientMutationVariables = {
-  skill: SkillInput
+  id: Scalars['String']
 }
 
 export type RemoveSkillClientMutation = { __typename?: 'Mutation' } & Pick<
@@ -928,6 +924,15 @@ export type GetCvClientQuery = { __typename?: 'Query' } & Pick<
     >
   }
 
+export type UploadImageClientMutationVariables = {
+  image: ImgInput
+}
+
+export type UploadImageClientMutation = { __typename?: 'Mutation' } & Pick<
+  Mutation,
+  'uploadImage'
+>
+
 export type UploadImageMutationVariables = {
   image: ImgInput
 }
@@ -975,15 +980,6 @@ export type UpdateContactInformationMutation = { __typename?: 'Mutation' } & {
     'name' | 'email' | 'telephone'
   >
 }
-
-export type UploadImageClientMutationVariables = {
-  image: ImgInput
-}
-
-export type UploadImageClientMutation = { __typename?: 'Mutation' } & Pick<
-  Mutation,
-  'uploadImage'
->
 
 export type OntologyConceptsQueryVariables = {
   filter: Scalars['String']
@@ -1151,6 +1147,19 @@ export type GetEducationsAndExperiencesQuery = { __typename?: 'Query' } & {
       { __typename?: 'Education' } & Pick<
         Education,
         'programme' | 'school' | 'start' | 'end'
+      >
+    >
+  >
+}
+
+export type SkillsQueryVariables = {}
+
+export type SkillsQuery = { __typename?: 'Query' } & {
+  skills: Array<
+    Maybe<
+      { __typename?: 'Skill' } & Pick<
+        Skill,
+        'term' | 'type' | 'id' | 'sourceId'
       >
     >
   >

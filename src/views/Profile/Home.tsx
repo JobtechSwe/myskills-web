@@ -104,7 +104,7 @@ const Home: React.FC<RouteComponentProps> = ({
                   </Paragraph>
                 ))}
             </ProfileDataCard>
-            <ProfileDataCard route="editplace">
+            <ProfileDataCard route="kompetenser">
               <H2 mb="small">Kompetens</H2>
               {data.skills &&
                 data.skills.map((skill: Skill) => (

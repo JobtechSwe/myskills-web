@@ -11,7 +11,7 @@ exports[`views/Start renders Start 1`] = `
     >
       <img
         alt="logo"
-        class="css-1wixaj7"
+        class="css-x51mlo"
         src="logo.svg"
       />
       <hr

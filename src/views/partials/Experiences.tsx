@@ -93,7 +93,7 @@ export const Experiences: React.FC<
   return (
     <>
       <H1 textAlign="center">Vad har du för arbetslivserfarenhet?</H1>
-      {experiences && (
+      {experiences.length > 0 && (
         <Timeline
           editingEntry={editEntry.id}
           entries={experiences.map((exp: Experience) => ({

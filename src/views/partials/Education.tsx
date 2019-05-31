@@ -5,6 +5,8 @@ import AddAndEditForm from 'components/AddAndEditForm'
 import AddedEducations from 'components/AddedEducations'
 import IllustrationHeader from 'components/IllustrationHeader'
 import bookIllustration from 'assets/illustrations/book.svg'
+import Grid from 'components/Grid'
+import { H1 } from 'components/Typography'
 import { FooterButton } from 'components/Layout/Registration'
 import { Entry } from 'components/Timeline/index'
 import {
@@ -103,39 +105,47 @@ const Education: React.FC<RouteComponentProps & EducationProps> = ({
 
   return (
     <>
-      <IllustrationHeader
-        imageAltTag="Bok-illustration"
-        imageFirst={false}
-        imageSource={bookIllustration}
-        title="Vad har du för utbildning?"
-      />
-      {educations && (
-        <AddedEducations
-          editingEntry={editEntry.id}
-          educations={educations}
-          handleEdit={handleEdit}
-        />
-      )}
-      {edit && (
-        <AddAndEditForm
-          abortEdit={abortEdit}
-          edit={true}
-          editItem={editEntry}
-          handleDelete={handleDelete}
-          label="Uppdatera utbildning"
-          onSubmit={handleSubmit}
-          schoolOrCompanyPlaceholder="Namn på utbildning..."
-          titlePlaceholder="Namn på skola..."
-        />
-      )}
-      {!edit && (
-        <AddAndEditForm
-          label="Lägg till utbildning"
-          onSubmit={handleSubmit}
-          schoolOrCompanyPlaceholder="Namn på utbildning..."
-          titlePlaceholder="Namn på skola..."
-        />
-      )}
+      <Grid alignContent="start" alignItems="start">
+        {educations.length > 0 ? (
+          <H1 mb={0} textAlign="center">
+            Vad har du för utbildning?
+          </H1>
+        ) : (
+          <IllustrationHeader
+            imageAltTag="Bok-illustration"
+            imageFirst={false}
+            imageSource={bookIllustration}
+            title="Vad har du för utbildning?"
+          />
+        )}
+        {educations && (
+          <AddedEducations
+            editingEntry={editEntry.id}
+            educations={educations}
+            handleEdit={handleEdit}
+          />
+        )}
+        {edit && (
+          <AddAndEditForm
+            abortEdit={abortEdit}
+            edit={true}
+            editItem={editEntry}
+            handleDelete={handleDelete}
+            label="Uppdatera utbildning"
+            onSubmit={handleSubmit}
+            schoolOrCompanyPlaceholder="Namn på utbildning..."
+            titlePlaceholder="Namn på skola..."
+          />
+        )}
+        {!edit && (
+          <AddAndEditForm
+            label="Lägg till utbildning"
+            onSubmit={handleSubmit}
+            schoolOrCompanyPlaceholder="Namn på utbildning..."
+            titlePlaceholder="Namn på skola..."
+          />
+        )}
+      </Grid>
       <FooterButton onClick={() => onSubmit(educations)} text={buttonText} />
     </>
   )

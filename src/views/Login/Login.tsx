@@ -18,8 +18,8 @@ export const LOGIN_SUBSCRIPTION = gql`
 export const GET_LOGIN_ID = gql`
   query login {
     getLoginUrl {
-      url
       sessionId
+      url
     }
   }
 `

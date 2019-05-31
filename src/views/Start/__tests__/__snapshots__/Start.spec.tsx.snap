@@ -3,7 +3,7 @@
 exports[`views/Start renders Start 1`] = `
 <div>
   <div
-    class="css-xvdcgw"
+    class="css-1np538y"
   >
     <div
       class="css-1qj2cx6"
@@ -28,7 +28,7 @@ exports[`views/Start renders Start 1`] = `
       </p>
       <img
         alt="clouds"
-        class="css-1d1a3ay"
+        class="css-n7ydyx"
         src="clouds.svg"
       />
       <a

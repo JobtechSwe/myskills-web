@@ -6,8 +6,14 @@ When('I type {string} as {string}', (input, fieldName) => {
   cy.get(`[name="${fieldName}"]`).type(input)
 })
 
-When('I press Spara', () => {
-  cy.get('form').submit()
+When('I go back to {string}', string => {
+  cy.visit(string)
+})
+
+When('I press Fortsätt', () => {
+  cy.get('[data-testid="okButton"]')
+    .contains('Fortsätt')
+    .click()
 })
 
 Then('My {string} should still be set as {string}', (fieldName, expected) => {

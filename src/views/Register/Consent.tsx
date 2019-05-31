@@ -14,8 +14,8 @@ export const CONSENT_SUBSCRIPTION = gql`
 
 interface ConsentProps {
   consentId: string
-  url: string
   onConsentApproved: (data: ConsentApprovedSubscription) => void
+  url: string
 }
 
 const Consent: React.FC<ConsentProps> = ({

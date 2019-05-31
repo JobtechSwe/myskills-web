@@ -105,3 +105,14 @@ export const GET_TRIVIA = gql`
     }
   }
 `
+
+export const GET_TRAITS = gql`
+  query ontologyTextParse($text: String!) {
+    ontologyTextParse(text: $text) {
+      id
+      term
+      type
+      terms
+    }
+  }
+`

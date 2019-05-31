@@ -1,10 +1,9 @@
 import { Layout, Navigation } from 'components/Layout/Registration'
 import { RouteComponentProps, navigate } from '@reach/router'
-import Image from 'views/partials/Image'
 import React from 'react'
 
 const UploadImage: React.FC<RouteComponentProps> = () => {
-  const handleSubmit = () => {
+  const _handleSubmit = () => {
     navigate('/skapa-cv/kontakt')
   }
 

@@ -171,4 +171,37 @@ export const globalStyle = css`
   }
 `
 
+export const routeTransitionStyles = css`
+  [class^='fadeTranslate-'] {
+    display: none;
+  }
+  [class^='fadeTranslate-']:first-of-type {
+    display: block;
+  }
+
+  .fadeTranslate-enter {
+    opacity: 0;
+  }
+
+  .fadeTranslate-enter.fadeTranslate-enter-active {
+    opacity: 1;
+    transition: opacity 300ms ease-in;
+  }
+
+  .fadeTranslate-exit {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+
+  .fadeTranslate-exit.fadeTranslate-exit-active {
+    opacity: 0;
+    transform: translate(0, 3vh);
+    transition: opacity 300ms ease-in, transform 300ms ease-in-out;
+  }
+
+  .fix-container {
+    position: fixed;
+  }
+`
+
 export default globalStyle

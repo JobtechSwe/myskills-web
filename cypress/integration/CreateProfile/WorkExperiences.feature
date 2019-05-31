@@ -5,11 +5,12 @@ Feature: WorkExperiences
 
   Background:
     Given I open the add experiences page
+    And I have an occupation of "Lärare" set
 
   Scenario: Unauthenticated user can navigate to next page without experiences
     Given I am not logged in
     When I try to go to the next view
-    Then I should be able to navigate to next view
+    Then I should be able to navigate to "/skapa-cv/visste-du-att" 
 
   Scenario: Unauthenticated user can add an experience
     Given I am not logged in

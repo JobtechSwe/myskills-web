@@ -30,7 +30,7 @@ const TagList: React.FC<TagListProps<TagItemProps>> = ({
     >
       {[...activeItems, ...items].map((item, i) => (
         <Tag
-          key={item.term}
+          key={`tag-${item.term}-${i}`}
           mb={5}
           ml={2}
           mr={2}

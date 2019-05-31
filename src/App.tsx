@@ -1,25 +1,32 @@
 import React from 'react'
+import { Global } from '@emotion/core'
+import { routeTransitionStyles } from 'theme/globalStyle'
 import { Location, Router } from '@reach/router'
 import RestrictedRoute from 'views/restricted'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
-import './fade.css'
+
+/* General */
 import Login from 'views/Login/Login'
 import Start from 'views/Start/Start'
 import NotFound from 'views/NotFound'
-import Profile from 'views/Profile/Profile'
-import RegistrationCompleted from 'views/CreateProfile/RegistrationCompleted'
+
+/* Create Profile */
 import CreateProfile from 'views/CreateProfile/CreateProfile'
+import AddContactInformation from 'views/CreateProfile/AddContactInformation'
+import AddEducation from 'views/CreateProfile/AddEducation'
+import AddTraits from 'views/CreateProfile/AddTraits'
 import ChooseProfession from 'views/CreateProfile/ChooseProfession'
 import MatchCompetences from 'views/CreateProfile/AddSkills'
-import AddEducation from 'views/CreateProfile/AddEducation'
-import AddContactInformation from 'views/CreateProfile/AddContactInformation'
-import PreviousOccupationExperience from 'views/CreateProfile/PreviousOccupationExperience'
 import OccupationTrivia from 'views/CreateProfile/OccupationTrivia'
+import PreviousOccupationExperience from 'views/CreateProfile/PreviousOccupationExperience'
+import RegistrationCompleted from 'views/CreateProfile/RegistrationCompleted'
 import SaveCV from 'views/CreateProfile/SaveCV'
-import WorkExperiences from 'views/CreateProfile/WorkExperiences'
 import UploadImage from 'views/CreateProfile/UploadImage'
 import WhoAmI from 'views/CreateProfile/WhoAmI'
-import AddTraits from 'views/CreateProfile/AddTraits'
+import WorkExperiences from 'views/CreateProfile/WorkExperiences'
+
+/* Profile */
+import Profile from 'views/Profile/Profile'
 import Home from 'views/Profile/Home'
 import Timeline from 'views/Profile/Timeline'
 import UpdateEducation from 'views/Profile/UpdateEducation'
@@ -30,6 +37,7 @@ import UpdateSkills from 'views/Profile/UpdateSkills'
 function App() {
   return (
     <>
+      <Global styles={routeTransitionStyles} />
       <Location>
         {({ location }) => (
           <TransitionGroup>
@@ -41,6 +49,7 @@ function App() {
               <Router location={location}>
                 <Start path="/" />
                 <Login path="/logga-in" />
+
                 <CreateProfile path="/skapa-cv">
                   <AddContactInformation path="/kontakt" />
                   <AddEducation path="/utbildning" />
@@ -56,6 +65,7 @@ function App() {
                   <WorkExperiences path="/erfarenheter/tidigare-erfarenheter" />
                   <NotFound default />
                 </CreateProfile>
+
                 <Profile path="/profil">
                   <RestrictedRoute component={Home} path="/" />
                   <RestrictedRoute component={Timeline} path="/tidslinje" />

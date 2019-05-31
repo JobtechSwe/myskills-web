@@ -9,11 +9,68 @@ A web-interface for [myskills-api](https://github.com/JobtechSwe/myskills-api)
 
 ## Getting started
 
+Create docker network.
+
+```bash
+docker create network myskills
 ```
+
+Run the API, either you follow instructions at [myskills-api](https://github.com/JobtechSwe/myskills-api) or:
+
+```bash
+docker-compose up -d
+```
+
+Run the correct node-version using [nvm](https://github.com/nvm-sh/nvm)
+
+```bash
 nvm use
-npm install
+```
+
+Install dependencies
+
+```bash
+npm i
+```
+
+Build:
+
+```bash
+npm run build
+```
+
+Start application:
+
+```bash
 npm start
 ```
+
+## Running tests.
+
+[Commands](https://github.com/JobtechSwe/myskills-web/blob/master/package.json#L38)
+
+Unit:
+
+```bash
+npm run test
+```
+
+Integration:
+
+```bash
+## with ui
+npm run cypress:gui
+## in console
+npm run cypress:run
+```
+
+## Tech
+
+### GraphQL
+
+Apollo GraphQL is used both for server-queries and for local (global) state-management.
+
+In the register-process (`views/CreateProfile`) all data is saved via [`apollo-client`](https://www.apollographql.com/docs/react/why-apollo#combine-data) in local storage until a CV is saved. When a CV is saved, the views that are provided are located in `views/Profile` and all mutations and queries are then made towards the API which handles data from Egendata. To re-use the main-logic of the components we've decided to put these in `views/partials`.
 
 ## Importing modules
 

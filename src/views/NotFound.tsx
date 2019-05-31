@@ -18,7 +18,7 @@ const Block = styled(Grid)`
 const NotFound: React.FC<RouteComponentProps> = () => {
   return (
     <Block alignItems="center" height="100vh" justifyItems="center">
-      <Paragraph>The page could not be found :( </Paragraph>
+      <Paragraph>The page could not be found :(</Paragraph>
       <InternalLink to={'/'}>
         <Button>{'Go to start'}</Button>
       </InternalLink>

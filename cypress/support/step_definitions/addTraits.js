@@ -11,7 +11,9 @@ When('I type {string} as a {string}', (input, fieldName) => {
 })
 
 When('I press OK', () => {
-  cy.get('[data-testid="okButton"]').click()
+  cy.get('[data-testid="okButton"]')
+    .contains('OK')
+    .click()
 })
 
 Then('{string} should be added as a trait', trait => {

@@ -8,7 +8,9 @@ Then('I click login button', () => {
     .click()
 })
 
-Then('I should see a qr-code', () => {
-  cy.get('#consentId').should('exist')
-  cy.get('svg').should('exist')
+Then('I should see a link which can open the Egendata-application', () => {
+  cy.get('a')
+    .contains('Logga in med')
+    .should('have.attr', 'href')
+    .should('exist')
 })

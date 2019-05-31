@@ -1,5 +1,5 @@
 import React from 'react'
-import { OntologyRelationResponse, Skill, SkillInput } from 'generated/myskills'
+import { OntologyRelationResponse, Skill } from 'generated/myskills'
 import { useApolloClient } from 'react-apollo-hooks'
 import { GET_RELATED_SKILLS } from 'graphql/shared/Queries'
 

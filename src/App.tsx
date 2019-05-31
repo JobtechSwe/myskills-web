@@ -9,6 +9,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import Login from 'views/Login/Login'
 import Start from 'views/Start/Start'
 import NotFound from 'views/NotFound'
+import ScrollTop from 'components/ScrollTop'
 
 /* Create Profile */
 import CreateProfile from 'views/CreateProfile/CreateProfile'
@@ -46,44 +47,45 @@ function App() {
               timeout={1000}
             >
               <Router location={location}>
-                <Start path="/" />
-                <Login path="/logga-in" />
+                <ScrollTop path="/">
+                  <Start path="/" />
+                  <Login path="/logga-in" />
+                  <CreateProfile path="/skapa-cv">
+                    <AddContactInformation path="/kontakt" />
+                    <AddEducation path="/utbildning" />
+                    <AddTraits path="/egenskaper" />
+                    <ChooseProfession path="/" />
+                    <MatchCompetences path="/kompetenser" />
+                    <OccupationTrivia path="/visste-du-att" />
+                    <PreviousOccupationExperience path="/erfarenheter" />
+                    <RegistrationCompleted path="/grattis" />
+                    <SaveCV path="/spara-cv" />
+                    <UploadImage path="/profilbild" />
+                    <WhoAmI path="/beskriv-dig" />
+                    <WorkExperiences path="/erfarenheter/tidigare-erfarenheter" />
+                    <NotFound default />
+                  </CreateProfile>
 
-                <CreateProfile path="/skapa-cv">
-                  <AddContactInformation path="/kontakt" />
-                  <AddEducation path="/utbildning" />
-                  <AddTraits path="/egenskaper" />
-                  <ChooseProfession path="/" />
-                  <MatchCompetences path="/kompetenser" />
-                  <OccupationTrivia path="/visste-du-att" />
-                  <PreviousOccupationExperience path="/erfarenheter" />
-                  <RegistrationCompleted path="/grattis" />
-                  <SaveCV path="/spara-cv" />
-                  <UploadImage path="/profilbild" />
-                  <WhoAmI path="/beskriv-dig" />
-                  <WorkExperiences path="/erfarenheter/tidigare-erfarenheter" />
+                  <Profile path="/profil">
+                    <RestrictedRoute component={Home} path="/" />
+                    <RestrictedRoute component={Timeline} path="/tidslinje" />
+                    <RestrictedRoute
+                      component={UpdateEducation}
+                      path="/utbildning"
+                    />
+                    <RestrictedRoute
+                      component={UpdateWhoAmI}
+                      path="/beskriv-dig"
+                    />
+                    <RestrictedRoute
+                      component={UpdateWorkExperience}
+                      path="/erfarenheter"
+                    />
+                    <NotFound default />
+                  </Profile>
+
                   <NotFound default />
-                </CreateProfile>
-
-                <Profile path="/profil">
-                  <RestrictedRoute component={Home} path="/" />
-                  <RestrictedRoute component={Timeline} path="/tidslinje" />
-                  <RestrictedRoute
-                    component={UpdateEducation}
-                    path="/utbildning"
-                  />
-                  <RestrictedRoute
-                    component={UpdateWhoAmI}
-                    path="/beskriv-dig"
-                  />
-                  <RestrictedRoute
-                    component={UpdateWorkExperience}
-                    path="/erfarenheter"
-                  />
-                  <NotFound default />
-                </Profile>
-
-                <NotFound default />
+                </ScrollTop>
               </Router>
             </CSSTransition>
           </TransitionGroup>

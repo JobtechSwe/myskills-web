@@ -172,6 +172,13 @@ export const globalStyle = css`
 `
 
 export const routeTransitionStyles = css`
+  [class^='fadeTranslate-'] {
+    display: none;
+  }
+  [class^='fadeTranslate-']:first-of-type {
+    display: block;
+  }
+
   .fadeTranslate-enter {
     opacity: 0;
   }

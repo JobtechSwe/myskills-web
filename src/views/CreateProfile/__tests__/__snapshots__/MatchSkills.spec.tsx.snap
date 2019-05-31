@@ -56,22 +56,6 @@ exports[`views/MatchSkills renders loading state 1`] = `
     <div
       class="css-16bqc7z"
     >
-      <h1
-        class="css-1jc8j5a"
-        color="black"
-        font-family="default"
-        font-size="large"
-        font-weight="600"
-      >
-        Vilka är dina kompetenser?
-      </h1>
-      <p
-        class="css-njmd2e"
-        font-family="default"
-        font-size="small"
-      >
-        Ditt val av yrkesroll matchar ofta nedan föreslagna kompetenser. Markera dina eller lägg till egna.
-      </p>
       <div
         class="css-17byi71"
         data-testid="tagList"
@@ -85,18 +69,18 @@ exports[`views/MatchSkills renders loading state 1`] = `
       >
         + Lägg till kompetens
       </span>
-    </div>
-    <div
-      class="css-xyw5i4"
-    >
-      <button
-        class="css-spuwu"
-        data-testid="okButton"
-        font-family="default"
-        font-size="medium"
+      <div
+        class="css-xyw5i4"
       >
-        Fortsätt
-      </button>
+        <button
+          class="css-spuwu"
+          data-testid="okButton"
+          font-family="default"
+          font-size="medium"
+        >
+          Fortsätt
+        </button>
+      </div>
     </div>
   </div>
 </div>

@@ -22,6 +22,7 @@ beforeEach(() => {
     skill: {
       __typename: 'Skill',
       term: 'abc',
+      id: '123',
     },
   }
   cache = {
@@ -47,15 +48,15 @@ describe('resolvers/addSkill', () => {
     expect(writeQueryMock).toHaveBeenCalledWith({
       query: GET_SKILLS_CLIENT,
       data: {
-        skills: [...mockedSkillCache.skills, skill.skill],
+        skills: [
+          ...mockedSkillCache.skills,
+          { ...skill.skill, id: expect.any(String) },
+        ],
       },
     })
   })
 
-  it('returns education', () => {
-    expect(addSkillClient({}, skill, cache)).toEqual({
-      term: 'abc',
-      __typename: 'Skill',
-    })
+  it('returns skill', () => {
+    expect(addSkillClient({}, skill, cache).term).toEqual('abc')
   })
 })

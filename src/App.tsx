@@ -30,8 +30,9 @@ import Profile from 'views/Profile/Profile'
 import Home from 'views/Profile/Home'
 import Timeline from 'views/Profile/Timeline'
 import UpdateEducation from 'views/Profile/UpdateEducation'
-import UpdateWhoAmI from 'views/Profile/UpdatePersonalDescription'
 import UpdateWorkExperience from 'views/Profile/UpdateWorkExperiences'
+import UpdateWhoAmI from 'views/Profile/UpdatePersonalDescription'
+import UpdateSkills from 'views/Profile/UpdateSkills'
 
 function App() {
   return (
@@ -79,6 +80,10 @@ function App() {
                   <RestrictedRoute
                     component={UpdateWorkExperience}
                     path="/erfarenheter"
+                  />
+                  <RestrictedRoute
+                    component={UpdateSkills}
+                    path="/kompetenser"
                   />
                   <NotFound default />
                 </Profile>

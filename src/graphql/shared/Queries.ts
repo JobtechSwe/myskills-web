@@ -63,6 +63,7 @@ export const GET_SKILLS_CLIENT = gql`
       term
       sourceId
       type
+      id
     }
   }
 `

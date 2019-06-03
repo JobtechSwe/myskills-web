@@ -54,139 +54,143 @@ exports[`views/AddEducation renders empty result 1`] = `
       </p>
     </nav>
     <div
-      class="css-1kqrbn8"
+      class="css-3lcyt5"
     >
-      <h1
-        class="css-2k7aps"
-        color="black"
-        font-family="default"
-        font-size="large"
-        font-weight="600"
-      >
-        Vad har du för utbildning?
-      </h1>
       <div
-        class="css-xyw5i4"
+        class="css-v7i14q"
       >
-        <img
-          alt="Bok-illustration"
-          src="book.svg"
+        <h1
+          class="css-2k7aps"
+          color="black"
+          font-family="default"
+          font-size="large"
+          font-weight="600"
+        >
+          Vad har du för utbildning?
+        </h1>
+        <div
+          class="css-xyw5i4"
+        >
+          <img
+            alt="Bok-illustration"
+            src="book.svg"
+          />
+        </div>
+      </div>
+      <div />
+      <div
+        class="css-14oqj0j"
+      >
+        <div
+          class="css-x4c82l"
+        >
+          <label
+            class="css-rcg95n"
+            font-family="default"
+            font-size="small"
+            font-weight="700"
+          >
+            Lägg till utbildning
+          </label>
+        </div>
+        <input
+          class="css-hugbvh"
+          data-testid="title"
+          font-family="default"
+          font-size="medium"
+          name="title"
+          placeholder="Namn på skola..."
+          value=""
+        />
+        <input
+          class="css-hugbvh"
+          data-testid="schoolOrCompany"
+          font-family="default"
+          font-size="medium"
+          name="schoolOrCompany"
+          placeholder="Namn på utbildning..."
+          value=""
         />
       </div>
-    </div>
-    <div />
-    <div
-      class="css-14oqj0j"
-    >
       <div
-        class="css-x4c82l"
+        class="css-t6zbdi"
       >
-        <label
-          class="css-rcg95n"
-          font-family="default"
-          font-size="small"
-          font-weight="700"
+        <div
+          class="css-133uqq1"
         >
-          Lägg till utbildning
-        </label>
+          <label
+            class="css-rcg95n"
+            font-family="default"
+            font-size="small"
+            font-weight="700"
+          >
+            Från
+          </label>
+          <label
+            class="css-1be2e5y"
+            data-testid="startDate"
+          >
+            <span
+              class="css-1gmliaa"
+            >
+              Startdatum
+            </span>
+            <input
+              class="css-1oteowz"
+              data-testid="startDate-input"
+              placeholder="Slutdatum"
+              type="month"
+            />
+            <img
+              alt="calendar"
+              src="calendar.svg"
+            />
+          </label>
+        </div>
+        <div
+          class="css-133uqq1"
+        >
+          <label
+            class="css-rcg95n"
+            font-family="default"
+            font-size="small"
+            font-weight="700"
+          >
+            Till
+          </label>
+          <label
+            class="css-1be2e5y"
+            data-testid="endDate"
+          >
+            <span
+              class="css-1gmliaa"
+            >
+              Slutdatum
+            </span>
+            <input
+              class="css-1oteowz"
+              data-testid="endDate-input"
+              placeholder="Slutdatum"
+              type="month"
+            />
+            <img
+              alt="calendar"
+              src="calendar.svg"
+            />
+          </label>
+        </div>
       </div>
-      <input
-        class="css-hugbvh"
-        data-testid="title"
+      <button
+        class="css-1t15cbl"
+        data-testid="saveButton"
         font-family="default"
         font-size="medium"
-        name="title"
-        placeholder="Namn på skola..."
-        value=""
-      />
-      <input
-        class="css-hugbvh"
-        data-testid="schoolOrCompany"
-        font-family="default"
-        font-size="medium"
-        name="schoolOrCompany"
-        placeholder="Namn på utbildning..."
-        value=""
-      />
-    </div>
-    <div
-      class="css-t6zbdi"
-    >
-      <div
-        class="css-133uqq1"
+        type="submit"
+        width="1"
       >
-        <label
-          class="css-rcg95n"
-          font-family="default"
-          font-size="small"
-          font-weight="700"
-        >
-          Från
-        </label>
-        <label
-          class="css-1be2e5y"
-          data-testid="startDate"
-        >
-          <span
-            class="css-1gmliaa"
-          >
-            Startdatum
-          </span>
-          <input
-            class="css-1oteowz"
-            data-testid="startDate-input"
-            placeholder="Slutdatum"
-            type="month"
-          />
-          <img
-            alt="calendar"
-            src="calendar.svg"
-          />
-        </label>
-      </div>
-      <div
-        class="css-133uqq1"
-      >
-        <label
-          class="css-rcg95n"
-          font-family="default"
-          font-size="small"
-          font-weight="700"
-        >
-          Till
-        </label>
-        <label
-          class="css-1be2e5y"
-          data-testid="endDate"
-        >
-          <span
-            class="css-1gmliaa"
-          >
-            Slutdatum
-          </span>
-          <input
-            class="css-1oteowz"
-            data-testid="endDate-input"
-            placeholder="Slutdatum"
-            type="month"
-          />
-          <img
-            alt="calendar"
-            src="calendar.svg"
-          />
-        </label>
-      </div>
+        Lägg till
+      </button>
     </div>
-    <button
-      class="css-1t15cbl"
-      data-testid="saveButton"
-      font-family="default"
-      font-size="medium"
-      type="submit"
-      width="1"
-    >
-      Lägg till
-    </button>
     <div
       class="css-xyw5i4"
     >

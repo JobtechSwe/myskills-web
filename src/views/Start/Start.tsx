@@ -11,6 +11,7 @@ import Info from '../../components/Info'
 
 const LogoContainer = styled.img`
   margin-top: 10%;
+  margin-bottom: 8px;
 `
 
 const StartBlock = styled.div`

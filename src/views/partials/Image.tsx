@@ -166,7 +166,7 @@ const UploadImage: React.FC<RouteComponentProps & UploadImageProps> = ({
           }
         `}
       />
-      <Grid alignItems="start">
+      <Grid alignItems="start" gridTemplateRows="auto 1fr">
         <IllustrationHeader
           description="Ladda upp en bild av dig själv för att göra din profil mer personlig."
           imageAltTag="Profilbild"
@@ -178,7 +178,7 @@ const UploadImage: React.FC<RouteComponentProps & UploadImageProps> = ({
           }
           title="Ladda upp en bild!"
         />
-        <Flex alignItems="center" justifyContent="center">
+        <Flex alignItems="center" justifyContent="center" mt="small">
           <FileLabel color="redOrange" mb={0} ml={0}>
             + Välj bild
             <FileInput onChange={onSelectFile} type="file" />

@@ -99,10 +99,15 @@ export const OccupationExperience: React.FC<
                 ? 'active'
                 : 'inActive'
             }
+            width="116px"
           >
             Ja
           </Button>
-          <Button onClick={noPreviousExperienceClick} variant="inActive">
+          <Button
+            onClick={noPreviousExperienceClick}
+            variant="inActive"
+            width="116px"
+          >
             Nej
           </Button>
         </Grid>

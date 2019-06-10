@@ -14,6 +14,7 @@ import { ConsentApprovedSubscription } from 'generated/myskills'
 import { useSubscription } from 'react-apollo-hooks'
 import { CONSENT_SUBSCRIPTION } from 'views/CreateProfile/SaveCV'
 import { LOGIN_SUBSCRIPTION } from 'views/Login/Login'
+import QR from 'components/QR'
 
 interface LoginViewProps {
   onConsentApproved?: (onConsentApproved: any) => void
@@ -52,6 +53,15 @@ const InfoBulletsWrapper = styled.div`
   padding: 0 30px;
 `
 
+const QrWrapper = styled.div`
+  margin-bottom: 30px;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+`
+
 const EgenData: React.FC<LoginViewProps> = ({
   loginUrl,
   btnText,
@@ -87,6 +97,9 @@ const EgenData: React.FC<LoginViewProps> = ({
             </Paragraph>
             <img alt="egendatalogo" src={egendataLogotypeIcon} />
           </LogosWrapper>
+          <QrWrapper>
+            <QR consentId={loginUrl} />
+          </QrWrapper>
           <OpenInApp url={loginUrl}>
             {btnText}
             <Image alt="egendatalogo" src={egendataLogotypeIconWhite} />

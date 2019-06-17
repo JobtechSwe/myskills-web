@@ -14,6 +14,8 @@ import { ConsentApprovedSubscription } from 'generated/myskills'
 import { useSubscription } from 'react-apollo-hooks'
 import { CONSENT_SUBSCRIPTION } from 'views/CreateProfile/SaveCV'
 import { LOGIN_SUBSCRIPTION } from 'views/Login/Login'
+import QR from 'components/QR'
+import { isMobileDevice } from 'utils/helpers'
 
 interface LoginViewProps {
   onConsentApproved?: (onConsentApproved: any) => void
@@ -83,14 +85,19 @@ const EgenData: React.FC<LoginViewProps> = ({
           <LogosWrapper>
             <img alt="logo" src={logotypeIcon} />
             <Paragraph mb={10} mt={10}>
-              vill öpnna
+              vill öppna
             </Paragraph>
             <img alt="egendatalogo" src={egendataLogotypeIcon} />
           </LogosWrapper>
-          <OpenInApp url={loginUrl}>
-            {btnText}
-            <Image alt="egendatalogo" src={egendataLogotypeIconWhite} />
-          </OpenInApp>
+          {isMobileDevice() ? (
+            <OpenInApp url={loginUrl}>
+              {btnText}
+              <Image alt="egendatalogo" src={egendataLogotypeIconWhite} />
+            </OpenInApp>
+          ) : (
+            <QR consentId={loginUrl} />
+          )}
+
           <InfoBulletsWrapper>
             <Grid gridTemplateColumns="20px 1fr">
               <img alt="check" src={check} />

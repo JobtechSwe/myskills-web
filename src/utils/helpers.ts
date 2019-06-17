@@ -8,6 +8,10 @@ import {
   ProfileInput,
 } from '../generated/myskills'
 
+export const isMobileDevice = () =>
+  typeof window.orientation !== 'undefined' ||
+  navigator.userAgent.indexOf('IEMobile') !== -1
+
 export const getCookie = (name: string) => Cookies.get(name)
 
 export const setCookie = (

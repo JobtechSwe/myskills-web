@@ -15,7 +15,6 @@ import { useSubscription } from 'react-apollo-hooks'
 import { CONSENT_SUBSCRIPTION } from 'views/CreateProfile/SaveCV'
 import { LOGIN_SUBSCRIPTION } from 'views/Login/Login'
 import QR from 'components/QR'
-import { isMobileDevice } from 'utils/helpers'
 
 interface LoginViewProps {
   onConsentApproved?: (onConsentApproved: any) => void
@@ -35,12 +34,10 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   padding: 25px;
-  /* Explanation: https://css-tricks.com/the-trick-to-viewport-units-on-mobile/ */
-  height: calc(var(--vh, 1vh) * 100);
 `
 
 const LogosWrapper = styled.div`
-  margin: 50px 0;
+  margin: 25px 0;
   text-align: center;
 `
 
@@ -89,14 +86,15 @@ const EgenData: React.FC<LoginViewProps> = ({
             </Paragraph>
             <img alt="egendatalogo" src={egendataLogotypeIcon} />
           </LogosWrapper>
-          {isMobileDevice() ? (
-            <OpenInApp url={loginUrl}>
-              {btnText}
-              <Image alt="egendatalogo" src={egendataLogotypeIconWhite} />
-            </OpenInApp>
-          ) : (
-            <QR consentId={loginUrl} />
-          )}
+          <OpenInApp url={loginUrl}>
+            {btnText}
+            <Image alt="egendatalogo" src={egendataLogotypeIconWhite} />
+          </OpenInApp>
+
+          <Paragraph mb={20} mt={20}>
+            eller scanna QR-koden nedan:
+          </Paragraph>
+          <QR consentId={loginUrl} />
 
           <InfoBulletsWrapper>
             <Grid gridTemplateColumns="20px 1fr">

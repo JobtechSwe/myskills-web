@@ -6,7 +6,7 @@ interface QRProps {
 }
 
 const QR: React.FC<QRProps> = ({ consentId }) => {
-  return <QRCode style={{ width: 256 }} value={consentId} />
+  return <QRCode style={{ width: 200 }} value={consentId} />
 }
 
 export default QR

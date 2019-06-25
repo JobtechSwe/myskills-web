@@ -13,7 +13,7 @@ import ScrollTop from 'components/ScrollTop'
 
 /* Create Profile */
 import CreateProfile from 'views/CreateProfile/CreateProfile'
-import AddContactInformation from 'views/CreateProfile/AddContactInformation'
+// import AddContactInformation from 'views/CreateProfile/AddContactInformation'
 import AddEducation from 'views/CreateProfile/AddEducation'
 import AddTraits from 'views/CreateProfile/AddTraits'
 import ChooseProfession from 'views/CreateProfile/ChooseProfession'
@@ -22,7 +22,7 @@ import OccupationTrivia from 'views/CreateProfile/OccupationTrivia'
 import PreviousOccupationExperience from 'views/CreateProfile/PreviousOccupationExperience'
 import RegistrationCompleted from 'views/CreateProfile/RegistrationCompleted'
 import SaveCV from 'views/CreateProfile/SaveCV'
-import UploadImage from 'views/CreateProfile/UploadImage'
+// import UploadImage from 'views/CreateProfile/UploadImage'
 import WhoAmI from 'views/CreateProfile/WhoAmI'
 import WorkExperiences from 'views/CreateProfile/WorkExperiences'
 
@@ -51,7 +51,7 @@ function App() {
                   <Start path="/" />
                   <Login path="/logga-in" />
                   <CreateProfile path="/skapa-cv">
-                    <AddContactInformation path="/kontakt" />
+                    {/* <AddContactInformation path="/kontakt" /> */}
                     <AddEducation path="/utbildning" />
                     <AddTraits path="/egenskaper" />
                     <ChooseProfession path="/" />
@@ -60,7 +60,7 @@ function App() {
                     <PreviousOccupationExperience path="/erfarenheter" />
                     <RegistrationCompleted path="/grattis" />
                     <SaveCV path="/spara-cv" />
-                    <UploadImage path="/profilbild" />
+                    {/* <UploadImage path="/profilbild" /> */}
                     <WhoAmI path="/beskriv-dig" />
                     <WorkExperiences path="/erfarenheter/tidigare-erfarenheter" />
                     <NotFound default />

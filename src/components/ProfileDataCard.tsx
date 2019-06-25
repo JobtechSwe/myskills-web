@@ -24,15 +24,23 @@ interface IBoxProps {
 const EditButtonContainer = styled.div<{ isImage: boolean }>`
   position: absolute;
   right: 10px;
+  top: 0;
   bottom: ${({ isImage }) => (isImage ? 'calc(100% - 40px)' : '10px')};
+  height: 100%;
+  width: 25px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  img {
+    margin-bottom: 10px;
+  }
 `
-
 const Edit = ({ route, isImage }: { route: string; isImage: boolean }) => (
-  <EditButtonContainer isImage={isImage}>
-    <InternalLink to={route}>
+  <InternalLink to={route}>
+    <EditButtonContainer isImage={isImage}>
       <img alt="Edit data" src={isImage ? editImageIcon : editIcon} />
-    </InternalLink>
-  </EditButtonContainer>
+    </EditButtonContainer>
+  </InternalLink>
 )
 
 const Box = styled.div<IBoxProps>`
@@ -40,7 +48,7 @@ const Box = styled.div<IBoxProps>`
   background: ${({ theme, noBackground }) =>
     !noBackground ? theme.colors.alabaster : 'none'};
   padding: ${({ theme, isImage }) => (!isImage ? theme.space.small : 0)}px;
-  padding-bottom: ${({ theme, isImage }) => (!isImage ? 20 : 0)}px;
+  padding-bottom: ${({ isImage }) => (!isImage ? 20 : 0)}px;
   position: relative;
   min-height: ${({ isTop }) => (isTop ? '100px' : '150px')};
   flex: ${({ flexVal }) => (flexVal ? flexVal : 1)};

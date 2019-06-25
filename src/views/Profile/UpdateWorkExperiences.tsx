@@ -3,7 +3,6 @@ import { RouteComponentProps, navigate } from '@reach/router'
 import Experiences from 'views/partials/Experiences'
 import { Layout, Navigation } from 'components/Layout/Registration'
 import {
-  Experience,
   GetExperiencesQuery,
   Mutation,
   MutationAddExperienceArgs,

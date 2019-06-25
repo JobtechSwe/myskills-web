@@ -11,11 +11,13 @@ const Wrapper = styled.li`
   grid-template-columns: 20px 1fr;
   font-family: ${({ theme }) => theme.fonts.default};
   position: relative;
+  margin-bottom: 16px;
 `
 
 const DotWrapper = styled.div`
   padding: 10px 0;
   z-index: 1;
+  display: flex;
 `
 
 const ContentWrapper = styled.div<{ editing: boolean }>`

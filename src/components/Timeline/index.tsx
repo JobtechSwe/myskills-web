@@ -34,6 +34,14 @@ const Wrapper = styled.ul<{ enableTimelineBar: boolean }>`
       top: 20px;
       width: 5px;
     }
+    > li:not(:first-of-type)::before {
+      background: ${theme.colors.alabaster};
+      content: ' ';
+      height: 50%;
+      left: 5px;
+      position: absolute;
+      top: 0;
+      width: 5px;
   `}
 `
 

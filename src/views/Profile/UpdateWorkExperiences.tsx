@@ -53,8 +53,8 @@ const WorkExperiences: React.FC<RouteComponentProps> = () => {
     refetchQueries: [{ query: GET_EXPERIENCES }],
   })
 
-  const handleSubmit = (_experiences: Experience[]) => {
-    navigate('/skapa-cv/utbildning')
+  const handleSubmit = () => {
+    navigate('/profil')
   }
 
   return (
@@ -65,7 +65,7 @@ const WorkExperiences: React.FC<RouteComponentProps> = () => {
       {experiences && (
         <Experiences
           addExperience={addExperience}
-          buttonText="Fortsätt"
+          buttonText="Spara"
           experiences={experiences}
           onSubmit={handleSubmit}
           removeExperience={removeExperience}

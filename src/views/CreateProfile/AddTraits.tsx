@@ -4,8 +4,8 @@ import React from 'react'
 import Traits from 'views/partials/Traits'
 
 const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
-  const handleSubmit = (_traits: string[]) => {
-    navigate('/skapa-cv/profilbild')
+  const handleSubmit = () => {
+    navigate('/skapa-cv/spara-cv')
   }
 
   return (

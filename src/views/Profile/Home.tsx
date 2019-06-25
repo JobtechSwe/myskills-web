@@ -9,8 +9,8 @@ import ProfileDataCard from 'components/ProfileDataCard'
 import { Paragraph, H2 } from 'components/Typography'
 import { Skill, Education, Experience } from 'generated/myskills'
 import Loader from 'components/Loader'
-import editIcon from 'assets/icons/edit.svg'
-import { InternalLink } from 'components/Link'
+// import editIcon from 'assets/icons/edit.svg'
+// import { InternalLink } from 'components/Link'
 
 export const GET_CV = gql`
   query getCV {
@@ -29,7 +29,7 @@ export const GET_CV = gql`
       start
       end
     }
-    image
+    # image
 
     educations {
       programme
@@ -63,10 +63,10 @@ const Container = styled(Flex)`
   }
 `
 
-const Image = styled.img`
-  width: 100%;
-  height: 100%;
-`
+// const Image = styled.img`
+//   width: 100%;
+//   height: 100%;
+// `
 
 const Home: React.FC<RouteComponentProps> = ({
   location = { pathname: '' },
@@ -77,24 +77,24 @@ const Home: React.FC<RouteComponentProps> = ({
 
   return (
     <ProfileLayout currentPath={location.pathname}>
-      {error && 'error'}
+      {error && null}
       {loading && <Loader />}
       {!loading && data && (
         <>
-          <Container mb="10px">
+          <Container mb="10px" mr="-10px">
             <ProfileDataCard
-              flexVal={0.65}
+              flexVal={1}
               isTop
-              noBackground
               route="beskriv-dig"
             >
+              <H2 mb="small">Beskrivning</H2>
               <Paragraph fontSize="small" mb="none" mt="none">
                 {data.personalDescription}
               </Paragraph>
             </ProfileDataCard>
-            <ProfileDataCard flexVal={0.35} isImage isTop route="editplace">
+            {/* <ProfileDataCard flexVal={0.35} isImage isTop route="editplace">
               <Image src={`data:image/jpeg;base64,${data.image}`} />
-            </ProfileDataCard>
+            </ProfileDataCard> */}
           </Container>
           <Container mb="10px">
             <ProfileDataCard route="egenskaper">
@@ -162,7 +162,7 @@ const Home: React.FC<RouteComponentProps> = ({
                 ))}
             </ProfileDataCard>
           </Container>
-          <Flex mt="small" pl="small">
+          {/* <Flex mt="small" pl="small">
             <Flex flex="1" flexDirection="column" mb="large">
               <H2 mb="none" width="100%">
                 Kontakt
@@ -189,7 +189,7 @@ const Home: React.FC<RouteComponentProps> = ({
                 </Flex>
               )}
             </Flex>
-          </Flex>
+          </Flex> */}
         </>
       )}
     </ProfileLayout>

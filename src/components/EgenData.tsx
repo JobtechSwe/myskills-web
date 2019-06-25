@@ -14,6 +14,7 @@ import { ConsentApprovedSubscription } from 'generated/myskills'
 import { useSubscription } from 'react-apollo-hooks'
 import { CONSENT_SUBSCRIPTION } from 'views/CreateProfile/SaveCV'
 import { LOGIN_SUBSCRIPTION } from 'views/Login/Login'
+import QR from 'components/QR'
 
 interface LoginViewProps {
   onConsentApproved?: (onConsentApproved: any) => void
@@ -33,12 +34,10 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   padding: 25px;
-  /* Explanation: https://css-tricks.com/the-trick-to-viewport-units-on-mobile/ */
-  height: calc(var(--vh, 1vh) * 100);
 `
 
 const LogosWrapper = styled.div`
-  margin: 50px 0;
+  margin: 25px 0;
   text-align: center;
 `
 
@@ -83,7 +82,7 @@ const EgenData: React.FC<LoginViewProps> = ({
           <LogosWrapper>
             <img alt="logo" src={logotypeIcon} />
             <Paragraph mb={10} mt={10}>
-              vill öpnna
+              vill öppna
             </Paragraph>
             <img alt="egendatalogo" src={egendataLogotypeIcon} />
           </LogosWrapper>
@@ -91,6 +90,12 @@ const EgenData: React.FC<LoginViewProps> = ({
             {btnText}
             <Image alt="egendatalogo" src={egendataLogotypeIconWhite} />
           </OpenInApp>
+
+          <Paragraph mb={20} mt={20}>
+            eller scanna QR-koden nedan:
+          </Paragraph>
+          <QR consentId={loginUrl} />
+
           <InfoBulletsWrapper>
             <Grid gridTemplateColumns="20px 1fr">
               <img alt="check" src={check} />

@@ -75,7 +75,27 @@ export const GET_SKILLS_CLIENT = gql`
     }
   }
 `
+export const GET_SKILLS = gql`
+  query skills {
+    skills {
+      term
+      sourceId
+      type
+      id
+    }
+  }
+`
 
+export const GET_OCCUPATION = gql`
+  query occupation {
+    occupation {
+      term
+      experience {
+        years
+      }
+    }
+  }
+`
 export const GET_OCCUPATION_CLIENT = gql`
   query getOccupationClient {
     occupation @client {

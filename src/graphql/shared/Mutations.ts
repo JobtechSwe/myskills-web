@@ -1,5 +1,17 @@
 import gql from 'graphql-tag'
 
+export const ADD_SKILL = gql`
+  mutation addSkill($skill: SkillInput!) {
+    addSkill(skill: $skill) {
+      term
+    }
+  }
+`
+export const REMOVE_SKILL = gql`
+  mutation removeSkill($id: String!) {
+    removeSkill(id: $id)
+  }
+`
 export const ADD_TRAIT = gql`
   mutation addTrait($trait: String!) {
     addTrait(trait: $trait)

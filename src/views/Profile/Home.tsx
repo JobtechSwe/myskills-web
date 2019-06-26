@@ -109,7 +109,7 @@ const Home: React.FC<RouteComponentProps> = ({
                 <Italic>Editera för att lägga till egenskaper</Italic>
               )}
             </ProfileDataCard>
-            <ProfileDataCard route="editplace">
+            <ProfileDataCard route="kompetens">
               <H2 mb="small">Kompetens</H2>
               {data.skills &&
                 data.skills.map((skill: Skill) => (

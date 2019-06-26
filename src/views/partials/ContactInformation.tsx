@@ -5,9 +5,9 @@ import smartphoneLetter from 'assets/illustrations/smarthpone_letter.svg'
 import IllustrationHeader from 'components/IllustrationHeader'
 import Grid from 'components/Grid'
 import { FooterButton } from 'components/Layout/Registration'
-import { Profile } from 'generated/myskills.d'
+import { Profile, MutationCreateProfileArgs } from 'generated/myskills.d'
 import { GET_PROFILE_CLIENT } from 'graphql/resolvers/mutations/updateContactInformation'
-import { useMutation, useQuery } from 'react-apollo-hooks'
+import { useQuery, MutationHookOptions } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
 
 export const UPDATE_CONTACT_CLIENT = gql`
@@ -22,13 +22,17 @@ export const UPDATE_CONTACT_CLIENT = gql`
 
 interface AddContactInformationProps {
   buttonText: string
-  onSubmit: (profile: Profile) => void
+  onSubmit: () => void
+  contactInformation: Profile
+  updateContactInformation: (
+    args: MutationHookOptions<{}, MutationCreateProfileArgs>
+  ) => void
 }
 
 const AddContactInformation: React.FC<
   RouteComponentProps & AddContactInformationProps
-> = ({ buttonText, onSubmit }) => {
-  const updateContactMutation = useMutation(UPDATE_CONTACT_CLIENT)
+> = ({ buttonText, onSubmit, updateContactInformation }) => {
+  // const updateContactMutation = useMutation(UPDATE_CONTACT_CLIENT)
   const { data: profileData } = useQuery(GET_PROFILE_CLIENT)
   const [inputData, setData] = useState<Profile>({
     email: '',
@@ -43,13 +47,17 @@ const AddContactInformation: React.FC<
   }
 
   const handleSubmit = () => {
-    updateContactMutation({
+    updateContactInformation({
       variables: {
-        data: inputData,
+        profile: {
+          name: inputData.name,
+          email: inputData.email,
+          telephone: inputData.telephone,
+        },
       },
     })
 
-    onSubmit(inputData)
+    onSubmit()
   }
 
   return (

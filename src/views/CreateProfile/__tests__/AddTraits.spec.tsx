@@ -6,7 +6,7 @@ import { waitForElement, fireEvent } from 'react-testing-library'
 import { OntologyType } from 'generated/myskills.d'
 import { GET_TRAITS_CLIENT } from 'graphql/resolvers/mutations/addTrait'
 
-describe('views/AddTraits', () => {
+xdescribe('views/AddTraits', () => {
   let withResultsMock: any
 
   beforeEach(() => {

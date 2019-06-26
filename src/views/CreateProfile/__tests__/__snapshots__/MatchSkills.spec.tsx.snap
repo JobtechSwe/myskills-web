@@ -40,9 +40,6 @@ exports[`views/MatchSkills renders loading state 1`] = `
           <div
             class="css-1fl5aa0"
           />
-          <div
-            class="css-1fl5aa0"
-          />
         </div>
       </div>
       <p

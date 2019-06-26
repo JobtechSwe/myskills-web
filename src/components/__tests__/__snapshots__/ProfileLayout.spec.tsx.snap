@@ -3,82 +3,90 @@
 exports[`components/ProfileLayout renders 1`] = `
 <div>
   <div
-    class="css-1wk798u"
+    class="css-tifiyl"
   >
     <div
-      class="css-sl7ksw"
+      class="sk-fading-circle css-rcik79"
     >
-      <button
-        class="css-ffgl9m"
-      >
-        <img
-          alt="save_as_pdf"
-          src="save_pdf.svg"
-        />
-      </button>
       <div
-        class="css-1sk5i7f"
-      >
-        <p
-          class="css-twz9yi"
-          font-family="default"
-          font-size="medium"
-        >
-          Inget yrke angivet
-        </p>
-        <img
-          alt="edit"
-          class="css-ns6bdc"
-          src="edit.svg"
-        />
-      </div>
-      <p
-        class="css-qlepwc"
-        font-family="default"
-        font-size="large"
-        font-weight="bold"
-      >
-        Inget namn angivet
-      </p>
+        class="sk-circle1 sk-circle"
+      />
+      <div
+        class="sk-circle2 sk-circle"
+      />
+      <div
+        class="sk-circle3 sk-circle"
+      />
+      <div
+        class="sk-circle4 sk-circle"
+      />
+      <div
+        class="sk-circle5 sk-circle"
+      />
+      <div
+        class="sk-circle6 sk-circle"
+      />
+      <div
+        class="sk-circle7 sk-circle"
+      />
+      <div
+        class="sk-circle8 sk-circle"
+      />
+      <div
+        class="sk-circle9 sk-circle"
+      />
+      <div
+        class="sk-circle10 sk-circle"
+      />
+      <div
+        class="sk-circle11 sk-circle"
+      />
+      <div
+        class="sk-circle12 sk-circle"
+      />
     </div>
     <div
-      class="css-1wk798u"
+      class="css-tifiyl"
     >
       <div
-        class="css-sl7ksw"
+        class="sk-fading-circle css-rcik79"
       >
-        <button
-          class="css-ffgl9m"
-        >
-          <img
-            alt="save_as_pdf"
-            src="save_pdf.svg"
-          />
-        </button>
         <div
-          class="css-1sk5i7f"
-        >
-          <p
-            class="css-twz9yi"
-            font-family="default"
-            font-size="medium"
-          >
-            Inget yrke angivet
-          </p>
-          <img
-            alt="edit"
-            class="css-ns6bdc"
-            src="edit.svg"
-          />
-        </div>
-        <p
-          class="css-qlepwc"
-          font-family="default"
-          font-size="large"
-          font-weight="bold"
-        >
-          Inget namn angivet
-        </p>
+          class="sk-circle1 sk-circle"
+        />
+        <div
+          class="sk-circle2 sk-circle"
+        />
+        <div
+          class="sk-circle3 sk-circle"
+        />
+        <div
+          class="sk-circle4 sk-circle"
+        />
+        <div
+          class="sk-circle5 sk-circle"
+        />
+        <div
+          class="sk-circle6 sk-circle"
+        />
+        <div
+          class="sk-circle7 sk-circle"
+        />
+        <div
+          class="sk-circle8 sk-circle"
+        />
+        <div
+          class="sk-circle9 sk-circle"
+        />
+        <div
+          class="sk-circle10 sk-circle"
+        />
+        <div
+          class="sk-circle11 sk-circle"
+        />
+        <div
+          class="sk-circle12 sk-circle"
+        />
       </div>
       <div
         class="sk-fading-circle css-rcik79"
@@ -264,24 +272,16 @@ exports[`components/ProfileLayout renders 1`] = `
 exports[`components/ProfileLayout renders with storage data 1`] = `
 <div>
   <div
-    class="css-1wk798u"
+    class="css-tifiyl"
   >
     <div
       class="css-sl7ksw"
     >
-      <button
-        class="css-ffgl9m"
-      >
-        <img
-          alt="save_as_pdf"
-          src="save_pdf.svg"
-        />
-      </button>
       <div
         class="css-1sk5i7f"
       >
         <p
-          class="css-twz9yi"
+          class="css-1j2j47"
           font-family="default"
           font-size="medium"
         >
@@ -289,7 +289,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
         </p>
         <img
           alt="edit"
-          class="css-ns6bdc"
+          class="css-16wt1xi"
           src="edit.svg"
         />
       </div>

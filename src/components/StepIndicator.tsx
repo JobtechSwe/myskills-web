@@ -21,7 +21,7 @@ const Dot = styled.div<DotProps>`
 
 const StepIndicator: React.FC<StepIndicatorProps> = ({ step }) => {
   const [val, set] = useState(step)
-  const routes = 6
+  const routes = 5
 
   const dots = new Array(routes)
     .fill('x')

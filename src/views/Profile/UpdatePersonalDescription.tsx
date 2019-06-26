@@ -5,32 +5,41 @@ import { Layout, Navigation } from 'components/Layout/Registration'
 import {
   OntologyTextParseResponse,
   GetPersonalDescriptionQuery,
+  MutationAddPersonalDescriptionArgs,
+  Mutation,
 } from 'generated/myskills.d'
 import { GET_PERSONAL_DESCRIPTION } from 'graphql/shared/Queries'
-import { useQuery } from 'react-apollo-hooks'
+import { useQuery, useMutation } from 'react-apollo-hooks'
+import { ADD_PERSONAL_DESCRIPTION } from 'graphql/shared/Mutations'
 
 const AddWhoAmI: React.FC<RouteComponentProps> = () => {
-  const {
-    data: { personalDescription },
-    loading,
-    error,
-  } = useQuery<GetPersonalDescriptionQuery>(GET_PERSONAL_DESCRIPTION, {
-    fetchPolicy: 'network-only',
-  })
+  const { data, loading, error } = useQuery<GetPersonalDescriptionQuery>(
+    GET_PERSONAL_DESCRIPTION,
+    {
+      fetchPolicy: 'network-only',
+    }
+  )
 
-  const handleSubmit = (traits: OntologyTextParseResponse[]) => {
-    navigate('/skapa-cv/egenskaper', { state: { traits } })
-  }
+  const updateWhoAmI = useMutation<
+    Mutation['addPersonalDescription'],
+    MutationAddPersonalDescriptionArgs
+  >(ADD_PERSONAL_DESCRIPTION)
+
+  const handleSubmit = (_: OntologyTextParseResponse[], description: string) =>
+    updateWhoAmI({
+      variables: { body: description },
+      refetchQueries: [{ query: GET_PERSONAL_DESCRIPTION }],
+    }).then(() => navigate('/profil'))
 
   return (
     <Layout>
       <Navigation section="Person" />
-      {error && <div>error...</div>}
-      {!loading && personalDescription && (
+      {error && data && <div>error...</div>}
+      {!loading && (
         <WhoAmI
-          buttonText="Fortsätt"
+          buttonText="Spara"
           onSubmit={handleSubmit}
-          personalDescription={personalDescription}
+          personalDescription={data.personalDescription}
         />
       )}
     </Layout>

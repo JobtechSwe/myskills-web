@@ -2,7 +2,7 @@ import { RouteComponentProps } from '@reach/router'
 import Grid from 'components/Grid'
 import Flex from 'components/Flex'
 import { v4 } from 'uuid'
-import { useMutation, useQuery } from 'react-apollo-hooks'
+import { useQuery, MutationHookOptions } from 'react-apollo-hooks'
 import React, { useEffect, useState, useRef } from 'react'
 import { useDebounce, useToggle } from '@iteam/hooks'
 import Downshift from 'downshift'
@@ -18,10 +18,11 @@ import {
   Query,
   OntologyType,
   OntologyConceptResponse,
+  AddTraitMutationVariables,
+  RemoveTraitMutationVariables,
 } from 'generated/myskills.d'
 import gql from 'graphql-tag'
 import { GET_ONTOLOGY_CONCEPTS } from 'views/partials/Profession'
-import { GET_TRAITS_CLIENT } from 'graphql/resolvers/mutations/addTrait'
 import { highlightMarked, handleFocusKeyDown } from 'utils/helpers'
 import TagList from 'components/TagList'
 import { FooterButton } from 'components/Layout/Registration'
@@ -41,19 +42,25 @@ export const REMOVE_TRAIT = gql`
 interface TraitsProps {
   buttonText: string
   onSubmit: (traits: string[]) => void
+  addTraitMutation: (
+    trait: MutationHookOptions<{}, AddTraitMutationVariables>
+  ) => void
+  removeTraitMutation: (
+    trait: MutationHookOptions<{}, RemoveTraitMutationVariables>
+  ) => void
+  traits: string[]
 }
 
 const Traits: React.FC<RouteComponentProps & TraitsProps> = ({
   buttonText,
   location,
   onSubmit,
+  addTraitMutation,
+  removeTraitMutation,
+  traits,
 }) => {
   const navigationTraits: OntologyTextParseResponse[] =
     (location && location.state && location.state.traits) || []
-
-  const { data: { traits = [] } = { traits: [] as string[] } } = useQuery(
-    GET_TRAITS_CLIENT
-  )
 
   const [traitQuery, setTraitQuery] = useState('')
   const [addTraitActive, setAddTraitActive] = useToggle(false)
@@ -68,9 +75,6 @@ const Traits: React.FC<RouteComponentProps & TraitsProps> = ({
     },
     skip: !traitQuery,
   })
-
-  const addTraitMutation = useMutation(ADD_TRAIT)
-  const removeTraitMutation = useMutation(REMOVE_TRAIT)
 
   const [suggestedTraits, setSuggestedTraits] = useState(
     navigationTraits.map(t => t.term)
@@ -102,11 +106,11 @@ const Traits: React.FC<RouteComponentProps & TraitsProps> = ({
   }
 
   const onTagClick = (tag: { id: string; term: string }) => {
-    if (traits.some(t => t === tag.term)) {
-      return removeTrait(tag.term)
-    }
+    // if (traits.some(t => t === tag.term)) {
+    //   return removeTrait(tag.term)
+    // }
 
-    return addTrait(tag.term)
+    return removeTrait(tag.term)
   }
 
   useEffect(() => {

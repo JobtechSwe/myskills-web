@@ -15,7 +15,7 @@ import ScrollTop from 'components/ScrollTop'
 import CreateProfile from 'views/CreateProfile/CreateProfile'
 // import AddContactInformation from 'views/CreateProfile/AddContactInformation'
 import AddEducation from 'views/CreateProfile/AddEducation'
-import AddTraits from 'views/CreateProfile/AddTraits'
+// import AddTraits from 'views/CreateProfile/AddTraits'
 import ChooseProfession from 'views/CreateProfile/ChooseProfession'
 import MatchCompetences from 'views/CreateProfile/AddSkills'
 import OccupationTrivia from 'views/CreateProfile/OccupationTrivia'
@@ -23,7 +23,7 @@ import PreviousOccupationExperience from 'views/CreateProfile/PreviousOccupation
 import RegistrationCompleted from 'views/CreateProfile/RegistrationCompleted'
 import SaveCV from 'views/CreateProfile/SaveCV'
 // import UploadImage from 'views/CreateProfile/UploadImage'
-import WhoAmI from 'views/CreateProfile/WhoAmI'
+// import WhoAmI from 'views/CreateProfile/WhoAmI'
 import WorkExperiences from 'views/CreateProfile/WorkExperiences'
 
 /* Profile */
@@ -33,6 +33,8 @@ import Timeline from 'views/Profile/Timeline'
 import UpdateEducation from 'views/Profile/UpdateEducation'
 import UpdateWhoAmI from 'views/Profile/UpdatePersonalDescription'
 import UpdateWorkExperience from 'views/Profile/UpdateWorkExperiences'
+import UpdateContactInformation from 'views/Profile/UpdateContactInformation'
+import UpdateTraits from 'views/Profile/UpdateTraits'
 
 function App() {
   return (
@@ -49,11 +51,12 @@ function App() {
               <Router location={location}>
                 <ScrollTop path="/">
                   <Start path="/" />
+                  <Start path="/" />
                   <Login path="/logga-in" />
                   <CreateProfile path="/skapa-cv">
                     {/* <AddContactInformation path="/kontakt" /> */}
                     <AddEducation path="/utbildning" />
-                    <AddTraits path="/egenskaper" />
+                    {/* <AddTraits path="/egenskaper" /> */}
                     <ChooseProfession path="/" />
                     <MatchCompetences path="/kompetenser" />
                     <OccupationTrivia path="/visste-du-att" />
@@ -61,7 +64,7 @@ function App() {
                     <RegistrationCompleted path="/grattis" />
                     <SaveCV path="/spara-cv" />
                     {/* <UploadImage path="/profilbild" /> */}
-                    <WhoAmI path="/beskriv-dig" />
+                    {/* <WhoAmI path="/beskriv-dig" /> */}
                     <WorkExperiences path="/erfarenheter/tidigare-erfarenheter" />
                     <NotFound default />
                   </CreateProfile>
@@ -69,6 +72,14 @@ function App() {
                   <Profile path="/profil">
                     <RestrictedRoute component={Home} path="/" />
                     <RestrictedRoute component={Timeline} path="/tidslinje" />
+                    <RestrictedRoute
+                      component={UpdateContactInformation}
+                      path="/kontakt"
+                    />
+                    <RestrictedRoute
+                      component={UpdateTraits}
+                      path="/egenskaper"
+                    />
                     <RestrictedRoute
                       component={UpdateEducation}
                       path="/utbildning"

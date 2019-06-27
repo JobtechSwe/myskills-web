@@ -167,7 +167,7 @@ exports[`components/ProfileLayout renders 1`] = `
           class="css-tzjau4"
           color="persianBlue"
           font-weight="500"
-          href="//tidslinje"
+          href="/profil/tidslinje/"
           width="100%"
         >
           <button
@@ -236,7 +236,7 @@ exports[`components/ProfileLayout renders 1`] = `
         class="css-tzjau4"
         color="persianBlue"
         font-weight="500"
-        href="//tidslinje"
+        href="/profil/tidslinje/"
         width="100%"
       >
         <button
@@ -342,7 +342,7 @@ exports[`components/ProfileLayout renders with storage data 1`] = `
         class="css-tzjau4"
         color="persianBlue"
         font-weight="500"
-        href="//tidslinje"
+        href="/profil/tidslinje/"
         width="100%"
       >
         <button

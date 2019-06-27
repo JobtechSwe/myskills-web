@@ -92,7 +92,7 @@ const ProfileLayout: React.FC<ProfileLayoutProps> = ({
         <ProfileButton
           buttonText="Tidslinje"
           isActive={parsedPath === '/profil/tidslinje'}
-          route="./tidslinje/"
+          route="/profil/tidslinje/"
         />
       </NavigationContainer>
     </Grid>

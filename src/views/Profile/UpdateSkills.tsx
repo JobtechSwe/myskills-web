@@ -69,12 +69,12 @@ const AddSkills: React.FC<RouteComponentProps> = () => {
       {!loading && skills && (
         <MatchSkills
           addSkillMutation={addSkillMutation}
+          buttonText="Spara"
+          handleSkillClick={handleSkillClick}
+          occupation={occupation}
+          onSubmit={handleSubmit}
           removeSkillMutation={removeSkillMutation}
           skills={skills}
-          buttonText="Spara"
-          onSubmit={handleSubmit}
-          occupation={occupation}
-          handleSkillClick={handleSkillClick}
         />
       )}
     </Layout>

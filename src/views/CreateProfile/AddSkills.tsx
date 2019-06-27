@@ -71,12 +71,12 @@ const AddSkills: React.FC<RouteComponentProps> = () => {
       <Navigation section="Kompetens" step={2} />
       <MatchSkills
         addSkillMutation={addSkillMutation}
+        buttonText="Fortsätt"
+        handleSkillClick={handleSkillClick}
+        occupation={occupation}
+        onSubmit={handleSubmit}
         removeSkillMutation={removeSkillMutation}
         skills={skills}
-        buttonText="Fortsätt"
-        onSubmit={handleSubmit}
-        occupation={occupation}
-        handleSkillClick={handleSkillClick}
       />
     </Layout>
   )

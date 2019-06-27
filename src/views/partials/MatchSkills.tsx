@@ -4,60 +4,41 @@ import React from 'react'
 import TagList from 'components/TagList'
 import { H1, Paragraph } from 'components/Typography'
 import { RouteComponentProps } from '@reach/router'
-import { useQuery, useMutation } from 'react-apollo-hooks'
+import { MutationHookOptions } from 'react-apollo-hooks'
 import { v4 } from 'uuid'
 import { withApollo, WithApolloClient } from 'react-apollo'
-import { ADD_SKILL_CLIENT, REMOVE_SKILL_CLIENT } from 'graphql/shared/Mutations'
+import { GET_RELATED_SKILLS } from 'graphql/shared/Queries'
 import {
-  GET_RELATED_SKILLS,
-  GET_SKILLS_CLIENT,
-  GET_OCCUPATION_CLIENT,
-} from 'graphql/shared/Queries'
-import {
-  AddSkillClientMutation,
-  AddSkillClientMutationVariables,
-  GetOccupationClientQuery,
-  GetOccupationClientQueryVariables,
-  GetSkillsClientQueryVariables,
-  GetSkillsClientQuery,
   Occupation,
   OntologyRelationResponse,
   OntologyType,
-  RemoveSkillClientMutation,
-  RemoveSkillClientMutationVariables,
   SkillInput,
+  Skill,
 } from 'generated/myskills.d'
 import { FooterButton } from 'components/Layout/Registration'
 
 interface MatchSkillsProps {
   buttonText: string
   onSubmit: () => void
+  addSkillMutation: (args: MutationHookOptions<{}, any>) => void
+  removeSkillMutation: (args: MutationHookOptions<{}, any>) => void
+  skills: Skill[] | SkillInput[]
+  occupation: Occupation
+  handleSkillClick: (skill: any) => void
 }
 
 const MatchSkills: React.FC<
   WithApolloClient<RouteComponentProps & MatchSkillsProps>
-> = ({ buttonText, client, onSubmit }) => {
-  const {
-    data: { occupation },
-  } = useQuery<GetOccupationClientQuery, GetOccupationClientQueryVariables>(
-    GET_OCCUPATION_CLIENT
-  )
-
-  const {
-    data: { skills = [] },
-  } = useQuery<GetSkillsClientQuery, GetSkillsClientQueryVariables>(
-    GET_SKILLS_CLIENT
-  )
-
-  const addSkillMutation = useMutation<
-    AddSkillClientMutation,
-    AddSkillClientMutationVariables
-  >(ADD_SKILL_CLIENT)
-  const removeSkillMutation = useMutation<
-    RemoveSkillClientMutation,
-    RemoveSkillClientMutationVariables
-  >(REMOVE_SKILL_CLIENT)
-
+> = ({
+  buttonText,
+  client,
+  onSubmit,
+  addSkillMutation,
+  removeSkillMutation,
+  skills,
+  occupation,
+  handleSkillClick,
+}) => {
   const [relatedSkills, setRelatedSkills] = React.useState<
     OntologyRelationResponse[]
   >([])
@@ -81,24 +62,6 @@ const MatchSkills: React.FC<
   React.useEffect(() => {
     skills.length ? getRelatedSkills(skills) : getRelatedSkills([occupation])
   }, [skills, occupation, getRelatedSkills])
-
-  const handleSkillClick = (skill: SkillInput) => {
-    const hasSkill = skills.some((s: SkillInput) => s.term === skill.term)
-
-    if (hasSkill) {
-      removeSkillMutation({
-        variables: {
-          skill,
-        },
-      })
-    } else {
-      addSkillMutation({
-        variables: {
-          skill,
-        },
-      })
-    }
-  }
 
   const handleFreeTextSkill = (value: string) => {
     const skill = {

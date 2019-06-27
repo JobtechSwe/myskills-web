@@ -40,7 +40,7 @@ const UPDATE_EDUCATION_CLIENT = gql`
 
 const AddEducation: React.FC<RouteComponentProps> = () => {
   const handleSubmit = () => {
-    navigate('/skapa-cv/beskriv-dig')
+    navigate('/skapa-cv/spara-cv')
   }
 
   const addEducation = useMutation<
@@ -62,7 +62,7 @@ const AddEducation: React.FC<RouteComponentProps> = () => {
 
   return (
     <Layout>
-      <Navigation section="Utbildning" step={4} />
+      <Navigation section="Utbildning" step={5} />
       {loading && <p>Loading...</p>}
       {educations && (
         <Education

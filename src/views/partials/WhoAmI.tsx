@@ -43,7 +43,7 @@ const renderToStatic = (
 
 interface WhoAmIProps {
   buttonText: string
-  onSubmit: (traits: OntologyTextParseResponse[]) => void
+  onSubmit: (traits: OntologyTextParseResponse[], description: string) => void
   personalDescription: string
 }
 
@@ -144,7 +144,9 @@ const WhoAmI: React.FC<RouteComponentProps & WhoAmIProps> = ({
         </Grid>
       </Grid>
       <FooterButton
-        onClick={() => onSubmit(traits as OntologyTextParseResponse[])}
+        onClick={() =>
+          onSubmit(traits as OntologyTextParseResponse[], description)
+        }
         text={buttonText}
       />
     </>

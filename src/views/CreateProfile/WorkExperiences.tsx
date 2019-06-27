@@ -71,7 +71,7 @@ const WorkExperiences: React.FC<RouteComponentProps> = () => {
 
   return (
     <Layout>
-      <Navigation section="ERFARENHET" step={3} />
+      <Navigation section="ERFARENHET" step={4} />
       {experiences && (
         <Experiences
           addExperience={addExperience}

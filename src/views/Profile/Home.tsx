@@ -9,8 +9,8 @@ import ProfileDataCard from 'components/ProfileDataCard'
 import { Paragraph, H2 } from 'components/Typography'
 import { Skill, Education, Experience } from 'generated/myskills'
 import Loader from 'components/Loader'
-// import editIcon from 'assets/icons/edit.svg'
-// import { InternalLink } from 'components/Link'
+import editIcon from 'assets/icons/edit.svg'
+import { InternalLink } from 'components/Link'
 
 export const GET_CV = gql`
   query getCV {
@@ -67,13 +67,15 @@ const Container = styled(Flex)`
 //   width: 100%;
 //   height: 100%;
 // `
-
+const Italic = styled.span`
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: italic;
+  font-size: 14px;
+`
 const Home: React.FC<RouteComponentProps> = ({
   location = { pathname: '' },
 }) => {
-  const { data, error, loading } = useQuery(GET_CV, {
-    fetchPolicy: 'network-only',
-  })
+  const { data, error, loading } = useQuery(GET_CV)
 
   return (
     <ProfileLayout currentPath={location.pathname}>
@@ -82,14 +84,12 @@ const Home: React.FC<RouteComponentProps> = ({
       {!loading && data && (
         <>
           <Container mb="10px" mr="-10px">
-            <ProfileDataCard
-              flexVal={1}
-              isTop
-              route="beskriv-dig"
-            >
+            <ProfileDataCard flexVal={1} isTop route="beskriv-dig">
               <H2 mb="small">Beskrivning</H2>
               <Paragraph fontSize="small" mb="none" mt="none">
-                {data.personalDescription}
+                {data.personalDescription || (
+                  <Italic>Editera för att lägga till en beskrivning</Italic>
+                )}
               </Paragraph>
             </ProfileDataCard>
             {/* <ProfileDataCard flexVal={0.35} isImage isTop route="editplace">
@@ -99,14 +99,17 @@ const Home: React.FC<RouteComponentProps> = ({
           <Container mb="10px">
             <ProfileDataCard route="egenskaper">
               <H2 mb="small">Egenskaper</H2>
-              {data.traits &&
+              {data.traits.length ? (
                 data.traits.map((trait: string) => (
                   <Paragraph fontSize="small" key={trait} mb="none" mt="none">
                     {trait},
                   </Paragraph>
-                ))}
+                ))
+              ) : (
+                <Italic>Editera för att lägga till egenskaper</Italic>
+              )}
             </ProfileDataCard>
-            <ProfileDataCard route="editplace">
+            <ProfileDataCard route="kompetens">
               <H2 mb="small">Kompetens</H2>
               {data.skills &&
                 data.skills.map((skill: Skill) => (
@@ -162,34 +165,42 @@ const Home: React.FC<RouteComponentProps> = ({
                 ))}
             </ProfileDataCard>
           </Container>
-          {/* <Flex mt="small" pl="small">
+          <Flex mt="small" pl="small">
             <Flex flex="1" flexDirection="column" mb="large">
-              <H2 mb="none" width="100%">
+              <H2 mb="small" width="100%">
                 Kontakt
               </H2>
-              {data.profile && (
+              {data.profile.email && data.profile.telephone ? (
                 <Flex
-                  alignItems="flex-end"
+                  alignItems="center"
                   flexWrap="wrap"
                   justifyContent="space-between"
+                  pr="small"
                 >
-                  <Paragraph fontSize="small" mb="none" mr="5px" mt="8px">
+                  <Paragraph fontSize="small" mb="none" mr="5px" mt="0">
                     {data.profile.email}
                   </Paragraph>
-                  <Paragraph fontSize={25} mb="none" mr="5px" mt="8px">
+                  <Paragraph fontSize={25} mb="none" mr="5px" mt="0">
                     ·
                   </Paragraph>
-                  <Paragraph fontSize="small" mb="none" mr="5px" mt="8px">
+                  <Paragraph fontSize="small" mb="none" mr="5px" mt="0">
                     {data.profile.telephone}
                   </Paragraph>
 
-                  <InternalLink mb="4px" to="editplace">
+                  <InternalLink mb="4px" mr="6px" to="kontakt">
+                    <img alt="Edit profile" src={editIcon} />
+                  </InternalLink>
+                </Flex>
+              ) : (
+                <Flex justifyContent="space-between" pr="small">
+                  <Italic>Lägg till kontaktuppgifter</Italic>
+                  <InternalLink mb="4px" mr="4px" to="kontakt">
                     <img alt="Edit profile" src={editIcon} />
                   </InternalLink>
                 </Flex>
               )}
             </Flex>
-          </Flex> */}
+          </Flex>
         </>
       )}
     </ProfileLayout>

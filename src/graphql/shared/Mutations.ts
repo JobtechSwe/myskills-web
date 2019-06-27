@@ -1,5 +1,37 @@
 import gql from 'graphql-tag'
 
+export const ADD_SKILL = gql`
+  mutation addSkill($skill: SkillInput!) {
+    addSkill(skill: $skill) {
+      term
+    }
+  }
+`
+export const REMOVE_SKILL = gql`
+  mutation removeSkill($id: String!) {
+    removeSkill(id: $id)
+  }
+`
+export const ADD_TRAIT = gql`
+  mutation addTrait($trait: String!) {
+    addTrait(trait: $trait)
+  }
+`
+export const REMOVE_TRAIT = gql`
+  mutation removeTrait($trait: String!) {
+    removeTrait(trait: $trait)
+  }
+`
+export const UPDATE_CONTACT_INFORMATION = gql`
+  mutation createProfile($profile: ProfileInput!) {
+    createProfile(profile: $profile) {
+      name
+      email
+      telephone
+    }
+  }
+`
+
 export const ADD_EDUCATION = gql`
   mutation addEducation($education: EducationInput!) {
     addEducation(education: $education) {
@@ -89,5 +121,11 @@ export const UPDATE_EXPERIENCE_CLIENT = gql`
 export const ADD_WHO_AM_I = gql`
   mutation addWhoAmI($whoAmI: String!) {
     addWhoAmI(whoAmI: $whoAmI) @client
+  }
+`
+
+export const ADD_PERSONAL_DESCRIPTION = gql`
+  mutation addPersonalDescription($body: String!) {
+    addPersonalDescription(body: $body)
   }
 `

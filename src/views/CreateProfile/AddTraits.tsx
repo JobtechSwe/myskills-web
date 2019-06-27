@@ -11,11 +11,11 @@ const AddTraits: React.FC<RouteComponentProps> = ({ location }) => {
   return (
     <Layout>
       <Navigation section="Person" step={5} />
-      <Traits
+      {/* <Traits
         buttonText="Fortsätt"
         location={location}
         onSubmit={handleSubmit}
-      />
+      /> */}
     </Layout>
   )
 }

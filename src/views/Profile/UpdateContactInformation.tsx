@@ -1,18 +1,43 @@
 import { Layout, Navigation } from 'components/Layout/Registration'
-import { Profile } from 'generated/myskills.d'
+import {
+  Query,
+  Mutation,
+  MutationCreateProfileArgs,
+} from 'generated/myskills.d'
 import { RouteComponentProps, navigate } from '@reach/router'
 import ContactInformation from 'views/partials/ContactInformation'
 import React from 'react'
+import { useQuery, useMutation } from 'react-apollo-hooks'
+import { GET_PROFILE } from 'graphql/shared/Queries'
+import { UPDATE_CONTACT_INFORMATION } from 'graphql/shared/Mutations'
 
 const AddContactInformation: React.FC<RouteComponentProps> = () => {
-  const handleSubmit = (_profile: Profile) => {
-    navigate('/skapa-cv/spara-cv')
+  const handleSubmit = () => {
+    navigate('/profil')
   }
+
+  const { data, loading } = useQuery<Query['profile'], {}>(GET_PROFILE, {
+    fetchPolicy: 'network-only',
+  })
+
+  const updateContactInformation = useMutation<
+    Mutation['createProfile'],
+    MutationCreateProfileArgs
+  >(UPDATE_CONTACT_INFORMATION, {
+    refetchQueries: [{ query: GET_PROFILE }],
+  })
 
   return (
     <Layout>
-      <Navigation section="Kontakt" step={6} />
-      <ContactInformation buttonText="Fortsätt" onSubmit={handleSubmit} />
+      <Navigation section="Kontakt" />
+      {!loading && data && (
+        <ContactInformation
+          buttonText="Spara"
+          contactInformation={data}
+          onSubmit={handleSubmit}
+          updateContactInformation={updateContactInformation}
+        />
+      )}
     </Layout>
   )
 }

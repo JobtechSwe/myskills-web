@@ -92,7 +92,9 @@ export const Experiences: React.FC<
 
   return (
     <>
-      <H1 textAlign="center">Vad har du för arbetslivserfarenhet?</H1>
+      <H1 mb="0" textAlign="center">
+        Vad har du för arbetslivserfarenhet?
+      </H1>
       {experiences && (
         <Timeline
           editingEntry={editEntry.id}

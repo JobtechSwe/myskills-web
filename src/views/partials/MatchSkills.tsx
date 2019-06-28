@@ -34,9 +34,8 @@ const MatchSkills: React.FC<
   client,
   onSubmit,
   addSkillMutation,
-  removeSkillMutation,
-  skills,
-  occupation,
+  skills = [],
+  occupation = { term: '' },
   handleSkillClick,
 }) => {
   const [relatedSkills, setRelatedSkills] = React.useState<

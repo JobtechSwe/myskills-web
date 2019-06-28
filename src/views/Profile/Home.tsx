@@ -99,7 +99,7 @@ const Home: React.FC<RouteComponentProps> = ({
           <Container mb="10px">
             <ProfileDataCard route="egenskaper">
               <H2 mb="small">Egenskaper</H2>
-              {data.traits.length ? (
+              {data.traits && data.traits.length ? (
                 data.traits.map((trait: string) => (
                   <Paragraph fontSize="small" key={trait} mb="none" mt="none">
                     {trait},
@@ -170,7 +170,7 @@ const Home: React.FC<RouteComponentProps> = ({
               <H2 mb="small" width="100%">
                 Kontakt
               </H2>
-              {data.profile.email && data.profile.telephone ? (
+              {data.profile ? (
                 <Flex
                   alignItems="center"
                   flexWrap="wrap"
@@ -178,13 +178,15 @@ const Home: React.FC<RouteComponentProps> = ({
                   pr="small"
                 >
                   <Paragraph fontSize="small" mb="none" mr="5px" mt="0">
-                    {data.profile.email}
+                    {data.profile.email || <Italic>Email saknas</Italic>}
                   </Paragraph>
                   <Paragraph fontSize={25} mb="none" mr="5px" mt="0">
                     ·
                   </Paragraph>
                   <Paragraph fontSize="small" mb="none" mr="5px" mt="0">
-                    {data.profile.telephone}
+                    {data.profile.telephone || (
+                      <Italic>Telefonnummer saknas</Italic>
+                    )}
                   </Paragraph>
 
                   <InternalLink mb="4px" mr="6px" to="kontakt">

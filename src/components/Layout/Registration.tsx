@@ -90,7 +90,12 @@ const FooterButton: React.FC<FooterButtonProps & VariantProps> = ({
 }) => {
   return (
     <Flex justifyContent="center">
-      <Button data-testid="okButton" onClick={onClick} variant={variant}>
+      <Button
+        mb="medium"
+        data-testid="okButton"
+        onClick={onClick}
+        variant={variant}
+      >
         {text}
       </Button>
     </Flex>

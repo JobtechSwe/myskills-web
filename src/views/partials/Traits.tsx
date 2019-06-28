@@ -75,7 +75,6 @@ const Traits: React.FC<RouteComponentProps & TraitsProps> = ({
     },
     skip: !traitQuery,
   })
-
   const [suggestedTraits, setSuggestedTraits] = useState(
     navigationTraits.map(t => t.term)
   )
@@ -92,7 +91,7 @@ const Traits: React.FC<RouteComponentProps & TraitsProps> = ({
       },
     })
 
-    setSuggestedTraits([...suggestedTraits, trait])
+    // setSuggestedTraits([...suggestedTraits, trait])
   }
 
   const addTrait = (trait: string) => {
@@ -114,11 +113,10 @@ const Traits: React.FC<RouteComponentProps & TraitsProps> = ({
   }
 
   useEffect(() => {
-    setSuggestedTraits(s => s.filter(t => traits.indexOf(t) === -1))
-
-    if (inputRef && inputRef.current) {
-      inputRef.current.focus()
-    }
+    // setSuggestedTraits(s => s.filter(t => traits.indexOf(t) === -1))
+    // if (inputRef && inputRef.current) {
+    //   inputRef.current.focus()
+    // }
   }, [traits, addTraitActive, suggestedTraits])
 
   return (
@@ -139,7 +137,7 @@ const Traits: React.FC<RouteComponentProps & TraitsProps> = ({
           </H1>
           <Paragraph my={0} textAlign="center">
             Markera de egenskaper som bäst motsvarar dina. Du kan också lägga
-            till egna.
+            till egna, exempelvis ansvarstagande, flexibel eller strukturerad.
           </Paragraph>
         </Grid>
         <TagList

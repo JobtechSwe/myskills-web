@@ -73,7 +73,7 @@
     "@types/styled-system": "^3.2.2",
     "@types/uuid": "^3.4.4",
     "@typescript-eslint/eslint-plugin": "1.4.2",
-    "acorn": "6.1.1",
+    "acorn": "6.4.1",
     "cypress": "^3.2.0",
     "cypress-cucumber-preprocessor": "^1.11.0",
     "eslint": "^5.16.0",

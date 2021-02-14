@@ -19,7 +19,7 @@ const IllustrationHeader: React.FC<IllustrationHeaderProps> = ({
 }) =>
   imageFirst ? (
     <Grid alignItems="center" gridGap="medium" justifyContent="center">
-      <Flex justifyContent="center">
+      <Flex alignItems="center" justifyContent="center">
         <img alt={imageAltTag} src={imageSource} />
       </Flex>
       <H1 mb={0} mt="small" textAlign="center">

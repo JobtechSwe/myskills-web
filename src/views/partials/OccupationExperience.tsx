@@ -3,19 +3,15 @@ import { RouteComponentProps } from '@reach/router'
 import Grid from 'components/Grid'
 import Flex from 'components/Flex'
 import laptopImage from 'images/laptop.svg'
-import { H1, Paragraph } from 'components/Typography'
+import IllustrationHeader from 'components/IllustrationHeader'
+import { Paragraph } from 'components/Typography'
 import Button from 'components/Button'
 import Slider from 'components/Slider'
 import { useQuery, useMutation } from 'react-apollo-hooks'
 import { GET_OCCUPATION_CLIENT } from 'graphql/resolvers/mutations/createOccupation'
 import { CREATE_OCCUPATION_CLIENT } from 'views/partials/Profession'
 import { FooterButton } from 'components/Layout/Registration'
-import styled from '@emotion/styled'
 import { navigate } from '@reach/router'
-
-const Image = styled.img`
-  width: 100%;
-`
 
 interface OccupationExperienceProps {
   buttonText: string
@@ -84,13 +80,20 @@ export const OccupationExperience: React.FC<
 
   return (
     <>
-      <Flex flexDirection="column">
-        <Image alt="Clock" src={laptopImage} />
-        <H1 textAlign="center">
-          Har du arbetat som {data.occupation.term.toLowerCase()} tidigare?
-        </H1>
+      <Grid alignContent="start">
+        <IllustrationHeader
+          imageAltTag="Laptop"
+          imageFirst={true}
+          imageSource={laptopImage}
+          title={`Har du arbetat som ${data.occupation.term.toLowerCase()} tidigare?`}
+        />
 
-        <Grid gridAutoFlow="column" gridGap={12} justifyContent="center">
+        <Grid
+          gridAutoFlow="column"
+          gridGap={12}
+          justifyContent="center"
+          mt="small"
+        >
           <Button
             onClick={hasPreviousExperiencesClick}
             variant={
@@ -109,7 +112,7 @@ export const OccupationExperience: React.FC<
 
         {data.occupation.experience &&
           data.occupation.experience.years !== null && (
-            <Flex flexDirection="column" mt="small" p="medium">
+            <Flex flexDirection="column" p="medium">
               <Paragraph>Hur länge har du arbetat med det?</Paragraph>
               <Slider
                 defaultValue={yearsActive}
@@ -119,7 +122,7 @@ export const OccupationExperience: React.FC<
               />
             </Flex>
           )}
-      </Flex>
+      </Grid>
       <FooterButton onClick={onSubmit} text={buttonText} />
     </>
   )
